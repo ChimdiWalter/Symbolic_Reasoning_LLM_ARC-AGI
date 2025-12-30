@@ -1,0 +1,350 @@
+{
+  "0934a4d8": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "rotate_k", "k": 0},
+        {"op": "crop_bbox_to", "H": 9, "W": 3}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 9, "W": 3}
+      ]
+    }
+  ],
+
+  "136b0064": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "rotate_k", "k": 0},
+        {"op": "crop_center_to", "H": 19, "W": 7}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "flip_lr"},
+        {"op": "crop_center_to", "H": 19, "W": 7}
+      ]
+    }
+  ],
+
+  "20270e3b": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "rotate_k", "k": 0},
+        {"op": "crop_center_to", "H": 5, "W": 10}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "rotate_k", "k": 1},
+        {"op": "crop_center_to", "H": 8, "W": 8}
+      ]
+    },
+    {
+      "priority": 3,
+      "steps": [
+        {"op": "project_rows", "mode": "any"},
+        {"op": "crop_bbox_to", "H": 5, "W": 10}
+      ]
+    }
+  ],
+
+  "20a9e565": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 2, "W": 21}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 8, "W": 17}
+      ]
+    }
+  ],
+
+  "2d0172a1": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 9, "W": 13}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "rotate_k", "k": 1},
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 14, "W": 11}
+      ]
+    }
+  ],
+
+  "269e22fb": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 20, "W": 20}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_center_to", "H": 20, "W": 20}
+      ]
+    }
+  ],
+
+  "291dc1e1": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "rotate_k", "k": 0},
+        {"op": "crop_center_to", "H": 18, "W": 8}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "flip_ud"},
+        {"op": "crop_center_to", "H": 18, "W": 8}
+      ]
+    }
+  ],
+
+  "2ba387bc": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 16, "W": 8}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "rotate_k", "k": 0},
+        {"op": "crop_center_to", "H": 16, "W": 8}
+      ]
+    }
+  ],
+
+  "38007db0": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "project_rows", "mode": "any"},
+        {"op": "crop_center_to", "H": 19, "W": 7}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "rotate_k", "k": 0},
+        {"op": "crop_center_to", "H": 19, "W": 7}
+      ]
+    }
+  ],
+
+  "3a25b0d8": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "crop_center_to", "H": 11, "W": 11}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "rotate_k", "k": 1},
+        {"op": "crop_center_to", "H": 13, "W": 7}
+      ]
+    }
+  ],
+
+  "45a5af55": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 26, "W": 26}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_center_to", "H": 26, "W": 26}
+      ]
+    }
+  ],
+
+  "4c7dc4dd": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "crop_bbox_to", "H": 5, "W": 5}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_bbox_to", "H": 4, "W": 4}
+      ]
+    }
+  ],
+
+  "4e34c42c": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "crop_center_to", "H": 5, "W": 12}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_center_to", "H": 5, "W": 22}
+      ]
+    }
+  ],
+
+  "58490d8a": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "crop_center_to", "H": 7, "W": 7}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_center_to", "H": 7, "W": 12}
+      ]
+    },
+    {
+      "priority": 3,
+      "steps": [
+        {"op": "crop_center_to", "H": 5, "W": 5}
+      ]
+    }
+  ],
+
+  "58f5dbd5": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "project_rows", "mode": "any"},
+        {"op": "crop_center_to", "H": 19, "W": 7}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "rotate_k", "k": 1},
+        {"op": "crop_center_to", "H": 7, "W": 19}
+      ]
+    },
+    {
+      "priority": 3,
+      "steps": [
+        {"op": "crop_center_to", "H": 13, "W": 13}
+      ]
+    }
+  ],
+
+  "65b59efc": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "crop_center_to", "H": 9, "W": 9}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 25, "W": 25}
+      ]
+    }
+  ],
+
+  "a32d8b75": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 20, "W": 24}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_center_to", "H": 20, "W": 24}
+      ]
+    }
+  ],
+
+  "b0039139": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 5, "W": 2}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 3, "W": 11}
+      ]
+    },
+    {
+      "priority": 3,
+      "steps": [
+        {"op": "pack_components", "order": "by_area"},
+        {"op": "crop_center_to", "H": 4, "W": 15}
+      ]
+    }
+  ],
+
+  "221dfab4": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 25, "W": 25}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 30, "W": 30}
+      ]
+    }
+  ],
+
+  "35ab12c3": [
+    {
+      "priority": 1,
+      "steps": [
+        {"op": "integer_downscale_to", "H": 21, "W": 21}
+      ]
+    },
+    {
+      "priority": 2,
+      "steps": [
+        {"op": "crop_center_to", "H": 21, "W": 21}
+      ]
+    }
+  ]
+}
+
