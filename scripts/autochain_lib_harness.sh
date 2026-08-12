@@ -79,4 +79,4 @@ print("gained:", sorted(ns - os_))
 print("lost (check for contention flakes before calling regression):", sorted(os_ - ns))
 PY
 stamp "delta report written: outputs/unified_harness_v3_lib/delta_vs_v2.json — $(head -1 logs/lib_delta_vs_v2.log)"
-stamp "autochain DONE. Next (needs a Claude session): review delta, record in RUN_HISTORY.md, then Stage 2 implementation (docs/STAGE2_REQUIREMENTS.md)."
+stamp "autochain DONE. Next (manual review): review delta, record in RUN_HISTORY.md, then Stage 2 implementation (docs/STAGE2_REQUIREMENTS.md)."
