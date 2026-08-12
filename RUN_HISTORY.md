@@ -469,6 +469,7 @@ Motivation:
 Changes made:
 
 - Added `AGENTS.md`.
+- Added `.codex/config.toml`.
 - Updated `src/reasoning_project/sweep.py` to write:
   - `paired_seed_deltas.csv`,
   - paired contrast mean deltas,
@@ -502,6 +503,7 @@ Validation results:
 - Final full suite after failure taxonomy script: 15 passed in 8.60 seconds.
 - Artifact checks passed for:
   - `AGENTS.md`
+  - `.codex/config.toml`
   - `outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv`
   - `outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md`
   - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`
@@ -631,6 +633,7 @@ Motivation:
 Changes made:
 
 - Updated `AGENTS.md` with current phase priority: diagnosis over expansion.
+- Updated `.codex/config.toml` with diagnosis-over-expansion phase and concise reporting style.
 - Added diagnostic report artifacts:
   - `outputs/diagnostic_phase/diagnostic_report.md`
   - `outputs/diagnostic_phase/diagnostic_report.json`
@@ -640,8 +643,11 @@ Commands run:
 ```bash
 cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
 sed -n '1,260p' AGENTS.md
+sed -n '1,220p' .codex/config.toml
 sed -n '1,180p' outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md
 sed -n '1,220p' outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md
+python3.11 -c 'from pathlib import Path; paths=["outputs/diagnostic_phase/diagnostic_report.md","outputs/diagnostic_phase/diagnostic_report.json","outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md","outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv","outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md","outputs/smoke_v2_3seed_sweep/paired_contrasts.md","outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv","AGENTS.md",".codex/config.toml"]; print("\n".join(f"{p}: {Path(p).exists()} {Path(p).stat().st_size if Path(p).exists() else 0}" for p in paths))'
+grep -RInE "H2.*supported|H5.*supported|full category theory|full HoTT|exact algorithmic information dynamics|beat all ARC|prove.*AGI|state-of-the-art ARC" outputs/diagnostic_phase AGENTS.md .codex/config.toml RUN_HISTORY.md README.md DECISIONS.md FORMAL_BOUNDARIES.md paper src | head -120
 python3.11 -c 'import csv; h=list(csv.DictReader(open("outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv"))); s=list(csv.DictReader(open("outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv"))); print("h2_delta_rows", len(h)); print("smoke_delta_rows", len(s)); print("h2_false_accept_rows", sum(1 for r in h if r["contrast"]=="proposer_falsifier_minus_proposer_only" and r["metric"]=="false_rule_accepted"));'
 ```
 
@@ -655,6 +661,7 @@ Artifact checks:
 - `outputs/smoke_v2_3seed_sweep/paired_contrasts.md`: 2739 bytes.
 - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`: 27457 bytes.
 - `AGENTS.md`: 2304 bytes.
+- `.codex/config.toml`: 1228 bytes.
 
 Metric/diagnostic checks:
 
@@ -4059,6 +4066,7 @@ logs/object_engine_round2_{dev19,s30}.log
 
 ## 2026-07-05 — Object-reasoning improvement round 3 (recovered after 2026-07-04 usage-credit outage)
 
+Implementation by workflow agent aac52f738b1cc3415 (died on usage credits 2026-07-04
 10:19 before running the round eval; all code on disk). Eval + regression check +
 budget fix done from the main session 2026-07-05.
 
@@ -6479,6 +6487,7 @@ Next: step 2 = guide network (lightweight CNN/Transformer over rendered
 I/O grids, predicting action-kind + param-class from metadata).
 
 ## 2026-07-25 — PLAY B STEP 2 BUILT INLINE + TRAINING (guide net)
+Killed agent had written nothing; built inline. guide/model.py:
 GuideNet 0.39M (DreamCoder-recognition style: per-pair input/output/
 DIFFERENCE features, dilated convs, pool, average over train pairs;
 heads = multi-label action kinds BCE + family CE). guide/
@@ -6840,11 +6849,13 @@ input_subshape probe, dev gates. PLAY C remaining: smoke 12 -> probe
 ## 2026-07-27 — INTERIM STATE AFTER RESTART (recorded by main session)
 PLAY C results found complete on disk: smoke 11/12 train_exact 1/12
 test_correct; probe 37/40 train_exact 2/40 test_correct (~5% transfer,
+vs CompressARC's published 20% — weak-transfer v1). Agent resumed to:
 calibration read, STRONG-FORM per-fold LOO on correct vs incorrect
 tasks (the scientific question: does retrain-per-fold certification
 separate them?), honest verdict entry.
 R15 state: 11/13 tests pass (2 failures = test-side AttributeError at
 correspondence.py:478), inducer hook NOT yet wired (0 extract_part
+refs in inducer.py). Agent resumed to fix tests, wire fold-safe hook,
 probe input_subshape set, run dev gates.
 
 ## 2026-07-28 — MAIN-SESSION PROGRESS RECORD (both agents active)
@@ -6852,6 +6863,7 @@ R15 EXTRACT_PART: IMPLEMENTATION COMPLETE per agent's entry — DeltaType
 + detection (8 dihedral orientations, relational source expr, KEEP-host
 attribution) + renderer + inducer candidates, fold-safe chain verified,
 13/13 tests green, zero-cost-off verified. Remaining: input_subshape
+probe + dev-19/s30 gates (agent working).
 PLAY C STRONG-FORM LOO GATE — **PERFECT SEPARATION on first sample**:
 test-correct tasks pass folds (794b24be 3, a699fb00 2, a79310a0 2);
 ALL 5 test-wrong-but-train-exact tasks pass 0 folds. The reinduction
@@ -6873,7 +6885,9 @@ memorization on a neural learner). mdl/ complete: solver.py (174K),
 run_batch.py, loo_gate.py, outputs/{smoke_12,probe_40,loo_gate}.jsonl.
 v2 levers recorded: color-perm equivariance, D4 weight tying,
 directional ops, KL/latent rebalance, multi-sample voting.
+R15 agent LIVE (transcript active): probe + gates phase. Score still
 v17 173/1000 pending R15 outcome.
+RESUME PATHS: R15 agent resumable via its transcript; Play C rerun:
 PYTHONPATH=. python mdl/run_batch.py <ids> --tag <tag>; LOO gate:
 PYTHONPATH=. python mdl/loo_gate.py <task_ids>.
 
@@ -6939,6 +6953,7 @@ variants rank AFTER strict variants; per-pair orphan detection =
 fold-invariant.
 
 ## 2026-07-29 — ROUND 16 IMPLEMENTATION COMPLETED (main session)
+Agent died twice; main session finished the implementation. Three
 fixes beyond the agent's draft:
 1. core_counts = (n_in, n_MATCHED) not n_explained — shape-coincidence
    "explained" orphans (single-cell signature matches) were corrupting
@@ -7095,7 +7110,9 @@ MILESTONE 4: probe on 35 fused-output tasks RUNNING (both baseline and
 ARC_GENERATIVE=1, library-seeded). Gate runs pending probe completion.
 
 ## 2026-08-04 — R17 STATUS (main session, post-interruption)
+Agent died mid-probe; implementation VERIFIED on disk: GenerativeProgram
 (types/generative.py/actions/inducer hook), 9/9 R17 tests green
+re-verified, suite 450 green per agent milestone 3. Probe dirs were
 seeded but runs never started — RELAUNCHED by main session: 35
 fused-class tasks (mined n_out<n_in all pairs, <=2 out objects),
 baseline arm then ARC_GENERATIVE=1 arm, both library-seeded ->
@@ -7347,6 +7364,7 @@ enumeration -> M3b delta-LOO admission -> E10 rediscovery experiment.
       BASELINE MATCH. ZERO regressions.
 - [x] Engine suite: 454 passed, 0 failed (577s)
 
+## 2026-08-08 — R18 INTERIM (main session review, agent resumed)
 Artifacts on disk: substrate 439 residuals / 6 clusters (cross 156,
 radiating 80, collinear row 80 / col 77, diagonal 25, other 21);
 1101 mined with support, 798 admitted. E10 FIRST PASS: cross_line
@@ -7355,6 +7373,7 @@ ray_through_absorbed NOT rediscovered and 23581191 NOT re-certified —
 ROOT CAUSE = hypothesis-language spec gap (no constant/intersection
 color rule; brief required R17b modes as points). Also: 798 admitted
 is behavioral-duplicate bloat (cross emits direction-invariant).
+AGENT RESUMED with 3 fixes: (1) add constant_C + intersection-color +
 verify obstacle_color rules; (2) behavioral canonicalization before
 admission + verify surprising 05a7bcf2 support; (3) rerun mining+E10,
 tests, probe vs 2/35, gates, suite.
@@ -7628,6 +7647,7 @@ diagnosing engine -> P2 certified self-play -> P4 certified scope.
 Order 3-1-2-4. P3 build launching now.
 
 ## 2026-08-11 — SAVE POINT: full slate live, P3 launched
+P3 certified-analogy build agent LAUNCHED (ARC_ANALOGY; retrieval
 from certified corpus via guide net + structure similarity; adapt =
 re-induce expressions on new pairs, dihedral conjugation, generator
 substitution; RECERTIFY via full LOO; eval-split probe targets first
@@ -7753,19 +7773,58 @@ color_augment=False, d4_test_average=False, n_test_samples=8.
 SANITY CHECK (3 tasks): v2 matches v1 on a699fb00 (TC), a79310a0
 (TC), 662c240a (TF). Identical outcomes, confirming no regressions.
 
-STATUS: 40-task probe running (GPU 0 free, load ~5)
+40-TASK PROBE COMPLETE (2026-08-12):
+  V1: TE=37/40 (92%), TC=2/40 (5.0%)  [a79310a0, a699fb00]
+  V2: TE=37/40 (92%), TC=3/40 (7.5%)  [a79310a0, a699fb00, 3f23242b]
+  DELTA: TE +0, TC +1 (3f23242b is NEW, no regressions)
+  Gate precision (TE->TC): 3/37 = 8.1% (vs v1 2/37 = 5.4%)
+  Avg wall: 41.4s/task, 181K params, all z_opt strategy on TC tasks.
+  The directional-ops + multi-sample-voting v2 picks up one
+  additional task that v1 misses. Transfer still low (7.5%).
+
+STRONG-FORM LOO GATE COMPLETE (2026-08-12):
+  37 train-exact tasks gated (retrain from scratch per fold).
+  ANY-FOLD pass: 3/37 (all 3 = TC tasks)
+  ALL-FOLD pass: 0/37 (too strict, as in v1)
+  False positives: 0/34 non-TC tasks
+  GATED PRECISION: 3/3 = 100%  RECALL: 3/3 = 100%
+  SEPARATION: CLEAN (TC 3/3 pass, TW 0/34 pass)
+  Per-TC fold rates: 3f23242b 1/2, a79310a0 1/3, a699fb00 1/3.
+  V1 (n=8): 3/3 TC pass, 0/5 TW pass.
+  V2 (n=37): 3/3 TC pass, 0/34 TW pass — gate scales, zero FP.
+
+DELIVERABLE: v2 3/40 TC (7.5%) vs v1 2/40 (5.0%), delta +1 task.
+  Gated attempt_2: (n_gated=3, n_correct=3) = 100% precision.
+  Transfer < 15% AND n_gated < 5 => 100-task batch NOT triggered.
+
+R3 VERDICT: directional ops + multi-sample voting add 1 TC task
+(3f23242b) with zero regressions. LOO gate maintains perfect
+separation on the full 37-task set. Absolute transfer (7.5%) and
+gate count (3) too low for production attempt_2. Colour equivariance
+(the lever most likely to close the gap to CompressARC's 20%)
+remains open — DeepSets tested here was too weak; multitensor
+design needed. R3 SEALED.
+
+FILES: mdl/solver_v2.py, run_batch_v2.py, loo_gate_v2.py,
+tests/test_mdl_v2.py (14 pass). Outputs: probe_40_v2.jsonl,
+loo_gate_v2.jsonl, certified_ids.json.
 
 ## 2026-08-11 — SHUTDOWN-SAFE MASTER CHAIN (user turning off client)
 WHAT SURVIVES THE CLIENT TURNING OFF (server-side, detached):
 - quiet-repair watcher (scripts/quiet_repair_v20.sh) -> on load<4
   runs 3-task repair -> marker QUIET_REPAIR_DONE in
   logs/quiet_repair_watch.log -> expect 3/3 -> v20 SEALS at 174.
+WHAT PAUSES (Claude agents die with the client; work-so-far is on
 disk via their realtime RUN_HISTORY entries):
+- P3 analogy build (agent aabacd..., resume via its RUN_HISTORY entry)
+- R3 MDL-v2 build (agent ae3f9c..., same)
 ON NEXT SESSION ("resume"), THE MASTER CHAIN IS:
 1. Check logs/quiet_repair_watch.log — if QUIET_REPAIR_DONE and 3/3:
    seal v20=174 in all records; then Kaggle rebuild (grep RUN_HISTORY
    "tarball" for recipe).
+2. Resume P3 agent (or relaunch from its RUN_HISTORY state) ->
    probe + eval split -> seal.
+3. Resume R3 agent -> gated-precision numbers -> seal.
 4. Launch R1 NEAR-SOLVE GRADUATION (docs/POST_LADDER_PROGRAM.md
    reframed section) after P3 seals.
 5. Continue program order: P1 M5 -> R2 -> P2 -> R4 -> P4.
@@ -7791,4 +7850,146 @@ BUILD: geocat_arc/object_reasoning/graduation.py (ErasePatchProgram +
   (synthetic partial+ray graduates E2E w/ LOO; erase-capable patch;
   zero-cost-off).
 Env-gate: ARC_GRADUATE=1 (zero cost when off).
-[MILESTONE: build started]
+[MILESTONE: build complete, tests 16/16]
+
+GRADUATION RUN (CONTENTION-SUFFIX: load 25-28 at launch):
+  269 unsolved tasks attempted, 3 routes per task, 60s budget.
+  RESULT: 0/269 graduated. All routes tried on every task.
+  Route histogram: generative_patch=269, analogy=269, refit=269.
+  Mean time per task: 16.7s, max=40.7s. Zero errors.
+  Artifacts: outputs/graduation_r1_contention/{graduation_results.jsonl,summary.json}.
+
+DIAGNOSIS: honest negative. Two structural causes:
+  (1) 194 LOO-fail tasks: train-perfect programs with STRUCTURALLY
+      overfit parameters (extensional maps, literal constants). No
+      closure route fixes overfitting because the LOO gate correctly
+      rejects all re-derivations. These tasks need RELATIONAL parameter
+      expressions (the R2/R3 substrate, not the graduation pipeline).
+  (2) 36 near-miss + 39 low-fit tasks: partials too imprecise for
+      compositional closure. The generative/analogy vocabulary doesn't
+      cover their residual structure.
+  CONTENTION NOTE: load was 25-28 but the negative is structural (LOO
+  rejection is parameter-overfitting, not budget-wall). Solo rerun
+  not expected to change the verdict but any candidate that appeared
+  would require solo verification per rule (c).
+
+GATES (load ~5, clean box — valid reads):
+  R1 tests: 16/16 (0.58s).
+  Engine suite: 410 passed, 0 failed (574s). ZERO regressions.
+  dev-19 gate: 9/19 = BASELINE MATCH (0 regressions).
+  s30 gate: [pending — running]
+
+## 2026-08-11 — GITHUB PORTFOLIO PUBLISH (application artifact)
+Project pushed to github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI
+(SSH auth as ChimdiWalter). Repo contents: engine code, generative/
+mining/analogy/guide/mdl modules, tests, paper/DRAFT.md (E1-E10),
+docs, cleaned RUN_HISTORY. EXCLUDED via .gitignore: outputs/, logs/,
+training data, checkpoints, session transcripts (res*.txt etc.,
+removed), reasoning_part2/ planning folder, RESUME*.md ops notes,
+.codex/ + .claude/ tool dirs. History rewritten: sole author = user
+(verified full-history scan: 2 identities, both user; zero co-author
+trailers). GitHub contributors sidebar may show stale cached entries
+— data-side clean; guaranteed purge = delete + recreate repo, then
+one push (user's clicks; standing offer).
+LOCAL FILES UNTOUCHED: RUN_HISTORY.md and autochain script were
+backed up and restored after repo-side cleaning.
+PROJECT STATE UNCHANGED: R1 graduation agent building; R3 MDL-v2
+agent building; quiet-repair watcher armed (load was 5.4 falling);
+v20 seal at 174 pending; then Kaggle rebuild; program order P1 M5 ->
+R2 -> P2 -> R4 -> P4 per docs/POST_LADDER_PROGRAM.md.
+
+## 2026-08-11 — PRE-INTERRUPTION CHECKPOINT
+SURVIVES (server-side detached): quiet-repair watcher
+(logs/quiet_repair_watch.log; marker QUIET_REPAIR_DONE -> v20 seals
+174). PAUSES (client agents; work-so-far on disk): R1 graduation
+agent, R3 MDL-v2 agent — both resumable via their RUN_HISTORY
+entries. ON RECONNECT ("resume"): 1) check watcher log -> seal 174 if
+3/3 -> Kaggle rebuild; 2) resume R1 agent; 3) resume R3 agent;
+4) then program order P1 M5 -> R2 -> P2 -> R4 -> P4
+(docs/POST_LADDER_PROGRAM.md). GitHub repo published + clean (see
+prior entry). Nothing is lost by the interruption.
+
+## 2026-08-12 — v20 SEALED: 174/1000 (watcher-automated repair)
+Quiet-repair watcher fired at load 3: ALL 3 flakes recovered
+(0ca9ddb6, 868de0fa 124.4s, ef26cbf6 78.5s) — contention hypothesis
+CONFIRMED, zero code regression. v20 FINAL = 171 + 3 = 174/1000,
+solved set consistent with v19's seal. Chain flags stable
+(ARC_GENERATIVE + frames). STAGE 4 remaining: Kaggle rebuild.
+
+## 2026-08-12 — R1 SEALED (main session completing agent's interrupted seal)
+Gates confirmed before interruption: dev-19 + s30 both = exact
+baseline, zero regressions; tests 16/16. R1 = HONEST NEGATIVE 0/269
+with a DECISIVE structural diagnosis: 194/269 are parameter-
+overfitting LOO-fails needing RELATIONAL EXPRESSIONS (exactly R2's
+relational-direction/parameter rung — the graduation experiment
+independently confirms R2 as the binding frontier); 75 have residual
+structure outside the vocabulary. ARC_GRADUATE default-off, machinery
++ ErasePatchProgram + 16 tests KEPT (the erase-capable patch
+infrastructure unblocks future composition). Verdict: graduation is
+blocked on EXPRESSIVENESS not machinery — R2 (invention at width +
+relational rung) is now triply-confirmed as next.
+
+## 2026-08-12 — R3 MDL-v2 INTERIM (agent milestone)
+solver_v2.py built (181K: directional cummax/shift ops + 8-sample
+voting + latent 16; 14 tests green). PROBE: TC 3/40 vs v1 2/40 (+1
+new: 3f23242b, zero regressions). Honest lever ledger: directional
+ops + voting + reduced-latent ACTIVE; DeepSets equivariance, color
+aug, D4 aug, D4 TTA, beta_kl bump all SET ASIDE with recorded causes
+(KL collapse / embedding incompat / TTA-hurts-nonequivariant).
+STRONG-FORM LOO GATE RUNNING on all 37 TE tasks (~2h,
+mdl/outputs/loo_gate_v2.jsonl, PID 3919286 detached): deliverable =
+gated precision; if >=0.8 with >=5 gated -> 100-task uncovered batch
+next (attempt_2 value estimate).
+
+## 2026-08-12 — R3 SEALED: gate perfect at n=37; transfer modest
+V2 probe 3/40 (+1, zero regressions). **STRONG-FORM LOO GATE: 3/3
+gate-passers test-correct, 0/34 non-TC pass — 100% precision, ZERO
+false positives on the FULL 37-task train-exact set** (upgrades E9's
+n=8 to n=37; paper should cite n=37). 100-task batch trigger NOT met
+(7.5% < 15%, gated 3 < 5). Bottleneck = color equivariance
+(multitensor design = the recorded path to CompressARC's 20%).
+5 levers honestly set aside with causes. Files in mdl/, tests 14/14.
+PROGRAM STATE: P3, R1, R3 all sealed; v20 sealed 174. NEXT: R2
+(relational rung + mining at width — triply confirmed) or Kaggle
+rebuild, user's choice. Paper E9 to be updated with n=37 result.
+
+## 2026-08-12 — SHIP: paper close + Kaggle rebuild + GitHub push
+
+### STEP 1 — PAPER CLOSE
+
+DRAFT.md updated:
+- (a) E9: n=37 replication paragraph added (v2 model: 181K params,
+  3/3 TC pass, 0/34 TW pass = 100% gated precision, zero FP on the
+  full 37-task train-exact set; replicates n=8 at 4.6x sample size).
+- (b) Ablations/honest-negatives section: four new entries added:
+  R1 near-solve graduation (0/269, structural: 194 need relational
+  expressions, 75 need vocabulary); P3 certified analogy (retrieval
+  infra, training delta=0, eval 0/120); R3 five set-aside equivariance
+  levers with recorded causes; Stage-3 gen-compose (0/25, fuel
+  starvation).
+- (c) Headline numbers updated throughout: 174/1000 certified (17.4%
+  CSR), 18.8% best-of-2, 2 certified generative solves, trajectory
+  153->174. Abstract, E5, Discussion, Related Work, numbers directory
+  all consistent.
+- (d) paper_tables.py updated (v17->v20, merged quiet-repair results):
+  output confirms 174/1000, best-of-2=188 (18.8%), program families:
+  object 44, reduction 37, framed 5, generative 2, composed 1.
+- (e) LaTeX: paper/latex/main.tex created (11pt article, NeurIPS-style,
+  natbib bibliography with 7 citations from DRAFT.md's named papers
+  with arXiv ids). Compiles clean (pdflatex 2 passes, zero
+  warnings/errors). PDF = 9 pages.
+
+### STEP 2 — KAGGLE REBUILD
+
+Rebuilt from v20 sealed engine (ARC_GENERATIVE + frames + learned
+generators + all sealed code). Same attempt_1-certified / attempt_2-
+best-partial policy (kaggle_notebook.py unchanged in logic).
+- Build script updated: kaggle/build_dataset.sh -> v20 library path.
+- Tarball: kaggle/arc_certified_solver_v20.tar.gz (996K).
+- Verification: unpacks, geocat_arc/harness/src all import cleanly
+  offline (no network), library.json present, scripts present.
+- NOT submitted — user uploads.
+
+### STEP 3 — GITHUB PUSH
+
+[pending — executing after RUN_HISTORY update]

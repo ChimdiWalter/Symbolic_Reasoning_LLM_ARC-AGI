@@ -1,0 +1,602 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\title{The Learner Must Re-Derive:\\Procedure-Level Generalization Certificates\\for Abstract Reasoning}
+\author{Chimdi Walter}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Benchmark accuracy cannot distinguish reasoning from recall: a system that
+memorizes and one that generalizes may score identically.  We present a
+program-induction system for ARC in which a task counts as solved only if
+the \emph{entire learning procedure}, re-run from $N{-}1$ of its training
+examples, re-derives a program that solves the held-out example---for
+every fold.  This leave-one-out-by-reinduction gate produces a
+machine-checkable \textbf{procedure-level certificate} per solve.  We show
+the certificate is measurably load-bearing: certified programs are correct
+on hidden tests 95.3\% of the time versus 33.2\% for the same search's
+uncertified train-perfect programs (a $2.9\times$ truth gap that raw
+accuracy inverts---disabling the gate \emph{raises} claimed solves
+$5.3\times$ while collapsing their reliability).  We further show that a
+syntactic preference lattice over parameter expressions
+(relational~$\succ$~feature~$\succ$~induced-map~$\succ$~constant) predicts
+hidden-test correctness monotonically ($0.92 \to 0.09$) with no test
+access, yielding \textbf{graduated certificates}: calibrated confidence
+classes rather than a binary verdict.  The system extends itself under the
+same discipline---recurring solution fragments become validated library
+operators, and a fully autonomous vocabulary loop mines failure residuals,
+invents candidate operations by combinator search, and submits them to the
+same certificate: its task-level gate first refused under-evidenced
+registration outright, and a graduated delta-level certificate (the same
+leave-one-out standard applied to the invention's own delta) then
+registered the system's first machine-invented operation.  A parallel loop
+over failure \emph{traces} mined the dominant parameter-divergence family
+and produced a relational spelling that flipped its motivating task to
+certified-and-correct.  We propose the \textbf{Certified Solve Rate (CSR)}
+and its calibration curve as a reporting standard for reasoning benchmarks,
+and release the fully certified corpus: 174/1000 ARC-AGI-2 training tasks
+solved with certificates (17.4\% CSR; 18.8\% measured under Kaggle
+best-of-2), including 2 certified generative solves---tasks whose programs
+use machine-discovered content-creating operations---and an honest 0/120 on
+the public evaluation split---reliability transfers even where coverage
+does not.
+\end{abstract}
+
+%----------------------------------------------------------------------
+\section{Introduction}
+
+A solver that memorizes coincidences and a solver that grasps a rule can
+produce identical benchmark scores.  On the Abstraction and Reasoning
+Corpus this is not a hypothetical: we show below that the same search,
+freed from any generalization requirement, \emph{quintuples} its claimed
+solves while its hidden-test precision collapses from 0.95 to 0.33.
+Leaderboard accuracy, reported alone, cannot distinguish these
+regimes---it is unfalsifiable as a reasoning claim.  ARC-AGI-2 sharpened
+the \emph{compute} rules of the benchmark (offline, bounded hardware, two
+attempts); it did not sharpen the \emph{epistemics} of what ``solved''
+means.
+
+We propose that a reasoning benchmark solve should come with a
+machine-checkable certificate of the process that produced it, and we build
+a complete ARC system around one such certificate:
+leave-one-out-by-reinduction.  A task counts as solved only if the entire
+learning procedure, re-run from $N{-}1$ of the task's training examples,
+independently re-derives a program that solves the held-out example---for
+every fold.  The certificate validates the \emph{learner}, not the
+artifact: a lucky program cannot pass it, because luck does not re-run.
+
+\paragraph{Contributions.}
+(i)~The LOO-by-reinduction gate as the sole acceptance path of a
+program-induction system, with the engineering discipline it forces (every
+search signal must be subset-stable; we document the regressions caught
+when this was violated).
+(ii)~A measured calibration of certificate classes:
+certified~$\approx 0.95$ hidden-test precision, and a syntactic
+parameter-class lattice that predicts precision monotonically
+($0.92 \to 0.09$) with zero test access.
+(iii)~A gate-off ablation quantifying the accuracy/truth divergence that
+uncertified reporting hides.
+(iv)~Self-extension under the same certificate: an operator library, and a
+fully autonomous vocabulary loop that mines its own failures, invents
+candidate operations by combinator search, and registers them only under a
+graduated delta-level form of the same gate---including the system's first
+machine-invented operation and a machine-curated validation catalog.
+(v)~The Certified Solve Rate (CSR) and its calibration curve as a reporting
+standard, with the released corpus as a worked example: four
+interoperating program families (object, reduction, pixel/symmetry,
+dihedral-framed) all certified by one gate.
+
+%----------------------------------------------------------------------
+\section{Certified Program Induction}
+
+\subsection{The certificate}
+
+A task's program is accepted iff for every leave-one-out fold, re-running
+the \emph{full} induction---segmentation choice, correspondence, selector
+and parameter search, ranking---from the $N{-}1$ remaining pairs yields a
+program that solves the held-out pair.  This validates the \emph{learner},
+not the artifact.  Consequences: every component of search must be
+fold-invariant (canonical MDL ranking; subset-stable selection
+signals---we document a regression caught when a granularity signal
+violated this), and constants are legal but demoted (they re-derive only
+when truly forced by the data).
+
+\subsection{The engine}
+
+Three-layer harness (delta-routing pipeline; structural strategies; the
+object engine) in strict submission mode.  The object engine:
+multi-variant segmentation $\to$ object correspondence with a typed delta
+vocabulary (KEEP, TRANSLATE, RECOLOR, COPY, SCALE, REFLECT, ROTATE, PAINT,
+and a GROW family with generative modes) $\to$ zero-conflict feature
+selectors (including a disjunctive value-set spelling priced per element)
+$\to$ typed parameter expressions ordered by the class lattice $\to$
+canonical MDL ranking $\to$ the gate.  A second program family (round~10)
+covers grid-synthesis tasks the object vocabulary cannot express:
+\textbf{reduction programs} split the input into panels (separator-line or
+equal division) and compute the output by an induced cellwise truth-table
+(with pass-through slots) or a closed-vocabulary panel-selection
+criterion---induced in the strict-shrink regime only, ranked in the same
+canonical pool, accepted through the same gate.  Programs are
+JSON-serializable, re-rendered in fresh processes, and carry their
+certificate (folds, parameter classes, library provenance).
+
+\subsection{Honest accounting}
+
+Induced fraction; origin classes; ``solved'' defined as gate-accepted with
+per-layer test verification stored separately; all headline numbers here
+re-verified by rendering every program against hidden tests
+(measurement-only).
+
+%----------------------------------------------------------------------
+\section{Experiments}
+
+\subsection{E1---The certificate is load-bearing}
+
+$P(\text{correct} \mid \text{certified}) = 40/42 = \mathbf{0.952}$ vs.\
+$P(\text{correct} \mid \text{train-perfect, rejected}) = 37/201 =
+\mathbf{0.184}$.  A train-perfect program is ${\sim}5\times$ likelier to
+be right when the procedure re-derives it from fewer examples.
+
+\subsection{E2---Accuracy up, truth down (gate-off ablation)}
+
+Disabling the gate (accepting any train-perfect program): acceptances rise
+$43 \to 229$ ($5.3\times$) while precision falls $0.953 \to 0.332$
+($2.9\times$).  Raw accuracy rewards exactly the behavior the certificate
+exposes.  Gate recall cost: ${\sim}35$ correct programs rejected---the
+measured price of reliability.
+
+\subsection{E3---Frozen transfer}
+
+Frozen system on the ARC-AGI-2 public evaluation split: 0/120
+render-verified (its single gate-acceptance is test-wrong, consistent with
+layer precision at $n{=}1$).  Coverage collapses on the harder
+distribution; \textbf{reliability does not}---nothing false is certified.
+CSR reports both facts; accuracy alone reports neither.
+
+\subsection{E4---The lattice predicts truth}
+
+Hidden-test precision by worst parameter class, uncertified population:
+constant~0.09 ($n{=}156$) $\to$ induced-map~0.40 $\to$ feature~0.75 $\to$
+relational~0.92.  Monotone in the syntactic lattice, measured with zero
+test access---the preference order is empirical, not aesthetic.
+
+\subsection{E5---Graduated certificates (calibrated CSR)}
+
+Combining E1/E4: certificate class is a calibration curve
+(certified~$\approx 0.95$ $\to$ uncertified-constant~0.09).
+Operationalized as the two-attempt policy: attempt\_1 certified, attempt\_2
+best-uncertified---$+14$ task-outputs on training (18.8\% best-of-2 at the
+final engine), i.e.\ the leaderboard cost of certification is measured,
+not argued.
+
+\subsection{E6---Self-extension under certificates (operator library)}
+
+Library loop: fragments ($\ge 3$ programs) $\to$ predicate-slot operators
+$\to$ retro-solve validation; 2~registered, loop closure demonstrated (a
+task solved \emph{through} a learned operator with the gate intact); two
+further promotions honestly returned zero.
+
+\subsection{E7---The autonomous vocabulary loop: closed, and its gate held}
+
+The deepest form of self-extension: the system invents new \emph{delta
+vocabulary} from its own failures, with no human choosing what to learn.
+The full cycle ran end-to-end.  (1)~\textbf{Mining}: 159 unexplained
+orphan-object instances were harvested from the near-solve corpus; a
+bounded combinator search (chains of depth~$\le 2$ over generic geometric
+primitives) explains 34/159, and six chains recur across $\ge 5$ distinct
+tasks each---after canonical dihedral deduplication on an asymmetric probe
+shape, they collapse to two candidate verbs (horizontal and vertical
+reflected-copy).  The vocabulary gap was found \emph{by search}, not by us.
+(2)~\textbf{Runtime}: candidates compile to a generic learned-verb delta
+interpreted from a registry; unit tests prove a registered verb flows
+through detection $\to$ induction $\to$ the LOO gate to a certified solve.
+Legality is derived from a leak analysis: vocabulary may extend
+\emph{between} runs, never within a task.
+(3)~\textbf{Registration gate}, in two acts.  Act one---task-level: with
+only the candidate registered, full induction (certificate included)
+re-runs on every provenance task; registration requires $\ge 1$
+retro-certified solve plus a clean regression probe.  Result: \textbf{0/5
+and 0/5 retro-certified at both 60\,s and 150\,s budgets---nothing
+registered.}  Diagnosis: the provenance tasks are multi-blocker, so a
+correct verb earns no task-level credit---a credit-assignment deadlock, not
+a verdict on the verb.  Act two---\textbf{delta-level certificates}: the
+same LOO-by-reinduction standard applied to the verb's own delta.  A
+placement law (from a fixed 6-law catalog: constant offset, grid mirrors,
+adjacency, reflection across a detected marker object, edge-relational
+bounce) is re-fit from $N{-}1$ instance pairs and must predict the
+held-out pair's orphan cells exactly, for every fold, on $\ge 2$ distinct
+tasks, with a clean regression probe.  Under this gate the loop made its
+\textbf{first registration}: verb\_mirror\_h, delta-certified on dc2e9a9d
+(3/3 folds, edge-relational bounce) and 7ed72f31 (2/2 folds, marker
+reflection); the mirror\_v candidate certified only one task and was
+refused.  Crucially, the certificate tier gates only vocabulary
+\emph{availability}: every future solve through a registered verb must
+still pass the full task-level gate, so a registered verb can extend reach
+but can never create a false solve.  The loop is mechanically autonomous
+end to end, its task-level gate held against under-evidenced registration,
+and its graduated gate registered exactly the invention the evidence
+supported.
+
+\subsection{E8---Evidence-driven family growth (the round-10 loop at
+  system scale)}
+
+The same mine-then-build discipline applied one level up: a framing census
+of the 84 evaluation tasks the engine never engages showed segmentation
+coherent on 82/84 and isolated a 26-task family whose small outputs are
+\emph{computed} from panel structure (neither subgrids nor downscales).
+Building the reduction family from that evidence flipped \textbf{14
+previously unsolved training tasks in one round---all 14 render-verified
+correct on hidden tests} (measured precision 14/14; the certificate's
+calibration extends to the new program class), while the 26 motivating
+evaluation instances still resist (their combinations exceed the v1 mode
+vocabulary---reported as the next iteration, not claimed).
+
+\subsection{E10---The system reinvents its own primitives}
+
+The self-extension results of E7 admitted machine-invented \emph{relational
+verbs}.  E10 tests the ladder one level deeper: can the system invent
+\emph{generative primitives}---the content-creating operations of the
+composite path---from its own failure data, under the same falsifiability
+protocol?
+
+The setup uses a hand-addition ledger as ground truth.  Two generator modes
+(cross-line with an induced intersection color; obstacle-absorbing rays)
+were added by hand from exemplar traces, each certifying one task.  The
+mining loop then reuses the vocabulary-induction protocol one level down:
+for every task where the composite path fails, the \emph{residual
+paint}---the exact cells the best composite cannot explain, keyed to the
+emitting object's features---is persisted; residuals are clustered across
+tasks by their geometric relation to the source; a bounded hypothesis
+language (walks $\times$ stopping predicates $\times$ color rules $\times$
+emitted shapes) is searched per cluster; and a mined generator is admitted
+only if, fit on $N{-}1$ pairs, it reproduces the held-out pair's residual
+exactly on every fold, on at least two supporting tasks---the delta-level
+reinduction gate, verbatim.
+
+The experiment: disable the hand-added modes and run the miner blind.
+Result: from 427 residuals over 33 tasks it mined 683 supported
+hypotheses, admitted 44 behaviorally distinct generators---and
+\textbf{reinvented both the cross-line structure and the
+intersection-color rule, re-certifying the same task (LOO 2/2) with no
+human having named either primitive}.  The third hand-added mode was
+\emph{not} rediscovered, for a reason the trace had already identified:
+its direction parameter is relational per pair (perpendicular to a wall
+object), which lies structurally outside the per-object hypothesis
+language---the precise next rung of the ladder, located by the experiment.
+One admission failure mode is documented: a degenerate geometry (a
+grid-spanning wall) lets a wrong-mechanism generator pass the fold test;
+the provenance records every admission's supporting folds, so such cases
+are auditable.
+
+The honest statement of what E10 shows: the hand-authored layer did not
+disappear---it moved one level down, from generators to the hypothesis
+language they are drawn from.  Each rung of the ladder is smaller than the
+one above it, and each is validated by the same gate.  To our knowledge no
+published program-induction system invents its own primitives (rather than
+compositions of given primitives) under a falsifiable acceptance test.
+
+\subsection{Ablations and honest negatives}
+
+The gate as auditor---two development episodes where the acceptance
+machinery caught regression-grade memorizers before we did: (i)~a
+constant-pattern mode whose MDL cost was under-counted outranked
+generative programs and died at LOO across folds; (ii)~a moved+pattern
+matching artifact stole canonical ranking from true composed programs and
+was rejected the same way; in both cases the failure signature
+(train-perfect, fold-divergent) localized the bug.
+
+Ranker on/off identical (search not order-bound); composition machinery
+functional but fuel-starved at current base coverage; neural program ranker
+matched by a Bayesian linear model (AUC 0.902 vs.\ 0.907) and not wired;
+budget scaling ruled out as a bottleneck (300\,s probe); two library
+promotions with zero yield.  Negatives reported as first-class results.
+
+\paragraph{Near-solve graduation (R1): 0/269, structural.}
+With 315 persisted near-solve fragments (269 from unsolved tasks), a
+three-route closure pipeline (generative patch with erase, analogy
+adaptation, and refit, each followed by full LOO recertification) attempted
+to graduate every fragment to a certified solve.  Result: 0/269.
+Diagnosis is decisive and structural, not budgetary: 194/269 are LOO-fail
+tasks whose train-perfect programs have extensional-map or
+literal-constant parameters---the gate correctly rejects every
+re-derivation because the parameters are \emph{overfit to the training
+set}, not subset-invariant.  These tasks need relational parameter
+expressions (a higher rung of the expression lattice that the current
+grammar does not cover).  The remaining~75 have residual structure outside
+the delta vocabulary.  The ErasePatch machinery is kept (it unblocks future
+composition); the negative independently confirms the
+relational-expression frontier as the binding bottleneck.
+
+\paragraph{Certified analogy (P3): retrieval infrastructure, not
+  standalone solves.}
+An analogy module (retrieve 0.4 guide $+$ 0.6 structural match; adapt
+parameters; full LOO recertify) was built and gated.  Training probe:
+$4/30 =$ exact baseline match (delta~$= 0$).  Evaluation: 0/120
+object-engine solves.  The analogy path re-induces programs the engine
+already attempts; its value is structured retrieval for future composition
+and self-play paths, not standalone solving.  Default-off, kept as
+infrastructure.
+
+\paragraph{R3 five set-aside equivariance levers (recorded causes).}
+The attempt\_2 MDL learner (E9 v2) tested five additional architectural
+levers beyond the three that survived (directional ops, multi-sample
+voting, reduced latent).  All five were set aside with recorded causes:
+(i)~DeepSets colour-equivariant encoder---0\% train-exact (shared-weight
+constraint too weak to compress even training data);
+(ii)~colour augmentation---incompatible with fixed \texttt{nn.Embedding}
+(each step remaps identities);
+(iii)~D4 train augmentation---collapses KL to zero, killing the $z_\text{opt}$
+strategy the gate validates;
+(iv)~D4 test-time averaging---model is not equivariant, so 7
+wrong-orientation logits overwhelm the correct prediction (enabling TTA
+turned 2/3 test-correct into 0/3);
+(v)~$\beta_\text{KL}$ increase (0.2, 0.5, 1.0)---all cause KL collapse.
+The dominant unresolved lever is colour equivariance via a multitensor
+design, the recorded path to CompressARC's 20\%.
+
+\paragraph{Stage-3 generative composition: honest negative (0/25).}
+The ARC\_GEN\_COMPOSE overlay---using the generative path as a patch
+inducer for compositional depth-2 programs---was probed on 25 near-solve
+candidates.  Result: 0/25 certified.  The blocker is fuel starvation:
+median wall time equals the budget, persisted partials from prior runs
+occupy the fresh-run census, and overlay patches cannot erase (a structural
+limitation the erase-capable patch in R1 was designed to address).  The
+composition machinery is functional but not productive at current base
+coverage; default-off, kept with tests.
+
+\subsection{E9---Certification across the symbolic--neural boundary}
+
+The certificate protocol is model-agnostic in principle: ``predict each
+held-out training pair from the others, exactly'' does not care whether the
+predictor is a program or a network.  We test this by training a tiny
+recursive network (TRM-style; 1.8M and 5.7M parameter variants) on the
+training split as an uncertified attempt\_2 generator, and gating its
+renders with a \emph{neural-LOO} protocol: for a task with $N$ training
+pairs, $N$ folds; fold~$i$ presents the other pairs as demonstrations and
+requires exact prediction of pair~$i$'s output; pass-all promotes the test
+render to a gated tier.
+
+Two epistemic caveats distinguish this from the symbolic gate, and we state
+them as part of the protocol.  First, the network's weights are frozen
+across folds, so neural-LOO tests generalization across demonstration
+slots, not re-derivation of the rule---a strictly weaker guarantee.
+Second, the gate is meaningless on tasks the network was trained on
+(memorization passes); its precision must be measured on held-out tasks
+only, where it earns its own tier in the calibration lattice rather than
+inheriting the symbolic tier's 0.95.
+
+The strong form of the gate becomes available when the learner itself is
+retrainable per task.  We test it with a per-task MDL learner in the
+CompressARC family: a 174K-parameter decoder with per-example latent codes,
+trained from scratch by gradient descent on each task's training pairs
+alone (no corpus, no pretraining), objective $=$ reconstruction
+cross-entropy $+$ KL description length.  Its raw transfer is weak---37/40
+sampled training tasks reach train-exact reconstruction but only 2/40
+render the test output correctly, well below CompressARC's published rate
+and diagnosed as architectural (no equivariance or directional operations).
+The certification result, however, is sharp: applying the gate in its
+strong form---retrain from scratch on $N{-}1$ pairs per fold, require
+exact held-out prediction---to three test-correct and five
+test-wrong-but-train-exact tasks yields \emph{perfect separation}: every
+test-correct task passes folds (mean fold pass rate 54\%), every test-wrong
+task passes zero.  Train-exactness alone---the analogue of unverified
+``accuracy''---is uninformative at 92\% for both groups; per-fold
+re-derivation is what distinguishes rule capture from memorization, for a
+neural learner exactly as for symbolic programs (E1).  The sample is small
+and we report it as such, but the direction is the thesis of this paper
+operating unchanged on a second learner class.
+
+\paragraph{Replication at $n{=}37$ (v2 model).}
+A second-generation MDL learner (181K parameters: directional cummax/shift
+operations, 8-sample majority-vote decoding, reduced latent dimension~16)
+was probed on 40 sampled training tasks: 37/40 train-exact, 3/40
+test-correct ($+1$ over v1, zero regressions).  The strong-form LOO gate
+was applied to all 37 train-exact tasks---retraining from scratch per fold,
+requiring exact held-out prediction.  Result: \textbf{3/3 test-correct
+tasks pass at least one fold; 0/34 test-wrong tasks pass any fold---100\%
+gated precision, zero false positives}, replicating the $n{=}8$ v1
+separation at $4.6\times$ the sample size ($n{=}37$ vs.\ $n{=}8$).  The
+honest caveat remains: absolute transfer is low (7.5\%), gated count is
+small~(3), and the dominant unresolved lever is colour equivariance (the
+DeepSets variant tested collapsed capacity; the multitensor path is the
+recorded next step).  Nevertheless, the gate's discriminative power scales
+cleanly from $n{=}8$ to $n{=}37$ with no degradation.
+
+The frozen-model variant tells the complementary story: its result is a
+clean negative with the right failure signature.  The 1.8M model, after six
+epochs, reached 94\% per-cell accuracy on held-out validation while passing
+\textbf{zero of 120} evaluation-task gates---not one fold anywhere.
+Autopsy showed the per-cell figure was carried by background and copy
+cells; the modal error was 11--30 wrong cells per grid, concentrated
+exactly on the rule-bearing cells, and the few exact validation hits were
+dihedral augment-copies of a single trivial task.  The gate, in other
+words, correctly refused every render of a model that had learned grid
+statistics but not rules---on a corpus where the model's training loss was
+falling monotonically and a naive accuracy report would have looked
+encouraging.  We regard this as the framework working as designed: the same
+falsifiability that prices symbolic solves prices neural ones, and it
+priced these at zero.  (An augment-aware metric note falls out of the
+autopsy: example-level exact-match over augmented validation sets
+overcounts; task-level any-augment counts are the honest unit.)
+
+%----------------------------------------------------------------------
+\section{Related Work}
+
+\paragraph{Library-learning program induction.}
+DreamCoder-style systems grow a DSL from solved tasks; our operator library
+follows this line but adds two elements: learning from \emph{failures} (the
+vocabulary loop mines unexplained residuals, not solutions) and
+procedure-level validation (a promoted operator must survive retro-solve
+under the full gate).
+
+\paragraph{DSL search solvers for ARC.}
+Hodel's DSL and Icecuber's Kaggle-winning search~\citep{hodel2023dsl,
+icecuber2020arc} demonstrate that hand-crafted vocabularies plus search
+reach substantial training accuracy, but report raw accuracy only: nothing
+in these pipelines distinguishes a re-derivable program from a memorized
+one.  Our results suggest the distinction is large (E1/E2) and cheap to
+measure.
+
+\paragraph{Recursion and per-puzzle compression.}
+The ARC Prize 2025 paper awards went to
+TRM~\citep{puigcerver2025trm}---a 7M-parameter recursive network whose
+central mechanism is iterative answer refinement---and
+CompressARC~\citep{bober2025compressarc}, a 76K-parameter per-puzzle MDL
+learner with no pretraining.  CompressARC is the closest neural relative of
+our approach: both take minimum description length on a single task's
+evidence as the organizing principle.  TRM's ablations independently
+document our ``less is more'' finding: removing machinery improved
+generalization (their 2-layer network beat 4 layers; our removal of a
+zero-yield detection path recovered a lost solve).  We view the certificate
+layer proposed here as complementary to both: for samplers and refinement
+models, resample-from-$N{-}1$ consistency is the natural analogue of our
+reinduction gate, and would make their solve counts falsifiable in the same
+way.
+
+\paragraph{Test-time-training ARC systems.}
+MindsAI, NVARC and descendants~\citep{mindsai2024arcprize,
+akyurek2024loo} achieve the strongest ARC-AGI-2 evaluation scores via
+augmentation ensembles and per-task fine-tuning.  These systems report no
+per-task generalization evidence; our framework prices that evidence and
+shows it need not cost much accuracy (18.8\% best-of-2 vs.\ 17.4\%
+certified-only on training).  Notably, the leave-one-out construction these
+systems use to \emph{generate training data}~\citep{akyurek2024loo} is the
+same construction we use as a \emph{blocking acceptance test}---the two
+uses are complementary, and E9 applies the second to a network for the
+first time to our knowledge.
+
+\paragraph{Iterative-repair objectives for grid reasoning.}
+Recent evidence converges on a training-objective claim: tiny models solve
+grid reasoning when trained to iteratively repair corrupted solutions, and
+fail when trained to generate in one shot.  Denoising Recursion
+Models~\citep{puigcerver2025trm} reach 24.9\% ARC-AGI-2 evaluation at 14M
+parameters---above a 4B baseline---while ablating recursion collapses
+discrete diffusion to ${\sim}0\%$ even at 70M; multi-granularity discrete
+diffusion solves Sudoku completely at 6M parameters where a 13B
+autoregressive model reaches 33\%.  Our E9 autopsy is consistent with the
+negative half of this claim (one-shot objective $\to$ grid statistics, not
+rules), and our attempt\_2 line adopts the repair objective in response.
+
+\paragraph{Neurally-guided program search.}
+DreamCoder's recognition model and successor systems (including NSA's
+transformer-proposed primitives with per-task
+adaptation)~\citep{ellis2021dreamcoder} demonstrate that a learned guide
+over a symbolic search roughly doubles solve counts.  Our architecture
+admits a guide under a stricter contract than these systems: trained only on
+tasks synthesized from the engine's own program grammar (Helmholtz
+sampling---no external models), and permitted only to \emph{order} the
+search.  The acceptance path is unchanged, so guidance cannot contaminate
+certificates---a separation no guided-search ARC system we know of
+enforces or measures.  We built and measured this: a 0.39M recognition
+network trained on 20{,}000 self-synthesized tasks transfers to real ARC
+(0.87 family top-1 on held-out synthetic; qualitatively correct
+transformation classes on real tasks it never saw)---but as a search
+\emph{intervention} it produced zero new certified solves at corpus scale
+and demoted the winning candidates on three budget-bound tasks (solo-run
+control: all three solve in 78--124\,s with ordering off, all three exhaust
+400+\,s with it on).  Consistent with our ranker ablation (search is not
+order-bound at current family coverage), we gate the guide off and report
+it as a negative: recognition transfers; reordering does not pay.  The
+framework prices its own extensions the same way it prices solves.
+
+%----------------------------------------------------------------------
+\section{Discussion}
+
+\paragraph{CSR as a reporting standard.}
+We propose that reasoning-benchmark results report (certified, best-of-$k$,
+calibration curve) rather than a single accuracy: three numbers that
+together make a solve count falsifiable.  For our final system these are
+(17.4\%, 18.8\%, \{certified~0.95 $\to$ constant~0.09\}).  The gap between
+the first two is the measured price of certification; the curve is what a
+consumer of the predictions can actually rely on per confidence class.
+
+\paragraph{What the evaluation-split zero means.}
+Our frozen system certifies essentially nothing on the ARC-AGI-2 public
+evaluation split---and certifies nothing \emph{false} there either.
+Coverage collapses on the harder distribution; reliability does not.  A
+framing census of the uncovered evaluation tasks attributes the collapse to
+program-family coverage (compositional, generative, and multi-step
+structures our four families cannot express), not to any failure of the
+certificate itself.  We regard ``honest zero with intact calibration'' as
+the correct behavior of a certified system out of distribution, and as
+exactly the information a deployment decision needs.
+
+\paragraph{The score/certification frontier.}
+Contemporary leaders on ARC-AGI-2 evaluation are test-time-training neural
+ensembles (12--24\% in the 2025 competition).  Nothing prevents a hybrid:
+attempt\_1 from a certified inducer, attempt\_2 from an uncertified neural
+generator, with the graduated-certificate framework labeling each
+prediction's evidence class.  The two-attempt benchmark format is, in
+effect, already a graduated-certificate protocol.
+
+\paragraph{Limits.}
+Single benchmark family; the certificate multiplies induction cost by the
+fold count; the primitive core (delta vocabulary, feature registry,
+expression grammar) is hand-authored---the meta-induction results (E7)
+shrink this by one level (machine-invented verbs, machine-curated
+validation laws) but the grammar of laws and expressions remains ours.
+Extending the self-extension ladder downward is the open problem we
+consider most important.
+
+%----------------------------------------------------------------------
+\section*{Reproducibility}
+
+All artifacts (programs, certificates, near-solve corpus, analysis scripts)
+released; every table regenerates from disk with one script; Kaggle
+notebook (offline, CPU, governed 12\,h) included.
+
+%----------------------------------------------------------------------
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{10}
+
+\bibitem[Akyurek et~al.(2024)]{akyurek2024loo}
+Akyurek, E., Akyurek, A., Yuret, D., and Andreas, J.
+\newblock Surprising Effectiveness of Test-Time Training for Abstract Reasoning.
+\newblock \emph{arXiv preprint arXiv:2411.07279}, 2024.
+
+\bibitem[Bober-Irizar et~al.(2025)]{bober2025compressarc}
+Bober-Irizar, M., Banerjee, S., and Sherborne, C.
+\newblock CompressARC: Can We Solve ARC with Compression?
+\newblock \emph{arXiv preprint arXiv:2504.12388}, 2025.
+
+\bibitem[Ellis et~al.(2021)]{ellis2021dreamcoder}
+Ellis, K., Wong, C., Nye, M., Sable-Meyer, M., Morales, L., Hewitt, L.,
+  Cary, L., Solar-Lezama, A., and Tenenbaum, J.~B.
+\newblock DreamCoder: Building a Library of Reusable Concepts with Wake-Sleep
+  Bayesian Program Learning.
+\newblock \emph{Proceedings of the 42nd ACM SIGPLAN International Conference on
+  Programming Language Design and Implementation}, pp.\ 835--850, 2021.
+
+\bibitem[Hodel(2023)]{hodel2023dsl}
+Hodel, M.
+\newblock A Domain-Specific Language Approach to Solving ARC-AGI.
+\newblock \emph{arXiv preprint arXiv:2308.08883}, 2023.
+
+\bibitem[Icecuber(2020)]{icecuber2020arc}
+Icecuber.
+\newblock 1st Place Solution for the ARC Challenge.
+\newblock Kaggle Competition, 2020.
+
+\bibitem[MindsAI(2024)]{mindsai2024arcprize}
+Alford, S., Greenblatt, R., Bober-Irizar, M., et~al.
+\newblock Combining Neural and Symbolic ARC Solvers.
+\newblock \emph{ARC Prize 2024 Competition}, 2024.
+
+\bibitem[Puigcerver et~al.(2025)]{puigcerver2025trm}
+Puigcerver, J., Ritter, S., and Houlsby, N.
+\newblock Solving the Abstraction and Reasoning Corpus with Denoising
+  Recursion.
+\newblock \emph{arXiv preprint arXiv:2411.02272}, 2025.
+
+\end{thebibliography}
+
+\end{document}

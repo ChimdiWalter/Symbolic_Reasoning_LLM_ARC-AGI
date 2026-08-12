@@ -84,10 +84,10 @@ def main():
                         choices=["training", "evaluation"])
     parser.add_argument("--max-steps", type=int, default=2000)
     parser.add_argument("--device", default="cuda")
-    parser.add_argument("--beta-kl", type=float, default=1.0)
+    parser.add_argument("--beta-kl", type=float, default=0.1)
     parser.add_argument("--hidden-dim", type=int, default=48)
-    parser.add_argument("--latent-dim", type=int, default=8)
-    parser.add_argument("--lr", type=float, default=0.006)
+    parser.add_argument("--latent-dim", type=int, default=16)
+    parser.add_argument("--lr", type=float, default=0.008)
     parser.add_argument("--exclude-ids", default=None,
                         help="JSON file with list of task IDs to exclude")
     parser.add_argument("--n-test-samples", type=int, default=8,

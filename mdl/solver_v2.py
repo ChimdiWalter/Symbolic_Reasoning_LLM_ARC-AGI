@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
-"""Per-task MDL solver v2: v1 core + directional ops + D4 symmetry + voting.
+"""Per-task MDL solver v2: v1 core + directional ops + multi-sample voting.
 
 Improvements over v1 (mdl/solver.py):
-  1. D4 spatial symmetry via random D4 augmentation during training +
-     full 8-orientation averaging at test time (halves the spatial
-     hypothesis space).
-  2. Directional ops: cumulative max and shift along 4 axes (parameter-free
+  1. Directional ops: cumulative max and shift along 4 axes (parameter-free
      core, with learned 1x1 projection in/out) — captures rays, edges,
      and propagation patterns critical for ARC.
-  3. Multi-sample decoding with majority voting at test time (8 z samples
-     from prior, D4-averaged, per-cell majority vote).
-  4. Reduced latent dim (16 vs 24) — mild pressure toward decoder reliance.
+  2. Multi-sample decoding with majority voting at test time (8 z samples
+     from prior, per-cell majority vote).
+  3. Reduced latent dim (16 vs 24) — mild pressure toward decoder reliance.
 
-Architectural note: pure colour-equivariant encoder (DeepSets over colour
-channels) was tested and found too weak for train compression (0% train
-exact). Colour augmentation is incompatible with fixed nn.Embedding. The
-v1 InputEncoder is kept; colour equivariance is an open lever for future
-work (requires a more expressive equivariant design).
+Levers tested and set aside (recorded for honest reporting):
+  - DeepSets colour-equivariant encoder: too weak, 0% train exact.
+  - Colour augmentation: incompatible with fixed nn.Embedding.
+  - D4 train augmentation: collapses KL->0, kills z_opt at test time.
+  - D4 test-time averaging: model is NOT equivariant, so TTA corrupts
+    the correct prediction with 7 wrong-orientation logits.
 
 Keeps same CLI contract as run_batch.py. Target: <300K params.
 """
@@ -67,7 +65,7 @@ class MDLConfigV2:
     test_z_steps: int = 300
     test_z_lr: float = 0.01
     n_test_samples: int = 8       # z samples for majority voting
-    d4_test_average: bool = True   # average over D4 transforms at test
+    d4_test_average: bool = False  # TTA hurts without D4 train augment
 
     # Misc
     seed: int = 42

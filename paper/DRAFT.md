@@ -33,10 +33,12 @@ family and produced a relational spelling that flipped its motivating
 task to certified-and-correct. We propose the
 **Certified Solve Rate (CSR)** and its calibration curve as a reporting
 standard for reasoning benchmarks, and release the fully certified corpus:
-173/1000 ARC-AGI-2 training tasks solved with certificates
-(17.3% CSR; 18.7% measured under Kaggle best-of-2), and an honest 0/120 on the
-public evaluation split — reliability transfers even where coverage does
-not.
+174/1000 ARC-AGI-2 training tasks solved with certificates
+(17.4% CSR; 18.8% measured under Kaggle best-of-2), including 2
+certified generative solves — tasks whose programs use
+machine-discovered content-creating operations — and an honest 0/120 on
+the public evaluation split — reliability transfers even where coverage
+does not.
 
 ## 1. Introduction
 
@@ -146,7 +148,7 @@ the preference order is empirical, not aesthetic. [Table 2]
 Combining E1/E4: certificate class is a calibration curve
 (certified ≈0.95 → uncertified-constant 0.09). Operationalized as the
 two-attempt policy: attempt_1 certified, attempt_2 best-uncertified —
-+14 task-outputs on training (18.7% best-of-2 at the final engine), i.e. the leaderboard cost
++14 task-outputs on training (18.8% best-of-2 at the final engine), i.e. the leaderboard cost
 of certification is measured, not argued. [Table 3: the 8-class table]
 
 ### E6 — Self-extension under certificates (operator library)
@@ -266,6 +268,58 @@ ranker matched by a Bayesian linear model (AUC 0.902 vs 0.907) and not
 wired; budget scaling ruled out as a bottleneck (300 s probe); two library
 promotions with zero yield. Negatives reported as first-class results.
 
+**Near-solve graduation (R1): 0/269, structural.** With 315 persisted
+near-solve fragments (269 from unsolved tasks), a three-route closure
+pipeline (generative patch with erase, analogy adaptation, and refit,
+each followed by full LOO recertification) attempted to graduate every
+fragment to a certified solve. Result: 0/269. Diagnosis is decisive
+and structural, not budgetary: 194/269 are LOO-fail tasks whose
+train-perfect programs have extensional-map or literal-constant
+parameters — the gate correctly rejects every re-derivation because
+the parameters are *overfit to the training set*, not
+subset-invariant. These tasks need relational parameter expressions
+(a higher rung of the expression lattice that the current grammar
+does not cover). The remaining 75 have residual structure outside the
+delta vocabulary. The ErasePatch machinery is kept (it unblocks
+future composition); the negative independently confirms the
+relational-expression frontier as the binding bottleneck.
+
+**Certified analogy (P3): retrieval infrastructure, not standalone
+solves.** An analogy module (retrieve 0.4 guide + 0.6 structural
+match; adapt parameters; full LOO recertify) was built and gated.
+Training probe: 4/30 = exact baseline match (delta = 0). Evaluation:
+0/120 object-engine solves. The analogy path re-induces programs the
+engine already attempts; its value is structured retrieval for
+future composition and self-play paths, not standalone solving.
+Default-off, kept as infrastructure.
+
+**R3 five set-aside equivariance levers (recorded causes).** The
+attempt_2 MDL learner (E9 v2) tested five additional architectural
+levers beyond the three that survived (directional ops,
+multi-sample voting, reduced latent). All five were set aside with
+recorded causes: (i) DeepSets colour-equivariant encoder — 0%
+train-exact (shared-weight constraint too weak to compress even
+training data); (ii) colour augmentation — incompatible with fixed
+nn.Embedding (each step remaps identities); (iii) D4 train
+augmentation — collapses KL to zero, killing the z_opt strategy the
+gate validates; (iv) D4 test-time averaging — model is not
+equivariant, so 7 wrong-orientation logits overwhelm the correct
+prediction (enabling TTA turned 2/3 test-correct into 0/3);
+(v) beta_kl increase (0.2, 0.5, 1.0) — all cause KL collapse.
+The dominant unresolved lever is colour equivariance via a
+multitensor design, the recorded path to CompressARC's 20%.
+
+**Stage-3 generative composition: honest negative (0/25).** The
+ARC_GEN_COMPOSE overlay — using the generative path as a patch
+inducer for compositional depth-2 programs — was probed on 25
+near-solve candidates. Result: 0/25 certified. The blocker is
+fuel starvation: median wall time equals the budget, persisted
+partials from prior runs occupy the fresh-run census, and overlay
+patches cannot erase (a structural limitation the erase-capable
+patch in R1 was designed to address). The composition machinery is
+functional but not productive at current base coverage; default-off,
+kept with tests.
+
 ### E9 — Certification across the symbolic–neural boundary
 
 The certificate protocol is model-agnostic in principle: "predict each
@@ -308,6 +362,22 @@ distinguishes rule capture from memorization, for a neural learner
 exactly as for symbolic programs (E1). The sample is small and we
 report it as such, but the direction is the thesis of this paper
 operating unchanged on a second learner class.
+
+**Replication at n=37 (v2 model).** A second-generation MDL learner
+(181K parameters: directional cummax/shift operations, 8-sample
+majority-vote decoding, reduced latent dimension 16) was probed on
+40 sampled training tasks: 37/40 train-exact, 3/40 test-correct
+(+1 over v1, zero regressions). The strong-form LOO gate was applied
+to all 37 train-exact tasks — retraining from scratch per fold,
+requiring exact held-out prediction. Result: **3/3 test-correct tasks
+pass at least one fold; 0/34 test-wrong tasks pass any fold — 100%
+gated precision, zero false positives**, replicating the n=8 v1
+separation at 4.6x the sample size (n=37 vs n=8). The honest caveat
+remains: absolute transfer is low (7.5%), gated count is small (3),
+and the dominant unresolved lever is colour equivariance (the DeepSets
+variant tested collapsed capacity; the multitensor path is the
+recorded next step). Nevertheless, the gate's discriminative power
+scales cleanly from n=8 to n=37 with no degradation.
 
 The frozen-model variant tells the complementary story: its result is
 a clean negative with the right failure signature. The 1.8M model, after six epochs, reached 94%
@@ -360,7 +430,7 @@ same way.
 achieve the strongest ARC-AGI-2 evaluation scores via augmentation
 ensembles and per-task fine-tuning. These systems report no per-task
 generalization evidence; our framework prices that evidence and shows
-it need not cost much accuracy (18.7% best-of-2 vs 17.3% certified-only
+it need not cost much accuracy (18.8% best-of-2 vs 17.4% certified-only
 on training). Notably, the leave-one-out construction these systems use
 to *generate training data* (Akyürek et al., 2024) is the same
 construction we use as a *blocking acceptance test* — the two uses are
@@ -406,7 +476,7 @@ same way it prices solves.
 **CSR as a reporting standard.** We propose that reasoning-benchmark
 results report (certified, best-of-k, calibration curve) rather than a
 single accuracy: three numbers that together make a solve count
-falsifiable. For our final system these are (17.3%, 18.7%, {certified
+falsifiable. For our final system these are (17.4%, 18.8%, {certified
 0.95 → constant 0.09}). The gap between the first two is the measured
 price of certification; the curve is what a consumer of the predictions
 can actually rely on per confidence class.
@@ -446,8 +516,8 @@ Kaggle notebook (offline, CPU, governed 12 h) included.
 ---
 *Numbers directory: E1/E4 outputs/paper_e1_e4/; E2 outputs/paper_e2/;
 calibration outputs/paper_calibrated_csr.json; E3
-outputs/unified_harness_eval_frozen/; corpus v12
-outputs/unified_harness_v12/ (153/1000); E7 miner
+outputs/unified_harness_eval_frozen/; corpus v20
+outputs/unified_harness_v20/ (174/1000 sealed, trajectory 153→174); E7 miner
 outputs/meta_m2_chains.json + battery outputs/meta_m2_orphan_battery.json
 + task-level registration logs/meta_m3_register*.log + delta-level
 registration logs/meta_m3b_delta_v3.log →
