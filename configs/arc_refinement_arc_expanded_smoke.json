@@ -1,0 +1,29 @@
+{
+  "run_name": "arc_refinement_arc_expanded_smoke",
+  "seed": 119,
+  "arc_root": "data/arc",
+  "split": "evaluation",
+  "max_tasks": 2,
+  "device": "cpu",
+  "candidate_max_depth": 2,
+  "baseline_candidate_max_depth": 2,
+  "dsl_profile": "arc_expanded",
+  "baseline_dsl_profile": "arc_expanded",
+  "colors": [1, 2, 3, 4],
+  "initial_top_k": 16,
+  "repair_top_k": 6,
+  "use_falsifier": false,
+  "test_time_adaptation_steps": 2,
+  "test_time_adaptation_lr": 0.0005,
+  "baseline_models": [
+    "direct_io_proxy",
+    "transformation_library",
+    "compression_selector",
+    "proposer_falsifier"
+  ],
+  "plain_ranker_checkpoint": "outputs/neural/program_ranker_arc_expanded_smoke/ranker.pt",
+  "plain_ranker_encoder_mode": "grid_encoder",
+  "jepa_ranker_checkpoint": "outputs/neural/program_ranker_jepa_arc_expanded_smoke/ranker.pt",
+  "jepa_ranker_encoder_mode": "jepa",
+  "jepa_ranker_encoder_checkpoint": "outputs/neural/grid_jepa_smoke/checkpoint.pt"
+}

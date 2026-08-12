@@ -1,0 +1,46 @@
+{
+  "name": "default_suite",
+  "run_name": "default",
+  "seed": 2026,
+  "grid_size": 8,
+  "ood_grid_size": 12,
+  "object_count": 4,
+  "ood_object_count": 6,
+  "distractors": 1,
+  "ood_distractors": 3,
+  "tasks_per_family": 5,
+  "examples_per_split": {
+    "train": 4,
+    "val": 2,
+    "test": 4,
+    "ood": 3
+  },
+  "colors": [1, 2, 3, 4, 5, 6, 7, 8],
+  "candidate_max_depth": 2,
+  "interactive_falsification": true,
+  "oracle_probes": 2,
+  "families": [
+    "reflection",
+    "rotation",
+    "translation",
+    "recolor_predicate",
+    "component_count",
+    "containment",
+    "adjacency",
+    "symmetry",
+    "topology",
+    "spurious",
+    "compositional"
+  ],
+  "models": [
+    "direct_io_proxy",
+    "object_centric",
+    "transformation_library",
+    "proposer_only",
+    "proposer_falsifier",
+    "compression_selector",
+    "path_repair",
+    "integrated_scientist"
+  ]
+}
+

@@ -1,0 +1,63 @@
+{
+  "run_name": "program_ranker_smoke",
+  "seed": 13,
+  "device": "cpu",
+  "encoder_mode": "grid_encoder",
+  "hidden_dim": 64,
+  "learning_rate": 0.001,
+  "epochs": 6,
+  "batch_size": 128,
+  "candidate_max_depth": 1,
+  "arc_eval_tasks": 6,
+  "colors": [1, 2, 3, 4],
+  "synthetic_train": {
+    "name": "program_ranker_train",
+    "seed": 13,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "containment",
+      "adjacency",
+      "symmetry"
+    ],
+    "tasks_per_family": 1,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 8,
+    "ood_grid_size": 10,
+    "object_count": 3,
+    "ood_object_count": 4,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4]
+  },
+  "synthetic_eval": {
+    "name": "program_ranker_eval",
+    "seed": 29,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "containment",
+      "adjacency",
+      "symmetry"
+    ],
+    "tasks_per_family": 1,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 8,
+    "ood_grid_size": 10,
+    "object_count": 3,
+    "ood_object_count": 4,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4]
+  }
+}

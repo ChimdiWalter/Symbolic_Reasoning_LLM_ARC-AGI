@@ -1,0 +1,44 @@
+{
+  "name": "h2_revised_conditional_stratified",
+  "run_name": "h2_revised_conditional_stratified",
+  "seed": 800,
+  "grid_size": 8,
+  "ood_grid_size": 10,
+  "probe_grid_size": 10,
+  "object_count": 3,
+  "ood_object_count": 5,
+  "probe_object_count": 4,
+  "distractors": 1,
+  "ood_distractors": 2,
+  "probe_distractors": 2,
+  "tasks_per_family": 1,
+  "examples_per_split": {
+    "train": 2,
+    "val": 1,
+    "test": 2,
+    "ood": 2
+  },
+  "colors": [1, 2, 3, 4, 5, 6, 7, 8],
+  "candidate_max_depth": 2,
+  "interactive_falsification": true,
+  "oracle_probes": 6,
+  "falsifier_candidate_limit": 40,
+  "fixed_falsifier_budget": true,
+  "budget_match_falsifier": true,
+  "families": [
+    "reflection",
+    "rotation",
+    "translation",
+    "recolor_predicate",
+    "component_count",
+    "topology",
+    "spurious",
+    "compositional",
+    "h2_noncommuting_composition_probe"
+  ],
+  "models": [
+    "proposer_only",
+    "proposer_falsifier"
+  ],
+  "hypothesis_focus": "H2 revised: conditional verification-by-falsification with stratified, compute-matched proposer-only versus proposer-falsifier contrasts."
+}

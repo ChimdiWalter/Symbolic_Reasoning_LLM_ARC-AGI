@@ -1,0 +1,26 @@
+{
+  "name": "arc_diagnostic_eval_learned",
+  "run_name": "arc_diagnostic_eval_6task_3seed_learned_v2",
+  "arc_root": "data/arc",
+  "split": "evaluation",
+  "require_solutions": true,
+  "seeds": [0, 1, 2],
+  "max_tasks": 6,
+  "max_tasks_per_bucket": 2,
+  "candidate_max_depth": 1,
+  "learned_hidden_dim": 32,
+  "learned_max_iter": 120,
+  "learned_alpha": 0.0001,
+  "falsifier_candidate_limit": 40,
+  "runtime_cap_seconds": 30.0,
+  "qualitative_failures_per_model": 5,
+  "colors": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "models": [
+    "direct_io_proxy",
+    "learned_task_mlp",
+    "transformation_library",
+    "proposer_falsifier",
+    "integrated_scientist"
+  ],
+  "boundary": "Bounded local ARC external-validity diagnostic with a learned baseline added; no ARC benchmark or leaderboard claim."
+}

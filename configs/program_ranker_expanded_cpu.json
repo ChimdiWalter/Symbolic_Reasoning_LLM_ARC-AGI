@@ -1,0 +1,26 @@
+{
+  "run_name": "program_ranker_expanded_cpu",
+  "seed": 3001,
+  "device": "cpu",
+  "encoder_mode": "grid_encoder",
+  "dsl_profile": "arc_expanded",
+  "candidate_max_depth": 2,
+  "colors": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "synthetic_task_count": 60,
+  "synthetic_families": null,
+  "epochs": 12,
+  "learning_rate": 0.001,
+  "batch_size": 32,
+  "arc_root": "data/arc",
+  "arc_eval_split": "training",
+  "arc_eval_max_tasks": 31,
+  "arc_eval_task_whitelist": [
+    "00d62c1b", "1cf80156", "1e0a9b12", "1f85a75f", "25ff71a9",
+    "3906de3d", "3c9b0459", "4347f46a", "60c09cac", "6150a2bd",
+    "67a3c6ac", "68b16354", "68b67ca3", "6d0aefbc", "6fa7a44f",
+    "7468f01a", "74dd1130", "8be77c9e", "9172f3a0", "9dfd6313",
+    "a416b8f3", "a5313dff", "a740d043", "a79310a0", "b1948b0a",
+    "be94b721", "c59eb873", "c8f0f002", "c9e6f938", "d511f180",
+    "ed36ccf7"
+  ]
+}

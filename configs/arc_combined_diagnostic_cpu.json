@@ -1,0 +1,36 @@
+{
+  "run_name": "arc_combined_diagnostic_cpu",
+  "seed": 2052,
+  "arc_root": "data/arc",
+  "split": "training",
+  "max_tasks": 1000,
+  "task_whitelist": [
+    "00d62c1b", "1cf80156", "1e0a9b12", "1f85a75f", "25ff71a9",
+    "3906de3d", "3c9b0459", "4347f46a", "60c09cac", "6150a2bd",
+    "67a3c6ac", "68b16354", "68b67ca3", "6d0aefbc", "6fa7a44f",
+    "7468f01a", "74dd1130", "8be77c9e", "9172f3a0", "9dfd6313",
+    "a416b8f3", "a5313dff", "a740d043", "a79310a0", "b1948b0a",
+    "be94b721", "c59eb873", "c8f0f002", "c9e6f938", "d511f180",
+    "ed36ccf7",
+    "332efdb3", "3618c87e", "4258a5f9", "5614dbcf", "6e82a1ae",
+    "6f8cd79b", "a699fb00", "ae58858e", "ba26e723", "d2abd087",
+    "dc1df850"
+  ],
+  "device": "cpu",
+  "candidate_max_depth": 2,
+  "baseline_candidate_max_depth": 2,
+  "dsl_profile": "arc_expanded",
+  "colors": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "initial_top_k": 48,
+  "repair_top_k": 12,
+  "use_falsifier": true,
+  "test_time_adaptation_steps": 0,
+  "test_time_adaptation_lr": 0.0005,
+  "baseline_models": [
+    "direct_io_proxy",
+    "transformation_library",
+    "compression_selector",
+    "proposer_falsifier",
+    "rule_induction"
+  ]
+}

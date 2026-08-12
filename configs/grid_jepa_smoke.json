@@ -1,0 +1,48 @@
+{
+  "run_name": "grid_jepa_smoke",
+  "seed": 11,
+  "device": "cpu",
+  "hidden_dim": 32,
+  "num_layers": 1,
+  "num_heads": 4,
+  "dropout": 0.0,
+  "learning_rate": 0.001,
+  "batch_size": 8,
+  "max_steps": 6,
+  "val_stride": 4,
+  "patch_size": 2,
+  "mask_ratio": 0.25,
+  "pair_prediction_weight": 0.5,
+  "synthetic_suite": {
+    "name": "grid_jepa_smoke_synth",
+    "seed": 11,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "topology",
+      "compositional"
+    ],
+    "tasks_per_family": 2,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 8,
+    "ood_grid_size": 10,
+    "object_count": 3,
+    "ood_object_count": 4,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4]
+  },
+  "arc_pretrain": {
+    "enabled": true,
+    "split": "training",
+    "max_tasks": 16
+  }
+}

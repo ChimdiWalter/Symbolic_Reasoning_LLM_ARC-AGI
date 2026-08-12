@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: reasoning-project
+Version: 0.1.0
+Summary: Reproducible scaffold for scientist-model hidden-rule reasoning experiments
+Requires-Python: >=3.11
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Provides-Extra: neural
+Requires-Dist: torch; extra == "neural"
+Requires-Dist: einops; extra == "neural"
+Provides-Extra: analysis
+Requires-Dist: pandas; extra == "analysis"

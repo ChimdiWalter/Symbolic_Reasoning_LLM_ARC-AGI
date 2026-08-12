@@ -1,0 +1,36 @@
+{
+  "run_name": "grid_jepa_eval_smoke",
+  "seed": 11,
+  "device": "cpu",
+  "batch_size": 8,
+  "patch_size": 2,
+  "mask_ratio": 0.25,
+  "synthetic_suite": {
+    "name": "grid_jepa_eval_synth",
+    "seed": 17,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "topology"
+    ],
+    "tasks_per_family": 1,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 8,
+    "ood_grid_size": 10,
+    "object_count": 3,
+    "ood_object_count": 4,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4]
+  },
+  "arc_eval": {
+    "enabled": true,
+    "split": "evaluation",
+    "max_tasks": 8
+  }
+}

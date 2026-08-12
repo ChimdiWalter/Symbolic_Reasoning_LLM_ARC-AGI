@@ -1,0 +1,53 @@
+{
+  "run_name": "grid_jepa_arc_pretrain_gpu_full",
+  "seed": 2026,
+  "device": "cuda",
+  "hidden_dim": 128,
+  "num_layers": 4,
+  "num_heads": 8,
+  "dropout": 0.1,
+  "learning_rate": 0.0003,
+  "batch_size": 64,
+  "max_steps": 800,
+  "val_stride": 8,
+  "patch_size": 2,
+  "mask_ratio": 0.4,
+  "pair_prediction_weight": 0.75,
+  "synthetic_suite": {
+    "name": "grid_jepa_arc_pretrain_gpu_full_synth",
+    "seed": 2026,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "recolor_predicate",
+      "component_count",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "topology",
+      "compositional"
+    ],
+    "tasks_per_family": 32,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 10,
+    "ood_grid_size": 12,
+    "object_count": 4,
+    "ood_object_count": 5,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4, 5, 6]
+  },
+  "arc_pretrain": {
+    "enabled": true,
+    "splits": ["training", "evaluation"],
+    "max_tasks_per_split": {
+      "training": 1000,
+      "evaluation": 120
+    }
+  }
+}

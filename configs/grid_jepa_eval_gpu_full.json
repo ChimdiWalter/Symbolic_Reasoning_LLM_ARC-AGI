@@ -1,0 +1,45 @@
+{
+  "run_name": "grid_jepa_eval_gpu_full",
+  "seed": 2026,
+  "device": "cuda",
+  "batch_size": 64,
+  "patch_size": 2,
+  "mask_ratio": 0.4,
+  "synthetic_suite": {
+    "name": "grid_jepa_eval_gpu_full_synth",
+    "seed": 3030,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "recolor_predicate",
+      "component_count",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "topology",
+      "compositional"
+    ],
+    "tasks_per_family": 8,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 10,
+    "ood_grid_size": 12,
+    "object_count": 4,
+    "ood_object_count": 5,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4, 5, 6]
+  },
+  "arc_eval": {
+    "enabled": true,
+    "splits": ["training", "evaluation"],
+    "max_tasks_per_split": {
+      "training": 64,
+      "evaluation": 64
+    }
+  }
+}

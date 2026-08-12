@@ -1,0 +1,46 @@
+{
+  "name": "smoke_suite_v2",
+  "run_name": "smoke_v2",
+  "seed": 123,
+  "grid_size": 8,
+  "ood_grid_size": 10,
+  "object_count": 3,
+  "ood_object_count": 4,
+  "distractors": 0,
+  "ood_distractors": 1,
+  "tasks_per_family": 1,
+  "examples_per_split": {
+    "train": 3,
+    "val": 1,
+    "test": 2,
+    "ood": 1
+  },
+  "colors": [1, 2, 3, 4, 5, 6, 7, 8],
+  "candidate_max_depth": 2,
+  "interactive_falsification": true,
+  "oracle_probes": 1,
+  "families": [
+    "reflection",
+    "rotation",
+    "translation",
+    "recolor_predicate",
+    "component_count",
+    "containment",
+    "adjacency",
+    "symmetry",
+    "topology",
+    "spurious",
+    "compositional"
+  ],
+  "models": [
+    "direct_io_proxy",
+    "object_centric",
+    "transformation_library",
+    "proposer_only",
+    "proposer_falsifier",
+    "compression_selector",
+    "path_repair",
+    "integrated_scientist"
+  ]
+}
+

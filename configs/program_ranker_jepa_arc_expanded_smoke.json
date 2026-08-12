@@ -1,0 +1,75 @@
+{
+  "run_name": "program_ranker_jepa_arc_expanded_smoke",
+  "seed": 113,
+  "device": "cpu",
+  "encoder_mode": "jepa",
+  "encoder_checkpoint": "outputs/neural/grid_jepa_smoke/checkpoint.pt",
+  "hidden_dim": 64,
+  "learning_rate": 0.001,
+  "epochs": 6,
+  "batch_size": 128,
+  "candidate_max_depth": 2,
+  "dsl_profile": "arc_expanded",
+  "arc_eval_tasks": 4,
+  "colors": [1, 2, 3, 4],
+  "synthetic_train": {
+    "name": "program_ranker_jepa_arc_expanded_train",
+    "seed": 113,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "arc_crop_nonzero_bbox",
+      "arc_crop_largest_component_bbox",
+      "arc_translate_largest_component",
+      "arc_snap_largest_component",
+      "arc_expand_canvas"
+    ],
+    "tasks_per_family": 1,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 8,
+    "ood_grid_size": 10,
+    "object_count": 3,
+    "ood_object_count": 4,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4]
+  },
+  "synthetic_eval": {
+    "name": "program_ranker_jepa_arc_expanded_eval",
+    "seed": 129,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "arc_crop_nonzero_bbox",
+      "arc_crop_largest_component_bbox",
+      "arc_translate_largest_component",
+      "arc_snap_largest_component",
+      "arc_expand_canvas"
+    ],
+    "tasks_per_family": 1,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 8,
+    "ood_grid_size": 10,
+    "object_count": 3,
+    "ood_object_count": 4,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4]
+  }
+}

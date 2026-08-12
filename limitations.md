@@ -1,0 +1,22 @@
+# Limitations
+
+- The synthetic smoke and ARC diagnostic runs are bounded diagnostics, not powered benchmark studies.
+- The direct input-output baseline is a nearest-example proxy, not a trained transformer.
+- Revised H2 evidence is strong only in deliberately constructed ambiguity families where simpler train-fitting rules fail held-out or oracle-probe cases; one H2 family still has no falsification gain in the broader 10-seed validation.
+- H2 should not be broadened back into a general claim that falsification improves reasoning.
+- ARC tasks do not expose latent generating programs, so ARC latent-rule recovery and causal-factor recovery are not computed.
+- The prior ARC diagnostic solved 0/6 labeled evaluation tasks exactly across all tested models with the core DSL.
+- The combined portfolio solves 53/1000 ARC training tasks (5.3%) via three complementary solver families (DSL: 31, local rules: 11 unique, rule induction: 4 unique); this supports bounded external validity on geometric/color primitives and local neighborhood rules only, not a general ARC capability claim.
+- The 53 solvable tasks are restricted to flips, rotations, translations, color remapping, gravity, flood fill, upscale, tiling, mirroring, cropping, neighborhood-based color mapping, periodic patterns, boundary-distance rules, and majority-downscale — tasks requiring visual analogy, abstract pattern completion, multi-step conditional reasoning, or object-level semantic understanding remain unsolved.
+- ARC task taxonomy shows 171/191 local-rule-category tasks remain unsolved, 283/284 color-permutation tasks remain unsolved, and 228/235 crop/extract tasks remain unsolved, indicating that the current solver families cover only a narrow band of ARC task types.
+- The local ARC-style audit does not establish clean ARC-AGI-2 provenance; filenames are ARC-AGI-style but ambiguous, and training/test task-id overlap is present in the local bundle.
+- The new Grid-JEPA and neural-ranker smoke runs are implementation-valid and no longer degenerate on synthetic held-out tasks, but ARC transfer remains weak: the plain smoke ranker reaches synthetic held-out top1/top2 `0.833/1.000` and the Grid-JEPA-conditioned smoke ranker reaches `1.000/1.000`, while both remain at ARC exact/pass@2 `0.000/0.000` on the current 6-task labeled evaluation slice.
+- The bounded ARC refinement slice also remains at exact solve rate `0.000` for all neural-guided methods, so the neuro-symbolic extension should not be presented as an ARC-improvement result.
+- The REMA-inspired diagnostic is limited by the absence of solved tasks on the current ARC refinement slice, so no meaningful success manifold is available yet.
+- H4 remains weak as a causal-compression claim: exact bounded minimum alignment now repeats across the five breadth seeds, but several non-compression selectors also align with exact minima and the causal/intervention terms remain proxies.
+- H5 remains weak/inconclusive because the integrated model improves some latent/recovery diagnostics but does not beat partial stacks on task accuracy and does not transfer to ARC exact solves in the current diagnostic.
+- Exact bounded formal claims are limited to declared finite systems: bounded DSL shortest-program search, exact DSL code length under the declared scheme, exact finite small-category law checks, and exact operator-specific support/component/hole audits.
+- Category theory, HoTT/path language, topology, and algorithmic information dynamics remain proxy-based outside those declared finite systems.
+- No local non-ARC external reasoning dataset was found in the project inspection; the added external-validity path is ARC plus broader synthetic extensions.
+- A stronger pretrained learned comparison path now exists through the Grid-JEPA-conditioned DSL ranker, but it is still locally pretrained and bounded rather than a large external foundation model baseline.
+- The current paper package is still limited by moderate synthetic scale and by the absence of completed larger GPU ARC results at the time of this snapshot; those runs are queued in `outputs/slurm_logs/neural_arc_pipeline_submission.json`.

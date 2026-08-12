@@ -1,0 +1,87 @@
+{
+  "run_name": "program_ranker_grid_arc_expanded_gpu_full",
+  "seed": 2141,
+  "device": "cuda",
+  "encoder_mode": "grid_encoder",
+  "hidden_dim": 128,
+  "learning_rate": 0.0005,
+  "epochs": 16,
+  "batch_size": 512,
+  "candidate_max_depth": 2,
+  "dsl_profile": "arc_expanded",
+  "arc_eval_tasks": 64,
+  "arc_eval_splits": ["training", "evaluation"],
+  "arc_eval_tasks_per_split": {
+    "training": 64,
+    "evaluation": 64
+  },
+  "colors": [1, 2, 3, 4, 5, 6],
+  "synthetic_train": {
+    "name": "program_ranker_grid_arc_expanded_gpu_full_train",
+    "seed": 2141,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "recolor_predicate",
+      "component_count",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "topology",
+      "compositional",
+      "arc_crop_nonzero_bbox",
+      "arc_crop_largest_component_bbox",
+      "arc_translate_largest_component",
+      "arc_snap_largest_component",
+      "arc_expand_canvas"
+    ],
+    "tasks_per_family": 24,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 10,
+    "ood_grid_size": 12,
+    "object_count": 4,
+    "ood_object_count": 5,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4, 5, 6]
+  },
+  "synthetic_eval": {
+    "name": "program_ranker_grid_arc_expanded_gpu_full_eval",
+    "seed": 2142,
+    "families": [
+      "reflection",
+      "rotation",
+      "translation",
+      "recolor_predicate",
+      "component_count",
+      "containment",
+      "adjacency",
+      "symmetry",
+      "topology",
+      "compositional",
+      "arc_crop_nonzero_bbox",
+      "arc_crop_largest_component_bbox",
+      "arc_translate_largest_component",
+      "arc_snap_largest_component",
+      "arc_expand_canvas"
+    ],
+    "tasks_per_family": 8,
+    "examples_per_split": {
+      "train": 3,
+      "val": 1,
+      "test": 1,
+      "ood": 1
+    },
+    "grid_size": 10,
+    "ood_grid_size": 12,
+    "object_count": 4,
+    "ood_object_count": 5,
+    "distractors": 1,
+    "colors": [1, 2, 3, 4, 5, 6]
+  }
+}
