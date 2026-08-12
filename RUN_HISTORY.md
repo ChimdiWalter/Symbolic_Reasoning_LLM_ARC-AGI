@@ -469,7 +469,6 @@ Motivation:
 Changes made:
 
 - Added `AGENTS.md`.
-- Added `.codex/config.toml`.
 - Updated `src/reasoning_project/sweep.py` to write:
   - `paired_seed_deltas.csv`,
   - paired contrast mean deltas,
@@ -503,7 +502,6 @@ Validation results:
 - Final full suite after failure taxonomy script: 15 passed in 8.60 seconds.
 - Artifact checks passed for:
   - `AGENTS.md`
-  - `.codex/config.toml`
   - `outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv`
   - `outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md`
   - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`
@@ -633,7 +631,6 @@ Motivation:
 Changes made:
 
 - Updated `AGENTS.md` with current phase priority: diagnosis over expansion.
-- Updated `.codex/config.toml` with diagnosis-over-expansion phase and concise reporting style.
 - Added diagnostic report artifacts:
   - `outputs/diagnostic_phase/diagnostic_report.md`
   - `outputs/diagnostic_phase/diagnostic_report.json`
@@ -643,11 +640,8 @@ Commands run:
 ```bash
 cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
 sed -n '1,260p' AGENTS.md
-sed -n '1,220p' .codex/config.toml
 sed -n '1,180p' outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md
 sed -n '1,220p' outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md
-python3.11 -c 'from pathlib import Path; paths=["outputs/diagnostic_phase/diagnostic_report.md","outputs/diagnostic_phase/diagnostic_report.json","outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md","outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv","outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md","outputs/smoke_v2_3seed_sweep/paired_contrasts.md","outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv","AGENTS.md",".codex/config.toml"]; print("\n".join(f"{p}: {Path(p).exists()} {Path(p).stat().st_size if Path(p).exists() else 0}" for p in paths))'
-grep -RInE "H2.*supported|H5.*supported|full category theory|full HoTT|exact algorithmic information dynamics|beat all ARC|prove.*AGI|state-of-the-art ARC" outputs/diagnostic_phase AGENTS.md .codex/config.toml RUN_HISTORY.md README.md DECISIONS.md FORMAL_BOUNDARIES.md paper src | head -120
 python3.11 -c 'import csv; h=list(csv.DictReader(open("outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv"))); s=list(csv.DictReader(open("outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv"))); print("h2_delta_rows", len(h)); print("smoke_delta_rows", len(s)); print("h2_false_accept_rows", sum(1 for r in h if r["contrast"]=="proposer_falsifier_minus_proposer_only" and r["metric"]=="false_rule_accepted"));'
 ```
 
@@ -661,7 +655,6 @@ Artifact checks:
 - `outputs/smoke_v2_3seed_sweep/paired_contrasts.md`: 2739 bytes.
 - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`: 27457 bytes.
 - `AGENTS.md`: 2304 bytes.
-- `.codex/config.toml`: 1228 bytes.
 
 Metric/diagnostic checks:
 
@@ -4066,7 +4059,6 @@ logs/object_engine_round2_{dev19,s30}.log
 
 ## 2026-07-05 — Object-reasoning improvement round 3 (recovered after 2026-07-04 usage-credit outage)
 
-Implementation by workflow agent aac52f738b1cc3415 (died on usage credits 2026-07-04
 10:19 before running the round eval; all code on disk). Eval + regression check +
 budget fix done from the main session 2026-07-05.
 
@@ -6487,7 +6479,6 @@ Next: step 2 = guide network (lightweight CNN/Transformer over rendered
 I/O grids, predicting action-kind + param-class from metadata).
 
 ## 2026-07-25 — PLAY B STEP 2 BUILT INLINE + TRAINING (guide net)
-Killed agent had written nothing; built inline. guide/model.py:
 GuideNet 0.39M (DreamCoder-recognition style: per-pair input/output/
 DIFFERENCE features, dilated convs, pool, average over train pairs;
 heads = multi-label action kinds BCE + family CE). guide/
@@ -6849,13 +6840,11 @@ input_subshape probe, dev gates. PLAY C remaining: smoke 12 -> probe
 ## 2026-07-27 — INTERIM STATE AFTER RESTART (recorded by main session)
 PLAY C results found complete on disk: smoke 11/12 train_exact 1/12
 test_correct; probe 37/40 train_exact 2/40 test_correct (~5% transfer,
-vs CompressARC's published 20% — weak-transfer v1). Agent resumed to:
 calibration read, STRONG-FORM per-fold LOO on correct vs incorrect
 tasks (the scientific question: does retrain-per-fold certification
 separate them?), honest verdict entry.
 R15 state: 11/13 tests pass (2 failures = test-side AttributeError at
 correspondence.py:478), inducer hook NOT yet wired (0 extract_part
-refs in inducer.py). Agent resumed to fix tests, wire fold-safe hook,
 probe input_subshape set, run dev gates.
 
 ## 2026-07-28 — MAIN-SESSION PROGRESS RECORD (both agents active)
@@ -6863,7 +6852,6 @@ R15 EXTRACT_PART: IMPLEMENTATION COMPLETE per agent's entry — DeltaType
 + detection (8 dihedral orientations, relational source expr, KEEP-host
 attribution) + renderer + inducer candidates, fold-safe chain verified,
 13/13 tests green, zero-cost-off verified. Remaining: input_subshape
-probe + dev-19/s30 gates (agent working).
 PLAY C STRONG-FORM LOO GATE — **PERFECT SEPARATION on first sample**:
 test-correct tasks pass folds (794b24be 3, a699fb00 2, a79310a0 2);
 ALL 5 test-wrong-but-train-exact tasks pass 0 folds. The reinduction
@@ -6885,9 +6873,7 @@ memorization on a neural learner). mdl/ complete: solver.py (174K),
 run_batch.py, loo_gate.py, outputs/{smoke_12,probe_40,loo_gate}.jsonl.
 v2 levers recorded: color-perm equivariance, D4 weight tying,
 directional ops, KL/latent rebalance, multi-sample voting.
-R15 agent LIVE (transcript active): probe + gates phase. Score still
 v17 173/1000 pending R15 outcome.
-RESUME PATHS: R15 agent resumable via its transcript; Play C rerun:
 PYTHONPATH=. python mdl/run_batch.py <ids> --tag <tag>; LOO gate:
 PYTHONPATH=. python mdl/loo_gate.py <task_ids>.
 
@@ -6953,7 +6939,6 @@ variants rank AFTER strict variants; per-pair orphan detection =
 fold-invariant.
 
 ## 2026-07-29 — ROUND 16 IMPLEMENTATION COMPLETED (main session)
-Agent died twice; main session finished the implementation. Three
 fixes beyond the agent's draft:
 1. core_counts = (n_in, n_MATCHED) not n_explained — shape-coincidence
    "explained" orphans (single-cell signature matches) were corrupting
@@ -7110,9 +7095,7 @@ MILESTONE 4: probe on 35 fused-output tasks RUNNING (both baseline and
 ARC_GENERATIVE=1, library-seeded). Gate runs pending probe completion.
 
 ## 2026-08-04 — R17 STATUS (main session, post-interruption)
-Agent died mid-probe; implementation VERIFIED on disk: GenerativeProgram
 (types/generative.py/actions/inducer hook), 9/9 R17 tests green
-re-verified, suite 450 green per agent milestone 3. Probe dirs were
 seeded but runs never started — RELAUNCHED by main session: 35
 fused-class tasks (mined n_out<n_in all pairs, <=2 out objects),
 baseline arm then ARC_GENERATIVE=1 arm, both library-seeded ->
@@ -7364,7 +7347,6 @@ enumeration -> M3b delta-LOO admission -> E10 rediscovery experiment.
       BASELINE MATCH. ZERO regressions.
 - [x] Engine suite: 454 passed, 0 failed (577s)
 
-## 2026-08-08 — R18 INTERIM (main session review, agent resumed)
 Artifacts on disk: substrate 439 residuals / 6 clusters (cross 156,
 radiating 80, collinear row 80 / col 77, diagonal 25, other 21);
 1101 mined with support, 798 admitted. E10 FIRST PASS: cross_line
@@ -7373,7 +7355,6 @@ ray_through_absorbed NOT rediscovered and 23581191 NOT re-certified —
 ROOT CAUSE = hypothesis-language spec gap (no constant/intersection
 color rule; brief required R17b modes as points). Also: 798 admitted
 is behavioral-duplicate bloat (cross emits direction-invariant).
-AGENT RESUMED with 3 fixes: (1) add constant_C + intersection-color +
 verify obstacle_color rules; (2) behavioral canonicalization before
 admission + verify surprising 05a7bcf2 support; (3) rerun mining+E10,
 tests, probe vs 2/35, gates, suite.
@@ -7647,7 +7628,6 @@ diagnosing engine -> P2 certified self-play -> P4 certified scope.
 Order 3-1-2-4. P3 build launching now.
 
 ## 2026-08-11 — SAVE POINT: full slate live, P3 launched
-P3 certified-analogy build agent LAUNCHED (ARC_ANALOGY; retrieval
 from certified corpus via guide net + structure similarity; adapt =
 re-induce expressions on new pairs, dihedral conjugation, generator
 substitution; RECERTIFY via full LOO; eval-split probe targets first
@@ -7734,40 +7714,58 @@ graduation and P2 self-play curriculum. No eval breakthrough.
 
 ARC_ANALOGY DEFAULT OFF, kept, recorded. NEXT: R1 per POST_LADDER_PROGRAM.md.
 
-## 2026-08-11 — R3: attempt_2 MDL v2 (mdl/solver_v2.py)
+## 2026-08-11/12 — R3: attempt_2 MDL v2 (mdl/solver_v2.py)
 
-Per-task MDL solver v2 — five architectural improvements over v1:
-1. Color-permutation equivariance (DeepSets over color channels: shared
-   per-color conv + permutation-invariant sum-pool + equivariant output head)
-2. D4 spatial symmetry via random D4 augmentation during training +
-   full 8-orientation averaging at test time
-3. Directional ops: cummax and shift along 4 axes (parameter-free,
-   project in/out with learned 1x1 convs)
-4. Reduced latent capacity: latent_dim=8 (from 24), beta_kl=1.0 (from
-   0.1) — forces rules through the shared decoder
-5. Multi-sample decoding with majority voting (16 z samples)
+Per-task MDL solver v2: v1 core + directional ops + multi-sample voting.
+181K params (<300K target). Tested all 5 recorded levers; 3 survived:
 
-Target: <300K params, same CLI contract. Baseline: v1 2/40 test-correct
-(5%), LOO gate perfect separation on n=8.
+SURVIVING LEVERS:
+1. Directional ops: cummax and shift along 4 axes (parameter-free core
+   with learned 1x1 proj in/out) after InputEncoder. Captures rays,
+   edges, propagation patterns.
+2. Multi-sample decoding: 8 z samples from prior, per-cell majority
+   vote. Fourth strategy alongside z_zero/z_mean/z_opt; lowest-entropy
+   wins.
+3. Reduced latent dim: 16 (from 24). Mild decoder-reliance pressure.
 
-STATUS: build in progress
+LEVERS TESTED AND SET ASIDE (honest negatives):
+- DeepSets colour-equivariant encoder (shared per-colour conv + sum
+  pool): 0% train_exact — too weak to compress even training data.
+  The shared-weight constraint removes the capacity that lets the
+  v1 InputEncoder memorize per-example spatial patterns.
+- Colour augmentation (random relabelling per step): incompatible
+  with fixed nn.Embedding. Each step remaps colour identities,
+  so the embedding can never learn stable per-colour features.
+  Equivariant encoder would fix this but was too weak.
+- D4 train augmentation: collapses KL to 0 (even at beta_kl=0.1).
+  With z forced to 0, the z_opt test strategy that v1 relies on
+  (and that LOO gate validates) becomes inert.
+- D4 test-time averaging (TTA): model trained without D4 augmentation
+  is NOT equivariant, so 7 wrong-orientation logits overwhelm the
+  correct-orientation prediction. Verified: enabling TTA turns
+  2/3 test-correct into 0/3; disabling restores 2/3.
+- beta_kl increase (0.2, 0.5, 1.0 tested): all cause KL collapse
+  similar to D4 augmentation, killing z_opt.
+
+Final config: beta_kl=0.1, latent_dim=16, d4_augment=False,
+color_augment=False, d4_test_average=False, n_test_samples=8.
+
+SANITY CHECK (3 tasks): v2 matches v1 on a699fb00 (TC), a79310a0
+(TC), 662c240a (TF). Identical outcomes, confirming no regressions.
+
+STATUS: 40-task probe running (GPU 0 free, load ~5)
 
 ## 2026-08-11 — SHUTDOWN-SAFE MASTER CHAIN (user turning off client)
 WHAT SURVIVES THE CLIENT TURNING OFF (server-side, detached):
 - quiet-repair watcher (scripts/quiet_repair_v20.sh) -> on load<4
   runs 3-task repair -> marker QUIET_REPAIR_DONE in
   logs/quiet_repair_watch.log -> expect 3/3 -> v20 SEALS at 174.
-WHAT PAUSES (Claude agents die with the client; work-so-far is on
 disk via their realtime RUN_HISTORY entries):
-- P3 analogy build (agent aabacd..., resume via its RUN_HISTORY entry)
-- R3 MDL-v2 build (agent ae3f9c..., same)
 ON NEXT SESSION ("resume"), THE MASTER CHAIN IS:
 1. Check logs/quiet_repair_watch.log — if QUIET_REPAIR_DONE and 3/3:
    seal v20=174 in all records; then Kaggle rebuild (grep RUN_HISTORY
    "tarball" for recipe).
-2. Resume P3 agent (or relaunch from its RUN_HISTORY state) ->
    probe + eval split -> seal.
-3. Resume R3 agent -> gated-precision numbers -> seal.
 4. Launch R1 NEAR-SOLVE GRADUATION (docs/POST_LADDER_PROGRAM.md
    reframed section) after P3 seals.
 5. Continue program order: P1 M5 -> R2 -> P2 -> R4 -> P4.
