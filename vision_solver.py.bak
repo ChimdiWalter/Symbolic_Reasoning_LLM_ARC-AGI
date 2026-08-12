@@ -1,0 +1,232 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Callable, List, Tuple, Optional, Dict, Any
+import re
+import numpy as np
+
+from components import Grid
+from pipeline import build_scene_bundle
+from text_describer import make_llm_prompt_for_rule_induction
+from llm_bridge import parse_rule_to_program
+from dsl import Program
+
+# =============================================================
+# LLM (vision→text) config & solver
+# =============================================================
+
+LLMFn = Callable[[str], str]
+
+@dataclass
+class LLMSolverConfig:
+    llm_fn: LLMFn                      # function(prompt:str) -> response:str
+    # How many prompts/candidates to try; if llm returns multiple rules, we parse all
+    max_rules: int = 8
+    # Build prompt from how many training pairs (usually all)
+    use_all_pairs: bool = True
+    # Fallback to symbolic if LLM path yields no verified program
+    fallback_symbolic: bool = True
+
+
+class LLMSolver:
+    """LLM-guided solver: textualize pairs → LLM proposes rule text → parse to DSL → verify.
+    Keeps ARC-AGI-2 compliance by using symbolic verification.
+    """
+    def __init__(self, cfg: LLMSolverConfig):
+        self.cfg = cfg
+
+    # --- Prompt building
+    def _make_prompt(self, train_pairs: List[Tuple[Grid, Grid]]) -> str:
+        if self.cfg.use_all_pairs:
+            parts: List[str] = []
+            for i, (x, y) in enumerate(train_pairs):
+                parts.append(f"Pair {i+1}:")
+                parts.append(make_llm_prompt_for_rule_induction(x, y))
+                parts.append("\n---\n")
+            # guidance for output format
+            parts.append(
+                "Return 1–3 short rules, each on its own line. "
+                "Prefer templates like: 'paint largest <color> to <color>'; "
+                "'translate <color> by (<dr>,<dc>)'; 'reflect <color> vertical|horizontal'."
+            )
+            return "\n".join(parts)
+        else:
+            x, y = train_pairs[0]
+            base = make_llm_prompt_for_rule_induction(x, y)
+            return base + "\nReturn 1–3 short rules, each on its own line."
+
+    # --- Parse multiple rule candidates out of an LLM response
+    def _extract_rule_lines(self, text: str) -> List[str]:
+        # Split into lines; keep non-empty; strip markdown bullets/quotes/code fences
+        lines = []
+        for raw in text.splitlines():
+            s = raw.strip()
+            s = re.sub(r"^[-*\d\.\)\s>]+", "", s)
+            if s and not s.startswith("```") and not s.endswith("```"):
+                lines.append(s)
+        # Deduplicate preserving order
+        seen = set(); out = []
+        for s in lines:
+            if s not in seen:
+                seen.add(s); out.append(s)
+        return out[: self.cfg.max_rules]
+
+    def _programs_from_llm(self, train_pairs: List[Tuple[Grid, Grid]]) -> List[Program]:
+        prompt = self._make_prompt(train_pairs)
+        resp = self.cfg.llm_fn(prompt)
+        cand_lines = self._extract_rule_lines(resp)
+        progs: List[Program] = []
+        for line in cand_lines:
+            p = parse_rule_to_program(line)
+            if p is not None:
+                progs.append(p)
+        return progs
+
+    # --- Solve one task
+    def solve_task(self, train_pairs: List[Tuple[Grid, Grid]], tests: List[Grid]) -> List[List[Grid]]:
+        # 1) Ask LLM for candidate textual rules → programs
+        programs = self._programs_from_llm(train_pairs)
+
+        # 2) Initial-pair gate, then verify across all train pairs
+        survivors: List[Program] = []
+        if programs:
+            x0, y0 = train_pairs[0]
+            B0 = build_scene_bundle(x0)
+            for p in programs:
+                yhat0 = p.run(x0, B0)
+                if np.array_equal(yhat0.data, y0.data):
+                    survivors.append(p)
+
+        verified: List[Program] = []
+        for p in survivors:
+            if # verify_on_pairs removed (unused)
+# verify_on_pairs(p, train_pairs):
+                verified.append(p)
+
+        if not verified:
+            # Optionally fallback to symbolic solver
+            if self.cfg.fallback_symbolic:
+                sym = Solver(SolverConfig())
+                return sym.solve_task(train_pairs, tests)
+            else:
+                return [[] for _ in tests]
+
+        # 3) Predict with top-2 verified programs (pass@2)
+        topk = verified[:2]
+        preds_all: List[List[Grid]] = []
+        for x in tests:
+            B = build_scene_bundle(x)
+            preds = [p.run(x, B) for p in topk]
+            preds_all.append(preds)
+        return preds_all
+
+
+# =============================================================
+# User-facing switch: symbolic / llm / hybrid
+# =============================================================
+
+@dataclass
+class ModeConfig:
+    mode: str = "symbolic"   # one of {"symbolic", "llm", "hybrid"}
+    solver_cfg: SolverConfig = SolverConfig()
+    llm_solver_cfg: Optional[LLMSolverConfig] = None
+
+
+def solve_with_mode(train_pairs: List[Tuple[Grid, Grid]], tests: List[Grid], cfg: ModeConfig) -> List[List[Grid]]:
+    mode = cfg.mode.lower()
+    if mode == "symbolic":
+        solver = Solver(cfg.solver_cfg)
+        return solver.solve_task(train_pairs, tests)
+    elif mode == "llm":
+        if cfg.llm_solver_cfg is None:
+            raise ValueError("llm mode requires llm_solver_cfg with llm_fn")
+        solver = LLMSolver(cfg.llm_solver_cfg)
+        return solver.solve_task(train_pairs, tests)
+    elif mode == "hybrid":
+        # NEW: Try SYMBOLIC first; if it fails to verify (no predictions), fall back to LLM.
+        # This keeps the default path deterministic and only calls the LLM when needed.
+        sym = Solver(cfg.solver_cfg)
+        sym_out = sym.solve_task(train_pairs, tests)
+        if not all(len(lst) == 0 for lst in sym_out):
+            return sym_out
+        # symbolic produced no predictions → try LLM if configured
+        if cfg.llm_solver_cfg is None:
+            return sym_out  # nothing else to try
+        llm = LLMSolver(cfg.llm_solver_cfg)
+        return llm.solve_task(train_pairs, tests)
+    else:
+        raise ValueError("mode must be one of {'symbolic','llm','hybrid'}")
+
+
+# =============================================================
+# Example LLM callback and smoke test
+# =============================================================
+
+def _echo_llm(prompt: str) -> str:
+    """A placeholder LLM function that returns a simple rule regardless of prompt.
+    Replace this with a real LLM call (OpenAI API, etc.).
+    """
+    return "paint largest red to green\n"  # example line that llm_bridge can parse
+
+
+if __name__ == "__main__":
+    # Tiny demo
+    arr = np.array([[0,2,2],[0,0,0],[3,3,0]], dtype=np.int8)
+    g = Grid(arr)
+    train_pairs = [(g, g)]  # identity task; the placeholder rule likely won't verify → fallback
+    tests = [g]
+    cfg = ModeConfig(mode="hybrid", llm_solver_cfg=LLMSolverConfig(llm_fn=_echo_llm))
+    outs = solve_with_mode(train_pairs, tests, cfg)
+    print("#preds for test0:", len(outs[0]))
+
+
+from typing import List, Dict, Any, Tuple, Optional, Callable
+import numpy as np
+
+from components import Grid
+from dsl import Program
+import text_describer as TD
+import llm_bridge_ext as LBE  # your "Llm Bridge Ext" canvas file (module name: llm_bridge_ext)
+
+# Type for an LLM function you provide; signature: prompt:str -> str
+LLMFn = Callable[[str], str]
+
+def solve_with_llm_fallback(
+    train_pairs: List[Tuple[Grid, Grid]],
+    test_inputs: List[Grid],
+    llm_fn: LLMFn,
+    max_trials: int = 2,
+) -> List[Dict[str, Any]]:
+    """
+    Returns same structure as symbolic solver for each test input:
+      [{"attempt_1": grid, "attempt_2": grid}, ...]
+    """
+    # 1) Describe pairs
+    desc = TD.describe_pairs(train_pairs)  # you already created this earlier
+    prompt = (
+        "You are solving an ARC-AGI task.\n"
+        "Given demonstrations (input->output), infer a concise rule.\n"
+        "Respond with one imperative sentence, e.g., 'paint largest red to blue' or 'translate green by (1,-2)'.\n\n"
+        f"{desc}\n\nRule:"
+    )
+    text_rule = llm_fn(prompt).strip()
+
+    prog: Optional[Program] = LBE.parse_rule_to_program(text_rule)
+    # A couple of fallbacks with tiny rephrases if parsing fails
+    if prog is None:
+        for tweak in ["mirror vertical", "mirror horizontal"]:
+            prog = LBE.parse_rule_to_program(tweak)
+            if prog is not None: break
+
+    outputs: List[Dict[str, Any]] = []
+    for x in test_inputs:
+        if prog is None:
+            # still produce something (copy input) so submission stays valid
+            arr = x.data.astype(int).tolist()
+            outputs.append({"attempt_1": arr, "attempt_2": arr})
+            continue
+        # Try up to max_trials runs (e.g., program variants if you add them later)
+        y1 = prog.run(x).data.astype(int).tolist()
+        y2 = y1  # could add a second variant here (e.g., different axis)
+        outputs.append({"attempt_1": y1, "attempt_2": y2})
+    return outputs
