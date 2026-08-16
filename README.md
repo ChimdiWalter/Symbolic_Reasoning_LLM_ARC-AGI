@@ -14,6 +14,8 @@ coverage does not.
 
 ![Certificate calibration](assets/certificates.png)
 
+![Failure is the fuel](assets/meta_funnel.png)
+
 ## Why certificates matter
 The same search, freed from the generalization requirement, *quintuples*
 its claimed solves while hidden-test precision collapses. Three independent
