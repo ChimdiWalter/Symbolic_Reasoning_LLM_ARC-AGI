@@ -1,13 +1,55 @@
 # The Learner Must Re-Derive
 ### Procedure-Level Generalization Certificates for Abstract Reasoning (ARC-AGI)
 
-A program-induction system for ARC in which **a task only counts as solved
-if the entire learning procedure, re-run from N−1 of its training examples,
-independently re-derives a program that solves the held-out example — for
-every fold.** The certificate validates the *learner*, not the artifact:
-a lucky program cannot pass it, because luck does not re-run.
+## Summary
 
-![Certificate calibration](assets/certificates.png)
+This project asks a question most reasoning benchmarks cannot answer:
+**when a system "solves" a task, did it grasp the rule — or memorize a
+coincidence?** The two are indistinguishable by accuracy alone.
+
+The system built here makes the distinction *measurable*. It is a
+program-induction engine for ARC in which a task only counts as solved if
+the **entire learning procedure, re-run from N−1 of its training examples,
+independently re-derives a program that solves the held-out example — on
+every fold.** The certificate validates the *learner*, not the artifact:
+a lucky program cannot pass, because luck does not re-run. On top of this
+gate the system builds calibrated confidence classes, mines its own
+failures for new capabilities, and subjects every extension — operators,
+generative primitives, even its own research hypotheses — to the same
+falsifiable standard.
+
+## What is new here
+
+1. **Procedure-level certificates.** Solves are accepted by leave-one-out
+   *re-induction* — the full learner re-runs per fold — not by output
+   checking. Measured on hidden tests, this single gate separates rule
+   from coincidence by a factor of five, and weakened versions of the
+   gate collapse to zero precision.
+2. **Graduated certificates.** A syntactic lattice over parameter
+   expressions (relational > feature > induced-map > constant) predicts
+   hidden-test correctness monotonically with *zero test access* —
+   confidence classes derived from program syntax alone.
+3. **A system that invents its own primitives.** Residual pixels — the
+   exact cells its best programs cannot explain — are mined, clustered,
+   and fit by candidate cell-set functions; a primitive is admitted only
+   if it reproduces *held-out* residuals exactly across tasks. In the
+   flagship experiment, hand-added primitives were deleted and the miner
+   **reinvented them blind from failure data, re-certifying the same
+   task**. Published systems compose given primitives; this one invents
+   them under a falsifiable acceptance test.
+4. **Zero-parameter derived programs.** New program modes store *no*
+   coordinates and no constants — every value (a period, a thickness, a
+   colour) is counted off the scene at render time. One derived mode
+   certified a task *outside* the exemplar set that motivated it.
+5. **The certificate crosses learner classes.** Applied in strong form to
+   a per-task neural learner (retrained from scratch per fold), the same
+   gate achieved perfect separation of right from wrong answers — the
+   protocol is learner-agnostic.
+6. **Falsification as the research method itself.** Candidate capability
+   classes are named from failure censuses, tested by exact reproduction
+   against ground truth, and *refuted rather than built* when the
+   evidence fails — one entire candidate family was struck this way, and
+   every negative round is recorded with its diagnosis.
 
 ![Failure is the fuel](assets/meta_funnel.png)
 
