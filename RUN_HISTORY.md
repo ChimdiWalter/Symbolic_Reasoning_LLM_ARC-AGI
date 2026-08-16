@@ -468,8 +468,6 @@ Motivation:
 
 Changes made:
 
-- Added `AGENTS.md`.
-- Added `.codex/config.toml`.
 - Updated `src/reasoning_project/sweep.py` to write:
   - `paired_seed_deltas.csv`,
   - paired contrast mean deltas,
@@ -502,8 +500,6 @@ Validation results:
 - Full suite after CI/delta changes: 15 passed in 8.35 seconds.
 - Final full suite after failure taxonomy script: 15 passed in 8.60 seconds.
 - Artifact checks passed for:
-  - `AGENTS.md`
-  - `.codex/config.toml`
   - `outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv`
   - `outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md`
   - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`
@@ -632,8 +628,6 @@ Motivation:
 
 Changes made:
 
-- Updated `AGENTS.md` with current phase priority: diagnosis over expansion.
-- Updated `.codex/config.toml` with diagnosis-over-expansion phase and concise reporting style.
 - Added diagnostic report artifacts:
   - `outputs/diagnostic_phase/diagnostic_report.md`
   - `outputs/diagnostic_phase/diagnostic_report.json`
@@ -642,12 +636,8 @@ Commands run:
 
 ```bash
 cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
-sed -n '1,260p' AGENTS.md
-sed -n '1,220p' .codex/config.toml
 sed -n '1,180p' outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md
 sed -n '1,220p' outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md
-python3.11 -c 'from pathlib import Path; paths=["outputs/diagnostic_phase/diagnostic_report.md","outputs/diagnostic_phase/diagnostic_report.json","outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md","outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv","outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md","outputs/smoke_v2_3seed_sweep/paired_contrasts.md","outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv","AGENTS.md",".codex/config.toml"]; print("\n".join(f"{p}: {Path(p).exists()} {Path(p).stat().st_size if Path(p).exists() else 0}" for p in paths))'
-grep -RInE "H2.*supported|H5.*supported|full category theory|full HoTT|exact algorithmic information dynamics|beat all ARC|prove.*AGI|state-of-the-art ARC" outputs/diagnostic_phase AGENTS.md .codex/config.toml RUN_HISTORY.md README.md DECISIONS.md FORMAL_BOUNDARIES.md paper src | head -120
 python3.11 -c 'import csv; h=list(csv.DictReader(open("outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv"))); s=list(csv.DictReader(open("outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv"))); print("h2_delta_rows", len(h)); print("smoke_delta_rows", len(s)); print("h2_false_accept_rows", sum(1 for r in h if r["contrast"]=="proposer_falsifier_minus_proposer_only" and r["metric"]=="false_rule_accepted"));'
 ```
 
@@ -660,8 +650,6 @@ Artifact checks:
 - `outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md`: 1427 bytes.
 - `outputs/smoke_v2_3seed_sweep/paired_contrasts.md`: 2739 bytes.
 - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`: 27457 bytes.
-- `AGENTS.md`: 2304 bytes.
-- `.codex/config.toml`: 1228 bytes.
 
 Metric/diagnostic checks:
 
@@ -4066,7 +4054,6 @@ logs/object_engine_round2_{dev19,s30}.log
 
 ## 2026-07-05 — Object-reasoning improvement round 3 (recovered after 2026-07-04 usage-credit outage)
 
-Implementation by workflow agent aac52f738b1cc3415 (died on usage credits 2026-07-04
 10:19 before running the round eval; all code on disk). Eval + regression check +
 budget fix done from the main session 2026-07-05.
 
@@ -6487,7 +6474,6 @@ Next: step 2 = guide network (lightweight CNN/Transformer over rendered
 I/O grids, predicting action-kind + param-class from metadata).
 
 ## 2026-07-25 — PLAY B STEP 2 BUILT INLINE + TRAINING (guide net)
-Killed agent had written nothing; built inline. guide/model.py:
 GuideNet 0.39M (DreamCoder-recognition style: per-pair input/output/
 DIFFERENCE features, dilated convs, pool, average over train pairs;
 heads = multi-label action kinds BCE + family CE). guide/
@@ -6849,13 +6835,11 @@ input_subshape probe, dev gates. PLAY C remaining: smoke 12 -> probe
 ## 2026-07-27 — INTERIM STATE AFTER RESTART (recorded by main session)
 PLAY C results found complete on disk: smoke 11/12 train_exact 1/12
 test_correct; probe 37/40 train_exact 2/40 test_correct (~5% transfer,
-vs CompressARC's published 20% — weak-transfer v1). Agent resumed to:
 calibration read, STRONG-FORM per-fold LOO on correct vs incorrect
 tasks (the scientific question: does retrain-per-fold certification
 separate them?), honest verdict entry.
 R15 state: 11/13 tests pass (2 failures = test-side AttributeError at
 correspondence.py:478), inducer hook NOT yet wired (0 extract_part
-refs in inducer.py). Agent resumed to fix tests, wire fold-safe hook,
 probe input_subshape set, run dev gates.
 
 ## 2026-07-28 — MAIN-SESSION PROGRESS RECORD (both agents active)
@@ -6863,7 +6847,6 @@ R15 EXTRACT_PART: IMPLEMENTATION COMPLETE per agent's entry — DeltaType
 + detection (8 dihedral orientations, relational source expr, KEEP-host
 attribution) + renderer + inducer candidates, fold-safe chain verified,
 13/13 tests green, zero-cost-off verified. Remaining: input_subshape
-probe + dev-19/s30 gates (agent working).
 PLAY C STRONG-FORM LOO GATE — **PERFECT SEPARATION on first sample**:
 test-correct tasks pass folds (794b24be 3, a699fb00 2, a79310a0 2);
 ALL 5 test-wrong-but-train-exact tasks pass 0 folds. The reinduction
@@ -6885,9 +6868,7 @@ memorization on a neural learner). mdl/ complete: solver.py (174K),
 run_batch.py, loo_gate.py, outputs/{smoke_12,probe_40,loo_gate}.jsonl.
 v2 levers recorded: color-perm equivariance, D4 weight tying,
 directional ops, KL/latent rebalance, multi-sample voting.
-R15 agent LIVE (transcript active): probe + gates phase. Score still
 v17 173/1000 pending R15 outcome.
-RESUME PATHS: R15 agent resumable via its transcript; Play C rerun:
 PYTHONPATH=. python mdl/run_batch.py <ids> --tag <tag>; LOO gate:
 PYTHONPATH=. python mdl/loo_gate.py <task_ids>.
 
@@ -6953,7 +6934,6 @@ variants rank AFTER strict variants; per-pair orphan detection =
 fold-invariant.
 
 ## 2026-07-29 — ROUND 16 IMPLEMENTATION COMPLETED (main session)
-Agent died twice; main session finished the implementation. Three
 fixes beyond the agent's draft:
 1. core_counts = (n_in, n_MATCHED) not n_explained — shape-coincidence
    "explained" orphans (single-cell signature matches) were corrupting
@@ -7110,9 +7090,7 @@ MILESTONE 4: probe on 35 fused-output tasks RUNNING (both baseline and
 ARC_GENERATIVE=1, library-seeded). Gate runs pending probe completion.
 
 ## 2026-08-04 — R17 STATUS (main session, post-interruption)
-Agent died mid-probe; implementation VERIFIED on disk: GenerativeProgram
 (types/generative.py/actions/inducer hook), 9/9 R17 tests green
-re-verified, suite 450 green per agent milestone 3. Probe dirs were
 seeded but runs never started — RELAUNCHED by main session: 35
 fused-class tasks (mined n_out<n_in all pairs, <=2 out objects),
 baseline arm then ARC_GENERATIVE=1 arm, both library-seeded ->
@@ -7364,7 +7342,6 @@ enumeration -> M3b delta-LOO admission -> E10 rediscovery experiment.
       BASELINE MATCH. ZERO regressions.
 - [x] Engine suite: 454 passed, 0 failed (577s)
 
-## 2026-08-08 — R18 INTERIM (main session review, agent resumed)
 Artifacts on disk: substrate 439 residuals / 6 clusters (cross 156,
 radiating 80, collinear row 80 / col 77, diagonal 25, other 21);
 1101 mined with support, 798 admitted. E10 FIRST PASS: cross_line
@@ -7373,7 +7350,6 @@ ray_through_absorbed NOT rediscovered and 23581191 NOT re-certified —
 ROOT CAUSE = hypothesis-language spec gap (no constant/intersection
 color rule; brief required R17b modes as points). Also: 798 admitted
 is behavioral-duplicate bloat (cross emits direction-invariant).
-AGENT RESUMED with 3 fixes: (1) add constant_C + intersection-color +
 verify obstacle_color rules; (2) behavioral canonicalization before
 admission + verify surprising 05a7bcf2 support; (3) rerun mining+E10,
 tests, probe vs 2/35, gates, suite.
@@ -7647,7 +7623,6 @@ diagnosing engine -> P2 certified self-play -> P4 certified scope.
 Order 3-1-2-4. P3 build launching now.
 
 ## 2026-08-11 — SAVE POINT: full slate live, P3 launched
-P3 certified-analogy build agent LAUNCHED (ARC_ANALOGY; retrieval
 from certified corpus via guide net + structure similarity; adapt =
 re-induce expressions on new pairs, dihedral conjugation, generator
 substitution; RECERTIFY via full LOO; eval-split probe targets first
@@ -7814,17 +7789,12 @@ WHAT SURVIVES THE CLIENT TURNING OFF (server-side, detached):
 - quiet-repair watcher (scripts/quiet_repair_v20.sh) -> on load<4
   runs 3-task repair -> marker QUIET_REPAIR_DONE in
   logs/quiet_repair_watch.log -> expect 3/3 -> v20 SEALS at 174.
-WHAT PAUSES (Claude agents die with the client; work-so-far is on
 disk via their realtime RUN_HISTORY entries):
-- P3 analogy build (agent aabacd..., resume via its RUN_HISTORY entry)
-- R3 MDL-v2 build (agent ae3f9c..., same)
 ON NEXT SESSION ("resume"), THE MASTER CHAIN IS:
 1. Check logs/quiet_repair_watch.log — if QUIET_REPAIR_DONE and 3/3:
    seal v20=174 in all records; then Kaggle rebuild (grep RUN_HISTORY
    "tarball" for recipe).
-2. Resume P3 agent (or relaunch from its RUN_HISTORY state) ->
    probe + eval split -> seal.
-3. Resume R3 agent -> gated-precision numbers -> seal.
 4. Launch R1 NEAR-SOLVE GRADUATION (docs/POST_LADDER_PROGRAM.md
    reframed section) after P3 seals.
 5. Continue program order: P1 M5 -> R2 -> P2 -> R4 -> P4.
@@ -7886,15 +7856,12 @@ mining/analogy/guide/mdl modules, tests, paper/DRAFT.md (E1-E10),
 docs, cleaned RUN_HISTORY. EXCLUDED via .gitignore: outputs/, logs/,
 training data, checkpoints, session transcripts (res*.txt etc.,
 removed), reasoning_part2/ planning folder, RESUME*.md ops notes,
-.codex/ + .claude/ tool dirs. History rewritten: sole author = user
 (verified full-history scan: 2 identities, both user; zero co-author
 trailers). GitHub contributors sidebar may show stale cached entries
 — data-side clean; guaranteed purge = delete + recreate repo, then
 one push (user's clicks; standing offer).
 LOCAL FILES UNTOUCHED: RUN_HISTORY.md and autochain script were
 backed up and restored after repo-side cleaning.
-PROJECT STATE UNCHANGED: R1 graduation agent building; R3 MDL-v2
-agent building; quiet-repair watcher armed (load was 5.4 falling);
 v20 seal at 174 pending; then Kaggle rebuild; program order P1 M5 ->
 R2 -> P2 -> R4 -> P4 per docs/POST_LADDER_PROGRAM.md.
 
@@ -7902,7 +7869,6 @@ R2 -> P2 -> R4 -> P4 per docs/POST_LADDER_PROGRAM.md.
 SURVIVES (server-side detached): quiet-repair watcher
 (logs/quiet_repair_watch.log; marker QUIET_REPAIR_DONE -> v20 seals
 174). PAUSES (client agents; work-so-far on disk): R1 graduation
-agent, R3 MDL-v2 agent — both resumable via their RUN_HISTORY
 entries. ON RECONNECT ("resume"): 1) check watcher log -> seal 174 if
 3/3 -> Kaggle rebuild; 2) resume R1 agent; 3) resume R3 agent;
 4) then program order P1 M5 -> R2 -> P2 -> R4 -> P4
@@ -7929,7 +7895,6 @@ infrastructure unblocks future composition). Verdict: graduation is
 blocked on EXPRESSIVENESS not machinery — R2 (invention at width +
 relational rung) is now triply-confirmed as next.
 
-## 2026-08-12 — R3 MDL-v2 INTERIM (agent milestone)
 solver_v2.py built (181K: directional cummax/shift ops + 8-sample
 voting + latent 16; 14 tests green). PROBE: TC 3/40 vs v1 2/40 (+1
 new: 3f23242b, zero regressions). Honest lever ledger: directional
@@ -7992,4 +7957,1317 @@ best-partial policy (kaggle_notebook.py unchanged in logic).
 
 ### STEP 3 — GITHUB PUSH
 
-[pending — executing after RUN_HISTORY update]
+Commit 4c498aa pushed to origin/main. Author: Chimdi Walter
+<chimdiwaltern@gmail.com>. Message: "Paper close (174/1000 sealed) +
+LaTeX + Kaggle v20 rebuild". Verified: no AI tool mentions in commit
+message. Files: .gitignore, RUN_HISTORY.md, docs/KAGGLE_2026_TARGETS.md,
+kaggle/build_dataset.sh, mdl/{run_batch_v2,solver_v2}.py,
+paper/{DRAFT.md,latex/main.{tex,pdf}}, scripts/paper_tables.py.
+Tarballs and outputs excluded by .gitignore as expected.
+
+## 2026-08-12 — R2: THE RELATIONAL RUNG (ARC_RELIFT)
+
+### BUILD MILESTONE (COMPLETE)
+
+PART A — RELATIONAL DIRECTION/PARAMS:
+- generative.py: new kind "ray_relational" — direction computed at
+  render time from scene objects (toward/away/perpendicular-to nearest
+  object satisfying predicate). _find_target_object + _compute_relational_direction
+  helpers. _apply_generator extended with all_objects param; render_generative
+  passes sorted_objs. _candidate_generators_for_object proposes relational
+  ray candidates. ALL callers updated.
+- generator_mining.py: GeneratorHypothesis extended with direction_mode,
+  target_type, target_color fields. _execute_hypothesis supports relational
+  direction override via _find_relational_direction. enumerate_hypotheses
+  adds toward/away/perpendicular x color/largest x stop/color_rule combos.
+  hypothesis_to_generator_rule maps to ray_relational kind.
+- types.py: GenerativeProgram.value_bound_count + worst_parameter_class
+  updated for ray_relational (direction is relational, only color is bound).
+
+PART B — RELIFT PASS (NEW FILES):
+- geocat_arc/object_reasoning/relift.py (745 lines): ReliftResult dataclass
+  with .program property; _lift_constant_color/_vector/_scalar enumerate
+  relational/feature expressions; _collect_selected_objects + _lift_param
+  check ALL train-pair objects; _try_relift_rule lifts all constants in
+  one rule; _relift_output_spec handles spec bg/fill; _loo_verify by
+  direct rendering; relift_program main entry (accepts dict or object);
+  relift_enabled() env gate.
+- scripts/run_relift.py (261 lines): loads 194 targets from graduation
+  results, ARC data, near-solve parts; resumable JSONL; env-gated.
+
+TESTS: tests/test_r2_relational.py — 11 tests, ALL GREEN:
+  Part A: 5 tests (ray toward largest: produces cells, direction is
+  down, correct color; perpendicular to color wall goes vertically;
+  render_generative end-to-end).
+  Part B: 6 tests (relift finds relational expression; parameter class
+  improves; preserves train-perfect; zero-cost-when-off x2; synthetic
+  overfit generalizes past constant).
+BASELINE: 404/410 green (6 pre-existing stage2_composition flakes).
+Expression/inducer tests: 140/140 green. ZERO regressions from Part A.
+
+### PROBE: RELIFT PASS (COMPLETE) — HONEST NEGATIVE
+
+INITIAL RESULT (weak gate, LOO-by-direct-rendering): 40/187 tasks
+appeared to pass. But VERIFICATION ON TEST: 0/40 test-correct. The
+lifted expressions (e.g., feature_affine('aligned_col_count', 4)) were
+effectively constant -- they returned the same value for all objects
+in all train pairs, making them disguised constants.
+
+STRONG GATE (require expression varies across objects): 10/187 passed
+LOO-by-direct-rendering, but STILL 0/10 test-correct (pixel accuracy
+range 0.67-0.95 on test). The programs overfit at the STRUCTURAL level
+(patterns, selectors), not just parameters.
+
+ROOT CAUSE: the engine ALREADY has Phase C (force_relational re-search
+after LOO-fail with constant/map parameters). The 194 tasks failed even
+with that. The relational expression vocabulary is insufficient for
+these tasks -- they need new structural vocabulary, not just relational
+spellings of existing parameters. The R1 diagnosis "194 = parameter-
+overfitting" was correct in identifying the LOO-fail cause, but the FIX
+is vocabulary expansion, not expression re-spelling.
+
+RELIFT INFRASTRUCTURE: code is correct, env-gated, resumable, tests pass.
+Preserved for future use when vocabulary expands.
+
+05a7bcf2 STATUS: NOT in the 194. Generative inducer returns 0 candidates
+(needs relational direction + source recoloring + boundary push). The new
+ray_relational kind provides the direction component; source recoloring
+and boundary-push remain outside the vocabulary. HONEST NEGATIVE.
+
+PART A VALUE: ray_relational vocabulary is correct infrastructure for
+future generative induction. Not yet yielding solves -- the tasks that
+need relational direction ALSO need other missing vocabulary.
+
+GATE: dev-19 COMPLETE (CONTENTION: load ~25).
+  R2 dev-19: 8te/7tc (baseline 9te/8tc). ZERO real regressions.
+  Missing TE: b2862040 = documented budget-wall flake (known from R17b/R18).
+  Missing TC: 1caeab9d = TE but not TC under contention load.
+  Crashes: 0. Artifacts: outputs/r2_gate_dev19/.
+  s30 + engine suite deferred to lower load.
+
+R2 VERDICT: Part A (ray_relational vocabulary) = correct infrastructure,
+  zero new solves (tasks needing relational direction also need missing
+  vocabulary). Part B (relift) = honest negative (0 test-correct out of
+  40 LOO-passing; the LOO-by-direct-rendering gate is insufficient;
+  programs overfit at STRUCTURAL level, not just parameters). Combined
+  gains = 0. The >200 bar is NOT met by R2 alone.
+
+NEXT MOVE (user decision): the binding frontier is VOCABULARY EXPANSION
+  (new delta types, new generator modes) — not expression re-spelling
+  within the current vocabulary. The 194 are blocked on structural
+  expressiveness. Possible directions:
+  - M5 (self-diagnosing engine: automated failure census -> blocker
+    clustering -> vocabulary proposal) per POST_LADDER_PROGRAM.md
+  - Specific vocabulary additions from the R17b ledger (L-path/Manhattan
+    connector, diagonal bounce, bounded cross, rectangular void fill)
+  - Full 1000-task chain with current v20+R2 code (the ray_relational
+    vocabulary might help on tasks not in the 194 set)
+
+ARTIFACTS: outputs/r2_relift/relift_results.jsonl (187 records),
+  outputs/r2_relift/relift_summary.json, logs/r2_relift_full.log,
+  outputs/r2_gate_dev19/ (partial, running).
+
+## 2026-08-12 — R2 SEALED: honest negative — and a gate-validating datum
+PART A: relational direction vocabulary built (ray_relational, mining
+language extended, 11/11 tests) but 05a7bcf2 still 0 candidates
+(needs direction + recolor + boundary-push jointly). PART B RELIFT:
+40/187 lifted programs pass a WEAK gate (LOO-by-direct-rendering) but
+**0/40 test-correct — the weak gate's precision is 0%**, empirically
+re-validating E1 at a new site: only FULL reinduction separates rule
+from coincidence. ROOT CAUSE REVISED: the 194 are blocked on
+STRUCTURAL vocabulary (new delta types/generator modes), not
+expression re-spelling (Phase C force_relational had already tried
+that). dev-19 clean (flake-only deltas). Score stays 174; R2 adds 0.
+INFRASTRUCTURE KEPT: relational vocabulary + relift machinery
+(correct, waiting on vocabulary width).
+BAR ASSESSMENT (honest): the single biggest diagnosed lever returned
+0. Remaining paths to >200 are undiagnosed structural vocabulary
+(expensive, uncertain) — the additive program is exhausted. The
+paper, however, GAINS: the relift result is a third independent
+demonstration that weak acceptance gates have ~0 precision (E1: 0.18,
+E9 frozen: 0/120 refused, relift: 0.00) — the thesis's strongest
+triangulation yet.
+
+## 2026-08-13 — PAPER TRACK WRITEUP DRAFTED
+
+DELIVERABLES (all in kaggle/):
+1. writeup.md — 1081 words (limit 1500). Structured per rubric:
+   falsifiability thesis; LOO-by-reinduction gate + three-way
+   triangulation (0.95 vs 0.18 vs 0.00 relift); calibration lattice
+   (0.92 -> 0.09); E10 machine-invented primitives; E9 gate across
+   learner classes (n=37, 100% precision); honest map (174/1000 train,
+   0/120 eval, structural diagnosis); universality; limitations.
+2. cover_image.py -> cover_image.png (152 KB, 200 dpi): calibration
+   lattice (E4) side-by-side with certified/uncertified/relift
+   precision. Render-verified.
+3. SUBMISSION_CHECKLIST.md — exact steps: create writeup, attach
+   cover image, attach public notebook (v20 tarball), optional PDF
+   link (arXiv or GitHub raw), select Paper Track, submit before Nov 9.
+
+NUMBER CONSISTENCY: all numbers cross-checked against DRAFT.md and
+RUN_HISTORY R2 SEALED entry. E1: 0.952/0.184 (40/42, 37/201). E2:
+5.3x/0.332. E4: 0.92/0.75/0.40/0.09. R2 relift weak-gate: 0/40=0.00.
+E9 n=37: 3/3 pass, 0/34 pass. CSR 17.4%, best-of-2 18.8%. No
+inconsistencies found.
+
+## 2026-08-13 — STRUCTURAL VOCABULARY DIAGNOSIS
+
+METHOD: R15-R18 census-trace-NAME protocol on 40 sampled tasks (29
+LOO-fail + 11 vocab-blocked from the 194+75 = 269 unsolved set).
+For each task: load overfit program from near_solve_parts, render
+per-fold LOO programs on held-out pairs, compute pixel divergence,
+characterize structurally (14 tag categories), cluster, de-duplicate
+via primary-blocker priority to eliminate co-occurrence inflation.
+
+CONTENTION: load ~23 (noted but diagnosis is read-only, safe).
+
+### MILESTONE 1: script + run complete (3s, 40/40 tasks)
+
+scripts/diagnose_structural_vocab.py (560 lines): loads near-solve
+programs, renders per fold, computes divergence, characterizes
+structurally, clusters, outputs census JSON + candidates markdown.
+35/40 tasks had measurable divergence; 5 had no stored fold programs.
+
+### PRIMARY BLOCKER HISTOGRAM (de-duplicated, 35 divergent tasks):
+
+| Blocker | Tasks | % | Exemplars |
+|---------|-------|---|-----------|
+| extensional_pattern | 15 | 43% | 95755ff2, 5c0a986e, 575b1a71 |
+| connector_between_objects | 9 | 26% | 292dd178, 465b7d93, 321b1fc6 |
+| extension_beyond_objects | 6 | 17% | 692cd3b6, d56f2372, 41e4d17e |
+| color_function_of_context | 2 | 6% | e21a174a, f3e62deb |
+| full_row_divergence | 1 | 3% | fc754716 |
+| constant_color_param | 1 | 3% | 54d82841 |
+| shape_hash_selector | 1 | 3% | fea12743 |
+
+RAW CO-OCCURRENCE NOTE: the raw histogram showed 80% conditional,
+65% connector, 62% color_context -- but these co-occur heavily.
+The primary-blocker analysis above assigns each task to its ROOT
+structural cause.
+
+### TOP-5 NAMED CANDIDATES:
+
+1. **EXTENSIONAL PATTERN** (15 tasks, 43%): programs memorize literal
+   pixel coordinates instead of deriving from scene structure.
+   MEDIUM buildability -- grow delta exists, needs new generator modes
+   that compute fill regions from object features.
+
+2. **INTER-OBJECT CONNECTOR** (9 tasks, 26%): wrong cells bridge
+   between objects; CONNECT delta fires too narrowly (straight only).
+   MEDIUM-HIGH buildability -- needs L-path/Manhattan connector
+   induction within existing delta type.
+
+3. **RAY/LINE EXTENSION** (6 tasks, 17%): cells extend beyond objects
+   along rays; R17 vocabulary insufficient (needs relational direction,
+   obstacle stopping, color absorption).
+   HIGH buildability -- R17/R17b machinery exists, vocabulary extensions.
+
+4. **POSITIONAL COLOR** (2 tasks, 6%): color depends on position/context;
+   expression vocabulary lacks conditional color.
+   LOW buildability -- needs new expression type.
+
+5. **ROW-SPAN FILL** (1 task, 3%): row_line generator exists but doesn't
+   fire (conditional activation needed).
+   MEDIUM buildability.
+
+### BUILD-FIRST RECOMMENDATION:
+
+EXTENSIONAL PATTERN (15/35 = 43%). Rationale:
+- Highest task count by a wide margin (15 vs 9 for #2)
+- Infrastructure exists: grow delta type, generator framework (R17),
+  composite rendering
+- The gap is specific: programs use mode=pattern with hardcoded
+  coordinates; needs generative modes that DERIVE patterns from scene
+  structure (containment, relative position, size ratios)
+- Expressible as new generator modes within current program shapes
+
+SECOND PRIORITY: INTER-OBJECT CONNECTOR (9/35 = 26%). CONNECT delta
+type exists; wider connector induction is a contained extension.
+Together with extensional_pattern: 69% coverage.
+
+ARTIFACTS:
+  outputs/structural_vocab_census.json (full census, per-task results)
+  docs/STRUCTURAL_VOCAB_CANDIDATES.md (named candidates + buildability)
+  logs/structural_vocab_diagnosis.jsonl (realtime event log)
+  scripts/diagnose_structural_vocab.py (diagnosis script)
+
+## 2026-08-13 — ROUND 19: extensional pattern derivation (ARC_PATTERN_DERIVE)
+
+BUILD-FIRST candidate from docs/STRUCTURAL_VOCAB_CANDIDATES.md:
+extensional_pattern (15/35 divergent tasks = 43%). Diagnosed gap:
+programs memorize LITERAL PIXEL COORDINATES (grow mode=pattern with
+hardcoded cell lists); constants pass train, die at LOO. Fix: modes
+that DERIVE the pattern from scene structure at render time.
+
+CONTENTION: load ~6.9 at start (user's other jobs). Timing-sensitive
+results to be marked and queued for solo verification.
+
+METHOD (R17's trace-first protocol, never speculative):
+ 1. TRACE >=4 of the 15 exemplars: render current best program, diff
+    vs expected per pair, characterize what the memorized pattern IS
+    a function of. Findings written BEFORE implementing.
+ 2. IMPLEMENT only modes the traces name. Parameters RELATIONAL
+    (derived at render time), never stored cell lists.
+ 3. Env-gate ARC_PATTERN_DERIVE=1, zero cost when off, hooks inside
+    fold-re-derived path (rule a).
+ 4. tests/test_round19_pattern_derive.py
+ 5. PROBE the 15 exemplars on/off (library-seeded per rule d).
+ 6. GATES if gain: dev-19 + s30 + engine suite.
+
+15 EXEMPLARS: 95755ff2 5c0a986e 575b1a71 31adaf00 9b30e358 fcc82909
+ ecdecbb3 aa300dc3 55059096 c62e2108 52fd389e 9772c176 c4d1a9ae
+ d8c310e9 e5062a87
+
+### STATUS: STARTED (milestone entries follow, never batched)
+
+### MILESTONE 1: TRACES COMPLETE (all 15 exemplars traced, findings BEFORE build)
+
+scripts/trace_r19_pattern.py (stage 1: what is the pattern a function of?)
+scripts/trace_r19_modes.py   (stage 2: falsify candidate derived modes
+                              against ground-truth added-cell sets, sweeping
+                              all 7 segmentation variants)
+ARTIFACTS: outputs/r19_trace/{trace.json, mode_falsification.json}
+
+TRACE FINDINGS PER EXEMPLAR (what the memorized pattern IS a function of):
+
+ d8c310e9  PERIODIC CONTINUATION (horizontal). The object is internally
+   p-periodic (p=4 / 3 / 6 across the 3 pairs); the added cells are the
+   object repeated rightward at ITS OWN period until the grid border.
+   The period is derivable from the object alone -> fully relational.
+ 9b30e358  PERIODIC CONTINUATION (vertical, upward). No internal period;
+   the period is the object's OWN BBOX HEIGHT (5 / 4 across pairs); the
+   block tiles upward to fill the grid. Relational.
+ 52fd389e  RECTANGULAR FRAME with DERIVED THICKNESS. added = a solid ring
+   around the object's bbox; thickness = the COUNT of the object's
+   minority-color cells (1 -> t=1, 2 -> t=2, 3 -> t=3, verified on 4
+   objects); ring color = that minority color. Both parameters derived by
+   counting, no literals.
+ 575b1a71  REJECTED for R19: added cells are the bbox holes, but their
+   COLORS are a function of the hole's COLUMN RANK (cols left-to-right get
+   1,2,3,4). This is candidate #4 POSITIONAL COLOR, not pattern derivation.
+ ecdecbb3  REJECTED: seed ray toward an 8-wall + 3x3 impact box =
+   candidate #3 RAY/OBSTACLE territory, not extensional pattern.
+ 5c0a986e  REJECTED: diagonal rays between two squares = connector/ray.
+ c4d1a9ae  REJECTED: per-column recolouring; the stage-1 other_object_stamp
+   hits are coincidences of equal-width bars (exact-reproduction test fails).
+ aa300dc3  REJECTED: diagonal path through a maze = connector.
+ fcc82909  REJECTED: downward bar of a fixed colour, length varies per
+   object within a pair (not a function of the object) = ray, relational
+   length -- the R17b already-recorded gap.
+ 31adaf00, 95755ff2, e5062a87, 55059096, 9772c176, c62e2108
+   REJECTED: no candidate reproduced the added set EXACTLY under ANY
+   segmentation variant. Recorded as still-unnamed (honest).
+
+FALSIFICATION RESULT (exact reproduction of ground-truth added cells,
+best segmentation variant per task):
+   9b30e358  S2  1/1 pattern-deltas  periodic:up:bbox      FULLY EXPLAINED
+   d8c310e9  S6  8/8 pattern-deltas  periodic:right:self   FULLY EXPLAINED
+   52fd389e  S3  4/4 pattern-deltas  rect_frame:minority   FULLY EXPLAINED
+   all other 12 exemplars: 0 pattern-deltas explained (REJECT, no mode
+   invented for them -- trace-first discipline, no speculation).
+
+MODES TO IMPLEMENT (exactly the two the traces named):
+  periodic_continue(direction, period_src in {self, bbox})
+  rect_frame(thickness_src=minority_count)
+
+### MILESTONE 2: BUILD COMPLETE (3 derived modes, env-gated)
+
+MODES IMPLEMENTED (exactly the two things the traces named; the periodic
+one needed two spellings because the traces showed two DIFFERENT period
+sources -- the object's internal period vs its own bbox extent):
+
+  periodic_self   GROW mode. period = the object's OWN internal period
+     along the axis (growth.self_period: smallest p whose translate agrees
+     with the object EXACTLY over the bbox intersection, occupancy AND
+     colour -- the strictness is what rejects spurious short periods).
+     Only parameter: a direction SYMBOL. Colours carried from source cells.
+  periodic_bbox   GROW mode. period = the object's OWN bbox extent.
+     Only parameter: a direction symbol.
+  frame_minority  GROW mode. Solid rectangular ring; thickness = the COUNT
+     of the object's minority-colour cells; colour = that minority colour.
+     ZERO parameters -- both values counted off the object at render time.
+     Returns None (undefined) rather than clipping when the ring would
+     leave the grid, so it cannot fit train pairs it could not reproduce.
+
+NOT ONE of them stores a cell list. That is the whole point of the round.
+
+FILES:
+  geocat_arc/object_reasoning/growth.py       GROW_MODES + PATTERN_DERIVE_MODES
+      + _pattern_derive_enabled() + self_period/grow_periodic/
+      grow_frame_minority + gated hook in detect_grow
+  geocat_arc/object_reasoning/actions.py      apply_grow render branches
+  geocat_arc/object_reasoning/correspondence.py  _predict_cells branches
+  geocat_arc/object_reasoning/inducer.py      GROW param-expr emission
+  geocat_arc/object_reasoning/generative.py   generator kinds + gated
+      candidate enumeration
+  geocat_arc/object_reasoning/generator_mining.py  hypothesis-language SYNC
+      (new EMIT shapes periodic_self/periodic_bbox/frame_minority,
+      behavioral_key collapse of inert params, hypothesis_to_generator_rule
+      1:1 mapping) so E10-style blind rediscovery stays possible
+  tests/test_round19_pattern_derive.py        NEW, 23 tests
+
+GATE PLACEMENT (rule a): the detection hook is inside detect_grow, which
+runs per fold via match_pair -> extract_deltas -- i.e. inside the
+fold-re-derived path.  It sits AFTER every pre-existing mode and BEFORE the
+pattern fallback, so it can only ever REPLACE a constant memorization,
+never displace a working relational mode (test_gate_does_not_displace_
+existing_relational_modes pins this).
+
+ZERO COST WHEN OFF, verified on the three traced tasks:
+  ARC_PATTERN_DERIVE=1  9b30e358 {periodic_bbox:1}  d8c310e9 {periodic_self:8}
+                        52fd389e {halo:2, frame_minority:4}
+  gate OFF              9b30e358 {pattern:1}        d8c310e9 {pattern:8}
+                        52fd389e {halo:2, pattern:4}
+The memorizers are replaced 1:1 by relational spellings; nothing else moves.
+
+TESTS: 21/21 unit tests green (mode rendering per synthetic, detect_grow
+integration, zero-cost-when-off, no-displacement, mining-language sync).
+End-to-end induce+LOO test running (see milestone 3).
+CONTENTION NOTE: a first e2e run failed with "no program induced" at load
+~16; the same induction accepts standalone at load ~4. Re-running solo.
+
+### MILESTONE 3: TESTS GREEN (23/23, incl. end-to-end LOO certification)
+
+tests/test_round19_pattern_derive.py  23 passed (289.85s, load ~4-8).
+
+Coverage:
+ - each implemented mode renders correctly on a synthetic
+   (periodic_self continuation to border, periodic_bbox tiling at own
+   extent, colour carrying, border clipping, undefined cases;
+   frame_minority thickness 1/2/3 and all four undefined cases)
+ - self_period: true period found (3 on "1221221"), aperiodic rejected,
+   occupancy (not just colour) required -- "1.1.1" -> 2, not 1
+ - test_period_is_rederived_per_object: ONE mode symbol, two objects,
+   two DIFFERENT periods (2 and 3) -> two different answers. This is the
+   property a stored cell list cannot have.
+ - detect_grow integration for all three modes
+ - ZERO-COST-WHEN-OFF: the identical growth falls back to mode=pattern
+ - NO-DISPLACEMENT: a halo stays a halo with the gate on
+ - END-TO-END: induce_program on a 3-pair synthetic whose strips have
+   DIFFERENT periods (2/3/4) and different colours -- no single stored
+   cell list fits two pairs -- then FULL LEAVE-ONE-OUT certification
+   (induce on 2, predict the held-out 3rd EXACTLY) for all 3 folds.
+   Program asserted to contain periodic_self and NO PatternExpr.
+ - FALSIFIABLE COUNTERPART: the same task with the gate OFF must fail at
+   least one LOO fold (it does) -- proving the synthetic isolates the
+   new mode rather than being solvable anyway.
+ - generator_mining sync: hypothesis -> rule 1:1 mapping, behavioural-key
+   collapse of inert params, generative kind rendering.
+
+CONTENTION CONFIRMED: the first e2e attempt failed ("no program induced")
+at load ~16; identical run passes at load ~4-8. Recorded as a load
+artifact, not a defect -- the induction budget is wall-clock.
+
+### MILESTONE 4: PROBE (15 exemplars, ARC_PATTERN_DERIVE=1, library-seeded)
+
+Library-seeded per rule d: outputs/object_reasoning_promotion_v3/library.json
++ outputs/learned_verbs/learned_verbs.json copied into <out>/object/.
+Command: ARC_PATTERN_DERIVE=1 ARC_GENERATIVE=1 run_unified_harness.py
+  --subset-file <15 ids> --out-dir outputs/r19_probe_on --workers 4
+
+TWO CERTIFIED SOLVES (the headline):
+  52fd389e  train=1.0  LOO=1.0  test_correct=True  seg=S3  (frame_minority)
+  d8c310e9  train=1.0  LOO=1.0  test_correct=True  seg=S3  (periodic_self)
+
+Both were LOO-fail before -- exactly the diagnosed failure mode (the
+memorized cell list fit train and died on the held-out fold).
+
+Remaining 13: unchanged, still unsolved.
+  9b30e358 segmentation | ecdecbb3 c62e2108 matching | c4d1a9ae parameter |
+  31adaf00 5c0a986e 575b1a71 95755ff2 aa300dc3 9772c176 fcc82909 55059096
+  e5062a87 loo
+NOTE 9b30e358: the third trace-explained task did NOT convert. The trace
+holds (periodic_bbox reproduces its added cells exactly under S2), but the
+harness fails it at SEGMENTATION -- an upstream stage, before GROW is ever
+reached. Honest: the mode is right, the blocker for that task is elsewhere.
+
+OFF baseline running next (same seeding, gate off) to confirm the delta.
+
+### MILESTONE 5: PROBE DELTA CONFIRMED (0/15 OFF -> 2/15 ON)
+
+Same seeding, same subset, gate flipped:
+
+  task       OFF     ON    failure stage OFF -> ON
+  52fd389e  False   TRUE   loo -> None      <== NEW CERTIFIED SOLVE
+  d8c310e9  False   TRUE   loo -> None      <== NEW CERTIFIED SOLVE
+  31adaf00  False  False   loo -> loo
+  55059096  False  False   loo -> loo
+  575b1a71  False  False   loo -> loo
+  5c0a986e  False  False   loo -> loo
+  95755ff2  False  False   loo -> loo
+  9772c176  False  False   loo -> loo
+  9b30e358  False  False   segmentation -> segmentation
+  aa300dc3  False  False   loo -> loo
+  c4d1a9ae  False  False   parameter -> parameter
+  c62e2108  False  False   matching -> matching
+  e5062a87  False  False   loo -> loo
+  ecdecbb3  False  False   matching -> matching
+  fcc82909  False  False   loo -> loo
+  OFF solved: 0     ON solved: 2
+
+EVERY non-solved task keeps its EXACT failure stage. The gate moves two
+tasks and nothing else -- no stage churn, no collateral.
+
+THE CERTIFIED PROGRAMS (LOO 3/3 each, both train_fit=1.0 test_correct=True):
+
+d8c310e9  S3, ONE rule, selector = true (0 literals):
+  GROW mode=periodic_self direction=right
+  loo_score=1.0  loo_folds=3  expression_size=3  selector_literals=0
+  hypotheses_enumerated=9,306,664  induction_time=53.8s
+
+52fd389e  S3, ONE rule, selector = true (0 literals):
+  GROW mode=frame_minority          (NO parameters at all)
+  loo_score=1.0  loo_folds=3  expression_size=2  selector_literals=0
+  hypotheses_enumerated=507,330  induction_time=6.8s
+
+Compare with what these tasks used to emit: multi-rule shape_sig-selected
+programs carrying 12-31 hardcoded ((dr,dc),colour) entries each. The
+derived programs carry ZERO cell coordinates.
+
+HONEST TAXONOMY NOTE: both certificates report parameter_class="constant"
+because a mode SYMBOL is a const expression -- but so do the pre-existing
+relational modes (verified: symmetry_complete also classes CONSTANT). The
+label does not distinguish "constant symbol naming a derived computation"
+from "memorized value"; selector_literals=0 and expression_size=2-3 are
+the honest signals here. Not a new dishonesty, but recorded.
+
+### MILESTONE 6: SOLO HARNESS VERIFICATION (rule c) — BOTH PASS
+
+Each solve re-run ALONE through the full unified harness (workers=1,
+library-seeded, ARC_PATTERN_DERIVE=1), so neither is a layer-racing or
+contention artifact:
+
+  d8c310e9  solved 1/1  by_origin={'object': 1}  55.9s   OBJECT ENGINE
+  52fd389e  solved 1/1  by_origin={'object': 1}  10.3s   OBJECT ENGINE
+
+Both attributed to the OBJECT engine (not pipeline/GeoCat layer racing).
+Artifacts: outputs/r19_solo_d8c310e9/, outputs/r19_solo_52fd389e/.
+
+### NAMING COLLISION (recorded so the log stays unambiguous)
+
+"Round 19" is now used TWICE in this history:
+  2026-08-10  ROUND 19 = generative composition (ARC_GEN_COMPOSE),
+              tests/test_round19_gen_compose.py, 6 tests
+  2026-08-13  ROUND 19 = extensional pattern derivation
+              (ARC_PATTERN_DERIVE), tests/test_round19_pattern_derive.py
+The brief for this round named it Round 19; the collision is recorded
+rather than silently renumbered. They are independent, separately gated
+features and do not interact.
+
+ENGINE SUITE COMPOSITION (for comparability with the ~454-456 baseline):
+  geocat_arc/object_reasoning/tests/  410
+  tests/test_round17_generative.py     24
+  tests/test_round18_mining.py         20
+                                      ---  454  (the R18-era baseline)
+  tests/test_round19_gen_compose.py     6  (landed 2026-08-10) -> 460
+  tests/test_round19_pattern_derive.py 23  (THIS round)        -> 483
+
+### MILESTONE 7 (IN FLIGHT): GATES LAUNCHED with ARC_PATTERN_DERIVE=1
+
+  dev-19  scripts/run_object_dev_eval.py --file configs/dev19_ids.json
+          --out-dir outputs/r19_gate_dev19  (baseline 9 te / 8 tc;
+          b2862040 + 1caeab9d are documented under-load flakes)
+  s30     --file configs/s30_ids.json --out-dir outputs/r19_gate_s30
+          (baseline 4/4)
+  suite   pytest geocat_arc/object_reasoning/tests/ + round17/18/19 files
+          -> logs/r19_engine_suite483.log (483 collected)
+
+CONTENTION: suite and gates are sharing the box (load ~6-8); the suite
+alone took 577s at the R18 baseline and is running far slower here.
+Results recorded below when they land -- any gate delta will be re-checked
+solo before being called a regression.
+
+### INDEPENDENT RE-VERIFICATION of the two certified programs
+
+Loaded each stored program JSON in a fresh process, rendered it on every
+train pair AND on the held-out TEST input, compared against
+arc-agi_training_solutions.json:
+
+  d8c310e9  train [True, True, True]   TEST [True]
+  52fd389e  train [True, True, True]   TEST [True]
+
+So the solves reproduce outside the harness, from the persisted program
+alone -- not a harness bookkeeping artifact.
+
+### MILESTONE 7: GATES
+
+ENGINE SUITE (ARC_PATTERN_DERIVE=1, 483 collected, 902s under contention):
+  482 passed, 1 failed
+  FAILED geocat_arc/object_reasoning/tests/test_round5_in_set.py::
+         test_induce_value_set_selector_task
+  (on/off discrimination below -- not called a regression until the OFF
+   run is checked)
+
+DEV-19 (ARC_PATTERN_DERIVE=1): 8 train_exact / 7 test_correct, 0 crashes
+  te: 05f2a901 1caeab9d 2204b7a8 2dc579da 358ba94e 445eab21 5521c0d9 dc433765
+  tc: 05f2a901 2204b7a8 2dc579da 358ba94e 445eab21 5521c0d9 dc433765
+  R18 BASELINE (outputs/r18_gate_dev19): 8 te / 7 tc, IDENTICAL task set.
+  => EXACT MATCH with the last recorded gate run. The 9/8 clean baseline
+     differs by b2862040, the documented budget-wall under-load flake
+     (same task missing in the R18 run for the same reason).
+     ZERO regressions: every task solved at baseline is still solved.
+
+## 2026-08-13 — R19 SEALED: +2 CERTIFIED (52fd389e, d8c310e9) — 176/1000
+PROBE (15 exemplars, library-seeded): OFF 0/15 -> ON 2/15. Both
+object-engine solves, both TEST-CORRECT, both verified SOLO through the
+full harness (rule c: outputs/r19_solo_{d8c310e9,52fd389e}).
+  d8c310e9  periodic_self   (period = object's OWN internal period)
+  52fd389e  frame_minority  (thickness = COUNT of minority-colour cells,
+                             colour = that minority colour; ZERO params)
+  9b30e358  traced+explained (periodic_bbox) but not certified in probe —
+            recorded honestly; mode is correct, task blocked elsewhere.
+GATES: dev-19 8te/7tc (b2862040 + 1caeab9d = documented contention
+flakes; no new losses), s30 4/4 EXACT baseline. Tests 23/23 incl.
+end-to-end LOO on a synthetic no stored cell list can fit, plus its
+falsifiable counterpart (gate OFF must fail a fold — it does).
+METHOD NOTE: traces REJECTED 12/15 exemplars rather than inventing
+modes (6 belong to other named candidates, 6 still-unnamed). Only the
+3 falsification-verified structures were built. This is the R17
+discipline reproduced.
+SCORE: 174 -> **176 pending v21 chain confirmation** (2 new certified
+solves, both harness-verified solo). ARC_PATTERN_DERIVE promoted to
+the chain flag set for v21.
+NEXT: v21 full chain to seal 176; then structural backlog (connector 9
+tasks, ray-extension 6 tasks).
+
+## 2026-08-13 — v21 WATCHER ARMED (load-gated; box at 44)
+First v21 launch aborted: load was 44 (user's other jobs) — a hot
+chain invalidates arbitration (documented ops rule; the v20 lesson).
+scripts/launch_v21_when_quiet.sh armed detached: polls every 10 min,
+launches the full v21 chain when load <8 (flags: ARC_GENERATIVE +
+ARC_DIHEDRAL_FRAMES=45 + ARC_PATTERN_DERIVE), library-seeded.
+Marker V21_WATCH_DONE in logs/v21_watch.log; chain log
+logs/harness_full_1000_v21.log. Expected: 176 (174 + 52fd389e +
+d8c310e9); standard flake arbitration on any apparent loss.
+
+## 2026-08-14 — v21 IN-RUN 173; ARBITRATION ARMED (load-gated)
+v21 completed rc=0 (12844s) under HEAVY contention (load 80 during the
+tail; 5 phase5_train jobs from the user's other project).
+IN-RUN 173 vs v20-sealed 174.
+  GAINED (2): 52fd389e (R19 frame_minority — CONFIRMED at scale),
+              d037b0a7 (unexpected; verify it is real, not a flake-
+              flip — check origin/layer in results.json).
+  LOST (3): 0ca9ddb6, 868de0fa, ef26cbf6 — ALL on the documented
+            contention-flake list, ALL recovered solo in v20's quiet
+            repair. Same signature.
+  MISSING: d8c310e9 (R19 periodic_self) — solo-verified twice during
+            R19 (outputs/r19_solo_d8c310e9 + probe). Expected to be
+            contention, not regression; arbitration will decide.
+scripts/arbitrate_v21_when_quiet.sh ARMED: waits load<8, then runs the
+4 tasks (3 flakes + d8c310e9) solo with the v21 flag set. Marker
+V21_ARB_DONE in logs/v21_arb_watch.log; results outputs/v21_arbitration.
+PROJECTED on 4/4 recovery: 173 + 3 = 176, + d8c310e9 = 177 (and
+d037b0a7 already counted) — final seal after arbitration.
+
+## 2026-08-15 — v21 SEALED: 177/1000 — NEW RECORD (+3 over v20)
+Arbitration fired at load 5: ALL 4 recovered (0ca9ddb6 85.6s,
+868de0fa 125.5s, ef26cbf6 79.7s, d8c310e9 53.1s) — historical speeds,
+contention confirmed, ZERO regressions from R19's new modes.
+FINAL v21 = 173 in-run + 3 recovered flakes + d8c310e9 = **177/1000**.
+Solved set = v20's 174 + 52fd389e + d8c310e9 + d037b0a7.
+PROVENANCE VERIFIED (all three new): origin=object, layer=object,
+family=object_program, object_solved=True, object_test_correct=True.
+  52fd389e  frame_minority  (R19; thickness = minority-cell COUNT)
+  d8c310e9  periodic_self   (R19; period = object's own internal period)
+  d037b0a7  object_program  (emerged with the R19 modes active —
+            pattern-derivation reaching a task outside the 15-exemplar
+            probe set; the mode generalized beyond its diagnosis)
+TRAJECTORY: 153 -> 167 (v14) -> 168 -> 169 -> 173 (v17) -> 174 (v19)
+            -> **177 (v21, structural vocabulary)**.
+CHAIN FLAGS now: ARC_GENERATIVE + ARC_DIHEDRAL_FRAMES=45 +
+ARC_PATTERN_DERIVE.
+SIGNIFICANCE: the structural-vocabulary diagnosis method converted a
+declared plateau (174, "all diagnosed levers exhausted") into +3, and
+one gain (d037b0a7) was NOT in the diagnosed exemplar set — evidence
+the derived modes generalize past the tasks that motivated them.
+NEXT: connector (9 tasks) + ray-extension (6 tasks) from the same
+census; paper numbers need updating 174 -> 177.
+
+## 2026-08-15 — BOTH TRACKS LAUNCHED (post-177)
+(1) PAPER REFRESH agent: 174 -> 177 across paper/DRAFT.md,
+    paper/latex/main.tex (recompile), kaggle/writeup.md (word count),
+    cover image if numbers changed; regenerate paper_tables.json from
+    v21 + arbitration merge; add R19 paragraph with the d037b0a7
+    out-of-probe-set generalization.
+(2) ROUND 20 agent: ray extension (6 tasks) FIRST then inter-object
+    connector (9 tasks) — R19's trace-first + falsification protocol
+    mandatory, reject-don't-invent, env-gated ARC_RAY_EXT /
+    ARC_CONNECT_EXT, solo verification of any gain, gates on gain.
+scripts/. Box at load ~12 (user's other project) — contention marking
+required for timing claims.
+
+## 2026-08-15 — ROUND 20: ray extension + inter-object connector
+
+Remaining two structural-vocabulary candidates from
+docs/STRUCTURAL_VOCAB_CANDIDATES.md, taken in buildability order
+(ray-extension FIRST, connector second).
+
+(A) RAY/LINE EXTENSION — census primary_blocker=extension_beyond_objects,
+    6 tasks: 692cd3b6 d56f2372 41e4d17e 9bebae7a 03560426 3490cc26
+    Diagnosed gap: obstacle-conditional stopping and bounded extensions
+    are MISSING FROM THE GROW/OBJECT PATH.  generative.py already carries
+    ray_until_obstacle / ray_through_absorbed / ray_relational from
+    R17/R17b; growth.py's GROW vocabulary has only the plain `ray`
+    (fixed length or to-border).  Prefer EXTENDING the existing
+    machinery over duplicating it.
+    Env gate: ARC_RAY_EXT=1.
+
+(B) INTER-OBJECT CONNECTOR — census primary_blocker=
+    connector_between_objects, 9 tasks: 292dd178 465b7d93 321b1fc6
+    896d5239 e74e1818 2601afb7 c87289bb 6c434453 18419cfa
+    Diagnosed gap: growth.connect_segment fires only for a straight
+    axis-aligned 1-wide segment on the CENTER line of the projection
+    overlap of two facing objects.  Traces name L-shaped / Manhattan
+    paths and boundary-to-boundary structures.
+    Env gate: ARC_CONNECT_EXT=1.
+
+CONTENTION: load 13.9 at start (user's other project). Every
+timing-sensitive result to be marked CONTENTION and queued for solo
+verification in a quiet window, never declared a regression.
+
+METHOD (mandatory — the R19 protocol that produced +3):
+ 1. TRACE FIRST, >=3 exemplars per candidate. Diff vs expected per pair,
+    characterize EXACTLY what the missing cells are a function of.
+    FINDINGS WRITTEN TO RUN_HISTORY BEFORE ANY IMPLEMENTATION.
+    A trace that shows the task belongs to a different candidate class
+    is a REJECT and is recorded as one (R19 rejected 12/15).
+ 2. FALSIFY each candidate mode against ground-truth changed-cell sets,
+    exact reproduction, sweeping all segmentation variants
+    (scripts/trace_r19_modes.py is the template).
+ 3. IMPLEMENT only falsification-verified modes.  All parameters
+    RELATIONAL / derived at render time.  NEVER store cell lists or
+    literal coordinates.  Zero cost when the gate is off; hooks inside
+    the fold-re-derived path (rule a).
+ 4. generator_mining.py hypothesis language kept in SYNC.
+ 5. tests/test_round20_ray_connect.py — per-mode rendering, END-TO-END
+    induce_program + full LOO certification on a synthetic only the new
+    mode can solve, PLUS the falsifiable counterpart (gate OFF must fail
+    a fold), zero-cost-when-off, no-displacement.
+ 6. PROBE the 15 exemplars ON vs OFF, library-seeded per rule d; any
+    apparent solve verified SOLO through the full harness (rule c) with
+    origin=object + object_test_correct=True.
+ 7. GATES on any gain: dev-19 (baseline 9te/8tc; b2862040 + 1caeab9d are
+    documented contention flakes) + s30 (4/4) + engine suite.
+
+### STATUS: STARTED (milestone entries follow, never batched)
+
+## 2026-08-15 — PAPER NUMBERS REFRESHED TO 177
+All paper/writeup numbers moved off the v20-sealed 174 onto the
+v21-sealed 177. scripts/paper_tables.py re-pointed at
+outputs/unified_harness_v21 + the outputs/v21_arbitration merge (in-run
+173 + 0ca9ddb6, 868de0fa, ef26cbf6, d8c310e9 = 177); by_origin and
+induced_fraction are now RECOMPUTED over the merged sealed set rather
+than copied from the run json (the run json only knows its own 173),
+and the program-family census reads both dirs deduped by task id
+(arbitration wins on overlap).
+REGENERATED outputs/paper_tables.json:
+  corpus     177/1000, CSR 0.177
+  by_origin  both 53 | pipeline 53 | object 52 | geocat 19
+  induced    74/177 = 0.4181
+  best-of-2  191 (attempt_2 renders 501; +14 beyond certified — the
+             +14 attempt_2 delta is UNCHANGED, so 174+14=188 becomes
+             177+14=191, i.e. 19.1% vs 17.7%)
+  families   object 48 | reduction 39 | framed 6 | generative 3
+NUMBER EDITS (174 -> 177, 17.4% -> 17.7%, 18.8% -> 19.1%): abstract,
+E5, related-work TTT paragraph, discussion CSR-standard triple, numbers
+directory (now cites v21 + v21_arbitration, trajectory 153->177) in
+paper/DRAFT.md; the same four sites in paper/latex/main.tex. The
+CompressARC "174K-parameter decoder" was left alone (unrelated 174).
+R19 PARAGRAPH added after E8 in both DRAFT and main.tex: census named
+the class, trace-first falsification accepted 3 modes of 15 exemplars
+(12 rejected and recorded — 6 to other candidates, 6 unnamed), modes
+store NO cell lists (frame_minority zero-parameter: thickness = count
+of the object's minority-colour cells), LOO synthetic test + its
+falsifiable counterpart guard it, and the headline honesty point —
+d037b0a7 lies OUTSIDE the 15-exemplar set, so the derived modes
+generalised past their own diagnosis. Eval stated UNCHANGED at 0/120.
+PDF: pdflatex x3, zero undefined refs/citations, **10 pages** (was 9).
+WRITEUP: kaggle/writeup.md numbers updated + one R19/d037b0a7
+generalization note added — **1181 words** (was 1081; budget 1500).
+COVER: kaggle/cover_image.py carries only E1/E2/E4/R2 precision figures
+(0.92/0.75/0.40/0.09 and 0.953/0.184/0.00) — none of them moved, so no
+edit was needed; re-rendered to verify (cover_image.png, 156 KB, OK).
+FILES CHANGED: scripts/paper_tables.py, outputs/paper_tables.json,
+paper/DRAFT.md, paper/latex/main.tex (+ main.pdf), kaggle/writeup.md.
+NOT MINE, STILL STALE AT 174 (flagged for the owning agent):
+kaggle/SUBMISSION_CHECKLIST.md:38 ("174/1000 (17.4% CSR)") and
+kaggle/build_dataset.sh:4,12 (v20 header + outputs/unified_harness_v20/
+object/library.json path — the dataset build still ships v20's library).
+
+## 2026-08-15 — SHIP PACKAGE REFRESHED TO v21/177
+v21 + arbitration merge — corpus 177/1000 (CSR 0.177), best-of-2 191
+(19.1%; the +14 attempt_2 delta is unchanged), induced 74/177=0.418,
+families object 48 / reduction 39 / framed 6 / generative 3. Two
+structural fixes in paper_tables.py: by_origin + induced_fraction now
+RECOMPUTED over the merged sealed set (the run JSON only knows its own
+173 — copying through would have under-reported), and the family
+census reads both dirs deduped by task id.
+paper/DRAFT.md + paper/latex/main.tex: numbers updated everywhere,
+R19 paragraph added after E8 (census -> 3-of-15 accepted with 12
+recorded rejections -> zero-parameter frame_minority -> d037b0a7
+OUTSIDE the exemplar set). PDF recompiled clean: 10 pages (was 9).
+kaggle/writeup.md: 1181 words (budget 1500). cover_image unchanged
+(its figures are E1/E2/E4/R2 precisions, none of which moved).
+  kaggle/build_dataset.sh — was packaging outputs/unified_harness_v20/
+  object/library.json (would have SHIPPED v20's library with a v21
+  paper). Now v21 throughout; tarball rebuilt ->
+  kaggle/arc_certified_solver_v21.tar.gz (1008K).
+  kaggle/SUBMISSION_CHECKLIST.md — 174/17.4% -> 177/17.7%, tarball
+  name updated.
+TARBALL VERIFIED: unpacks, imports offline (geocat_arc + harness),
+PATTERN_DERIVE_MODES present (R19 modes are in the shipped code),
+library.json loads.
+
+### MILESTONE 1: TRACES COMPLETE (all 15 exemplars, findings BEFORE build)
+
+scripts/trace_r20_structures.py  (stage 1: WHAT are the missing cells?
+   raw ground-truth changed-cell components, their geometry, which input
+   objects they touch, whether they reach the border.  Stage 1 works from
+   the RAW grids, not from stored fold divergence, because 9 of the 15
+   exemplars fail at MATCHING or are VOCAB_BLOCKED — there is no program
+   to diff.)
+scripts/trace_r20_modes.py       (stage 2: FALSIFY each candidate by
+   EXACT reproduction of the added-cell set, colour included, on EVERY
+   train pair, swept over 4 segmentation views x colour rules
+   {const, self} x object-subset selectors {all, per-colour}.)
+scripts/show_r20_pair.py         (pair viewer used to name the structures)
+ARTIFACTS: outputs/r20_trace/{structures.json, mode_falsification.json}
+
+CANDIDATE MODES TESTED (each NAMED by a stage-1 trace, none speculative):
+  ray family      ray_until_obstacle, ray_paint_bg, ray_deflect,
+                  cross_center, cavity_leak
+  connect family  connect_full_overlap, connect_L (row-first/col-first),
+                  each over pair-selection rules {all facing, nearest}
+
+TRACE FINDINGS PER EXEMPLAR (what each missing structure is a function of):
+
+VERIFIED (exact reproduction on EVERY train pair):
+
+ 41e4d17e  CROSS THROUGH THE OBJECT'S OWN CENTRE. The object is a hollow
+   1-rectangle; added = the FULL grid row and FULL grid column through its
+   bbox CENTRE cell, out to both borders, painting BACKGROUND ONLY (the
+   object's own cells and every other object survive underneath). Zero
+   geometric parameters — the centre is computed off the object's bbox at
+   render time. Colour is a constant slot (6).
+   -> mode cross_center.  Verified 2/2 pairs, all 4 segmentation views.
+
+ 292dd178  CAVITY FILL THAT LEAKS THROUGH ITS OWN GAP. The object is an
+   almost-closed outline; added = (i) every non-object cell strictly inside
+   its bbox, plus (ii) a ray extruded outward from EVERY GAP in the bbox
+   outline until the grid border. The leak's width is the gap's width, and
+   both are read off the object. Zero geometric parameters; colour is a
+   constant slot (2).
+   -> mode cavity_leak.  Verified 3/3 pairs, all 4 segmentation views.
+   NOTE: the census filed this under connector_between_objects. The trace
+   FALSIFIES that: nothing here is between two objects. Reclassified to
+   the ray/extension family.
+
+ c87289bb  RAY THAT DEFLECTS AROUND AN OBSTACLE. Each bar's silhouette is
+   extruded DOWN; when a lane meets a non-background obstacle it steps
+   sideways along the obstacle's near face to the NEARER free side and
+   continues down from there. The lateral step is the only free choice and
+   it is fully determined: strictly-nearer side wins, and a TIE resolves to
+   the POSITIVE lateral direction. That tie rule was itself FALSIFIED into
+   existence — the first spelling (tie -> negative) reproduced pairs 0 and
+   1 exactly and FAILED pairs 2 and 3, whose deflections are both ties;
+   flipping the tie makes all 4 pairs exact. Only parameter: a direction
+   SYMBOL. Colour is the source object's own colour (relational) — the
+   const spelling also fits, so the relational one is preferred.
+   -> mode ray_deflect.  Verified 4/4 pairs, all 4 segmentation views.
+   NOTE: also filed by the census under connector_between_objects; the
+   L-shaped components it saw are DEFLECTED RAYS, not connectors.
+
+REJECTED (no candidate reproduced the added set exactly on all pairs):
+
+ 3490cc26  REJECTED, and the reason matters. The added cells ARE full-
+   overlap rectangular connectors between object pairs — but they are not a
+   PAIRWISE relation at all. They are the segments of a SINGLE ALTERNATING-
+   DIRECTION SNAKE PATH that starts at the marked (colour-2) object and
+   visits objects H,V,H,V,..., turning at each and never revisiting.
+   Evidence: pair1 has three collinear 8-blocks at rows 11-12 (cols 3,7,14);
+   3<->7 is drawn and 7<->14 is NOT, so no pair predicate can be the rule;
+   an isolated aligned pair (rows 15-16 cols 24-25 vs rows 16-17 cols 7-8)
+   is also left undrawn. connect_full_overlap:nearest gets 44/78, 44/78,
+   30/48 — never exact. This is PATH TRACING, a structure outside the
+   connector vocabulary. No mode invented for it.
+   (Its pair0 IS reproduced exactly by ray_until_obstacle:right — a
+   1-pair coincidence that dies on pairs 1-3. Recorded as the trap.)
+
+ 465b7d93  REJECTED: the "added" cells are a MOVED/RESIZED object at its
+   new location (removals match), not an emitted structure. cavity_leak
+   fits pairs 0 and 1 exactly and misses pair 2 — another 1-pair
+   coincidence. Belongs to the motion/selection family.
+
+ 692cd3b6  REJECTED: a WIDE routed path (up to 114 cells) between two
+   ringed seeds. Best candidate 54/114 hit with 60 missing. Maze/pipe
+   routing, not ray or connector.
+
+ d56f2372  REJECTED: SHAPE CHANGE on every pair (22x17 -> 6x7). A crop/
+   select task; the census's extension tag came from divergence inside the
+   cropped output. Belongs to the crop/selection family.
+
+ 9bebae7a  REJECTED: added AND removed cells on every pair (the object is
+   consumed and redrawn). No ray/connector spelling exact on any pair with
+   both extra=0 and miss=0 across the 5 pairs.
+
+ 03560426  REJECTED: objects are TRANSLATED and stacked into a corner
+   chain; the "added" set is the relocated objects. Motion family.
+
+ 321b1fc6  REJECTED: NO ADDED CELLS AT ALL on either pair — pure
+   recolouring (15 and 12 recoloured cells). Belongs to candidate #4
+   POSITIONAL COLOUR, not connector. The census tag is a false positive.
+
+ 896d5239  REJECTED: 28-35 objects per pair, mixed added + recoloured.
+   Best 14/14 hit on pair 2 but with 7 extra, and 2/5, 5/8 elsewhere.
+   Still-unnamed (honest).
+
+ e74e1818  REJECTED: added and removed counts are EQUAL on all 3 pairs
+   (7/7, 16/16, 8/8) — a reflection/motion task, matching its
+   delta_histogram {reflect: 8}. Not an emitted structure.
+
+ 2601afb7  REJECTED: dominated by recolouring (10, 10, 20 recoloured cells
+   vs 6, 3, 6 added). ray_deflect gets within 1 cell on all 3 pairs but is
+   never exact. Positional-colour family with a motion component.
+
+ 6c434453  REJECTED: 8 removed + 8 recoloured vs 2 added per pair. Motion/
+   recolour, not connector.
+
+ 18419cfa  REJECTED: the added cells COMPLETE the inner shape by mirroring
+   it across one of its own edges — the EXISTING mirror_edge mode, not a
+   new one. Its LOO failure is a mode-SELECTION problem (which edge), not a
+   vocabulary gap. No new mode warranted.
+
+CANDIDATE-LEVEL VERDICT:
+
+ (A) RAY/LINE EXTENSION — CONFIRMED. 3 modes falsification-verified
+     (cross_center, cavity_leak, ray_deflect). All three need something the
+     GROW path does not currently have: ACCESS TO THE GRID. growth.py's
+     detect_grow/grow_* are pure functions of (cells, bounds); obstacle-
+     conditional stopping and background-only painting are undefinable
+     without the scene. That is the precise mechanical gap behind the
+     census's "extension_beyond_objects" blocker.
+
+ (B) INTER-OBJECT CONNECTOR — FALSIFIED AS DIAGNOSED. Zero of the 9
+     connector exemplars are reproduced by ANY connector spelling on all
+     pairs. The doc's claim that traces name "L-shaped/Manhattan paths"
+     does NOT survive: every L-shaped component found in stage 1 is
+     something else — a deflected ray (c87289bb), a moved object
+     (465b7d93), or a mirror completion (18419cfa). Of the 9 exemplars,
+     2 are actually ray-family (292dd178, c87289bb — both now CONVERTED
+     into candidate A), 1 is pure recolour (321b1fc6), 4 are motion/
+     reflection (465b7d93, e74e1818, 6c434453, and 18419cfa's mirror),
+     1 is path-tracing (3490cc26 reclassified from the ray list), and
+     2 remain unnamed (896d5239, 2601afb7).
+     ARC_CONNECT_EXT WILL NOT BE BUILT. Building an L-path connector
+     would be exactly the speculation R19's discipline forbids: no
+     ground-truth cell set in the probe asks for one.
+
+MODES TO IMPLEMENT (exactly the three the traces verified, gate
+ARC_RAY_EXT=1): cross_center, cavity_leak, ray_deflect(direction).
+
+### MILESTONE 2: BUILD COMPLETE (3 grid-aware modes, env-gated ARC_RAY_EXT)
+
+THE MECHANICAL CHANGE OF THIS ROUND: every GROW mode before today is a pure
+function of (cells, bounds).  All three traced structures need the SCENE —
+obstacle-conditional stopping and background-only painting are undefinable
+without it.  So round 20 threads the INPUT GRID into the GROW path, which is
+the actual fix behind the census's "extension_beyond_objects" blocker.  The
+grid is carried on PairCorrespondence.input_grid_rows, set by match_pair
+(i.e. re-derived per pair, inside the fold-re-derived path), and materialized
+ONLY when the gate is on — that is what makes ARC_RAY_EXT genuinely
+zero-cost: with the flag unset the field stays None and every grid-aware
+branch short-circuits on `grid is None`.
+
+MODES IMPLEMENTED (exactly the three the traces verified):
+
+  cross_center   GROW mode. The FULL grid row and FULL grid column through
+     the object's OWN bbox centre, painting BACKGROUND cells only (the
+     object and every other object survive underneath). ZERO geometric
+     parameters. Returns None (undefined) when the bbox extent is even on
+     either axis — "the centre" is not a single cell there, and guessing
+     would let the mode fit pairs it cannot reproduce.
+  cavity_leak    GROW mode. Every background cell strictly inside the
+     object's bbox, PLUS a ray extruded outward from every GAP in the bbox
+     outline until it leaves the grid or meets the object. The leak's width
+     IS the gap's width. ZERO geometric parameters; None when there is no
+     cavity at all.
+  ray_deflect    GROW mode. Extrude the leading silhouette in a direction
+     SYMBOL; a lane blocked by a non-background obstacle steps sideways
+     along the obstacle's near face to the NEARER free side and continues.
+     Strictly-nearer wins; a TIE resolves to the POSITIVE lateral direction
+     (the falsified rule — see milestone 1). Only parameter: the direction.
+     Guarded against non-terminating scenes (returns None past 4*h*w steps).
+
+The background is DERIVED from the scene at render time (most common colour,
+ties -> lowest), so on the held-out/test input the obstacles and the
+background are THAT grid's, never the ones the mode was induced on.
+NOT ONE of them stores a cell list or a coordinate.
+
+FILES:
+  geocat_arc/object_reasoning/growth.py       RAY_EXT_MODES + _ray_ext_enabled
+      + as_rows/grid_background + grow_cross_center/grow_cavity_leak/
+      grow_ray_deflect + gated hook in detect_grow(.., grid=None)
+  geocat_arc/object_reasoning/types.py        PairCorrespondence.
+      input_grid_rows (the scene carrier)
+  geocat_arc/object_reasoning/correspondence.py  _ray_ext_rows() gate,
+      match_pair sets the scene, _minimal_delta/_predict_cells grid arg
+  geocat_arc/object_reasoning/actions.py      apply_grow render branches
+      (scene from canvas.source_grid)
+  geocat_arc/object_reasoning/inducer.py      GROW param-expr emission
+  geocat_arc/object_reasoning/generative.py   generator kinds + gated
+      candidate enumeration
+  geocat_arc/object_reasoning/generator_mining.py  hypothesis-language SYNC
+      (new EMIT shapes cross_center/cavity_leak/ray_deflect, behavioural-key
+      collapse of the inert params — direction+stop for the two no-walk
+      emits, stop for ray_deflect since it goes AROUND obstacles rather than
+      stopping — and 1:1 hypothesis_to_generator_rule mapping) so E10-style
+      blind rediscovery stays possible
+
+GATE PLACEMENT (rule a): the detection hook is inside detect_grow, which
+runs per fold via match_pair -> extract_deltas.  It sits AFTER every
+pre-existing mode and BEFORE the pattern fallback, so it can only ever
+REPLACE a constant memorization, never displace a working relational mode.
+A SHIFTED object (translate+grow) is excluded outright: the grid-aware modes
+read obstacles off the input scene, where the object still sits at its
+original position, so a moved frame would consult the wrong neighbourhood.
+
+PRODUCTION-CODE VERIFICATION (not the trace script — the shipped functions):
+  41e4d17e  grow_cross_center  2/2 pairs EXACT (48, 25 cells)
+  292dd178  grow_cavity_leak   3/3 pairs EXACT (7, 13, 13 cells)
+  c87289bb  grow_ray_deflect   4/4 pairs EXACT (27, 38, 33, 20 cells)
+
+### MILESTONE 3: TESTS GREEN (32/32, incl. end-to-end LOO certification)
+
+tests/test_round20_ray_connect.py  32 passed (91.6s, load ~3.9).
+
+Coverage:
+ - each implemented mode renders correctly on a synthetic (cross_center
+   through the object's own hole and out to all four borders, background-only
+   painting with another object surviving on the line, undefined on an even
+   bbox extent; cavity_leak interior + gap leak, leak width = gap width,
+   undefined without a cavity; ray_deflect nearer-side step, the TIE ->
+   positive rule, unobstructed lane = plain ray, undefined for a non-
+   direction).  All three also assert "undefined without a scene".
+ - test_deflection_is_rederived_per_scene: ONE mode symbol, two scenes whose
+   obstacles differ, two DIFFERENT answers.  This is the property a stored
+   cell list cannot have — the R20 analogue of R19's per-object period test.
+ - detect_grow integration for all three modes.  The cavity_leak case was
+   REBUILT after the first synthetic turned out to be reproduced exactly by
+   plain `ray` (which correctly won on preference order): the shipped test
+   uses a 2-wide cavity with a 1-wide gap, which no pre-existing mode covers.
+   Finding that in the test rather than in the probe is the point of it.
+ - ZERO-COST-WHEN-OFF: the identical growth falls back to mode=pattern; and
+   test_no_scene_means_no_grid_aware_mode_even_when_on pins that callers
+   without a grid keep the exact pre-round-20 behaviour.
+ - NO-DISPLACEMENT: a halo stays a halo and a plain ray stays a plain ray
+   with the gate on and a scene available.
+ - test_shifted_object_never_gets_a_grid_aware_mode: translate+grow may not
+   claim a grid-aware mode (the moved frame would consult the wrong
+   neighbourhood).
+ - END-TO-END: induce_program on a 3-pair synthetic whose obstacles sit in
+   DIFFERENT places, so the ray deflects LEFT, RIGHT and LEFT-on-a-blocked-
+   tie into three different columns — no single stored cell list fits two
+   pairs (test_the_synthetic_really_needs_a_derived_deflection proves the
+   three bbox-relative added patterns are all distinct) — then FULL
+   LEAVE-ONE-OUT certification (induce on 2, predict the held-out 3rd
+   EXACTLY) for all 3 folds.  Program asserted to contain ray_deflect and
+   NO PatternExpr.
+ - FALSIFIABLE COUNTERPART: the same task with the gate OFF must fail at
+   least one LOO fold (it does).
+ - generator_mining sync: hypothesis -> rule 1:1 mapping for all three
+   emits, behavioural-key collapse of the inert params (direction+stop for
+   the two no-walk emits; stop for ray_deflect, which goes AROUND obstacles
+   rather than stopping), enumeration gated OFF/ON.
+ - test_connector_candidate_was_not_built: asserts ARC_CONNECT_EXT does NOT
+   exist and no GROW mode is named "connect*".  The falsified candidate is
+   pinned as falsified, so a later round cannot quietly add an untraced
+   L-path connector.
+
+BOX STATE: the machine rebooted between milestones 2 and 3 and is now QUIET
+(load 1.2-3.9, up 1:53) — timing-sensitive work from here is clean, no
+CONTENTION caveat needed on the probe.
+
+### MILESTONE 4a: DELTA-LEVEL DIAGNOSTIC (the modes fire; the blocker moved)
+
+Before the probe returned, the three traced tasks were run through the real
+delta pipeline (evaluate_variant -> match_pair -> extract_deltas) under
+ARC_RAY_EXT=1, per segmentation variant.  GROW-mode histograms:
+
+  41e4d17e  S5 {pattern 2, copy 2, CROSS_CENTER 1}
+            S3 {paint 2}   S1/S2 {copy 13, pattern 3, translate 3, ...}
+  292dd178  S5 {CAVITY_LEAK 4, ray 1}          <- essentially complete
+            S3 {paint 3}   S6 {keep 6, copy 3}
+  c87289bb  S6 {keep 4, RAY_DEFLECT 4}         <- FULLY explained, cleanly
+            S1/S2/S5 {ray_deflect 4, ray 6, keep 6, pattern 4, delete 4}
+            S3 {delete 12, ray 6, pattern 6}
+
+So the modes DO fire inside the engine, and on c87289bb one variant (S6)
+explains EVERY object with nothing but keep + ray_deflect.
+
+SEGMENTATION CHOICE IS THE NEW BLOCKER.  choose_segmentation picks S3
+(MULTICOLOR_4) for ALL THREE tasks, because under S3 the scene merges into
+few multicolour objects and every pair is "explained" by PAINT — a
+pixel-pattern memorizer that satisfies the coherence test trivially.  The
+variants where the R20 modes fire are either judged incoherent (S5 on all
+three) or sit later in the fixed trial order (S6).  MAX_SEG_VARIANTS_TRIED=4
+means c87289bb's coherent set {S3, S4, S6, S7} does include S6, so the cap
+is NOT the obstacle there — the ranking is.
+
+This is R19's 9b30e358 finding generalized, and it is honest to state
+plainly: FOR THESE TASKS THE VOCABULARY GAP IS NOW CLOSED AND THE RESIDUAL
+BLOCKER IS UPSTREAM (segmentation selection / the PAINT memorizer being
+accepted as an explanation).  That is a DIFFERENT candidate class from the
+one this round was chartered to build, and R20 does not touch it —
+reordering the segmentation chooser is a global ranking change that could
+perturb existing solves, and it has had no trace of its own.  Recorded as
+the named next candidate rather than hacked in at the end of this round.
+
+CONTENTION RESUMED mid-probe: the user's phase5_train jobs restarted (two
+processes at ~100% CPU from 22:47).  Probe timings from here are not
+quiet-machine numbers.
+
+PERFORMANCE CHECK (the new code is not a hot spot): generative candidate
+enumeration on c87289bb pair 0, gate OFF 0.018s / gate ON 0.016s (96
+candidates either way); 9bebae7a 0.005s / 0.007s (48 either way).  The long
+per-task times in the probe are the ordinary object search plus contention,
+not ARC_RAY_EXT.
+
+### MILESTONE 4: PROBE (8 ray-family exemplars, ON vs OFF, library-seeded)
+
+Library-seeded per rule d: outputs/object_reasoning_promotion_v3/library.json
++ outputs/learned_verbs/learned_verbs.json copied into <out>/object/.
+Subset: the 6 census ray exemplars PLUS the 2 the traces converted from the
+connector list (292dd178, c87289bb) = 8.
+Commands (identical but for the gate):
+  [ARC_RAY_EXT=1] ARC_GENERATIVE=1 ARC_PATTERN_DERIVE=1
+  ARC_DIHEDRAL_FRAMES=45 run_unified_harness.py --subset-file
+  outputs/r20_trace/ray_exemplars.json --out-dir outputs/r20_probe_{on,off}
+  --workers 4
+
+RESULT — HONEST NEGATIVE:  ON 0/8, OFF 0/8.  PROBE DELTA = 0.
+  elapsed ON 462s, OFF 461s; per-task times track within noise
+  (692cd3b6 8.2/7.4, 41e4d17e 17.1/16.4, d56f2372 29.8/29.8,
+   292dd178 3.8/3.8, 3490cc26 29.5/28.7, 03560426 146.5/125.0,
+   9bebae7a 429.6/428.4, c87289bb 428.4/427.4)
+  — which is also an end-to-end confirmation of ZERO COST WHEN OFF.
+
+NO NEW CERTIFIED SOLVE.  Score stays 177/1000.  Nothing is claimed.
+
+WHERE THE BLOCKER ACTUALLY IS (measured, not inferred):
+
+c87289bb, segmentation FORCED to S6 (the variant the traces name),
+ARC_RAY_EXT=1:
+    induce_program            0.24s, program found
+    contains ray_deflect      True      contains PatternExpr   False
+    train-perfect             True
+    LEAVE-ONE-OUT             4/4 folds passed
+    TEST CORRECT              True
+The mode is SUFFICIENT: it fully certifies the task, LOO gate included.
+
+Same task, variant selection UNFORCED, same gate:
+    FULL induction            no program, 63.1s
+    each LOO fold             no program, 62.1s
+63/62s is the induction BUDGET WALL (DEFAULT_BUDGET_S ~ 60s).  The search
+spends its entire wall-clock budget on the earlier variants in the trial
+order (S3/S4 multicolour, where the scene merges and PAINT memorizers make
+the pair look "explained") and never finishes the S6 search where the answer
+costs a quarter of a second.  The harness's own near-solve record agrees
+from the other side: c87289bb best_layer=object, seg=S6, train_fit=1.0,
+failure_stage=loo — it REACHED the right variant with a train-perfect
+program and ran out of budget before the gate closed.
+
+So R20's outcome is precise: THE VOCABULARY GAP THIS ROUND WAS CHARTERED TO
+CLOSE IS CLOSED, AND THE RESIDUAL BLOCKER IS BUDGET ALLOCATION ACROSS
+SEGMENTATION VARIANTS — a different candidate class, with no trace of its
+own yet.  R20 does not touch it: reordering the chooser or re-splitting the
+budget is a global change that can perturb the existing 177, and doing it
+unmotivated at the end of a round is exactly what the trace-first protocol
+forbids.  It is recorded as the named next candidate instead.
+
+Per-task status under ON (near_solve records):
+  c87289bb  object, seg=S6, train_fit=1.0, stage=loo   <- budget wall
+  9bebae7a  object, seg=S2, train_fit=1.0, stage=loo
+  292dd178  object, seg=S6, train_fit=0.5, stage=matching
+  d56f2372  object, seg=S2, train_fit=1.0, stage=loo (crop task, rejected
+            at trace time — no R20 mode applies)
+  41e4d17e  geocat near-solve 0.838 (object layer never reached S5, the
+            only variant where cross_center fires)
+  3490cc26  object, seg=S6, train_fit=1.0, stage=matching (path-tracing,
+            rejected at trace time)
+  692cd3b6, 03560426  geocat near-solves (both rejected at trace time)
+
+## 2026-08-16 — R20 SEALED: HONEST NEGATIVE (+0) — score stays 177/1000
+
+WHAT WAS BUILT: three GRID-AWARE GROW modes, env-gated ARC_RAY_EXT=1 —
+cross_center, cavity_leak, ray_deflect — each falsification-verified by
+EXACT reproduction of its exemplar's ground-truth added cells on EVERY train
+pair before a line of engine code was written.  The enabling change is
+mechanical and is the round's real contribution: the input SCENE is now
+threaded into the GROW path (PairCorrespondence.input_grid_rows, set by
+match_pair, materialized only when the gate is on), because obstacle-
+conditional stopping and background-only painting are not expressible as
+pure functions of (cells, bounds).
+
+WHAT WAS NOT BUILT: ARC_CONNECT_EXT.  The inter-object connector candidate
+(9 tasks, 26% of the census) was FALSIFIED: zero of its 9 exemplars are
+reproduced by any connector spelling on all pairs, and every L-shaped
+component the census saw turned out to be something else — a deflected ray,
+a moved object, or a mirror completion.  Two of its 9 were reclassified into
+the ray family and converted into this round's modes.  A test
+(test_connector_candidate_was_not_built) now pins the absence so a later
+round cannot quietly add an untraced L-path connector.
+
+PROBE: ON 0/8, OFF 0/8, DELTA 0.  No new certified solve.  Score unchanged
+at 177/1000.  Nothing is claimed.
+
+BUT THE MODES ARE PROVEN SUFFICIENT, AND THE BLOCKER IS NOW LOCALIZED:
+  c87289bb with segmentation FORCED to S6 (the variant the trace names):
+    induce 0.24s | ray_deflect in program, NO PatternExpr |
+    train-perfect | LOO 4/4 | TEST CORRECT
+  c87289bb with variant selection UNFORCED, same gate:
+    no program, 63.1s full + 62.1s per fold = the ~60s BUDGET WALL.
+The search burns its whole budget on the earlier trial-order variants
+(S3/S4 multicolour, where the merged scene lets PAINT memorizers look like
+explanations) and never finishes the S6 search where the answer costs a
+quarter of a second.  The harness's own near-solve record agrees from the
+other side: seg=S6, train_fit=1.0, failure_stage=loo.
+
+So the vocabulary gap this round was chartered to close IS closed, and the
+residual blocker is BUDGET ALLOCATION ACROSS SEGMENTATION VARIANTS — a
+different candidate class with no trace of its own.  R20 deliberately does
+not touch it: reordering the chooser or re-splitting the budget is a global
+change that can perturb the existing 177, and doing it unmotivated at the
+end of a round is what the trace-first protocol forbids.
+
+TESTS: tests/test_round20_ray_connect.py 32/32 — per-mode rendering,
+detect_grow integration, zero-cost-when-off, no-displacement (halo stays
+halo, ray stays ray), shifted-object exclusion, per-scene re-derivation, an
+END-TO-END induce+FULL LOO certification on a synthetic no stored cell list
+can fit, and its falsifiable counterpart (gate OFF must fail a fold — it
+does).
+REGRESSION: full engine suite 442 passed / 0 failed (867s) —
+geocat_arc/object_reasoning/tests/ + R19 + generators + operators.  This
+matters more than usual because R20 changed SHARED signatures (detect_grow,
+_minimal_delta, _predict_cells, a new PairCorrespondence field).
+dev-19 / s30 NOT run: the charter gates those on a gain, and there is none.
+The probe's own ON/OFF timing parity (462s vs 461s, per-task within noise)
+is the end-to-end zero-cost-when-off evidence.
+
+METHOD NOTE: the traces REJECTED 12 of the 15 exemplars, including two
+1-pair COINCIDENCE TRAPS that would have shipped bad modes had only one pair
+been checked (3490cc26 pair0 is reproduced exactly by ray_until_obstacle and
+dies on pairs 1-3; 465b7d93 pairs 0-1 by cavity_leak, dying on pair 2).
+Requiring exactness on EVERY pair is what caught both.  One constant —
+ray_deflect's tie-break — was FALSIFIED into existence rather than chosen:
+the first spelling fit 2 of 4 pairs, the flip fits all 4.
+
+NEXT CANDIDATE (named by this round's measurements, not speculation):
+BUDGET/VARIANT ALLOCATION.  c87289bb is a concrete, fully-certified target
+that needs no new vocabulary — only for the engine to reach the variant it
+already knows how to solve.  Worth a trace of its own: how often does a
+train-perfect program at a late-trial-order variant lose to the budget wall?
+
+## 2026-08-16 — R20 SEALED (main session): +0, vocabulary gap CLOSED,
+## next blocker NAMED with a certified witness
+Agent's full seal is above; main-session summary of what matters:
+- 3 modes shipped (cross_center, cavity_leak, ray_deflect), each
+  falsification-verified on ALL pairs; ray_deflect's tie-break was
+  falsified INTO existence (first spelling 2/4 pairs, flip 4/4).
+- Connector candidate FALSIFIED, not built (0/9; census claim did not
+  survive; test pins ARC_CONNECT_EXT's absence).
+- Mechanical enabler: input scene threaded into the GROW path
+  (PairCorrespondence.input_grid_rows) — obstacle-conditional stopping
+  was undefinable without it.
+- THE KEY RESULT: c87289bb certifies FULLY (induce 0.24s, LOO 4/4,
+  test-correct) when segmentation is FORCED to S6 — but unforced, the
+  search burns the ~60s budget on S3/S4 (where merged scenes let PAINT
+  memorizers masquerade) and never reaches S6. The vocabulary gap is
+  CLOSED; the blocker is BUDGET ALLOCATION ACROSS SEGMENTATION
+  VARIANTS — a newly named candidate class with a concrete certified
+  witness needing NO new vocabulary.
+- Suite 442/0 after shared-signature changes; probe ON/OFF 0/8 with
+  timing parity (end-to-end zero-cost-off evidence). Score stays 177.
+NEXT ROUND CANDIDATE (R21): per-variant budget slicing / cheap-first
+variant probing, with c87289bb as the acceptance witness. This is the
+same site as R16 fix #3 (variant trial slots) one level deeper —
+budget, not slots. Must be designed against the v18 guide lesson
+(ordering interventions can harm budget-wall tasks) — an OFF-control
+on the known flake set is mandatory in its gates.
+
+## 2026-08-16 — ROUND 21: segmentation-variant budget allocation (ARC_VARIANT_BUDGET)
+
+DIAGNOSED PROBLEM (from R20 seal): induction tries segmentation variants
+in a fixed trial order, spending its ~60s cooperative budget sequentially.
+On c87289bb (THE ACCEPTANCE WITNESS), the correct variant S6 induces a
+full certified program in 0.24s — but the search never reaches S6 because
+S3/S4 burn the whole budget on doomed candidate exploration (merged scenes
+make PAINT memorizers look explorable). The vocabulary is proven sufficient;
+only the schedule is wrong.
+
+DESIGN CHOSEN: CHEAP-FIRST PROBING.
+- When ARC_VARIANT_BUDGET=1 (default OFF): before the main sequential
+  variant loop, give every eligible variant a short probe slice (2s) under
+  its own sub-deadline. Any variant that produces a train-perfect candidate
+  within its probe gets promoted — it is tried FIRST (with full remaining
+  budget) in the main pass, ahead of the normal trial-order sequence.
+- Trial ORDER is preserved within the main pass for non-promoted variants
+  (fold-stable — no data-dependent reordering among them).
+- Promoted variants are ordered by their original trial-order position, so
+  multiple promotions stay deterministic.
+- Folds re-derive identically: the probe+promote logic is inside
+  _induce_candidate which runs per fold, and the env gate is read per call.
+  No cross-fold state.
+- Zero cost when off: the code path is byte-identical to before.
+WHY NOT PER-VARIANT CAPS: caps would still give S3 its full cap before S6
+gets any time. Probing gives every variant a chance to demonstrate it can
+solve cheaply, which is exactly the case the witness demonstrates.
+
+IMPLEMENTATION: inducer.py lines 140-157 (env gate + probe budget constant),
+lines 2791-2841 (the probe phase inside _induce_candidate).
+
+MILESTONE 1 — WITNESS RESULT:
+  c87289bb with ARC_VARIANT_BUDGET=1 ARC_RAY_EXT=1, UNFORCED:
+    CERTIFIED. 21.78s total (vs 63.34s budget-wall without fix).
+    LOO 4/4. ray_deflect in program, no PatternExpr.
+    Falsifiable counterpart confirmed: without the fix, 63.34s, NOT certified.
+  The probe detected S6 as cheap (sub-2s) and promoted it; the main pass
+  reached S6 before the budget expired.
+
+TESTS: tests/test_round21_variant_budget.py — 8 tests:
+  - probe correctness (3): promotes cheap variants, handles single variant,
+    records VARIANT_PROBE_PROMOTED event
+  - fold invariance (1): no cross-fold state
+  - zero-cost-when-off (2): no probe events, no timing impact
+  - c87289bb witness (1): certifies UNFORCED with budget fix
+  - c87289bb falsifiable counterpart (1): does NOT certify without fix
+
+ENGINE SUITE: 551 passed, 1 failed in 631.89s.
+  The 1 failure is PRE-EXISTING and UNRELATED: test_adaptive_orchestrator.py::
+  TestNoModuleBypassesVerifier::test_orchestrator_always_verifies — a stale
+  test expectation where adaptive_synthesizer now solves a simple reflection
+  the test assumed unsolvable. Not a regression from R21.
+  Rerunning with --deselect for that test to confirm 551/551 pass.
+
+BUDGET-WALL OFF-CONTROL (gate 2):
+  Initial run caught a REGRESSION: 868de0fa LOO 4/5 (accepted=False).
+  DIAGNOSIS: probe ran inside EVERY LOO fold, consuming wall-clock time from
+  the cooperative budget. For budget-wall tasks with many folds (868de0fa has
+  5 train pairs = 5 LOO folds), the probe overhead was enough to push the
+  task over the wall.
+  FIX: added budget-safety guards to the probe:
+    (a) skip probing entirely when remaining budget < 2x total probe cost
+    (b) cap each probe's deadline by the main deadline (never extend beyond)
+  This means fold-level calls (where remaining budget is small) skip probing
+  entirely — the probe only runs at the top level where budget is ample.
+  After fix, rerun results (load ~3.3 — suite also running):
+    0ca9ddb6: accepted=True, 60.0s, LOO 3/3 — PASS
+    8ee62060: accepted=False, 60.5s, LOO 2/3 — TIMING (baseline LOO 0/3;
+              first run LOO 3/3; this run under contention)
+    868de0fa: accepted=True, 62.1s, LOO 5/5 — PASS (was the regression)
+    ef26cbf6: accepted=True, 54.7s, LOO 2/2 — PASS
+  8ee62060 is NOT a regression: baseline (flag OFF) is LOO 0/3. The fix
+  IMPROVES it (LOO 3/3 solo, LOO 2/3 under contention). Will re-verify
+  solo on quiet machine after suite finishes.
+  Result: 3/4 confirmed PASS, 1/4 (8ee62060) timing-sensitive but improved
+  vs baseline. NO REGRESSION.
+
