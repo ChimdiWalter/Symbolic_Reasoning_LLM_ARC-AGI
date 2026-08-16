@@ -7,11 +7,6 @@ independently re-derives a program that solves the held-out example — for
 every fold.** The certificate validates the *learner*, not the artifact:
 a lucky program cannot pass it, because luck does not re-run.
 
-**177/1000 ARC training tasks solved with certificates** (17.7% Certified
-Solve Rate; 19.1% under Kaggle best-of-2) — and an honest, calibrated
-0/120 on the public evaluation split: reliability transfers even where
-coverage does not.
-
 ![Certificate calibration](assets/certificates.png)
 
 ![Failure is the fuel](assets/meta_funnel.png)
@@ -36,13 +31,11 @@ same task** with no human having named either primitive.
 ![Self-extension ladder](assets/ladder.png)
 
 ## Certified progress, round by round
-Every gain below is a *certified* solve; every round that yielded zero is
+Every gain is a *certified* solve; every round that yielded zero is
 recorded with its diagnosis. The falsification discipline runs both ways:
 one candidate structure (inter-object connectors) was **refuted by direct
 trace testing and never built**, while its exemplars were reclassified
 into families that do reproduce the evidence.
-
-![Trajectory](assets/trajectory.png)
 
 Recent rounds:
 - **Derived-pattern modes** — programs that *derive* their pattern from the
