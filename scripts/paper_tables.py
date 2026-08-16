@@ -6,20 +6,25 @@ from collections import Counter
 
 out = {}
 
-# Corpus headline (v20 sealed = in-run 171 + 3 quiet-repaired flakes = 174)
-v20 = json.load(open("outputs/unified_harness_v20/results.json"))
-# Merge quiet-repair results (contention flakes recovered solo)
-repair = json.load(open("outputs/v20_repair_quiet/results.json"))
-v20_ids = {r["task_id"] for r in v20["solved"]}
-for r in repair.get("solved", []):
-    if r["task_id"] not in v20_ids:
-        v20["solved"].append(r)
-        v20_ids.add(r["task_id"])
-sealed_count = len(v20_ids)
-out["corpus"] = {"solved": sealed_count, "total": v20["total_tested"],
-                 "csr": sealed_count / v20["total_tested"],
-                 "by_origin": v20["by_origin"],
-                 "induced_fraction": v20["induced_fraction"]}
+# Corpus headline (v21 sealed = in-run 173 + 4 arbitration recoveries = 177)
+RUN = "outputs/unified_harness_v21"
+ARB = "outputs/v21_arbitration"
+v21 = json.load(open(f"{RUN}/results.json"))
+# Merge quiet-arbitration results (contention flakes + d8c310e9 recovered solo)
+arb = json.load(open(f"{ARB}/results.json"))
+v21_ids = {r["task_id"] for r in v21["solved"]}
+for r in arb.get("solved", []):
+    if r["task_id"] not in v21_ids:
+        v21["solved"].append(r)
+        v21_ids.add(r["task_id"])
+sealed_count = len(v21_ids)
+# recompute the origin / induced breakdowns over the merged sealed set
+by_origin = dict(Counter(r.get("origin") for r in v21["solved"]))
+n_induced = sum(1 for r in v21["solved"] if r.get("origin_class") == "induced")
+out["corpus"] = {"solved": sealed_count, "total": v21["total_tested"],
+                 "csr": sealed_count / v21["total_tested"],
+                 "by_origin": by_origin,
+                 "induced_fraction": n_induced / sealed_count}
 
 # E1 / E2 (sealed artifacts)
 try:
@@ -35,8 +40,8 @@ try:
 except Exception as e:
     out["calibrated_csr"] = f"missing: {e}"
 
-# E5 best-of-2 (v17 emit pass; v20 adds 178fcbfb to certified without
-# losing any attempt_2 gains, so best-of-2 = v20_ids | v17_a2_correct)
+# E5 best-of-2 (v17 emit pass; later runs only add to the certified set
+# without losing attempt_2 gains, so best-of-2 = sealed_ids | v17_a2_correct)
 sols = json.load(open("data/arc/arc-agi_training_solutions.json"))
 a2_correct = set()
 n_renders = 0
@@ -52,24 +57,21 @@ for line in open("outputs/unified_harness_v17_emit/progress.jsonl"):
                 if att2[i] is not None):
             a2_correct.add(tid)
 out["e5_best_of_2"] = {"attempt_2_renders": n_renders,
-                       "attempt_2_correct_beyond_certified": len(a2_correct - v20_ids),
-                       "best_of_2": len(v20_ids | a2_correct)}
-
-# E6/E7 artifacts
-try:
-    out["e7_verbs"] = json.load(open("outputs/learned_verbs/learned_verbs.json"))
-except Exception: pass
-try:
-    out["e7_laws"] = json.load(open("outputs/learned_laws.json"))
-except Exception: pass
+                       "attempt_2_correct_beyond_certified": len(a2_correct - v21_ids),
+                       "best_of_2": len(v21_ids | a2_correct)}
 
 # program-family census of the certified corpus
 fam = Counter()
-for f in glob.glob("outputs/unified_harness_v20/object/programs/*.json"):
-    try:
-        d = json.load(open(f))
-        fam[d.get("program_class", "object")] += 1
-    except Exception: pass
+seen = set()
+for d in (ARB, RUN):  # arbitration (solo, quiet) wins on any overlap
+    for f in glob.glob(f"{d}/object/programs/*.json"):
+        tid = os.path.basename(f)[:-len(".json")]
+        if tid in seen: continue
+        try:
+            p = json.load(open(f))
+            fam[p.get("program_class", "object")] += 1
+            seen.add(tid)
+        except Exception: pass
 out["program_families"] = dict(fam)
 
 json.dump(out, open("outputs/paper_tables.json", "w"), indent=1, default=str)

@@ -500,8 +500,11 @@ def apply_grow(canvas: ObjectCanvas, obj: ARCObject, action: ActionRule,
     fill_interior: color; halo: color + conn (ScalarExpr 4|8);
     ray: color + direction (+ optional length, absent = to the grid border);
     pattern: a constant bbox-origin-relative added-cell PatternExpr."""
-    from .growth import (grow_fill_interior, grow_halo, grow_mirror_edge,
-                         grow_ray, grow_symmetry_complete, pattern_cells)
+    from .growth import (grow_cavity_leak, grow_cross_center,
+                         grow_fill_interior, grow_frame_minority, grow_halo,
+                         grow_mirror_edge, grow_periodic, grow_ray,
+                         grow_ray_deflect, grow_symmetry_complete,
+                         pattern_cells)
     mode = _eval_param(action, "mode", obj, ectx)
     cc = cell_colors_of(obj)
     if "vector" in action.params:      # translate+grow (round 4)
@@ -539,6 +542,41 @@ def apply_grow(canvas: ObjectCanvas, obj: ARCObject, action: ActionRule,
         if added is None:
             raise EvalError(f"grow mirror_edge: undefined for direction "
                             f"{direction!r} on this object")
+    elif mode in ("periodic_self", "periodic_bbox"):
+        # Round 19: period DERIVED from the object at render time.
+        direction = _eval_param(action, "direction", obj, ectx)
+        added = grow_periodic(cc, direction, bounds,
+                              "self" if mode == "periodic_self" else "bbox")
+        if added is None:
+            raise EvalError(f"grow {mode}: undefined for direction "
+                            f"{direction!r} on this object")
+    elif mode == "frame_minority":
+        # Round 19: ring thickness and colour DERIVED by counting.
+        added = grow_frame_minority(cc, bounds)
+        if added is None:
+            raise EvalError("grow frame_minority: undefined on this object "
+                            "(no unambiguous minority colour, or the ring "
+                            "leaves the grid)")
+    elif mode in ("cross_center", "cavity_leak", "ray_deflect"):
+        # Round 20 (ARC_RAY_EXT): GRID-AWARE modes.  The scene comes from
+        # canvas.source_grid — the grid currently being solved, so on the
+        # held-out/test input the obstacles and the background are those of
+        # THAT grid, never the ones the mode was induced on.
+        color = int(_eval_param(action, "color", obj, ectx))
+        grid = canvas.source_grid
+        if grid is None:
+            raise EvalError(f"grow {mode}: no source grid on the canvas "
+                            f"(this mode reads obstacles off the scene)")
+        if mode == "cross_center":
+            added = grow_cross_center(cells, grid, color)
+        elif mode == "cavity_leak":
+            added = grow_cavity_leak(cells, grid, color)
+        else:
+            direction = _eval_param(action, "direction", obj, ectx)
+            added = grow_ray_deflect(cells, grid, direction, color)
+        if added is None:
+            raise EvalError(f"grow {mode}: undefined on this object "
+                            f"in this scene")
     elif mode == "pattern":
         pattern = _eval_param(action, "pattern", obj, ectx)
         color = int(_eval_param(action, "color", obj, ectx)) \

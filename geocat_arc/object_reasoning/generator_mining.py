@@ -13,6 +13,13 @@ HYPOTHESIS LANGUAGE (hand-authored one-level-more-primitive layer):
     COLOR rule      : source_color | obstacle_color | constant_C |
                       two_phase (source then obstacle)
     EMIT shape      : line_1wide | full_row | full_col | cross
+                      + (R20, ARC_RAY_EXT) cross_center | cavity_leak |
+                        ray_deflect -- GRID-AWARE emits that read obstacles
+                        and the background off the scene
+                      + (R19, ARC_PATTERN_DERIVE) periodic_self |
+                        periodic_bbox | frame_minority -- DERIVED emits whose
+                        extent/thickness/colour are computed from the source
+                        object at render time, never stored
     delete_source   : bool
 
   This space includes the R17b hand-added modes as points:
@@ -47,7 +54,7 @@ from .generative import (
     induce_generative_candidates,
     render_generative,
 )
-from .growth import _UNIT
+from .growth import _UNIT, _pattern_derive_enabled, _ray_ext_enabled
 from .segmentation import (
     SEGMENTATION_TRIAL_ORDER,
     background_for,
@@ -149,11 +156,21 @@ class GeneratorHypothesis:
                             overlap get repainted with this color)
       - ray_through_absorbed = emit:line_1wide, stop:grid_border,
                                color:two_phase, direction:cardinal
+      - cross_center      = emit:cross_center (R20; the cross is drawn
+                            through the object's OWN bbox centre and paints
+                            background only -- direction/stop inert)
+      - cavity_leak       = emit:cavity_leak (R20; bbox cavity fill that
+                            leaks out of its own outline gaps -- inert too)
+      - ray_deflect       = emit:ray_deflect, direction:cardinal (R20; the
+                            walk deflects around obstacles, so the STOP rule
+                            is inert -- the obstacle response IS the mode)
     """
     direction: str           # one of _UNIT_8 keys
     stop: str                # grid_border | first_nonbg | first_color_C | after_N | nearest_obj
     color_rule: str          # source_color | obstacle_color | constant_C | two_phase
-    emit: str                # line_1wide | full_row | full_col | cross
+    emit: str                # line_1wide | full_row | full_col | cross |
+                             # periodic_self | periodic_bbox | frame_minority
+                             # | cross_center | cavity_leak | ray_deflect
     delete_source: bool = False
     # Bound parameters (from stop/color rules)
     stop_color: Optional[int] = None    # for first_color_C
@@ -163,6 +180,10 @@ class GeneratorHypothesis:
     # (cells painted by generators from objects of DIFFERENT source colors
     # get repainted with this value -- mirrors GenerativeProgram.intersection_color)
     intersection_color: Optional[int] = None
+    # R2: relational direction (direction computed from scene objects)
+    direction_mode: Optional[str] = None    # "toward" | "away" | "perpendicular"
+    target_color: Optional[int] = None      # target object's color
+    target_type: Optional[str] = None       # "largest" | "color" | "unique_color"
 
     def to_dict(self) -> dict:
         d = {
@@ -180,6 +201,12 @@ class GeneratorHypothesis:
             d["constant_color"] = self.constant_color
         if self.intersection_color is not None:
             d["intersection_color"] = self.intersection_color
+        if self.direction_mode is not None:
+            d["direction_mode"] = self.direction_mode
+        if self.target_color is not None:
+            d["target_color"] = self.target_color
+        if self.target_type is not None:
+            d["target_type"] = self.target_type
         return d
 
     @staticmethod
@@ -194,6 +221,9 @@ class GeneratorHypothesis:
             stop_n=d.get("stop_n"),
             constant_color=d.get("constant_color"),
             intersection_color=d.get("intersection_color"),
+            direction_mode=d.get("direction_mode"),
+            target_color=d.get("target_color"),
+            target_type=d.get("target_type"),
         )
 
     def signature(self) -> str:
@@ -209,6 +239,12 @@ class GeneratorHypothesis:
             parts.append(f"cc={self.constant_color}")
         if self.intersection_color is not None:
             parts.append(f"ic={self.intersection_color}")
+        if self.direction_mode is not None:
+            parts.append(f"dm={self.direction_mode}")
+        if self.target_type is not None:
+            parts.append(f"tt={self.target_type}")
+        if self.target_color is not None:
+            parts.append(f"tc={self.target_color}")
         return "|".join(parts)
 
     def behavioral_key(self) -> str:
@@ -220,12 +256,31 @@ class GeneratorHypothesis:
         Also collapses stop variants that are equivalent for area emits
         (grid_border vs first_nonbg are identical for full_row/col/cross
         which do not walk).
+
+        Relational-direction hypotheses are NOT direction-collapsed: the
+        direction_mode + target determines the walk direction at render time.
         """
         dir_key = self.direction
         stop_key = self.stop
-        if self.emit in ("cross", "full_row", "full_col"):
+        if self.direction_mode is None and self.emit in ("cross", "full_row", "full_col"):
             dir_key = "*"
             # For area emits, stop predicate is irrelevant (no walk)
+            stop_key = "*"
+        elif self.emit == "frame_minority":
+            # R19: the counted frame has no walk at all -- direction, stop
+            # and colour rule are all inert, so every spelling collapses.
+            dir_key = stop_key = "*"
+        elif self.emit in ("periodic_self", "periodic_bbox"):
+            # R19: derives its own period and carries source colours; only
+            # the direction is behaviourally live.
+            stop_key = "*"
+        elif self.emit in ("cross_center", "cavity_leak"):
+            # R20: no walk at all -- the centre / the cavity and its gaps
+            # are read off the object, so direction and stop are inert.
+            dir_key = stop_key = "*"
+        elif self.emit == "ray_deflect":
+            # R20: the walk NEVER stops at an obstacle, it goes around one,
+            # so the stop predicate is inert; only direction is live.
             stop_key = "*"
 
         parts = [dir_key, stop_key, self.color_rule, self.emit]
@@ -239,6 +294,12 @@ class GeneratorHypothesis:
             parts.append(f"cc={self.constant_color}")
         if self.intersection_color is not None:
             parts.append(f"ic={self.intersection_color}")
+        if self.direction_mode is not None:
+            parts.append(f"dm={self.direction_mode}")
+        if self.target_type is not None:
+            parts.append(f"tt={self.target_type}")
+        if self.target_color is not None:
+            parts.append(f"tc={self.target_color}")
         return "|".join(parts)
 
 
@@ -317,15 +378,18 @@ def _induce_with_filter(
     _orig_try_ic = _gen_mod._try_intersection_color
 
     def _filtered_apply(rule, obj, bounds, grid_array=None,
-                        include_source=False):
+                        include_source=False, all_objects=None):
         if rule.get("kind") in disabled_kinds:
             return {}
         return _orig_apply(rule, obj, bounds, grid_array=grid_array,
-                           include_source=include_source)
+                           include_source=include_source,
+                           all_objects=all_objects)
 
-    def _filtered_cand(obj, target, bg_in, bounds, grid_array=None):
+    def _filtered_cand(obj, target, bg_in, bounds, grid_array=None,
+                       all_objects=None):
         cands = _orig_cand_fn(obj, target, bg_in, bounds,
-                              grid_array=grid_array)
+                              grid_array=grid_array,
+                              all_objects=all_objects)
         return [c for c in cands if c.get("kind") not in disabled_kinds]
 
     def _noop_try_ic(*args, **kwargs):
@@ -587,6 +651,42 @@ def _execute_hypothesis(
     cells_fs = frozenset(source_cells)
     result: dict[tuple[int, int], int] = {}
 
+    # R2: relational direction override — compute direction from scene
+    if hyp.direction_mode is not None and hyp.emit == "line_1wide":
+        rel_dr, rel_dc = _find_relational_direction(
+            source_cells, source_color, grid_array, bg,
+            hyp.direction_mode, hyp.target_type, hyp.target_color)
+        if (rel_dr, rel_dc) == (0, 0):
+            return {}
+        # Walk using the computed relational direction
+        for r0, c0 in source_cells:
+            r, c = r0 + rel_dr, c0 + rel_dc
+            cur_color = _resolve_color(hyp.color_rule, source_color,
+                                       hyp.constant_color, None)
+            steps = 0
+            absorbed = False
+            while 0 <= r < h and 0 <= c < w:
+                if (r, c) in cells_fs:
+                    r += rel_dr
+                    c += rel_dc
+                    continue
+                cell_val = int(grid_array[r, c])
+                if _should_stop(hyp, r, c, cell_val, bg, cells_fs,
+                                steps, h, w):
+                    break
+                if hyp.color_rule == "two_phase" and not absorbed:
+                    if cell_val != bg and (r, c) not in cells_fs:
+                        cur_color = cell_val
+                        absorbed = True
+                elif hyp.color_rule == "obstacle_color":
+                    if cell_val != bg:
+                        cur_color = cell_val
+                result[(r, c)] = cur_color
+                r += rel_dr
+                c += rel_dc
+                steps += 1
+        return result
+
     if hyp.emit == "line_1wide":
         # Ray from each source cell in the given direction
         dr, dc = _UNIT_8.get(hyp.direction, (0, 0))
@@ -648,6 +748,44 @@ def _execute_hypothesis(
                 if (r, col) not in cells_fs:
                     result[(r, col)] = cur_color
 
+    elif hyp.emit in ("periodic_self", "periodic_bbox"):
+        # R19 sync: the object repeated along the WALK direction at a period
+        # DERIVED from the object (its own internal period, or its own bbox
+        # extent).  Carries source colours, so no COLOR rule applies -- the
+        # hypothesis language expresses the R19 built-in modes as points,
+        # keeping E10-style blind rediscovery possible.
+        from .growth import grow_periodic
+        cc = {p: int(grid_array[p]) for p in source_cells}
+        return dict(grow_periodic(
+            cc, hyp.direction, (h, w),
+            "self" if hyp.emit == "periodic_self" else "bbox") or {})
+
+    elif hyp.emit == "frame_minority":
+        # R19 sync: solid rectangular ring, thickness = minority-cell COUNT,
+        # colour = that minority colour (both counted off the object).
+        from .growth import grow_frame_minority
+        cc = {p: int(grid_array[p]) for p in source_cells}
+        return dict(grow_frame_minority(cc, (h, w)) or {})
+
+    elif hyp.emit in ("cross_center", "cavity_leak", "ray_deflect"):
+        # R20 sync: the GRID-AWARE emits.  They read obstacles and the
+        # background off the scene, which the miner already has in
+        # grid_array -- so the hypothesis language expresses the R20 built-in
+        # modes as points too, keeping E10-style blind rediscovery possible.
+        from .growth import (grow_cavity_leak, grow_cross_center,
+                             grow_ray_deflect)
+        cur_color = _resolve_color(hyp.color_rule, source_color,
+                                   hyp.constant_color, None)
+        cells_r20 = frozenset(source_cells)
+        if hyp.emit == "cross_center":
+            return dict(grow_cross_center(cells_r20, grid_array,
+                                          cur_color) or {})
+        if hyp.emit == "cavity_leak":
+            return dict(grow_cavity_leak(cells_r20, grid_array,
+                                         cur_color) or {})
+        return dict(grow_ray_deflect(cells_r20, grid_array, hyp.direction,
+                                     cur_color) or {})
+
     elif hyp.emit == "cross":
         # Full row AND column (cross) through the source
         rows_occupied = sorted(set(r for r, _ in source_cells))
@@ -708,6 +846,86 @@ def _should_stop(
     return False
 
 
+def _find_relational_direction(
+    source_cells: list[tuple[int, int]],
+    source_color: int,
+    grid_array: np.ndarray,
+    bg: int,
+    direction_mode: str,
+    target_type: Optional[str],
+    target_color: Optional[int],
+) -> tuple[int, int]:
+    """Compute relational direction from grid_array (no segmented objects).
+
+    Scans grid_array for target cells, computes centroid-to-centroid
+    direction, applies direction_mode.  Returns (dr, dc) unit vector
+    or (0, 0) if no valid target found.
+    """
+    h, w = grid_array.shape
+    cells_fs = frozenset(source_cells)
+
+    # Compute source centroid
+    n_src = max(1, len(source_cells))
+    src_r = sum(r for r, _ in source_cells) / n_src
+    src_c = sum(c for _, c in source_cells) / n_src
+
+    # Find target cells
+    tgt_cells: list[tuple[int, int]] = []
+
+    if target_type == "color" and target_color is not None:
+        for r in range(h):
+            for c in range(w):
+                if int(grid_array[r, c]) == target_color and (r, c) not in cells_fs:
+                    tgt_cells.append((r, c))
+    elif target_type == "unique_color" and target_color is not None:
+        for r in range(h):
+            for c in range(w):
+                if int(grid_array[r, c]) == target_color and (r, c) not in cells_fs:
+                    tgt_cells.append((r, c))
+    elif target_type == "largest":
+        # Find the largest connected component of non-bg, non-source cells
+        # Simple approach: largest group of cells by most-frequent non-bg color
+        color_cells: dict[int, list[tuple[int, int]]] = {}
+        for r in range(h):
+            for c in range(w):
+                v = int(grid_array[r, c])
+                if v != bg and v != source_color and (r, c) not in cells_fs:
+                    color_cells.setdefault(v, []).append((r, c))
+        if color_cells:
+            # Use the color group with the most cells
+            tgt_cells = max(color_cells.values(), key=len)
+
+    if not tgt_cells:
+        return (0, 0)
+
+    # Compute target centroid
+    n_tgt = len(tgt_cells)
+    tgt_r = sum(r for r, _ in tgt_cells) / n_tgt
+    tgt_c = sum(c for _, c in tgt_cells) / n_tgt
+
+    dr = tgt_r - src_r
+    dc = tgt_c - src_c
+
+    if abs(dr) < 1e-9 and abs(dc) < 1e-9:
+        return (0, 0)
+
+    # Primary direction along dominant axis
+    if abs(dr) >= abs(dc):
+        primary = (1 if dr > 0 else -1, 0)
+    else:
+        primary = (0, 1 if dc > 0 else -1)
+
+    if direction_mode == "toward":
+        return primary
+    if direction_mode == "away":
+        return (-primary[0], -primary[1])
+    if direction_mode == "perpendicular":
+        perp = (primary[1], -primary[0])
+        return perp if perp != (0, 0) else (0, 1)
+
+    return (0, 0)
+
+
 # ---------------------------------------------------------------------------
 # 3. HYPOTHESIS ENUMERATION
 # ---------------------------------------------------------------------------
@@ -750,6 +968,21 @@ def enumerate_hypotheses(
     color_rules = ["source_color", "obstacle_color", "constant_C", "two_phase"]
     emits = ["line_1wide", "full_row", "full_col", "cross"]
 
+    # R19 sync (ARC_PATTERN_DERIVE): the derived emits are points of the
+    # hypothesis language too, so the miner can rediscover them blind.  They
+    # carry source colours and derive their own extent, so they are added as
+    # a separate direction-only cross product rather than joining the
+    # colour/stop products above (a STOP or COLOR rule is meaningless for
+    # them).  Zero cost when the gate is off.
+    derive_emits: list[str] = []
+    if _pattern_derive_enabled():
+        derive_emits = ["periodic_self", "periodic_bbox", "frame_minority"]
+    # R20 sync (ARC_RAY_EXT): the grid-aware emits, same treatment.  Zero
+    # cost when the gate is off.
+    if _ray_ext_enabled():
+        derive_emits = derive_emits + ["cross_center", "cavity_leak",
+                                       "ray_deflect"]
+
     hypotheses: list[GeneratorHypothesis] = []
     seen_behavioral: set[str] = set()
 
@@ -772,6 +1005,23 @@ def enumerate_hypotheses(
                             emit=emit,
                             delete_source=del_src,
                         ))
+
+    # R19/R20 derived emits: direction-only (the emits with no walk at all
+    # -- frame_minority, cross_center, cavity_leak -- ignore direction, so a
+    # single spelling is enumerated and the behavioural key collapses the
+    # rest).
+    _no_walk = ("frame_minority", "cross_center", "cavity_leak")
+    for emit in derive_emits:
+        for direction in (directions if emit not in _no_walk
+                          else ["up"]):
+            for del_src in (False, True):
+                _add(GeneratorHypothesis(
+                    direction=direction,
+                    stop="grid_border",
+                    color_rule="source_color",
+                    emit=emit,
+                    delete_source=del_src,
+                ))
 
     # obstacle_color variants (line_1wide only -- area emits have no walk)
     for direction in directions:
@@ -855,6 +1105,47 @@ def enumerate_hypotheses(
                         _add(h2)
                 else:
                     _add(h)
+
+    # R2: RELATIONAL DIRECTION hypotheses (direction computed from scene)
+    # For each source_color in residuals, for each other color present
+    # in the grid, enumerate toward/away/perpendicular with line_1wide
+    # and the most common stop/color rules (capped to avoid explosion).
+    grid_colors: set[int] = set()
+    for rec in residuals:
+        for row in rec.input_grid:
+            for v in row:
+                if v != rec.bg:
+                    grid_colors.add(v)
+    non_source_grid_colors = sorted(grid_colors - source_colors)
+    rel_dir_modes = ["toward", "away", "perpendicular"]
+    rel_stops = ["grid_border", "first_nonbg"]
+    rel_color_rules = ["source_color", "two_phase"]
+
+    for dmode in rel_dir_modes:
+        # target_type = "color" with each non-source color
+        for tc in non_source_grid_colors:
+            for stop in rel_stops:
+                for cr in rel_color_rules:
+                    _add(GeneratorHypothesis(
+                        direction="up",  # placeholder; overridden by direction_mode
+                        stop=stop,
+                        color_rule=cr,
+                        emit="line_1wide",
+                        direction_mode=dmode,
+                        target_type="color",
+                        target_color=tc,
+                    ))
+        # target_type = "largest"
+        for stop in rel_stops:
+            for cr in rel_color_rules:
+                _add(GeneratorHypothesis(
+                    direction="up",
+                    stop=stop,
+                    color_rule=cr,
+                    emit="line_1wide",
+                    direction_mode=dmode,
+                    target_type="largest",
+                ))
 
     return hypotheses
 
@@ -1174,6 +1465,40 @@ def hypothesis_to_generator_rule(hyp: GeneratorHypothesis) -> dict:
     parameter.  The caller must set GenerativeProgram.intersection_color
     separately when constructing the program.
     """
+    # R2: relational direction hypotheses -> ray_relational kind
+    if hyp.direction_mode is not None and hyp.emit == "line_1wide":
+        target_pred: dict = {"type": hyp.target_type or "largest"}
+        if hyp.target_type in ("color", "unique_color") and \
+           hyp.target_color is not None:
+            target_pred["color"] = hyp.target_color
+        rule: dict = {
+            "kind": "ray_relational",
+            "direction_mode": hyp.direction_mode,
+            "target_pred": target_pred,
+        }
+        if hyp.color_rule == "constant_C" and hyp.constant_color is not None:
+            rule["color"] = hyp.constant_color
+        if hyp.stop == "first_nonbg":
+            rule["stop"] = "first_nonbg"
+        if hyp.color_rule == "two_phase":
+            rule["absorbed"] = True
+        return rule
+
+    # R19 derived emits map 1:1 onto the built-in derived generator kinds,
+    # so a blind rediscovery lands on exactly the hand-added vocabulary item.
+    if hyp.emit in ("periodic_self", "periodic_bbox"):
+        return {"kind": hyp.emit, "direction": hyp.direction}
+
+    if hyp.emit == "frame_minority":
+        return {"kind": "frame_minority"}
+
+    # R20 grid-aware emits map 1:1 onto the built-in grid-aware kinds.
+    if hyp.emit in ("cross_center", "cavity_leak"):
+        return {"kind": hyp.emit}
+
+    if hyp.emit == "ray_deflect":
+        return {"kind": "ray_deflect", "direction": hyp.direction}
+
     # Check if this maps to an existing vocabulary item
     if hyp.emit == "cross" and hyp.color_rule == "source_color":
         return {"kind": "cross_line"}

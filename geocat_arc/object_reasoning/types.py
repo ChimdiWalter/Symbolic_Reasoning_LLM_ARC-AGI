@@ -454,6 +454,14 @@ class PairCorrespondence:
     #: (height, width) of the OUTPUT grid — the frame growth modes (GROW
     #: halo/ray, round 2) bound their added cells to; (0, 0) = unknown.
     grid_shape: tuple[int, int] = (0, 0)
+    #: Round 20: the INPUT grid as a tuple of tuples of ints.  The grid-aware
+    #: GROW modes (cross_center / cavity_leak / ray_deflect, ARC_RAY_EXT) read
+    #: obstacles and the background off the scene; every mode before round 20
+    #: is a pure function of (cells, bounds) and ignores this.  None = no
+    #: scene available, and those modes are then undefined (the zero-cost
+    #: path).  Set by match_pair, so it is re-derived per fold like
+    #: everything else on the correspondence.
+    input_grid_rows: Optional[tuple] = None
 
 
 # ---------------------------------------------------------------------------
@@ -989,15 +997,24 @@ class GenerativeProgram:
     @property
     def value_bound_count(self) -> int:
         """Count train-bound literals in generator params.  Direction
-        symbols and mode names are closed vocabulary (not bound)."""
+        symbols, mode names, and relational direction params
+        (direction_mode, target_pred) are closed vocabulary (not bound).
+        For ray_relational, only "color" is potentially bound."""
         n = 0
         for _sel, rule in self.generators:
-            # "color" param when it's a literal integer is train-bound
-            if "color" in rule and isinstance(rule["color"], int):
-                n += 1
-            # "length" param when present is train-bound
-            if "length" in rule and isinstance(rule["length"], int):
-                n += 1
+            kind = rule.get("kind", "")
+            if kind == "ray_relational":
+                # Only "color" is bound when explicitly set and differs
+                # from source (which we can't check here, so count it).
+                if "color" in rule and isinstance(rule["color"], int):
+                    n += 1
+            else:
+                # "color" param when it's a literal integer is train-bound
+                if "color" in rule and isinstance(rule["color"], int):
+                    n += 1
+                # "length" param when present is train-bound
+                if "length" in rule and isinstance(rule["length"], int):
+                    n += 1
         if self.canvas_policy == "blank" and self.background != 0:
             n += 1
         if self.intersection_color is not None:
@@ -1007,6 +1024,7 @@ class GenerativeProgram:
     @property
     def worst_parameter_class(self) -> ParameterClass:
         if self.value_bound_count == 0:
+            # ray_relational with no bound color is RELATIONAL
             return ParameterClass.RELATIONAL
         return ParameterClass.INDUCED_MAP
 

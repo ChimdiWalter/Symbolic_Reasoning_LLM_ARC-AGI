@@ -32,3 +32,13 @@ notebooks (arc-certified-solver, arc_certified_solver1).
   notebook = the v20 submission notebook; (3) PDF of paper/latex
   build; (4) cover image (calibration lattice or E10 diagram).
 - MUST open-source solution if prize-eligible (repo already public).
+
+## SUBMISSION BAR (user directive 2026-08-12)
+DO NOT submit until: training > 200/1000 certified AND eval > 0
+render-verified certified. Then submit to measure improvement.
+Deadline pressure: Nov 9 (writeup can be drafted anytime; leaderboard
+number needed for Accuracy criterion — plan submission by ~mid-Oct).
+Path to the bar (from sealed evidence): R2 relational rung (194
+graduation-blocked tasks + E10 negative + 05a7bcf2 all name it) is
+the single biggest certified-score lever; eval>0 most plausibly via
+relational-expression generalization + analogy on eval variants.

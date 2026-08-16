@@ -24,8 +24,36 @@ from typing import Any, Optional
 #: symmetry_complete (round 3): added cells complete the object's own
 #: mirror symmetry — fully relational (no bound literals), so it survives
 #: LOO where constant-pattern memorizations die.
+#: periodic_self / periodic_bbox / frame_minority (round 19, EXTENSIONAL
+#: PATTERN DERIVATION): every parameter is DERIVED from the object at render
+#: time (its own internal period, its own bbox extent, its own minority-cell
+#: count and colour) — the direct replacements for the constant `pattern`
+#: memorizer that the R19 traces named.  Listed BEFORE `pattern` so the
+#: relational spellings win the preference order; they are only ever
+#: DETECTED when ARC_PATTERN_DERIVE=1 (see _pattern_derive_enabled).
+#: cross_center / cavity_leak / ray_deflect (round 20, RAY/LINE EXTENSION):
+#: the first GRID-AWARE growth modes.  They take the input grid and derive
+#: the background from it at render time, which is what makes obstacle-
+#: conditional stopping and background-only painting expressible at all.
+#: Listed BEFORE `pattern` for the same reason as the round-19 modes, and
+#: only ever DETECTED when ARC_RAY_EXT=1 (see _ray_ext_enabled).
 GROW_MODES: tuple[str, ...] = ("fill_interior", "halo", "ray",
-                               "symmetry_complete", "mirror_edge", "pattern")
+                               "symmetry_complete", "mirror_edge",
+                               "periodic_self", "periodic_bbox",
+                               "frame_minority", "cross_center",
+                               "cavity_leak", "ray_deflect", "pattern")
+
+#: Round-19 derived modes (the ARC_PATTERN_DERIVE-gated subset of GROW_MODES).
+PATTERN_DERIVE_MODES: tuple[str, ...] = ("periodic_self", "periodic_bbox",
+                                         "frame_minority")
+
+
+def _pattern_derive_enabled() -> bool:
+    """Round-19 env gate.  Read at call time (never cached) so the flag can
+    be flipped inside a process; the OFF path costs one dict lookup and the
+    derived modes are then never detected, induced, or emitted."""
+    import os
+    return os.environ.get("ARC_PATTERN_DERIVE", "") not in ("", "0")
 
 #: Unit vectors for ray extrusion (axis directions from types.DIRECTIONS).
 _UNIT: dict[str, tuple[int, int]] = {
@@ -170,6 +198,361 @@ def grow_mirror_edge(cell_colors: dict, direction: str,
     return added or None
 
 
+# ---------------------------------------------------------------------------
+# ROUND 19: EXTENSIONAL PATTERN DERIVATION (ARC_PATTERN_DERIVE)
+#
+# The R19 traces found that 43% of divergent tasks fail because GROW falls
+# back to mode=pattern, which stores LITERAL bbox-relative cell coordinates.
+# Those constants fit the training pairs and die at LOO.  The three modes
+# below compute the SAME cell sets from the object alone at render time, so
+# a held-out pair with a different object gets a different (correct) answer.
+# Every parameter here is a symbol (a direction) — never a cell list.
+# ---------------------------------------------------------------------------
+
+def self_period(cell_colors: dict, axis: str) -> Optional[int]:
+    """The object's own internal period along ``axis`` ('v' rows | 'h' cols):
+    the smallest p >= 1 such that translating the object by p agrees with
+    itself EXACTLY over the intersection of the two bounding boxes —
+    occupancy AND colour, so a cell present in one copy and absent in the
+    other is a mismatch (that strictness is what rejects spurious short
+    periods; traced on d8c310e9, whose true periods are 4 / 3 / 6).
+
+    None when no period shorter than the object's own extent exists."""
+    if not cell_colors:
+        return None
+    i = 0 if axis == "v" else 1
+    rows = [r for r, _ in cell_colors]
+    cols = [c for _, c in cell_colors]
+    r0, r1, c0, c1 = min(rows), max(rows), min(cols), max(cols)
+    extent = (r1 - r0 + 1) if i == 0 else (c1 - c0 + 1)
+    for p in range(1, extent):
+        shifted = {}
+        for (r, c), col in cell_colors.items():
+            shifted[(r + p, c) if i == 0 else (r, c + p)] = col
+        if i == 0:
+            lo, hi = max(r0, r0 + p), min(r1, r1 + p)
+            region = [(r, c) for r in range(lo, hi + 1)
+                      for c in range(c0, c1 + 1)]
+        else:
+            lo, hi = max(c0, c0 + p), min(c1, c1 + p)
+            region = [(r, c) for r in range(r0, r1 + 1)
+                      for c in range(lo, hi + 1)]
+        if not region:
+            continue
+        if any(k in cell_colors for k in region) and \
+                all(cell_colors.get(k) == shifted.get(k) for k in region):
+            return p
+    return None
+
+
+def grow_periodic(cell_colors: dict, direction: str, bounds: tuple[int, int],
+                  period_src: str) -> Optional[dict]:
+    """Added cells for the periodic-continuation modes: the object repeated
+    in ``direction`` at a period DERIVED from the object, until the whole
+    copy has left the grid.  Colours are carried from the source cells.
+
+    period_src='self' — the object's own internal period along the axis
+        (mode periodic_self; traced on d8c310e9, a horizontally periodic
+        strip continued rightward to the border).
+    period_src='bbox' — the object's own bbox extent along the axis
+        (mode periodic_bbox; traced on 9b30e358, a block tiled upward).
+
+    None when the period is undefined, the direction is unknown, or the
+    continuation adds nothing."""
+    if direction not in _UNIT or not cell_colors:
+        return None
+    dr, dc = _UNIT[direction]
+    axis = "v" if dr else "h"
+    if period_src == "self":
+        period = self_period(cell_colors, axis)
+    elif period_src == "bbox":
+        vals = [c[0] if axis == "v" else c[1] for c in cell_colors]
+        period = max(vals) - min(vals) + 1
+    else:
+        return None
+    if not period or period < 1:
+        return None
+    h, w = bounds
+    added: dict = {}
+    limit = max(h, w) // period + 2
+    for k in range(1, limit + 1):
+        any_in_bounds = False
+        for (r, c), col in cell_colors.items():
+            nr, nc = r + dr * k * period, c + dc * k * period
+            if 0 <= nr < h and 0 <= nc < w:
+                any_in_bounds = True
+                if (nr, nc) not in cell_colors:
+                    added[(nr, nc)] = int(col)
+        if not any_in_bounds:
+            break
+    return added or None
+
+
+def grow_frame_minority(cell_colors: dict,
+                        bounds: tuple[int, int]) -> Optional[dict]:
+    """Added cells for mode=frame_minority: a SOLID rectangular ring around
+    the object's bbox whose THICKNESS is the number of the object's
+    minority-colour cells and whose colour IS that minority colour — both
+    derived by counting, no literals (traced on 52fd389e: 1 minority cell ->
+    thickness 1, 2 -> 2, 3 -> 3, verified on four objects).
+
+    None unless the object has exactly two colours with an unambiguous
+    minority, or when the ring would fall off the grid (undefined there
+    rather than silently clipped — clipping would make the mode fit
+    train pairs it cannot reproduce)."""
+    if not cell_colors:
+        return None
+    counts: dict[int, int] = {}
+    for col in cell_colors.values():
+        counts[int(col)] = counts.get(int(col), 0) + 1
+    if len(counts) != 2:
+        return None
+    ordered = sorted(counts.items(), key=lambda kv: (kv[1], kv[0]))
+    (minor, n_minor), (major, n_major) = ordered[0], ordered[1]
+    if n_minor >= n_major:
+        return None                     # no unambiguous minority
+    thickness = int(n_minor)
+    rows = [r for r, _ in cell_colors]
+    cols = [c for _, c in cell_colors]
+    r0, r1, c0, c1 = min(rows), max(rows), min(cols), max(cols)
+    h, w = bounds
+    added: dict = {}
+    for r in range(r0 - thickness, r1 + thickness + 1):
+        for c in range(c0 - thickness, c1 + thickness + 1):
+            if r0 <= r <= r1 and c0 <= c <= c1:
+                continue
+            if not (0 <= r < h and 0 <= c < w):
+                return None
+            added[(r, c)] = int(minor)
+    return added or None
+
+
+# ---------------------------------------------------------------------------
+# Round 20 (ARC_RAY_EXT): GRID-AWARE growth.
+#
+# Every mode above is a pure function of (cells, bounds).  The R20 traces
+# showed that the census's "extension_beyond_objects" blocker is exactly the
+# absence of the SCENE from this path: obstacle-conditional stopping and
+# background-only painting are undefinable without the grid.  The three modes
+# below take the input grid as an extra argument and derive the background
+# from it at render time; every other parameter is a direction SYMBOL or a
+# colour slot.  None of them stores a cell list.
+# ---------------------------------------------------------------------------
+
+#: Round-20 grid-aware modes (the ARC_RAY_EXT-gated subset of GROW_MODES).
+RAY_EXT_MODES: tuple[str, ...] = ("cross_center", "cavity_leak",
+                                  "ray_deflect")
+
+
+def _ray_ext_enabled() -> bool:
+    """Round-20 env gate.  Read at call time (never cached) so the flag can
+    be flipped inside a process; the OFF path costs one dict lookup and the
+    grid-aware modes are then never detected, induced, rendered, or
+    enumerated."""
+    import os
+    return os.environ.get("ARC_RAY_EXT", "") not in ("", "0")
+
+
+def as_rows(grid: Any) -> Optional[tuple]:
+    """Normalize a grid (numpy array, Grid, or nested sequence) to a tuple of
+    tuples of ints.  None passes through as None — the grid-aware modes are
+    simply undefined without a scene."""
+    if grid is None:
+        return None
+    if isinstance(grid, tuple) and grid and isinstance(grid[0], tuple):
+        return grid
+    rows = getattr(grid, "to_numpy", None)
+    if rows is not None:
+        grid = grid.to_numpy()
+    try:
+        return tuple(tuple(int(v) for v in row) for row in grid)
+    except TypeError:
+        return None
+
+
+def grid_background(rows: tuple) -> int:
+    """The grid's background = its most common colour (ties -> lowest).
+    DERIVED from the scene at render time, so it is re-computed for the test
+    input exactly as it was for the train inputs — never a stored literal."""
+    counts: dict[int, int] = {}
+    for row in rows:
+        for v in row:
+            counts[v] = counts.get(v, 0) + 1
+    return min(counts.items(), key=lambda kv: (-kv[1], kv[0]))[0]
+
+
+def grow_cross_center(cells: frozenset | set, grid: Any,
+                      color: int) -> Optional[dict]:
+    """Added cells for mode=cross_center: the FULL grid row and FULL grid
+    column through the object's bbox CENTRE cell, painting BACKGROUND cells
+    only (the object itself and every other object survive underneath).
+
+    Traced on 41e4d17e.  Zero geometric parameters — the centre is read off
+    the object's own bbox.  None (undefined) when the bbox has an even
+    extent on either axis, i.e. when "the centre" is not a single cell:
+    guessing there would let the mode fit pairs it cannot reproduce."""
+    rows = as_rows(grid)
+    if rows is None or not cells:
+        return None
+    h, w = len(rows), len(rows[0])
+    rs = [r for r, _ in cells]
+    cs = [c for _, c in cells]
+    r0, r1, c0, c1 = min(rs), max(rs), min(cs), max(cs)
+    if (r1 - r0) % 2 or (c1 - c0) % 2:
+        return None
+    cr, cc = (r0 + r1) // 2, (c0 + c1) // 2
+    if not (0 <= cr < h and 0 <= cc < w):
+        return None
+    bg = grid_background(rows)
+    added: dict = {}
+    for c in range(w):
+        if (cr, c) not in cells and rows[cr][c] == bg:
+            added[(cr, c)] = int(color)
+    for r in range(h):
+        if (r, cc) not in cells and rows[r][cc] == bg:
+            added[(r, cc)] = int(color)
+    return added or None
+
+
+def grow_cavity_leak(cells: frozenset | set, grid: Any,
+                     color: int) -> Optional[dict]:
+    """Added cells for mode=cavity_leak: every background cell strictly
+    inside the object's bbox, PLUS a ray extruded outward from every GAP in
+    the object's bbox outline until it leaves the grid or meets the object.
+
+    Traced on 292dd178: an almost-closed outline whose interior fill LEAKS
+    through its own opening to the border.  The leak's width IS the gap's
+    width — both read off the object, no literals.  None (undefined) when
+    the object has no bbox cavity at all."""
+    rows = as_rows(grid)
+    if rows is None or not cells:
+        return None
+    h, w = len(rows), len(rows[0])
+    rs = [r for r, _ in cells]
+    cs = [c for _, c in cells]
+    r0, r1, c0, c1 = min(rs), max(rs), min(cs), max(cs)
+    bg = grid_background(rows)
+    inner = {(r, c) for r in range(r0 + 1, r1) for c in range(c0 + 1, c1)
+             if (r, c) not in cells and 0 <= r < h and 0 <= c < w
+             and rows[r][c] == bg}
+    if not inner:
+        return None
+    added = {p: int(color) for p in inner}
+
+    def leak(start, step):
+        r, c = start
+        while 0 <= r < h and 0 <= c < w:
+            if (r, c) in cells or rows[r][c] != bg:
+                return
+            added[(r, c)] = int(color)
+            r, c = r + step[0], c + step[1]
+
+    for c in range(c0, c1 + 1):
+        if (r0, c) not in cells:
+            leak((r0, c), (-1, 0))
+        if (r1, c) not in cells:
+            leak((r1, c), (1, 0))
+    for r in range(r0, r1 + 1):
+        if (r, c0) not in cells:
+            leak((r, c0), (0, -1))
+        if (r, c1) not in cells:
+            leak((r, c1), (0, 1))
+    return added or None
+
+
+def grow_ray_deflect(cells: frozenset | set, grid: Any, direction: str,
+                     color: int) -> Optional[dict]:
+    """Added cells for mode=ray_deflect: extrude the object's leading
+    silhouette in ``direction``; a lane blocked by a non-background obstacle
+    steps sideways along the obstacle's near face to the NEARER free side and
+    continues from there.
+
+    Traced on c87289bb.  The lateral step is the mode's only free choice and
+    it is fully determined: the strictly-nearer side wins, and a TIE resolves
+    to the POSITIVE lateral direction.  That tie rule was FALSIFIED into
+    existence — the opposite spelling reproduces pairs 0/1 exactly and fails
+    pairs 2/3, whose deflections are both ties.  Only parameter: a direction
+    SYMBOL (plus the colour slot every GROW mode has)."""
+    rows = as_rows(grid)
+    if rows is None or not cells or direction not in _UNIT:
+        return None
+    dr, dc = _UNIT[direction]
+    h, w = len(rows), len(rows[0])
+    bg = grid_background(rows)
+    step = dr + dc                       # +1 forward, -1 backward
+    lane_axis = 1 if dr else 0           # lanes indexed by the OTHER axis
+    # leading edge per lane
+    lanes: dict[int, int] = {}
+    for cell in cells:
+        k, v = cell[lane_axis], cell[1 - lane_axis]
+        if k not in lanes or step * v > step * lanes[k]:
+            lanes[k] = v
+
+    def at(k, v):
+        return (v, k) if dr else (k, v)
+
+    def free(p):
+        return (0 <= p[0] < h and 0 <= p[1] < w
+                and p not in cells and rows[p[0]][p[1]] == bg)
+
+    def obstacle_span(p):
+        """(lo, hi) lane-extent of the 4-connected non-bg component at p."""
+        seen, stack = {p}, [p]
+        while stack:
+            q = stack.pop()
+            for d in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                n = (q[0] + d[0], q[1] + d[1])
+                if (0 <= n[0] < h and 0 <= n[1] < w and n not in seen
+                        and n not in cells and rows[n[0]][n[1]] != bg):
+                    seen.add(n)
+                    stack.append(n)
+        ks = [q[lane_axis] for q in seen]
+        return min(ks), max(ks)
+
+    lane_limit = w if dr else h
+    added: dict = {}
+    frontier = sorted(lanes.items())
+    guard = 0
+    while frontier and guard <= 4 * h * w:
+        guard += 1
+        k, v = frontier.pop()
+        nv = v + step
+        p = at(k, nv)
+        if not (0 <= p[0] < h and 0 <= p[1] < w) or p in cells:
+            continue
+        if rows[p[0]][p[1]] == bg:
+            if p not in added:
+                added[p] = int(color)
+                frontier.append((k, nv))
+            continue
+        lo, hi = obstacle_span(p)
+        left_exit, right_exit = lo - 1, hi + 1
+        d_left, d_right = k - left_exit, right_exit - k
+        order = ([left_exit, right_exit] if d_left < d_right
+                 else [right_exit, left_exit])
+        for exit_k in order:
+            if not (0 <= exit_k < lane_limit):
+                continue
+            lat = 1 if exit_k > k else -1
+            walk, ok = k, True
+            path = []
+            while walk != exit_k:
+                walk += lat
+                q = at(walk, v)
+                if not free(q):
+                    ok = False
+                    break
+                path.append(q)
+            if ok:
+                for q in path:
+                    added.setdefault(q, int(color))
+                frontier.append((exit_k, v))
+                break
+    if guard > 4 * h * w:
+        return None                      # non-terminating scene: undefined
+    return added or None
+
+
 def added_pattern(in_cells: frozenset | set, added: dict) -> tuple:
     """Canonical bbox-origin-relative encoding of an added-cell dict:
     sorted tuple of ((dr, dc), color) — hashable + JSON-round-trippable
@@ -213,7 +596,8 @@ def mask_pattern(in_cells: frozenset | set, added: dict) -> tuple:
 
 
 def detect_grow(in_cc: dict, out_cc: dict,
-                bounds: tuple[int, int]) -> Optional[dict]:
+                bounds: tuple[int, int],
+                grid: Any = None) -> Optional[dict]:
     """Raw GROW params when out ⊇ in (cells AND colors preserved) with a
     non-empty exactly-reproducible addition; None otherwise.
 
@@ -289,6 +673,42 @@ def detect_grow(in_cc: dict, out_cc: dict,
         for direction in ("up", "down", "left", "right"):
             if grow_mirror_edge(in_cc, direction, bounds) == added:
                 return {"mode": "mirror_edge", "direction": direction}
+        # Round 19 (ARC_PATTERN_DERIVE): derived spellings of what would
+        # otherwise be memorized as a constant cell list.  Tried here — after
+        # every pre-existing mode, before the pattern fallback — so the gate
+        # can only ever REPLACE a constant-pattern memorization, never
+        # displace an already-working relational mode.  Zero cost when off.
+        if _pattern_derive_enabled():
+            for direction in ("up", "down", "left", "right"):
+                for period_src in ("self", "bbox"):
+                    if grow_periodic(in_cc, direction, bounds,
+                                     period_src) == added:
+                        return {"mode": f"periodic_{period_src}",
+                                "direction": direction}
+            if grow_frame_minority(in_cc, bounds) == added:
+                return {"mode": "frame_minority"}
+        # Round 20 (ARC_RAY_EXT): grid-aware spellings.  Same placement
+        # discipline as round 19 — after every pre-existing mode, before the
+        # pattern fallback — so the gate can only ever REPLACE a constant
+        # memorization, never displace a working relational mode.  Requires
+        # a scene: without `grid` these modes are simply undefined, which is
+        # also the zero-cost path for every caller that has no grid.
+        # A SHIFTED object is excluded: the grid-aware modes read obstacles
+        # off the input scene, where the object still sits at its original
+        # position, so a moved frame would consult the wrong neighbourhood.
+        if grid is not None and shift == (0, 0) and _ray_ext_enabled():
+            colors3 = set(added.values())
+            if len(colors3) == 1:
+                col3 = int(next(iter(colors3)))
+                if grow_cross_center(cells, grid, col3) == added:
+                    return {"mode": "cross_center", "color": col3}
+                if grow_cavity_leak(cells, grid, col3) == added:
+                    return {"mode": "cavity_leak", "color": col3}
+                for direction in ("up", "down", "left", "right"):
+                    if grow_ray_deflect(cells, grid, direction,
+                                        col3) == added:
+                        return {"mode": "ray_deflect",
+                                "direction": direction, "color": col3}
         colors2 = set(added.values())
         if len(colors2) == 1:
             # color-abstracted pattern (round 4): mask offsets + a color

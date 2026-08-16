@@ -1,0 +1,48 @@
+[project]
+name = "Reasoning_Project"
+root = "/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project"
+python = "python3.11"
+venv_activate = "source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate"
+
+[sandbox]
+mode = "workspace-write"
+network = "restricted"
+notes = "Do not assume internet, Kaggle downloads, or dependency installation. Use local files only unless explicitly approved."
+
+[testing]
+subset_first = true
+full_suite = "python3.11 -m pytest"
+required_before_claims = true
+
+[reporting]
+run_history = "RUN_HISTORY.md"
+process_log = "PROCESS_LOG.md"
+resume_doc = "RESUME.md"
+style = "concise_exact_paths_commands_metrics_next_steps"
+artifact_contract = [
+  "config snapshot",
+  "seed list",
+  "command log",
+  "metrics JSON/CSV",
+  "concise markdown summary"
+]
+
+[review]
+checklist = [
+  "silent metric drift",
+  "data leakage",
+  "seed leakage",
+  "benchmark contamination",
+  "overclaiming",
+  "artifact existence",
+  "resume instructions"
+]
+
+[boundaries]
+arc_requires_local_files = true
+phase_priority = "diagnosis_over_expansion"
+formal_claim_language = [
+  "category-inspired finite compositional checks",
+  "finite path witness / repairability check",
+  "AID proxy / MDL-style intervention proxy"
+]

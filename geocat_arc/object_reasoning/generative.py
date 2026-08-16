@@ -26,10 +26,17 @@ from geocat_arc.perception.objects import ARCObject
 
 from .growth import (
     grow_fill_interior,
+    grow_cavity_leak,
+    grow_cross_center,
+    grow_frame_minority,
+    grow_ray_deflect,
     grow_halo,
     grow_mirror_edge,
+    grow_periodic,
     grow_ray,
     grow_symmetry_complete,
+    _pattern_derive_enabled,
+    _ray_ext_enabled,
     _UNIT,
 )
 from .segmentation import (
@@ -49,10 +56,118 @@ from .types import (
 # Renderer
 # ---------------------------------------------------------------------------
 
+
+def _find_target_object(
+    source_cells: frozenset,
+    target_pred: dict,
+    all_objects: list,
+) -> Optional[ARCObject]:
+    """Find the target object matching a relational predicate.
+
+    target_pred types:
+      {"type": "largest"}        - largest non-source object
+      {"type": "color", "color": int}  - nearest object of given color
+      {"type": "unique_color", "color": int} - the unique object of given color
+    """
+    ttype = target_pred.get("type", "largest")
+
+    if ttype == "largest":
+        candidates = [o for o in all_objects
+                      if frozenset(o.cells) != source_cells]
+        if not candidates:
+            return None
+        return max(candidates, key=lambda o: len(o.cells))
+
+    target_color = target_pred.get("color", 0)
+
+    if ttype == "color":
+        candidates = [o for o in all_objects
+                      if o.color == target_color
+                      and frozenset(o.cells) != source_cells]
+        if not candidates:
+            return None
+        # Nearest by Manhattan distance between centroids
+        n_src = max(1, len(source_cells))
+        src_r = sum(r for r, _ in source_cells) / n_src
+        src_c = sum(c for _, c in source_cells) / n_src
+        def _dist(o: ARCObject) -> float:
+            tc = list(o.cells)
+            n = max(1, len(tc))
+            return abs(sum(r for r, _ in tc) / n - src_r) + \
+                   abs(sum(c for _, c in tc) / n - src_c)
+        return min(candidates, key=_dist)
+
+    if ttype == "unique_color":
+        candidates = [o for o in all_objects if o.color == target_color]
+        if len(candidates) == 1:
+            if frozenset(candidates[0].cells) == source_cells:
+                return None
+            return candidates[0]
+        return None
+
+    return None
+
+
+def _compute_relational_direction(
+    source_cells: frozenset,
+    target_pred: dict,
+    direction_mode: str,
+    all_objects: list,
+    self_obj: ARCObject,
+) -> tuple[int, int]:
+    """Compute a unit direction vector relative to a target object.
+
+    direction_mode:
+      "toward"        - toward the target (dominant axis)
+      "away"          - away from the target
+      "perpendicular" - 90-degree CW rotation of the toward direction
+
+    Returns (dr, dc) as a cardinal unit vector, or (0, 0) if no valid
+    target is found.
+    """
+    target_obj = _find_target_object(source_cells, target_pred,
+                                     all_objects)
+    if target_obj is None:
+        return (0, 0)
+
+    # Compute centroids
+    n_src = max(1, len(source_cells))
+    src_r = sum(r for r, _ in source_cells) / n_src
+    src_c = sum(c for _, c in source_cells) / n_src
+    tgt_cells = list(target_obj.cells)
+    n_tgt = max(1, len(tgt_cells))
+    tgt_r = sum(r for r, _ in tgt_cells) / n_tgt
+    tgt_c = sum(c for _, c in tgt_cells) / n_tgt
+
+    dr = tgt_r - src_r
+    dc = tgt_c - src_c
+
+    if abs(dr) < 1e-9 and abs(dc) < 1e-9:
+        return (0, 0)
+
+    # Primary direction along dominant axis
+    if abs(dr) >= abs(dc):
+        primary = (1 if dr > 0 else -1, 0)
+    else:
+        primary = (0, 1 if dc > 0 else -1)
+
+    if direction_mode == "toward":
+        return primary
+    if direction_mode == "away":
+        return (-primary[0], -primary[1])
+    if direction_mode == "perpendicular":
+        # 90-degree CW rotation: (dr, dc) -> (dc, -dr)
+        perp = (primary[1], -primary[0])
+        return perp if perp != (0, 0) else (0, 1)
+
+    return (0, 0)
+
+
 def _apply_generator(rule: dict, obj: ARCObject,
                      bounds: tuple[int, int],
                      grid_array: Optional[np.ndarray] = None,
-                     include_source: bool = False) -> dict:
+                     include_source: bool = False,
+                     all_objects: Optional[list] = None) -> dict:
     """Apply a single generator rule to an object, returning {cell: color}.
 
     The generator vocabulary mirrors growth.py's GROW_MODES plus
@@ -184,6 +299,68 @@ def _apply_generator(rule: dict, obj: ARCObject,
         axis = rule["axis"]
         return grow_symmetry_complete(cc, axis) or {}
 
+    # R19: extensional pattern DERIVATION — the generator counterparts of the
+    # GROW modes in growth.py.  Every parameter is re-derived from the object
+    # at render time, so these survive LOO where a stored cell list dies.
+    if kind in ("periodic_self", "periodic_bbox"):
+        return grow_periodic(
+            cc, rule["direction"], bounds,
+            "self" if kind == "periodic_self" else "bbox") or {}
+
+    if kind == "frame_minority":
+        return grow_frame_minority(cc, bounds) or {}
+
+    # R20 (ARC_RAY_EXT): the GRID-AWARE counterparts of the growth.py modes.
+    # They need the scene, so they are undefined without ``grid_array``.
+    if kind in ("cross_center", "cavity_leak", "ray_deflect"):
+        if grid_array is None:
+            return {}
+        color = int(rule.get("color", obj.color))
+        if kind == "cross_center":
+            return grow_cross_center(cells_fs, grid_array, color) or {}
+        if kind == "cavity_leak":
+            return grow_cavity_leak(cells_fs, grid_array, color) or {}
+        return grow_ray_deflect(cells_fs, grid_array, rule["direction"],
+                                color) or {}
+
+    # R2: relational ray — direction computed at render time from scene objects
+    if kind == "ray_relational":
+        if all_objects is None:
+            return {}
+        direction_mode = rule.get("direction_mode", "toward")
+        target_pred = rule.get("target_pred", {"type": "largest"})
+        color = rule.get("color", obj.color)
+        bg = rule.get("bg", 0)
+        stop = rule.get("stop", "grid_border")
+        absorbed = rule.get("absorbed", False)
+
+        dr, dc = _compute_relational_direction(
+            cells_fs, target_pred, direction_mode, all_objects, obj)
+        if (dr, dc) == (0, 0):
+            return {}
+
+        added_rel: dict = {}
+        for r0, c0 in cells_fs:
+            r, c = r0 + dr, c0 + dc
+            cur_color = int(color)
+            hit_obstacle = False
+            while 0 <= r < h and 0 <= c < w:
+                if (r, c) in cells_fs:
+                    r += dr
+                    c += dc
+                    continue
+                if grid_array is not None:
+                    cell_val = int(grid_array[r, c])
+                    if stop == "first_nonbg" and cell_val != bg:
+                        break
+                    if absorbed and not hit_obstacle and cell_val != bg:
+                        cur_color = cell_val
+                        hit_obstacle = True
+                added_rel[(r, c)] = cur_color
+                r += dr
+                c += dc
+        return added_rel
+
     # R18: learned generator (hypothesis-language expression from
     # generator_mining.py); zero cost when learned_generators.json absent.
     if kind == "learned_generator":
@@ -271,7 +448,8 @@ def render_generative(program: GenerativeProgram,
             if _selector_matches(sel, obj, bg):
                 added = _apply_generator(rule, obj, bounds,
                                          grid_array=grid_array,
-                                         include_source=incl_src)
+                                         include_source=incl_src,
+                                         all_objects=sorted_objs)
                 for (r, c), color in added.items():
                     if 0 <= r < h and 0 <= c < w:
                         canvas[r, c] = int(color)
@@ -310,6 +488,7 @@ def _candidate_generators_for_object(
     bg_in: int,
     bounds: tuple[int, int],
     grid_array: Optional[np.ndarray] = None,
+    all_objects: Optional[list] = None,
 ) -> list[dict]:
     """Propose candidate generator rules for one object that contribute
     pixels matching the target.  Each candidate is scored by pixel
@@ -455,6 +634,64 @@ def _candidate_generators_for_object(
                                    {"kind": "symmetry_complete",
                                     "axis": axis}))
 
+    # R19 derived modes (ARC_PATTERN_DERIVE): periodic continuation and the
+    # counted rectangular frame.  Colour-relational, no colour parameter.
+    if _pattern_derive_enabled():
+        for direction in _DIRECTIONS:
+            for period_src in ("self", "bbox"):
+                added = grow_periodic(cc, direction, bounds, period_src)
+                if not added:
+                    continue
+                score = sum(1 for (r, c), cl in added.items()
+                            if 0 <= r < bounds[0] and 0 <= c < bounds[1]
+                            and target[r, c] == cl)
+                if score > 0:
+                    candidates.append(
+                        (score, len(added),
+                         {"kind": f"periodic_{period_src}",
+                          "direction": direction}))
+        added = grow_frame_minority(cc, bounds)
+        if added:
+            score = sum(1 for (r, c), cl in added.items()
+                        if 0 <= r < bounds[0] and 0 <= c < bounds[1]
+                        and target[r, c] == cl)
+            if score > 0:
+                candidates.append((score, len(added),
+                                   {"kind": "frame_minority"}))
+
+    # R20 grid-aware modes (ARC_RAY_EXT): obstacle-conditional stopping and
+    # background-only painting.  Undefined without a scene, so the whole
+    # block is skipped when grid_array is None -- and never entered at all
+    # when the gate is off.
+    if grid_array is not None and _ray_ext_enabled():
+        for color in try_colors:
+            for kind, added in (
+                    ("cross_center",
+                     grow_cross_center(cells_fs, grid_array, color)),
+                    ("cavity_leak",
+                     grow_cavity_leak(cells_fs, grid_array, color))):
+                if not added:
+                    continue
+                score = sum(1 for (r, c), cl in added.items()
+                            if 0 <= r < bounds[0] and 0 <= c < bounds[1]
+                            and target[r, c] == cl)
+                if score > 0:
+                    candidates.append((score, len(added),
+                                       {"kind": kind, "color": int(color)}))
+            for direction in _DIRECTIONS:
+                added = grow_ray_deflect(cells_fs, grid_array, direction,
+                                         color)
+                if not added:
+                    continue
+                score = sum(1 for (r, c), cl in added.items()
+                            if 0 <= r < bounds[0] and 0 <= c < bounds[1]
+                            and target[r, c] == cl)
+                if score > 0:
+                    candidates.append((score, len(added),
+                                       {"kind": "ray_deflect",
+                                        "direction": direction,
+                                        "color": int(color)}))
+
     # Row line (full row through object)
     for color in try_colors:
         rows_occupied = sorted(set(r for r, _ in obj.cells))
@@ -505,13 +742,60 @@ def _candidate_generators_for_object(
                 candidates.append((score, len(added),
                                    {"kind": "cross_line", "color": color}))
 
+    # R2: relational ray proposals (direction computed from scene objects)
+    if all_objects is not None and len(all_objects) > 1:
+        _DIR_MODES = ("toward", "away", "perpendicular")
+        # Collect target colors from other objects
+        other_colors = sorted(set(
+            o.color for o in all_objects
+            if frozenset(o.cells) != cells_fs))
+        # Also try "largest" target
+        target_preds: list[dict] = [{"type": "largest"}]
+        for tc in other_colors:
+            target_preds.append({"type": "color", "color": tc})
+
+        for target_pred in target_preds:
+            for dmode in _DIR_MODES:
+                dr, dc = _compute_relational_direction(
+                    cells_fs, target_pred, dmode, all_objects, obj)
+                if (dr, dc) == (0, 0):
+                    continue
+
+                for color in try_colors[:4]:  # cap color sweep
+                    for stop in ("grid_border", "first_nonbg"):
+                        for absorbed in (False, True):
+                            rule_rel = {
+                                "kind": "ray_relational",
+                                "direction_mode": dmode,
+                                "target_pred": target_pred,
+                                "color": color,
+                                "bg": bg_in,
+                                "stop": stop,
+                                "absorbed": absorbed,
+                            }
+                            added = _apply_generator(
+                                rule_rel, obj, bounds,
+                                grid_array=grid_array,
+                                include_source=False,
+                                all_objects=all_objects)
+                            if added:
+                                score = sum(
+                                    1 for (r, c), cl in added.items()
+                                    if 0 <= r < bounds[0]
+                                    and 0 <= c < bounds[1]
+                                    and target[r, c] == cl)
+                                if score > 0:
+                                    candidates.append(
+                                        (score, len(added), rule_rel))
+
     # R18: learned generators from learned_generators.json
     # Zero cost when the file is absent (empty list).
     _lg = _load_learned_generators_cached()
     for lg_rule in _lg:
         added = _apply_generator(lg_rule, obj, bounds,
                                  grid_array=grid_array,
-                                 include_source=False)
+                                 include_source=False,
+                                 all_objects=all_objects)
         if added:
             score = sum(1 for (r, c), cl in added.items()
                         if 0 <= r < bounds[0] and 0 <= c < bounds[1]
@@ -661,7 +945,8 @@ def induce_generative_candidates(
                 for obj in pd0["objects"]:
                     rules = _candidate_generators_for_object(
                         obj, pd0["target"], pd0["bg_in"], pd0["bounds"],
-                        grid_array=pd0["grid_array"])
+                        grid_array=pd0["grid_array"],
+                        all_objects=pd0["objects"])
                     all_per_obj_rules.append(rules)
 
                 if not all_per_obj_rules:
@@ -694,7 +979,8 @@ def induce_generative_candidates(
                         rules = _candidate_generators_for_object(
                             objs_of_color[0], pd0["target"],
                             pd0["bg_in"], pd0["bounds"],
-                            grid_array=pd0["grid_array"])
+                            grid_array=pd0["grid_array"],
+                            all_objects=pd0["objects"])
                         per_class_candidates[color] = rules[:8]
 
                     color_keys = sorted(per_class_candidates.keys())
@@ -862,7 +1148,8 @@ def _greedy_per_object_generators(
     best_rules: list[tuple[int, dict]] = []  # (obj_index, rule)
     for i, obj in enumerate(objs0):
         cands = _candidate_generators_for_object(obj, target0, bg0, bounds0,
-                                                     grid_array=pd0["grid_array"])
+                                                     grid_array=pd0["grid_array"],
+                                                     all_objects=objs0)
         if not cands:
             return None  # can't explain this object
         best_rules.append((i, cands[0]))
@@ -1002,7 +1289,8 @@ def induce_gen_compose_patch(
         for obj in pd0["objects"]:
             rules = _candidate_generators_for_object(
                 obj, resid_target, pd0["bg_in"], pd0["bounds"],
-                grid_array=pd0["grid_array"])
+                grid_array=pd0["grid_array"],
+                all_objects=pd0["objects"])
             all_per_obj_rules.append(rules)
 
         if not all_per_obj_rules:
@@ -1034,7 +1322,8 @@ def induce_gen_compose_patch(
                 rules = _candidate_generators_for_object(
                     objs_of_color[0], resid_target,
                     pd0["bg_in"], pd0["bounds"],
-                    grid_array=pd0["grid_array"])
+                    grid_array=pd0["grid_array"],
+                    all_objects=pd0["objects"])
                 per_class_cands[color] = rules[:6]
 
             color_keys = sorted(per_class_cands.keys())

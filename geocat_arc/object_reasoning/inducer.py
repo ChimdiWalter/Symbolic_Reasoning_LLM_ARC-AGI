@@ -143,6 +143,22 @@ def _CREATE_COHERENCE_ON() -> bool:
     return _os.environ.get("ARC_CREATE_COHERENCE", "") not in ("", "0")
 
 
+def _VARIANT_BUDGET_ON() -> bool:
+    """Round-21 env gate (read per call — fold- and test-safe).
+    When on, a cheap-first probing pass gives every eligible segmentation
+    variant a short time slice before the main sequential search, so a later
+    variant that solves cheaply is not starved by an earlier one that burns
+    the whole budget on doomed exploration."""
+    import os as _os
+    return _os.environ.get("ARC_VARIANT_BUDGET", "") not in ("", "0")
+
+
+#: Round-21: per-variant probe budget (seconds).  Must be long enough for a
+#: cheap solve (the c87289bb witness certifies in 0.24s) but short enough
+#: that probing N variants does not materially reduce the main-pass budget.
+_VARIANT_PROBE_BUDGET_S: float = 2.0
+
+
 #: Global (never per-task) enumeration caps — budget discipline, Section 3.5.
 MAX_SELECTOR_CANDIDATES: int = 60000
 MAX_ACTION_CANDIDATES: int = 4000
@@ -1252,6 +1268,38 @@ def _action_candidates(delta_type: DeltaType,
                     yield from _emit({"mode": mode_expr,
                                       "direction": DirectionExpr(
                                           op="const", args=(d,))})
+            elif mode in ("periodic_self", "periodic_bbox"):
+                # Round 19: the ONLY parameter is the direction symbol —
+                # the period is re-derived from each object at render time,
+                # so no train-bound value enters the program.
+                dirs = sorted({p["direction"] for p in raw
+                               if p.get("mode") == mode})
+                for d in dirs:
+                    yield from _emit({"mode": mode_expr,
+                                      "direction": DirectionExpr(
+                                          op="const", args=(d,))})
+            elif mode == "frame_minority":
+                # Round 19: NO parameters at all — thickness and colour are
+                # both counted off the object at render time.
+                yield from _emit({"mode": mode_expr})
+            elif mode in ("cross_center", "cavity_leak"):
+                # Round 20: ZERO geometric parameters — the bbox centre / the
+                # cavity and its gaps are all read off the object, and the
+                # background off the scene, at render time.  Only the colour
+                # slot, filled by the ordinary colour grammar (a relational
+                # spelling outranks a constant when both fit).
+                for c in _color_exprs():
+                    yield from _emit({"mode": mode_expr, "color": c})
+            elif mode == "ray_deflect":
+                # Round 20: one direction SYMBOL; the deflection side is
+                # derived from the obstacle at render time, never stored.
+                dirs = sorted({p["direction"] for p in raw
+                               if p.get("mode") == "ray_deflect"})
+                for d in dirs:
+                    dir_expr = DirectionExpr(op="const", args=(d,))
+                    for c in _color_exprs():
+                        yield from _emit({"mode": mode_expr, "color": c,
+                                          "direction": dir_expr})
             elif mode == "fill_interior":
                 for c in _color_exprs():
                     yield from _emit({"mode": mode_expr, "color": c})
@@ -2739,6 +2787,73 @@ def _induce_candidate(train_pairs: list[GridPair], config: InductionConfig,
         max_lits = max((r.selector.literals for r in p.rules), default=0)
         return (p.worst_parameter_class.rank, _program_value_bound_count(p),
                 len(p.rules), max_lits, p.expression_size)
+
+    # ------------------------------------------------------------------
+    # ROUND-21: CHEAP-FIRST PROBING (ARC_VARIANT_BUDGET).
+    # Give every eligible variant a short time slice; any variant that
+    # produces a train-perfect program within the probe is PROMOTED to
+    # run first in the main pass.  Promoted variants are ordered by their
+    # original trial-order position (fold-stable).
+    # BUDGET-SAFETY (off-control fix): the probe is CAPPED by the main
+    # deadline and SKIPPED entirely when the remaining budget is tight
+    # (< 2x the total probe cost).  This prevents the probe from
+    # consuming meaningful budget inside LOO folds — the v18 lesson:
+    # budget-wall tasks cannot afford the overhead.
+    # When the gate is OFF this block is a no-op and the seg_candidates
+    # list is untouched (byte-identical path).
+    # ------------------------------------------------------------------
+    if _VARIANT_BUDGET_ON() and len(seg_candidates) > 1 \
+            and deadline is not None:
+        total_probe_cost = _VARIANT_PROBE_BUDGET_S * len(seg_candidates)
+        remaining_for_probe = deadline - time.monotonic()
+        if remaining_for_probe > total_probe_cost * 2:
+            promoted_indices: set[int] = set()
+            for idx, seg in enumerate(seg_candidates):
+                if any(len(objs) == 0 for objs in seg.input_objects):
+                    continue
+                # Cap probe deadline by the main deadline — never extend
+                # beyond the cooperative budget.
+                probe_deadline = min(
+                    time.monotonic() + _VARIANT_PROBE_BUDGET_S,
+                    deadline)
+                # Probe: run the same induction with a tight sub-deadline.
+                # We do NOT update `best` or `partial_sink` here — the
+                # probe is only for scheduling; the main pass re-derives
+                # everything from scratch (fold-safe: no state leaks).
+                probe_meta = _Meta()
+                try:
+                    if shapes_same:
+                        for table, report in enumerate_labeled_tables(
+                                seg, train_pairs, max_alternatives=1):
+                            _check_deadline(probe_deadline)
+                            probe_attempt = _induce_on_table(
+                                seg, table, report, train_pairs, config,
+                                probe_deadline, probe_meta)
+                            if probe_attempt.programs:
+                                promoted_indices.add(idx)
+                                break
+                    else:
+                        probe_attempt = _induce_shrink(
+                            seg, train_pairs, config,
+                            probe_deadline, probe_meta)
+                        if probe_attempt.programs:
+                            promoted_indices.add(idx)
+                except _BudgetExhausted:
+                    pass  # probe exhausted its slice — not promoted
+            if promoted_indices:
+                # Stable reorder: promoted first (by original index),
+                # then rest (by original index).  Trial order is
+                # preserved within each group; only the promoted/
+                # non-promoted boundary is new.
+                promoted = [seg_candidates[i]
+                            for i in sorted(promoted_indices)]
+                rest = [seg_candidates[i]
+                        for i in range(len(seg_candidates))
+                        if i not in promoted_indices]
+                seg_candidates = promoted + rest
+                meta.events.append(
+                    f"VARIANT_PROBE_PROMOTED:{len(promoted_indices)}")
+    # ------------------------------------------------------------------
 
     winners: list[tuple[tuple, int, int, _Attempt]] = []
     try:

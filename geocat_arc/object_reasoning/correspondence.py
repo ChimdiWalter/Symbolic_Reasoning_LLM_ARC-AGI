@@ -85,13 +85,18 @@ def set_learned_verbs(reg: LearnedVerbRegistry) -> None:
 from .growth import (
     connect_segment,
     detect_grow,
+    grow_cavity_leak,
+    grow_cross_center,
+    grow_ray_deflect,
     find_extract_region,
     find_part_window,
     render_extract_part,
     render_part,
     grow_fill_interior,
+    grow_frame_minority,
     grow_halo,
     grow_mirror_edge,
+    grow_periodic,
     grow_ray,
     grow_symmetry_complete,
     pattern_cells,
@@ -250,6 +255,7 @@ def _downscaled(pattern: dict[tuple[int, int], int], shape: tuple[int, int],
 def _minimal_delta(in_obj: ARCObject, out_obj: ARCObject,
                    pair_index: int,
                    grid_shape: tuple[int, int] = (0, 0),
+                   grid: Any = None,
                    ) -> tuple[DeltaType, dict[str, Any], int]:
     """(delta_type, raw params, residual_pixels) — checked minimal-first:
     KEEP, TRANSLATE, RECOLOR, COMPOSITE(translate+recolor), REFLECT, ROTATE,
@@ -330,7 +336,7 @@ def _minimal_delta(in_obj: ARCObject, out_obj: ARCObject,
     # plus added cells reproducible by a generic growth mode
     # (fill_interior / halo / ray / exact pattern fallback).
     if grid_shape != (0, 0):
-        grow_params = detect_grow(in_cc, out_cc, grid_shape)
+        grow_params = detect_grow(in_cc, out_cc, grid_shape, grid)
         if grow_params is not None:
             return DeltaType.GROW, grow_params, 0
 
@@ -458,6 +464,17 @@ def _unexplained_count(corr: PairCorrespondence,
 # Public API
 # ---------------------------------------------------------------------------
 
+def _ray_ext_rows(input_grid: Grid):
+    """The input grid as tuple-of-tuples, or None when the round-20 gate is
+    off.  Gating HERE is what makes ARC_RAY_EXT genuinely zero-cost: with the
+    flag unset nothing is materialized and every downstream grid-aware branch
+    short-circuits on `grid is None`."""
+    from .growth import _ray_ext_enabled, as_rows
+    if not _ray_ext_enabled():
+        return None
+    return as_rows(input_grid)
+
+
 def match_pair(in_objects: list[ARCObject], out_objects: list[ARCObject],
                input_grid: Grid, output_grid: Grid, pair_index: int = 0,
                profiles: list[str] | None = None) -> list[PairCorrespondence]:
@@ -502,6 +519,10 @@ def match_pair(in_objects: list[ARCObject], out_objects: list[ARCObject],
         corr = _match_one_profile(in_objects, out_objects, name, weights,
                                   pair_index, grid_shape)
         corr.grid_shape = (output_grid.height, output_grid.width)
+        # Round 20: carry the INPUT scene so the grid-aware GROW modes can
+        # read obstacles / the background off it.  Re-derived here per pair,
+        # i.e. inside the fold-re-derived path.
+        corr.input_grid_rows = _ray_ext_rows(input_grid)
         key = (tuple(sorted((i, o) for i, o, _ in corr.matches)),
                tuple(sorted((i, tuple(v)) for i, v in corr.copies.items())),
                tuple(corr.deleted_input_ids),
@@ -537,7 +558,8 @@ def reconcile_with_pixels(corr: PairCorrespondence, input_grid: Grid,
             continue  # deletions paint nothing; orphan creations are residue
         for (r, c), col in _predict_cells(delta,
                                           in_by_id[delta.input_object_id],
-                                          (height, width)).items():
+                                          (height, width),
+                                          corr.input_grid_rows).items():
             if 0 <= r < height and 0 <= c < width:
                 canvas[r, c] = col
     unreconciled = int(np.sum(canvas != out))
@@ -612,7 +634,8 @@ def extract_deltas(correspondence: PairCorrespondence,
             oid = match_of[iid]
             dtype, params, residual = _minimal_delta(in_obj, out_by_id[oid],
                                                      corr.pair_index,
-                                                     corr.grid_shape)
+                                                     corr.grid_shape,
+                                                     corr.input_grid_rows)
             deltas.append(ObjectDelta(corr.pair_index, dtype, iid, [oid],
                                       params, residual))
         else:
@@ -830,7 +853,8 @@ def extract_deltas(correspondence: PairCorrespondence,
             cell_colors=union_cc)
         dtype, params, resid = _minimal_delta(in_obj, union_obj,
                                               corr.pair_index,
-                                              corr.grid_shape)
+                                              corr.grid_shape,
+                                              corr.input_grid_rows)
         if resid == 0 and dtype is DeltaType.GROW:
             host_union[host.id] = union_cc
             host_extra.setdefault(host.id, []).append(out_obj.id)
@@ -872,10 +896,12 @@ def delta_histogram(deltas: list[ObjectDelta]) -> dict[str, int]:
 def _predict_cells(delta: ObjectDelta,
                    in_obj: ARCObject,
                    bounds: tuple[int, int] = (0, 0),
+                   grid: Any = None,
                    ) -> dict[tuple[int, int], int]:
     """Absolute (r, c) -> color cells this delta predicts for its input
     object.  DELETE / orphan COPY predict nothing (handled by callers).
-    ``bounds`` (output grid h, w) is required by GROW halo/ray modes."""
+    ``bounds`` (output grid h, w) is required by GROW halo/ray modes;
+    ``grid`` (the INPUT scene, round 20) by the grid-aware GROW modes."""
     dtype = delta.delta_type
     params = delta.params
     cc = cell_colors_of(in_obj)
@@ -928,6 +954,19 @@ def _predict_cells(delta: ObjectDelta,
             added = grow_symmetry_complete(cc, params["axis"]) or {}
         elif mode == "mirror_edge":
             added = grow_mirror_edge(cc, params["direction"], bounds) or {}
+        elif mode in ("periodic_self", "periodic_bbox"):   # round 19
+            added = grow_periodic(
+                cc, params["direction"], bounds,
+                "self" if mode == "periodic_self" else "bbox") or {}
+        elif mode == "frame_minority":                     # round 19
+            added = grow_frame_minority(cc, bounds) or {}
+        elif mode == "cross_center":                       # round 20
+            added = grow_cross_center(cells, grid, params["color"]) or {}
+        elif mode == "cavity_leak":                        # round 20
+            added = grow_cavity_leak(cells, grid, params["color"]) or {}
+        elif mode == "ray_deflect":                        # round 20
+            added = grow_ray_deflect(cells, grid, params["direction"],
+                                     params["color"]) or {}
         else:  # pattern (colored, or color-abstracted mask + color)
             added = pattern_cells(cells, params["pattern"],
                                   params.get("color"))

@@ -33,8 +33,8 @@ family and produced a relational spelling that flipped its motivating
 task to certified-and-correct. We propose the
 **Certified Solve Rate (CSR)** and its calibration curve as a reporting
 standard for reasoning benchmarks, and release the fully certified corpus:
-174/1000 ARC-AGI-2 training tasks solved with certificates
-(17.4% CSR; 18.8% measured under Kaggle best-of-2), including 2
+177/1000 ARC-AGI-2 training tasks solved with certificates
+(17.7% CSR; 19.1% measured under Kaggle best-of-2), including 2
 certified generative solves — tasks whose programs use
 machine-discovered content-creating operations — and an honest 0/120 on
 the public evaluation split — reliability transfers even where coverage
@@ -148,7 +148,7 @@ the preference order is empirical, not aesthetic. [Table 2]
 Combining E1/E4: certificate class is a calibration curve
 (certified ≈0.95 → uncertified-constant 0.09). Operationalized as the
 two-attempt policy: attempt_1 certified, attempt_2 best-uncertified —
-+14 task-outputs on training (18.8% best-of-2 at the final engine), i.e. the leaderboard cost
++14 task-outputs on training (19.1% best-of-2 at the final engine), i.e. the leaderboard cost
 of certification is measured, not argued. [Table 3: the 8-class table]
 
 ### E6 — Self-extension under certificates (operator library)
@@ -207,6 +207,31 @@ render-verified correct on hidden tests** (measured precision 14/14; the
 certificate's calibration extends to the new program class), while the 26
 motivating evaluation instances still resist (their combinations exceed
 the v1 mode vocabulary — reported as the next iteration, not claimed).
+
+**R19 — extensional pattern derivation, and one gain outside the
+diagnosis.** The same discipline was applied to a declared plateau. A
+structural-vocabulary census over the unsolved corpus named the class
+(objects whose output pattern is *derived from the object itself*
+rather than copied from a stored exemplar) and supplied 15 candidate
+exemplars. Trace-first falsification then accepted only **3 modes out
+of 15**: 12 exemplars were rejected rather than fitted — 6 belonged to
+other named candidates, 6 remained unnamed — and each rejection is
+recorded. The accepted modes store **no cell lists**: `periodic_self`
+reads the object's own internal period, and `frame_minority` has *zero
+parameters* — its thickness is the count of the object's
+minority-colour cells and its colour is that minority colour. A
+leave-one-out test on a synthetic instance that no stored cell list can
+fit, plus its falsifiable counterpart (with the mode disabled the fold
+must fail — it does), guards this in the test suite. At corpus scale
+the modes certified two of their motivating tasks (52fd389e,
+d8c310e9); the notable result is the third gain, **d037b0a7, which
+lies outside the 15-exemplar set entirely** — a task no trace in the
+census pointed at, solved because the derived modes were structural
+rather than extensional. Derivation generalised past the evidence that
+motivated it, which is the property a stored-exemplar mode cannot have.
+The plateau at 174 moved to 177. The evaluation-split number is
+**unchanged at 0/120**: this bought coverage on the training
+distribution and nothing on the harder one.
 
 ### E10 — The system reinvents its own primitives
 
@@ -430,7 +455,7 @@ same way.
 achieve the strongest ARC-AGI-2 evaluation scores via augmentation
 ensembles and per-task fine-tuning. These systems report no per-task
 generalization evidence; our framework prices that evidence and shows
-it need not cost much accuracy (18.8% best-of-2 vs 17.4% certified-only
+it need not cost much accuracy (19.1% best-of-2 vs 17.7% certified-only
 on training). Notably, the leave-one-out construction these systems use
 to *generate training data* (Akyürek et al., 2024) is the same
 construction we use as a *blocking acceptance test* — the two uses are
@@ -476,7 +501,7 @@ same way it prices solves.
 **CSR as a reporting standard.** We propose that reasoning-benchmark
 results report (certified, best-of-k, calibration curve) rather than a
 single accuracy: three numbers that together make a solve count
-falsifiable. For our final system these are (17.4%, 18.8%, {certified
+falsifiable. For our final system these are (17.7%, 19.1%, {certified
 0.95 → constant 0.09}). The gap between the first two is the measured
 price of certification; the curve is what a consumer of the predictions
 can actually rely on per confidence class.
@@ -516,8 +541,9 @@ Kaggle notebook (offline, CPU, governed 12 h) included.
 ---
 *Numbers directory: E1/E4 outputs/paper_e1_e4/; E2 outputs/paper_e2/;
 calibration outputs/paper_calibrated_csr.json; E3
-outputs/unified_harness_eval_frozen/; corpus v20
-outputs/unified_harness_v20/ (174/1000 sealed, trajectory 153→174); E7 miner
+outputs/unified_harness_eval_frozen/; corpus v21
+outputs/unified_harness_v21/ + outputs/v21_arbitration/ (177/1000 sealed =
+173 in-run + 4 solo-arbitrated, trajectory 153→177); E7 miner
 outputs/meta_m2_chains.json + battery outputs/meta_m2_orphan_battery.json
 + task-level registration logs/meta_m3_register*.log + delta-level
 registration logs/meta_m3b_delta_v3.log →
