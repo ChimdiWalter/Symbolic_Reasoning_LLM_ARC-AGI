@@ -1,90 +1,81 @@
-# Reasoning Project
+# The Learner Must Re-Derive
+### Procedure-Level Generalization Certificates for Abstract Reasoning (ARC-AGI)
 
-Trace-driven operator invention for abstract visual reasoning. This research
-codebase implements a cumulative reasoning architecture where near-solved
-failure traces are mined to invent new operators, which are validated through
-leave-one-out cross-validation, active falsification, and machine-checkable
-proof obligations before promotion.
+A program-induction system for ARC in which **a task only counts as solved
+if the entire learning procedure, re-run from N−1 of its training examples,
+independently re-derives a program that solves the held-out example — for
+every fold.** The certificate validates the *learner*, not the artifact:
+a lucky program cannot pass it, because luck does not re-run.
 
-## Main Results
+**177/1000 ARC training tasks solved with certificates** (17.7% Certified
+Solve Rate; 19.1% under Kaggle best-of-2) — and an honest, calibrated
+0/120 on the public evaluation split: reliability transfers even where
+coverage does not.
 
-- **4 real ARC promotions**, each verified via frozen replay audit
-- **0 false positives** across all audited tasks
-- **Full verification chain**: task observed -> near-solved stored -> failure clustered -> operator invented -> counterexamples survived -> task solved -> certificate emitted
-- **712 tests** covering unit, integration, and smoke categories
-- **Operator necessity ablation**: removing any invented operator component breaks the solve
+![Certificate calibration](assets/certificates.png)
 
-## Architecture
+## Why certificates matter
+The same search, freed from the generalization requirement, *quintuples*
+its claimed solves while hidden-test precision collapses. Three independent
+measurements triangulate the point — remove the gate, precision falls to
+0.18; weaken it to render-only verification, precision falls to **zero**.
 
-The pipeline follows: ARC task -> domain adapter (perception) -> structural reasoner (hypothesis search with 81 boolean properties, LOO validation, active falsification) -> adaptive loop (iterative view switching, manifold memory retrieval, failure diagnosis) -> trace-driven operator invention (failure clustering, operator proposal, proof obligation checking, promotion gating) -> portfolio solver (multi-proposer collect-all with consensus selection). Near-solved failures are stored in boundary memory and used to invent new concepts and operators, closing the cumulative learning loop.
+![Triangulation](assets/triangulation.png)
 
-## Setup
+## The system invents its own primitives
+A mining loop harvests the exact pixels its best programs cannot explain,
+clusters them by geometric relation to scene objects, and admits new
+generative primitives **only if they reproduce held-out residuals exactly,
+on every fold, across multiple tasks** — the same certificate, one level
+down. In the flagship experiment, hand-added primitives were deleted and
+the miner **reinvented them blind from residual data, re-certifying the
+same task** with no human having named either primitive.
 
+![Self-extension ladder](assets/ladder.png)
+
+## Certified progress, round by round
+Every gain below is a *certified* solve; every round that yielded zero is
+recorded with its diagnosis. The falsification discipline runs both ways:
+one candidate structure (inter-object connectors) was **refuted by direct
+trace testing and never built**, while its exemplars were reclassified
+into families that do reproduce the evidence.
+
+![Trajectory](assets/trajectory.png)
+
+Recent rounds:
+- **Derived-pattern modes** — programs that *derive* their pattern from the
+  scene at render time (`periodic_self`: the object's own internal period;
+  `frame_minority`: ring thickness = the **count** of the object's
+  minority-colour cells — a zero-parameter program). One certified gain
+  landed *outside* the diagnosed exemplar set: the modes generalize past
+  the traces that motivated them.
+- **Obstacle-conditional rays** — the input scene threaded into the growth
+  path, enabling stops, deflections and cavity leaks that are undefinable
+  as pure functions of an object's own cells.
+- **Graduated certificates** — a syntactic preference lattice over
+  parameter expressions predicts hidden-test correctness monotonically
+  (relational 0.92 → constant 0.09) with zero test access.
+- **The gate generalizes across learner classes** — applied in strong form
+  to a per-task neural learner (retrain per fold from scratch): 100%
+  gated precision, zero false positives, n=37.
+
+## Repository map
+| Path | Contents |
+|---|---|
+| `geocat_arc/object_reasoning/` | the certified induction engine (segmentation, correspondence, delta vocabulary, generative programs, derived-pattern + ray modes, generator mining) |
+| `paper/` | full paper (`DRAFT.md`) + LaTeX build (`latex/main.pdf`, 10 pp) |
+| `kaggle/` | competition package: writeup, cover image, dataset build, submission checklist |
+| `scripts/` | harness runners, diagnosis + trace tooling, paper table generation |
+| `tests/` | per-round regression + certification tests (engine suite 440+) |
+| `RUN_HISTORY.md` | the complete experimental chronology, including every negative result |
+
+## Reproducing the numbers
+All headline figures regenerate from disk artifacts:
 ```bash
-source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
-cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
-pip install -e .
+python3 scripts/paper_tables.py     # -> outputs/paper_tables.json
 ```
-
-## Quick Validation
-
+Full 1000-task chain (offline, CPU):
 ```bash
-# Full test suite (712 tests, ~2.5 min)
-python3.11 -m pytest tests/ --tb=short -q
-
-# Promotion replay audit (4 tasks, <1s)
-python3.11 scripts/audit_verified_promotions.py
-
-# Operator necessity ablation (8 configs x 4 tasks, ~4s)
-python3.11 scripts/run_operator_promotion_ablation.py
-
-# False-positive audit
-python3.11 scripts/run_final_false_positive_audit.py
+export ARC_DIHEDRAL_FRAMES=45 ARC_GENERATIVE=1 ARC_PATTERN_DERIVE=1
+python3 scripts/run_unified_harness.py --workers 16 --out-dir outputs/run --run-id repro
 ```
-
-## Key Experiments
-
-```bash
-# Full ARC-1000 trace-driven pipeline (SLURM)
-sbatch slurm/run_full_arc1000_novel_pipeline.sh
-
-# Cross-domain adaptive evaluation
-python3.11 scripts/run_domain_adaptive_operator_reasoning.py --quick-smoke
-
-# Cross-domain operator transfer
-python3.11 scripts/run_cross_domain_operator_transfer.py
-
-# Neural component audit
-python3.11 scripts/audit_neural_components.py
-```
-
-## Paper
-
-- Manuscript: `paper/manuscript_final_candidate.md`
-- Paper tables: `outputs/final_paper_package/table_*.csv`
-- Reproduction commands: `outputs/final_paper_package/reproduction_commands.md`
-- Frozen verified state: `outputs/final_paper_package/frozen_verified_state/`
-
-## Layout
-
-```
-src/reasoning_project/   Package code (65+ modules)
-tests/                   Unit and integration tests (712 tests)
-scripts/                 CLI entry points for experiments and analysis
-configs/                 JSON experiment configurations
-data/                    ARC-AGI files and cached datasets
-slurm/                   SLURM batch scripts
-outputs/                 Generated experiment artifacts
-paper/                   Manuscript draft and section files
-docs/                    Architecture, quickstart, module reference
-```
-
-## Documentation
-
-- `docs/QUICKSTART.md` -- quick-start guide
-- `docs/MODULE_REFERENCE.md` -- per-module reference
-- `docs/ARCHITECTURE.md` -- system architecture
-- `claim_traceability.md` -- maps every claim to implementation and artifact
-- `limitations.md` -- honest accounting of system boundaries
-- `results_summary.md` -- detailed evidence for each hypothesis
-- `NEXT_STEPS.md` -- active roadmap and completed milestones
