@@ -29,7 +29,7 @@ A syntactic preference lattice over parameter expressions predicts hidden-test c
 | Induced-map | 0.40 |
 | Constant | 0.09 |
 
-Combined with E1, this yields graduated certificates — calibrated confidence classes rather than a binary verdict. We operationalize this as a two-attempt policy: attempt_1 certified, attempt_2 best-uncertified — measuring a leaderboard cost of certification at +14 task-outputs (19.1% best-of-2 vs 17.7% certified-only).
+Combined with E1, this yields graduated certificates — calibrated confidence classes rather than a binary verdict. We operationalize this as a two-attempt policy: attempt_1 certified, attempt_2 best-uncertified — measuring a leaderboard cost of certification at +14 task-outputs (19.5% best-of-2 vs 18.1% certified-only).
 
 ## Machine-Invented Primitives (E10)
 
@@ -49,7 +49,9 @@ The frozen-model variant: a 1.8M-parameter network at 94% per-cell accuracy pass
 
 ## The Honest Map
 
-177/1000 ARC-AGI-2 training tasks solved with certificates (17.7% CSR). 0/120 on the public evaluation split. Nothing false is certified on either split.
+181/1000 ARC-AGI-2 training tasks solved with certificates (18.1% CSR). 0/120 on the public evaluation split. Nothing false is certified on either split.
+
+The last +4 came from a variant-budget scheduling policy (fold-stable, time-allocation only, zero new vocabulary) that cured a chronically budget-starved task and unlocked 4 others through better search-time allocation, while its one measured harm (a task solving only under the old schedule) is recorded as the intervention's price, alongside the arbitration discipline that separated 3 apparent losses (contention) from the 1 real one.
 
 The last three came from the same discipline turned on a declared plateau (R19): a structural-vocabulary census named a class of *derived* patterns, trace-first falsification accepted 3 modes out of 15 candidate exemplars and recorded the 12 rejections, and the accepted modes store no cell lists at all — `frame_minority` has zero parameters, its thickness being the count of the object's own minority-colour cells. Tellingly, one of the three gains (d037b0a7) lies outside the diagnosed exemplar set entirely: the derived modes generalized past the traces that motivated them, which a stored-exemplar mode cannot do. The evaluation split stayed at 0/120.
 

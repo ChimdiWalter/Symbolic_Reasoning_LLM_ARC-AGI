@@ -10,7 +10,7 @@ Competition: https://kaggle.com/competitions/arc-prize-2026-paper-track
    - Click "Submit" or "New Submission" (Writeup tab).
    - Copy the contents of `kaggle/writeup.md` into the writeup editor.
    - Verify formatting renders correctly (headings, table, bold).
-   - Confirm word count is under 1500 (currently 1081).
+   - Confirm word count is under 1500 (currently 1244).
 
 2. **Attach Cover Image**
    - In the media gallery section of the submission, upload `kaggle/cover_image.png`.
@@ -18,13 +18,13 @@ Competition: https://kaggle.com/competitions/arc-prize-2026-paper-track
 
 3. **Attach Public Notebook**
    - Your existing notebook: `arc-certified-solver` (or `arc_certified_solver1`).
-   - Update the notebook's dataset to use the v20 tarball (`kaggle/arc_certified_solver_v21.tar.gz`): upload the tarball as a Kaggle dataset, point the notebook at it.
+   - Update the notebook's dataset to use the v22 tarball (`kaggle/arc_certified_solver_v22.tar.gz`): upload the tarball as a Kaggle dataset, point the notebook at it.
    - Ensure the notebook is set to **Public**.
    - Run or verify last successful run (offline, CPU, 12h limit).
    - Attach the notebook to the Paper Track submission.
 
 4. **Optional: Attach Public PDF Link**
-   - The compiled paper is at `paper/latex/main.pdf` (9 pages).
+   - The compiled paper is at `paper/latex/main.pdf` (10 pages).
    - Options for a public link (pick one):
      - Upload to arXiv (preferred; may take 1-2 days for processing).
      - Host on GitHub: push `paper/latex/main.pdf` to the public repo and use the raw URL.
@@ -35,7 +35,7 @@ Competition: https://kaggle.com/competitions/arc-prize-2026-paper-track
    - Confirm you are submitting to the **Paper Track**, not the ARC-AGI-2 prediction track.
 
 6. **Review Against Rubric Before Submitting**
-   - Accuracy: training 177/1000 (17.7% CSR), eval 0/120 — honestly stated.
+   - Accuracy: training 181/1000 (18.1% CSR), eval 0/120 — honestly stated.
    - Universality: protocol is domain-general; E9 demonstrates on neural learner.
    - Progress: honest map of what works/doesn't; E10 primitive invention.
    - Theory: the falsifiability thesis; three-way triangulation.

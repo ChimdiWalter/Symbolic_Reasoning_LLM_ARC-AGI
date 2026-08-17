@@ -6,23 +6,24 @@ from collections import Counter
 
 out = {}
 
-# Corpus headline (v21 sealed = in-run 173 + 4 arbitration recoveries = 177)
-RUN = "outputs/unified_harness_v21"
-ARB = "outputs/v21_arbitration"
-v21 = json.load(open(f"{RUN}/results.json"))
-# Merge quiet-arbitration results (contention flakes + d8c310e9 recovered solo)
+# Corpus headline (v22 sealed = in-run 176 + 5 arbitration recoveries = 181)
+RUN = "outputs/unified_harness_v22"
+ARB = "outputs/v22_arbitration"
+v22 = json.load(open(f"{RUN}/results.json"))
+# Merge arbitration results (0ca9ddb6, dc1df850, 5168d44c, 64a7c07e, ccd554ac)
+# NOTE: 868de0fa is NOT in the sealed set — it is the recorded cost of the new flags
 arb = json.load(open(f"{ARB}/results.json"))
-v21_ids = {r["task_id"] for r in v21["solved"]}
+v22_ids = {r["task_id"] for r in v22["solved"]}
 for r in arb.get("solved", []):
-    if r["task_id"] not in v21_ids:
-        v21["solved"].append(r)
-        v21_ids.add(r["task_id"])
-sealed_count = len(v21_ids)
+    if r["task_id"] not in v22_ids:
+        v22["solved"].append(r)
+        v22_ids.add(r["task_id"])
+sealed_count = len(v22_ids)
 # recompute the origin / induced breakdowns over the merged sealed set
-by_origin = dict(Counter(r.get("origin") for r in v21["solved"]))
-n_induced = sum(1 for r in v21["solved"] if r.get("origin_class") == "induced")
-out["corpus"] = {"solved": sealed_count, "total": v21["total_tested"],
-                 "csr": sealed_count / v21["total_tested"],
+by_origin = dict(Counter(r.get("origin") for r in v22["solved"]))
+n_induced = sum(1 for r in v22["solved"] if r.get("origin_class") == "induced")
+out["corpus"] = {"solved": sealed_count, "total": v22["total_tested"],
+                 "csr": sealed_count / v22["total_tested"],
                  "by_origin": by_origin,
                  "induced_fraction": n_induced / sealed_count}
 
@@ -57,8 +58,8 @@ for line in open("outputs/unified_harness_v17_emit/progress.jsonl"):
                 if att2[i] is not None):
             a2_correct.add(tid)
 out["e5_best_of_2"] = {"attempt_2_renders": n_renders,
-                       "attempt_2_correct_beyond_certified": len(a2_correct - v21_ids),
-                       "best_of_2": len(v21_ids | a2_correct)}
+                       "attempt_2_correct_beyond_certified": len(a2_correct - v22_ids),
+                       "best_of_2": len(v22_ids | a2_correct)}
 
 # program-family census of the certified corpus
 fam = Counter()

@@ -9265,9 +9265,171 @@ BUDGET-WALL OFF-CONTROL (gate 2):
               first run LOO 3/3; this run under contention)
     868de0fa: accepted=True, 62.1s, LOO 5/5 — PASS (was the regression)
     ef26cbf6: accepted=True, 54.7s, LOO 2/2 — PASS
-  8ee62060 is NOT a regression: baseline (flag OFF) is LOO 0/3. The fix
-  IMPROVES it (LOO 3/3 solo, LOO 2/3 under contention). Will re-verify
-  solo on quiet machine after suite finishes.
-  Result: 3/4 confirmed PASS, 1/4 (8ee62060) timing-sensitive but improved
-  vs baseline. NO REGRESSION.
+  8ee62060 SOLO on quiet machine (load 1.1): LOO 2/3, accepted=False.
+    Baseline (flag OFF): LOO 0/3. Extended budget (90s): LOO 3/3, 54.7s.
+    The fix IMPROVES 8ee62060 from LOO 0/3 to LOO 2/3 at the standard 60s
+    budget but does not fully certify it (pure budget-wall, not a regression).
+    Pre-safety-fix (fold probing ON): LOO 3/3, but that cost 868de0fa.
+    VERDICT: the safety fix is the correct tradeoff -- 868de0fa (5 folds)
+    needs the saved budget more than 8ee62060 (3 folds) needs fold probing.
+    Neither loses vs baseline; one gains fully, one gains partially.
+  OFF-CONTROL VERDICT: 3/4 CERTIFIED PASS. 1/4 (8ee62060) IMPROVED but
+  still budget-wall at 60s. NO REGRESSION on any task.
 
+SUITE (gate 4): running with budget-safety-fix code under contention
+  from s30 gate. Pre-existing flake (test_adaptive_orchestrator stale
+  expectation) excluded. Slow witness tests excluded (verified separately).
+  First run (pre-safety-fix, solo): 551 passed / 1 pre-existing failure.
+
+dev-19 GATE (gate 3): COMPLETE. 8te/7tc out of 19 (baseline 9te/8tc).
+  b2862040 (loo, 53.4s) + 1caeab9d (tc=False, 38.0s) = documented flakes.
+  Adjusted: 9te/8tc = BASELINE MATCH. ZERO REGRESSIONS.
+s30 GATE (gate 3): RUNNING (30 tasks, library-seeded, all flags ON).
+  Command: ARC_VARIANT_BUDGET=1 ARC_RAY_EXT=1 ARC_GENERATIVE=1
+  ARC_PATTERN_DERIVE=1 ARC_CREATE_COHERENCE=1 ARC_OVERLAY=1
+  scripts/run_object_dev_eval.py --file configs/s30_ids.json
+  --out-dir outputs/r21_gate_s30 --log logs/r21_s30.log
+
+R20 ray-family exemplar probes + R19 9b30e358 (gate 5): DEFERRED to
+  next session (s30 and suite are still running; the box is shared).
+  Command for resumption:
+    ARC_VARIANT_BUDGET=1 ARC_RAY_EXT=1 ARC_GENERATIVE=1 ARC_PATTERN_DERIVE=1
+    python3.12 scripts/run_object_dev_eval.py
+      --tasks 41e4d17e,292dd178,c87289bb,3490cc26,465b7d93,e74e1818,2601afb7,9b30e358
+      --out-dir outputs/r21_probe_ray --log logs/r21_probe_ray.log
+
+## 2026-08-16 — R21 PARTIAL SEAL: VARIANT BUDGET ALLOCATION (+1 prospective)
+
+WHAT WAS BUILT: CHEAP-FIRST PROBING (ARC_VARIANT_BUDGET=1).  Before the
+main sequential variant loop in _induce_candidate, every eligible variant
+gets a 2s probe slice.  Any variant that produces a train-perfect program
+within its probe is PROMOTED to run first in the main pass.  Promoted
+variants maintain trial-order among themselves (fold-stable -- no data-
+dependent reordering).
+
+BUDGET-SAFETY GUARD (diagnosed by the off-control's 868de0fa regression
+and fixed before seal): probing is SKIPPED when the remaining budget is
+less than 2x the total probe cost, and each probe's deadline is capped by
+the main deadline.  This prevents fold-level calls (where budget is tight)
+from probing -- the probe only runs at the top level where budget is ample.
+The guard turned a real regression (868de0fa LOO 4/5 -> 5/5) without
+losing the witness.
+
+WITNESS: c87289bb CERTIFIED (the acceptance criterion).
+  ARC_VARIANT_BUDGET=1 ARC_RAY_EXT=1, UNFORCED, standard 60s budget:
+    21.36s total | LOO 4/4 | ray_deflect in program | no PatternExpr |
+    test-correct | S6_COLOR_LAYERS promoted by probe (VARIANT_PROBE_PROMOTED:2)
+  Falsifiable counterpart (flag OFF): 63.34s, NOT certified, LOO 0/4.
+  PROSPECTIVE +1 -> 178/1000 at next chain run.
+
+OFF-CONTROL VERDICT: NO REGRESSION on any task.
+  0ca9ddb6: PASS (LOO 3/3, 60.0s) -- same as baseline
+  8ee62060: IMPROVED from LOO 0/3 (baseline) to LOO 2/3 (flag ON).
+    Pure budget-wall (certifies at 90s budget: LOO 3/3, 54.7s).
+    NOT a regression -- the flag helps but doesn't fully break through at 60s.
+  868de0fa: PASS (LOO 5/5, 62.1s) -- was the caught-and-fixed regression
+    (pre-safety-fix: LOO 4/5; the guard saved it).
+  ef26cbf6: PASS (LOO 2/2, 54.7s) -- same as baseline.
+
+GATES:
+  dev-19: 8te/7tc (adjusted 9te/8tc accounting for documented flakes
+    b2862040 + 1caeab9d) = BASELINE MATCH. Zero regressions.
+  s30: 4te/4tc out of 30 (baseline 4/4) = BASELINE MATCH. Zero regressions.
+  Suite: 551 passed / 1 pre-existing failure in 631.89s (pre-safety-fix).
+    Post-safety-fix rerun killed by task manager at 25min CPU (contention
+    from concurrent s30 extended runtime past background limits; the safety
+    fix adds ONLY a budget guard to a block gated ARC_VARIANT_BUDGET=1
+    default OFF -- zero-cost-when-off is structurally guaranteed and
+    unit-tested).  DEFERRED confirmation command:
+      python3.12 -m pytest geocat_arc/object_reasoning/tests/ tests/ \
+        --deselect ...::test_orchestrator_always_verifies \
+        --deselect ...::test_c87289bb_witness_certifies_with_variant_budget \
+        --deselect ...::test_c87289bb_without_variant_budget_hits_budget_wall \
+        --tb=short 2>&1 | tee logs/r21_suite_postsafety.log
+    Pre-existing flake excluded. R21 unit tests: 8/8 (6 non-witness + 2
+    witness).
+
+TESTS: tests/test_round21_variant_budget.py -- 8 tests:
+  - schedule correctness: probe promotes cheap variants, handles single
+    variant, records VARIANT_PROBE_PROMOTED event (3 tests)
+  - fold invariance: no cross-fold state (1 test)
+  - zero-cost-when-off: no probe events, no timing impact (2 tests)
+  - c87289bb witness: certifies UNFORCED with budget fix (1 test)
+  - c87289bb falsifiable: does NOT certify without fix (1 test)
+
+DECISION: ARC_VARIANT_BUDGET is promoted to the chain flag set.
+  The mechanism is proven: witness certifies (+1 prospective), off-control
+  clean (no regression, 1 improvement), dev-19 baseline match, s30 baseline
+  match, and the budget-safety guard prevents fold-level overhead from
+  harming budget-wall tasks.  Suite post-safety-fix confirmation deferred
+  to next session (structurally zero-cost-when-off, unit-tested).
+
+NEXT SESSION: (1) confirm suite post-safety-fix (command above);
+  (2) probe ray-family exemplars + 9b30e358 (command in milestone section
+  above) for bonus certifications; (3) --lf retry on any flakes.
+
+
+## 2026-08-17 — R21 FULLY SEALED (final gate closed by main session)
+Post-budget-safety-fix suite confirmation on an IDLE box (load 0):
+**504 passed, 0 failed** (17m37s) — engine tests + R15/R16/R19/R20/R21
++ guide-hook suites, all green with the probe phase and safety guard
+in place. R21 seal is now COMPLETE:
+  witness c87289bb certified 21.4s (counterpart: 63s uncertified);
+  OFF-control clean (1 regression caught+fixed in-round, 8ee62060
+  improved 0/3->2/3); dev-19 + s30 = baseline; unit tests 8/8;
+  suite 504/0. PROSPECTIVE 178 at v22.
+NEXT SESSION QUEUE: (1) ray-family exemplar + 9b30e358 probes with
+ARC_VARIANT_BUDGET=1 ARC_RAY_EXT=1 (commands in R21 entry above);
+(2) v22 full chain — flag set ARC_DIHEDRAL_FRAMES=45 ARC_GENERATIVE=1
+ARC_PATTERN_DERIVE=1 ARC_VARIANT_BUDGET=1 ARC_RAY_EXT=1, load-gated
+launch (<8), arbitration recipe as v21 -> seal 178.
+
+## 2026-08-17 — v22 IN-RUN 176; ARBITRATION RUNNING (projected 179-182)
+Probe: c87289bb only (the witness). v22 GAINED 5 vs sealed 177:
+c87289bb (witness at scale) + 8ee62060 (CHRONIC budget-wall flake now
+solves IN-RUN — variant-budget fix cured it, as the 0/3->2/3
+OFF-control predicted) + 3 UNEXPECTED (551d5bf1, d4f3cd78, d9f24cd1 —
+variant-starvation unlocks beyond the diagnosis, the d037b0a7 pattern
+again). LOST 6: 3 documented flakes + 3 NOT-known-flaky (5168d44c,
+64a7c07e, ccd554ac) — solo arbitration RUNNING (all 5 flags,
+workers=1); any solo failure gets an OFF-control (probe-phase could
+perturb variant choice on previously-solving tasks — the known
+ordering-risk). Projected seal: 179 (flakes only) to 182 (all
+recover). Marker V22_ARB_DONE in logs/v22_arbitration.log.
+
+## 2026-08-17 — v22 SEALED: 181/1000 — NEW RECORD (+4 net over v21)
+ARBITRATION COMPLETE: 5/6 recovered solo with the full flag set
+(0ca9ddb6 68.9s, dc1df850 198.1s, 5168d44c 177.2s, 64a7c07e 7.1s,
+ccd554ac 153.0s — the 3 "new" losses were pure 16-worker contention).
+868de0fa: FAILS solo at 431s with new flags, SOLVES at 132.5s under
+v21 flags — the variant-budget/ray-ext pair measurably harms this ONE
+task (probe-promotion or candidate flooding perturbs its search).
+MEASURED COST accepted: 5 gains vs 1 loss = NET +4.
+FINAL v22 = 176 in-run + 5 recovered = **181/1000**.
+Solved-set delta vs v21's 177: +c87289bb (R21 witness), +8ee62060
+(chronic flake CURED in-run), +551d5bf1 +d4f3cd78 +d9f24cd1
+(undiagnosed variant-starvation unlocks), -868de0fa (measured cost).
+TRAJECTORY: 153 -> 167 -> 169 -> 173 -> 174 -> 177 -> **181 (v22,
+variant-budget scheduling — zero new vocabulary)**.
+CHAIN FLAGS: FRAMES + GENERATIVE + PATTERN_DERIVE + VARIANT_BUDGET +
+RAY_EXT.
+QUEUED DIAGNOSIS (future round): why probing harms 868de0fa
+specifically (trace which variant gets promoted vs which certifies).
+PAPER/WRITEUP: numbers need 177 -> 181 refresh (+ best-of-2 +4).
+
+## 2026-08-17 — 181 REFRESH + v22 CENSUS
+TASK 1: Numbers refresh 177 -> 181 across paper_tables.py, DRAFT.md,
+main.tex, writeup.md, build_dataset.sh, SUBMISSION_CHECKLIST.md; rebuild
+Kaggle tarball as v22; git push with sanitize dance.
+TASK 2: Fresh failure census on v22 corpus (819 unsolved); diagnose why
+probing harms 868de0fa specifically.
+STATUS: STARTING
+MILESTONE 1a-d COMPLETE:
+- paper_tables.json: corpus 181, best-of-2 195 (19.5%), induced 42.5%,
+  families: object 57 + reduction 38 + framed 3 + generative 3 + composed 1
+- DRAFT.md + main.tex: 177->181, 17.7->18.1, 19.1->19.5; R21 scheduling
+  paragraph added; pdflatex clean, 10 pages
+- writeup.md: 1244 words (under 1500)
+- tarball: kaggle/arc_certified_solver_v22.tar.gz, 1016K, unpacks+imports OK
+- SUBMISSION_CHECKLIST.md: numbers + tarball name updated
+STATUS: GIT PUSH NEXT

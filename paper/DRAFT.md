@@ -33,8 +33,8 @@ family and produced a relational spelling that flipped its motivating
 task to certified-and-correct. We propose the
 **Certified Solve Rate (CSR)** and its calibration curve as a reporting
 standard for reasoning benchmarks, and release the fully certified corpus:
-177/1000 ARC-AGI-2 training tasks solved with certificates
-(17.7% CSR; 19.1% measured under Kaggle best-of-2), including 2
+181/1000 ARC-AGI-2 training tasks solved with certificates
+(18.1% CSR; 19.5% measured under Kaggle best-of-2), including 2
 certified generative solves — tasks whose programs use
 machine-discovered content-creating operations — and an honest 0/120 on
 the public evaluation split — reliability transfers even where coverage
@@ -148,7 +148,7 @@ the preference order is empirical, not aesthetic. [Table 2]
 Combining E1/E4: certificate class is a calibration curve
 (certified ≈0.95 → uncertified-constant 0.09). Operationalized as the
 two-attempt policy: attempt_1 certified, attempt_2 best-uncertified —
-+14 task-outputs on training (19.1% best-of-2 at the final engine), i.e. the leaderboard cost
++14 task-outputs on training (19.5% best-of-2 at the final engine), i.e. the leaderboard cost
 of certification is measured, not argued. [Table 3: the 8-class table]
 
 ### E6 — Self-extension under certificates (operator library)
@@ -229,7 +229,20 @@ lies outside the 15-exemplar set entirely** — a task no trace in the
 census pointed at, solved because the derived modes were structural
 rather than extensional. Derivation generalised past the evidence that
 motivated it, which is the property a stored-exemplar mode cannot have.
-The plateau at 174 moved to 177. The evaluation-split number is
+The plateau at 174 moved to 177.
+
+**R21 — cheap-first variant scheduling: +4 net with zero new vocabulary.**
+The same discipline applied to *time allocation* rather than program vocabulary.
+A variant-budget scheduling policy (fold-stable, controlling only which
+segmentation variants receive search budget) was probed against the v21
+baseline. The cheap-first policy gained 5 tasks — including curing a
+chronically budget-starved task (8ee62060) that had never solved in-run —
+while losing 1 (868de0fa, which solves only under the old schedule). The 3
+apparent additional losses were separated by solo arbitration into pure
+16-worker contention artifacts, leaving 1 measured harm. The net +4
+(177 to 181) was achieved with zero new vocabulary: the same programs, the
+same gate, only a different allocation of search time across segmentation
+variants. The evaluation-split number is
 **unchanged at 0/120**: this bought coverage on the training
 distribution and nothing on the harder one.
 
@@ -455,7 +468,7 @@ same way.
 achieve the strongest ARC-AGI-2 evaluation scores via augmentation
 ensembles and per-task fine-tuning. These systems report no per-task
 generalization evidence; our framework prices that evidence and shows
-it need not cost much accuracy (19.1% best-of-2 vs 17.7% certified-only
+it need not cost much accuracy (19.5% best-of-2 vs 18.1% certified-only
 on training). Notably, the leave-one-out construction these systems use
 to *generate training data* (Akyürek et al., 2024) is the same
 construction we use as a *blocking acceptance test* — the two uses are
@@ -501,7 +514,7 @@ same way it prices solves.
 **CSR as a reporting standard.** We propose that reasoning-benchmark
 results report (certified, best-of-k, calibration curve) rather than a
 single accuracy: three numbers that together make a solve count
-falsifiable. For our final system these are (17.7%, 19.1%, {certified
+falsifiable. For our final system these are (18.1%, 19.5%, {certified
 0.95 → constant 0.09}). The gap between the first two is the measured
 price of certification; the curve is what a consumer of the predictions
 can actually rely on per confidence class.
@@ -542,8 +555,8 @@ Kaggle notebook (offline, CPU, governed 12 h) included.
 *Numbers directory: E1/E4 outputs/paper_e1_e4/; E2 outputs/paper_e2/;
 calibration outputs/paper_calibrated_csr.json; E3
 outputs/unified_harness_eval_frozen/; corpus v21
-outputs/unified_harness_v21/ + outputs/v21_arbitration/ (177/1000 sealed =
-173 in-run + 4 solo-arbitrated, trajectory 153→177); E7 miner
+outputs/unified_harness_v22/ + outputs/v22_arbitration/ (181/1000 sealed =
+176 in-run + 5 solo-arbitrated, trajectory 153→181); E7 miner
 outputs/meta_m2_chains.json + battery outputs/meta_m2_orphan_battery.json
 + task-level registration logs/meta_m3_register*.log + delta-level
 registration logs/meta_m3b_delta_v3.log →
