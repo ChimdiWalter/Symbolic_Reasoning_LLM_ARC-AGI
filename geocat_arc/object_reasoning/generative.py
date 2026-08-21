@@ -310,6 +310,101 @@ def _apply_generator(rule: dict, obj: ARCObject,
     if kind == "frame_minority":
         return grow_frame_minority(cc, bounds) or {}
 
+    # R22 (ARC_RAY_EXT): falsification-verified on census exemplars.
+    # line_periodic (0a938d79): the object emits its FULL row/col line
+    # (axis chosen by grid orientation), repeated FORWARD at period
+    # 2 * |separation from the other seed| until the border.  Every
+    # parameter derived at render time; forward-only is the verified
+    # spelling (backward repeats were falsified against ground truth).
+    if kind == "line_periodic":
+        if all_objects is None or len(all_objects) < 2:
+            return {}
+        others = [o for o in all_objects if frozenset(o.cells) != cells_fs]
+        if not others:
+            return {}
+        color = int(rule.get("color", obj.color))
+        axis = "row" if h >= w else "col"
+        def _pos(o):
+            rs = [r for r, _ in o.cells]
+            cs = [c for _, c in o.cells]
+            return min(rs) if axis == "row" else min(cs)
+        p_self = _pos(obj)
+        p_other = min((_pos(o) for o in others),
+                      key=lambda p: abs(p - p_self))
+        sep = abs(p_other - p_self)
+        if sep == 0:
+            return {}
+        period = 2 * sep
+        added: dict = {}
+        limit = h if axis == "row" else w
+        k = p_self
+        while k < limit:
+            if axis == "row":
+                for c in range(w):
+                    if (k, c) not in skip_cells:
+                        added[(k, c)] = color
+            else:
+                for r in range(h):
+                    if (r, k) not in skip_cells:
+                        added[(r, k)] = color
+            k += period
+        return added
+
+    # path_two_anchor (992798f6): the path leaves THIS object with one
+    # diagonal step toward the target object, runs straight along the
+    # dominant axis, then approaches the target on a 45-degree diagonal;
+    # endpoints excluded.  Geometry fully derived; colour induced.
+    if kind == "path_two_anchor":
+        if all_objects is None or len(all_objects) < 2:
+            return {}
+        others = [o for o in all_objects if frozenset(o.cells) != cells_fs]
+        if not others:
+            return {}
+        color = int(rule.get("color", obj.color))
+        def _center(o):
+            rs = [r for r, _ in o.cells]
+            cs = [c for _, c in o.cells]
+            return (min(rs), min(cs))
+        # CANONICAL ROLES (992798f6's falsified rule): the source is the
+        # HIGHER-colour seed of the pair, the target the lower — computed
+        # from the scene, independent of which object hosts the rule, so
+        # a uniform generator renders one identical path from either host.
+        pair = [obj, min(others, key=lambda o: abs(_center(o)[0]
+                - _center(obj)[0]) + abs(_center(o)[1] - _center(obj)[1]))]
+        pair.sort(key=lambda o: -o.color)
+        src, tgt = pair[0], pair[1]
+        r0, c0 = _center(src)
+        r1, c1 = _center(tgt)
+        dr, dc = r1 - r0, c1 - c0
+        if dr == 0 and dc == 0:
+            return {}
+        sr = (dr > 0) - (dr < 0)
+        sc = (dc > 0) - (dc < 0)
+        cells: list = []
+        r, c = r0 + sr, c0 + sc          # one diagonal step off the source
+        cells.append((r, c))
+        guard = h + w + 2
+        if abs(dr) >= abs(dc):           # vertical-dominant
+            while abs(r1 - r) > abs(c1 - c) and guard > 0:
+                r += sr; cells.append((r, c)); guard -= 1
+            while (r, c) != (r1, c1) and guard > 0:
+                r += sr; c += sc
+                if (r, c) != (r1, c1):
+                    cells.append((r, c))
+                guard -= 1
+        else:
+            while abs(c1 - c) > abs(r1 - r) and guard > 0:
+                c += sc; cells.append((r, c)); guard -= 1
+            while (r, c) != (r1, c1) and guard > 0:
+                r += sr; c += sc
+                if (r, c) != (r1, c1):
+                    cells.append((r, c))
+                guard -= 1
+        ends = {(r0, c0), (r1, c1)}
+        return {cell: color for cell in cells
+                if cell not in ends and cell not in skip_cells
+                and 0 <= cell[0] < h and 0 <= cell[1] < w}
+
     # R20 (ARC_RAY_EXT): the GRID-AWARE counterparts of the growth.py modes.
     # They need the scene, so they are undefined without ``grid_array``.
     if kind in ("cross_center", "cavity_leak", "ray_deflect"):
@@ -659,6 +754,29 @@ def _candidate_generators_for_object(
                 candidates.append((score, len(added),
                                    {"kind": "frame_minority"}))
 
+    # R22 two-object modes (ARC_RAY_EXT): line_periodic + path_two_anchor.
+    # Both need the other scene objects; proposed only when the gate is on
+    # and the scene has at least two objects (their renderers return {}
+    # otherwise, so this is a pure cost guard).
+    if all_objects is not None and len(all_objects) >= 2 \
+            and _ray_ext_enabled():
+        r22_rules = [{"kind": k} for k in            # source-colour variants
+                     ("line_periodic", "path_two_anchor")]
+        r22_rules += [{"kind": k, "color": int(color)}
+                      for color in try_colors
+                      for k in ("line_periodic", "path_two_anchor")]
+        for rule in r22_rules:
+            added = _apply_generator(rule, obj, bounds,
+                                     grid_array=grid_array,
+                                     all_objects=all_objects)
+            if not added:
+                continue
+            score = sum(1 for (r, c), cl in added.items()
+                        if 0 <= r < bounds[0] and 0 <= c < bounds[1]
+                        and target[r, c] == cl)
+            if score == len(added) and score > 0:
+                candidates.append((score, len(added), rule))
+
     # R20 grid-aware modes (ARC_RAY_EXT): obstacle-conditional stopping and
     # background-only painting.  Undefined without a scene, so the whole
     # block is skipped when grid_array is None -- and never entered at all
@@ -869,6 +987,13 @@ def _fusion_signature(train_pairs: list[GridPair],
         objs_in = segment(gi, variant, bg_in)
         objs_out = segment(go, variant, bg_out)
         if len(objs_out) >= len(objs_in):
+            # R22 (ARC_RAY_EXT): EMISSION signature — the output ADDS
+            # objects (lines/paths emitted from seeds).  The original
+            # fusion class (n_out < n_in) is unchanged when the gate is
+            # off; with it on, strictly-more objects on every pair also
+            # qualifies (equality still rejects: nothing was created).
+            if _ray_ext_enabled() and len(objs_out) > len(objs_in):
+                continue
             return False
     return True
 

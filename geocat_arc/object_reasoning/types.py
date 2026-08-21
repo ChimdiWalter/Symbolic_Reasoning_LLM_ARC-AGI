@@ -1089,6 +1089,9 @@ def program_from_dict(d: dict) -> AnyProgram:
         return OverlayProgram.from_dict(d)
     if d.get("program_class") == "generative":
         return GenerativeProgram.from_dict(d)
+    if d.get("program_class") == "computed_pattern":
+        from .meta_induction import ComputedPatternProgram
+        return ComputedPatternProgram.from_dict(d)
     if d.get("program_class") == "erase_patch":
         from .graduation import ErasePatchProgram
         return ErasePatchProgram.from_dict(d)
@@ -1223,6 +1226,10 @@ class LibraryOperator:
     created_at: str = ""
     loo_record: dict = field(default_factory=dict)
     falsification_record: dict = field(default_factory=dict)
+    # Independent-transfer annotation (lockbox protocol): status is
+    # "independent-transfer" only when the operator solved a task outside
+    # its provenance; "provisional" otherwise. Never gates registration.
+    transfer_record: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return asdict(self)

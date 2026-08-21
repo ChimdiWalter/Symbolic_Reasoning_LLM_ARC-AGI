@@ -41,7 +41,8 @@ GROW_MODES: tuple[str, ...] = ("fill_interior", "halo", "ray",
                                "symmetry_complete", "mirror_edge",
                                "periodic_self", "periodic_bbox",
                                "frame_minority", "cross_center",
-                               "cavity_leak", "ray_deflect", "pattern")
+                               "cavity_leak", "ray_deflect", "fill_holes",
+                               "pattern")
 
 #: Round-19 derived modes (the ARC_PATTERN_DERIVE-gated subset of GROW_MODES).
 PATTERN_DERIVE_MODES: tuple[str, ...] = ("periodic_self", "periodic_bbox",
@@ -595,6 +596,54 @@ def mask_pattern(in_cells: frozenset | set, added: dict) -> tuple:
     return tuple(sorted((int(r - r0), int(c - c0)) for (r, c) in added))
 
 
+def _hole_fill_observation(cells, added: dict):
+    """GROW params for "the enclosed regions were filled", or None.
+
+    Requires every added cell to lie in an enclosed region and every touched
+    region to be filled solid with one colour.  ``hole_colors`` records the
+    per-region (key -> colour) observations for each candidate key feature;
+    the inducer merges them across members into one induced map."""
+    class _Holder:
+        __slots__ = ("cells",)
+
+        def __init__(self, c):
+            self.cells = frozenset(c)
+
+    regions = enclosed_hole_regions(_Holder(cells))
+    if not regions:
+        return None
+    remaining = dict(added)
+    observed: dict = {f: {} for f in HOLE_FEATURES}
+    for region in regions:
+        got = {cell: remaining.pop(cell) for cell in region if cell in remaining}
+        if not got:
+            continue
+        if len(got) != len(region):
+            return None                      # partial fill: not this mode
+        colors = set(got.values())
+        if len(colors) != 1:
+            return None                      # multicolour region
+        col = int(next(iter(colors)))
+        for feat in HOLE_FEATURES:
+            table = observed.get(feat)
+            if table is None:            # this key feature already conflicted
+                continue
+            key = hole_feature_value(region, feat)
+            if table.get(key, col) != col:
+                observed[feat] = None    # same key, two colours: not a function
+            else:
+                table[key] = col
+    if remaining:
+        return None                          # cells outside every region
+    usable = tuple((f, tuple(sorted(m.items(), key=lambda kv: repr(kv[0]))))
+                   for f in HOLE_FEATURES
+                   for m in (observed.get(f),) if m)
+    if not usable:
+        return None
+    # hashable + JSON-round-trippable: raw params feed signature keys
+    return {"mode": "fill_holes", "hole_colors": usable}
+
+
 def detect_grow(in_cc: dict, out_cc: dict,
                 bounds: tuple[int, int],
                 grid: Any = None) -> Optional[dict]:
@@ -709,6 +758,14 @@ def detect_grow(in_cc: dict, out_cc: dict,
                                         col3) == added:
                         return {"mode": "ray_deflect",
                                 "direction": direction, "color": col3}
+        # Expression-grammar round: the added cells are exactly this
+        # object's enclosed regions, each one solid.  Recorded as the
+        # per-region key->colour observation the inducer merges across
+        # members into one induced map (no cell is stored).
+        if _expr_grammar_enabled():
+            obs = _hole_fill_observation(cells, added)
+            if obs is not None:
+                return obs
         colors2 = set(added.values())
         if len(colors2) == 1:
             # color-abstracted pattern (round 4): mask offsets + a color
@@ -776,6 +833,68 @@ def connect_segment(a_cells, b_cells,
             return {(r, col): None for r in range(lo, hi + 1)
                     if 0 <= r < h}
     return None
+
+
+def connect_l_path(a_cells, b_cells,
+                   bounds: tuple[int, int],
+                   turn: str = "h") -> Optional[dict]:
+    """Round 22 (ARC_RAY_EXT): L-shaped Manhattan connector between two
+    objects.  The path is an L (two axis-aligned legs meeting at a right
+    angle) from the nearest point of A toward B, stopping one cell before
+    B's nearest face.
+
+    *turn* controls which leg comes first:
+      "h" — horizontal leg from A's position to B's column, then vertical.
+      "v" — vertical leg from A's position to B's row, then horizontal.
+
+    Returns {cell: None} placeholders (color applied by caller) or None
+    when the path is empty or the objects overlap/touch.
+    Pure function of the two cell sets — fold-safe.
+    Gated by ARC_RAY_EXT in all callers."""
+    def center(cells):
+        rs = [r for r, _ in cells]
+        cs = [c for _, c in cells]
+        return (min(rs) + max(rs)) // 2, (min(cs) + max(cs)) // 2
+
+    h, w = bounds
+    ar, ac = center(a_cells)
+    br, bc = center(b_cells)
+    if ar == br and ac == bc:
+        return None
+
+    out: dict = {}
+    if turn == "h":
+        # horizontal leg along A's row toward B's column
+        c_step = 1 if bc > ac else -1
+        for c in range(ac + c_step, bc + c_step, c_step):
+            pos = (ar, c)
+            if 0 <= pos[0] < h and 0 <= pos[1] < w and pos not in a_cells:
+                out[pos] = None
+        # vertical leg along B's column toward B's row (stop 1 before B)
+        r_step = 1 if br > ar else -1
+        for r in range(ar + r_step, br, r_step):
+            pos = (r, bc)
+            if 0 <= pos[0] < h and 0 <= pos[1] < w and pos not in b_cells:
+                out[pos] = None
+    elif turn == "v":
+        # vertical leg along A's column toward B's row
+        r_step = 1 if br > ar else -1
+        for r in range(ar + r_step, br + r_step, r_step):
+            pos = (r, ac)
+            if 0 <= pos[0] < h and 0 <= pos[1] < w and pos not in a_cells:
+                out[pos] = None
+        # horizontal leg along B's row toward B's column (stop 1 before B)
+        c_step = 1 if bc > ac else -1
+        for c in range(ac + c_step, bc, c_step):
+            pos = (br, c)
+            if 0 <= pos[0] < h and 0 <= pos[1] < w and pos not in b_cells:
+                out[pos] = None
+    else:
+        return None
+
+    if not out:
+        return None
+    return out
 
 
 def find_part_window(src_cc: dict, orphan_cc: dict) -> Optional[dict]:
@@ -922,3 +1041,132 @@ def render_extract_part(grid: "np.ndarray", source_bbox: tuple,
             val = int(transformed[dr, dc])
             out[(pr + dr, pc + dc)] = val
     return out
+
+
+def enclosed_hole_offsets(obj, gctx) -> tuple:
+    """Bbox-origin-relative offsets of the cells this object encloses.
+
+    Same topology as the ``enclosed_region_count`` feature: 4-connected
+    components of non-object cells inside the bbox that cannot reach the
+    bbox boundary ring.  Returned in the color-abstracted pattern encoding
+    (bare offsets), so the GROW ``pattern`` slot can paint them with any
+    COLOR expression.  Deterministic order; empty when nothing is enclosed.
+    """
+    cells = obj.cells
+    if not cells:
+        return ()
+    rows = [r for r, _ in cells]
+    cols = [c for _, c in cells]
+    r0, c0, r1, c1 = min(rows), min(cols), max(rows) + 1, max(cols) + 1
+    h, w = r1 - r0, c1 - c0
+    if h <= 0 or w <= 0:
+        return ()
+    occupied = {(r - r0, c - c0) for r, c in cells}
+    # flood the complement from a 1-cell pad ring: whatever it cannot reach
+    # is enclosed
+    reached = set()
+    stack = [(-1, -1)]
+    reached.add((-1, -1))
+    while stack:
+        r, c = stack.pop()
+        for nr, nc in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
+            if -1 <= nr <= h and -1 <= nc <= w \
+                    and (nr, nc) not in reached \
+                    and (nr, nc) not in occupied:
+                reached.add((nr, nc))
+                stack.append((nr, nc))
+    return tuple(sorted((r, c) for r in range(h) for c in range(w)
+                        if (r, c) not in occupied and (r, c) not in reached))
+
+
+def _expr_grammar_enabled() -> bool:
+    """Expression-grammar round gate (same call-time-read idiom as
+    ``_ray_ext_enabled``): with it off, computed-region patterns are never
+    proposed, enumerated, or rendered."""
+    import os
+    return os.environ.get("ARC_EXPR_GRAMMAR", "") not in ("", "0")
+
+
+def enclosed_hole_regions(obj) -> list:
+    """The object's enclosed regions as absolute cell sets, in deterministic
+    order (by top-left corner).  Same topology as ``enclosed_hole_offsets``,
+    kept separate so each region can be treated as its own fill target."""
+    cells = obj.cells
+    if not cells:
+        return []
+    rows = [r for r, _ in cells]
+    cols = [c for _, c in cells]
+    r0, c0 = min(rows), min(cols)
+    h, w = max(rows) + 1 - r0, max(cols) + 1 - c0
+    occupied = {(r - r0, c - c0) for r, c in cells}
+    reached = set()
+    stack = [(-1, -1)]
+    reached.add((-1, -1))
+    while stack:
+        r, c = stack.pop()
+        for nr, nc in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
+            if -1 <= nr <= h and -1 <= nc <= w and (nr, nc) not in reached \
+                    and (nr, nc) not in occupied:
+                reached.add((nr, nc))
+                stack.append((nr, nc))
+    inside = {(r, c) for r in range(h) for c in range(w)
+              if (r, c) not in occupied and (r, c) not in reached}
+    regions = []
+    seen: set = set()
+    for cell in sorted(inside):
+        if cell in seen:
+            continue
+        comp = {cell}
+        seen.add(cell)
+        stack = [cell]
+        while stack:
+            r, c = stack.pop()
+            for nb in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
+                if nb in inside and nb not in seen:
+                    seen.add(nb)
+                    comp.add(nb)
+                    stack.append(nb)
+        regions.append(frozenset((r + r0, c + c0) for r, c in comp))
+    return sorted(regions, key=lambda s: min(s))
+
+
+#: Region features a hole fill may key its colour on.  All are computed from
+#: the region itself, so a fold that never saw the held-out object derives
+#: the same key — the property that makes the induced map LOO-stable.
+HOLE_FEATURES: tuple = ("area", "hw", "shape")
+
+
+def hole_feature_value(region: frozenset, feature: str):
+    """Deterministic key for one enclosed region."""
+    rows = [r for r, _ in region]
+    cols = [c for _, c in region]
+    if feature == "area":
+        return len(region)
+    r0, c0 = min(rows), min(cols)
+    if feature == "hw":
+        return (max(rows) + 1 - r0, max(cols) + 1 - c0)
+    if feature == "shape":
+        return tuple(sorted((r - r0, c - c0) for r, c in region))
+    raise ValueError(f"unknown hole feature {feature!r}")
+
+
+def grow_fill_holes(obj, feature: str, mapping: dict) -> Optional[dict]:
+    """Paint each enclosed region with ``mapping[key(region)]``.
+
+    Regions and their keys are computed from the object at apply time; only
+    the key->colour table is induced.  Returns None when the object encloses
+    nothing (the mode is undefined there) and skips regions whose key is
+    absent from the table (an unseen key contributes no cells rather than
+    crashing a fold, matching the map-fallback rule)."""
+    regions = enclosed_hole_regions(obj)
+    if not regions:
+        return None
+    out: dict = {}
+    for region in regions:
+        key = hole_feature_value(region, feature)
+        if key not in mapping:
+            continue
+        col = int(mapping[key])
+        for cell in region:
+            out[cell] = col
+    return out or None

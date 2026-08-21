@@ -936,6 +936,8 @@ def _group_observed(delta_type: DeltaType,
             if src in color_map and color_map[src] != dst:
                 map_ok = False
             color_map[src] = dst
+            if "turn" in p:
+                observed.append(str(p["turn"]))
         elif delta.delta_type is DeltaType.GROW:
             if "color" in p:
                 dst = int(p["color"])
@@ -973,6 +975,26 @@ def _group_observed(delta_type: DeltaType,
     return observed
 
 
+from .growth import HOLE_FEATURES, _expr_grammar_enabled
+
+
+def _added_colors(delta) -> set:
+    """Colours the added cells of a GROW delta carry (both pattern
+    encodings: an explicit ``color`` param, or colours baked per entry)."""
+    params = delta.params or {}
+    if "color" in params:
+        return {int(params["color"])}
+    pattern = params.get("pattern") or ()
+    colors = set()
+    for entry in pattern:
+        try:
+            (_, _), col = entry
+        except (TypeError, ValueError):
+            return set()
+        colors.add(int(col))
+    return colors
+
+
 def _feature_map_candidates(members: dict[tuple[int, int], ObjectDelta],
                             table: FeatureTable) -> list[ColorExpr]:
     """Induced feature_map ColorExprs for a RECOLOR group: for each
@@ -983,9 +1005,19 @@ def _feature_map_candidates(members: dict[tuple[int, int], ObjectDelta],
     lift color_map provides for source-color keying (Section 2.4)."""
     targets: dict[tuple[int, int], int] = {}
     for key, delta in members.items():
-        if delta.delta_type is not DeltaType.RECOLOR:
-            return []
-        targets[key] = int(delta.params["color"])
+        if delta.delta_type is DeltaType.RECOLOR:
+            targets[key] = int(delta.params["color"])
+            continue
+        # Expression-grammar round: a GROW group keyed on the colour its
+        # added cells carry — the same induced map, one delta type over.
+        if delta.delta_type is DeltaType.GROW \
+                and _expr_grammar_enabled():
+            colors = _added_colors(delta)
+            if len(colors) != 1:
+                return []
+            targets[key] = int(next(iter(colors)))
+            continue
+        return []
     row_of = {(r.pair_index, r.object_id): r for r in table.rows}
     out: list[ColorExpr] = []
     for name, spec in sorted(FEATURE_REGISTRY.items()):
@@ -1214,6 +1246,13 @@ def _action_candidates(delta_type: DeltaType,
 
         def _color_exprs() -> list:
             cands = list(enumerate_expressions(ExprType.COLOR, pctx))
+            # Expression-grammar round: induced feature->colour maps are
+            # built from the group's members, so enumeration alone cannot
+            # reach them; without this a per-object colour can only be
+            # spelled as a constant, which is what splits GROW groups into
+            # one memorized rule per object and fails LOO.
+            if _expr_grammar_enabled():
+                cands += _feature_map_candidates(members, table)
             cands.sort(key=lambda c: (parameter_class_of(c).rank, c.size,
                                       json.dumps(c.to_dict(), sort_keys=True,
                                                  default=str)))
@@ -1300,6 +1339,34 @@ def _action_candidates(delta_type: DeltaType,
                     for c in _color_exprs():
                         yield from _emit({"mode": mode_expr, "color": c,
                                           "direction": dir_expr})
+            elif mode == "fill_holes":
+                # Expression-grammar round: merge the members' per-region
+                # observations into ONE induced key->colour table per key
+                # feature; a feature whose observations conflict is dropped.
+                for feat in HOLE_FEATURES:
+                    merged: dict = {}
+                    ok = True
+                    for p in raw:
+                        if p.get("mode") != "fill_holes":
+                            continue
+                        obs = dict(p.get("hole_colors") or ()).get(feat)
+                        if not obs:
+                            ok = False
+                            break
+                        for k, col in obs:
+                            if merged.get(k, col) != col:
+                                ok = False
+                                break
+                            merged[k] = col
+                        if not ok:
+                            break
+                    if ok and merged:
+                        pairs = tuple(sorted(merged.items(),
+                                             key=lambda kv: repr(kv[0])))
+                        yield from _emit({
+                            "mode": mode_expr,
+                            "hole_map": PatternExpr(op="hole_map",
+                                                    args=(feat, pairs))})
             elif mode == "fill_interior":
                 for c in _color_exprs():
                     yield from _emit({"mode": mode_expr, "color": c})
@@ -1344,6 +1411,19 @@ def _action_candidates(delta_type: DeltaType,
                                      length=ScalarExpr(op="const",
                                                        args=(k,))))
             else:  # pattern
+                # Computed regions (expression-grammar round): the content
+                # is derived from the host at apply time, so a fold that
+                # never saw the held-out object still spells it the same
+                # way.  Proposed alongside the const masks below; the
+                # candidate only survives if it reproduces every member.
+                if _expr_grammar_enabled():
+                    region_expr = PatternExpr(op="enclosed_holes")
+                    region_colors = _color_exprs() \
+                        + _feature_map_candidates(members, table)
+                    for cexp in region_colors:
+                        yield from _emit({"mode": mode_expr,
+                                          "pattern": region_expr,
+                                          "color": cexp})
                 # color-abstracted masks (round 4): shared mask + a full
                 # COLOR expression slot — relational colors (host color,
                 # induced maps) generalize where baked colors memorized.
@@ -1476,8 +1556,22 @@ def _action_candidates(delta_type: DeltaType,
                                             default=str)))
         for ref in refs[:24]:
             for c in cols:
+                # Original straight connector (no turn parameter)
                 yield _make_action(DeltaType.CONNECT,
                                    {"target": ref, "color": c})
+        # Round 22 (ARC_RAY_EXT): L-path connectors with turn parameter.
+        # Only emitted when the detection recorded a turn (the delta
+        # params carry "turn" when connect_l_path was the match).
+        from .growth import _ray_ext_enabled
+        if _ray_ext_enabled():
+            turn_h = ScalarExpr(op="const", args=("h",))
+            turn_v = ScalarExpr(op="const", args=("v",))
+            for ref in refs[:24]:
+                for c in cols:
+                    for turn_expr in (turn_h, turn_v):
+                        yield _make_action(DeltaType.CONNECT,
+                                           {"target": ref, "color": c,
+                                            "turn": turn_expr})
         return
 
     if delta_type is DeltaType.COPY:
@@ -3116,6 +3210,28 @@ def _induce_composed(train_pairs: list[GridPair], config: InductionConfig,
         attempt.programs = rank_candidates(pool, {})
         attempt.fit_objects = 1.0
         attempt.fit_pixels = 1.0
+
+    # CORA expression phase.  Sits in the ordinary candidate procedure, and
+    # BEFORE any early return, so a leave-one-out fold runs exactly the same
+    # code on its own pairs and has to rediscover the candidate for itself.
+    # Its routing condition reads the demonstrations only -- never a
+    # leave-one-out verdict, never the attempt it is about to join -- and it
+    # only ever adds candidates: ranking and acceptance are unchanged.
+    try:
+        from .meta_induction import (induce_computed_candidates,
+                                     meta_induction_enabled)
+        if meta_induction_enabled():
+            computed, _stats = induce_computed_candidates(
+                [(gi.to_numpy(), go.to_numpy()) for gi, go in train_pairs],
+                deadline=deadline)
+            if computed:
+                meta.events.append("META_COMPUTED_CANDIDATE_FOUND")
+                attempt.programs = rank_candidates(
+                    list(attempt.programs) + computed, {})
+                attempt.fit_objects = 1.0
+                attempt.fit_pixels = 1.0
+    except Exception:
+        pass
     if depth_left <= 1 or sink is None:
         return attempt
     if attempt.programs and not force_compose:
@@ -3297,6 +3413,13 @@ def _induce_composed(train_pairs: list[GridPair], config: InductionConfig,
                 composed_found.extend(gen_candidates)
         except Exception:
             pass
+
+    # CORA expression phase: propose computed-pattern candidates into this
+    # same pool.  The trigger is demonstration-local (never a leave-one-out
+    # verdict), so every fold runs this identical procedure and has to
+    # rediscover the candidate from its own pairs -- acceptance stays with
+    # the unchanged gate downstream.
+
 
     # Stage-3 generative-composition path (ARC_GEN_COMPOSE=1):
     # base object-program + generative patch on the residual.

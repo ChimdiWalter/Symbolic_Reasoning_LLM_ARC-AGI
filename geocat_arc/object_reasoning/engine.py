@@ -49,7 +49,9 @@ from .memory import (
 )
 from .types import (
     ArrayPair,
+    FailureStage,
     InductionResult,
+    LOOReport,
     LibraryOperator,
     NearSolveRecord,
     ObjectProgram,
@@ -272,6 +274,60 @@ class ObjectReasoningEngine:
         res.task_id = task_id
         return res
 
+    #: Lockbox protocol: max unsolved non-provenance tasks tried per
+    #: candidate when ARC_TRANSFER_PROMOTION=1.
+    N_TRANSFER_PROBES: int = 8
+
+    def _transfer_validate(self, op: LibraryOperator) -> None:
+        """Annotate ``op.transfer_record`` with independent-transfer status
+        (ARC_TRANSFER_PROMOTION=1 only; annotation never gates
+        registration — the root verifier stays immutable).
+
+        A witness must (a) be outside ``op.provenance``, (b) be UNSOLVED
+        this run, (c) become accepted when re-induced with ``op`` available,
+        and (d) actually use the operator in its winning program — solving
+        that merely coincides with the operator's presence is not transfer.
+        ARC_TRANSFER_POOL may name a JSON file listing the only task_ids
+        eligible as witnesses (e.g. the Promotion split)."""
+        if os.environ.get("ARC_TRANSFER_PROMOTION") != "1":
+            return
+        pool: Optional[set] = None
+        pool_path = os.environ.get("ARC_TRANSFER_POOL")
+        if pool_path:
+            try:
+                pool = set(json.loads(Path(pool_path).read_text()))
+            except Exception:
+                pool = None
+        candidates = sorted(
+            tid for tid in self._train_cache
+            if tid not in self.accepted
+            and tid not in op.provenance
+            and (pool is None or tid in pool))
+        rng = random.Random(0)  # deterministic global choice, as in probes
+        if len(candidates) > self.N_TRANSFER_PROBES:
+            candidates = sorted(rng.sample(candidates, self.N_TRANSFER_PROBES))
+        witnesses: list[str] = []
+        attempted: list[str] = []
+        for tid in candidates:
+            attempted.append(tid)
+            res = self._reinduce(tid, extra_ops=[op])
+            if res is None or not res.accepted or res.program is None:
+                continue
+            used = []
+            try:
+                used = res.program.to_dict().get("library_operators_used") or []
+            except Exception:
+                pass
+            if op.name in used:
+                witnesses.append(tid)
+        op.transfer_record = {
+            "status": ("independent-transfer" if witnesses else "provisional"),
+            "witnesses": witnesses,
+            "attempted": attempted,
+            "pool_restricted": pool is not None,
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+        }
+
     def promote_and_validate(self) -> list[str]:
         """Mine fragments over accepted programs + invent from failure
         clusters; validate (Section 5.4) and register survivors."""
@@ -306,6 +362,7 @@ class ObjectReasoningEngine:
             )
             op.falsification_record = record
             if passed:
+                self._transfer_validate(op)
                 self.library.register(op)
                 existing.add(op.name)
                 registered.append(op.name)
@@ -333,6 +390,7 @@ class ObjectReasoningEngine:
             )
             candidate.falsification_record = record
             if passed:
+                self._transfer_validate(candidate)
                 self.library.register(candidate)
                 existing.add(candidate.name)
                 registered.append(candidate.name)

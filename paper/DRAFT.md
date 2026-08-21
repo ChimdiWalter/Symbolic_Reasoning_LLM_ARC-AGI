@@ -37,8 +37,9 @@ standard for reasoning benchmarks, and release the fully certified corpus:
 (18.1% CSR; 19.5% measured under Kaggle best-of-2), including 2
 certified generative solves — tasks whose programs use
 machine-discovered content-creating operations — and an honest 0/120 on
-the public evaluation split — reliability transfers even where coverage
-does not.
+the public evaluation split: coverage collapses out of distribution, and
+with a single gate acceptance there (test-wrong), evaluation-split
+calibration remains undetermined rather than refuted or confirmed.
 
 ## 1. Introduction
 
@@ -119,7 +120,7 @@ re-verified by rendering every program against hidden tests
 ## 3. Experiments
 
 ### E1 — The certificate is load-bearing
-P(correct | certified) = 40/42 = **0.952** vs
+P(correct | certified) = 40/42 = **0.952** (95% Wilson CI 0.842–0.987) vs
 P(correct | train-perfect, rejected) = 37/201 = **0.184**.
 A train-perfect program is ~5× likelier to be right when the procedure
 re-derives it from fewer examples. [Table 1]
@@ -135,8 +136,10 @@ rewards exactly the behavior the certificate exposes. Gate recall cost:
 Frozen system on the ARC-AGI-2 public evaluation split: 0/120
 render-verified (its single gate-acceptance is test-wrong, consistent
 with layer precision at n=1). Coverage collapses on the harder
-distribution; **reliability does not** — nothing false is certified.
-CSR reports both facts; accuracy alone reports neither.
+distribution. Training-split calibration was strong; at n=1 acceptance,
+**evaluation-split calibration remains undetermined** — the experiment
+establishes that the gate stayed highly selective, not that reliability
+transfers. CSR reports both facts; accuracy alone reports neither.
 
 ### E4 — The lattice predicts truth
 Hidden-test precision by worst parameter class, uncertified population:
@@ -520,9 +523,10 @@ price of certification; the curve is what a consumer of the predictions
 can actually rely on per confidence class.
 
 **What the evaluation-split zero means.** Our frozen system certifies
-essentially nothing on the ARC-AGI-2 public evaluation split — and
-certifies nothing *false* there either. Coverage collapses on the harder
-distribution; reliability does not. A framing census of the uncovered
+essentially nothing on the ARC-AGI-2 public evaluation split (one
+acceptance, test-wrong). Coverage collapses on the harder distribution;
+training-split calibration was strong, but evaluation-split calibration
+remains undetermined at one acceptance. A framing census of the uncovered
 evaluation tasks attributes the collapse to program-family coverage
 (compositional, generative, and multi-step structures our four families
 cannot express), not to any failure of the certificate itself. We regard

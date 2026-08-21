@@ -49,7 +49,7 @@ The frozen-model variant: a 1.8M-parameter network at 94% per-cell accuracy pass
 
 ## The Honest Map
 
-181/1000 ARC-AGI-2 training tasks solved with certificates (18.1% CSR). 0/120 on the public evaluation split. Nothing false is certified on either split.
+181/1000 ARC-AGI-2 training tasks solved with certificates (18.1% CSR). 0/120 on the public evaluation split: coverage collapses out of distribution, and with one gate acceptance there (test-wrong), evaluation-split calibration remains undetermined. Training-split calibration is strong (40/42 correct among certified).
 
 The last +4 came from a variant-budget scheduling policy (fold-stable, time-allocation only, zero new vocabulary) that cured a chronically budget-starved task and unlocked 4 others through better search-time allocation, while its one measured harm (a task solving only under the old schedule) is recorded as the intervention's price, alongside the arbitration discipline that separated 3 apparent losses (contention) from the 1 real one.
 

@@ -303,10 +303,25 @@ class PatternExpr(Expr):
     spelling (COPY period, ray-to-border, ...) in canonical ranking."""
     rtype: ExprType = ExprType.PATTERN
 
-    GRAMMAR = {"const": (tuple,)}
+    GRAMMAR = {
+        "const": (tuple,),
+        # Expression-grammar round: region content COMPUTED from the host
+        # object at apply time instead of stored cell-by-cell.  A fold that
+        # never saw the held-out object still derives the same region, which
+        # is what makes these spellings LOO-stable where const masks are not.
+        "enclosed_holes": (),
+        # (feature_name, ((key, colour), ...)) for the fill_holes mode: the
+        # regions and their keys are computed from the object at apply time,
+        # so only the table is induced.
+        "hole_map": (str, tuple),
+    }
 
     @property
     def size(self) -> int:
+        if self.op == "hole_map":
+            return 1 + len(self.args[1])      # one literal per table entry
+        if self.op != "const":
+            return 1
         pat = self.args[0] if self.args else ()
         return 1 + len(pat)
 
@@ -816,6 +831,12 @@ def evaluate(expr: Expr, obj: ARCObject, context: EvalContext) -> Any:
         return mode
 
     if isinstance(expr, PatternExpr):
+        if expr.op == "enclosed_holes":
+            from .growth import enclosed_hole_offsets
+            offsets = enclosed_hole_offsets(obj, gctx)
+            if not offsets:
+                raise EvalError("enclosed_holes: object encloses nothing")
+            return offsets
         return tuple(expr.args[0])
 
     raise EvalError(f"unknown expression class: {type(expr).__name__}")

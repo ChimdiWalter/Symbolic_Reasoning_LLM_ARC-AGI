@@ -83,6 +83,7 @@ def set_learned_verbs(reg: LearnedVerbRegistry) -> None:
 
 
 from .growth import (
+    connect_l_path,
     connect_segment,
     detect_grow,
     grow_cavity_leak,
@@ -694,6 +695,68 @@ def extract_deltas(correspondence: PairCorrespondence,
                  "color": int(next(iter(colors)))}, 0)
         connected.add(out_obj.id)
 
+    # L-PATH CONNECT detection (Round 22, ARC_RAY_EXT): an orphan whose
+    # cells match an L-shaped Manhattan connector between two DIFFERENT
+    # matched hosts.  Runs AFTER straight-segment detection.  Gated by
+    # ARC_RAY_EXT (same gate as grid-aware GROW modes).
+    from .growth import _ray_ext_enabled
+    if _ray_ext_enabled():
+        for out_obj in sorted(corr.output_objects, key=lambda o: o.id):
+            if out_obj.id in (set(match_of.values()) | claimed | connected):
+                continue
+            # L-paths are NOT 1-wide; skip anything the straight detector
+            # already claimed, plus trivially small orphans.
+            if len(out_obj.cells) < 3:
+                continue
+            halo = {(r + dr, c + dc) for (r, c) in out_obj.cells
+                    for dr in (-1, 0, 1) for dc in (-1, 0, 1)}
+            touched = sorted({o.id for o in corr.output_objects
+                              if o.id in matched_pairs0 and (halo & o.cells)})
+            if len(touched) != 2:
+                continue
+            a = next(o for o in corr.output_objects if o.id == touched[0])
+            b = next(o for o in corr.output_objects if o.id == touched[1])
+            colors = set(cell_colors_of(out_obj).values())
+            if len(colors) != 1:
+                continue
+            # Try both turn directions (h and v); (a,b,h)==(b,a,v)
+            # so trying both turns with one ordering covers all 4.
+            hit_turn = None
+            for turn in ("h", "v"):
+                seg = connect_l_path(a.cells, b.cells, corr.grid_shape,
+                                     turn)
+                if seg is not None and set(seg) == set(out_obj.cells):
+                    hit_turn = turn
+                    break
+            if hit_turn is None:
+                continue
+            # SYMMETRIC attribution (same as straight CONNECT)
+            ixs = []
+            for k in (0, 1):
+                host_iid = matched_pairs0[touched[k]]
+                ix = next((i for i, d in enumerate(deltas)
+                           if d.input_object_id == host_iid), None)
+                if ix is None or deltas[ix].delta_type is not DeltaType.KEEP:
+                    ixs = []
+                    break
+                ixs.append((ix, host_iid, touched[k], touched[1 - k]))
+            if not ixs:
+                continue
+            # Determine turn relative to each host:
+            # (a,b,turn_ab) -> host_a gets turn_ab; host_b gets the flip.
+            flip = {"h": "v", "v": "h"}
+            for idx_in_touched, (ix, host_iid, own_out, other_out) in \
+                    enumerate(ixs):
+                rel_turn = hit_turn if idx_in_touched == 0 else \
+                    flip[hit_turn]
+                deltas[ix] = ObjectDelta(
+                    corr.pair_index, DeltaType.CONNECT, host_iid,
+                    [own_out, out_obj.id],
+                    {"other_output_id": other_out,
+                     "color": int(next(iter(colors))),
+                     "turn": rel_turn}, 0)
+            connected.add(out_obj.id)
+
     # LEARNED-VERB detection (AUTONOMOUS M2, round 7): registered chains
     # from learned_verbs.json claim orphans that are a chain-image of some
     # input object (mirrored/rotated/scaled copies the base COPY detection
@@ -967,6 +1030,10 @@ def _predict_cells(delta: ObjectDelta,
         elif mode == "ray_deflect":                        # round 20
             added = grow_ray_deflect(cells, grid, params["direction"],
                                      params["color"]) or {}
+        elif mode == "fill_holes":                         # expr-grammar round
+            from .growth import grow_fill_holes
+            feature, table = (params["hole_colors"] or (("area", ()),))[0]
+            added = grow_fill_holes(in_obj, feature, dict(table)) or {}
         else:  # pattern (colored, or color-abstracted mask + color)
             added = pattern_cells(cells, params["pattern"],
                                   params.get("color"))

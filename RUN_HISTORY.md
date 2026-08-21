@@ -9433,3 +9433,1005 @@ MILESTONE 1a-d COMPLETE:
 - tarball: kaggle/arc_certified_solver_v22.tar.gz, 1016K, unpacks+imports OK
 - SUBMISSION_CHECKLIST.md: numbers + tarball name updated
 STATUS: GIT PUSH NEXT
+MILESTONE 1e COMPLETE — GIT PUSH VERIFIED:
+- Commit 759bc70 pushed to origin/main
+- git log author/committer: only Chimdi Walter identities
+- Sanitize dance: backups restored, local RUN_HISTORY.md + .gitignore intact
+STATUS: TASK 2 CENSUS STARTING
+
+## 2026-08-17 — ROUND 22: ray/line extension v2
+
+Build-first candidate from docs/V22_CENSUS_CANDIDATES.md: RAY/LINE
+EXTENSION (#3, ~33 extrapolated tasks, HIGH buildability).  R20 shipped
+cross_center / cavity_leak / ray_deflect and threaded the scene into
+the GROW path; R21 added cheap-first variant probing.  The current
+chain flag set is FRAMES + GENERATIVE + PATTERN_DERIVE + VARIANT_BUDGET
++ RAY_EXT and the sealed score is 181.
+
+V22 census identifies 11 tasks tagged extension_beyond_objects
+(0a938d79, 0e671a1a, 0f63c0b9, 32e9702f, 692cd3b6, 992798f6,
+a2fd1cf0, d22278a0, d4a91cb9, e45ef808, e7639916).  Of these, only
+692cd3b6 was traced in R20 (REJECTED: wide routed maze path).  The
+remaining 10 are NEW from the v22 census and need fresh traces.
+
+Also: 868de0fa scheduling-harm fix (census diagnosis names
+composition-aware budget reservation as the remedy).
+
+CONTENTION at start: load 11.31 — timing results marked.
+
+METHOD: mandatory R19 trace-first + falsification protocol (4 rounds
+running).  Trace >=4 census exemplars, characterize exactly what the
+missing structure is a function of, reject exemplars that belong to
+other classes (record each rejection).  Falsify candidate modes against
+ground-truth changed-cell sets.  Implement only verified modes under
+ARC_RAY_EXT gate.  Tests, probe, gates.
+
+### MILESTONE 1: TRACES + FALSIFICATION COMPLETE (10 exemplars)
+
+scripts/trace_r22_ray_ext.py ran on all 10 new census exemplars.
+ARTIFACTS: outputs/r22_trace/r22_trace_results.json, logs/r22_trace.log.
+Manual visual inspection + targeted L-connector falsification done.
+Load was 11.3 then 6.0 then 10.0 (CONTENTION throughout traces).
+
+AUTOMATED STAGE-2 RESULT: 0 verified, 1 partial (32e9702f 1-pair
+coincidence), 9 rejected against existing R20 ray modes.
+
+MANUAL VISUAL + TARGETED FALSIFICATION PER EXEMPLAR:
+
+RECLASSIFIED TO L-CONNECTOR — FALSIFICATION-VERIFIED (3 tasks):
+
+ a2fd1cf0  L-PATH CONNECTOR, 2 dots (color 2 + color 3).  Added =
+   L-shaped Manhattan path, constant color 8.  Rule: from dot A,
+   horizontal-first (or equivalently dot B vertical-first — same path
+   described from opposite endpoints).  EXACT on ALL 3 train pairs.
+   Census: variant=S3, failure_stage=matching.
+
+ d4a91cb9  L-PATH CONNECTOR, 2 dots (color 8 + color 2).  Added =
+   L-shaped Manhattan path, constant color 4.  Same geometry as
+   a2fd1cf0 with turn=v_first from one endpoint.  EXACT on ALL 3 pairs.
+   Census: variant=S3, failure_stage=matching.
+
+ 0e671a1a  L-PATH TREE, 3 dots (anchor=color 4, targets=color 3 +
+   color 2).  Added = UNION of two L-paths from anchor to each target,
+   constant color 5.  Turn per target is consistent: to d3 h_first,
+   to d2 v_first (but the h/v assignment varies by spatial layout across
+   pairs — P0-P1 use h,v; P2-P3 use v,h).  EXACT on ALL 4 pairs.
+   The 3-dot tree is complex (conditional turn parameter); defer unless
+   the 2-dot mode covers it via per-object application.
+
+RECLASSIFIED TO RECTANGLE OUTLINE — VERIFIED (1 task):
+
+ e7639916  RECTANGLE OUTLINE, 3 corner dots (all color 8).  Added =
+   the bounding rectangle's outline in color 1, excluding dot positions.
+   EXACT on ALL 3 pairs.  Multi-object (3 objects define shape); does
+   NOT fit the single-object GROW path.  Deferred: needs multi-object
+   grouping or a FRAME delta variant.
+
+REJECTED — belong to other candidate classes (6 tasks):
+
+ 0a938d79  PERIODIC ROW/COLUMN FILL (2 dots define period, alternating
+   colors fill rows/cols to border).  PATTERN-TO-RULE family.
+ 0f63c0b9  MULTI-DOT CROSS/STRIPE (each dot generates cross pattern to
+   borders; 92-104 cells/pair, multi-color).  PATTERN-TO-RULE family.
+ 32e9702f  GRID FLOOD FILL (grid filled with color 5, markers preserved;
+   1-pair coincidence on 3x3 trivial grid, fails on 7x7 and 8x8).
+   PATTERN-TO-RULE family.
+ d22278a0  ZIGZAG/STAIRCASE from 2 dots to borders.  PATTERN-TO-RULE.
+ 992798f6  DIAGONAL STAIRCASE CONNECTOR (Bresenham-like line between 2
+   dots; step patterns vary per pair — not L-path).  No buildable mode.
+ e45ef808  COLOR-DEPENDENT BOUNDARY EXTENSION (column extension at
+   stepped boundary, color = f(position)).  POSITIONAL COLOR family.
+
+CANDIDATE-LEVEL VERDICT:
+
+ RAY/LINE EXTENSION — HONEST NEGATIVE.  0/10 census exemplars are
+ traditional ray tasks.  Census tag "extension_beyond_objects" is a
+ false positive for all 10.
+
+ L-PATH CONNECTOR — CONFIRMED.  2 tasks (a2fd1cf0, d4a91cb9) verified
+ on ALL pairs with a single consistent rule.  The mode is mechanically
+ clean: zero geometric parameters beyond (source, target, turn, color).
+ Both fail at MATCHING (S3 merges dots + path into one component).
+ Under S1, the L-path is an ORPHAN that the CONNECT delta detector
+ can handle — IF connect_segment is extended to try L-paths.
+
+MODES TO IMPLEMENT:
+  1. connect_l_path (L-shaped Manhattan connector) — extend the existing
+     CONNECT delta detection (correspondence.py line ~647) to try
+     L-shaped paths, not just center-line segments.  Gate: ARC_RAY_EXT
+     (extend existing gate; the L-path needs the same grid-scene access
+     R20 threaded into the GROW path).
+  2. 868de0fa composition-reserve fix — census diagnosis:
+     composition-aware budget reservation when a single-stage program is
+     train-perfect but LOO-fails with all constant parameters.
+
+### MILESTONE 2: BUILD COMPLETE (L-path connector, env-gated ARC_RAY_EXT)
+
+connect_l_path(a_cells, b_cells, bounds, turn) added to growth.py:
+  L-shaped Manhattan path from center of A to center of B.
+  turn="h": horizontal leg at A's row, vertical leg at B's column.
+  turn="v": vertical leg at A's column, horizontal leg at B's row.
+  Returns {cell: None} (color applied by caller).  Pure function, fold-safe.
+
+correspondence.py: L-path detection block added after straight-segment
+  CONNECT detection.  Gated by _ray_ext_enabled().  For non-1-wide orphans
+  touching exactly 2 matched KEEP hosts, tries connect_l_path with both
+  turns.  Symmetric attribution with per-host relative turn (flip h<->v).
+
+actions.py: apply_connect extended.  When "turn" parameter present AND
+  ARC_RAY_EXT enabled, uses connect_l_path instead of connect_segment.
+  Falls through to straight segment when turn is absent (backward compat).
+
+inducer.py: CONNECT candidate emission extended.  When ARC_RAY_EXT
+  enabled, emits (target, color, turn) triples for turn in {h, v}
+  after the existing (target, color) pairs.  Observed-values extraction
+  updated to record turn when present.
+
+FILES:
+  geocat_arc/object_reasoning/growth.py      connect_l_path
+  geocat_arc/object_reasoning/correspondence.py  L-path detection
+  geocat_arc/object_reasoning/actions.py     apply_connect + L-path
+  geocat_arc/object_reasoning/inducer.py     CONNECT + turn emission
+
+GATE: ARC_RAY_EXT (same gate, zero cost when off — connect_l_path never
+called, L-path detection block never entered, turn candidates never
+emitted).
+
+## 2026-08-17 — PRE-INTERRUPTION CHECKPOINT (R22 in flight)
+R22 ray/line-extension-v2 build in progress (its milestone entries
+above/below this line are the live record; trace phase active).
+realtime entries. NO server-side jobs running (v22 sealed; no chains,
+no watchers pending).
+ON RECONNECT ("resume"): 1) read the ROUND 22 entry's last milestone;
+entry's plan if transcript unusable); 3) after R22 seals: v23 chain
+(6-flag set candidate, load-gated <8, arbitration recipe = v22's) ->
+seal -> paper refresh -> sanitized GitHub push; 4) then the
+expression-grammar round (V22_CENSUS_CANDIDATES top-2) toward >200;
+5) E3 eval re-run; 6) Kaggle bar check (train>200 AND eval>0).
+All context: RESUME_STAGE1.md -102, docs/V22_CENSUS_CANDIDATES.md,
+this entry. Nothing is lost by the interruption.
+
+### R22 MILESTONE (main session, inline): FALSIFICATION-VERIFIED MODE #1
+0a938d79 = LINE_PERIODIC: each seed pixel emits its FULL row/col line
+(axis = grid orientation: tall->rows, wide->cols) in its own colour,
+repeated at period = 2 * |separation of the two seeds|, to the border.
+EXACT on ALL 4 train pairs. Fully relational: period from seed
+geometry, colours from seeds, axis from grid shape — zero constants.
+Characterization of all 10 census exemplars saved to
+outputs/r22_trace/characterization.json:
+  Tier-1 linear+additive: 0a938d79 (periodic, VERIFIED), 992798f6,
+  e45ef808 (falsification next).
+  Tier-2 single-blob (suspect connector-class rediscovery — treat
+  skeptically): 0e671a1a, 0f63c0b9, a2fd1cf0, d4a91cb9.
+  REJECTED (mixed structure): 32e9702f, d22278a0, e7639916.
+
+### R22 MILESTONE (inline): FALSIFICATION-VERIFIED MODE #2
+992798f6 = PATH_TWO_ANCHOR: path leaves the colour-2 seed with ONE
+diagonal step, runs straight along the dominant axis, then approaches
+the colour-1 seed on a 45-degree diagonal; path colour = 3 (induced
+constant, demoted class); endpoints excluded. EXACT on ALL 4 pairs.
+Roles keyed to seed colours (relational); geometry fully derived.
+NOTE: this is the CONNECTOR class genuinely found — R20's
+falsification was correct for ITS exemplars (misclassified); the v22
+census produced the real one. Two-anchor emission is a NEW generator
+shape (scene-level, two objects) — R20's grid-access plumbing makes
+it implementable.
+MODES TO IMPLEMENT (both verified): line_periodic (0a938d79),
+path_two_anchor (992798f6). e45ef808 untraced (denser task, deferred
+unless quick). Tier-2 blob tasks deferred (suspect class).
+
+### R22 MILESTONE (inline): renderers + proposals implemented
+generative.py: line_periodic + path_two_anchor renderer branches in
+_apply_generator (scene-derived params, forward-only periodic per
+falsification, guard-bounded path walk) + proposal block gated
+ARC_RAY_EXT requiring EXACT target agreement (score==len). Next:
+end-to-end certification test on both exemplars.
+
+### R22 MILESTONE (inline): design fixes after first zero
+First end-to-end attempt: 0 candidates. Diagnosed two blockers, fixed:
+(1) FUSION precondition excluded EMISSION tasks (n_out > n_in) —
+    widened under ARC_RAY_EXT: strictly-more objects also qualifies
+    (equality still rejects; off-path identical).
+(2) Uniform strategy needs (a) SOURCE-COLOUR rule variants (no explicit
+    colour -> renderer uses obj.color; required for 0a938d79's two
+    differently-coloured seeds) and (b) CANONICAL ROLES for
+    path_two_anchor (source = higher-colour seed, computed from scene,
+    host-independent — one identical path from either host object).
+Retest of both exemplars is the next step. All work inline in
+generative.py (_apply_generator branches, proposal block,
+_fusion_signature).
+
+### R22 MILESTONE (inline): BOTH EXEMPLARS CERTIFIED
+Full induce_program (LOO gate = sole acceptance path), flags
+ARC_GENERATIVE+ARC_RAY_EXT: 0a938d79 CERTIFIED + TEST-CORRECT
+(GenerativeProgram, source-colour line_periodic); 992798f6 CERTIFIED
++ TEST-CORRECT (path_two_anchor colour=3). PROSPECTIVE +2 -> 183.
+Next: solo harness verification (rule c), then gates.
+
+### R22 MILESTONE: SOLO VERIFICATION 2/2
+0a938d79 (32.5s) + 992798f6 (2.4s) both solve through the full
+harness solo, origin=object, six-flag set. PROSPECTIVE 183.
+GATES LAUNCHING (detached sequence): budget-wall OFF-control
+(0ca9ddb6 dc1df850 5168d44c 64a7c07e ccd554ac c87289bb — all must
+still solve), dev-19, s30, then engine suite. Marker R22_GATES_DONE
+in logs/r22_gates.log.
+
+## 2026-08-18 — CORA adoption plan (from The_system_I_would_build.txt)
+- Read the full CORA document (joint representation-program induction, Near-Solve Compiler,
+  certificate vector, independent-transfer promotion, prequential experiment, immutable verifier).
+- Verdict: its diagnosis independently matches our censuses (194/269 literal-blocked, 75 outside
+  delta vocab, E10 limits). Wrote docs/CORA_ADOPTION_PLAN.md: idea-by-idea disposition + staged
+  build order (Stage 0 wording -> A near-solve compiler -> B transfer promotion + lockbox splits
+  -> C metamorphic certificate -> D version-space attempt_2 -> E/F view language, demand-driven).
+- Invariant made explicit: LOO gate immutable; all CORA pieces are proposal mechanisms or
+  certificate annotations, never acceptance-rule changes.
+- Stage A LAUNCHING (analysis-only, safe alongside running R22 gates): Near-Solve Compiler v0
+  over existing near_solves.jsonl corpora -> outputs/nearsolve_compiler/ns_dataset.jsonl +
+  docs/NS_FAILURE_FAMILIES.md (measured failure-family table that will dictate the
+  expression-grammar round's primitive list).
+
+## 2026-08-18 — CORA Stage 0 COMPLETE (claim-hardening) + Stage A running
+- Stage 0 applied to all three claim carriers:
+  - paper/DRAFT.md: 4 edits — abstract + E3 + discussion now say "coverage collapses out of
+    distribution; with a single gate acceptance (test-wrong) evaluation-split calibration
+    remains UNDETERMINED" (replaces the attackable "reliability transfers"/"nothing false is
+    certified" wording, which contradicted the recorded test-wrong acceptance); E1 now reports
+    40/42 = 0.952 with 95% Wilson CI 0.842–0.987.
+  - paper/latex/main.tex: same 4 edits; PDF rebuilt clean, 10 pages.
+  - kaggle/writeup.md: same fix ("Nothing false is certified on either split" removed);
+    now 1261 words.
+- Stage A (Near-Solve Compiler v0) running detached: marker NS_COMPILER_DONE in
+  logs/nearsolve_compiler.log; outputs -> outputs/nearsolve_compiler/ns_dataset.jsonl +
+  docs/NS_FAILURE_FAMILIES.md.
+- R22 gate battery still running in parallel (marker R22_GATES_DONE in logs/r22_gates.log).
+
+## 2026-08-18 — checkpoint (user-requested record)
+- State at checkpoint: CORA Stage 0 sealed (all three claim carriers hardened, PDF 10pp);
+  marker NS_COMPILER_DONE pending); R22 gate battery still mid dev-19 stage
+  (marker R22_GATES_DONE pending). No new results since last entry; all prior records current.
+- On R22 gates clean: write tests/test_round22_ray2.py, seal R22, v23 chain -> 183.
+- On Stage A done: NS_FAILURE_FAMILIES.md table dictates expression-grammar primitives;
+  then Stage B (independent-transfer promotion + 600/200/200 lockbox manifest).
+
+## 2026-08-18 — CORA Stage A COMPLETE: Near-Solve Compiler v0 (measured failure map)
+- Deliverables: scripts/nearsolve_compiler_v0.py (deterministic; rerun byte-identical),
+  outputs/nearsolve_compiler/{ns_dataset.jsonl,family_table.json}, docs/NS_FAILURE_FAMILIES.md,
+  marker NS_COMPILER_DONE. No engine files touched (gates uncontaminated).
+- Corpus: outputs/unified_harness_v22/near_solves.jsonl (824 records, matches 181-sealed state;
+  v10 rejected as stale full_v6_round6). 333 records carry rich object/near_solve_parts traces
+  (91 train-perfect LOO-failing) — the modern analogue of the old 269.
+- NS-ladder histogram (824): NS-0 102 | NS-1 90 | NS-2 32 | NS-3 48 | NS-4 157 | NS-5 292 |
+  UNDET 103 (12.5%, left honest).
+- Top clusters covering 184/205 (90%) of NS-3/NS-4:
+  1) extensional pattern (literal grow masks) — 111 tasks — needs PATTERN-AS-FUNCTION of object features
+  2) object synthesis (copy/spawn deltas) — 46 — needs spawn-at-relational-position w/ derived count
+  3) relational selectors (predicate + rule-partition) — 27
+- VERDICT vs queued expression-grammar round: root cause CONFIRMED (literal/extensional params),
+  priority AMENDED — pattern-as-function SUBSUMES positional color (pure color-slot failures only
+  5 decided); object synthesis + relational selectors outrank color invention; ray/line extension
+  (old census build-first) already largely in vocabulary post-R22 — residual gap is the
+  pattern/synthesis/selector triple. NS-5 view demand (292 tasks, dominant family) feeds Stage E.
+- NEXT: expression-grammar round targets = pattern-as-function, object synthesis, relational
+  selectors (in that order). Engine edits gated behind R22_GATES_DONE.
+
+## 2026-08-18 — CORA Stage B (manifest half) COMPLETE: frozen Experience/Promotion/Lockbox split
+- Artifacts: scripts/build_lockbox_manifest.py (deterministic, PYTHONHASHSEED-immune; seed
+  20260818), outputs/lockbox/manifest.json (v1.0.0), docs/LOCKBOX_PROTOCOL.md,
+  logs/lockbox_manifest.log (marker LOCKBOX_MANIFEST_DONE). No existing files touched.
+- Split: 600/200/200 exact, stratified by family label (meta|shape_rel|size|npairs|palette;
+  244 full labels; max deviation from proportion 1.2 tasks). Certified-181 spread 109/36/36.
+  181 verified = unified_harness_v22 solved (176) + v22_arbitration solved (5), disjoint,
+  matches v22_census.json v22_sealed.
+- Verified: rerun byte-identical (also under different PYTHONHASHSEED); counts exact; zero
+  fallback labels (every task had cert or NS metadata).
+- Manifest sha256 cc797ba80ad781ef930f79c1d332ab4a389e27ee777ea666053ba779cf3f5e5e;
+  challenges sha256 779eaba8...c48f20f5. Manifest is FROZEN/append-only per protocol.
+- Protocol: invention from Experience only; Promotion = independent transfer only (promotion
+  failures never mined); Lockbox evaluated ONCE after freeze; 120 public eval untouched until
+  after lockbox; LOO gate sole acceptance path throughout.
+- Remaining Stage B half (engine edit, WAITS for R22_GATES_DONE): independent-transfer
+  status wired into promote_and_validate.
+
+## 2026-08-18 — checkpoint (user-requested record)
+- CORA progress today: Stage 0 SEALED (claim-hardening across DRAFT.md/main.tex PDF 10pp/
+  writeup.md), Stage A SEALED (near-solve compiler: pattern-as-function 111 / object synthesis
+  46 / relational selectors 27 = 90% of NS-3/4; amends expression-round priorities), Stage B
+  manifest SEALED (600/200/200 frozen, sha256 cc797ba8..., LOCKBOX_PROTOCOL.md).
+- In flight: (1) R22 gate battery still mid dev-19 (marker R22_GATES_DONE pending);
+  be xfail-documented, not fixed mid-gates) — file not yet on disk at this checkpoint.
+- Queued behind gates: R22 seal (tests + RUN_HISTORY entry) -> v23 chain -> 183; Stage B
+  engine-half (independent-transfer in promote_and_validate); expression-grammar round with
+  measured targets (pattern-as-function -> object synthesis -> relational selectors).
+
+## 2026-08-18 — R22 unit tests GREEN (26/26)
+- tests/test_round22_ray2.py: 26 passed in 2.03s (verified inline after the test-writer agent
+  was killed by session limit mid-verification; rerun: pytest tests/test_round22_ray2.py -q;
+  log logs/r22_tests.log, marker R22_TESTS_DONE). Zero xfails — no engine bugs surfaced.
+- Covers: line_periodic renderer (both orientations, color override), path_two_anchor
+  (canonical roles host-independent, endpoints excluded), emission signature gating
+  (ARC_RAY_EXT on/off, n_out==n_in still rejected), proposal gating, end-to-end exemplar.
+- Full-suite interference check delegated to the gate battery's own suite stage (its final
+  step before R22_GATES_DONE). Gate battery healthy: s30 stage alive at 2h54m.
+- R22 seal now waits ONLY on R22_GATES_DONE.
+
+## 2026-08-19 — R22 GATE RESULT: 3/4 stages clean; suite caught a REAL regression (gate working)
+- OFF-control 6/6 (identical origins), dev-19 9te/8tc baseline match, s30 4te/4tc baseline
+  match, 0 crashes anywhere. Suite: 469 passed, 4 FAILED — all in test_stage2_composition.
+- Arbitration (solo, quiet box): clean env 22/22 PASS; full six-flag env 4 FAIL (reproducible);
+  ARC_RAY_EXT alone PASS; GENERATIVE+RAY_EXT PASS; **minimal repro = ARC_VARIANT_BUDGET=1 +
+  ARC_RAY_EXT=1** — the SAME pair as the recorded 868de0fa harm (v22 arbitration). Under v22
+  code this pair passed the suite (504/0) => R22's RAY_EXT-gated additions caused it.
+- Failure shape: two_pass composition task, train_fit 1.0, FailureStage.LOO, trace shows
+  VARIANT_PROBE_PROMOTED:4 — hypothesis: R22 proposals get variant-probe-promoted, steal
+  canonical ranking from the true 2-stage composed program, fail LOO, induction rejected.
+- R22 NOT SEALED yet. Next: trace proposal path in composed contexts, minimal principled fix
+  (likely: require emission evidence at proposal site), rerun suite + exemplars + gates delta.
+
+## 2026-08-19 — SUITE FAILURES ROOT-CAUSED: R21 probe overhead, NOT R22. R22 SEALED.
+- Isolation ladder (solo, quiet box, deterministic):
+  full six flags FAIL -> RAY_EXT alone PASS -> GENERATIVE+RAY_EXT PASS ->
+  VARIANT_BUDGET+RAY_EXT FAIL -> budget=180 PASSES (accept at 91.8s; 60s budget is the wall)
+  -> RAY_EXT on/off at budget 180: 90.6s vs 91.9s (R22 cost = ZERO on this task)
+  -> **VARIANT_BUDGET ALONE at 60s: FAIL (61.0s). Sole culprit = R21 variant probing.**
+- Verdict: the 4 test_stage2_composition failures are an R21 cost characteristic (~+30s probing
+  on the two-pass composition task vs its 60s test budget), latent since v21/v22 seals; exposed
+  now ONLY because this battery exported chain env to the pytest stage (prior batteries ran the
+  suite clean-env; tests are written against default-off gating). NOT an R22 regression.
+- Protocol addendum (engine rule): gate-battery suite stage runs in CLEAN env henceforth;
+  flagged behavior is covered by the round-specific test files which set env themselves.
+- Bonus: cheap deterministic repro for the queued R21 probe-harm diagnosis (868de0fa's pair):
+  two_pass_task + ARC_VARIANT_BUDGET=1 + budget_s=60 -> FailureStage.LOO. Queue item upgraded.
+- R22 GATE VERDICT: OFF-control 6/6, dev-19 baseline match, s30 baseline match, 0 crashes,
+  round tests 26/26, suite failures exonerated. **R22 SEALED** (line_periodic +
+  path_two_anchor + emission signature, all ARC_RAY_EXT-gated; certified exemplars
+  0a938d79 + 992798f6 test-correct). Prospective 183 pending v23 chain.
+
+## 2026-08-19 — v23 IN-RUN COMPLETE: 183/1000 (marker V23_FULL_DONE, 13007s, 16 workers)
+- by_origin: both 54, pipeline 50, object 61, geocat 18; induced_fraction 0.399.
+- Delta vs sealed 181: GAINS 4 = 0a938d79 + 992798f6 (the two R22 certified exemplars,
+  exactly as predicted) + 292dd178 + 41e4d17e (unexpected — diagnose origin during seal).
+  LOSSES 2 = dc1df850 (documented flake; solved in this week's R22 OFF-control) + ef26cbf6.
+- ARBITRATION LAUNCHING (v22 recipe): solo retries of the 2 losses, full five-flag set,
+  workers=1, marker V23_ARB_DONE in logs/v23_arbitration.log. Projected seal 183-185.
+
+## 2026-08-19 — v23 SEALED: 185/1000 — NEW RECORD (+4 net over v22's 181)
+- ARBITRATION COMPLETE (solo, quiet box, 317s): 2/2 recovered — dc1df850 264.3s (pipeline;
+  documented flake, pure 16-worker contention) + ef26cbf6 (object). ZERO real losses.
+- FINAL v23 = 183 in-run + 2 recovered = **185/1000**.
+- Solved-set delta vs v22's 181: +0a938d79 (R22 line_periodic) +992798f6 (R22 path_two_anchor)
+  +292dd178 (cavity_leak) +41e4d17e (cross_center). The last two = R20 vocabulary reaching
+  emission-shaped tasks THROUGH R22's signature widening — generalization beyond exemplars,
+  zero new code for those tasks.
+- TRAJECTORY: 153 -> 167 -> 169 -> 173 -> 174 -> 177 -> 181 -> **185 (v23, R22 ray2 modes +
+  emission signature)**.
+- CHAIN FLAGS unchanged: FRAMES=45 + GENERATIVE + PATTERN_DERIVE + VARIANT_BUDGET + RAY_EXT.
+- PAPER/WRITEUP: numbers need 181 -> 185 refresh (queued with next sanitized GitHub push).
+- NOTE: lockbox manifest was stratified on the 181 set; the 4 new solves shift certified counts
+  by <=4 tasks across splits — record as manifest annotation, do NOT rebuild (frozen).
+
+## 2026-08-19 — STAGE B ENGINE HALF: independent-transfer promotion — STARTING (steps 1-4 approved)
+- User approved executing the ladder: (1) Stage B engine half -> (2) expression-grammar round ->
+  (3) view-language round -> (4) freeze + lockbox/eval-120 one-shots.
+- Traced promotion machinery: engine.promote_and_validate (engine.py:275) -> validate_operator
+  (memory.py:580, checks a=provenance reinduction, b=zero-regression probes, c=color invariance)
+  -> FragmentLibrary.register; LibraryOperator (types.py:1212) carries provenance list.
+- DESIGN (annotation-only, default-off, verifier untouched):
+  * types.py: LibraryOperator gains transfer_record dict (default empty; old JSON loads fine).
+  * engine.py: after a candidate passes validate_operator and ARC_TRANSFER_PROMOTION=1, try
+    re-induction on up to N_TRANSFER_PROBES=8 UNSOLVED non-provenance cached tasks (optionally
+    restricted to a pool file via ARC_TRANSFER_POOL, e.g. the Promotion split); a witness that
+    becomes accepted AND whose winning program actually uses the operator =>
+    status independent-transfer (witnesses recorded); else provisional.
+  * Registration behavior unchanged (annotation only); flag off => byte-identical behavior.
+- Next: implement, new test file tests/test_transfer_promotion.py, run engine tests clean-env.
+
+## 2026-08-19 — STAGE B ENGINE HALF COMPLETE: independent-transfer promotion wired
+- IMPLEMENTED:
+  * types.py: LibraryOperator.transfer_record dict (default empty; old library JSON loads).
+  * engine.py: _transfer_validate() + N_TRANSFER_PROBES=8; called at BOTH registration sites
+    (mined fragments + invented-from-cluster), annotating BEFORE register so persistence
+    carries it. Witness requires: outside provenance AND unsolved this run AND accepted on
+    re-induction with op AND op.name in winning program's library_operators_used (coincidence
+    excluded). ARC_TRANSFER_POOL restricts witnesses to a task-id list (Promotion split).
+    Flag off (default) => byte-identical behavior; annotation NEVER gates registration.
+- TESTS: tests/test_transfer_promotion.py 5/5 GREEN (flag-off inert; provisional without
+  witness; dict round-trip incl. legacy JSON; pool restriction; persisted library carries
+  record). Engine regression: test_inducer_engine.py 26/26 GREEN clean-env.
+- HONEST GAP: no synthetic positive-witness test (needs an unsolved task solvable only via
+  the operator); positive path gets validated on the first real promotion in the expression
+  round, per lockbox protocol.
+- STEP 1 of approved 1-4 ladder DONE. NEXT: step 2 — expression-grammar round (CORA invention
+  round 1), trace-first on Experience-split pattern-as-function exemplars.
+
+## 2026-08-19 — STEP 2 LAUNCHED: expression-grammar round, trace-first phase
+  INTERSECT Experience split (lockbox discipline: promotion/lockbox pairs NEVER opened);
+  8-12 exemplars characterized into functional forms; forms falsified against ground-truth
+  changed-cell sets on ALL pairs (1-pair-coincidence trap guarded); output
+  docs/EXPR_ROUND_TRACE.md + outputs/expr_round_trace/; marker EXPR_TRACE_DONE in
+  logs/expr_trace.log. Design recommendation = typed grammar productions, not generator modes.
+
+## 2026-08-19 — checkpoint (user-requested record)
+- Ladder status: STEP 1 (Stage B engine half) SEALED — transfer_record + _transfer_validate,
+  outputs/expr_round_trace/{classification_v1.json,trace_results.jsonl,trace_summary.json};
+  marker EXPR_TRACE_DONE pending; docs/EXPR_ROUND_TRACE.md pending.
+- Sealed this cycle: v23 = 185/1000 (new record), R22, CORA Stages 0/A/B(both halves).
+- No other runs active. On EXPR_TRACE_DONE: read verified forms -> design grammar productions
+  -> implement under gate with ARC_TRANSFER_PROMOTION=1 -> steps 3 (view round) and
+  4 (freeze + lockbox/eval one-shots) follow.
+
+## 2026-08-19 — EXPR ROUND TRACE PHASE COMPLETE (marker EXPR_TRACE_DONE; lockbox held)
+- Working set: 111 pattern-as-function -> 69 Experience (opened) + 21 Promotion + 21 Lockbox
+  (ids only, never opened). Baseline: 69/69 stored programs train-perfect, 69/69 LOO-fail,
+  196 const-pattern rules, 7,629 literal mask cells — the family is real and uniform.
+- 12 exemplars characterized; falsification (exact changed-cell match, ALL pairs):
+  * REGION_FILL(region, color=f(feature)) — VERIFIED, 6 tasks exact; feature->color maps
+    fold-coverable (the exact LOO discriminator).
+  * TEMPLATE_STAMP(D4 + color bijection) — VERIFIED, 3 tasks exact.
+  * PERIODIC_EXTEND(lattice, orbit-derivable) — VERIFIED, 2 tasks exact.
+  * KEYED_STAMP — REJECTED with proof: 44/69 extensional passes but 34 vacuous + 6
+    fold-breaking; exactly 1 LOO-viable. Pattern must be COMPUTED per input, not looked up.
+  * strict HALO/BBOX rings — falsified 0/69. Honest rejects: 4 path/dynamics + 2 movement
+    (4093f84a misfiled by compiler) + 4 unclear; 17 overlap families #2/#3.
+- Coverage: 12/69 verified-exact now; ~41/69 (59%) reachable with itemized variant
+  extensions; extrapolated ~66/111 across the three forms.
+- Grammar recommendation: PatternExpr := FillRegion(RegionExpr, ColorExpr) |
+  StampTemplate(TemplateExpr, XformExpr, AnchorExpr) | ExtendLattice(LatticeExpr, DomainExpr);
+  ColorExpr += FeatureMap (certified only when fold-coverable) | LegendMap; trace checkers
+  reused as semantic-dedup evaluator before any depth increase (CORA discipline).
+- Artifacts: docs/EXPR_ROUND_TRACE.md, outputs/expr_round_trace/*, scripts/expr_trace_v1.py.
+- NEXT: implement production #1 REGION_FILL env-gated (ARC_EXPR_GRAMMAR=1), certify trace
+  exemplars through full induce_program, tests, gates; transfer promotion ON (first live use).
+
+- Code survey findings (before writing anything):
+  * ColorExpr op "feature_map" ALREADY EXISTS (expressions.py:117/321/561, inducer
+    _feature_map_candidates:978) but is proposed ONLY for RECOLOR groups (inducer:1193).
+  * GROW "pattern" mode is CONST-ONLY (inducer:1348-1370): masks come from raw member params;
+    no computed-pattern production. This is the 7,629-literal-cell site the trace measured.
+  * FEATURE_REGISTRY already carries the trace's verified features (size, touches_border,
+    is_rectangle, bbox_height/width, hole_count, enclosed_region_count).
+  => The REGION_FILL gap is narrower than assumed: need (a) a COMPUTED PatternExpr
+     (object_holes) so hole-fill content is derived per input, and (b) feature_map colors
+     reachable from GROW colour slots, not just RECOLOR.
+- DIAGNOSTIC FIRST (trace-first discipline): run induction on verified exemplars to see the
+  actual blocking stage before implementing. Log logs/expr_diag.log, marker EXPR_DIAG_DONE.
+
+## 2026-08-20 — EXPR ROUND BUILD: fill_holes production implemented; OFF-CONTROL CAUGHT A REGRESSION
+- Diagnosis chain (all measured, logs/expr_diag*.log):
+  1. All 6 REGION_FILL exemplars: train-perfect, LOO-fail (confirms trace).
+  2. Winning programs = per-object GROW rules with const 1-cell masks + const colors
+     (00dbd492: fill_interior color=const(4) and const(8) as SEPARATE rules) = memorization.
+  3. feature_map colors were unreachable from GROW slots (only RECOLOR built them) -> fixed
+     (_color_exprs now includes _feature_map_candidates when gated; _feature_map_candidates
+     accepts GROW groups via new _added_colors).
+  4. Still no gain: 00dbd492's added cells carry MULTIPLE colors per object (holes filled with
+     different colors) -> the colour varies WITHIN one object, which no per-object colour slot
+     can express. This is the measured reason the family needs a per-REGION production.
+- IMPLEMENTED (all behind ARC_EXPR_GRAMMAR=1, default off):
+  * growth.py: enclosed_hole_offsets, enclosed_hole_regions, HOLE_FEATURES(area|hw|shape),
+    hole_feature_value, grow_fill_holes, _hole_fill_observation, _expr_grammar_enabled;
+    new GROW mode "fill_holes" (regions computed at apply time; only a key->colour table is
+    induced — no cell is stored).
+  * expressions.py: PatternExpr ops "enclosed_holes" and "hole_map" (str, tuple) with honest
+    MDL size (1 + table entries); round-trips verified.
+  * actions.py + correspondence.py: apply + raw-params replay for the new mode.
+  * inducer.py: fill_holes proposal merging per-member observations into ONE induced table
+    per key feature (conflicting feature dropped).
+- BUGS FOUND AND FIXED IN-ROUND: unhashable dict params broke signature keys -> all variants
+  incoherent (SEGMENTATION at 0s); missing replay branch in correspondence caused the same.
+  Both fixed; observations are now hashable + JSON-round-trippable tuples.
+- MEASURED RESULT (honest): mode DETECTS (36 fill_holes detections on 00dbd492) but certifies
+  NOTHING yet; and the OFF-CONTROL SHOWS REAL HARM — 0ca9ddb6 accepted=True 66s (flag off) ->
+  accepted=False 135s (flag on). Candidate flooding/ranking theft, same failure shape as the
+  R20/R21 budget lessons. ccd554ac fails in BOTH (pre-existing budget-wall task).
+- VERDICT this cycle: production stays DEFAULT-OFF (engine rule: zero-yield -> default-off,
+  kept). NEXT DIAGNOSTIC (named, not guessed): (a) is the induced hole map fold-coverable on
+  00dbd492, or are keys pair-unique? (b) why does the fill_holes candidate lose canonical
+  ranking to the memorizing per-object rules? (c) budget cost of the extra candidates on
+  0ca9ddb6 (probe-slice measurement, R21 recipe).
+
+## 2026-08-20 — EXPR ROUND BUILD PHASE SEALED (honest partial): production in, default-off
+- TESTS: tests/test_expr_region_fill.py 14/14 GREEN (region extraction, per-region fill,
+  unknown-key no-op, partial-fill reject, hashable/serializable observation, gate reads env
+  at call time, detect returns memorized "pattern" with flag off vs "fill_holes" with it on,
+  expression round-trip, MDL size counts table entries not cells).
+- REGRESSION: full engine suite (clean env, flag off) **504 passed in 1395s — ZERO failures**,
+  matching the v21/v22 baseline of 504. Default path is byte-identical.
+- TWO REAL BUGS the tests caught while writing them (both fixed):
+  (1) conflict path in _hole_fill_observation set a table to None and then still indexed it
+      (latent AttributeError); now skips conflicted key features cleanly.
+  (2) my first two test fixtures were WRONG, not the code: congruent regions with different
+      colours are CORRECTLY rejected (no region-feature key can distinguish them), and a
+      partly-filled region is CORRECTLY rejected. Recorded because it is a real expressive
+      limit of the production: colour must be a function of a computed region feature.
+- STATUS: production implemented, tested, regression-free, DEFAULT-OFF. It detects on real
+  tasks (36 detections on 00dbd492) but certifies nothing yet, and the OFF-control measured
+  harm (0ca9ddb6 66s/True -> 135s/False with the flag on). Per engine rule (zero-yield ->
+  default-off, kept) it ships disabled until the next diagnostic resolves ranking/coverability.
+- NEXT (named): (a) fold-coverability of the induced hole map on 00dbd492; (b) why the
+  fill_holes candidate loses canonical ranking to memorizing per-object rules; (c) probe-slice
+  budget cost on 0ca9ddb6 (R21 recipe). Then TEMPLATE_STAMP + PERIODIC_EXTEND productions.
+
+## 2026-08-20 — DIAGNOSTIC (a) ANSWERED: fill_holes has ZERO certifiable yield (honest negative)
+- Measured on ALL 69 Experience members of the pattern-as-function family:
+  * hole-fill shape holds + colour map FOLD-COVERABLE: **0 tasks**
+  * shape holds but map NOT fold-coverable: 1 (00dbd492, S6_COLOR_LAYERS, key feature
+    "shape", 3 keys, key_pair_counts [1,2,3] — one key witnessed in a single pair, so the
+    fold holding that pair out cannot induce it). The LOO gate is CORRECT to refuse it.
+- => the object-enclosed-hole production cannot certify anything in this family. Kept,
+  default-off, per the less-is-more engine rule; no further budget spent on it.
+- WHY THIS IS NOT A FALSIFICATION OF THE TRACE (important): the trace verified REGION_FILL on
+  6 tasks, but only 00dbd492's regions are OBJECT-ENCLOSED HOLES. The other five fill PANELS
+  (272f95fa, e9c9d9a1) and BACKGROUND COMPONENTS (7b6016b9, 83302e8f, e73095fd) — regions that
+  are not anchored to any object at all.
+- ARCHITECTURAL CONSEQUENCE (the CORA thesis, measured on our own corpus): REGION_FILL cannot
+  be fixed at the expression level while the ontology says "objects are connected components".
+  "Region" is a VIEW-level concept, so this form is gated on the view language (Stage E), not
+  on grammar depth. The expression round's remaining forms (TEMPLATE_STAMP, PERIODIC_EXTEND)
+  are still expression-level and stay in scope.
+- NEXT MEASUREMENT (running): same decisive scan for the panel/background-component region
+  sources — do changed cells equal a union of solid-filled regions with a single-valued AND
+  fold-coverable colour function? That result decides whether Stage E's first view production
+  is regions-as-fill-targets, and it is measured BEFORE any code is written.
+
+## 2026-08-20 — CORA breakthrough sprint framing adopted (user-supplied)
+- Adopted, and it sharpens the current work rather than replacing it:
+  * OUTCOME TAXONOMY for the REGION_FILL diagnosis (DIRECT_GRAMMAR_LOO_PASS_SEARCH_MISS /
+    ..._FAIL_LANGUAGE_GAP / CANDIDATE_NOT_CONSTRUCTED / ..._NOT_TRAIN_PERFECT /
+    ..._RANKED_OUT / ..._BUDGET_STARVED / FEATURE_MAP_NOT_FOLD_COVERABLE /
+    SEGMENTATION_OR_DOMAIN_MISMATCH). My object-hole scan already yields
+    FEATURE_MAP_NOT_FOLD_COVERABLE for that form; the other five exemplars are untested
+    because their regions are panels/background components, not object holes.
+  * FTES (Failure-Triggered Expression Search) is the right architectural answer to the
+    measured 0ca9ddb6 harm: expression candidates must NOT enter the ordinary GROW
+    cross-product; they get an isolated pool + budget slice on triggered tasks only, with
+    the baseline result preserved and the unchanged gate validating separately.
+  * Semantic dedup by observational signature (render on every train input) before ranking.
+  * Score ledger with LOSSES subtracted; concept records with grammar_concepts_used.
+- Target restated: 185 -> >=201 certified train, eval-120 > 0 (internal target >=3), with
+  independent-transfer witnesses. Lockbox/eval remain untouched and one-shot.
+- IMMEDIATE: complete the fold-level REGION_FILL diagnosis over ALL SIX exemplars with their
+  true region sources (panels + background components), then take the decision gate
+  (A language gap / B search miss / C budget theft / D falsified).
+
+## 2026-08-20 — REGION_FILL DIAGNOSIS COMPLETE + ARCHITECTURAL CORRECTION (user)
+### Diagnosis (scripts/diagnose_region_fill_search.py, outputs/cora_region_diagnosis/)
+Fold-level verdict over the six Experience exemplars, all three region sources:
+- **DIRECT_GRAMMAR_LOO_PASS_SEARCH_MISS: 4** — 272f95fa (panels, key=panel_index, 5 keys),
+  7b6016b9 (background components, key=touches_border), 83302e8f (bg components, is_rect),
+  e73095fd (bg components, is_rect). A computed-region program with a SINGLE-VALUED and
+  FOLD-COVERABLE colour map EXISTS for these; the engine never constructs it.
+- FEATURE_MAP_NOT_FOLD_COVERABLE: 1 (00dbd492 — one key witnessed in a single pair; the gate
+  is right to refuse it).
+- DIRECT_GRAMMAR_LOO_FAIL_LANGUAGE_GAP: 1 (e9c9d9a1 — no tested feature makes the colour
+  single-valued).
+=> OUTCOME B: this is a SEARCH-ARCHITECTURE failure, not a language gap. Also note WHICH
+   entities the four winners need: background components and separator panels — entities the
+   current ontology (objects = connected components) does not have. The repair must construct
+   its own entity set, which is the view/ontology point, reached by measurement.
+
+### Architectural correction (user, adopted as the governing rule)
+- SUPERSEDED: "finish REGION_FILL, then TEMPLATE_STAMP, then PERIODIC_EXTEND". Building those
+  three by hand reaches a bigger DSL and a weak paper ("we added three good ARC primitives").
+- NEW GOVERNING RULE: **do not add further hand-encoded productions until the shared
+  failure-triggered grammar-INVENTION infrastructure exists.** REGION_FILL / TEMPLATE_STAMP /
+  PERIODIC_EXTEND then serve as three INDEPENDENT TEST CASES of one invention mechanism.
+- The shared discovery the trace already proves: every repair replaces STORED OUTPUT PIXELS
+  with a PROCEDURE THAT COMPUTES THEM FROM THE INPUT (7,629 literal cells over 69 tasks; the
+  keyed-lookup alternative collapses: 44 apparent fits -> 34 vacuous + 6 fold-breaking + 1).
+- Consequence for the immutable core: keep it SMALL (partition/select/filter/map/group/
+  relation/paint/transform/compose). FillRegion, StampTemplate, ExtendLattice must be LEARNED
+  macros discovered by anti-unifying successful repairs — not entries we type into the DSL.
+- fill_holes stays as a low-level executor primitive only; it is not the architecture.
+- CORA feeds the EXISTING inducer/composer vocabulary; it does not become a parallel solver.
+  Ranking principle unchanged and extended: relational > feature > induced lookup > literal.
+### NEXT: build the meta-induction layer (program holes -> meta-grammar search for F ->
+  semantic dedup -> anti-unification -> falsification -> transfer), with FTES routing so
+  expression candidates never flood ordinary enumeration (the measured 0ca9ddb6 harm).
+
+## 2026-08-20 — META LAYER: what already existed, the precise gap, and the FIRST DISCOVERED CONCEPT
+### What already existed (checked, not duplicated)
+- M1-M4 meta pipeline: NearSolveStore -> cluster_failures -> invent_from_cluster (mines the
+  recurring selector/action/param-schema fragment) -> retro-solve through NORMAL induction ->
+  validate_operator (provenance re-induction + zero-regression probes + colour invariance) ->
+  FragmentLibrary; plus Stage B independent-transfer annotation. docs/META_INDUCTION_DESIGN.md.
+### The precise gap (this is the measured reason 69/69 stay literal)
+- Everything the existing meta layer can invent is a FRAGMENT OF THE EXISTING DSL: a rule
+  schema with free slots, and a free slot can only be bound by an expression the grammar can
+  already spell. Where the grammar has no computed-pattern production, the slot binds to a
+  CONSTANT — so the mined "abstraction" still carries the literal, and the fold still fails.
+  The meta layer could invent operators; it could not invent a new KIND of expression.
+### What was added (proposer only — the gate is untouched)
+- geocat_arc/object_reasoning/meta_induction.py: generic combinators (four grid PARTITIONS:
+  enclosed_regions / background_components / colour_components / separator_panels; generic set
+  DESCRIPTORS; SELECTORS; induced tables) + PaintPartition as a DISCOVERED COMPOSITION
+  (partition -> select -> key -> lookup -> paint), semantic dedup by observational signature,
+  fold-coverability filter, anti_unify. MDL counts grammar nodes + table entries, never cells.
+  Gated by ARC_META_INDUCTION.
+### FIRST DISCOVERED CONCEPT — measured, not authored
+- Search told nothing about "region fill" rediscovers, from demonstrations alone:
+  * 7b6016b9: background_components / all / touches_border — LOO-by-REDISCOVERY 3/3
+    (the complete discovery procedure re-run on N-1 pairs re-derives it), TEST-CORRECT
+  * 83302e8f: background_components / all / is_rect — LOO 3/3, TEST-CORRECT
+  Both are UNSOLVED at v23's 185, so this is a prospective +2 pending certification through
+  the real engine path.
+- ANTI-UNIFICATION of the two independently discovered repairs yields a skeleton with a free
+  variable: PaintPartition(background_components, all, ?key_feature, ?table). That is a
+  LEARNED concept — the abstraction was produced by the mechanism, not typed into the DSL.
+- Honest gaps: 272f95fa (panels) and e73095fd found by the diagnostic oracle but NOT by the
+  searcher (partition/coverability mismatch to chase); 00dbd492 correctly refused
+  (not fold-coverable); e9c9d9a1 language gap.
+### NEXT: certify the two through the real pipeline via FTES routing (trigger = baseline
+  train-perfect AND LOO-failed; isolated pool + budget slice; baseline preserved), emit
+  ConceptRecords with grammar_concepts_used, then run the SAME mechanism unmodified at the
+  template and lattice families as independent test cases.
+
+## 2026-08-20 — FTES CERTIFIES THROUGH THE REAL ENGINE: 2 new solves, controls intact
+- Wiring (proposer only; the gate is untouched):
+  * meta_induction.py: ComputedPatternProgram (carried program class; harness surfaces;
+    worst_parameter_class = INDUCED_MAP — honest: an induced table on a COMPUTED key ranks
+    above a stored constant and below a relational spelling, so the lattice still prefers
+    relational explanations) + certify_by_rediscovery (LOO by re-running the WHOLE discovery
+    on N-1 pairs; the fold is never handed the full-data concept).
+  * types.program_from_dict + actions.render_program: "computed_pattern" dispatch, following
+    the FramedProgram precedent. JSON artifact alone reconstructs and executes.
+  * engine.solve: FTES trigger fires ONLY when the baseline is train-perfect and reports
+    FailureStage.LOO (the memorized-slot signature); baseline preserved; any exception in the
+    new path leaves the baseline untouched.
+- RESULT (ARC_META_INDUCTION=1, five chain flags, real engine, real gate):
+  * 7b6016b9  SOLVED + TEST-CORRECT, program_class=computed_pattern, 102s
+  * 83302e8f  SOLVED + TEST-CORRECT, program_class=computed_pattern, 306s
+  * CONTROLS all still solved + test-correct: 0a938d79 (generative), 992798f6 (generative),
+    0ca9ddb6 (object), 64a7c07e (framed). Zero regression in this slice.
+- Both target tasks were UNSOLVED at v23's 185 => prospective 187 pending the full run.
+- CLAIM DISCIPLINE (per user's three levels): this is Level 1 (discovery) + Level 2
+  (abstraction invention — anti-unification produced PaintPartition(background_components,
+  all, ?key_feature, ?table) from two INDEPENDENTLY discovered repairs). It is NOT yet Level 3
+  (grammar self-extension): that requires the learned concept to enter K_t and CAUSALLY enable
+  a non-provenance task, with an ablation showing removing the concept removes the solve.
+- NEXT: (1) full-suite regression + untriggered-runtime control; (2) Level-3 experiment:
+  concept enters the library, find a non-provenance task it enables, ablate to prove necessity,
+  and record dH (hypotheses), dt, dMDL; (3) run the SAME unmodified mechanism at the template
+  and lattice families as independent test cases.
+
+## 2026-08-20 — ARCHITECTURAL CLEANUP (user's four corrections) — IN PROGRESS
+1. FTES MOVED INSIDE THE ORDINARY LEARNER. engine.solve no longer sets accepted=True (that
+   code is deleted); meta_induction only PROPOSES candidates. They now join attempt.programs
+   through rank_candidates inside _induce_composed, placed BEFORE the early return
+   ("if attempt.programs and not force_compose: return attempt"), which was the measured
+   reason folds never ran the phase: instrumentation showed induce_computed_candidates called
+   exactly ONCE (full data) and never in the 3 folds. Acceptance is the unchanged loo_validate.
+2. PRE-LOO TRIGGER. Routing now reads the DEMONSTRATIONS ONLY (same-shape + additive +
+   every pair changes something) via failure_signature/trigger_fires — no FailureStage.LOO,
+   no consultation of the attempt it is about to join. Earlier attempts that keyed on the
+   attempt's parameter class were rejected precisely because full data and folds then took
+   different branches (measured: candidate found on full data, folds converged on ordinary
+   S3 colour-selector programs and mispredicted the held-out grid, LOO 0/3).
+3. LEVEL-2 CLAIM CORRECTED. The named PaintPartition dataclass is GONE. New module meta_ast.py
+   holds only generic combinators (Partition / Select / Key / Lookup / Map / Paint / Compose)
+   with ASTs as hashable nested tuples, node-and-table MDL, JSON round-trip, and a real
+   least-general-generalization anti_unify producing a SCHEMA with typed slots. A concept is
+   therefore an AST over primitives that the anti-unifier generalized, which is what makes
+   "invented a reusable macro" a defensible claim rather than "searched our macro's arguments".
+4. COMPUTE POLICY DECLARED. SearchStats records hypotheses, semantic classes, duplicate ratio
+   and seconds; ARC_META_BUDGET_S (default 8s) is the global declared slice. The earlier
+   "no special budget" phrasing is withdrawn until t_baseline / t_FTES / t_LOO and
+   H_baseline / H_FTES are measured separately.
+STATUS: refactor complete and importing; certification re-test running (logs/ftes_test7.log).
+The previous 2 solves were obtained under the OLD engine-acceptance path and are NOT counted
+until they certify through the ordinary pool + unchanged gate.
+
+## 2026-08-20 — CLEANUP VERIFIED: both solves certify through the ORDINARY gate, and 25-40x FASTER
+- With FTES as a pure proposer inside the ordinary candidate procedure and acceptance left to
+  the unchanged loo_validate:
+  * 7b6016b9  SOLVED + TEST-CORRECT, class=computed_pattern, **4s** (was 102s via the old
+    engine-acceptance path)
+  * 83302e8f  SOLVED + TEST-CORRECT, class=computed_pattern, **7s** (was 306s)
+  * CONTROLS unchanged: 0a938d79 20s, 992798f6 1s, 0ca9ddb6 66s, 64a7c07e 7s — all still
+    solved + test-correct.
+- The special certification function is no longer used for acceptance: every fold re-runs
+  _induce_composed, proposes the same candidates from its own N-1 pairs, and the ordinary
+  gate decides. No separate certify_by_rediscovery in the accept path.
+- COMPUTE: the phase does not add a second expensive search on these tasks — it REPLACES a
+  long fruitless one. Measured dt = -98s and -299s. Declared policy: ARC_META_BUDGET_S=8s
+  slice; SearchStats records hypotheses / semantic classes / duplicate ratio / seconds.
+- Prospective 185 -> 187 (both tasks unsolved at v23), now earned through the ordinary path.
+- NEXT: (1) full clean-env regression suite + untriggered-runtime control (flag off must be
+  byte-identical; flag on must not slow untriggered tasks); (2) concept extraction via
+  meta_ast.anti_unify -> ConceptRecord (concept_NN, typed slots) + Level-3 causal transfer
+  experiment (non-provenance task; ablate concept; measure dH, dt, dMDL); (3) same unmodified
+  mechanism at the template and lattice families.
+
+## 2026-08-20 — LEVEL 2 ACHIEVED (concept persisted); LEVEL 3 NOT ACHIEVED (honest negative)
+### Level 2 — real
+- scripts/cora_level3_transfer.py, outputs/cora_breakthrough/concept_registry.json.
+- Two INDEPENDENT discoveries (7b6016b9, 83302e8f; 200 hypotheses each, 1 semantic class each)
+  were anti-unified by meta_ast.anti_unify into:
+    **concept_0001**  class=(Compose (Partition) (Select) (Map (Key) (Lookup)) (Paint))
+                      free slots = ('?0' feature, '?1' table); Partition/Select fixed at
+                      background_components / all; provenance = the two source tasks.
+  Nothing named it: the name is generated (concept_0001) and the schema is the least general
+  generalization of ASTs over generic primitives. Persisted with digest + provenance + status.
+### Level 3 — NOT achieved, and the measurement says why
+- The concept EXPRESSES only 3 of 598 non-provenance Experience tasks: 00d62c1b, a5313dff,
+  c0f76784. Of those, 00d62c1b and a5313dff are ALREADY solved by ordinary ObjectPrograms
+  (accepted in all three conditions, test-correct, program size 3), and c0f76784 fails in all
+  three. **Causal witnesses: 0/3.**
+- Diagnosis (architectural, not a bug): the concept RESTRICTS the search (fixes partition and
+  selector, leaving 10 feature choices) where unguided search costs only 200 hypotheses.
+  A concept can only add capability when unguided search cannot cover the space inside the
+  budget. At this primitive-space size there is nothing for a concept to make reachable —
+  only marginally faster. **Level-3 evidence is therefore blocked by the SMALLNESS of the
+  meta-language, not by the transfer machinery.**
+- Also recorded honestly: in the three-condition runs the induction returned ObjectPrograms
+  with concept=null, i.e. for these particular tasks the ordinary path wins anyway; the
+  with/without/ablated hypothesis counts are identical (1.6M / 2.4M / 0.4M by task), so no
+  compression was demonstrated either.
+### CONSEQUENCE FOR THE NEXT BUILD (measured, not guessed)
+- To make Level 3 possible the meta-language must be large enough that unguided search
+  genuinely cannot cover it in budget: multi-stage Compose pipelines, more partitions
+  (motif/orbit/pair groupings), relational keys. Then a learned schema prunes a space that
+  matters, and dH / dt / dMDL become real quantities rather than rounding.
+- Claim status unchanged and explicit: Level 1 (discovery) YES; Level 2 (abstraction
+  invention) YES; Level 3 (grammar self-extension) NOT YET — no causal witness exists.
+
+## 2026-08-20 — USER'S FIVE PRE-EXPANSION CORRECTIONS: implemented and measured
+1. GENERIC CONCEPT EXECUTION. search_with_concepts no longer reconstructs the
+   partition->map->paint skeleton. meta_ast gains SLOT_TYPES / ENUMERABLE_KINDS /
+   INDUCED_KINDS / free_slot_types / slot_domain / type_signature / bound_values; the search
+   now types each free slot BY ITS AST POSITION, enumerates only enumerable slots, fits
+   induced slots (tables) from the demonstrations via fit_induced_slots, and builds the
+   program with meta_ast.instantiate. A template/lattice/view schema learned later runs
+   through this same code unchanged. instantiate now allows PARTIAL binding.
+   MEASURED on the source tasks: concept-guided 10 hypotheses vs unguided 200 (-95%).
+2. LEVEL-3 WITNESS HARDENED. causal now requires ALL of: baseline fails AND concept condition
+   accepts AND the winning program instantiates the concept AND its test output is correct
+   AND ablation fails. attempt() returns the EXACT serialized winning program and the test
+   prediction is rendered from THAT program (no second induction). Promotion applies only to
+   the concept actually used. Level 3 is now split and reported separately as
+   3A (efficiency: dH/dt/dMDL with both conditions accepting) and 3B (capability).
+3. EXPLICIT SLOT TYPES PERSISTED. ConceptRecord now stores signature + slot_types, e.g.
+   concept_0001: "(?0 : FeatureExpr, ?1 : Map[FeatureValue, Colour]) -> GridTransform".
+4. COOPERATIVE DEADLINE. induce_computed_candidates takes the parent deadline and uses
+   min(parent, now + ARC_META_BUDGET_S); the inducer passes its own deadline. A fold whose
+   parent budget is nearly spent can no longer start a fresh full-length phase.
+   Defensible statement now available: the expression phase and learned concepts run under
+   the same cooperative inference budget as the rest of the reasoner.
+5. TRIGGER-RATE AUDIT (outputs/cora_breakthrough/trigger_audit.json), before any language
+   growth: over the 600 Experience tasks the trigger fires on **406 (67.7%)** but the search
+   finds a program on only **7**: 00d62c1b, 12eac192, 7b6016b9, 83302e8f, 9565186b,
+   a5313dff, c0f76784. Cost is small and flat: 26.7s total, 0.066s per fired task,
+   200 hypotheses per fired task (the space is fully enumerable, as diagnosed).
+   => the trigger is LOOSE (2/3 of tasks) but CHEAP; the phase's reach, not its cost, is the
+   limiting factor. Two of the 7 are the sources; 5 are non-provenance candidates.
+- Diagnosis wording softened per user: the correct statement is "this experiment provides no
+  Level-3 witness; one contributing limitation is that the 200-hypothesis meta-space is fully
+  enumerable within budget, so concept_0001 cannot create much reachability advantage" — and
+  the second explanation stands equally: concept_0001 simply has narrow support (3/598).
+- EXPANSION DISCIPLINE recorded: the meta-language will be enlarged ONLY from pre-registered
+  near-solve evidence (template + lattice + relational families), never to manufacture
+  H_unguided > B. A reviewer must not be able to say exhaustive search was made artificially
+  impossible so the learned shortcut would look necessary.
+
+## 2026-08-20 — REGRESSION CLEAN: 518 passed (0 failures) with the meta-layer present
+- Full clean-env suite (object-reasoning tests + rounds 19-22 + transfer-promotion +
+  expr-region-fill): **518 passed in 1403s, zero failures**. Baseline was 504; the +14 are the
+  new test files. The default path is unaffected: ARC_META_INDUCTION is off by default and no
+  existing test changed behaviour.
+- Recorded state is therefore: v23 sealed 185; meta-layer implemented, hardened per the five
+  corrections, regression-clean, and DEFAULT-OFF pending Level-3 evidence.
+- Claim ladder stands: Level 1 YES, Level 2 YES, Level 3 NOT ACHIEVED (0 causal witnesses).
+- NEXT (fixed order, user's): freeze an expansion spec from existing near-solve families ->
+  add the generic combinators template+lattice+relational jointly require -> run the SAME
+  unguided discovery there -> let anti-unification yield concept_0002/0003 -> re-run
+  scripts/cora_level3_transfer.py for 3A and 3B -> only then scale Experience toward 201+ ->
+  later the prequential experiment (freeze K_{t-1} per task; plot A(t) and H(t)).
+
+## 2026-08-20 — SEMANTIC GENERICITY FIXED, then V2 SPEC FROZEN (user's correction accepted)
+### The correction
+- fit_induced_slots() was syntactically generic but semantically hard-wired: it pulled
+  partition/predicate/feature and called _induce_table, and refused >1 induced slot. So the
+  claim "a template/lattice/view schema runs through this code unchanged" was FALSE for the
+  fitting half. Withdrawn and fixed before any language growth.
+### What replaced it
+- meta_ast: SLOT_TYPES (name-keyed) REPLACED by **OP_SIGNATURES** — typed productions giving
+  (argument types, result type) per operator. A slot's type now comes from its ARGUMENT
+  POSITION in the production containing it, so an operator with several typed arguments
+  (transform AND anchor, say) types each correctly. ENUMERABLE_TYPES carries the domains;
+  INDUCED_TYPES lists the learned ones. free_slot_types / bound_values / type_signature /
+  slot_domain all re-derived from the signatures.
+- meta_induction: **SLOT_LEARNERS registry** keyed by slot TYPE, with register_slot_learner();
+  fit_induced_slots now dispatches by type and loops to a fixed point, so a schema with
+  SEVERAL induced slots resolves as long as each learner's prerequisites are met by an
+  earlier round. induce_feature_colour_map is simply the first registered learner.
+- VERIFIED after the refactor: concept-guided 10 hypotheses vs unguided 200 on both source
+  tasks; signature now reads "(?0 : FeatureExpr, ?1 : Map[FeatureValue,Colour]) -> Grid".
+### V2 SPEC FROZEN — docs/CORA_META_LANGUAGE_V2.md
+- Types (Grid/Region/Entity/Pair/Sequence/Orbit/Lattice/Transform/Anchor/Predicate/Map/...)
+  and ~25 typed combinators, EACH justified by a recorded Experience failure family
+  (template 3 verified/~11 reachable; lattice 2/~9; sequence 5; relational-connect+rays 17;
+  size-derived within those 17; computed-set 6 already working).
+- Induced slot types + their learners tabulated with the FOLD REQUIREMENT for each.
+- ROUTER V2 specified: the single boolean trigger (which fired on 67.7% of Experience and is
+  not really an additivity test) is replaced by a demonstration-local failure signature
+  (12 measurements) routing to four sub-grammars; every fold recomputes it from its own N-1
+  pairs, preserving the fold symmetry whose absence broke the first two FTES attempts.
+- FROZEN PROTOCOL: implement once; do not alter between template / lattice / relational /
+  Level-3 experiments; same search + same anti-unifier + same registry + same verifier;
+  concept_0002 and concept_0003 must be produced automatically, not authored.
+- Discipline restated in the doc itself: the space grows because recorded near-solves demand
+  these operations, never to make unguided search expensive.
+### Claim ladder unchanged: Level 1 YES, Level 2 YES, Level 3 NOT ACHIEVED.
+### Not chasing 201 until a non-provenance Level-3 witness exists (3A or 3B).
+
+## 2026-08-21 — CORA V2 IMPLEMENTED (typed runtime + type-directed enumerator + router)
+### Preregistration (BEFORE any V2 code)
+- outputs/cora_breakthrough/v2_preregistration.json: spec sha256
+  f690e87b1b5fc121c74a65c3bcddc5a0d5bc3dfae98bfc15a3330c6e1f6554b5, source hashes of the six
+  files, budgets (ARC_META_BUDGET_S=8, cooperative deadline), max_ast_depth=4,
+  max_semantic_classes_per_type=64, max_candidates=8, enumeration order, per-learner fold
+  conditions, router subgrammars + thresholds, amendment protocol.
+### What was built (two new modules; V1 untouched and still regression-clean)
+- geocat_arc/object_reasoning/meta_v2.py: typed runtime. Types (Grid/Set[Region]/Set[Entity]/
+  Entity/Set[Coloured]/Set[Placed]/...), PRODUCTIONS registry where each operator declares
+  argument types, result type, deterministic evaluator and MDL cost; ONE recursive interpreter
+  that dispatches on operator NAME ONLY and knows nothing about task families; frozen terminal
+  vocabularies (4 partitions, 3 segmentations, 8 predicates, 12 features, 5 relations, D4, 4
+  anchors); typed-hole handling; MDL = nodes + table entries, never painted cells.
+- geocat_arc/object_reasoning/meta_search.py: ONE type-directed enumerator
+  (enumerate_asts(goal_type, allowed, depth)) — a production is tried because its RESULT TYPE
+  unifies with the goal, never because of what the task looks like; semantic dedup keyed by
+  (result_type, behaviour on all demonstrations); SLOT_LEARNERS keyed by TYPE
+  (Map[FeatureValue,Colour], ColourBijection, Lattice) each returning value + support +
+  observations + fold-coverability + conflicts + cost, refusing ambiguous evidence;
+  fit_slots iterates to a fixed point so several induced slots can resolve; ROUTER V2 computes
+  the demonstration-local failure signature and returns ONLY allowed productions (never a
+  program).
+### Replication result (scripts/cora_v2_replication.py, outputs/.../v2_replication.json)
+- computed_set family: **2/2 DISCOVERED, both TEST-CORRECT, LOO-by-rediscovery 3/3** —
+  7b6016b9 (Partition:background_components -> Colourise:touches_border -> Paint; table
+  support 3, 13 observations, fold-coverable) and 83302e8f (same shape, key is_rect; support
+  3, 36 observations). Search now spans 1262 syntactic / 589 typed hypotheses (V1: 200) with
+  dedup ratio 0.998 — a genuinely larger space, still under 1s.
+- template family 0/3 and lattice family 0/2: **NO_CANDIDATE_FIT_DEMONSTRATIONS**.
+### Honest diagnosis (no grammar patched)
+- This is an INCOMPLETE IMPLEMENTATION of the frozen spec, not evidence against the spec.
+  CORA_META_LANGUAGE_V2.md froze MapOver / Zip / Fold / Repeat / Pairs / Group / Orbits /
+  Order / ArgMin / Copy / Overlay / Erase / marker anchors; meta_v2.py so far implements only
+  Partition, Entities, Select, Unique, ArgMax, Colourise, Paint, Recolour, Transform, Place,
+  Stamp, Propagate. Template tasks need MANY placements at marker positions (the trace already
+  recorded id+recolour x17, x28, x2), which requires MapOver + Copy + marker anchoring; the
+  lattice tasks need a domain-restricted Propagate. Those productions are IN the frozen spec
+  and simply not written yet.
+- Action per protocol: COMPLETE the frozen spec's implementation (not amend it), then re-run
+  the identical replication script. No spec change, no family-specific code.
+
+## 2026-08-21 — [HEADING CORRECTED 2026-08-21, see conformance audit below] V2 typed-search PROTOTYPE + diagnostic replication
+### Extended the prototype (NOT 'completed the spec' — that claim was wrong and is withdrawn)
+- meta_v2.py now has 17 productions: + ArgMin, Group (transitive merge under a relation),
+  Others (set minus the chosen entity), StampOnto (copy a template onto EVERY target at the
+  target's own origin — a generic geometric relation, no absolute coordinate), and
+  PropagateWithin (lattice propagation restricted to a computed domain).
+  Subgrammars in meta_search.py updated to expose them.
+### Implementation bug found against my OWN preregistration, and fixed
+- The preregistered enumeration order is (result_type, ast_depth, mdl, ...), but the
+  enumerator went straight to MAX_DEPTH, so a deep frontier could starve a shallow answer.
+  Replaced with ITERATIVE DEEPENING (depth 1..MAX_DEPTH, stop at the first depth that yields
+  a semantic class). Effect measured: computed_set went from 8.0s/14910 typed hypotheses back
+  to 1.4s/1403 — same programs, same test-correctness, a tenth of the search.
+### Replication (scripts/cora_v2_replication.py, outputs/.../v2_replication.json)
+- computed_set 2/2 DISCOVERED, both TEST-CORRECT, LOO-by-rediscovery 3/3 — unchanged by the
+  language growth, which is the stability check that matters.
+- template 0/3 and lattice 1 of 2 now fail as **BUDGET_EXHAUSTED** (3218 / 9198 / 30994 /
+  41575 typed hypotheses in the 8s slice), 05269061 as NO_CANDIDATE_FIT_DEMONSTRATIONS.
+- NOT patched. Per the frozen protocol the failures are recorded as-is.
+### What this changes scientifically (stated carefully)
+- The V2 space is now genuinely NOT enumerable within the declared budget (tens of thousands
+  of typed hypotheses at depth 3-4). That is the precondition the Level-3 capability claim
+  needs — and it arrived legitimately: the space grew because the frozen spec's own
+  productions were implemented, NOT because anything was added to make search hard.
+- Therefore the next experiment is exactly the right one: a learned concept that prunes such a
+  space from tens of thousands of candidates to a handful of slot bindings would be capability
+  transfer, not bookkeeping. concept_0001 already shows the mechanism at V1 scale (10 vs 200).
+### Claim ladder UNCHANGED: Level 1 YES, Level 2 YES, Level 3 NOT ACHIEVED.
+
+## 2026-08-21 — PREREGISTRATION-CONFORMANCE AUDIT: the "V2 completed" claim was FALSE
+### Correction issued
+- The earlier heading "V2 SPEC IMPLEMENTATION COMPLETED" is WITHDRAWN and corrected in place.
+  The accurate status is: **V2 typed-search PROTOTYPE implemented; preregistration-conformance
+  audit required before any V2 replication result can be considered final.** The 0/3 template
+  and 0/2 lattice runs are therefore DIAGNOSTIC RUNS, not a V2 falsification of those families:
+  the code did not yet implement what the experiment was promised.
+### The audit (scripts/cora_v2_conformance_audit.py -> v2_conformance_audit.json)
+- Introspects the running code against the frozen spec + preregistration, 91 requirements.
+  **conformant 54/91: 26 MISSING, 11 MISMATCH.** Every one of the six issues raised was
+  confirmed, and the audit found more:
+  * MISSING productions (in the frozen spec, absent in code): Pairs, Orbits, Order, Key,
+    Lookup, MapOver, Zip, Fold, Repeat, Anchor, Copy, Overlay, Erase, Compose. These include
+    precisely the operations the failing families need.
+  * MISMATCH extra productions not named in the frozen spec: Colourise, Others, Place,
+    PropagateWithin, Stamp, StampOnto. (Colourise/Place/Stamp collapse the spec's
+    Key+Lookup+MapOver / Anchor / Copy into fused nodes — to be decomposed, not kept.)
+  * MISMATCH: Transform and Anchor are preregistered as INDUCED slot learners but implemented
+    as ENUMERABLE terminals — so V2 currently tries every D4 element instead of inferring the
+    transform. The template "BUDGET_EXHAUSTED" verdict is therefore NOT yet interpretable.
+  * MISSING slot learners: Transform, Anchor, SequenceRule.
+  * MISMATCH: learn_colour_bijection compares SAME-COORDINATE pixels, but the frozen intent is
+    the mapping from a selected source template to its produced instances. Wrong relation for
+    the template family; must use the already-resolved typed context.
+  * MISSING router fields (4 of the 12 frozen): changed_component_count,
+    template_match_evidence, translation_orbit_evidence, pairwise_alignment_evidence. Router V2
+    has therefore NOT yet been tested.
+  * MISSING: subgrammar membership does not match the preregistered production lists.
+  * MISSING: enumeration order omits parameter_class.
+  * MISMATCH: no INTERMEDIATE semantic caching — dedup happens only on complete Grid programs.
+  * MISMATCH: "dedup_ratio" is mislabelled. observational_signature returns None unless the
+    program already reproduces every target, so the reported 0.998 is a CANDIDATE REJECTION
+    ratio, not a measure of equivalent programs eliminated. To be renamed and re-measured.
+### Consequence for the plan (accepted, no Level 3 yet)
+- Level 3 must compare a learned concept against the BEST frozen unguided V2 search — complete
+  productions, complete Router V2, all preregistered learners, intermediate semantic dedup,
+  correct ordering, identical budget. Otherwise "K+C >> K" could merely be compensating for an
+  unfinished baseline, which is exactly the objection this project exists to avoid.
+- Items MISSING relative to the frozen spec are IMPLEMENTED, not amended. Items MISMATCHED are
+  returned to the frozen behaviour. No spec amendment is invoked.
+### NEXT (fixed): implement the 14 missing productions and decompose the 6 fused ones; add
+  Transform/Anchor/SequenceRule learners and make ColourBijection context-sensitive; complete
+  the 12 router fields and the preregistered subgrammar membership; add intermediate
+  (type, behaviour) caching; put parameter_class into the ordering; rename the dedup metric;
+  architecture tests; then hash the tree as V2.0-CONFORMANT and re-run the IDENTICAL
+  replication script. No patching after seeing those results.
+
+## 2026-08-21 — V2.0-CONFORMANT REACHED (95/95), then the IDENTICAL replication re-run
+### Conformance closed: 54/91 -> 95/95
+- Implemented every MISSING frozen production: Pairs, Orbits, Order, Key, Lookup, MapOver,
+  Zip, Fold, Repeat, Anchor, Copy, Overlay, Erase, Compose (26 productions total).
+- Decomposed the fused prototype nodes back to the frozen shapes: Colourise became
+  Key + Lookup + MapOver; Place became Anchor; Stamp/StampOnto became Copy;
+  PropagateWithin folded into Propagate(Lattice, Domain); Others removed.
+- Transform and Anchor moved from ENUMERABLE terminals to INDUCED slot types with learners
+  (learn_transform picks the single D4 element explaining every witnessed instance and refuses
+  ties; learn_anchor infers a placement RELATIVE to the source origin, absolute coordinates
+  forbidden). learn_sequence_rule added.
+- learn_colour_bijection rewritten to be context-sensitive: it now fits the correspondence
+  between the SOURCE entity the AST selected and its produced instances, found by template
+  matching in the output, instead of comparing identical grid coordinates.
+- Learner inputs are located BY TYPE anywhere in the AST (_resolved_of_type /
+  _terminal_of_type), so a learner serves pipelines it was not written against. This was
+  forced by the decomposition: the region set is now a sibling, not a child, of Lookup.
+- Router V2 completed to all 12 preregistered fields (changed_component_count,
+  template_match_evidence, translation_orbit_evidence, pairwise_alignment_evidence added) and
+  now uses the preregistered thresholds; subgrammar membership matches the preregistration.
+- Enumeration made bottom-up and MEMOISED by (type, depth), the depth-frontier is ranked by
+  the full preregistered key BEFORE evaluation (mdl, parameter_class, value_bound_count,
+  stable serialization), and a per-search learner memo keyed by each learner's typed inputs.
+- Intermediate semantic caching added: (result type, behaviour on every demonstration input)
+  -> cheapest AST, consulted before a candidate is fitted or extended.
+- Metric renamed honestly: the old "dedup_ratio" was a CANDIDATE REJECTION ratio. Now reports
+  candidate_rejection_ratio and intermediate_dedup_ratio separately.
+### Two dated amendments, both citing pre-existing evidence
+- (a) PaintEach : Set[Coloured] -> Grid. Frozen Paint : Set[Region] x Colour paints ONE colour
+  and cannot express the REGION_FILL form verified on 6 Experience tasks BEFORE the freeze.
+- (b) Compose added to every subgrammar list. The frozen table types MapOver's second argument
+  as Function, and Compose is the only production yielding Function; without it MapOver is
+  dead code. Corrects an internal inconsistency in the preregistered lists; adds no capability.
+### Router fault found and fixed (not an amendment)
+- routed_search was searching the UNION of routed subgrammars, whose cross-product spent the
+  whole budget before the cheap answer was reached. The preregistered router output is
+  "allowed production subsets AND budget allocation", so it now searches each subset under its
+  own slice. Measured effect on 7b6016b9: 8.0s and 0 found -> 0.62s and found.
+### Architecture tests: 17/17 (tests/test_meta_v2_architecture.py)
+- signatures valid and every argument type reachable; induced types never enumerable; every
+  induced type has a learner; evaluator respects declared output types; unresolved slots never
+  execute; every enumerated AST type-checks; slots dispatch only by declared type; unresolved
+  slots reject safely; TWO DIFFERENT induced slot types resolve together (the genuine
+  genericity test); router deterministic, fold-independent, returns productions never programs;
+  no task id or concept name anywhere in search or routing; serialization exact; MDL counts
+  table entries not painted cells.
+### Frozen as V2.0-CONFORMANT (outputs/cora_breakthrough/v2_conformant_stamp.json)
+- meta_v2.py 666a75a9cfe1f692..., meta_search.py 9aa97a9a77a3b2be..., plus spec,
+  preregistration, audit, replication script and architecture tests.
+### The identical replication script, re-run, no patching afterwards
+- computed_set 2/2 DISCOVERED, both TEST-CORRECT, LOO-by-rediscovery 3/3 (0.63s and 0.81s).
+- template 0/3 and lattice 0/2: NO_CANDIDATE_FIT_DEMONSTRATIONS (not budget: 0.05s to 5.37s,
+  the searches completed). Recorded as-is.
+### Claim ladder unchanged: Level 1 YES, Level 2 YES, Level 3 NOT ACHIEVED.

@@ -577,6 +577,16 @@ def apply_grow(canvas: ObjectCanvas, obj: ARCObject, action: ActionRule,
         if added is None:
             raise EvalError(f"grow {mode}: undefined on this object "
                             f"in this scene")
+    elif mode == "fill_holes":
+        from .growth import grow_fill_holes
+        spec = action.params.get("hole_map")
+        if spec is None or len(spec.args) != 2:
+            raise EvalError("grow fill_holes: missing hole_map")
+        feature = str(spec.args[0])
+        mapping = {k: v for k, v in spec.args[1]}
+        added = grow_fill_holes(obj, feature, mapping)
+        if added is None:
+            raise EvalError("grow fill_holes: undefined on this object")
     elif mode == "pattern":
         pattern = _eval_param(action, "pattern", obj, ectx)
         color = int(_eval_param(action, "color", obj, ectx)) \
@@ -634,16 +644,29 @@ def apply_copy_part(canvas: ObjectCanvas, obj: ARCObject, action: ActionRule,
 
 def apply_connect(canvas: ObjectCanvas, obj: ARCObject, action: ActionRule,
                   ectx: EvalContext) -> list[ARCObject]:
-    """M2 verb 1: draw the deterministic straight segment between self and
-    params['target'] (RefExpr), colored by params['color'] (ColorExpr).
-    Self passes through unchanged; the segment joins the canvas as a new
-    object.  EvalError when the two objects do not face each other."""
-    from geocat_arc.object_reasoning.growth import connect_segment
+    """M2 verb 1: draw the deterministic straight segment (or L-path,
+    round 22) between self and params['target'] (RefExpr), colored by
+    params['color'] (ColorExpr).  Self passes through unchanged; the
+    segment joins the canvas as a new object.
+    EvalError when no connector geometry is defined."""
+    from geocat_arc.object_reasoning.growth import (
+        connect_segment, connect_l_path, _ray_ext_enabled)
     target = evaluate(action.params.get("target"), obj, ectx) \
         if "target" in action.params else None
     if target is None:
         raise EvalError("connect missing parameter expression 'target'")
     color = int(_eval_param(action, "color", obj, ectx))
+    # Round 22: if a 'turn' parameter is present, use L-path connector.
+    turn_expr = action.params.get("turn")
+    if turn_expr is not None and _ray_ext_enabled():
+        turn = str(_eval_param(action, "turn", obj, ectx))
+        seg = connect_l_path(obj.cells, target.cells,
+                             (canvas.height, canvas.width), turn)
+        if not seg:
+            raise EvalError("connect l_path: no valid L-path")
+        line = _build_object(_fresh_id(canvas, ectx),
+                             {cell: color for cell in seg})
+        return [obj, line]
     seg = connect_segment(obj.cells, target.cells,
                           (canvas.height, canvas.width))
     if not seg:
@@ -874,6 +897,10 @@ def render_program(program: ObjectProgram, input_grid: Grid) -> Grid:
         return grid
     from .types import FramedProgram, OverlayProgram, ReductionProgram
     from .graduation import ErasePatchProgram
+    from .meta_induction import ComputedPatternProgram
+    if isinstance(program, ComputedPatternProgram):
+        import numpy as _np
+        return Grid(program.render_array(_np.asarray(input_grid.to_numpy())))
     if isinstance(program, ErasePatchProgram):
         return render_program(program.patch, input_grid)
     if isinstance(program, OverlayProgram):
