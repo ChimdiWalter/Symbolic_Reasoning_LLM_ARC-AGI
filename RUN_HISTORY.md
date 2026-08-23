@@ -468,6 +468,8 @@ Motivation:
 
 Changes made:
 
+- Added `AGENTS.md`.
+- Added `.codex/config.toml`.
 - Updated `src/reasoning_project/sweep.py` to write:
   - `paired_seed_deltas.csv`,
   - paired contrast mean deltas,
@@ -500,6 +502,8 @@ Validation results:
 - Full suite after CI/delta changes: 15 passed in 8.35 seconds.
 - Final full suite after failure taxonomy script: 15 passed in 8.60 seconds.
 - Artifact checks passed for:
+  - `AGENTS.md`
+  - `.codex/config.toml`
   - `outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv`
   - `outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md`
   - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`
@@ -628,6 +632,8 @@ Motivation:
 
 Changes made:
 
+- Updated `AGENTS.md` with current phase priority: diagnosis over expansion.
+- Updated `.codex/config.toml` with diagnosis-over-expansion phase and concise reporting style.
 - Added diagnostic report artifacts:
   - `outputs/diagnostic_phase/diagnostic_report.md`
   - `outputs/diagnostic_phase/diagnostic_report.json`
@@ -636,8 +642,12 @@ Commands run:
 
 ```bash
 cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
+sed -n '1,260p' AGENTS.md
+sed -n '1,220p' .codex/config.toml
 sed -n '1,180p' outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md
 sed -n '1,220p' outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md
+python3.11 -c 'from pathlib import Path; paths=["outputs/diagnostic_phase/diagnostic_report.md","outputs/diagnostic_phase/diagnostic_report.json","outputs/h2_diagnostic_20seed_sweep/paired_contrasts.md","outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv","outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md","outputs/smoke_v2_3seed_sweep/paired_contrasts.md","outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv","AGENTS.md",".codex/config.toml"]; print("\n".join(f"{p}: {Path(p).exists()} {Path(p).stat().st_size if Path(p).exists() else 0}" for p in paths))'
+grep -RInE "H2.*supported|H5.*supported|full category theory|full HoTT|exact algorithmic information dynamics|beat all ARC|prove.*AGI|state-of-the-art ARC" outputs/diagnostic_phase AGENTS.md .codex/config.toml RUN_HISTORY.md README.md DECISIONS.md FORMAL_BOUNDARIES.md paper src | head -120
 python3.11 -c 'import csv; h=list(csv.DictReader(open("outputs/h2_diagnostic_20seed_sweep/paired_seed_deltas.csv"))); s=list(csv.DictReader(open("outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv"))); print("h2_delta_rows", len(h)); print("smoke_delta_rows", len(s)); print("h2_false_accept_rows", sum(1 for r in h if r["contrast"]=="proposer_falsifier_minus_proposer_only" and r["metric"]=="false_rule_accepted"));'
 ```
 
@@ -650,6 +660,8 @@ Artifact checks:
 - `outputs/h2_diagnostic_20seed_sweep/failure_taxonomy.md`: 1427 bytes.
 - `outputs/smoke_v2_3seed_sweep/paired_contrasts.md`: 2739 bytes.
 - `outputs/smoke_v2_3seed_sweep/paired_seed_deltas.csv`: 27457 bytes.
+- `AGENTS.md`: 2304 bytes.
+- `.codex/config.toml`: 1228 bytes.
 
 Metric/diagnostic checks:
 
@@ -4054,6 +4066,7 @@ logs/object_engine_round2_{dev19,s30}.log
 
 ## 2026-07-05 — Object-reasoning improvement round 3 (recovered after 2026-07-04 usage-credit outage)
 
+Implementation by workflow agent aac52f738b1cc3415 (died on usage credits 2026-07-04
 10:19 before running the round eval; all code on disk). Eval + regression check +
 budget fix done from the main session 2026-07-05.
 
@@ -6474,6 +6487,7 @@ Next: step 2 = guide network (lightweight CNN/Transformer over rendered
 I/O grids, predicting action-kind + param-class from metadata).
 
 ## 2026-07-25 — PLAY B STEP 2 BUILT INLINE + TRAINING (guide net)
+Killed agent had written nothing; built inline. guide/model.py:
 GuideNet 0.39M (DreamCoder-recognition style: per-pair input/output/
 DIFFERENCE features, dilated convs, pool, average over train pairs;
 heads = multi-label action kinds BCE + family CE). guide/
@@ -6835,11 +6849,13 @@ input_subshape probe, dev gates. PLAY C remaining: smoke 12 -> probe
 ## 2026-07-27 — INTERIM STATE AFTER RESTART (recorded by main session)
 PLAY C results found complete on disk: smoke 11/12 train_exact 1/12
 test_correct; probe 37/40 train_exact 2/40 test_correct (~5% transfer,
+vs CompressARC's published 20% — weak-transfer v1). Agent resumed to:
 calibration read, STRONG-FORM per-fold LOO on correct vs incorrect
 tasks (the scientific question: does retrain-per-fold certification
 separate them?), honest verdict entry.
 R15 state: 11/13 tests pass (2 failures = test-side AttributeError at
 correspondence.py:478), inducer hook NOT yet wired (0 extract_part
+refs in inducer.py). Agent resumed to fix tests, wire fold-safe hook,
 probe input_subshape set, run dev gates.
 
 ## 2026-07-28 — MAIN-SESSION PROGRESS RECORD (both agents active)
@@ -6847,6 +6863,7 @@ R15 EXTRACT_PART: IMPLEMENTATION COMPLETE per agent's entry — DeltaType
 + detection (8 dihedral orientations, relational source expr, KEEP-host
 attribution) + renderer + inducer candidates, fold-safe chain verified,
 13/13 tests green, zero-cost-off verified. Remaining: input_subshape
+probe + dev-19/s30 gates (agent working).
 PLAY C STRONG-FORM LOO GATE — **PERFECT SEPARATION on first sample**:
 test-correct tasks pass folds (794b24be 3, a699fb00 2, a79310a0 2);
 ALL 5 test-wrong-but-train-exact tasks pass 0 folds. The reinduction
@@ -6868,7 +6885,9 @@ memorization on a neural learner). mdl/ complete: solver.py (174K),
 run_batch.py, loo_gate.py, outputs/{smoke_12,probe_40,loo_gate}.jsonl.
 v2 levers recorded: color-perm equivariance, D4 weight tying,
 directional ops, KL/latent rebalance, multi-sample voting.
+R15 agent LIVE (transcript active): probe + gates phase. Score still
 v17 173/1000 pending R15 outcome.
+RESUME PATHS: R15 agent resumable via its transcript; Play C rerun:
 PYTHONPATH=. python mdl/run_batch.py <ids> --tag <tag>; LOO gate:
 PYTHONPATH=. python mdl/loo_gate.py <task_ids>.
 
@@ -6934,6 +6953,7 @@ variants rank AFTER strict variants; per-pair orphan detection =
 fold-invariant.
 
 ## 2026-07-29 — ROUND 16 IMPLEMENTATION COMPLETED (main session)
+Agent died twice; main session finished the implementation. Three
 fixes beyond the agent's draft:
 1. core_counts = (n_in, n_MATCHED) not n_explained — shape-coincidence
    "explained" orphans (single-cell signature matches) were corrupting
@@ -7090,7 +7110,9 @@ MILESTONE 4: probe on 35 fused-output tasks RUNNING (both baseline and
 ARC_GENERATIVE=1, library-seeded). Gate runs pending probe completion.
 
 ## 2026-08-04 — R17 STATUS (main session, post-interruption)
+Agent died mid-probe; implementation VERIFIED on disk: GenerativeProgram
 (types/generative.py/actions/inducer hook), 9/9 R17 tests green
+re-verified, suite 450 green per agent milestone 3. Probe dirs were
 seeded but runs never started — RELAUNCHED by main session: 35
 fused-class tasks (mined n_out<n_in all pairs, <=2 out objects),
 baseline arm then ARC_GENERATIVE=1 arm, both library-seeded ->
@@ -7342,6 +7364,7 @@ enumeration -> M3b delta-LOO admission -> E10 rediscovery experiment.
       BASELINE MATCH. ZERO regressions.
 - [x] Engine suite: 454 passed, 0 failed (577s)
 
+## 2026-08-08 — R18 INTERIM (main session review, agent resumed)
 Artifacts on disk: substrate 439 residuals / 6 clusters (cross 156,
 radiating 80, collinear row 80 / col 77, diagonal 25, other 21);
 1101 mined with support, 798 admitted. E10 FIRST PASS: cross_line
@@ -7350,6 +7373,7 @@ ray_through_absorbed NOT rediscovered and 23581191 NOT re-certified —
 ROOT CAUSE = hypothesis-language spec gap (no constant/intersection
 color rule; brief required R17b modes as points). Also: 798 admitted
 is behavioral-duplicate bloat (cross emits direction-invariant).
+AGENT RESUMED with 3 fixes: (1) add constant_C + intersection-color +
 verify obstacle_color rules; (2) behavioral canonicalization before
 admission + verify surprising 05a7bcf2 support; (3) rerun mining+E10,
 tests, probe vs 2/35, gates, suite.
@@ -7623,6 +7647,7 @@ diagnosing engine -> P2 certified self-play -> P4 certified scope.
 Order 3-1-2-4. P3 build launching now.
 
 ## 2026-08-11 — SAVE POINT: full slate live, P3 launched
+P3 certified-analogy build agent LAUNCHED (ARC_ANALOGY; retrieval
 from certified corpus via guide net + structure similarity; adapt =
 re-induce expressions on new pairs, dihedral conjugation, generator
 substitution; RECERTIFY via full LOO; eval-split probe targets first
@@ -7789,12 +7814,17 @@ WHAT SURVIVES THE CLIENT TURNING OFF (server-side, detached):
 - quiet-repair watcher (scripts/quiet_repair_v20.sh) -> on load<4
   runs 3-task repair -> marker QUIET_REPAIR_DONE in
   logs/quiet_repair_watch.log -> expect 3/3 -> v20 SEALS at 174.
+WHAT PAUSES (Claude agents die with the client; work-so-far is on
 disk via their realtime RUN_HISTORY entries):
+- P3 analogy build (agent aabacd..., resume via its RUN_HISTORY entry)
+- R3 MDL-v2 build (agent ae3f9c..., same)
 ON NEXT SESSION ("resume"), THE MASTER CHAIN IS:
 1. Check logs/quiet_repair_watch.log — if QUIET_REPAIR_DONE and 3/3:
    seal v20=174 in all records; then Kaggle rebuild (grep RUN_HISTORY
    "tarball" for recipe).
+2. Resume P3 agent (or relaunch from its RUN_HISTORY state) ->
    probe + eval split -> seal.
+3. Resume R3 agent -> gated-precision numbers -> seal.
 4. Launch R1 NEAR-SOLVE GRADUATION (docs/POST_LADDER_PROGRAM.md
    reframed section) after P3 seals.
 5. Continue program order: P1 M5 -> R2 -> P2 -> R4 -> P4.
@@ -7856,12 +7886,15 @@ mining/analogy/guide/mdl modules, tests, paper/DRAFT.md (E1-E10),
 docs, cleaned RUN_HISTORY. EXCLUDED via .gitignore: outputs/, logs/,
 training data, checkpoints, session transcripts (res*.txt etc.,
 removed), reasoning_part2/ planning folder, RESUME*.md ops notes,
+.codex/ + .claude/ tool dirs. History rewritten: sole author = user
 (verified full-history scan: 2 identities, both user; zero co-author
 trailers). GitHub contributors sidebar may show stale cached entries
 — data-side clean; guaranteed purge = delete + recreate repo, then
 one push (user's clicks; standing offer).
 LOCAL FILES UNTOUCHED: RUN_HISTORY.md and autochain script were
 backed up and restored after repo-side cleaning.
+PROJECT STATE UNCHANGED: R1 graduation agent building; R3 MDL-v2
+agent building; quiet-repair watcher armed (load was 5.4 falling);
 v20 seal at 174 pending; then Kaggle rebuild; program order P1 M5 ->
 R2 -> P2 -> R4 -> P4 per docs/POST_LADDER_PROGRAM.md.
 
@@ -7869,6 +7902,7 @@ R2 -> P2 -> R4 -> P4 per docs/POST_LADDER_PROGRAM.md.
 SURVIVES (server-side detached): quiet-repair watcher
 (logs/quiet_repair_watch.log; marker QUIET_REPAIR_DONE -> v20 seals
 174). PAUSES (client agents; work-so-far on disk): R1 graduation
+agent, R3 MDL-v2 agent — both resumable via their RUN_HISTORY
 entries. ON RECONNECT ("resume"): 1) check watcher log -> seal 174 if
 3/3 -> Kaggle rebuild; 2) resume R1 agent; 3) resume R3 agent;
 4) then program order P1 M5 -> R2 -> P2 -> R4 -> P4
@@ -7895,6 +7929,7 @@ infrastructure unblocks future composition). Verdict: graduation is
 blocked on EXPRESSIVENESS not machinery — R2 (invention at width +
 relational rung) is now triply-confirmed as next.
 
+## 2026-08-12 — R3 MDL-v2 INTERIM (agent milestone)
 solver_v2.py built (181K: directional cummax/shift ops + 8-sample
 voting + latent 16; 14 tests green). PROBE: TC 3/40 vs v1 2/40 (+1
 new: 3f23242b, zero regressions). Honest lever ledger: directional
@@ -8593,6 +8628,8 @@ census; paper numbers need updating 174 -> 177.
     connector (9 tasks) — R19's trace-first + falsification protocol
     mandatory, reject-don't-invent, env-gated ARC_RAY_EXT /
     ARC_CONNECT_EXT, solo verification of any gain, gates on gain.
+File ownership split to avoid collisions: agent 1 owns paper/ +
+kaggle/ + paper_tables.py; agent 2 owns geocat_arc/ + tests/ + new
 scripts/. Box at load ~12 (user's other project) — contention marking
 required for timing claims.
 
@@ -8695,6 +8732,7 @@ kaggle/build_dataset.sh:4,12 (v20 header + outputs/unified_harness_v20/
 object/library.json path — the dataset build still ships v20's library).
 
 ## 2026-08-15 — SHIP PACKAGE REFRESHED TO v21/177
+Paper refresh agent completed: paper_tables.json regenerated from
 v21 + arbitration merge — corpus 177/1000 (CSR 0.177), best-of-2 191
 (19.1%; the +14 attempt_2 delta is unchanged), induced 74/177=0.418,
 families object 48 / reduction 39 / framed 6 / generative 3. Two
@@ -8708,6 +8746,7 @@ recorded rejections -> zero-parameter frame_minority -> d037b0a7
 OUTSIDE the exemplar set). PDF recompiled clean: 10 pages (was 9).
 kaggle/writeup.md: 1181 words (budget 1500). cover_image unchanged
 (its figures are E1/E2/E4/R2 precisions, none of which moved).
+MAIN-SESSION FIXES of the two stale items the agent flagged:
   kaggle/build_dataset.sh — was packaging outputs/unified_harness_v20/
   object/library.json (would have SHIPPED v20's library with a v21
   paper). Now v21 throughout; tarball rebuilt ->
@@ -9435,6 +9474,7 @@ MILESTONE 1a-d COMPLETE:
 STATUS: GIT PUSH NEXT
 MILESTONE 1e COMPLETE — GIT PUSH VERIFIED:
 - Commit 759bc70 pushed to origin/main
+- git grep -il 'claude|codex' origin/main: ZERO files
 - git log author/committer: only Chimdi Walter identities
 - Sanitize dance: backups restored, local RUN_HISTORY.md + .gitignore intact
 STATUS: TASK 2 CENSUS STARTING
@@ -9580,9 +9620,11 @@ emitted).
 ## 2026-08-17 — PRE-INTERRUPTION CHECKPOINT (R22 in flight)
 R22 ray/line-extension-v2 build in progress (its milestone entries
 above/below this line are the live record; trace phase active).
+CLIENT AGENTS PAUSE ON DISCONNECT; work-so-far is on disk via the
 realtime entries. NO server-side jobs running (v22 sealed; no chains,
 no watchers pending).
 ON RECONNECT ("resume"): 1) read the ROUND 22 entry's last milestone;
+2) resume the R22 agent from its transcript (or relaunch from the
 entry's plan if transcript unusable); 3) after R22 seals: v23 chain
 (6-flag set candidate, load-gated <8, arbitration recipe = v22's) ->
 seal -> paper refresh -> sanitized GitHub push; 4) then the
@@ -9687,6 +9729,7 @@ in logs/r22_gates.log.
 
 ## 2026-08-18 — checkpoint (user-requested record)
 - State at checkpoint: CORA Stage 0 sealed (all three claim carriers hardened, PDF 10pp);
+  Stage A near-solve compiler agent running (no outputs yet — still surveying corpora;
   marker NS_COMPILER_DONE pending); R22 gate battery still mid dev-19 stage
   (marker R22_GATES_DONE pending). No new results since last entry; all prior records current.
 - On R22 gates clean: write tests/test_round22_ray2.py, seal R22, v23 chain -> 183.
@@ -9738,6 +9781,7 @@ in logs/r22_gates.log.
   46 / relational selectors 27 = 90% of NS-3/4; amends expression-round priorities), Stage B
   manifest SEALED (600/200/200 frozen, sha256 cc797ba8..., LOCKBOX_PROTOCOL.md).
 - In flight: (1) R22 gate battery still mid dev-19 (marker R22_GATES_DONE pending);
+  (2) test-writer agent drafting tests/test_round22_ray2.py (new file only; engine bugs would
   be xfail-documented, not fixed mid-gates) — file not yet on disk at this checkpoint.
 - Queued behind gates: R22 seal (tests + RUN_HISTORY entry) -> v23 chain -> 183; Stage B
   engine-half (independent-transfer in promote_and_validate); expression-grammar round with
@@ -9844,6 +9888,7 @@ in logs/r22_gates.log.
   round 1), trace-first on Experience-split pattern-as-function exemplars.
 
 ## 2026-08-19 — STEP 2 LAUNCHED: expression-grammar round, trace-first phase
+- Agent tracing pattern-as-function family (#1 of 3, 111 tasks): working set = cluster
   INTERSECT Experience split (lockbox discipline: promotion/lockbox pairs NEVER opened);
   8-12 exemplars characterized into functional forms; forms falsified against ground-truth
   changed-cell sets on ALL pairs (1-pair-coincidence trap guarded); output
@@ -9852,6 +9897,7 @@ in logs/r22_gates.log.
 
 ## 2026-08-19 — checkpoint (user-requested record)
 - Ladder status: STEP 1 (Stage B engine half) SEALED — transfer_record + _transfer_validate,
+  tests 5/5 + engine 26/26. STEP 2 (expression round) trace phase IN FLIGHT: agent has written
   outputs/expr_round_trace/{classification_v1.json,trace_results.jsonl,trace_summary.json};
   marker EXPR_TRACE_DONE pending; docs/EXPR_ROUND_TRACE.md pending.
 - Sealed this cycle: v23 = 185/1000 (new record), R22, CORA Stages 0/A/B(both halves).
@@ -9882,6 +9928,7 @@ in logs/r22_gates.log.
 - NEXT: implement production #1 REGION_FILL env-gated (ARC_EXPR_GRAMMAR=1), certify trace
   exemplars through full induce_program, tests, gates; transfer promotion ON (first live use).
 
+## 2026-08-20 — EXPR ROUND BUILD PHASE: agent died on credits at design-read; main session took over
 - Code survey findings (before writing anything):
   * ColorExpr op "feature_map" ALREADY EXISTS (expressions.py:117/321/561, inducer
     _feature_map_candidates:978) but is proposed ONLY for RECOLOR groups (inducer:1193).
@@ -10435,3 +10482,1382 @@ until they certify through the ordinary pool + unchanged gate.
 - template 0/3 and lattice 0/2: NO_CANDIDATE_FIT_DEMONSTRATIONS (not budget: 0.05s to 5.37s,
   the searches completed). Recorded as-is.
 ### Claim ladder unchanged: Level 1 YES, Level 2 YES, Level 3 NOT ACHIEVED.
+
+## 2026-08-21 — GITHUB UPDATED (commit 5db9a3e), verified clean
+- Pushed the CORA V2 work: meta_v2.py, meta_search.py, concept_registry.py, meta_ast.py,
+  meta_induction.py, the preregistration + conformance audit + architecture tests + replication
+  and Level-3 scripts, the lockbox manifest builder, the near-solve compiler, and the new docs
+  (CORA_ADOPTION_PLAN, CORA_META_INDUCTION_DESIGN, CORA_META_LANGUAGE_V2, EXPR_ROUND_TRACE,
+  NS_FAILURE_FAMILIES, LOCKBOX_PROTOCOL, V22_CENSUS_CANDIDATES) plus the hardened paper/writeup.
+- AUTHORSHIP: single author "Chimdi Walter <chimdiwaltern@gmail.com>", no co-author trailer,
+  no tool named in the message or in any file. Verified on the remote AFTER pushing:
+  * identities on origin/main: only Chimdi Walter / Chimdi Walter Ndubuisi, same email
+  * mentions in remote commit messages: 0
+  * files on origin/main containing either name: 0
+- Sanitize dance as usual: RUN_HISTORY.md and .gitignore scrubbed for the commit, then the
+  full local RUN_HISTORY.md and .gitignore restored from backup afterwards (this file).
+- Em dashes removed from every doc written in this session before committing. Pre-existing
+  older docs were left untouched to avoid an unrelated whole-repo diff.
+
+## 2026-08-21 — READ-ONLY FAILURE LOCALIZATION (no repair; frozen build verified by hash)
+### Provenance guard worked as intended
+- scripts/cora_v2_failure_localization.py REFUSES to run unless every V2.0-CONFORMANT hash
+  matches. First attempt REFUSED: docs/CORA_META_LANGUAGE_V2.md had drifted, because the
+  em-dash removal done for the GitHub push rewrote it AFTER stamping. NO CODE FILE DRIFTED
+  (verified: all .py hashes unchanged) and the conformance audit re-ran at 95/95 against the
+  edited document, so the drift is punctuation only. Re-stamped with a dated "restamps" entry
+  recording the old hash, the new hash and the reason. The guard is what caught it.
+### Results (outputs/cora_breakthrough/v2_failure_localization.json)
+| Task | Family | Router offered expected | Constructed | Slots fit | Executes | Exact demos | Verdict |
+|---|---|---|---|---|---|---|---|
+| 39e1d7f9 | template | yes | 799 | 0 | 0 | 0 | EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS |
+| 7e0986d6 | template | yes | 78 | 0 | 0 | 0 | EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS |
+| fe45cba4 | template | yes | 1723 | 924 | 0 | 0 | EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS |
+| 05269061 | lattice | **NO** | 727 | 0 | 0 | 0 | ROUTER_DID_NOT_OFFER_EXPECTED_SUBGRAMMAR |
+| 8eb1be9a | lattice | yes | 865 | 66 | 12 | 0 | EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS |
+- Diagnostic probe (union of ALL subgrammars, 60s, deliberately OUTSIDE the frozen policy and
+  never counted as a solve): constructed 1129 to 6000 candidates per task, slots fitted on
+  344 to 4849 of them, and **exact_on_demos = 0 on every one of the five**.
+### What this establishes, precisely
+1. NOT a ranking or budget loss. Even unrouted, unranked, with the whole production set and
+   7x the budget, no candidate reproduces the demonstrations. The earlier BUDGET_EXHAUSTED
+   readings were an artefact of the prototype; under the conformant build these are real
+   negatives.
+2. NOT a constructibility failure either: hundreds to thousands of ASTs are built and many
+   have their induced slots fitted (fe45cba4 924 of 1723 under the frozen policy).
+3. [SUPERSEDED by the second pass: the first probe never recorded whether candidates
+   EXECUTED, so "executes but never matches" was not measured for four of the five tasks.] For the template family the missing capability
+   is a MULTI-instance copy: Copy takes one Placement and stamps once, whereas the trace
+   recorded these tasks needing many instances (id+recolour x17, x28, x2). One production
+   would have to map a placement over a set, which the frozen Copy signature does not do.
+4. One genuine ROUTER negative: 05269061's demonstration-local signature yields no
+   translation-orbit evidence, so orbit_sequence is never offered. The frozen router's
+   evidence measure does not detect this task's periodicity.
+### No repair performed. The frozen grammar, learners, router, depth and budgets are untouched.
+### Consequence for the plan
+- [WORDING CORRECTED 2026-08-21] No template or lattice source program is DISCOVERED by the
+  frozen V2 pipeline on the preregistered exemplars, so the pipeline currently has no inputs
+  from which to anti-unify concept_0002 or concept_0003. That is weaker than "cannot exist",
+  which would require exhaustive closure or a type-theoretic proof; see the second-pass
+  localization below. The replication of the invention mechanism
+  across families is therefore BLOCKED by an expressive boundary, and that boundary is now
+  measured rather than asserted.
+- Level 3 remains the next experiment, but it will have to run with concept_0001 alone unless
+  a future dated amendment (multi-instance Copy; orbit evidence in the router) is justified
+  from evidence that predates the freeze.
+### Claim ladder unchanged: Level 1 YES, Level 2 YES, Level 3 NOT ACHIEVED.
+
+## 2026-08-21 — SECOND-PASS LOCALIZATION + EXACT SIGNATURE AUDIT (diagnostic only)
+### Instrumentation fixed (system untouched: no grammar, learner, router, depth or budget change)
+- probe now records executed_all_inputs, so execution failure is never reported as semantic
+  mismatch; exhaustion recorded explicitly (deadline, per-type cap, frontier cap, depth);
+  verdict ladder separates ROUTER_FAILURE / NOT_CONSTRUCTIBLE / SLOT_LEARNER_FAILURE /
+  EXECUTION_FAILURE / SEMANTIC_MISMATCH_NOT_EXHAUSTIVE / ..._EXHAUSTIVE / POLICY_LOSS / FOUND.
+### Results (outputs/cora_breakthrough/v2_failure_localization_v2.json)
+| Task | Family | Router | Constructed | Slots fit | Executes | Exact | Exhaustive | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| 39e1d7f9 | template | yes | 1144 | 344 | 208 | 0 | no | SEMANTIC_MISMATCH_NOT_EXHAUSTIVE |
+| 7e0986d6 | template | yes | 4361 | 472 | 118 | 0 | no | SEMANTIC_MISMATCH_NOT_EXHAUSTIVE |
+| fe45cba4 | template | yes | 6000 | 4849 | 179 | 0 | no | SEMANTIC_MISMATCH_NOT_EXHAUSTIVE |
+| 05269061 | lattice | **NO** | 6000 | 4849 | 118 | 0 | no | ROUTER_FAILURE |
+| 8eb1be9a | lattice | yes | 3660 | 2944 | 545 | 0 | no | SEMANTIC_MISMATCH_NOT_EXHAUSTIVE |
+- **NO run was exhaustive** (every probe hit the deadline or the 6000 per-type cap), so the
+  earlier "proven expressive boundary" phrasing is WITHDRAWN. What is established is that no
+  program was found within the searched region, not that none exists.
+### The structural result that DOES hold: type reachability over the frozen graph
+- multi_placement_derivable = **False**. Productions producing a set of placements: NONE.
+  Productions consuming a set of placements: NONE. MapOver's result type is Set[Coloured].
+- So the type graph itself admits no derivation that places SEVERAL independently positioned
+  copies into one grid: one Placement can only be stamped once, and the only set-valued map
+  yields colours, not placements. This is a grammar-level insufficiency certificate for the
+  template family, independent of any search.
+### And the exact signature audit explains WHY (v2_exact_signature_audit.json)
+- Exact equality against the frozen table: **EXACT 5, SPECIALISED 14, CONTEXT_IMPLICIT 2,
+  DEVIATION 4, EXTRA 1**. The earlier 95/95 checked that signatures are well-formed, not that
+  they equal the frozen ones; this is the stronger check and it fails in four places:
+  * **Copy: arity 1 vs frozen 2** (frozen Entity x Placement -> Grid). The template family's
+    own production deviates from the contract.
+  * Fold: arity 1 vs frozen 2. Propagate: arity 2 vs frozen 3 (Seed x Lattice x Domain).
+  * Compose: result Grid implemented as Function[Entity,Colour].
+  * MapOver specialised to Function[Entity,Colour], i.e. monomorphic to COLOUR, which is
+    precisely why entities cannot be mapped to placements.
+- CONCLUSION, stated carefully: the template blockage traces to IMPLEMENTATION deviations and
+  specialisations from the frozen contract, not to a demonstrated limit of the frozen language
+  as written. The frozen MapOver : Set[T] x Function[T,U] -> Set[U] is polymorphic and would
+  permit Set[Entity] -> Set[Placement]; the implementation is not.
+### LEVEL 3 IS BLOCKED, and correctly so
+- scripts/cora_level3_transfer.py imports meta_induction (V1) and does NOT import
+  meta_search/meta_v2. A run today would compare V2 against V1-plus-a-concept, which is not
+  the experiment. Level 3 must not run until the harness exercises the V2 path and differs
+  from baseline ONLY by making concept_0001 available.
+### Claim ladder: Level 1 YES, Level 2 YES, cross-family replication BLOCKED (localized),
+### Level 3 NOT RUN (harness on the wrong baseline).
+
+## 2026-08-21 — V2.0-CONFORMANT STRONG CLAIM WITHDRAWN + THE FROZEN SPEC ITSELF IS INCONSISTENT
+### Label superseded, not erased
+- "V2.0-CONFORMANT (95/95)" stands only as a STRUCTURAL audit: registered typed signatures,
+  induced-vs-enumerable separation, learner registration, 12 router fields, serialization,
+  ordering, caching. It did NOT prove literal equality with the frozen contract.
+- The independently written exact audit falsifies the stronger reading:
+  **EXACT 5, SPECIALISED 14, CONTEXT_IMPLICIT 2, DEVIATION 4, AMENDED EXTRA 1.**
+  => the strong claim "the implementation IS the frozen language" is WITHDRAWN.
+  Both audits are kept; the weaker one is labelled as structural from here on.
+### The multi-placement certificate was about the IMPLEMENTATION, not the spec
+- multi_placement_derivable() enumerated V.PRODUCTIONS, i.e. the specialised implementation.
+  Correct name: **implementation_type_reachability**. It proves multi-placement is underivable
+  in the current code, NOT in the frozen generic grammar. Recorded and renamed.
+### Stage 1 result: audit of the FROZEN CONTRACT ALONE (implementation never consulted)
+- scripts/cora_v2_spec_consistency_audit.py: formal type terms (TVar/TCon), real first-order
+  unification with an occurs check (needed: Group : Set[T] -> Set[Set[T]] otherwise binds
+  T := Set[T]) and a type-depth cap (Group nests Set[Set[...]] without end).
+- [SUPERSEDED 2026-08-21 by the corrected audit below. The first pass assumed a FIRST-ORDER
+  language and therefore misclassified higher-order underspecification as contradiction; it
+  also used an arbitrary type-depth cap and a reachability test that ignored sibling
+  arguments. Its counts must not be cited.]
+  * SPEC_CONTRADICTION MapOver: its argument Function[T,U] HAS NO CONSTRUCTOR anywhere in the
+    frozen table, because Compose is typed "stage* -> Grid". As frozen, MapOver can never be
+    applied. This is the root of the implementation's Compose deviation: the code did not
+    stray from a coherent spec, it patched an incoherent one.
+  * SPEC_CONTRADICTION Fold and Repeat: argument type Function likewise has no constructor.
+  * SPEC_CONTRADICTION Propagate: Seed and Domain are used but never declared, and have no
+    constructor.
+  * SPEC_CONTRADICTION Erase: Set[Cell] has no constructor (Propagate's result is Set[Cell]
+    but Propagate is itself inapplicable).
+  * SPEC_CONTRADICTION Order -> Sequence[T] and Key -> FeatureValue: produced, never consumed,
+    cannot reach Grid. (Key feeds Lookup only through a Function, which cannot be built.)
+  * SPEC_AMBIGUITY: "stage*" is a variadic placeholder with no element type; Seed and Domain
+    are undeclared.
+- Multi-placement asked of the FROZEN table: Set[Placement] is NOT inhabited (nothing produces
+  it, since MapOver is inapplicable), though its consumers exist. So even the frozen spec does
+  not currently support multi-instance placement, but for a different reason than the code.
+### What this means for the project
+- The template and lattice negatives CANNOT yet be attributed to CORA's expressive limits.
+  The chain is: incoherent frozen contract -> implementation patched it ad hoc -> specialised
+  monomorphic productions -> families unreachable. The science requires fixing the contract
+  first, from pre-freeze evidence only.
+- LEVEL 3 REMAINS BLOCKED, now for two independent reasons: the harness runs the V1 path, and
+  the V2 baseline it would compare against is not the frozen language.
+### NEXT (agreed order, no ARC solver changes): Stage 2 resolve each ambiguity and contradiction
+  using ONLY pre-freeze material (EXPR_ROUND_TRACE, the computed-set program structure, the
+  CORA design doc, the pre-freeze template/lattice characterization), recording each as a dated
+  CLARIFICATION; Stage 3 implement genuine parametric polymorphism (type variables instantiated
+  by the enumerator, no per-type branches); Stage 4 a new exact gate CORA-V2.1-EXACT with zero
+  unintended specialisations and zero deviations; then re-run the five tasks; then relearn
+  concept_0001 NATIVELY in V2 before any transfer experiment.
+### Claim ladder: Level 1 YES, Level 2 YES (V1 mechanism), V2 exact implementation NO,
+### cross-family replication BLOCKED, Level 3 NOT RUN.
+
+## 2026-08-21 — SPEC AUDIT CORRECTED: 3 ROOT CAUSES, NOT 11 DEFECTS (and the headline softened)
+### Four flaws in my own first-pass audit, all found from the review and all fixed
+1. FIRST-ORDER ASSUMPTION. It declared MapOver impossible because no production RETURNS a
+   Function. That holds only if functions must be built by an AST node. The frozen table
+   contains higher-order operators, and partial application or stage composition (Key(f) then
+   Lookup(t) as Region -> Colour) would form exactly the Function MapOver needs. Reclassified
+   as **SPEC_UNDERSPECIFICATION**: the document does not say how Function terms are formed.
+2. REACHABILITY IGNORED SIBLINGS. The old test followed a production's result without checking
+   that its OTHER arguments could be supplied, so a path through an inapplicable production
+   counted. Now a transition is allowed only when every sibling argument is inhabited.
+3. ARBITRARY DEPTH CAP. MAX_TYPE_DEPTH=4 was introduced to stop Group : Set[T] -> Set[Set[T]]
+   nesting forever, which meant "no constructor" could be an artefact of the bound. Replaced by
+   a **least fixed point over the specification's own finite set of type schemes**; no cap.
+4. TYPE VARIABLES AS WITNESSES. Bare TVars were counting as inhabited, so every type unified
+   with T and the analysis was vacuous. A variable is a schema, not a value: excluded as a
+   witness, still allowed as an unconstrained argument position.
+   (Also: substitutions are now threaded through unification and never used to BUILD terms,
+   which is what was constructing infinite types.)
+### Corrected result: 3 ROOT CAUSES with dependent symptoms
+- **ROOT-01 function-term formation is not specified** -> Compose ("stage*" has no element
+  type), MapOver (no Function constructor under a first-order reading), Key (FeatureValue
+  cannot reach Grid), Repeat (Function cannot reach Grid). One root, four symptoms.
+- **ROOT-02 Seed and Domain are undeclared** -> Propagate unusable, and Erase loses its
+  Set[Cell] source.
+- **ROOT-03 Sequence[T] has no consumer** -> Order is a dead end. Possibly genuine and
+  independent, unless pre-freeze sequence-extension material names the missing consumer.
+- Totals: 4 SPEC_UNDERSPECIFICATION + 3 SPEC_DEAD_PRODUCTION. **Zero SPEC_TYPE_CONTRADICTION.**
+### Two earlier claims RETRACTED as artefacts of the broken analysis
+- "Set[Placement] is not inhabited in the frozen spec" is WRONG. Under the corrected fixed
+  point: Set[Placement] IS inhabited, Set[Placement] REACHES Grid, and Set[Grid] reaches Grid.
+  **The frozen table does support multi-instance placement.** The blockage is in the
+  implementation's monomorphic specialisation, not in the frozen language.
+- The headline is softened to what is actually proven: **"The frozen V2 document is not yet a
+  complete formal higher-order grammar. A first-order audit exposes uninhabited and
+  disconnected types, but their root causes must be reconstructed from pre-freeze semantics
+  before any of them can be called an independent contradiction."**
+### NEXT: Stage 2A, reconstruct the formal term language from PRE-FREEZE EVIDENCE ONLY
+- Separate ValueTerm[T] / FunctionTerm[A,B] / HigherOrderTerm; decide what may inhabit
+  Function[A,B] (primitive references, partial application, induced operators, composed
+  stages, learned concepts) using EXPR_ROUND_TRACE, the computed-set AST, the CORA design doc
+  and the pre-freeze template/lattice characterization. Every decision carries an evidence
+  citation; anything without pre-freeze evidence stays UNRESOLVED.
+- Output: docs/CORA_V2_FORMAL_SEMANTICS_RECONSTRUCTION.md. No solver changes.
+### Level 3 remains blocked (harness on V1; baseline not yet the frozen language).
+
+## 2026-08-21 — STAGE 2A COMPLETE: formal semantics reconstructed from PRE-FREEZE evidence only
+### Wording amendment first (as instructed)
+- outputs/cora_breakthrough/v2_spec_consistency_audit.json now carries
+  multi_placement_in_frozen_spec_status = **PROVISIONAL**: open polymorphic schemes such as
+  Set[T] may still act as inhabitation witnesses (the filter excludes bare TVars but not
+  schemes with free variables), and instantiated result types are not propagated
+  (Unique : Set[T] -> T follows T, not Entity). **It is NOT stated that the frozen table
+  formally supports multi-instance placement.**
+### docs/CORA_V2_FORMAL_SEMANTICS_RECONSTRUCTION.md
+- Evidence inventory with hashes, all pre-freeze: EXPR_ROUND_TRACE (75d00a77445c4d7a),
+  NS_FAILURE_FAMILIES (4a0c8dde577e304a), CORA_META_INDUCTION_DESIGN (34917dc69a8eaedf),
+  trace_summary.json (d4850c01cce7e161), concept_registry.json (fe3f01a974e07282).
+- The load-bearing artefact is the pre-freeze computed-set program, discovered, certified and
+  anti-unified BEFORE the V2 document existed:
+  Compose(Partition(background_components), Select(all), Map(Key(?f), Lookup(?M)), Paint).
+  Any semantics must type this term, because this term already ran.
+- FOUR term categories implied (not three): value terms; collection values; function terms
+  A -> B; higher-order combinators that consume them.
+### Verdicts: 6 SUPPORTED, 5 UNRESOLVED
+- C01 value terms SUPPORTED. C02 function terms SUPPORTED (a partially applied primitive is a
+  unary function: Key(f) : Region -> FeatureValue, Lookup(M) : FeatureValue -> Colour).
+  C03 partial application SUPPORTED. C11 a learned concept is a typed schema that becomes an
+  ordinary production once its slots are bound SUPPORTED (concept_0001's stored signature).
+- **C04 Compose is a FUNCTION COMBINATOR, (A->B) x (B->C) -> (A->C), not a Grid operator.**
+  SUPPORTED, and it CONTRADICTS the frozen typing "stage* -> Grid". This resolves most of
+  ROOT-01: Compose is the missing constructor of function terms, so MapOver was never
+  genuinely uninhabitable, only unspecified.
+- **C05 MapOver : Set[A] x (A -> B) -> Set[B]** SUPPORTED. The colour case is direct from the
+  pre-freeze program; the general case rests on pre-freeze template EVENT COUNTS recorded in
+  EXPR_ROUND_TRACE line 95 (39e1d7f9 id+recolour x17 and id x3; 7e0986d6 x28; fe45cba4 x2+x2),
+  so "one reusable operation applied across a set" was a documented requirement before the
+  freeze, not a lesson from the failures.
+- C08 **Domain SUPPORTED** by EXPR_ROUND_TRACE line 163 ("DomainExpr := whole grid | Region");
+  **Seed UNRESOLVED**, it appears nowhere pre-freeze and the trace describes lattice extension
+  as closure over the input's own content rather than growth from a seed.
+- C06 Fold reducer type UNRESOLVED (no pre-freeze fold exists; "(T,T) -> T" is a textbook
+  default, not project evidence). C07 Repeat UNRESOLVED. C09 Sequence UNRESOLVED: the trace
+  NAMES a SEQUENCE_EXTEND_1D family (line 71, 5 tasks) but specifies no operation over a
+  Sequence, so ROOT-03 stays open and InferStep/Extend/Render are NOT invented.
+- **C10 collection-to-Grid UNRESOLVED, and this is the crux of the template question**: the
+  pre-freeze material establishes the NEED for many instances but never the MECHANISM for
+  combining them. Two generic routes are conceivable and the evidence prefers neither.
+### Consequence
+- ROOT-01 largely resolved by C02-C05. ROOT-02 half resolved. ROOT-03 untouched by evidence.
+- Next builds a formal semantics from the SUPPORTED clarifications ONLY, then re-runs
+  consistency over CLOSED instantiated types. Productions whose semantics stay unresolved are
+  carried as declared-but-unusable rather than guessed.
+- No solver code, grammar, router, learner, budget or experiment was changed in Stage 2A.
+### Level 3 still correctly not run.
+
+## 2026-08-21 — STAGE 2A REGRADED (append-only; SUPERSEDES the Stage 2A entry above)
+### Ledger practice changed
+- From this entry forward, corrections are APPENDED with an explicit SUPERSEDES reference
+  rather than edited in place. The earlier in-place corrections remain visible in git history.
+### SUPERSEDES: "Stage 2A complete, 6 SUPPORTED / 5 UNRESOLVED"
+- Reason: three of those grades said more than the artefacts establish, and the provenance
+  claim conflated a content hash with a timestamp.
+### Evidence vocabulary replaced with five grades
+- OBSERVED / LOGICALLY_REQUIRED / SPEC_INTENDED / COMPATIBLE / UNRESOLVED.
+### Three splits
+- **C04 split.** C04a "Compose threads pipeline stages" = OBSERVED. C04b "Compose constructs
+  arbitrary FunctionTerm[A,B]" = **COMPATIBLE, not established**. The decisive structural
+  detail: in the pre-freeze AST the node combining Key with Lookup is **Map, not Compose**;
+  Compose sits at the top level over whole stages. Two readings type the observed program
+  equally well (Compose as a general function combinator, or Map as the witnessed constructor
+  with Compose only chaining stages), and no pre-freeze artefact uses Compose in function
+  position. My earlier claim that "Compose is the missing constructor of function terms" is
+  therefore WITHDRAWN to COMPATIBLE. This matters: it would have retrofitted the higher-order
+  semantics we now want onto an older pipeline combinator.
+- **C05 split.** C05a "elementwise Set[Region] x (Region -> Colour) -> Set[Coloured]" =
+  OBSERVED. C05b "fully polymorphic MapOver : Set[A] x (A -> B) -> Set[B]" =
+  **SPEC_INTENDED + COMPATIBLE**. The pre-freeze template event counts establish a requirement
+  for reusable iteration over a collection; they do not uniquely imply MapOver (a broadcasting
+  renderer or an ApplyEach would satisfy the same need). Still strong enough to justify
+  parametric polymorphism later, with the chain stated accurately.
+- **C11 split.** C11a "a learned concept is a typed schema with free slots whose binding yields
+  an executable transformation" = OBSERVED (concept_0001 as persisted). C11b "a learned concept
+  re-enters the ordinary grammar as a production" = **SPEC_INTENDED, not demonstrated** - that
+  is exactly what the future Level-3 architecture is meant to show, so citing it as its own
+  pre-freeze semantics would be circular. Separating it strengthens the eventual result.
+### Provenance corrected, and it is weaker than I first reported
+- **No cited artifact was git-committed before the freeze**; the first commit containing any of
+  them is 5db9a3e, 2026-08-21, AFTER the 2026-08-20 freeze.
+- Worse, the three .md sources have **unusable filesystem mtimes**: all now read
+  2026-08-21T16:52 because MY OWN em-dash sweep for the GitHub push rewrote them.
+- What genuinely survives as pre-freeze provenance is machine-written output:
+  logs/nearsolve_compiler.log 2026-08-18T17:34, outputs/expr_round_trace/trace_summary.json
+  2026-08-20T12:18, logs/expr_trace.log 2026-08-20T12:34,
+  outputs/cora_breakthrough/concept_registry.json 2026-08-20T23:08, plus the contemporaneous
+  RUN_HISTORY ledger.
+- Standing wording from now on: "project artifact internally dated before the freeze, current
+  content hash X", never "cryptographically preregistered".
+### Revised standing
+- ROOT-01 only PARTLY resolved: function terms are LOGICALLY_REQUIRED (C02, C03) but their
+  constructor is NOT determined (C04b is COMPATIBLE only). ROOT-02 half resolved
+  (Domain OBSERVED, Seed UNRESOLVED). ROOT-03 untouched by evidence.
+- Stage 2B may build only from OBSERVED + LOGICALLY_REQUIRED + SPEC_INTENDED. COMPATIBLE
+  readings do not become implementation requirements unless unavoidable; UNRESOLVED
+  productions are carried as inactive declarations, never guessed.
+
+## 2026-08-21 — FINAL STAGE 2A REGRADES (SUPERSEDES the Stage 2A regrade entry above) + STAGE 2B CONTRACT
+### Two more regrades, both because the artefact did not force the reading I gave it
+- **C02 split.** C02a "element-dependent evaluation exists" = LOGICALLY_REQUIRED. C02b "those
+  expressions are first-class FunctionTerm[A,B] values" = **SPEC_INTENDED + COMPATIBLE**.
+  The V1 AST is equally well explained by an implicit evaluation context
+  G = {current_element, current_value, grid} with contextual judgements
+  G[current_element : Region] |- Key(f) : FeatureValue and
+  G[current_value : FeatureValue] |- Lookup(M) : Colour, under which Map installs the context
+  and threads the value and Key(f) is a CONTEXTUAL EXPRESSION, not a function value.
+  My earlier LOGICALLY_REQUIRED grade for first-class functions is WITHDRAWN.
+- **C03 split.** C03a "terminal parameters bind an expression's behaviour" =
+  LOGICALLY_REQUIRED. C03b "that mechanism is formal partial application or currying" =
+  **COMPATIBLE** - a contextual evaluator achieves the same behaviour without currying.
+- **C05a renamed to V1 `Map`.** The executed node was `Map`; calling it `MapOver` retroactively
+  would repeat exactly the error caught for `Compose`. Lineage now reads: observed V1 behaviour
+  -> generalised V2 design intent.
+### Freeze ordering graded honestly
+- No exact wall-clock freeze time is recoverable (the spec says only "FROZEN 2026-08-20" and
+  its mtime was reset by my punctuation edit). What exists is APPEND-ONLY LEDGER ORDER: the
+  concept_0001 entry is at RUN_HISTORY line 10191, the freeze entry at line 10276; the run that
+  produced the concept is logged 2026-08-20T22:57 and the registry's 23:08 mtime is a later
+  re-registration when the typed signature was added, not creation.
+- Grade recorded as **PRE_FREEZE_ORDER_SUPPORTED_BY_INTERNAL_LEDGER**, not
+  PRE_FREEZE_TIMESTAMP_VERIFIED. Paper wording will be "internally pre-specified and frozen
+  before implementation", never "preregistered".
+### STAGE 2B: outputs/cora_breakthrough/v2_1_semantic_contract.json (sha256 34a2612855f48e44)
+- **Two layers.** Layer A is evidence-minimal: contextual judgements for Key and Lookup,
+  Map_V1 : Set[A] x Expr[A=>B] -> Set[B] where Expr[A=>B] is "an expression evaluable under a
+  current element" rather than a lambda value, and Compose_V1 threading whole stages.
+  Layer B states the frozen higher-order design: Function[A,B], MapOver with a real function
+  argument, and the concept rule.
+- **Compose as a function combinator is ACTIVE=false** (COMPATIBLE only, no artefact uses it in
+  function position). It stays inactive until such an artefact is found or a dated amendment
+  justifies it.
+- 17 active productions, 5 inactive/unresolved: Fold, Repeat, Seed-based Propagate, the
+  Sequence consumer, and **Collection_to_Grid**.
+- **Collection_to_Grid is deliberately left inactive even though a plausible operator would
+  solve the three template tasks.** Recorded consequence: the template family may remain
+  unsolvable under V2.1, and that honest failure is a cleaner signal for the grammar-invention
+  machinery than a manually supplied operator.
+- Later audits must CONSUME this contract rather than re-transcribing signatures, which is how
+  the earlier drift between the frozen table and the audit script arose.
+### No solver, grammar, router, learner, budget or experiment changed. Level 3 still not run.
+
+## 2026-08-21 — CONTRACT CLOSURE CHECK: ROOT-01 HAD REAPPEARED INSIDE MY OWN CONTRACT
+### The defect, confirmed mechanically
+- scripts/cora_contract_consistency.py enforces one rule against the contract itself:
+  **no ACTIVE rule may depend on a type that no ACTIVE rule constructs.**
+- First run: **CONTRACT NOT CLOSED.** `MapOver` was active in BOTH Layer B and the active
+  production list, its argument is `Function[A,B]`, and the only candidate constructor
+  (`Compose` as a combinator) is `active: false` because C04b is COMPATIBLE only.
+  **ROOT-01, the exact defect found in the frozen document, had reappeared inside the
+  contract written to replace it.** Deactivating a constructor silently strands every rule
+  that needed it, which is why this is now checked mechanically rather than by reading.
+### Consequences applied, each dictated by the rule rather than chosen
+- `Function` and `MapOver` (Layer B) set **inactive**, with `blocked_by` recorded. Activating
+  them requires pre-freeze evidence for a Function constructor or a dated amendment.
+- Layer A closed properly instead: `Expr_formation` declared explicitly, since `Key` and
+  `Lookup` given their terminal arguments ARE the constructors of `Expr[A=>B]`
+  (LOGICALLY_REQUIRED, C02a/C03a). `Map_V1 : Set[A] x Expr[A=>B] -> Set[B]` is the active
+  elementwise rule; `MapOver_with_Function` is listed as SPEC_INTENDED but BLOCKED.
+- Terminals moved INTO the contract with per-type provenance, and the checker now READS them
+  from the contract. It deliberately keeps no list of its own: a hardcoded set in an audit
+  script is exactly the transcription drift that let the implementation diverge from the
+  frozen table originally. `ConceptSchema` and `SlotBinding` are declared terminals produced
+  by anti-unification and by the slot learners, both OBSERVED.
+- One naming inconsistency surfaced and is recorded rather than silently unified: the frozen
+  table writes `Feature[T]` for ArgMax/ArgMin while the vocabulary declares `FeatureExpr`.
+### Final state: **contract is internally closed** (sha256 512bba3335ae7070)
+- Active: Partition, Entities, Select, Key, Lookup, Map_V1, Compose_V1, PaintEach, Paint,
+  Transform, Anchor, Recolour, Copy, Overlay, Group, Unique, ArgMax, ArgMin, Concept.
+- Inactive: Function, MapOver, Compose-as-combinator, Fold, Repeat, Propagate_with_Seed,
+  Sequence_consumer, Collection_to_Grid, MapOver_with_Function.
+### What this means for V2.1
+- V2.1 would ship with the **contextual** elementwise mechanism the pre-freeze evidence
+  actually demonstrates, and WITHOUT first-class function values, because the evidence does
+  not establish them. The template family is even less likely to be solvable now. That
+  remains the accepted, recorded trade.
+### NOTE: the incoming review listed THREE contract-level issues but the message ended after
+### the first. Issues 2 and 3 are not yet known; the closure check above found and fixed the
+### first, and the checker will catch any further instance of that class automatically.
+
+## 2026-08-22 — STAGE 2C COMPLETE: both contract audits green; V2.1 implementation unblocked
+### Issue 2 fixed: PaintEach was being called OBSERVED, and it never existed historically
+- The pre-freeze AST ended in **Paint()**. There was NO node named PaintEach. What the
+  artefact establishes is the BEHAVIOUR: selected regions receive individually computed
+  colours and are rendered. The operator and its Set[Coloured] signature are OUR later
+  resolution of that behaviour.
+- New evidence grade **DESIGN_RESOLUTION**: an explicit later choice needed to operationalise
+  semantics the historical evidence requires but does not uniquely specify.
+- PaintEach now: behaviour LOGICALLY_REQUIRED, signature DESIGN_RESOLUTION, polymorphism
+  DESIGN_RESOLUTION, design_resolution_id DR-02, with amendment (a) preserved as provenance.
+  Four design resolutions are declared with rationales and rejected alternatives: DR-01
+  Expr[A=>B] notation, DR-02 PaintEach, DR-03 Compose_V1 typed over Expr stages, DR-04 the
+  Concept production.
+### Issue 3 fixed: one grade per rule replaced by three, assigned individually
+- Every rule now carries behavior_grade / signature_grade / polymorphism_grade plus active,
+  evidence and (where applicable) design_resolution_id. Grades were assigned per rule, never
+  copied across axes. Examples:
+  * Map_V1        behaviour OBSERVED  | signature LOGICALLY_REQUIRED | polymorphism COMPATIBLE
+  * Select        behaviour OBSERVED  | signature SPEC_INTENDED      | polymorphism SPEC_INTENDED
+  * PaintEach     behaviour LOGICALLY_REQUIRED | signature DESIGN_RESOLUTION | polymorphism DESIGN_RESOLUTION
+  * Partition     behaviour OBSERVED  | signature OBSERVED           | monomorphic
+- This is what stops a future "V2.1-EXACT" from meaning only "the code exactly implements a
+  later generalised signature that was never itself observed".
+### Conservative decisions preserved
+- Function, MapOver, Compose-as-combinator remain INACTIVE. Contextual Expr formation and
+  Map_V1 remain ACTIVE.
+### Audits
+- scripts/cora_contract_consistency.py relabelled as a COARSE HEAD-TYPE check, with its own
+  limits written into the docstring (Function[Region,Colour] existing does not make
+  Function[Entity,Placement] constructible), and an instruction not to extend it toward the
+  real type-soundness checker. Repointed at the v2 contract. **GREEN.**
+- scripts/cora_contract_evidence_audit.py written: six checks (no COMPATIBLE-only rule
+  implementation_required; no UNRESOLVED rule active; every DESIGN_RESOLUTION has a rationale;
+  every OBSERVED behaviour cites evidence; every polymorphic signature carries its own grade;
+  no rule upgrades design intent to observation, enforced by a grade-authority ordering).
+  **GREEN across 28 rules.**
+- **NEGATIVE CONTROL RUN**: a deliberately broken copy with six injected violations was
+  audited and all six were caught (plus one extra consequence), so the green result is not
+  vacuous.
+### Immutable versioning
+- outputs/cora_breakthrough/v2_1_semantic_contract_v2.json is the live contract;
+  v2_1_semantic_contract.json (512bba3335ae7070) is marked **SUPERSEDED** in place with its
+  reason.
+### STATUS: both gates green. Per the standing instruction, V2.1 implementation may now begin,
+### and the semantic-audit loop stops here.
+### Route from here: minimal V2.1 -> V2.1-native discovery -> anti-unification -> C1 ->
+### K_V2.1 versus K_V2.1 + C1. Level 3 still not run.
+
+## 2026-08-22 — V2.1 PHASES 1 AND 2: minimal language built from the contract; sources reproduced
+### Polymorphism policy written into the contract BEFORE coding, then frozen
+- A COMPATIBLE polymorphism grade must NOT become executable generality. Recorded
+  instantiations: Map_V1 implemented as Set[Region] x Expr[Region=>Colour] -> Set[Coloured]
+  (not the general Set[A] x Expr[A=>B]); Compose_V1 implemented as stage threading for the
+  observed pipeline only, NOT a universal composition calculus; Select instantiated at the
+  declared ground types only.
+- Contract frozen at **e2137a59132ffc38**, both gates re-verified green after the addition.
+  Hard stopping rule recorded in the contract itself: no new semantic primitive before the
+  first V2.1 Level-3 experiment.
+### Phase 1: geocat_arc/object_reasoning/meta_v21.py
+- **No signature list of its own.** The registry is built by READING the contract at import,
+  and the module raises ContractDrift if the file's hash has moved from the frozen value.
+- Full parameterised types at runtime (Set[Region] and Set[Placement] are different types);
+  the coarse head-type approximation of the contract checker does NOT leak into the runtime.
+- Contract-inactive rules have no implementation and are absent from the registry; an assert
+  fails the import if the registry ever intersects the inactive set. Absent: Function,
+  MapOver, Compose-as-combinator, Fold, Repeat, Propagate_with_Seed, Sequence_consumer,
+  Collection_to_Grid.
+- The type checker CAUGHT a real gap during bring-up: Key yields Expr[Region,FeatureValue] and
+  Lookup yields Expr[FeatureValue,Colour], neither of which is the Expr[Region,Colour] that
+  Map_V1 requires. Compose_V1 was then registered at exactly the OBSERVED instantiation
+  (Expr[Region,FeatureValue] x Expr[FeatureValue,Colour] -> Expr[Region,Colour]) rather than
+  as a general combinator. The type system, not a task failure, is what forced that.
+### Phase 1b: geocat_arc/object_reasoning/meta_v21_search.py
+- One type-directed enumerator over the contract-derived registry, slot learners keyed by
+  declared type (currently one: the feature-colour table, refusing any key witnessed by a
+  single demonstration), semantic dedup by rendered behaviour, and LOO by re-running the
+  WHOLE discovery on N-1 pairs.
+### Phase 2 result (outputs/cora_breakthrough/v21_phase2_sources.json)
+| Task | found | LOO by rediscovery | test-correct | typed candidates | seconds |
+|---|---|---|---|---|---|
+| 7b6016b9 | 1 | **3/3** | **yes** | 384 | 0.51 |
+| 83302e8f | 1 | **3/3** | **yes** | 384 | 0.66 |
+- Discovered programs: PaintEach(Map_V1(Partition:background_components,
+  Compose_V1(Key:touches_border, Lookup))) and the same shape with Key:is_rect.
+  Table support 3 with 13 and 36 observations, fold-coverable in both cases.
+- **2/2 reproduced.** The new formal architecture reproduces Level 1 without depending on the
+  V1 meta-induction code, on a language containing no first-class functions and no MapOver.
+### NEXT: Phase 3, relearn the concept from scratch by passing the two V2.1-discovered ASTs
+### through the generic anti-unifier into a FRESH V2.1 registry. The old concept_0001 is NOT
+### imported. Then Phase 4 (concept as an ordinary typed production) and Phase 5 (Level 3).
+
+## 2026-08-22 — IMPLEMENTATION-INTEGRITY BUG FIXED: the registry now really is contract-derived
+### The bug, as found in review and confirmed
+- meta_v21.py CLAIMED to build its registry from the contract, but hand-registered every
+  signature in Python via _register("Partition", (PARTITION_EXPR,), SET_REGION, ...).
+  Those argument and result types were a SECOND hand-maintained signature table: the exact
+  drift the contract exists to prevent, one level lower. The contract was being read mainly
+  for its hash and its inactive-rule names.
+- Confirmed mismatch: the contract lists Group, Transform, Anchor, Recolour, Copy and the
+  concept mechanism as active, while the runtime registry contained a different set.
+### Fixed mechanically, WITHOUT adding solver capability
+- **EVALUATORS** now maps rule name to behaviour ONLY. No signatures in Python.
+- **compile_registry(contract)** builds each Production by parsing the signature out of the
+  contract: from the rule's own `form`, or from `polymorphism_policy.implemented_signature`
+  for the three constrained rules. A leading `Grid` argument is dropped as CONTEXT_IMPLICIT,
+  matching the exact-signature audit. Each Production records signature_source and
+  signature_text so provenance is visible at runtime.
+- The three policy entries were given parseable `implemented_signature` strings
+  (Map_V1 -> Set[Region] x Expr[Region,Colour] -> Set[Coloured]; Compose_V1 -> the observed
+  Key/Lookup instantiation; Select -> Region). No capability added; recorded as a revision.
+### The kernel is now DERIVED, not chosen
+- v21_kernel = operator closure of the two certified source programs, computed from
+  v21_phase2_sources.json: **{Partition, Key, Lookup, Compose_V1, Map_V1, PaintEach}**.
+  Note Select is NOT in it: the discovered programs use Partition directly. The smallest
+  language able to reproduce the two source concepts, and nothing else is executable.
+- Contract re-frozen at **4f2bde616014d4f1**; both gates re-verified green.
+### New test: tests/test_v21_contract_integrity.py, 7/7 GREEN
+- contract hash pinned and enforced; every runtime signature equals the contract's compiled
+  signature; no runtime rule without contract provenance; no contract-inactive rule
+  executable (registry AND evaluators); kernel equals the derived closure; a source-level
+  assertion that `_register(` never returns; and a check that the head-type approximation has
+  not leaked into the runtime (Key alone must NOT typecheck where Expr[Region,Colour] is
+  required).
+### Second claim corrected
+- The search module said "semantic deduplication by rendered behaviour". Since
+  observational_signature returns None unless a program already fits every demonstration,
+  what it actually does is **deduplicate among EXACT-FIT candidates**, keeping the cheapest
+  exact program. Docstring narrowed to that; no richer cache built.
+### Phase 2 re-run on the contract-compiled registry: still 2/2
+- 7b6016b9 and 83302e8f: LOO-by-rediscovery 3/3, test-correct. Search shrank from 384 to
+  **48 typed candidates** and 0.66s to 0.07s, because the kernel is now exactly the six
+  operators the sources need.
+### STATUS CORRECTION, as required
+- This result is a **V2.1-native reproduction of previously established source programs under
+  the minimal reconstructed language**: a VALIDATION GATE, not a prospective ARC result and
+  not independent evidence of generalization. Those two tasks were used in reconstructing the
+  semantics. New evidence begins at Phase 3.
+### NEXT: Phase 3 immediately. Auditing stops here.
+
+## 2026-08-22 — LADDER WORDING CORRECTED, then PHASE 3 GREEN (V2.1-native Level-2 reproduction)
+### Correction (SUPERSEDES "new evidence begins at Phase 3")
+- Phase 3 still uses the SAME two source tasks, so it is V2.1-native Level-2 REPRODUCTION,
+  not prospective evidence. The ladder is:
+  Phase 2 = Level-1 reproduction; Phase 3 = V2.1-native Level-2 reproduction;
+  Phase 4 = treatment construction; **Phase 5 = first new transfer evidence.**
+### Phase 3: geocat_arc/object_reasoning/meta_v21_concept.py
+- Generic typed least-general anti-unifier with exactly two rules: AU(x,x)=x, and a fresh
+  variable for a disagreement. **The variable's type comes from the PARENT PRODUCTION'S
+  DECLARED ARGUMENT TYPE**, not from the Python type of the literal: a colour table is a
+  tuple at runtime but becomes ?v : Map because it sits in an argument declared Map.
+- No expected shape is supplied anywhere. Agreements are retained; only real disagreements
+  become slots.
+### Result: concept_0001 learned natively, from the two V2.1 ASTs
+  schema  PaintEach(Map_V1(Partition(background_components),
+                    Compose_V1(Key(?v0), Lookup(?v1))))
+  slots   ?v0 : FeatureExpr, ?v1 : Map
+  provenance 7b6016b9, 83302e8f; source hashes faed2dc067ae028a, 4a077479c8e96d17
+- The structure matches what the V1 run produced, but it was NOT supplied: the same generic
+  algorithm, given only the two programs, returned it.
+### Four certificates, ALL GREEN (outputs/cora_breakthrough/v21_phase3_certificates.json)
+ 1 SYMMETRY: AU(P1,P2) equals AU(P2,P1) up to variable renaming.
+ 2 EXACT RECONSTRUCTION: C[b1]=P1 and C[b2]=P2, both exact.
+ 3 LEAST GENERALITY: every introduced slot is a genuine typed disagreement, and every
+   position where the two programs agreed is still concrete.
+ 4 FRESHNESS: registry empty at start and rebuilt from scratch; the old V1 concept registry
+   is never loaded; no task id and no concept name appears anywhere in the anti-unifier
+   logic; both source program hashes stored.
+### Status, stated exactly: **V2.1-native reproduction of Level-2 abstraction invention.**
+### Not generalization, and not transfer evidence.
+### NEXT: Phase 4, the concept as a MACRO with surface and elaborated core forms, so ordinary
+### type checking, the generic slot learner, execution and LOO all operate on the expansion
+### and no concept-specific code exists. Macro cost frozen BEFORE any non-provenance scan.
+
+## 2026-08-22 — PHASES 4 AND 5: THE LEVEL-3 EXPERIMENT RAN. 2 efficiency witnesses, 0 capability.
+### Phase 3 closed with a fifth certificate
+- Every recorded source binding typechecks against its slot's declared type
+  (?v0 : FeatureExpr bound to touches_border / is_rect; ?v1 : Map bound to the two fitted
+  tables). All five certificates green; concept_0001 persisted and frozen.
+### Phase 4: geocat_arc/object_reasoning/meta_v21_env.py, K is NEVER mutated
+- LanguageEnv(base, concepts) with `.with_concept()` returning a NEW environment and
+  `.without_concepts()` giving the ablation. Verified after the run: base V.REGISTRY is still
+  exactly the six kernel rules.
+- A learned concept is a SURFACE production. Search depth, cost, ranking and attribution read
+  the surface AST; type checking, slot fitting, execution and LOO read the ELABORATION into
+  kernel productions. There is no concept-specific evaluator, no concept-specific learner and
+  no branch on a concept name anywhere: fit_slots expands the surface program, runs the
+  ORDINARY learner on the core, and substitutes the fitted values back.
+- Measured macro accounting for concept_0001: **surface depth 1 versus core depth 4, surface
+  cost 3 versus core cost 8, compression 2.67**. Both views are always reported together.
+- The search became environment-aware, so BOTH ARMS CALL THE SAME FUNCTION and only the
+  environment differs. Not two scripts.
+### Manifest frozen BEFORE any non-provenance task was examined
+- outputs/cora_breakthrough/v21_level3_manifest.json, sha256 **6a873280f2b0e59c**: hashes of
+  contract, runtime, search, environment/macro, anti-unifier, concept registry, concept schema
+  and both source programs; kernel K and its derivation; MAX_DEPTH, PER_TYPE_CAP,
+  MAX_CANDIDATES, budget, ranking; the macro cost and depth policy with its rationale; the
+  scan pool; and the exact 3A and 3B criteria. Phase 5 re-verifies every hash and REFUSES to
+  run on drift.
+### RESULT (outputs/cora_breakthrough/v21_level3_results.json), 598 non-provenance tasks
+| Task | uses C1 | LOO | test | 3B | 3A |
+|---|---|---|---|---|---|
+| 00d62c1b | yes | 5/5 | correct | no | **YES**: -36 typed candidates, -0.031s, -5 surface cost |
+| a5313dff | yes | 3/3 | correct | no | **YES**: -36 typed candidates, -0.034s, -5 surface cost |
+| 12eac192 | no | 4/4 | correct | no | n/a (concept not used) |
+| 9565186b | no | 3/4 | correct | no | n/a (LOO fails anyway) |
+| c0f76784 | yes | **1/3** | correct | no | **no**: LOO fails, correctly excluded despite a correct test output |
+- **LEVEL 3A: 2 witnesses. LEVEL 3B: 0 witnesses.**
+### What this does and does not establish
+- The 3A witnesses meet every preregistered criterion: outside provenance, both arms solve,
+  the winning SURFACE program contains concept_0001, LOO by complete rediscovery passes, the
+  test prediction is exactly correct, and the treatment reduces preregistered resources.
+  **A concept abstracted automatically from two earlier solutions measurably reduced the
+  search needed on tasks that played no part in creating it.** That is the first prospective
+  result in this line of work.
+- **No capability witness.** The concept never made an unsolvable task solvable, which is the
+  expected outcome: it expands entirely into K, so it can only compress, and K could already
+  reach these programs at depth 4 within budget.
+- CLAIM LIMIT, as frozen in the manifest: even a 3B result would show only that the set of
+  solutions REACHABLE UNDER THE FIXED BUDGET grew, never that the language denotes anything
+  new. A genuine expressivity gain requires a concept that is not a macro over K, which is
+  exactly what Collection_to_Grid is being deliberately withheld for.
+- Discipline check that worked: c0f76784 uses the concept and predicts the test correctly but
+  fails LOO 1/3, and was excluded from both witness classes rather than counted.
+### No new primitive, no template or lattice work, no search tuning was done at any point.
+
+## 2026-08-22 — STEPS 1 TO 3 (SUPERSEDES the Phase-5 wording above)
+### Step 1: the two 3A candidates are now CERTIFIED against the ALREADY-FROZEN criterion
+- The manifest required BOTH arms to pass leave-one-out. The Phase-5 runner computed it for
+  the TREATMENT ONLY, so the earlier "2 witnesses" claim was premature. This is verification
+  of an existing criterion; the criterion was NOT changed.
+- scripts/cora_v21_certify_3a.py, frozen hashes re-verified first:
+  * 00d62c1b: baseline LOO **5/5**, treatment LOO 5/5, both arms solve, surface uses C1,
+    test correct, -36 typed candidates -> **CERTIFIED**
+  * a5313dff: baseline LOO **3/3**, treatment LOO 3/3, both arms solve, surface uses C1,
+    test correct, -36 typed candidates -> **CERTIFIED**
+- **2 of 2 certified.**
+### Step 2: read-only all-arm transfer audit over all 598 non-provenance Experience tasks
+| Outcome | Count |
+|---|---|
+| both arms solve | 5 |
+| **baseline only (negative transfer)** | **0** |
+| treatment only (capability) | 0 |
+| neither | 593 |
+- **No negative transfer**: the concept never cost a solve that K could obtain alone.
+- **But an honest cost was measured.** On the two tasks where the concept does NOT apply
+  (12eac192, 9565186b) the treatment examined **60 typed candidates versus the baseline's 48**:
+  the extra production is enumerated without helping. Where it does apply the count falls to
+  **12 versus 48**. So the learned abstraction is a net saving on applicable tasks and a small
+  overhead elsewhere, which is the expected shape and is now measured rather than assumed.
+- Nothing was tuned or repaired from this audit.
+### Step 3: wording corrected
+- The Experience result is **causal efficiency transfer to NON-SOURCE tasks under a frozen
+  V2.1 comparison**. It is NOT "the first fully prospective result": 00d62c1b, a5313dff and
+  c0f76784 had already surfaced in the earlier V1 concept-expressibility analysis. They played
+  no part in creating C1, so they are genuinely non-provenance, but they are not untouched.
+- Primary substantive 3A measure is the **typed-candidate reduction (-36)**. The surface-cost
+  reduction (-5) is abstraction compression BY CONSTRUCTION, since the macro was frozen to
+  count as one surface node, so it is not independent evidence. The runtime deltas
+  (-0.031s, -0.034s) are below noise and the harness always runs treatment before baseline, so
+  they carry no weight.
+### Step 4 (next): the untouched Promotion split, as a NEW confirmatory experiment.
+- Protocol correction adopted: the previous manifest froze the CRITERIA but not the RUNNER,
+  and that is exactly where the baseline-LOO omission occurred. For the confirmatory run the
+  order is reversed: **write the runner, test it, hash it, freeze a manifest containing the
+  runner's hash, then run the untouched tasks once.**
+- Only legitimate change: scan pool Experience -> previously untouched Promotion. K, C1, macro
+  cost, MAX_DEPTH, PER_TYPE_CAP, budget, ranking, search, LOO procedure and both witness
+  definitions stay byte-identical. Lockbox stays untouched.
+### CLAIM LADDER
+  Level 1: YES. Level 2: YES (V2.1-native reproduction).
+  Level 3A: **2 CERTIFIED non-provenance efficiency witnesses** (not untouched-prospective).
+  Level 3B: NO. Untouched prospective transfer: NOT YET TESTED.
+
+## 2026-08-22 — TWO WORDING REFINEMENTS (SUPERSEDES the phrasing in the entry above)
+- "-36 typed candidates" means precisely: **36 fewer typed candidate programs were examined by
+  the frozen search before it reached the accepted exact-fit solution.** It is NOT a claim that
+  the hypothesis space shrank by 36. The mechanism is that C1's depth-4 core counts as a
+  depth-1 surface macro, which changes reachability and ordering under a bounded budget.
+- "No negative transfer" is too broad for what was measured. Exact statement: **no solve-loss
+  negative transfer was observed: zero tasks were solved by K and not by K+C1 across 598.**
+  The descriptive audit did not compare BOTH arms' test correctness on the five both-solve
+  tasks, so a train-fit-but-wrong-test divergence was not exhaustively excluded.
+- Preserved empirical picture: a useful concept gives large compression (12 versus 48 typed
+  candidates); an irrelevant concept gives small search overhead (60 versus 48).
+
+## 2026-08-22 — UNTOUCHEDNESS AUDIT OF PROMOTION: **IT IS NOT UNTOUCHED.** Confirmatory run HELD.
+### The audit was run before writing the Promotion runner, and it stopped the plan
+- Method: search project history, logs and outputs for the 200 Promotion task ids and classify
+  each occurrence. Promotion task CONTENTS were never opened by this audit; only ids and
+  verdict co-occurrence were examined.
+### Findings, quantified
+| Evidence | Count |
+|---|---|
+| Promotion tasks in the v23 full-1000 SOLVED set | **37** |
+| Promotion tasks in the v22 full-1000 SOLVED set | **34** |
+| Promotion tasks with stored near-solve records (v22) | **166** |
+| Promotion ids in the near-solve compiler dataset | **166** |
+| Promotion ids in the CORA trigger audit | 0 |
+| Promotion ids in the expression-round trace | 0 |
+### Interpretation, stated exactly
+- The 600/200/200 split was created on 2026-08-18, AFTER the v22 and v23 full-1000 harness runs
+  had already scored every training task. So Promotion task RESULTS were observed under the
+  LEGACY ENGINE, and 166 of the 200 have per-task near-solve records that fed the near-solve
+  compiler's aggregate failure-family analysis.
+- What was NOT done: no Promotion task's demonstrations were inspected for CORA design; no
+  Promotion task appears in the expression-round trace or the CORA trigger audit; K and C1 were
+  built only from Experience-split evidence.
+- Therefore Promotion is best described as **"never used for CORA design, but previously scored
+  by the legacy engine"**, NOT as untouched. Running it would give confirmatory evidence on a
+  non-design split, which is weaker than the untouched-prospective claim the plan assumed.
+### Decision: the Promotion confirmatory run is HELD, not executed
+- Executing it now would spend the split while yielding a claim I would then have to qualify
+  the same way. Under the standing instruction Lockbox stays closed regardless, so I am not
+  substituting it either.
+- Nothing was tuned, and no Promotion task content or result was inspected during this audit.
+### This is exactly why the audit was ordered before the runner. The phrase "untouched" now has
+### evidence behind it, and the evidence says it does not apply to Promotion.
+
+## 2026-08-22 — PROMOTION CONFIRMATORY RUN: **THE 3A EFFECT REPLICATED.** 1 certified witness.
+### Protocol, in the corrected order this time
+- Runner written FIRST, all-arm symmetric (the baseline is never conditioned on treatment
+  success), implementing both frozen witness definitions plus a stricter secondary label
+  declared before the run.
+- Runner TESTED on already-spent Experience fixtures: it reproduced both certified witnesses
+  and correctly rejected c0f76784 (leave-one-out 1/3) and 12eac192 (concept not used).
+- Runner HASHED (8825eecd1b4c5a34), then the manifest frozen with that hash alongside the
+  contract, runtime, search, macro environment, anti-unifier, concept registry, split
+  manifest, ARC challenges and ARC solutions, plus the exact 200 task ids and every parameter.
+  Manifest sha256 **6ca868c0383c1ade**. The runner re-verifies all ten hashes and refuses to
+  run on drift.
+- Label frozen BEFORE results, exactly as specified: **CONFIRMATORY_NON_DESIGN**, with
+  prior_exposure recording legacy v22/v23 scoring, 37 and 34 solved, 166 of 200 near-solve
+  records, and used_to_construct_K = used_to_learn_C1 = False.
+### RESULT (outputs/cora_breakthrough/v21_promotion_results.json), all 200 run symmetrically
+| Outcome | Count |
+|---|---|
+| both arms solve | 2 |
+| **baseline only (solve-loss negative transfer)** | **0** |
+| treatment only (capability) | 0 |
+| neither | 198 |
+- **84f2aca1: CERTIFIED 3A witness, and also 3A-strict.** Uses C1 in the winning surface
+  program; baseline LOO 4/4 and treatment LOO 4/4; treatment test prediction correct; baseline
+  test prediction correct; **36 fewer typed candidates examined before the accepted exact-fit
+  solution (48 -> 12)**, the same magnitude as both Experience witnesses.
+- 6e82a1ae: both arms solve, concept NOT used, treatment examined 12 MORE typed candidates
+  (60 versus 48). The irrelevant-knowledge overhead reproduced too, and is reported rather
+  than averaged away.
+- **3B witnesses: 0.** No capability transfer, as expected for a macro over K.
+### The frozen interpretation applies verbatim
+- "The learned abstraction's bounded-search efficiency benefit replicated on a separate
+  non-design split, which was not used to build the V2.1 language or concept. The split had
+  been legacy-scored, so this is NOT untouched prospective evaluation."
+- Nothing was tuned, nothing repaired, and no result was reinterpreted after the fact.
+### CLAIM LADDER
+  Level 1 YES. Level 2 YES (V2.1-native reproduction).
+  **Level 3A: 3 certified witnesses total, 2 on Experience and 1 replicated on the non-design
+  Promotion split; all three show the identical -36 typed-candidate reduction.**
+  Level 3B: NO. Untouched prospective transfer: STILL NOT TESTED (Lockbox stays closed).
+### Lockbox remains closed, reserved for the genuinely stronger future stage: failure-triggered
+### semantic self-extension, where the system proposes a capability such as collection-to-grid
+### rather than a macro over the existing kernel.
+
+## 2026-08-22 — LEVEL 3A FROZEN, with two framing corrections
+### The result, stated as it will be claimed
+- "An abstraction automatically induced from two previously solved tasks causally reduced
+  bounded-search effort on three non-source tasks, including one from a separate non-design
+  split, while preserving certified leave-one-out generalization and exact test correctness."
+- 48 -> 12 means 36 fewer typed candidate programs were examined before the accepted exact-fit
+  solution. It does NOT mean the hypothesis space shrank by 36.
+### Correction 1: the identical -36 is NOT three independent effect-size measurements
+- All three certified witnesses show exactly the same reduction because it is largely a
+  STRUCTURAL property of this search space: the baseline must enumerate the longer construction
+  Partition -> Key -> Lookup -> Compose -> Map -> Paint, while C1 offers the same computation as
+  one shallow surface production. Correct phrasing: **the same abstraction produced the same
+  search-compression pattern on all three certified witnesses**, not a statistically estimated
+  effect of exactly 36.
+### Correction 2: the result is NARROW, and that is reported, not hidden
+- Promotion: 2 of 200 tasks solved by either arm, one of which used C1 beneficially.
+  Experience: useful coverage on a similar handful of 598.
+- So the claim is NOT "CORA learned a broadly reusable ARC concept". It is: **CORA
+  automatically constructed a reusable abstraction whose causal search benefit transfers beyond
+  its source tasks, but the abstraction currently has narrow applicability.**
+- The irrelevant-concept overhead (+12 typed candidates when C1 does not apply) is preserved as
+  the beginning of a scaling question: benefit of useful abstractions versus cost of
+  accumulating irrelevant ones. With one concept it is trivial; with many it would not be.
+  **No retrieval or routing mechanism is being built now** - that would be inventing an
+  architecture in advance of the evidence forcing it.
+### FROZEN LADDER
+  Level 1 YES (V2.1-native program discovery).
+  Level 2 YES (V2.1-native abstraction invention).
+  Level 3A YES: 3 certified witnesses, 2 Experience + 1 Promotion, 0 negative-transfer solve
+    losses across 798 tasks examined in total.
+  Level 3B NO. Semantic/expressive self-extension NOT YET. Untouched Lockbox evidence
+    deliberately NOT YET.
+### The bottleneck has moved. It is no longer "can learned concepts ever help", which is
+### answered, but "can the system create the RIGHT new concepts when the current language
+### cannot express what its failures require".
+
+## 2026-08-22 — LEVEL 4 MANIFEST FROZEN (before any invention mechanism exists)
+- docs/CORA_LEVEL4_MANIFEST.md, sha256 pinned in
+  outputs/cora_breakthrough/level4_manifest_hash.txt.
+- Question: can systematic certified failure force invention of a genuinely NEW semantic
+  capability, which the system then certifies and adopts? Level 3A changed A_t (abstractions);
+  Level 4 asks whether failure can change P_t (grammar), and eventually V_t / R_t.
+- SPLITS: Experience is the development pool; **Promotion is SPENT** by the confirmatory run and
+  is not used for extension design; **Lockbox stays closed for the whole of Level 4**;
+  Evaluation-120 out of scope.
+- FROZEN: kernel K, concept_0001 and its macro accounting, the semantic contract with its
+  inactive rules (Fold, Repeat, Propagate_with_Seed, Sequence consumer, and the collection-to-
+  grid transition all stay unavailable), the search implementation and every parameter, and the
+  immutable LOO verifier. An extension may change what is PROPOSED, never what is REQUIRED to
+  accept.
+- FAILURE-FRONTIER RECORD frozen now: deepest valid typed partial AST, frontier type, goal type,
+  residual, repeated-structure flag, failure class. **No task id, no family name, no human
+  interpretation.** Clustering is by (frontier_type, goal_type, residual signature), so a
+  missing capability is evidence about TYPES AND COMPOSITIONAL DEAD ENDS, never about a named
+  group of puzzles.
+- CERTIFICATION, frozen: resolves at least two independent source tasks; every one survives full
+  LOO by complete rediscovery under the unchanged verifier; no regression; compact semantics
+  with no task id, family name or literal answer; survives synthetic counterexamples; and
+  **transfers to at least one task outside its invention provenance**. That last criterion is
+  what separates an invented capability from a retrofit.
+- WITHHELD EXPECTATION SEALED: the project's own belief about the missing capability is kept
+  out of the mechanism. outputs/cora_breakthrough/level4_withheld_expectation_seal.json stores
+  only SHA-256 hashes of the withheld terms and of the expected type transition, so the seal
+  itself cannot leak the answer into any artefact the mechanism reads. The plaintext stays in
+  this ledger, which the mechanism does not consume. If the mechanism independently proposes an
+  equivalent typed capability, the seal date is the evidence that it was not told.
+- Frozen interpretations cover all five outcomes, including "no frontier cluster reaches the
+  threshold", which would mean the premise is wrong and is recorded as informative.
+- STANDING PROHIBITIONS: no human-written target primitive; no task-family branch; no verifier
+  relaxation; no Lockbox; no score chasing during Level 4; no concept retrieval or routing
+  mechanism until library growth is MEASURED to cause interference.
+
+## 2026-08-22 — LEVEL-4 MANIFEST LEAKED ITS OWN SEALED EXPECTATION. Reissued and enforced.
+### The failure, found in review and confirmed mechanically
+- The first Level-4 manifest declared that a particular expectation must be withheld from the
+  invention mechanism, and then wrote that expectation into ITSELF, in plaintext, three times:
+  the withheld term list, the named inactive transition in the frozen-rules section, and a
+  worked example of a candidate completion. A worked example is itself a hint.
+- Anything reading docs/ would have seen the answer. The blindness protocol was void as written.
+### Reissued manifest (docs/CORA_LEVEL4_MANIFEST.md, sha256 pinned in level4_manifest_hash.txt)
+- Now mechanism-readable BY CONSTRUCTION: no capability name, no example completion, no naming
+  of which inactive production is expected to matter. The contract's inactive set may be read
+  only as an opaque list of names that must not be used.
+- The frontier-definition gaps are closed with frozen definitions:
+  * **maximal typed partial program**: greatest surface_depth, executes on every demonstration,
+    not a sub-term of another such program; incomparable maxima are ALL recorded and ties are
+    never broken by preference, since a preference would encode a hint;
+  * **residual signature**: canonical and task-independent, normalised so two tasks differing
+    only in size, palette or position produce the same signature;
+  * **failure classes** fixed at five: semantic, slot_learning, routing, type_connectivity,
+    budget;
+  * **cluster threshold frozen before any cluster is seen**: at least three distinct tasks,
+    counted THROUGH the firewall by the certification stage, not by the invention stage.
+- **Provenance firewall** specified: clustering uses (frontier_type, goal_type,
+  residual_signature, failure_class) and never task identity, while a separate map from record
+  id to task id is written to a file the invention stage does not read and the certification
+  stage opens only after an extension has been proposed.
+### Enforcement, not just prose
+- scripts/cora_level4_leak_check.py hashes n-grams from every mechanism input and compares
+  against per-term hashes in the seal, so a leak is DETECTABLE WITHOUT THE DETECTOR KNOWING THE
+  ANSWER. It also rejects any ARC task id and any worked type-transition example.
+- First run: **FAILED, 5 findings.** The semantic contract names sealed terms in its inactive
+  list, and the concept registry carries both source task ids. Both are genuine violations.
+- scripts/cora_level4_redact_inputs.py now produces the blind views the firewall requires:
+  the contract with all 8 inactive productions replaced by opaque ids (the mechanism learns
+  only that 8 names are forbidden, never which) and rationales stripped; the concept with its
+  schema, types and cost but no provenance. Originals untouched and still authoritative for
+  certification. The name map and concept provenance go to
+  level4_provenance_firewall.json, which is never a mechanism input.
+- Re-run: **LEAK CHECK PASSED.** 19 active productions exposed, 8 forbidden ids exposed
+  opaquely, 0 sealed terms, 0 task ids, 0 worked examples.
+### Step A does not run until this check passes, and it now gates the pipeline.
+### NOTE: the incoming review was truncated after issue 1. Issues 2 and beyond are unknown;
+### the leak, the frontier definitions and the provenance firewall are addressed above.
+
+## 2026-08-22 — ALL SEVEN PRE-STEP-A CORRECTIONS APPLIED. Manifest re-frozen 72df6fcf6d9580e6.
+### 1. THE CONSEQUENTIAL ONE: K_L4 is now distinct from K_3A
+- The Level-3A kernel is six productions, minimised on purpose from the closure of two source
+  programs. Carrying it into Level 4 would have let the mechanism appear to invent capabilities
+  that were merely AMPUTATED for the macro experiment. That would have undermined the whole
+  self-extension claim.
+- **Five contract-active productions had no V2.1 implementation: Group, Transform, Anchor,
+  Recolour, Copy.** Their pre-Level-4 semantics were PORTED before this freeze, so no Level-4
+  evidence determined the contents of K_L4.
+- **K_L4 = 22 grounded productions** (K_3A = 6, unchanged and still frozen for the Level-3A
+  result). Polymorphic SPEC_INTENDED signatures are instantiated at the declared ground types
+  (ArgMax@Region, ArgMax@Entity, ...) so no unbound type variable reaches the runtime.
+- Consequence worth stating: K_L4 DOES contain the single-instance path
+  Entities -> Set[Entity] -> Unique -> Entity -> Anchor -> Placement -> Copy -> Grid.
+  The collection-level transition remains absent. That is the honest baseline.
+- **Two bugs found while doing this**: the context-implicit leading-Grid rule was deleting a
+  REAL argument from Overlay (now restricted to the three audited productions), and polymorphic
+  signatures were leaking bare type variables into the runtime. Both fixed; two new integrity
+  tests cover them. Integrity suite 10/10; Phase 2 re-run confirms K_3A still reproduces 2/2.
+### 2. Within-stage holdout: Experience splits E_invent 75 / E_transfer 25
+- Deterministic, outcome-blind, keyed hash of task id with a frozen salt, fixed BEFORE
+  extraction. Only E_invent may generate frontier records; criterion 6 is tested on E_transfer.
+  Without this a later Experience task could sit outside the source list while still having
+  shaped cluster formation, type-gap frequencies and proposal selection.
+### 3. Frontiers come from FAILED LOO FOLDS, not from free enumeration
+- Extraction runs per failed fold: induce on N-1, record the typed derivation, take maximal
+  terms that AROSE ON A PATH toward the goal type. "Deepest executable term" would have
+  measured enumeration artefacts. This also ties the stage to the gate: **the same leave-one-out
+  failure that blocks certification becomes the evidence for self-extension.**
+### 4. Two signatures replace the single residual
+- A frontier's result type need not be the goal type, so it generally cannot be differenced
+  against the target at all - which is exactly the class Level 4 exists to study.
+  Records now carry frontier_value_signature (canonical for frontier_type) and
+  goal_delta_signature (derived independently from the demonstration), with a direct
+  behavioural residual ONLY when the types match. **No projection from an arbitrary type onto
+  Grid is invented**, since such a projection would smuggle in the very semantic bridge being
+  tested for.
+### 5. Opaque stable source tokens
+- source_token = HMAC(frozen_secret, task_id), carried on every record, mapped back only behind
+  the firewall. Cluster eligibility is >= 3 DISTINCT SOURCE TOKENS, verified by the mechanism
+  itself, so one task with three incomparable maximal frontiers cannot satisfy the threshold,
+  and the mechanism is not simply handed a verdict.
+### 6. Explicit input whitelist and a sanitized corpus
+- The mechanism reads exactly four files: machine_manifest, contract_redacted,
+  concepts_redacted, and invention_corpus.jsonl, the last carrying only source_token plus
+  demonstration pairs for E_invent. No task ids, no Promotion, no Lockbox, no test solutions.
+  The raw ARC corpus is keyed by task id and is never read directly.
+### 7. The leak check's claim is narrowed
+- Renamed a **sealed-lexeme and task-identifier leak check**. It detects the sealed exact terms
+  and compounds whose hashes were supplied, plus task ids and worked type-transition examples.
+  It CANNOT prove that no synonym or paraphrase exists. The stronger protection is structural:
+  redacted contract, opaque tokens, sanitized corpus, explicit whitelist. Re-run: PASSED.
+### STATUS: the extractor is still NOT written. Next is the split, the token secret, the
+### sanitized corpus and the whitelist enforcement, then Step A only.
+
+## 2026-08-22 Level-4 A0 baseline admissibility gate (pre-mechanism)
+
+Run before any invention code existed. Registry membership was being treated as reasoning
+capability; the gate tested whether the 22 grounded productions of K_L4 were both pre-Level-4
+and reachable under the frozen search.
+
+Result: **11 admitted, 11 excluded**. K_L4* = ArgMax@Entity, ArgMin@Entity, Compose_V1,
+Entities, Key, Lookup, Map_V1, PaintEach, Partition, Select, Unique@Entity.
+E_L4* = K_L4* + concept_0001 (C1 checked viable: every production its schema uses is admitted).
+
+Exclusion causes, all recorded rather than repaired:
+- three induced types (Anchor, Transform, ColourBijection) have NO slot learner; only Map does,
+  so the search can never supply a value for those arguments
+- two productions were evaluable but behaviourally wrong on fixtures: Recolour is identity,
+  Transform does not carry multicolour appearance
+- Copy excluded by fixed-point cascade, its Placement argument coming only from excluded Anchor
+- Overlay, Paint, Group and every @Region instantiation unreachable by the frozen enumerator
+
+Positive control: a synthetic task purpose-built for the chain Entities->Unique->Anchor->Copy
+->Grid, three unambiguous demonstrations. Frozen search generated 6760 surface terms, typed 48,
+rejected all 48, LOO 0/3. The baseline does not operationally possess single-instance placement.
+
+Two errors in the gate itself were found and fixed before freezing: the first Copy fixture used
+an out-of-bounds offset and wrongly recorded Copy as broken, and the first admission rule
+recorded the missing-slot-learner reason without gating on it.
+
+Manifest amended (counts only, no capability named, since the manifest is mechanism-readable).
+The admissibility artifact names productions and is therefore outside the input whitelist.
+
+Hashes: manifest 607ed54c305df5f7, admissibility 57e1497394031c71, gate b90ad8642f99ab06.
+Leak check passed; contract integrity tests 10/10.
+
+## 2026-08-22 Level-4 A0.1 opened: the pre-Level-4 runtime was RECOVERED
+
+A0's substantive result is accepted and unchanged: the nominal 22-production baseline
+collapses to 11 operationally reachable productions, concept_0001 stays viable over that
+reduced baseline, and the purpose-built single-instance positive control produces 0 exact
+programs and LOO 0/3 under the real frozen inducer. No excluded capability will be repaired.
+
+### The defect A0.1 closes
+A0 claimed "admit only if pre-Level-4 AND operational" but tested only the second half.
+Every row recorded `historical_source_hash = sha(current meta_v21.py)`, regardless of the
+HISTORICAL_SOURCE entry it claimed, and that file had already been edited during Level 4 to
+add LEVEL4_REGISTRY and the five ported evaluators. A check that hashes the current file to
+prove what existed before the freeze cannot fail and proves nothing. The current hash is
+evidence about what runs now and is being moved to `current_implementation_sha`.
+Second defect: most admitted productions carried `synthetic_semantics_pass = null`, which was
+being read as passing. Absence of evidence is not evidence.
+
+### Recovery of the exact historical runtime
+Both v21_level3_manifest.json and v21_promotion_manifest.json, written before the Level-4
+freeze, pin runtime sha256
+`57daa98455132b891625755a6228caa664f114d2b1d1c3b1a04c62ae3bfb5d89`.
+A bounded content-addressed search over the project tree, its parent, ~/.claude and /tmp
+(6624 files hashed, 173 archives opened, 448s, logs/a01_hash_hunt.log) found an EXACT match in
+Claude Code's file-history store. It was copied into the project, byte-identical, as
+`outputs/cora_breakthrough/level4_pre_level4_runtime_57daa984.py`, because that store is
+pruned. Record: `outputs/cora_breakthrough/level4_runtime_hash_hunt.json`.
+
+Authenticity is content-addressed. It rests on hash equality with a hash pinned by two frozen
+pre-Level-4 manifests, not on where the copy was found. The file corroborates itself: it has
+no LEVEL4_REGISTRY, no `_anchor` or `_copy` evaluator, and a 13-entry EVALUATORS table against
+18 in the current runtime.
+
+Consequence: provenance for the 11 candidates can be graded SOURCE_BODY_VERIFIED with an
+actual historical-versus-current function-body comparison, rather than resting on
+execution-hash pinning. Because it is the same module lineage, the two higher-order
+productions Map_V1 and Compose_V1 become comparable too, which a cross-module comparison
+against the git-tracked meta_v2 prototype could not have done.
+
+### Frozen grading for A0.1
+Provenance: SOURCE_BODY_VERIFIED | PRE_LEVEL4_EXECUTION_HASH_PINNED |
+INTERNALLY_PRE_LEVEL4_NOT_HASH_VERIFIED. Semantic evidence, independently:
+CERTIFIED_PRE_LEVEL4_EXECUTION | PRE_LEVEL4_TEST | CURRENT_A0_SYNTHETIC_FIXTURE | NONE, where
+NONE cannot pass. Reachability is consumed from the A0 artifact, not recomputed, so A0.1 is
+strictly additive. No evaluator, signature, terminal vocabulary, slot learner or search
+parameter is touched. Anything that cannot establish both provenance and behaviour is
+excluded and the cascade re-run; nothing is repaired.
+
+### Status
+`scripts/cora_level4_a01_provenance.py` written, not yet run: it must first be pointed at the
+recovered runtime instead of the meta_v2 prototype, which is now secondary evidence
+(5db9a3e:geocat_arc/object_reasoning/meta_v2.py, blob 094ba771...).
+`scripts/cora_level4_prepare_inputs.py` written and DELIBERATELY UNUSED until A0.1 freezes. It
+carries a known defect to fix first: it exposes generic base-rule contract signatures, which
+would tell the blind mechanism the baseline has a polymorphic ArgMax when it operationally has
+ArgMax@Entity and not ArgMax@Region. The blind contract must be generated from the admitted
+runtime instantiations, so that Signature_blind = Signature(K_L4*).
+
+The positive control keeps its narrow reading: the frozen reasoning system does not
+operationally possess the tested single-instance placement, because the inducer cannot supply
+the required upstream value. Copy itself executes correctly on a validly supplied placement.
+Executor exists is not the same claim as reasoning capability exists.
+
+## 2026-08-22 — A0.1 RUN AND PASSED. Baseline auditing closed. Admissibility frozen ee11a0b1.
+
+`scripts/cora_level4_a01_provenance.py` was pointed at the recovered pre-Level-4 runtime and
+run to completion. It was then re-run from a clean start in a later session and reproduced a
+byte-identical artifact, so the result is deterministic rather than a property of one
+execution. Environment: `source ~/.venvs/lesegenv/bin/activate`, python3.12. Log
+`logs/a01_provenance.log`.
+
+### Result
+All 11 candidate productions grade **SOURCE_BODY_VERIFIED**, the strongest of the three frozen
+provenance grades, established by an actual per-function body comparison against
+`outputs/cora_breakthrough/level4_pre_level4_runtime_57daa984.py` — the file whose sha256
+`57daa984...` is pinned by both `v21_level3_manifest.json` and `v21_promotion_manifest.json`,
+written before the Level-4 freeze. For every one of the 11: body `IDENTICAL_TEXT`, compiled
+signature `match=True`, and an empty `dependency_divergences` map.
+
+`excluded_at_a01 = 0`. `K_L4*` therefore stays at 11 and `E_L4* = K_L4* + concept_0001` = 12.
+No cascade was required because nothing was excluded, and nothing was repaired.
+
+### Why zero exclusions is not the old vacuous pass
+The A0 defect was that the current `meta_v21.py` hash had been written into every row's
+`historical_source_hash`, so the comparison was reflexive and could not fail. A0.1 compares
+against a genuinely different file: current runtime `a3e23e6f` differs from the pinned
+`57daa984`, and Level 4 did measurably change that module — 77 of 80 module-level definitions
+identical, 3 divergent (`EVALUATORS`, `compile_registry`, `parse_signature`), 16 added
+(`LEVEL4_REGISTRY`, `_anchor`, `_copy`, `apply_d4`, `instantiate_signature`, ...), none removed.
+The check could have failed. It did not, because none of the three divergences falls inside the
+dependency closure of any admitted production, which is the condition the artifact's own note
+specifies and records per row.
+
+### The weak spot, stated rather than smoothed over
+Provenance and semantic evidence are graded independently. Seven of the eleven carry
+`CERTIFIED_PRE_LEVEL4_EXECUTION` or `PRE_LEVEL4_TEST`. **`ArgMax@Entity` and `ArgMin@Entity`
+rest on `CURRENT_A0_SYNTHETIC_FIXTURE` alone** — the weakest admissible kind, and evidence from
+the current runtime rather than the historical one. They clear the stated bar, which is
+non-NONE, but they must not be described as historically behaviour-certified. The
+`PRE_LEVEL4_TEST` entries are themselves marked secondary in the artifact, since
+`tests/test_meta_v2_architecture.py` exercises the `meta_v2` prototype and so supports the
+semantics of the operation rather than the identity of the current body.
+
+### Frozen
+`outputs/cora_breakthrough/level4_baseline_admissibility_v2.json`
+sha256 `ee11a0b14037809e4dad29f87b62f61ede9d55cec5c6fa9c3656d9e109a4ed27`, pinned in
+`outputs/cora_breakthrough/level4_a01_frozen_hash.txt`. It supersedes the A0 artifact
+`level4_baseline_admissibility.json` (`57e1497394031c71`), which remains on disk unmodified.
+
+**Baseline auditing ends here permanently. A0 and A0.1 are not to be reopened.**
+
+### Pin repair, bookkeeping only, no content changed
+`level4_manifest_hash.txt` still contained `72df6fcf`, the value from the seven-corrections
+re-freeze, although the manifest had since been legitimately amended and re-frozen to
+`607ed54c` — a change already recorded both in this ledger and in the resume's "Level 4 status"
+section. The pin file had simply not been updated at that point. It was set to `607ed54c` so
+the pin agrees with the record. All three pins now verify against their artifacts: A0.1
+`ee11a0b1`, manifest `607ed54c`, contract `4f2bde61`. Noted separately: the resume's -110 entry
+quotes the contract hash as `e2137a59132ffc38`, which matches nothing; the pin file and the
+artifact agree at `4f2bde61`, so integrity holds and only that quoted string is wrong.
+
+### Next, in order
+The redaction defect in `scripts/cora_level4_prepare_inputs.py` is fixed FIRST, before the
+split: `redacted_contract()` maps admitted productions back to base rule names and would expose
+a polymorphic `ArgMax : Set[A] x FeatureExpr -> A` to the blind mechanism when the baseline
+operationally has `ArgMax@Entity` and not `ArgMax@Region`. The blind contract must be generated
+from the admitted runtime instantiations so that `Signature_blind = Signature(K_L4*)`; the
+frozen v2 artifact now supplies exactly that list. Then the 75-25 `E_invent`/`E_transfer` split
+by keyed hash of task id, HMAC source tokens, the sanitized `invention_corpus.jsonl`, the
+machine manifest with redaction and leak check re-run over all four whitelist files, and only
+then Step A.
+
+## 2026-08-22 — Blind executable environment built and verified equivalent.
+
+The user's two-part closure before the split: make the blind contract exactly
+`Signature(K_L4*)`, and isolate an executable blind runtime. Part 2 is done and verified;
+part 1 is still open.
+
+### Why an executable projection was needed
+The four-file whitelist covers data inputs only, and Step A must execute Python. If the blind
+extractor imported the ordinary `meta_v21`, it could read the names and the bodies of every
+capability the redacted contract hides — `LEVEL4_REGISTRY` carries the excluded grounded
+productions, `EVALUATORS` carries their implementations, and A0.1 itself recorded that the
+current runtime holds Level-4 additions absent before the freeze. Blindness enforced only by a
+coding convention is not blindness. The point of the projection is to make absence an
+environmental fact: the excluded names are not importable, not introspectable, and not present
+in the source at all.
+
+### Method, which is what licenses the claim
+`scripts/cora_level4_build_blind_runtime.py` emits `level4_blind_runtime/`. Evaluator bodies
+are VERBATIM source segments lifted from `meta_v21.py` with `ast`, and the emitted set is the
+DEPENDENCY CLOSURE of the eleven admitted grounded productions — 45 definitions — rather than a
+hand-picked list. Nothing was rewritten by hand, so no evaluator behaviour, search policy,
+terminal vocabulary, slot learner, cost or budget could drift while the projection was made.
+Only the contract-reading parts are replaced: the registry is baked from the admitted grounded
+instantiations, and the terminal and induced type tables are restricted to the types those
+productions actually use. `concept.py`, `env.py` and `search.py` contain no capability names
+and are copied verbatim with their imports rewired.
+
+Exposed: terminals `FeatureExpr`, `PartitionExpr`, `Predicate`, `SegmentationExpr`, induced
+`Map`. Absent: `Relation`, `ColourBijection`, `Transform`, `Anchor`, `Lattice`, `SequenceRule`,
+`Placement`, `Bound`, and every excluded evaluator body.
+
+Four gates, all green: production set equals `K_L4*`; signatures equal the frozen
+instantiations under `type_equal` rather than name equality; no unbound type variable survives;
+no excluded lexeme appears in any generated file, over 29 forbidden names. Record:
+`outputs/cora_breakthrough/level4_blind_runtime_manifest.json`.
+
+### Three things the gates caught
+Two generator bugs would have silently corrupted the projection.
+`ast.get_source_segment` starts at the `def` or `class` line and therefore DROPPED decorators,
+so `Type`, `Production` and `Ctx` were emitted as plain classes rather than dataclasses; the
+extractor is now decorator-aware. A prepended banner docstring displaced
+`from __future__ import annotations` and stopped the ported modules importing at all; the
+banner is now merged into the existing module docstring.
+
+The third is a genuine leak and worth remembering: `type_equal`'s DOCSTRING illustrated itself
+with "Set[Region] and Set[Placement]", naming an excluded type. Prose-only substitutions are
+now applied through a recorded `PROSE_REDACTIONS` table and listed in the manifest, never
+silently, and never touching an expression. Docstrings leak too.
+
+### Equivalence: did sanitization remove hidden information, or semantics?
+`scripts/cora_level4_blind_equivalence.py`, record `level4_blind_equivalence.json`. The frozen
+Phase-2 source programs P1 and P2 execute IDENTICALLY in the frozen and the blind environment
+across every train and test grid of their own tasks, with the same result type `Grid` and 3/3
+demonstrations reproduced each. C1 applied to its own recorded arguments is identical on both
+the OUTPUTS and the ELABORATION, so the macro path is covered and not only the kernel.
+
+This is deliberately NOT a rediscovery run: that would place the blind environment in an
+experimental role it is not yet allowed to occupy, and would invite tuning. Execution
+equivalence answers the only question being asked. The reading stays narrow — it does not show
+that every excluded capability was irrelevant, only that nothing the certified Level-3 result
+depended on was removed.
+
+### Still open, in order
+Part 1: `scripts/cora_level4_prepare_inputs.py` still maps admitted productions back to generic
+base rules, still copies `contract["terminals"]["types"]` wholesale, and — found this session —
+still reads the superseded A0 artifact `level4_baseline_admissibility.json` rather than the
+frozen v2 one. It needs exact grounded signatures, the restricted type set the blind runtime
+already computes, a pin check, and mechanical assertions on names, argument types, result types
+and unbound variables. Then the leak gate must cover executable inputs as well as data, then
+the 450/150 split, HMAC tokens, sanitized corpus, machine manifest, a full freeze of the
+executable and data bundle, and only then Step A — whose outputs are hashed before anyone
+inspects their semantic meaning.
+
+## 2026-08-22 — Blind environment complete and frozen. Only Step A remains.
+
+Part 1 of the two-part closure is done, and with it the split, the tokens, the corpus, the
+machine manifest, the extended leak gate and the bundle freeze.
+
+### Signature_blind = Signature(K_L4*)
+`redacted_contract()` no longer maps admitted productions back to their generic base rules. The
+blind contract is generated from the admitted runtime instantiations, so it publishes
+`ArgMax@Entity : Set[Entity] x FeatureExpr -> Entity` and never
+`ArgMax : Set[A] x FeatureExpr -> A`. `ArgMax@Region` does not appear, and no type variable
+survives anywhere in the eleven signatures.
+
+`assert_signature_blind()` enforces this mechanically rather than by inspection: it aborts on a
+missing production, an extra one, a differing argument type, a differing result type, a
+surviving single-letter type variable, or a base rule exposed alongside its own grounding. Name
+equality alone would have let the original defect through.
+
+Base rule names are now folded into the SAME opaque pool as the excluded groundings. Leaving a
+base rule visible while hiding one of its groundings would have made the hidden grounding
+recoverable by subtraction. Twenty opaque identifiers.
+
+The type metadata is restricted from the contract's twenty terminal types to the ten that E_L4*
+actually uses. `Lattice`, `SequenceRule`, `Transform`, `Anchor`, `ColourBijection`, `Placement`
+and `Bound` are gone; terminal VALUES are published only for `FeatureExpr`, `PartitionExpr`,
+`Predicate` and `SegmentationExpr`, and the only induced type is `Map`.
+
+A third defect surfaced while fixing the first two and was not in the original list: the script
+was reading the SUPERSEDED A0 artifact `level4_baseline_admissibility.json`. It now reads the
+frozen v2 artifact and verifies its pin before reading admission, refusing to run on drift.
+
+### The frozen inputs
+Experience 600 splits deterministically into E_invent 450 and E_transfer 150 by keyed hash of
+task id, disjoint, with no outcome dependence. Source tokens are HMAC over the frozen secret.
+The corpus carries exactly `{source_token, demonstrations}` — verified across all 450 records,
+with no task id, no test pair and no family metadata. The secret, the token-to-task map, the
+E_transfer ids and the forbidden-name map live in `level4_provenance_firewall.json`, which no
+mechanism input mirrors.
+
+`machine_manifest.json` now pins the whole bundle rather than the data alone: the A0.1 hash,
+the human manifest, the blind contract, the redacted concepts, the corpus, and every blind
+runtime module, alongside the K_L4* names with their signatures, the C1 schema hash, the search
+limits, the frontier definitions and the cluster threshold. The complete freeze is
+`outputs/cora_breakthrough/level4_bundle_freeze.json`, bundle sha256 `e7f7d711d0cffc03`.
+
+### The leak gate now covers what actually executes
+It reports DATA INPUTS and EXECUTABLE INPUTS separately, five files each, with sealed-lexeme,
+task-id, forbidden-production-name and worked-transition findings listed as distinct
+categories. Thirty-five forbidden names, all four categories empty.
+
+A gate that has never fired proves nothing, so it was negative-controlled: injecting `_anchor`
+into `runtime.py` and a real task id into `contract_redacted.json` made it fail with exactly
+those two findings, one executable and one data. The originals were restored and the clean
+report regenerated. The report states its own limit in its `scope` field — this is a lexical
+and identifier test, and it does NOT establish semantic non-contamination.
+
+### What remains
+Step A, and nothing else: blind failure-frontier extraction from failed leave-one-out folds
+over E_invent, executed against `level4_blind_runtime/` rather than
+`geocat_arc.object_reasoning.meta_v21`. Its output is hashed BEFORE anyone inspects its
+semantic meaning, which is what preserves the claim that blind extraction localized whatever
+compositional gaps were present before any human compared them with the sealed expectation.
+Clustering is by (frontier_type, goal_type, residual) and never by task identity. E_transfer is
+not touched during invention, and the Lockbox stays closed.
+
+## 2026-08-23 — STEP A RAN AND WAS FROZEN. 62 eligible clusters. Output hashed before inspection.
+
+The executable was frozen before it saw the 450 tasks, then run once, and its output was
+SHA-256-pinned by the runner itself at completion, before any human read a cluster. This entry
+records the frozen result. Step A is ACCEPTED and is never rerun or altered.
+
+### The frozen executable
+- `level4_blind_runtime/stepA_trace_search.py`, sha `dedae0fa2556485b` — generated MECHANICALLY
+  from the frozen `search.py` by `scripts/cora_level4_build_trace_search.py` (anchored
+  insertion-only patches). Audit: strip the delimited prologue and every `# TRACE`-tagged line
+  and the result is byte-identical to `search.py`; every tagged line is an observer call.
+- `scripts/cora_level4_stepA_extract.py`, sha `d76adfaa3c14419e` — imports ONLY the blind
+  runtime, reads ONLY the four sanitized inputs, verifies the bundle pins first and refuses on
+  drift. Failed-LOO = the ranked winner the immutable gate would take fails the held-out pair.
+  Failure classes assigned once by the frozen precedence
+  (budget > type_connectivity > routing > slot_learning > semantic) from explicit trace flags
+  plus a static type-reachability graph; raw diagnostic counts carried so precedence costs
+  ordering, not information. `behavioural_residual` is computed ONLY when
+  `frontier_type == goal_type`, otherwise `NOT_DEFINED`.
+- Cluster key, as frozen in the run manifest:
+  `(frontier_type, goal_type, goal_delta_signature, failure_class)`. The older shorthand
+  "(frontier_type, goal_type, residual)" appearing in earlier entries was a stale abbreviation
+  of the same two-signature formulation; the manifest wording governs.
+- Gates, all green, `outputs/cora_breakthrough/level4_stepA_gates.json`: tracing changes
+  nothing on untruncated fixtures (winner / generated / typed / semantic classes / LOO identical
+  on synthetic + P1 + P2, overhead ~1.0x); 11/11 runner protocol checks; byte-identical double
+  run. Honest boundary: byte-determinism is only claimable for folds that finish inside the
+  frozen 8 s budget, so the runner takes LOO verdict AND trace from the SAME traced run and
+  flags truncations.
+- Leak check extended to the runner and the trace search: 5 data + 7 executable inputs,
+  0 findings (`level4_leak_check.json`).
+- Run manifest `level4_stepA_run_manifest.json`, sha256
+  `deacfe635c894cc55a4317e4f2287cf2d67b1d8fef3a6a5c6f84f52cfcebf9fa`, pinning the bundle
+  `e7f7d711` refs, runner / trace / gate hashes, schema v1, precedence, caps and cluster key.
+
+### The frozen result
+Run: 381 s, 12 workers, `logs/level4_stepA_run.log`.
+
+| quantity | value |
+|---|---|
+| E_invent records processed | 450 |
+| leave-one-out folds | 1,464 |
+| failed folds | 1,445 |
+| truncated folds (deadline hit) | 19 |
+| frontier records | 100,613 |
+| clusters | 182 |
+| eligible clusters (>= 3 distinct source tokens) | 62 |
+
+Output hash, written by the runner at completion and pinned in
+`outputs/cora_breakthrough/level4_stepA_output_hash.txt`:
+
+```
+2a14610cf90a2d6ccfd09d4da2f53522a253217a1d09b159bfc0457a00a932b6
+  level4_stepA_frontier_records.jsonl  f878c3298da29f7227e68b7135049e546db9ee53c3b934c2edda987262dc8a21
+  level4_stepA_fold_summary.json       6dad78df3a4ecbb902667aeed2399a21e240199c2ee9855927e6936281b40640
+  level4_stepA_clusters.json           c5e5d423e5c59aa20bbe8055c13a18b7c05df6fa98a8d7aef31cf940e6c5929d
+```
+
+The frontier-records file is 117 MB and is kept OUTSIDE version control with the rest of
+`outputs/`; its SHA-256 above and its path are the record. The fold summary, the cluster file,
+the gates, the manifests and the pin files are committed.
+
+**Semantic inspection began only after the hash above existed.** That ordering is what keeps
+the claim available: blind failure extraction localized whatever compositional gaps were present
+before any human compared them with the sealed expectation. No comparison with the sealed
+expectation was made; that belongs to the certification stage per the frozen interpretations
+table. E_transfer, Promotion and the Lockbox were NOT opened.
+
+### Post-pin inspection, read from the pinned cluster file
+- Failure classes across all 182 clusters: slot_learning 149, semantic 21, budget 12,
+  type_connectivity 0, routing 0. The blind system found the type graph complete and the search
+  reaching its paths; the gap is not type plumbing.
+- 62 eligible clusters: 60 at `frontier_type = Set[Region]` / slot_learning, 2 at
+  `frontier_type = Grid` / semantic (3 sources each).
+- The eligible slot_learning mass splits by `goal_delta_signature` into shape-changing targets
+  (smaller with palette subset 69 sources, smaller same-palette 29, larger 27) and same-shape
+  targets distinguished by changed-fraction / uniformity (23 + 17 + 17 + 14 + ...).
+
+### Binding interpretation (user's wording, superseding an earlier overstatement)
+> Step A found a strong type-level concentration: 60/62 eligible cluster keys have
+> frontier_type=Set[Region] and are labelled slot_learning under the frozen precedence. This
+> identifies the first observed blocker along the current derivations, not a sufficient missing
+> capability.
+
+The Map learner is NOT to be described as "precisely" the missing capability: the largest
+clusters have smaller or larger target shapes, which the current Map/Paint path cannot produce
+even with perfect slot fitting. The human post-pin interpretation above must not steer the
+design of the invention mechanism.
+
+## 2026-08-23 — STEP A.1: read-only secondary analysis of the pinned Step-A output, frozen.
+
+A.1 is a derived VIEW of the pinned files, nothing more. `scripts/cora_level4_stepA1_analysis.py`
+verified the Step-A pin 3/3 before reading and overwrote no primary label. The primary result
+remains output hash `2a14610c...a932b6`. Artifact
+`outputs/cora_breakthrough/level4_stepA1_analysis.json`, sha256
+`c6a255ae1337de2202d0f667f2b51dc2631653001f48895627f6b9b887a77f6f`, pinned in
+`level4_stepA1_hash.txt`.
+
+### Results
+1. **Source deduplication.** The 497 eligible source-token mass (sum of per-cluster distinct
+   counts) deduplicates to **384 unique sources** across the 62 eligible clusters (381
+   slot_learning + 4 semantic, one source in both). 445 unique failing sources overall across
+   all records.
+2. **Secondary class.** All **95,842** frozen slot_learning records are **PURE_SLOT** — zero
+   MIXED_SLOT_SEMANTIC at record AND source level, in both shape buckets (same 272 sources;
+   shape_changing 156, varies 5; buckets overlap). No continuation anywhere got past slot
+   fitting. PURE_SLOT says only that fitting is where every derivation died first; it does NOT
+   imply that fixing the Map learner suffices — **156 sources have shape-changing targets** that
+   the Map/Paint path cannot produce even with perfect fitting, because no admitted production
+   changes grid shape.
+3. **Diversity.** Within-cluster heterogeneity is HIGH: value signatures median 16 (max 48),
+   AST skeletons median 133 (max 171) per eligible cluster. Set[Region] concentration is NOT
+   evidence of one semantic concept.
+4. **Predicate audit.** `_continues()` canonical-string containment versus genuine recursive
+   structural subterm, on 110,224 ordered pairs of real frozen skeletons: **0 disagreements**.
+   The frozen runner (sha `d76adfaa`) contains exactly ONE matched computation; a dead
+   overwritten line existed only mid-development and was removed BEFORE the freeze.
+   Continuation labels are trustworthy.
+
+### Corrected interpretation, carried forward as binding
+First observed blocker, not sufficient missing capability. The concentration is type-level;
+behaviourally the clusters are diverse, and a mechanism that only repaired the existing slot
+learner would be structurally unable to resolve the largest clusters.
+
+### State at the close of this entry
+Step A + A.1 complete and frozen. Step B (the invention mechanism) is NOT implemented and has
+generated no proposal. E_transfer, Promotion, the Lockbox and the sealed expectation remain
+closed until an extension is proposed, certified on its invention provenance, and frozen. The
+K2 design decision for Step B is recorded in `docs/CORA_LEVEL4_STEPB_DESIGN.md` (next entry).
+
+## 2026-08-23 — STEP-B DESIGN FROZEN (K2 direction). Mechanism NOT implemented.
+
+`docs/CORA_LEVEL4_STEPB_DESIGN.md` was expanded to its full form at 08:38 and pinned:
+sha256 `28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d` in
+`outputs/cora_breakthrough/level4_stepB_design_hash.txt` (verified matching at 08:45).
+No Step-B runner, constructor inventory, witness generator, run manifest or proposal exists.
+Step A (`2a14610c`) and A.1 (`c6a255ae`) pins re-verified.
+
+### Decision recorded
+K2 is a finite, closed, type-directed constructor language applied uniformly to every one of
+the 62 eligible clusters in frozen order with no early stop. Constructor inventory (K2.2) is
+enumerated and pinned in the Step-B run manifest before the single run; it may contain no
+ARC-family, task-specific, frontier-type-specific or goal-delta-specific branch. Lane K1 is
+the exhaustive 2^5-1 guard-relaxation lattice of the existing slot learner and is labelled
+SLOT_LEARNER_REPAIR. Every candidate is labelled at generation time; only
+NEW_SEMANTIC_PRODUCTION with a bounded separation certificate against F(K_L4*) counts for
+Level 4 (otherwise EQUIVALENT_TO_BASELINE_COMPOSITION, a Level-3 macro). Selection is by
+resolution (>=2 distinct source tokens certified inside the blind env), never resemblance.
+The design file may be changed after Step-B code exists only by a dated amendment naming the
+pre-existing evidence that forces it.
+
+### State at the close of this entry
+Next: enumerate inventory + K1 lattice + witness generator -> leak check -> Step-B run manifest
+citing this hash -> synthetic gates -> single run -> pin before inspection. E_transfer,
+Promotion, the Lockbox and the sealed expectation remain closed.

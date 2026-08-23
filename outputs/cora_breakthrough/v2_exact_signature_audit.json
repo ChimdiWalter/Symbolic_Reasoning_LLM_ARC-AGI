@@ -1,0 +1,246 @@
+[
+ {
+  "production": "Partition",
+  "status": "CONTEXT_IMPLICIT",
+  "frozen": "['Grid', 'PartitionExpr'] -> Set[Region]",
+  "implemented": "['PartitionExpr'] -> Set[Region]",
+  "notes": [
+   "frozen leading Grid argument supplied by the interpreter"
+  ]
+ },
+ {
+  "production": "Entities",
+  "status": "CONTEXT_IMPLICIT",
+  "frozen": "['Grid', 'SegmentationExpr'] -> Set[Entity]",
+  "implemented": "['SegmentationExpr'] -> Set[Entity]",
+  "notes": [
+   "frozen leading Grid argument supplied by the interpreter"
+  ]
+ },
+ {
+  "production": "Group",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Relation[T,T]'] -> Set[Set[T]]",
+  "implemented": "['Set[Entity]', 'RelationExpr'] -> Set[Entity]",
+  "notes": [
+   "Set[T] specialised to Set[Entity]",
+   "Relation[T,T] specialised to RelationExpr",
+   "result Set[Set[T]] specialised to Set[Entity]"
+  ]
+ },
+ {
+  "production": "Pairs",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Relation[T,T]'] -> Set[Pair[T]]",
+  "implemented": "['Set[Entity]', 'RelationExpr'] -> Set[Pair[Entity]]",
+  "notes": [
+   "Set[T] specialised to Set[Entity]",
+   "Relation[T,T] specialised to RelationExpr",
+   "result Set[Pair[T]] specialised to Set[Pair[Entity]]"
+  ]
+ },
+ {
+  "production": "Orbits",
+  "status": "SPECIALISED",
+  "frozen": "['Grid', 'Relation'] -> Set[Orbit]",
+  "implemented": "['Lattice'] -> Set[Orbit]",
+  "notes": [
+   "frozen leading Grid argument supplied by the interpreter",
+   "Relation specialised to Lattice"
+  ]
+ },
+ {
+  "production": "Order",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Feature[T]'] -> Sequence[T]",
+  "implemented": "['Set[Entity]', 'FeatureExpr'] -> Sequence[Entity]",
+  "notes": [
+   "Set[T] specialised to Set[Entity]",
+   "Feature[T] specialised to FeatureExpr",
+   "result Sequence[T] specialised to Sequence[Entity]"
+  ]
+ },
+ {
+  "production": "Select",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Predicate[T]'] -> Set[T]",
+  "implemented": "['Set[Region]', 'Predicate'] -> Set[Region]",
+  "notes": [
+   "Set[T] specialised to Set[Region]",
+   "Predicate[T] specialised to Predicate",
+   "result Set[T] specialised to Set[Region]"
+  ]
+ },
+ {
+  "production": "Unique",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]'] -> T",
+  "implemented": "['Set[Entity]'] -> Entity",
+  "notes": [
+   "Set[T] specialised to Set[Entity]",
+   "result T specialised to Entity"
+  ]
+ },
+ {
+  "production": "ArgMin",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Feature[T]'] -> T",
+  "implemented": "['Set[Entity]', 'FeatureExpr'] -> Entity",
+  "notes": [
+   "Set[T] specialised to Set[Entity]",
+   "Feature[T] specialised to FeatureExpr",
+   "result T specialised to Entity"
+  ]
+ },
+ {
+  "production": "ArgMax",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Feature[T]'] -> T",
+  "implemented": "['Set[Entity]', 'FeatureExpr'] -> Entity",
+  "notes": [
+   "Set[T] specialised to Set[Entity]",
+   "Feature[T] specialised to FeatureExpr",
+   "result T specialised to Entity"
+  ]
+ },
+ {
+  "production": "Key",
+  "status": "EXACT",
+  "frozen": "['FeatureExpr'] -> FeatureValue",
+  "implemented": "['FeatureExpr'] -> FeatureValue",
+  "notes": []
+ },
+ {
+  "production": "Lookup",
+  "status": "EXACT",
+  "frozen": "['Map[FeatureValue,Colour]'] -> Colour",
+  "implemented": "['Map[FeatureValue,Colour]'] -> Colour",
+  "notes": []
+ },
+ {
+  "production": "MapOver",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Function[T,U]'] -> Set[U]",
+  "implemented": "['Set[Region]', 'Function[Entity,Colour]'] -> Set[Coloured]",
+  "notes": [
+   "Set[T] specialised to Set[Region]",
+   "Function[T,U] specialised to Function[Entity,Colour]",
+   "result Set[U] specialised to Set[Coloured]"
+  ]
+ },
+ {
+  "production": "Zip",
+  "status": "SPECIALISED",
+  "frozen": "['Set[T]', 'Set[U]'] -> Set[Pair[T,U]]",
+  "implemented": "['Set[Region]', 'Set[Coloured]'] -> Set[Coloured]",
+  "notes": [
+   "Set[T] specialised to Set[Region]",
+   "Set[U] specialised to Set[Coloured]",
+   "result Set[Pair[T,U]] specialised to Set[Coloured]"
+  ]
+ },
+ {
+  "production": "Fold",
+  "status": "DEVIATION",
+  "frozen": "['Set[T]', 'Function'] -> T",
+  "implemented": "['Set[Coloured]'] -> Colour",
+  "notes": [
+   "arity 1 vs frozen 2"
+  ]
+ },
+ {
+  "production": "Propagate",
+  "status": "DEVIATION",
+  "frozen": "['Seed', 'Lattice', 'Domain'] -> Set[Cell]",
+  "implemented": "['Lattice', 'PartitionExpr'] -> Grid",
+  "notes": [
+   "arity 2 vs frozen 3"
+  ]
+ },
+ {
+  "production": "Repeat",
+  "status": "SPECIALISED",
+  "frozen": "['Function', 'Bound'] -> Function",
+  "implemented": "['Grid', 'Bound'] -> Grid",
+  "notes": [
+   "Function specialised to Grid",
+   "result Function specialised to Grid"
+  ]
+ },
+ {
+  "production": "Transform",
+  "status": "SPECIALISED",
+  "frozen": "['Entity', 'TransformExpr'] -> Entity",
+  "implemented": "['Entity', 'Transform'] -> Entity",
+  "notes": [
+   "TransformExpr specialised to Transform"
+  ]
+ },
+ {
+  "production": "Anchor",
+  "status": "SPECIALISED",
+  "frozen": "['Entity', 'AnchorExpr'] -> Placement",
+  "implemented": "['Entity', 'Anchor'] -> Placement",
+  "notes": [
+   "AnchorExpr specialised to Anchor"
+  ]
+ },
+ {
+  "production": "Recolour",
+  "status": "EXACT",
+  "frozen": "['Entity', 'ColourBijection'] -> Entity",
+  "implemented": "['Entity', 'ColourBijection'] -> Entity",
+  "notes": []
+ },
+ {
+  "production": "Paint",
+  "status": "EXACT",
+  "frozen": "['Set[Region]', 'Colour'] -> Grid",
+  "implemented": "['Set[Region]', 'Colour'] -> Grid",
+  "notes": []
+ },
+ {
+  "production": "Copy",
+  "status": "DEVIATION",
+  "frozen": "['Entity', 'Placement'] -> Grid",
+  "implemented": "['Placement'] -> Grid",
+  "notes": [
+   "arity 1 vs frozen 2"
+  ]
+ },
+ {
+  "production": "Overlay",
+  "status": "EXACT",
+  "frozen": "['Grid', 'Grid'] -> Grid",
+  "implemented": "['Grid', 'Grid'] -> Grid",
+  "notes": []
+ },
+ {
+  "production": "Erase",
+  "status": "SPECIALISED",
+  "frozen": "['Set[Cell]'] -> Grid",
+  "implemented": "['Set[Region]'] -> Grid",
+  "notes": [
+   "Set[Cell] specialised to Set[Region]"
+  ]
+ },
+ {
+  "production": "Compose",
+  "status": "DEVIATION",
+  "frozen": "['stage*'] -> Grid",
+  "implemented": "['FeatureValue', 'Colour'] -> Function[Entity,Colour]",
+  "notes": [
+   "stage* specialised to FeatureValue",
+   "result Grid implemented as Function[Entity,Colour]"
+  ]
+ },
+ {
+  "production": "PaintEach",
+  "status": "EXTRA",
+  "frozen": null,
+  "implemented": "['Set[Coloured]'] -> Grid",
+  "notes": [
+   "added by dated amendment"
+  ]
+ }
+]

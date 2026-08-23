@@ -1,0 +1,294 @@
+{
+ "name": "CORA V2.1 semantic contract",
+ "created": "2026-08-21",
+ "principle": "Two layers. Layer A models only what the pre-freeze executable artefacts require. Layer B states the frozen design's higher-order generalisation. Later audits consume THIS file; signatures are never re-transcribed into an audit script, which is how the previous drift occurred.",
+ "provenance_note": "Freeze ordering is PRE_FREEZE_ORDER_SUPPORTED_BY_INTERNAL_LEDGER. No artefact was externally timestamped or committed before the freeze.",
+ "layer_A_evidence_minimal": {
+  "description": "Contextual evaluation, not first-class functions. Expr[A=>B] means an expression evaluable under a current element of type A, which is what the V1 artefact demonstrates without assuming lambda values.",
+  "judgements": [
+   {
+    "rule": "Expr_formation",
+    "form": "FeatureExpr -> Expr[Region=>FeatureValue] ; Map -> Expr[FeatureValue=>Colour]",
+    "grade": "LOGICALLY_REQUIRED",
+    "evidence": [
+     "C02a",
+     "C03a"
+    ],
+    "active": true,
+    "note": "Key and Lookup, given their terminal arguments, ARE the constructors of Expr[A=>B]. Stated explicitly so Layer A is closed without appealing to first-class function values."
+   },
+   {
+    "rule": "Key",
+    "form": "FeatureExpr -> Expr[Region=>FeatureValue]",
+    "grade": "LOGICALLY_REQUIRED",
+    "evidence": [
+     "C02a",
+     "C03a"
+    ],
+    "active": true
+   },
+   {
+    "rule": "Lookup",
+    "form": "Map -> Expr[FeatureValue=>Colour]",
+    "grade": "LOGICALLY_REQUIRED",
+    "evidence": [
+     "C02a"
+    ],
+    "active": true
+   },
+   {
+    "rule": "Map_V1",
+    "form": "Set[A] x Expr[A=>B] -> Set[B]",
+    "grade": "OBSERVED",
+    "evidence": [
+     "C05a"
+    ],
+    "active": true,
+    "note": "historical V1 node; installs the context and threads the value"
+   },
+   {
+    "rule": "Compose_V1",
+    "form": "Expr[A=>B] x Expr[B=>C] -> Expr[A=>C] (stages, not function values)",
+    "grade": "OBSERVED",
+    "evidence": [
+     "C04a"
+    ],
+    "active": true,
+    "note": "threads whole stages; NOT established as a function combinator"
+   }
+  ]
+ },
+ "layer_B_frozen_design": {
+  "description": "The frozen document's higher-order generalisation. Implementable, but labelled as intent rather than as history.",
+  "rules": [
+   {
+    "rule": "Function",
+    "form": "Function[A,B]",
+    "grade": "SPEC_INTENDED",
+    "evidence": [
+     "C02b",
+     "C03b"
+    ],
+    "active": false,
+    "implementation_required": false,
+    "blocked_by": "Compose-as-combinator is COMPATIBLE only and inactive (C04b)",
+    "note": "Deactivated by the contract's own closure rule: no active rule may depend on a type no active rule constructs. Activating this needs either pre-freeze evidence for a Function constructor, or a dated amendment."
+   },
+   {
+    "rule": "MapOver",
+    "form": "Set[A] x Function[A,B] -> Set[B]",
+    "grade": "SPEC_INTENDED",
+    "evidence": [
+     "C05a",
+     "C05b"
+    ],
+    "active": false,
+    "implementation_required": false,
+    "blocked_by": "Compose-as-combinator is COMPATIBLE only and inactive (C04b)",
+    "note": "Deactivated by the contract's own closure rule: no active rule may depend on a type no active rule constructs. Activating this needs either pre-freeze evidence for a Function constructor, or a dated amendment."
+   },
+   {
+    "rule": "Compose",
+    "form": "(A -> B) x (B -> C) -> (A -> C)",
+    "grade": "COMPATIBLE",
+    "evidence": [
+     "C04b"
+    ],
+    "active": false,
+    "implementation_required": false,
+    "note": "COMPATIBLE only: no pre-freeze artefact uses Compose in function position. Inactive until such an artefact is found or a dated amendment justifies it."
+   },
+   {
+    "rule": "Concept",
+    "form": "ConceptSchema x SlotBinding -> Expr[A=>B]",
+    "grade": "OBSERVED for the schema (C11a), SPEC_INTENDED for grammar re-entry (C11b)",
+    "evidence": [
+     "C11a",
+     "C11b"
+    ],
+    "active": true,
+    "implementation_required": true
+   }
+  ]
+ },
+ "active_productions": [
+  {
+   "rule": "Partition",
+   "form": "Grid x PartitionExpr -> Set[Region]",
+   "grade": "OBSERVED"
+  },
+  {
+   "rule": "Entities",
+   "form": "Grid x SegmentationExpr -> Set[Entity]",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Select",
+   "form": "Set[A] x Predicate[A] -> Set[A]",
+   "grade": "OBSERVED"
+  },
+  {
+   "rule": "Key",
+   "form": "see layer A",
+   "grade": "LOGICALLY_REQUIRED"
+  },
+  {
+   "rule": "Lookup",
+   "form": "see layer A",
+   "grade": "LOGICALLY_REQUIRED"
+  },
+  {
+   "rule": "PaintEach",
+   "form": "Set[Coloured] -> Grid",
+   "grade": "OBSERVED",
+   "note": "amendment (a); the renderer the pre-freeze program actually used"
+  },
+  {
+   "rule": "Paint",
+   "form": "Set[Region] x Colour -> Grid",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Transform",
+   "form": "Entity x Transform -> Entity",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Anchor",
+   "form": "Entity x Anchor -> Placement",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Recolour",
+   "form": "Entity x ColourBijection -> Entity",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Copy",
+   "form": "Entity x Placement -> Grid",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Overlay",
+   "form": "Grid x Grid -> Grid",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Group",
+   "form": "Set[A] x Relation[A,A] -> Set[Set[A]]",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "Unique",
+   "form": "Set[A] -> A",
+   "grade": "SPEC_INTENDED"
+  },
+  {
+   "rule": "ArgMax",
+   "form": "Set[A] x FeatureExpr -> A",
+   "grade": "SPEC_INTENDED",
+   "note": "signature normalised: the frozen table wrote Feature[T] while the terminal vocabulary declares FeatureExpr. Same type, two names; recorded so the inconsistency is visible rather than silently unified."
+  },
+  {
+   "rule": "ArgMin",
+   "form": "Set[A] x FeatureExpr -> A",
+   "grade": "SPEC_INTENDED",
+   "note": "signature normalised: the frozen table wrote Feature[T] while the terminal vocabulary declares FeatureExpr. Same type, two names; recorded so the inconsistency is visible rather than silently unified."
+  },
+  {
+   "rule": "Map_V1",
+   "form": "Set[A] x Expr[A=>B] -> Set[B]",
+   "grade": "OBSERVED",
+   "note": "the observed elementwise mechanism; Layer B's MapOver stays inactive"
+  }
+ ],
+ "inactive_unresolved": [
+  {
+   "rule": "Fold",
+   "grade": "UNRESOLVED",
+   "evidence": [
+    "C06"
+   ],
+   "active": false,
+   "reason": "no pre-freeze fold exists; (T,T)->T is a textbook default, not evidence"
+  },
+  {
+   "rule": "Repeat",
+   "grade": "UNRESOLVED",
+   "evidence": [
+    "C07"
+   ],
+   "active": false,
+   "reason": "appears in no pre-freeze artefact"
+  },
+  {
+   "rule": "Propagate_with_Seed",
+   "grade": "UNRESOLVED",
+   "evidence": [
+    "C08"
+   ],
+   "active": false,
+   "reason": "Domain is OBSERVED (whole grid | Region) but Seed appears nowhere pre-freeze"
+  },
+  {
+   "rule": "Sequence_consumer",
+   "grade": "UNRESOLVED",
+   "evidence": [
+    "C09"
+   ],
+   "active": false,
+   "reason": "the trace names SEQUENCE_EXTEND_1D but specifies no operation over a Sequence"
+  },
+  {
+   "rule": "Collection_to_Grid",
+   "grade": "UNRESOLVED",
+   "evidence": [
+    "C10"
+   ],
+   "active": false,
+   "reason": "the crux of the template family: pre-freeze evidence establishes the NEED for repeated instances and never the MECHANISM for combining them. Deliberately left inactive even though a plausible operator would solve those tasks."
+  },
+  {
+   "rule": "MapOver_with_Function",
+   "grade": "SPEC_INTENDED but BLOCKED",
+   "evidence": [
+    "C05b",
+    "C04b"
+   ],
+   "active": false,
+   "reason": "its Function[A,B] argument has no active constructor; deactivated by the contract closure check, not by preference"
+  }
+ ],
+ "consequence": "With Collection_to_Grid inactive, the template family may remain unsolvable under V2.1. That is accepted: an honest failure there is a cleaner signal for the grammar-invention machinery than a manually supplied operator.",
+ "closure_rule": "No ACTIVE rule may depend on a type that no ACTIVE rule constructs. Enforced by scripts/cora_contract_consistency.py, which consumes this file. ROOT-01 was found once in the frozen document and once again here, inside this contract, which is why the check is mechanical.",
+ "revision": {
+  "date": "2026-08-21",
+  "change": "MapOver and Function deactivated; Expr formation declared explicitly in Layer A; Map_V1 is the active elementwise rule. Terminals declared IN the contract with provenance, so the consistency checker consumes them instead of hardcoding a set of its own. ArgMax/ArgMin normalised from Feature[T] to the declared terminal FeatureExpr (a naming inconsistency in the frozen table).",
+  "reason": "contract closure check found ROOT-01 reappearing"
+ },
+ "terminals": {
+  "description": "Types supplied to the grammar rather than produced by a rule. Each carries its own provenance, so 'terminal' cannot be used to wave away an unconstructed type.",
+  "types": {
+   "Grid": "the task input",
+   "PartitionExpr": "frozen vocabulary of ways to carve a grid",
+   "SegmentationExpr": "frozen vocabulary of segmentations",
+   "Predicate": "frozen predicate vocabulary",
+   "FeatureExpr": "frozen feature vocabulary",
+   "Relation": "frozen relation vocabulary",
+   "Colour": "a grid value",
+   "Region": "an element of a partition",
+   "Entity": "an element of a segmentation",
+   "Map": "induced by the feature-colour learner (OBSERVED: concept_0001 carries one)",
+   "ColourBijection": "induced by the bijection learner",
+   "Transform": "induced by the transform learner",
+   "Anchor": "induced by the anchor learner",
+   "Lattice": "induced by the lattice learner",
+   "SequenceRule": "induced; its consumer is UNRESOLVED (C09)",
+   "Bound": "a small integer",
+   "ConceptSchema": "produced by anti-unification over independently discovered programs, which is a process outside the grammar. OBSERVED: concept_0001 exists and was persisted before the freeze (C11a).",
+   "SlotBinding": "produced by the typed slot learners when they fit a slot from the demonstrations. OBSERVED: the feature-colour table was fitted this way."
+  }
+ },
+ "STATUS": "SUPERSEDED by v2_1_semantic_contract_v2.json (2026-08-21)",
+ "superseded_reason": "single grade per rule conflated three separate questions: what behaviour was observed, whether THIS typed signature is evidenced, and whether the parametric generality is evidenced"
+}

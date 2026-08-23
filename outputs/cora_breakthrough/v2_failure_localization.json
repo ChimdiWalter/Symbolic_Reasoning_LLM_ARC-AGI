@@ -1,0 +1,214 @@
+{
+ "stamp": "V2.0-CONFORMANT",
+ "rows": [
+  {
+   "task": "39e1d7f9",
+   "family": "template",
+   "n_pairs": 3,
+   "signature": {
+    "same_shape": true,
+    "changed_on_background_fraction": 1.0,
+    "preserves_nonbackground": true,
+    "deletes_existing_cells": false,
+    "recolours_existing_cells": false,
+    "changed_component_count": [
+     0,
+     0,
+     48
+    ],
+    "repeated_changed_shapes": 0,
+    "template_match_evidence": 0,
+    "translation_orbit_evidence": 0,
+    "pairwise_alignment_evidence": 0,
+    "panel_structure_evidence": true,
+    "n_pairs": 3
+   },
+   "routes": [
+    "computed_set",
+    "template_placement"
+   ],
+   "expected_subgrammar": "template_placement",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 799,
+    "slots_fitted": 0,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0
+   },
+   "diagnostic_probe": {
+    "constructed": 1129,
+    "slots_fitted": 344,
+    "exact_on_demos": 0,
+    "example": null
+   },
+   "verdict": "EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS"
+  },
+  {
+   "task": "7e0986d6",
+   "family": "template",
+   "n_pairs": 2,
+   "signature": {
+    "same_shape": true,
+    "changed_on_background_fraction": 0.0,
+    "preserves_nonbackground": false,
+    "deletes_existing_cells": true,
+    "recolours_existing_cells": true,
+    "changed_component_count": [
+     -3,
+     -4
+    ],
+    "repeated_changed_shapes": 6,
+    "template_match_evidence": 0,
+    "translation_orbit_evidence": 0,
+    "pairwise_alignment_evidence": 0,
+    "panel_structure_evidence": true,
+    "n_pairs": 2
+   },
+   "routes": [
+    "template_placement",
+    "relational"
+   ],
+   "expected_subgrammar": "template_placement",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 78,
+    "slots_fitted": 0,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0
+   },
+   "diagnostic_probe": {
+    "constructed": 4207,
+    "slots_fitted": 472,
+    "exact_on_demos": 0,
+    "example": null
+   },
+   "verdict": "EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS"
+  },
+  {
+   "task": "fe45cba4",
+   "family": "template",
+   "n_pairs": 2,
+   "signature": {
+    "same_shape": true,
+    "changed_on_background_fraction": 0.5,
+    "preserves_nonbackground": false,
+    "deletes_existing_cells": true,
+    "recolours_existing_cells": false,
+    "changed_component_count": [
+     -1,
+     -1
+    ],
+    "repeated_changed_shapes": 0,
+    "template_match_evidence": 0,
+    "translation_orbit_evidence": 2,
+    "pairwise_alignment_evidence": 0,
+    "panel_structure_evidence": true,
+    "n_pairs": 2
+   },
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "expected_subgrammar": "template_placement",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 1723,
+    "slots_fitted": 924,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0
+   },
+   "diagnostic_probe": {
+    "constructed": 6000,
+    "slots_fitted": 4849,
+    "exact_on_demos": 0,
+    "example": null
+   },
+   "verdict": "EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS"
+  },
+  {
+   "task": "05269061",
+   "family": "lattice",
+   "n_pairs": 3,
+   "signature": {
+    "same_shape": true,
+    "changed_on_background_fraction": 1.0,
+    "preserves_nonbackground": true,
+    "deletes_existing_cells": false,
+    "recolours_existing_cells": false,
+    "changed_component_count": [
+     0,
+     0,
+     -1
+    ],
+    "repeated_changed_shapes": 0,
+    "template_match_evidence": 0,
+    "translation_orbit_evidence": 0,
+    "pairwise_alignment_evidence": 1,
+    "panel_structure_evidence": false,
+    "n_pairs": 3
+   },
+   "routes": [
+    "computed_set",
+    "relational"
+   ],
+   "expected_subgrammar": "orbit_sequence",
+   "router_offered_expected": false,
+   "frozen_policy": {
+    "constructed": 727,
+    "slots_fitted": 0,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0
+   },
+   "diagnostic_probe": {
+    "constructed": 6000,
+    "slots_fitted": 4849,
+    "exact_on_demos": 0,
+    "example": null
+   },
+   "verdict": "ROUTER_DID_NOT_OFFER_EXPECTED_SUBGRAMMAR"
+  },
+  {
+   "task": "8eb1be9a",
+   "family": "lattice",
+   "n_pairs": 2,
+   "signature": {
+    "same_shape": true,
+    "changed_on_background_fraction": 1.0,
+    "preserves_nonbackground": true,
+    "deletes_existing_cells": false,
+    "recolours_existing_cells": false,
+    "changed_component_count": [
+     23,
+     7
+    ],
+    "repeated_changed_shapes": 0,
+    "template_match_evidence": 1,
+    "translation_orbit_evidence": 2,
+    "pairwise_alignment_evidence": 0,
+    "panel_structure_evidence": true,
+    "n_pairs": 2
+   },
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "expected_subgrammar": "orbit_sequence",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 865,
+    "slots_fitted": 66,
+    "executed_all_inputs": 12,
+    "exact_on_demos": 0
+   },
+   "diagnostic_probe": {
+    "constructed": 3580,
+    "slots_fitted": 2872,
+    "exact_on_demos": 0,
+    "example": null
+   },
+   "verdict": "EXECUTES_BUT_NEVER_MATCHES_DEMONSTRATIONS"
+  }
+ ]
+}

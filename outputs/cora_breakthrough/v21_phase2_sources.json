@@ -1,0 +1,148 @@
+[
+ {
+  "task": "7b6016b9",
+  "found": 1,
+  "seconds": 0.08,
+  "stats": {
+   "generated": 129,
+   "typed_candidates": 48,
+   "semantic_classes": 1,
+   "rejected": 47,
+   "max_depth": 4,
+   "seconds": 0.084
+  },
+  "ast": {
+   "op": "PaintEach",
+   "args": [
+    {
+     "op": "Map_V1",
+     "args": [
+      {
+       "op": "Partition",
+       "args": [
+        {
+         "lit": "\"background_components\""
+        }
+       ]
+      },
+      {
+       "op": "Compose_V1",
+       "args": [
+        {
+         "op": "Key",
+         "args": [
+          {
+           "lit": "\"touches_border\""
+          }
+         ]
+        },
+        {
+         "op": "Lookup",
+         "args": [
+          {
+           "lit": "[[false, 2], [true, 3]]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   "Compose_V1",
+   "Key",
+   "Key:touches_border",
+   "Lookup",
+   "Map_V1",
+   "PaintEach",
+   "Partition",
+   "Partition:background_components"
+  ],
+  "slot_evidence": {
+   "?Map": {
+    "support": 3,
+    "observations": 13,
+    "fold_coverable": true,
+    "cost": 2
+   }
+  },
+  "loo_by_rediscovery": "3/3",
+  "loo_passed": true,
+  "test_correct": true
+ },
+ {
+  "task": "83302e8f",
+  "found": 1,
+  "seconds": 0.08,
+  "stats": {
+   "generated": 129,
+   "typed_candidates": 48,
+   "semantic_classes": 1,
+   "rejected": 47,
+   "max_depth": 4,
+   "seconds": 0.076
+  },
+  "ast": {
+   "op": "PaintEach",
+   "args": [
+    {
+     "op": "Map_V1",
+     "args": [
+      {
+       "op": "Partition",
+       "args": [
+        {
+         "lit": "\"background_components\""
+        }
+       ]
+      },
+      {
+       "op": "Compose_V1",
+       "args": [
+        {
+         "op": "Key",
+         "args": [
+          {
+           "lit": "\"is_rect\""
+          }
+         ]
+        },
+        {
+         "op": "Lookup",
+         "args": [
+          {
+           "lit": "[[false, 4], [true, 3]]"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   "Compose_V1",
+   "Key",
+   "Key:is_rect",
+   "Lookup",
+   "Map_V1",
+   "PaintEach",
+   "Partition",
+   "Partition:background_components"
+  ],
+  "slot_evidence": {
+   "?Map": {
+    "support": 3,
+    "observations": 36,
+    "fold_coverable": true,
+    "cost": 2
+   }
+  },
+  "loo_by_rediscovery": "3/3",
+  "loo_passed": true,
+  "test_correct": true
+ }
+]

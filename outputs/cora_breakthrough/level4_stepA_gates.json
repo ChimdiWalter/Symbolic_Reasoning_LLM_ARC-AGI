@@ -1,0 +1,96 @@
+{
+ "gate": "Step-A pre-run gates",
+ "passed": true,
+ "search_equivalence": {
+  "gate": "tracing does not change the search",
+  "passed": true,
+  "fixtures_compared": 3,
+  "fixtures_inside_budget": 3,
+  "note": "equivalence is asserted only on fixtures that finished inside the frozen budget; a fixture that hits the deadline explores a timing-dependent amount and cannot be compared this way",
+  "rows": [
+   {
+    "winner_identical": true,
+    "candidates_identical": true,
+    "generated_identical": true,
+    "typed_identical": true,
+    "semantic_classes_identical": true,
+    "loo_identical": true,
+    "loo_frozen": [
+     3,
+     3
+    ],
+    "frozen_seconds": 0.133,
+    "traced_seconds": 0.099,
+    "overhead_ratio": 0.744,
+    "terms_traced": 897,
+    "truncated": [],
+    "fixture": "synthetic solvable"
+   },
+   {
+    "winner_identical": true,
+    "candidates_identical": true,
+    "generated_identical": true,
+    "typed_identical": true,
+    "semantic_classes_identical": true,
+    "loo_identical": true,
+    "loo_frozen": [
+     3,
+     3
+    ],
+    "frozen_seconds": 0.04,
+    "traced_seconds": 0.04,
+    "overhead_ratio": 1.001,
+    "terms_traced": 13,
+    "truncated": [],
+    "fixture": "P1"
+   },
+   {
+    "winner_identical": true,
+    "candidates_identical": true,
+    "generated_identical": true,
+    "typed_identical": true,
+    "semantic_classes_identical": true,
+    "loo_identical": true,
+    "loo_frozen": [
+     3,
+     3
+    ],
+    "frozen_seconds": 0.077,
+    "traced_seconds": 0.077,
+    "overhead_ratio": 1.007,
+    "terms_traced": 13,
+    "truncated": [],
+    "fixture": "P2"
+   }
+  ]
+ },
+ "runner_rules": {
+  "gate": "the runner obeys the frozen protocol",
+  "passed": true,
+  "checks": {
+   "certified_task_yields_no_frontiers": true,
+   "unsolved_task_yields_failed_folds": true,
+   "unsolved_task_yields_frontiers": true,
+   "single_source_never_eligible": true,
+   "single_source_had_enough_records": true,
+   "non_goal_frontier_has_no_residual": true,
+   "goal_frontier_has_residual": true,
+   "three_sources_can_be_eligible": true,
+   "eligibility_counts_sources_not_records": true,
+   "records_carry_the_frozen_schema": true,
+   "failure_classes_are_the_frozen_five": true
+  },
+  "records_seen": 864
+ },
+ "determinism": {
+  "gate": "byte-identical output on repeated runs",
+  "passed": true,
+  "identical": true,
+  "truncated_folds_in_fixture": 0,
+  "note": "a fold that hits the frozen deadline explores a timing-dependent amount, so byte-determinism can only be required of folds that finish inside the budget; this fixture truncated 0 fold(s)",
+  "digests": [
+   "2ae891bee2fdb233f220a15bbe7927dc591d3765f1890e99ebfc37fe30c3e23c",
+   "2ae891bee2fdb233f220a15bbe7927dc591d3765f1890e99ebfc37fe30c3e23c"
+  ]
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "experiment": "CORA V2.1 Level-3 causal transfer",
+ "frozen": "2026-08-22",
+ "hashes": {
+  "semantic_contract": "4f2bde616014d4f19a597b9bf9dd71f3b13e480df50fbeef39f20bd0b245720e",
+  "runtime": "57daa98455132b891625755a6228caa664f114d2b1d1c3b1a04c62ae3bfb5d89",
+  "search": "c09f28e997149ac1e2fc2ce12ecf7a1df81be300607bb923166898eae309b7c1",
+  "environment_and_macro": "e797d5cb396518beed24c9b9eed743f10835ff0682415a7290c391f65bc1c02d",
+  "anti_unifier": "3ed29397db78cca914a60b1aeb227a1f20e3958b04322c4c6013b296f0b8b2f2",
+  "concept_registry": "416e638bb17aae7fb3a07206a1f3e59772262f4650d9f6a4f7daff284424aa14",
+  "concept_schema": "e5aed96ed79ebbdd",
+  "concept_source_programs": [
+   "faed2dc067ae028a",
+   "4a077479c8e96d17"
+  ]
+ },
+ "kernel_K": [
+  "Compose_V1",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition"
+ ],
+ "kernel_derivation": "operator closure of the two certified source programs",
+ "treatment": "K + concept_0001, as an overlay; K is never mutated",
+ "ablation": "the same environment with the overlay emptied, which is K",
+ "search_parameters": {
+  "MAX_DEPTH": 5,
+  "PER_TYPE_CAP": 4000,
+  "MAX_CANDIDATES": 8,
+  "budget_seconds": 8.0,
+  "ranking": [
+   "surface_cost",
+   "surface_value_bound",
+   "stable_serialization"
+  ],
+  "identical_function_for_both_arms": true
+ },
+ "macro_accounting_policy": {
+  "concept_cost": 1,
+  "concept_surface_depth": 1,
+  "expanded_core_reported_separately": true,
+  "rationale": "A macro expands entirely into K, so with unlimited search it adds nothing. Its only possible effect is compression under a bounded budget, which is why the accounting is fixed here rather than after results are seen."
+ },
+ "concept_provenance": [
+  "7b6016b9",
+  "83302e8f"
+ ],
+ "scan_pool": "every Experience-split task outside the concept's provenance",
+ "criteria": {
+  "3A_efficiency": [
+   "task outside concept provenance",
+   "both arms solve",
+   "treatment winning SURFACE program contains the concept",
+   "both arms pass leave-one-out by complete rediscovery",
+   "treatment test prediction exactly correct",
+   "treatment reduces a preregistered resource: typed candidates, seconds, or surface cost"
+  ],
+  "3B_capability": [
+   "task outside concept provenance",
+   "K fails",
+   "K + concept solves",
+   "concept explicitly present in the winning surface program",
+   "leave-one-out by complete rediscovery passes",
+   "test prediction exactly correct",
+   "ablation returns to failure"
+  ]
+ },
+ "claim_limit": "A 3B witness would show that the set of solutions REACHABLE UNDER THE FIXED BUDGET grew. It would NOT show that the language can denote anything new, because the concept expands into K.",
+ "no_changes_after_this_point": "no parameter, ranking rule, cost, depth, budget or semantic capability may change once the scan begins"
+}

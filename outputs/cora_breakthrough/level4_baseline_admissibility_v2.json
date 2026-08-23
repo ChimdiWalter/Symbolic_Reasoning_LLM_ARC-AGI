@@ -1,0 +1,1104 @@
+{
+ "gate": "Level-4 A0.1 provenance and semantic-evidence closure",
+ "supersedes": {
+  "artifact": "level4_baseline_admissibility.json",
+  "sha256": "57e1497394031c71"
+ },
+ "what_changed": "A0 recorded the CURRENT meta_v21.py hash as every production's historical provenance, a check that could not fail, and admitted productions whose synthetic_semantics_pass was None. A0.1 replaces both with graded evidence against the recovered pre-Level-4 runtime. No evaluator, signature, vocabulary, learner or search parameter was changed, and reachability was consumed from A0 rather than recomputed.",
+ "pre_level4_runtime_sha256": "57daa98455132b891625755a6228caa664f114d2b1d1c3b1a04c62ae3bfb5d89",
+ "current_runtime_sha256": "a3e23e6f5e73b4b7f884e2c772cd3a2cde234207564edcd688c9625e0a2f3c0e",
+ "current_runtime_differs_from_pinned": true,
+ "historical_source_recovery": {
+  "recovered": true,
+  "stored_copy": "outputs/cora_breakthrough/level4_pre_level4_runtime_57daa984.py",
+  "sha256": "57daa98455132b891625755a6228caa664f114d2b1d1c3b1a04c62ae3bfb5d89",
+  "matches_pinned_runtime": true,
+  "found_at": "/home/cnptp/.claude/file-history/bbca67f2-0b93-4d15-bb97-82dbffd88a1b/6ee39e14531352dd@v3",
+  "verification": "content-addressed: authenticity rests on hash equality with the runtime hash pinned by v21_level3_manifest.json and v21_promotion_manifest.json, both written before the Level-4 freeze, not on where the copy was found",
+  "search": {
+   "files_hashed": 6624,
+   "archives_opened": 173,
+   "seconds": 448,
+   "roots": [
+    "project tree",
+    "pipeline parent",
+    "~/.claude",
+    "/tmp"
+   ],
+   "log": "logs/a01_hash_hunt.log"
+  },
+  "confirms": [
+   "no LEVEL4_REGISTRY",
+   "no _anchor/_copy evaluators",
+   "13-entry EVALUATORS table vs 18 in the current runtime"
+  ]
+ },
+ "secondary_historical_artifact": {
+  "commit": "5db9a3e",
+  "path": "geocat_arc/object_reasoning/meta_v2.py",
+  "blob_sha": "094ba77151ba76069e9e77cbc31b5d46d58cfecc",
+  "commit_date": "2026-08-21 16:52:32 -0500"
+ },
+ "module_level_equivalence": {
+  "compared": true,
+  "pre_level4_definitions": 80,
+  "identical": 77,
+  "divergent": [
+   "EVALUATORS",
+   "compile_registry",
+   "parse_signature"
+  ],
+  "removed_by_level4": [],
+  "added_by_level4": [
+   "CONTEXT_IMPLICIT",
+   "D4",
+   "GROUND_TYPES",
+   "LEVEL4_REGISTRY",
+   "RELATION_VOCAB",
+   "_anchor",
+   "_copy",
+   "_group",
+   "_recolour",
+   "_transform",
+   "apply_d4",
+   "compile_level4_registry",
+   "instantiate_signature",
+   "is_type_variable",
+   "origin_of",
+   "patch_of"
+  ],
+  "note": "A divergent or removed definition matters only where an admitted production depends on it; per-production dependency closures are recorded on each row, and the compiled signature is compared separately because the signature compiler is not in any evaluator's closure."
+ },
+ "fixtures_current_runtime": {
+  "Entities_segments_two_components": true,
+  "Partition_returns_disjoint_nonempty_sets": true,
+  "Select_all_keeps_every_set": true,
+  "Select_predicate_actually_filters": true,
+  "Unique_accepts_singleton": true,
+  "Unique_rejects_two": true,
+  "ArgMax_returns_the_maximum": true,
+  "ArgMin_returns_the_minimum": true,
+  "Key_reads_the_current_element": true,
+  "Lookup_maps_the_current_value": true,
+  "Compose_V1_threads_key_into_lookup": true,
+  "Map_V1_applies_the_expression_per_region": true,
+  "PaintEach_paints_each_region": true
+ },
+ "fixtures_pre_level4_runtime": {
+  "Entities_segments_two_components": true,
+  "Partition_returns_disjoint_nonempty_sets": true,
+  "Select_all_keeps_every_set": true,
+  "Select_predicate_actually_filters": true,
+  "Unique_accepts_singleton": true,
+  "Unique_rejects_two": true,
+  "ArgMax_returns_the_maximum": true,
+  "ArgMin_returns_the_minimum": true,
+  "Key_reads_the_current_element": true,
+  "Lookup_maps_the_current_value": true,
+  "Compose_V1_threads_key_into_lookup": true,
+  "Map_V1_applies_the_expression_per_region": true,
+  "PaintEach_paints_each_region": true
+ },
+ "rows": [
+  {
+   "production": "ArgMax@Entity",
+   "base": "ArgMax",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_argmax",
+    "current_function_hashes": {
+     "text_sha256": "d05bf26fcab38137",
+     "structural_sha256": "b20e715725ec2e15",
+     "lines": 2
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_argmax",
+    "historical_function_hashes": {
+     "text_sha256": "d05bf26fcab38137",
+     "structural_sha256": "b20e715725ec2e15",
+     "lines": 2
+    },
+    "dependency_closure": [
+     "_extremum",
+     "descriptors"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Set[A] x FeatureExpr -> A",
+    "in_pre_level4_registry": false,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "ArgMax@Entity: ['Set[Entity]', 'FeatureExpr'] -> Entity",
+     "ArgMax@Region: ['Set[Region]', 'FeatureExpr'] -> Region"
+    ],
+    "current_compiler": "['Set[A]', 'FeatureExpr'] -> A",
+    "pre_level4_compiler": "['Set[A]', 'FeatureExpr'] -> A",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE"
+    ],
+    "fixtures": {
+     "ArgMax_returns_the_maximum": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": []
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production",
+     "terminal vocabulary (12)"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "ArgMin@Entity",
+   "base": "ArgMin",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_argmin",
+    "current_function_hashes": {
+     "text_sha256": "c41d6928b1b44336",
+     "structural_sha256": "9f787f10862ce5a6",
+     "lines": 2
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_argmin",
+    "historical_function_hashes": {
+     "text_sha256": "c41d6928b1b44336",
+     "structural_sha256": "9f787f10862ce5a6",
+     "lines": 2
+    },
+    "dependency_closure": [
+     "_extremum",
+     "descriptors"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Set[A] x FeatureExpr -> A",
+    "in_pre_level4_registry": false,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "ArgMin@Entity: ['Set[Entity]', 'FeatureExpr'] -> Entity",
+     "ArgMin@Region: ['Set[Region]', 'FeatureExpr'] -> Region"
+    ],
+    "current_compiler": "['Set[A]', 'FeatureExpr'] -> A",
+    "pre_level4_compiler": "['Set[A]', 'FeatureExpr'] -> A",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE"
+    ],
+    "fixtures": {
+     "ArgMin_returns_the_minimum": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": []
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production",
+     "terminal vocabulary (12)"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Compose_V1",
+   "base": "Compose_V1",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_compose_v1",
+    "current_function_hashes": {
+     "text_sha256": "36ff601c70de65a2",
+     "structural_sha256": "e443a1f5b7107d4f",
+     "lines": 13
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_compose_v1",
+    "historical_function_hashes": {
+     "text_sha256": "36ff601c70de65a2",
+     "structural_sha256": "e443a1f5b7107d4f",
+     "lines": 13
+    },
+    "dependency_closure": [
+     "Ctx",
+     "REGISTRY",
+     "_eval",
+     "is_ast"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [
+     {
+      "artifact": "v21_phase2_sources.json",
+      "artifact_sha256": "b556feb2e9a1e64b",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_phase3_certificates.json",
+      "artifact_sha256": "9240d079d548f154",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_level3_results.json",
+      "artifact_sha256": "c1c55adb2b5176a7",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_promotion_results.json",
+      "artifact_sha256": "7632a7e0c6fb7292",
+      "governing_manifest": "v21_promotion_manifest.json",
+      "manifest_sha256": "6ca868c0383c1ade",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     }
+    ],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Expr[A=>B] x Expr[B=>C] -> Expr[A=>C]",
+    "in_pre_level4_registry": true,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Compose_V1: ['Expr[Region,FeatureValue]', 'Expr[FeatureValue,Colour]'] -> Expr[Region,Colour]"
+    ],
+    "current_compiler": "['Expr[A,B]', 'Expr[B,C]'] -> Expr[A,C]",
+    "pre_level4_compiler": "['Expr[A,B]', 'Expr[B,C]'] -> Expr[A,C]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "CERTIFIED_PRE_LEVEL4_EXECUTION"
+    ],
+    "fixtures": {
+     "Compose_V1_threads_key_into_lookup": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": []
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production",
+     "produced by another production"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Entities",
+   "base": "Entities",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_entities",
+    "current_function_hashes": {
+     "text_sha256": "0f862ad030143c9a",
+     "structural_sha256": "57fa58109483332e",
+     "lines": 6
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_entities",
+    "historical_function_hashes": {
+     "text_sha256": "0f862ad030143c9a",
+     "structural_sha256": "57fa58109483332e",
+     "lines": 6
+    },
+    "dependency_closure": [
+     "SEGMENTATION_VOCAB"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Grid x SegmentationExpr -> Set[Entity]",
+    "in_pre_level4_registry": false,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Entities: ['SegmentationExpr'] -> Set[Entity]"
+    ],
+    "current_compiler": "['SegmentationExpr'] -> Set[Entity]",
+    "pre_level4_compiler": "['SegmentationExpr'] -> Set[Entity]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "Entities_segments_two_components": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "terminal vocabulary (2)"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Key",
+   "base": "Key",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_key",
+    "current_function_hashes": {
+     "text_sha256": "11f754b94d6a758e",
+     "structural_sha256": "08414c1d69f7578d",
+     "lines": 5
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_key",
+    "historical_function_hashes": {
+     "text_sha256": "11f754b94d6a758e",
+     "structural_sha256": "08414c1d69f7578d",
+     "lines": 5
+    },
+    "dependency_closure": [
+     "descriptors"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [
+     {
+      "artifact": "v21_phase2_sources.json",
+      "artifact_sha256": "b556feb2e9a1e64b",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_phase3_certificates.json",
+      "artifact_sha256": "9240d079d548f154",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_level3_results.json",
+      "artifact_sha256": "c1c55adb2b5176a7",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_promotion_results.json",
+      "artifact_sha256": "7632a7e0c6fb7292",
+      "governing_manifest": "v21_promotion_manifest.json",
+      "manifest_sha256": "6ca868c0383c1ade",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     }
+    ],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "FeatureExpr -> Expr[Region=>FeatureValue]",
+    "in_pre_level4_registry": true,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Key: ['FeatureExpr'] -> Expr[Region,FeatureValue]"
+    ],
+    "current_compiler": "['FeatureExpr'] -> Expr[Region,FeatureValue]",
+    "pre_level4_compiler": "['FeatureExpr'] -> Expr[Region,FeatureValue]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "CERTIFIED_PRE_LEVEL4_EXECUTION",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "Key_reads_the_current_element": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "terminal vocabulary (12)"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Lookup",
+   "base": "Lookup",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_lookup",
+    "current_function_hashes": {
+     "text_sha256": "005bcf04e50d59ee",
+     "structural_sha256": "81f8525adae5aabb",
+     "lines": 6
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_lookup",
+    "historical_function_hashes": {
+     "text_sha256": "005bcf04e50d59ee",
+     "structural_sha256": "81f8525adae5aabb",
+     "lines": 6
+    },
+    "dependency_closure": [],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [
+     {
+      "artifact": "v21_phase2_sources.json",
+      "artifact_sha256": "b556feb2e9a1e64b",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_phase3_certificates.json",
+      "artifact_sha256": "9240d079d548f154",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_level3_results.json",
+      "artifact_sha256": "c1c55adb2b5176a7",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_promotion_results.json",
+      "artifact_sha256": "7632a7e0c6fb7292",
+      "governing_manifest": "v21_promotion_manifest.json",
+      "manifest_sha256": "6ca868c0383c1ade",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     }
+    ],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Map -> Expr[FeatureValue=>Colour]",
+    "in_pre_level4_registry": true,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Lookup: ['Map'] -> Expr[FeatureValue,Colour]"
+    ],
+    "current_compiler": "['Map'] -> Expr[FeatureValue,Colour]",
+    "pre_level4_compiler": "['Map'] -> Expr[FeatureValue,Colour]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "CERTIFIED_PRE_LEVEL4_EXECUTION",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "Lookup_maps_the_current_value": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "induced slot, learner present"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Map_V1",
+   "base": "Map_V1",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_map_v1",
+    "current_function_hashes": {
+     "text_sha256": "f60662d2338b24a0",
+     "structural_sha256": "19202e1426375c55",
+     "lines": 15
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_map_v1",
+    "historical_function_hashes": {
+     "text_sha256": "f60662d2338b24a0",
+     "structural_sha256": "19202e1426375c55",
+     "lines": 15
+    },
+    "dependency_closure": [
+     "Ctx",
+     "REGISTRY",
+     "_eval",
+     "is_ast"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [
+     {
+      "artifact": "v21_phase2_sources.json",
+      "artifact_sha256": "b556feb2e9a1e64b",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_phase3_certificates.json",
+      "artifact_sha256": "9240d079d548f154",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_level3_results.json",
+      "artifact_sha256": "c1c55adb2b5176a7",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_promotion_results.json",
+      "artifact_sha256": "7632a7e0c6fb7292",
+      "governing_manifest": "v21_promotion_manifest.json",
+      "manifest_sha256": "6ca868c0383c1ade",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     }
+    ],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Set[A] x Expr[A=>B] -> Set[B]",
+    "in_pre_level4_registry": true,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Map_V1: ['Set[Region]', 'Expr[Region,Colour]'] -> Set[Coloured]"
+    ],
+    "current_compiler": "['Set[A]', 'Expr[A,B]'] -> Set[B]",
+    "pre_level4_compiler": "['Set[A]', 'Expr[A,B]'] -> Set[B]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "CERTIFIED_PRE_LEVEL4_EXECUTION"
+    ],
+    "fixtures": {
+     "Map_V1_applies_the_expression_per_region": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": []
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production",
+     "produced by another production"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "PaintEach",
+   "base": "PaintEach",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_paint_each",
+    "current_function_hashes": {
+     "text_sha256": "e329a52c18542ebf",
+     "structural_sha256": "3844d8bbf1a307cd",
+     "lines": 9
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_paint_each",
+    "historical_function_hashes": {
+     "text_sha256": "e329a52c18542ebf",
+     "structural_sha256": "3844d8bbf1a307cd",
+     "lines": 9
+    },
+    "dependency_closure": [],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [
+     {
+      "artifact": "v21_phase2_sources.json",
+      "artifact_sha256": "b556feb2e9a1e64b",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_phase3_certificates.json",
+      "artifact_sha256": "9240d079d548f154",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_level3_results.json",
+      "artifact_sha256": "c1c55adb2b5176a7",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_promotion_results.json",
+      "artifact_sha256": "7632a7e0c6fb7292",
+      "governing_manifest": "v21_promotion_manifest.json",
+      "manifest_sha256": "6ca868c0383c1ade",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     }
+    ],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Set[Coloured] -> Grid",
+    "in_pre_level4_registry": true,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "PaintEach: ['Set[Coloured]'] -> Grid"
+    ],
+    "current_compiler": "['Set[Coloured]'] -> Grid",
+    "pre_level4_compiler": "['Set[Coloured]'] -> Grid",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "CERTIFIED_PRE_LEVEL4_EXECUTION",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "PaintEach_paints_each_region": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Partition",
+   "base": "Partition",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_partition",
+    "current_function_hashes": {
+     "text_sha256": "9c82b6df4d8cb2c8",
+     "structural_sha256": "08ff3849438024d5",
+     "lines": 6
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_partition",
+    "historical_function_hashes": {
+     "text_sha256": "9c82b6df4d8cb2c8",
+     "structural_sha256": "08ff3849438024d5",
+     "lines": 6
+    },
+    "dependency_closure": [
+     "PARTITION_VOCAB"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [
+     {
+      "artifact": "v21_phase2_sources.json",
+      "artifact_sha256": "b556feb2e9a1e64b",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_phase3_certificates.json",
+      "artifact_sha256": "9240d079d548f154",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_level3_results.json",
+      "artifact_sha256": "c1c55adb2b5176a7",
+      "governing_manifest": "v21_level3_manifest.json",
+      "manifest_sha256": "6a873280f2b0e59c",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     },
+     {
+      "artifact": "v21_promotion_results.json",
+      "artifact_sha256": "7632a7e0c6fb7292",
+      "governing_manifest": "v21_promotion_manifest.json",
+      "manifest_sha256": "6ca868c0383c1ade",
+      "pinned_runtime_sha256": "57daa98455132b89"
+     }
+    ],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Grid x PartitionExpr -> Set[Region]",
+    "in_pre_level4_registry": true,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Partition: ['PartitionExpr'] -> Set[Region]"
+    ],
+    "current_compiler": "['PartitionExpr'] -> Set[Region]",
+    "pre_level4_compiler": "['PartitionExpr'] -> Set[Region]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "CERTIFIED_PRE_LEVEL4_EXECUTION",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "Partition_returns_disjoint_nonempty_sets": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "terminal vocabulary (4)"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Select",
+   "base": "Select",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_select",
+    "current_function_hashes": {
+     "text_sha256": "9b25f35582ae27ca",
+     "structural_sha256": "1c3726684892dca4",
+     "lines": 6
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_select",
+    "historical_function_hashes": {
+     "text_sha256": "9b25f35582ae27ca",
+     "structural_sha256": "1c3726684892dca4",
+     "lines": 6
+    },
+    "dependency_closure": [
+     "PREDICATE_VOCAB",
+     "descriptors"
+    ],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Set[A] x Predicate -> Set[A]",
+    "in_pre_level4_registry": false,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Select: ['Set[Region]', 'Predicate'] -> Set[Region]"
+    ],
+    "current_compiler": "['Set[A]', 'Predicate'] -> Set[A]",
+    "pre_level4_compiler": "['Set[A]', 'Predicate'] -> Set[A]",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "Select_all_keeps_every_set": true,
+     "Select_predicate_actually_filters": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production",
+     "terminal vocabulary (7)"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  },
+  {
+   "production": "Unique@Entity",
+   "base": "Unique",
+   "provenance": {
+    "current_implementation_sha256": "a3e23e6f5e73b4b7",
+    "current_function": "_unique",
+    "current_function_hashes": {
+     "text_sha256": "f285a52066b997e0",
+     "structural_sha256": "df9d126496441c81",
+     "lines": 2
+    },
+    "historical_artifact": {
+     "file": "level4_pre_level4_runtime_57daa984.py",
+     "sha256": "57daa98455132b89",
+     "verified_against": [
+      "v21_level3_manifest.json",
+      "v21_promotion_manifest.json"
+     ]
+    },
+    "historical_function": "_unique",
+    "historical_function_hashes": {
+     "text_sha256": "f285a52066b997e0",
+     "structural_sha256": "df9d126496441c81",
+     "lines": 2
+    },
+    "dependency_closure": [],
+    "dependency_divergences": {},
+    "body_equivalence": "IDENTICAL_TEXT",
+    "pre_level4_execution": [],
+    "grade": "SOURCE_BODY_VERIFIED"
+   },
+   "signature_equivalence": {
+    "contract_form": "Set[A] -> A",
+    "in_pre_level4_registry": false,
+    "in_pre_level4_registry_note": "informational only: that registry is the minimised Level-3A kernel, and K_L4 is broader by design",
+    "level4_groundings": [
+     "Unique@Entity: ['Set[Entity]'] -> Entity",
+     "Unique@Region: ['Set[Region]'] -> Region"
+    ],
+    "current_compiler": "['Set[A]'] -> A",
+    "pre_level4_compiler": "['Set[A]'] -> A",
+    "match": true
+   },
+   "semantic_evidence": {
+    "kinds": [
+     "CURRENT_A0_SYNTHETIC_FIXTURE",
+     "PRE_LEVEL4_TEST"
+    ],
+    "fixtures": {
+     "Unique_accepts_singleton": true,
+     "Unique_rejects_two": true
+    },
+    "fixture_failures": [],
+    "pre_level4_tests": [
+     {
+      "test_file": "tests/test_meta_v2_architecture.py",
+      "commit": "5db9a3e",
+      "blob_sha": "a5300cd512295f91caab5627d9d769ecd1c2343c",
+      "targets_module": "meta_v2, the prototype the V2.1 line grew from",
+      "weight": "secondary: it exercises a different module, so it supports the semantics of the operation, not the identity of the current body"
+     }
+    ]
+   },
+   "historical_behaviour": "EQUIVALENT_ON_FIXTURES",
+   "reachability": {
+    "search_reachable": true,
+    "argument_sources": [
+     "produced by another production"
+    ],
+    "source": "A0 artifact, consumed not recomputed"
+   },
+   "admitted": true,
+   "exclusion_reason": null
+  }
+ ],
+ "K_L4_star": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity"
+ ],
+ "excluded_at_a01": [],
+ "E_L4_star": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity",
+  "concept_0001"
+ ],
+ "interpretation": "A capability counts as part of the operational baseline only with hash-graded pre-Level-4 provenance, semantic evidence that is not the absence of evidence, and A0 reachability. Where any of the three could not be established the production is excluded and the reason recorded, never repaired."
+}

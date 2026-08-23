@@ -1,0 +1,667 @@
+[
+ {
+  "requirement": "production:Partition",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Entities",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Group",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Pairs",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Orbits",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Order",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Select",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Unique",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:ArgMin",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:ArgMax",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Key",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Lookup",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:MapOver",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Zip",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Fold",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Propagate",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Repeat",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Transform",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Anchor",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Recolour",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Paint",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Copy",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Overlay",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Erase",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:Compose",
+  "preregistered": "present in frozen spec",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "meta_v2.PRODUCTIONS"
+ },
+ {
+  "requirement": "production:PaintEach",
+  "preregistered": "added by dated amendment",
+  "implemented": "present",
+  "status": "MATCH",
+  "evidence": "v2_preregistration.amendments"
+ },
+ {
+  "requirement": "signature:Anchor",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Entity', 'Anchor') -> Placement",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:ArgMax",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Entity]', 'FeatureExpr') -> Entity",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:ArgMin",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Entity]', 'FeatureExpr') -> Entity",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Compose",
+  "preregistered": "typed (args, result)",
+  "implemented": "('FeatureValue', 'Colour') -> Function[Entity,Colour]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Copy",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Placement',) -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Entities",
+  "preregistered": "typed (args, result)",
+  "implemented": "('SegmentationExpr',) -> Set[Entity]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Erase",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Region]',) -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Fold",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Coloured]',) -> Colour",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Group",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Entity]', 'RelationExpr') -> Set[Entity]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Key",
+  "preregistered": "typed (args, result)",
+  "implemented": "('FeatureExpr',) -> FeatureValue",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Lookup",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Map[FeatureValue,Colour]',) -> Colour",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:MapOver",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Region]', 'Function[Entity,Colour]') -> Set[Coloured]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Orbits",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Lattice',) -> Set[Orbit]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Order",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Entity]', 'FeatureExpr') -> Sequence[Entity]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Overlay",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Grid', 'Grid') -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Paint",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Region]', 'Colour') -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:PaintEach",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Coloured]',) -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Pairs",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Entity]', 'RelationExpr') -> Set[Pair[Entity]]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Partition",
+  "preregistered": "typed (args, result)",
+  "implemented": "('PartitionExpr',) -> Set[Region]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Propagate",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Lattice', 'PartitionExpr') -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Recolour",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Entity', 'ColourBijection') -> Entity",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Repeat",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Grid', 'Bound') -> Grid",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Select",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Region]', 'Predicate') -> Set[Region]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Transform",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Entity', 'Transform') -> Entity",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Unique",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Entity]',) -> Entity",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "signature:Zip",
+  "preregistered": "typed (args, result)",
+  "implemented": "('Set[Region]', 'Set[Coloured]') -> Set[Coloured]",
+  "status": "MATCH",
+  "evidence": "meta_v2.Production"
+ },
+ {
+  "requirement": "induced_type:Map[FeatureValue,Colour]",
+  "preregistered": "induced",
+  "implemented": "induced",
+  "status": "MATCH",
+  "evidence": "meta_v2.INDUCED_TYPES"
+ },
+ {
+  "requirement": "induced_type:ColourBijection",
+  "preregistered": "induced",
+  "implemented": "induced",
+  "status": "MATCH",
+  "evidence": "meta_v2.INDUCED_TYPES"
+ },
+ {
+  "requirement": "induced_type:Transform",
+  "preregistered": "induced",
+  "implemented": "induced",
+  "status": "MATCH",
+  "evidence": "meta_v2.INDUCED_TYPES"
+ },
+ {
+  "requirement": "induced_type:Anchor",
+  "preregistered": "induced",
+  "implemented": "induced",
+  "status": "MATCH",
+  "evidence": "meta_v2.INDUCED_TYPES"
+ },
+ {
+  "requirement": "induced_type:Lattice",
+  "preregistered": "induced",
+  "implemented": "induced",
+  "status": "MATCH",
+  "evidence": "meta_v2.INDUCED_TYPES"
+ },
+ {
+  "requirement": "induced_type:SequenceRule",
+  "preregistered": "induced",
+  "implemented": "induced",
+  "status": "MATCH",
+  "evidence": "meta_v2.INDUCED_TYPES"
+ },
+ {
+  "requirement": "slot_learner:Map[FeatureValue,Colour]",
+  "preregistered": "{\"fold_support_min\": 2}",
+  "implemented": "learn_feature_colour_map (fold condition enforced)",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_feature_colour_map"
+ },
+ {
+  "requirement": "slot_learner:ColourBijection",
+  "preregistered": "{\"fold_support_min\": 2, \"must_be_injective\": true}",
+  "implemented": "learn_colour_bijection (fold condition enforced)",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_colour_bijection"
+ },
+ {
+  "requirement": "slot_learner:Transform",
+  "preregistered": "{\"vocabulary\": \"D4\", \"must_explain_all_instances\": true}",
+  "implemented": "learn_transform (fold condition enforced)",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_transform"
+ },
+ {
+  "requirement": "slot_learner:Anchor",
+  "preregistered": "{\"absolute_coordinates_forbidden\": true}",
+  "implemented": "learn_anchor (fold condition enforced)",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_anchor"
+ },
+ {
+  "requirement": "slot_learner:Lattice",
+  "preregistered": "{\"vectors_from_input_geometry\": true, \"orbits_conflict_free\": true, \"fold_recoverable\": true}",
+  "implemented": "learn_lattice (fold condition enforced)",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_lattice"
+ },
+ {
+  "requirement": "slot_learner:SequenceRule",
+  "preregistered": "{\"witnessed_positions_min\": 2}",
+  "implemented": "learn_sequence_rule (fold condition enforced)",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_sequence_rule"
+ },
+ {
+  "requirement": "slot_learner:ColourBijection/context",
+  "preregistered": "source-entity to produced-instance correspondence",
+  "implemented": "typed correspondence",
+  "status": "MATCH",
+  "evidence": "meta_search.learn_colour_bijection"
+ },
+ {
+  "requirement": "router_field:same_shape",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:changed_cell_count",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:changed_on_background_fraction",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:preserves_nonbackground",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:deletes_existing_cells",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:recolours_existing_cells",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:changed_component_count",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:repeated_changed_shapes",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:template_match_evidence",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:translation_orbit_evidence",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:pairwise_alignment_evidence",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "router_field:panel_structure_evidence",
+  "preregistered": "computed",
+  "implemented": "computed",
+  "status": "MATCH",
+  "evidence": "meta_search.failure_signature"
+ },
+ {
+  "requirement": "subgrammar:computed_set",
+  "preregistered": "Partition,Select,Key,Lookup,MapOver,Paint,Compose",
+  "implemented": "Compose,Key,Lookup,MapOver,Paint,PaintEach,Partition,Select",
+  "status": "MATCH",
+  "evidence": "meta_search.SUBGRAMMARS missing []"
+ },
+ {
+  "requirement": "subgrammar:template_placement",
+  "preregistered": "Entities,Select,Unique,ArgMax,Transform,Recolour,Anchor,Copy,Overlay,Compose",
+  "implemented": "Anchor,ArgMax,ArgMin,Compose,Copy,Entities,Group,Overlay,Recolour,Select,Transform,Unique",
+  "status": "MATCH",
+  "evidence": "meta_search.SUBGRAMMARS missing []"
+ },
+ {
+  "requirement": "subgrammar:orbit_sequence",
+  "preregistered": "Orbits,Order,Propagate,Repeat,Paint,Overlay,Compose",
+  "implemented": "Compose,Orbits,Order,Overlay,Paint,Propagate,Repeat",
+  "status": "MATCH",
+  "evidence": "meta_search.SUBGRAMMARS missing []"
+ },
+ {
+  "requirement": "subgrammar:relational",
+  "preregistered": "Entities,Pairs,Select,Unique,Anchor,Copy,Paint,Compose",
+  "implemented": "Anchor,Compose,Copy,Entities,Paint,Pairs,Select,Unique",
+  "status": "MATCH",
+  "evidence": "meta_search.SUBGRAMMARS missing []"
+ },
+ {
+  "requirement": "search:max_ast_depth",
+  "preregistered": 4,
+  "implemented": 4,
+  "status": "MATCH",
+  "evidence": "meta_search.MAX_DEPTH"
+ },
+ {
+  "requirement": "search:max_semantic_classes_per_type",
+  "preregistered": 64,
+  "implemented": 64,
+  "status": "MATCH",
+  "evidence": "meta_search.MAX_SEMANTIC_CLASSES_PER_TYPE"
+ },
+ {
+  "requirement": "search:max_candidates_returned",
+  "preregistered": 8,
+  "implemented": 8,
+  "status": "MATCH",
+  "evidence": "meta_search.MAX_CANDIDATES"
+ },
+ {
+  "requirement": "search:ARC_META_BUDGET_S",
+  "preregistered": 8.0,
+  "implemented": 8.0,
+  "status": "MATCH",
+  "evidence": "meta_search.budget_s"
+ },
+ {
+  "requirement": "search:cooperative_deadline",
+  "preregistered": "min(parent_deadline, now + ARC_META_BUDGET_S)",
+  "implemented": "min(parent, now+budget)",
+  "status": "MATCH",
+  "evidence": "meta_search.search"
+ },
+ {
+  "requirement": "enumeration_order:result_type",
+  "preregistered": "applied",
+  "implemented": "applied",
+  "status": "MATCH",
+  "evidence": "meta_search.search ranking key"
+ },
+ {
+  "requirement": "enumeration_order:ast_depth",
+  "preregistered": "applied",
+  "implemented": "applied",
+  "status": "MATCH",
+  "evidence": "meta_search.search ranking key"
+ },
+ {
+  "requirement": "enumeration_order:mdl",
+  "preregistered": "applied",
+  "implemented": "applied",
+  "status": "MATCH",
+  "evidence": "meta_search.search ranking key"
+ },
+ {
+  "requirement": "enumeration_order:parameter_class",
+  "preregistered": "applied",
+  "implemented": "applied",
+  "status": "MATCH",
+  "evidence": "meta_search.search ranking key"
+ },
+ {
+  "requirement": "enumeration_order:value_bound_count",
+  "preregistered": "applied",
+  "implemented": "applied",
+  "status": "MATCH",
+  "evidence": "meta_search.search ranking key"
+ },
+ {
+  "requirement": "enumeration_order:stable_serialization",
+  "preregistered": "applied",
+  "implemented": "applied",
+  "status": "MATCH",
+  "evidence": "meta_search.search ranking key"
+ },
+ {
+  "requirement": "semantic_dedup:intermediate_types",
+  "preregistered": "(type, behaviour on demonstrations) -> cheapest AST, at intermediate nodes too",
+  "implemented": "implemented",
+  "status": "MATCH",
+  "evidence": "meta_search.search / intermediate_signature"
+ },
+ {
+  "requirement": "semantic_dedup:reported_metric",
+  "preregistered": "equivalent programs eliminated, named honestly",
+  "implemented": "candidate_rejection_ratio + intermediate_dedup_ratio",
+  "status": "MATCH",
+  "evidence": "meta_search.SearchStats.as_dict"
+ },
+ {
+  "requirement": "serialization:ast_round_trip",
+  "preregistered": "exact",
+  "implemented": "exact",
+  "status": "MATCH",
+  "evidence": "meta_v2.to_json/from_json"
+ }
+]

@@ -1,0 +1,74 @@
+{
+ "concept_0001": {
+  "name": "concept_0001",
+  "signature": "(?0 : FeatureExpr, ?1 : Map[FeatureValue, Colour]) -> GridTransform",
+  "slot_types": {
+   "?0": "feature",
+   "?1": "table"
+  },
+  "schema": {
+   "op": "Compose",
+   "args": [
+    {
+     "op": "Partition",
+     "args": [
+      {
+       "lit": "\"background_components\""
+      }
+     ]
+    },
+    {
+     "op": "Select",
+     "args": [
+      {
+       "lit": "\"all\""
+      }
+     ]
+    },
+    {
+     "op": "Map",
+     "args": [
+      {
+       "op": "Key",
+       "args": [
+        {
+         "lit": "\"?0\""
+        }
+       ]
+      },
+      {
+       "op": "Lookup",
+       "args": [
+        {
+         "lit": "\"?1\""
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "op": "Paint",
+     "args": []
+    }
+   ]
+  },
+  "slots": [
+   "{\"observed\": [\"'is_rect'\", \"'touches_border'\"], \"slot\": \"?0\"}",
+   "{\"observed\": [\"((False, 2), (True, 3))\", \"((False, 4), (True, 3))\"], \"slot\": \"?1\"}"
+  ],
+  "free_slots": [
+   "?0",
+   "?1"
+  ],
+  "provenance": [
+   "7b6016b9",
+   "83302e8f"
+  ],
+  "concept_class": "(Compose (Partition) (Select) (Map (Key) (Lookup)) (Paint))",
+  "status": "provisional",
+  "transfer_witnesses": [],
+  "search_stats": {},
+  "falsification": {},
+  "digest": "b79c5079741b498b"
+ }
+}

@@ -1,0 +1,481 @@
+{
+ "gate": "Level-4 A0 baseline admissibility",
+ "non_runtime_active_productions": {
+  "Concept": "active meta-production, instantiated through the concept overlay in meta_v21_env; not a primitive runtime evaluator",
+  "Expr_formation": "a typing and formation judgement, not an enumerable runtime production"
+ },
+ "synthetic_fixtures": {
+  "Recolour_changes_anything": false,
+  "Transform_preserves_multicolour_appearance": false,
+  "Copy_single_instance": true,
+  "Copy_rejects_out_of_bounds": true,
+  "Group_merges_under_relation": true
+ },
+ "positive_control": {
+  "chain": "Entities -> Unique -> Anchor -> Copy -> Grid",
+  "task": "synthetic: one asymmetric multicolour entity copied to a fixed corner, three unambiguous demonstrations",
+  "surface_terms_generated": 6760,
+  "typed_candidates": 48,
+  "exact_fit_programs": 0,
+  "loo_by_rediscovery": "0/3",
+  "rediscovered_by_frozen_search": false,
+  "verdict": "the baseline does NOT operationally possess single-instance placement: the search rejects every typed candidate because the Anchor slot type has no learner. Recorded, not repaired."
+ },
+ "rows": [
+  {
+   "production": "Anchor",
+   "base": "Anchor",
+   "contract_signature": "Entity x Anchor -> Placement",
+   "runtime_signature": "Entity x Anchor -> Placement",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v2.py prototype, as Place (2026-08-21, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "induced slot, learner ABSENT"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": false,
+   "reason": "an argument type has no terminal vocabulary and no slot learner, so the frozen search can never supply a value for it"
+  },
+  {
+   "production": "ArgMax@Entity",
+   "base": "ArgMax",
+   "contract_signature": "Set[A] x FeatureExpr -> A",
+   "runtime_signature": "Set[Entity] x FeatureExpr -> Entity",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "terminal vocabulary (12)"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "ArgMax@Region",
+   "base": "ArgMax",
+   "contract_signature": "Set[A] x FeatureExpr -> A",
+   "runtime_signature": "Set[Region] x FeatureExpr -> Region",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "terminal vocabulary (12)"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it"
+  },
+  {
+   "production": "ArgMin@Entity",
+   "base": "ArgMin",
+   "contract_signature": "Set[A] x FeatureExpr -> A",
+   "runtime_signature": "Set[Entity] x FeatureExpr -> Entity",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "terminal vocabulary (12)"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "ArgMin@Region",
+   "base": "ArgMin",
+   "contract_signature": "Set[A] x FeatureExpr -> A",
+   "runtime_signature": "Set[Region] x FeatureExpr -> Region",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "terminal vocabulary (12)"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it"
+  },
+  {
+   "production": "Compose_V1",
+   "base": "Compose_V1",
+   "contract_signature": "Expr[A=>B] x Expr[B=>C] -> Expr[A=>C]",
+   "runtime_signature": "Expr[Region,FeatureValue] x Expr[FeatureValue,Colour] -> Expr[Region,Colour]",
+   "signature_status": "RECONSTRUCTED",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "produced by another production"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Copy",
+   "base": "Copy",
+   "contract_signature": "Entity x Placement -> Grid",
+   "runtime_signature": "Placement -> Grid",
+   "signature_status": "SIGNATURE_RECONSTRUCTED: the contract says Entity x Placement -> Grid, the runtime takes only Placement because Anchor already pairs the entity with its offset. Disclosed, not hidden as context-implicit.",
+   "historical_source": "meta_v2.py prototype, as Stamp (2026-08-21, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": true,
+   "admitted_to_K_L4": false,
+   "reason": "cascade: its argument Placement is produced only by excluded productions"
+  },
+  {
+   "production": "Entities",
+   "base": "Entities",
+   "contract_signature": "Grid x SegmentationExpr -> Set[Entity]",
+   "runtime_signature": "Grid x SegmentationExpr -> Set[Entity]",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "terminal vocabulary (2)"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Group@Entity",
+   "base": "Group",
+   "contract_signature": "Set[A] x Relation -> Set[Set[A]]",
+   "runtime_signature": "Set[Entity] x Relation -> Set[Set[Entity]]",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v2.py prototype (2026-08-21, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "NO SOURCE"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": true,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it; an argument type has no terminal vocabulary and no slot learner, so the frozen search can never supply a value for it"
+  },
+  {
+   "production": "Group@Region",
+   "base": "Group",
+   "contract_signature": "Set[A] x Relation -> Set[Set[A]]",
+   "runtime_signature": "Set[Region] x Relation -> Set[Set[Region]]",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v2.py prototype (2026-08-21, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "NO SOURCE"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": true,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it; an argument type has no terminal vocabulary and no slot learner, so the frozen search can never supply a value for it"
+  },
+  {
+   "production": "Key",
+   "base": "Key",
+   "contract_signature": "FeatureExpr -> Expr[Region=>FeatureValue]",
+   "runtime_signature": "FeatureExpr -> Expr[Region=>FeatureValue]",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "terminal vocabulary (12)"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Lookup",
+   "base": "Lookup",
+   "contract_signature": "Map -> Expr[FeatureValue=>Colour]",
+   "runtime_signature": "Map -> Expr[FeatureValue=>Colour]",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "induced slot, learner present"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Map_V1",
+   "base": "Map_V1",
+   "contract_signature": "Set[A] x Expr[A=>B] -> Set[B]",
+   "runtime_signature": "Set[Region] x Expr[Region,Colour] -> Set[Coloured]",
+   "signature_status": "RECONSTRUCTED",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "produced by another production"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Overlay",
+   "base": "Overlay",
+   "contract_signature": "Grid x Grid -> Grid",
+   "runtime_signature": "Grid x Grid -> Grid",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "produced by another production"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it"
+  },
+  {
+   "production": "Paint",
+   "base": "Paint",
+   "contract_signature": "Set[Region] x Colour -> Grid",
+   "runtime_signature": "Set[Region] x Colour -> Grid",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "NO SOURCE"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it; an argument type has no terminal vocabulary and no slot learner, so the frozen search can never supply a value for it"
+  },
+  {
+   "production": "PaintEach",
+   "base": "PaintEach",
+   "contract_signature": "Set[Coloured] -> Grid",
+   "runtime_signature": "Set[Coloured] -> Grid",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Partition",
+   "base": "Partition",
+   "contract_signature": "Grid x PartitionExpr -> Set[Region]",
+   "runtime_signature": "Grid x PartitionExpr -> Set[Region]",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "terminal vocabulary (4)"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Recolour",
+   "base": "Recolour",
+   "contract_signature": "Entity x ColourBijection -> Entity",
+   "runtime_signature": "Entity x ColourBijection -> Entity",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v2.py prototype (2026-08-21, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "induced slot, learner ABSENT"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": false,
+   "admitted_to_K_L4": false,
+   "reason": "synthetic semantics failed; an argument type has no terminal vocabulary and no slot learner, so the frozen search can never supply a value for it"
+  },
+  {
+   "production": "Select",
+   "base": "Select",
+   "contract_signature": "Set[A] x Predicate -> Set[A]",
+   "runtime_signature": "Set[Region] x Predicate -> Set[Region]",
+   "signature_status": "RECONSTRUCTED",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "terminal vocabulary (7)"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Transform",
+   "base": "Transform",
+   "contract_signature": "Entity x Transform -> Entity",
+   "runtime_signature": "Entity x Transform -> Entity",
+   "signature_status": "EXACT",
+   "historical_source": "meta_v2.py prototype (2026-08-21, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production",
+    "induced slot, learner ABSENT"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": false,
+   "admitted_to_K_L4": false,
+   "reason": "synthetic semantics failed; an argument type has no terminal vocabulary and no slot learner, so the frozen search can never supply a value for it"
+  },
+  {
+   "production": "Unique@Entity",
+   "base": "Unique",
+   "contract_signature": "Set[A] -> A",
+   "runtime_signature": "Set[Entity] -> Entity",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production"
+   ],
+   "search_reachable": true,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": true,
+   "reason": "historical provenance and frozen-search reachability both shown"
+  },
+  {
+   "production": "Unique@Region",
+   "base": "Unique",
+   "contract_signature": "Set[A] -> A",
+   "runtime_signature": "Set[Region] -> Region",
+   "signature_status": "GROUND_INSTANTIATION of a SPEC_INTENDED polymorphic form",
+   "historical_source": "meta_v21.py (Phase 1, pre-Level-4)",
+   "historical_source_hash": "a3e23e6f5e73b4b7",
+   "evaluator_present": true,
+   "argument_sources": [
+    "produced by another production"
+   ],
+   "search_reachable": false,
+   "synthetic_semantics_pass": null,
+   "admitted_to_K_L4": false,
+   "reason": "the frozen search cannot construct any term using it"
+  }
+ ],
+ "admitted": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity"
+ ],
+ "excluded": [
+  "Anchor",
+  "ArgMax@Region",
+  "ArgMin@Region",
+  "Copy",
+  "Group@Entity",
+  "Group@Region",
+  "Overlay",
+  "Paint",
+  "Recolour",
+  "Transform",
+  "Unique@Region"
+ ],
+ "K_L4_star": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity"
+ ],
+ "concept_viability": {
+  "concept": "concept_0001",
+  "productions_used": [
+   "Compose_V1",
+   "Key",
+   "Lookup",
+   "Map_V1",
+   "PaintEach",
+   "Partition"
+  ],
+  "missing_from_K_L4_star": [],
+  "viable_under_K_L4_star": true
+ },
+ "E_L4_star": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity",
+  "concept_0001"
+ ],
+ "note": "A capability is admitted only when it is pre-Level-4 AND reachable by the frozen search. Nothing here was repaired: a failed baseline capability is excluded and the reason recorded."
+}

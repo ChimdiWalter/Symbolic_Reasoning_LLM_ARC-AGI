@@ -1,0 +1,402 @@
+{
+ "label": "FIXTURES (already-used Experience tasks)",
+ "pool_size": 4,
+ "counts": {
+  "both": 4
+ },
+ "level_3a_witnesses": [
+  "00d62c1b",
+  "a5313dff"
+ ],
+ "level_3a_strict_witnesses": [
+  "00d62c1b",
+  "a5313dff"
+ ],
+ "level_3b_witnesses": [],
+ "rows": [
+  {
+   "task": "00d62c1b",
+   "baseline": {
+    "solved": true,
+    "typed_candidates": 48,
+    "seconds": 0.076,
+    "test_correct": true,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_rect\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[true, 4]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    }
+   },
+   "treatment": {
+    "solved": true,
+    "typed_candidates": 12,
+    "seconds": 0.022,
+    "test_correct": true,
+    "surface": {
+     "op": "concept_0001",
+     "args": [
+      {
+       "lit": "\"is_rect\""
+      },
+      {
+       "lit": "[[true, 4]]"
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 2,
+     "surface_depth": 1,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 3.5
+    }
+   },
+   "uses_concept": true,
+   "baseline_loo": "5/5",
+   "treatment_loo": "5/5",
+   "baseline_loo_full": true,
+   "treatment_loo_full": true,
+   "level_3a": true,
+   "level_3a_strict": true,
+   "level_3b": false,
+   "outcome": "both",
+   "d_typed_candidates": 36
+  },
+  {
+   "task": "a5313dff",
+   "baseline": {
+    "solved": true,
+    "typed_candidates": 48,
+    "seconds": 0.024,
+    "test_correct": true,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 1]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    }
+   },
+   "treatment": {
+    "solved": true,
+    "typed_candidates": 12,
+    "seconds": 0.009,
+    "test_correct": true,
+    "surface": {
+     "op": "concept_0001",
+     "args": [
+      {
+       "lit": "\"touches_border\""
+      },
+      {
+       "lit": "[[false, 1]]"
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 2,
+     "surface_depth": 1,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 3.5
+    }
+   },
+   "uses_concept": true,
+   "baseline_loo": "3/3",
+   "treatment_loo": "3/3",
+   "baseline_loo_full": true,
+   "treatment_loo_full": true,
+   "level_3a": true,
+   "level_3a_strict": true,
+   "level_3b": false,
+   "outcome": "both",
+   "d_typed_candidates": 36
+  },
+  {
+   "task": "c0f76784",
+   "baseline": {
+    "solved": true,
+    "typed_candidates": 48,
+    "seconds": 0.024,
+    "test_correct": true,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 6], [4, 7], [9, 8]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 9,
+     "surface_depth": 4,
+     "core_cost": 9,
+     "core_depth": 4,
+     "compression": 1.0
+    }
+   },
+   "treatment": {
+    "solved": true,
+    "typed_candidates": 12,
+    "seconds": 0.01,
+    "test_correct": true,
+    "surface": {
+     "op": "concept_0001",
+     "args": [
+      {
+       "lit": "\"area\""
+      },
+      {
+       "lit": "[[1, 6], [4, 7], [9, 8]]"
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 4,
+     "surface_depth": 1,
+     "core_cost": 9,
+     "core_depth": 4,
+     "compression": 2.25
+    }
+   },
+   "uses_concept": true,
+   "baseline_loo": "1/3",
+   "treatment_loo": "1/3",
+   "baseline_loo_full": false,
+   "treatment_loo_full": false,
+   "level_3a": false,
+   "level_3a_strict": false,
+   "level_3b": false,
+   "outcome": "both",
+   "d_typed_candidates": 36
+  },
+  {
+   "task": "12eac192",
+   "baseline": {
+    "solved": true,
+    "typed_candidates": 48,
+    "seconds": 0.019,
+    "test_correct": true,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 3], [2, 3]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 8,
+     "surface_depth": 4,
+     "core_cost": 8,
+     "core_depth": 4,
+     "compression": 1.0
+    }
+   },
+   "treatment": {
+    "solved": true,
+    "typed_candidates": 60,
+    "seconds": 0.021,
+    "test_correct": true,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 3], [2, 3]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 8,
+     "surface_depth": 4,
+     "core_cost": 8,
+     "core_depth": 4,
+     "compression": 1.0
+    }
+   },
+   "uses_concept": false,
+   "baseline_loo": "4/4",
+   "treatment_loo": "4/4",
+   "baseline_loo_full": true,
+   "treatment_loo_full": true,
+   "level_3a": false,
+   "level_3a_strict": false,
+   "level_3b": false,
+   "outcome": "both",
+   "d_typed_candidates": -12
+  }
+ ]
+}

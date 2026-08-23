@@ -1,0 +1,882 @@
+{
+ "manifest_sha256": "6a873280f2b0e59c",
+ "pool_size": 598,
+ "rows": [
+  {
+   "task": "00d62c1b",
+   "baseline": {
+    "solved": true,
+    "seconds": 0.054,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_rect\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[true, 4]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:is_rect",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:background_components"
+    ]
+   },
+   "treatment": {
+    "solved": true,
+    "seconds": 0.023,
+    "typed_candidates": 12,
+    "generated": 12,
+    "surface": {
+     "op": "concept_0001",
+     "args": [
+      {
+       "lit": "\"is_rect\""
+      },
+      {
+       "lit": "[[true, 4]]"
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 2,
+     "surface_depth": 1,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 3.5
+    },
+    "ops": [
+     "concept_0001",
+     "concept_0001:is_rect"
+    ]
+   },
+   "ablation": {
+    "solved": true,
+    "seconds": 0.054,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_rect\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[true, 4]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:is_rect",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:background_components"
+    ]
+   },
+   "uses_concept": true,
+   "loo": "5/5",
+   "test_correct": true,
+   "level_3b_capability": false,
+   "level_3a_efficiency": {
+    "d_typed_candidates": 36,
+    "d_seconds": 0.031,
+    "d_surface_cost": 5
+   }
+  },
+  {
+   "task": "12eac192",
+   "baseline": {
+    "solved": true,
+    "seconds": 0.019,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 3], [2, 3]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 8,
+     "surface_depth": 4,
+     "core_cost": 8,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:area",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:colour_components"
+    ]
+   },
+   "treatment": {
+    "solved": true,
+    "seconds": 0.02,
+    "typed_candidates": 60,
+    "generated": 177,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 3], [2, 3]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 8,
+     "surface_depth": 4,
+     "core_cost": 8,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:area",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:colour_components"
+    ]
+   },
+   "ablation": {
+    "solved": true,
+    "seconds": 0.019,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 3], [2, 3]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 8,
+     "surface_depth": 4,
+     "core_cost": 8,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:area",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:colour_components"
+    ]
+   },
+   "uses_concept": false,
+   "loo": "4/4",
+   "test_correct": true,
+   "level_3b_capability": false,
+   "level_3a_efficiency": null
+  },
+  {
+   "task": "9565186b",
+   "baseline": {
+    "solved": true,
+    "seconds": 0.011,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"n_colours\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 5]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:n_colours",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:colour_components"
+    ]
+   },
+   "treatment": {
+    "solved": true,
+    "seconds": 0.013,
+    "typed_candidates": 60,
+    "generated": 177,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"n_colours\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 5]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:n_colours",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:colour_components"
+    ]
+   },
+   "ablation": {
+    "solved": true,
+    "seconds": 0.011,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"n_colours\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 5]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:n_colours",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:colour_components"
+    ]
+   },
+   "uses_concept": false,
+   "loo": "3/4",
+   "test_correct": true,
+   "level_3b_capability": false,
+   "level_3a_efficiency": null
+  },
+  {
+   "task": "a5313dff",
+   "baseline": {
+    "solved": true,
+    "seconds": 0.043,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 1]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:touches_border",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:background_components"
+    ]
+   },
+   "treatment": {
+    "solved": true,
+    "seconds": 0.009,
+    "typed_candidates": 12,
+    "generated": 12,
+    "surface": {
+     "op": "concept_0001",
+     "args": [
+      {
+       "lit": "\"touches_border\""
+      },
+      {
+       "lit": "[[false, 1]]"
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 2,
+     "surface_depth": 1,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 3.5
+    },
+    "ops": [
+     "concept_0001",
+     "concept_0001:touches_border"
+    ]
+   },
+   "ablation": {
+    "solved": true,
+    "seconds": 0.024,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 1]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 7,
+     "surface_depth": 4,
+     "core_cost": 7,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:touches_border",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:background_components"
+    ]
+   },
+   "uses_concept": true,
+   "loo": "3/3",
+   "test_correct": true,
+   "level_3b_capability": false,
+   "level_3a_efficiency": {
+    "d_typed_candidates": 36,
+    "d_seconds": 0.034,
+    "d_surface_cost": 5
+   }
+  },
+  {
+   "task": "c0f76784",
+   "baseline": {
+    "solved": true,
+    "seconds": 0.024,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 6], [4, 7], [9, 8]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 9,
+     "surface_depth": 4,
+     "core_cost": 9,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:area",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:background_components"
+    ]
+   },
+   "treatment": {
+    "solved": true,
+    "seconds": 0.01,
+    "typed_candidates": 12,
+    "generated": 12,
+    "surface": {
+     "op": "concept_0001",
+     "args": [
+      {
+       "lit": "\"area\""
+      },
+      {
+       "lit": "[[1, 6], [4, 7], [9, 8]]"
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 4,
+     "surface_depth": 1,
+     "core_cost": 9,
+     "core_depth": 4,
+     "compression": 2.25
+    },
+    "ops": [
+     "concept_0001",
+     "concept_0001:area"
+    ]
+   },
+   "ablation": {
+    "solved": true,
+    "seconds": 0.024,
+    "typed_candidates": 48,
+    "generated": 129,
+    "surface": {
+     "op": "PaintEach",
+     "args": [
+      {
+       "op": "Map_V1",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ]
+        },
+        {
+         "op": "Compose_V1",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"area\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[1, 6], [4, 7], [9, 8]]"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "accounting": {
+     "surface_cost": 9,
+     "surface_depth": 4,
+     "core_cost": 9,
+     "core_depth": 4,
+     "compression": 1.0
+    },
+    "ops": [
+     "Compose_V1",
+     "Key",
+     "Key:area",
+     "Lookup",
+     "Map_V1",
+     "PaintEach",
+     "Partition",
+     "Partition:background_components"
+    ]
+   },
+   "uses_concept": true,
+   "loo": "1/3",
+   "test_correct": true,
+   "level_3b_capability": false,
+   "level_3a_efficiency": null
+  }
+ ]
+}

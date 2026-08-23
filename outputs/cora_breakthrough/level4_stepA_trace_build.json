@@ -1,0 +1,39 @@
+{
+ "gate": "Step-A trace search generation",
+ "method": "anchored insertion-only patching of the frozen blind search, audited by round-trip: removing the delimited prologue and every line tagged # TRACE restores search.py byte for byte",
+ "source": "level4_blind_runtime/search.py",
+ "source_sha256": "3c88fa1f92395a4c29f4450b2b01683cf16c060054cea2e1470ac0638be75012",
+ "generated": "level4_blind_runtime/stepA_trace_search.py",
+ "generated_sha256": "dedae0fa2556485b3ff0e8f063646e9f714393e2bb3e98456ac5db215c8bfa3b",
+ "generator_sha256": "9bd6ed6debf1a9788378929b5cd17d557bbad41362da6de5be801bdb9a65743b",
+ "patches_applied": [
+  {
+   "anchor_first_line": "from . import env as E",
+   "added_lines": 54
+  },
+  {
+   "anchor_first_line": "if not V.type_equal(env.result_type(name), wanted):",
+   "added_lines": 1
+  },
+  {
+   "anchor_first_line": "for combination in _product(options):",
+   "added_lines": 3
+  },
+  {
+   "anchor_first_line": "for depth in range(1, MAX_DEPTH + 1):",
+   "added_lines": 1
+  },
+  {
+   "anchor_first_line": "for ast in frontier:",
+   "added_lines": 3
+  },
+  {
+   "anchor_first_line": "complete, evidence = fit_slots(ast, pairs, memo, env)",
+   "added_lines": 5
+  }
+ ],
+ "trace_tagged_lines": 13,
+ "prologue_lines": 54,
+ "round_trip_identical_to_frozen_search": true,
+ "known_limitation": "instrumentation costs time inside the frozen budget; Step A therefore takes its LOO verdict and its trace from the same traced run, and the gate script measures the overhead"
+}

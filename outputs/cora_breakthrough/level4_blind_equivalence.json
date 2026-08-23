@@ -1,0 +1,48 @@
+{
+ "gate": "Level-4 blind-environment interpreter equivalence",
+ "question": "does the sanitized environment compute what the frozen baseline computed, on the already-frozen Level-3 source programs",
+ "not_a_rediscovery_run": "execution equivalence only; the blind environment is not placed in an experimental role and nothing is tuned",
+ "frozen_runtime_sha256": "a3e23e6f5e73b4b7",
+ "blind_runtime_sha256": "a7373b30f13e42d1",
+ "kernel_path": [
+  {
+   "program": "P1",
+   "grids_checked": 4,
+   "outputs_identical": true,
+   "result_type_frozen": "Grid",
+   "result_type_blind": "Grid",
+   "result_types_identical": true,
+   "demonstrations_reproduced": 3,
+   "pass": true
+  },
+  {
+   "program": "P2",
+   "grids_checked": 4,
+   "outputs_identical": true,
+   "result_type_frozen": "Grid",
+   "result_type_blind": "Grid",
+   "result_types_identical": true,
+   "demonstrations_reproduced": 3,
+   "pass": true
+  }
+ ],
+ "macro_path": [
+  {
+   "applied_to": "P1 arguments",
+   "outputs_identical": true,
+   "elaboration_identical": true,
+   "demonstrations_reproduced": 3,
+   "pass": true
+  },
+  {
+   "applied_to": "P2 arguments",
+   "outputs_identical": true,
+   "elaboration_identical": true,
+   "demonstrations_reproduced": 3,
+   "pass": true
+  }
+ ],
+ "failures": 0,
+ "passed": true,
+ "interpretation": "Equivalence on these programs shows the projection preserved the semantics C1 actually rests on. It is not a claim that every excluded capability was irrelevant, only that nothing the certified Level-3 result depended on was removed."
+}

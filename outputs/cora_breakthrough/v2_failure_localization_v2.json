@@ -1,0 +1,278 @@
+{
+ "stamp": "V2.0-CONFORMANT",
+ "rows": [
+  {
+   "task": "39e1d7f9",
+   "family": "template",
+   "routes": [
+    "computed_set",
+    "template_placement"
+   ],
+   "expected_subgrammar": "template_placement",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 3503,
+    "slots_fitted": 0,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": false,
+     "seconds": 1.12,
+     "syntactic_generated": 4503,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": false,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": true
+    },
+    "example": null
+   },
+   "diagnostic_probe": {
+    "constructed": 1144,
+    "slots_fitted": 344,
+    "executed_all_inputs": 208,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": true,
+     "seconds": 60.06,
+     "syntactic_generated": 8327,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "verdict": "SEMANTIC_MISMATCH_NOT_EXHAUSTIVE"
+  },
+  {
+   "task": "7e0986d6",
+   "family": "template",
+   "routes": [
+    "template_placement",
+    "relational"
+   ],
+   "expected_subgrammar": "template_placement",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 75,
+    "slots_fitted": 0,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": false,
+     "seconds": 0.04,
+     "syntactic_generated": 228,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": false,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": true
+    },
+    "example": null
+   },
+   "diagnostic_probe": {
+    "constructed": 4361,
+    "slots_fitted": 472,
+    "executed_all_inputs": 118,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": true,
+     "seconds": 60.01,
+     "syntactic_generated": 8327,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "verdict": "SEMANTIC_MISMATCH_NOT_EXHAUSTIVE"
+  },
+  {
+   "task": "fe45cba4",
+   "family": "template",
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "expected_subgrammar": "template_placement",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 3054,
+    "slots_fitted": 2328,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": true,
+     "seconds": 8.0,
+     "syntactic_generated": 7679,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "diagnostic_probe": {
+    "constructed": 6000,
+    "slots_fitted": 4849,
+    "executed_all_inputs": 179,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": false,
+     "seconds": 14.12,
+     "syntactic_generated": 8327,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "verdict": "SEMANTIC_MISMATCH_NOT_EXHAUSTIVE"
+  },
+  {
+   "task": "05269061",
+   "family": "lattice",
+   "routes": [
+    "computed_set",
+    "relational"
+   ],
+   "expected_subgrammar": "orbit_sequence",
+   "router_offered_expected": false,
+   "frozen_policy": {
+    "constructed": 727,
+    "slots_fitted": 0,
+    "executed_all_inputs": 0,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": false,
+     "seconds": 0.1,
+     "syntactic_generated": 1526,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": false,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": true
+    },
+    "example": null
+   },
+   "diagnostic_probe": {
+    "constructed": 6000,
+    "slots_fitted": 4849,
+    "executed_all_inputs": 118,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": false,
+     "seconds": 13.69,
+     "syntactic_generated": 8327,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "verdict": "ROUTER_FAILURE"
+  },
+  {
+   "task": "8eb1be9a",
+   "family": "lattice",
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "expected_subgrammar": "orbit_sequence",
+   "router_offered_expected": true,
+   "frozen_policy": {
+    "constructed": 307,
+    "slots_fitted": 208,
+    "executed_all_inputs": 24,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": true,
+     "seconds": 8.02,
+     "syntactic_generated": 7679,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "diagnostic_probe": {
+    "constructed": 3660,
+    "slots_fitted": 2944,
+    "executed_all_inputs": 545,
+    "exact_on_demos": 0,
+    "exhaustion": {
+     "deadline_hit": true,
+     "seconds": 60.02,
+     "syntactic_generated": 8327,
+     "per_type_cap": 6000,
+     "per_type_cap_possibly_hit": true,
+     "frontier_cap": 60000,
+     "depth_searched": 4,
+     "enumeration_exhausted": false
+    },
+    "example": null
+   },
+   "verdict": "SEMANTIC_MISMATCH_NOT_EXHAUSTIVE"
+  }
+ ],
+ "type_reachability": {
+  "reachable_types": [
+   "Anchor",
+   "Bound",
+   "Colour",
+   "ColourBijection",
+   "Entity",
+   "FeatureExpr",
+   "FeatureValue",
+   "Function[Entity,Colour]",
+   "Grid",
+   "Lattice",
+   "Map[FeatureValue,Colour]",
+   "PartitionExpr",
+   "Placement",
+   "Predicate",
+   "RelationExpr",
+   "SegmentationExpr",
+   "SequenceRule",
+   "Sequence[Entity]",
+   "Set[Coloured]",
+   "Set[Entity]",
+   "Set[Orbit]",
+   "Set[Pair[Entity]]",
+   "Set[Region]",
+   "Transform"
+  ],
+  "multi_placement": {
+   "productions_consuming_a_set_of_placements": [],
+   "productions_producing_a_set_of_placements": [],
+   "MapOver_result_type": "Set[Coloured]",
+   "only_Function_type_available": "Function[Entity,Colour]",
+   "productions_making_a_Grid_from_a_set": [
+    "Paint",
+    "PaintEach",
+    "Erase"
+   ],
+   "multi_placement_derivable": false
+  }
+ },
+ "level3_path": {
+  "imports_v1_meta_induction": true,
+  "imports_v2_meta_search": false,
+  "valid_v2_comparison": false,
+  "note": "A Level-3 result is only causal if the concept condition differs from the baseline ONLY by making concept_0001 available; if this harness runs the V1 search it compares V2 against V1 plus a concept, which is not the experiment."
+ }
+}

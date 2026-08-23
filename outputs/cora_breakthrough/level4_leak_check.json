@@ -1,0 +1,26 @@
+{
+ "gate": "Level-4 mechanism leak check",
+ "scope": "lexical and identifier test over everything the mechanism reads AND everything it executes. This is NOT a claim of semantic non-contamination: it proves no sealed term, task id or excluded production NAME is present, not that the environment carries no usable hint.",
+ "data_inputs_checked": [
+  "CORA_LEVEL4_MANIFEST.md",
+  "contract_redacted.json",
+  "concepts_redacted.json",
+  "machine_manifest.json",
+  "invention_corpus.jsonl"
+ ],
+ "executable_inputs_checked": [
+  "__init__.py",
+  "concept.py",
+  "env.py",
+  "runtime.py",
+  "search.py",
+  "stepA_trace_search.py",
+  "cora_level4_stepA_extract.py"
+ ],
+ "forbidden_names_checked": 35,
+ "sealed_lexeme_findings": [],
+ "task_id_findings": [],
+ "forbidden_production_name_findings": [],
+ "worked_transition_findings": [],
+ "findings": []
+}

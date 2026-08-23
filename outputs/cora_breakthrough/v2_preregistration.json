@@ -1,0 +1,132 @@
+{
+ "preregistered": "2026-08-21",
+ "spec_sha256": "f690e87b1b5fc121c74a65c3bcddc5a0d5bc3dfae98bfc15a3330c6e1f6554b5",
+ "source_sha256": {
+  "geocat_arc/object_reasoning/meta_ast.py": "0f5ca4794db649d0f7c9c0b5112356d66b10aee7450ef194b696d0b28977f47e",
+  "geocat_arc/object_reasoning/meta_induction.py": "c0156098086388c04ebfc86f6b255d821396e92c21dab60cf9bac40eec94b423",
+  "geocat_arc/object_reasoning/concept_registry.py": "82d282f713cbc128142496f65027f90c4c2d405fc171c29befb1cf658f26d5dc",
+  "geocat_arc/object_reasoning/inducer.py": "429d9ebe2731d8a6dcbce5db0292f9296459ce5fa1201b82af4ae93b8e09c0ee",
+  "geocat_arc/object_reasoning/engine.py": "1bad3873e871a50be3b170790d7f493cd27e36de64c2cd97f36d2beae3c383af",
+  "docs/CORA_META_LANGUAGE_V2.md": "f690e87b1b5fc121c74a65c3bcddc5a0d5bc3dfae98bfc15a3330c6e1f6554b5"
+ },
+ "search": {
+  "ARC_META_BUDGET_S": 8.0,
+  "cooperative_deadline": "min(parent_deadline, now + ARC_META_BUDGET_S)",
+  "max_ast_depth": 4,
+  "max_semantic_classes_per_type": 64,
+  "max_candidates_returned": 8,
+  "enumeration_order": [
+   "result_type",
+   "ast_depth",
+   "mdl",
+   "parameter_class",
+   "value_bound_count",
+   "stable_serialization"
+  ]
+ },
+ "slot_learners": {
+  "Map[FeatureValue,Colour]": {
+   "fold_support_min": 2
+  },
+  "ColourBijection": {
+   "fold_support_min": 2,
+   "must_be_injective": true
+  },
+  "Transform": {
+   "vocabulary": "D4",
+   "must_explain_all_instances": true
+  },
+  "Anchor": {
+   "absolute_coordinates_forbidden": true
+  },
+  "Lattice": {
+   "vectors_from_input_geometry": true,
+   "orbits_conflict_free": true,
+   "fold_recoverable": true
+  },
+  "SequenceRule": {
+   "witnessed_positions_min": 2
+  }
+ },
+ "router": {
+  "signature_fields": [
+   "same_shape",
+   "changed_cell_count",
+   "changed_on_background_fraction",
+   "preserves_nonbackground",
+   "deletes_existing_cells",
+   "recolours_existing_cells",
+   "changed_component_count",
+   "repeated_changed_shapes",
+   "template_match_evidence",
+   "translation_orbit_evidence",
+   "pairwise_alignment_evidence",
+   "panel_structure_evidence"
+  ],
+  "subgrammars": {
+   "computed_set": [
+    "Partition",
+    "Select",
+    "Key",
+    "Lookup",
+    "MapOver",
+    "Paint",
+    "Compose"
+   ],
+   "template_placement": [
+    "Entities",
+    "Select",
+    "Unique",
+    "ArgMax",
+    "Transform",
+    "Recolour",
+    "Anchor",
+    "Copy",
+    "Overlay",
+    "Compose"
+   ],
+   "orbit_sequence": [
+    "Orbits",
+    "Order",
+    "Propagate",
+    "Repeat",
+    "Paint",
+    "Overlay",
+    "Compose"
+   ],
+   "relational": [
+    "Entities",
+    "Pairs",
+    "Select",
+    "Unique",
+    "Anchor",
+    "Copy",
+    "Paint",
+    "Compose"
+   ]
+  },
+  "thresholds": {
+   "background_change_fraction_min": 0.5,
+   "repeated_shape_min_instances": 2,
+   "orbit_evidence_min_vectors": 1,
+   "panel_min_separators": 1
+  }
+ },
+ "amendment_protocol": "dated amendment naming the pre-existing evidence that forces it",
+ "amendments": [
+  {
+   "date": "2026-08-21",
+   "id": "a",
+   "change": "PaintEach : Set[Coloured] -> Grid added; Paint keeps its frozen signature",
+   "forcing_evidence": "Pre-existing: docs/EXPR_ROUND_TRACE.md verified REGION_FILL with colour a function of a region feature on 6 Experience tasks BEFORE the freeze. Frozen Paint : Set[Region] x Colour -> Grid paints one colour and cannot express it.",
+   "scope": "one production; no new terminal vocabulary"
+  },
+  {
+   "date": "2026-08-21",
+   "id": "b",
+   "change": "Compose added to every subgrammar production list",
+   "forcing_evidence": "Pre-existing and internal to the freeze: the frozen combinator table types MapOver : Set[T] x Function[T,U] -> Set[U], and Compose is the only production whose result type is Function. Omitting Compose from the subgrammar lists makes MapOver unusable, so no computed-set program is constructible. This corrects an internal inconsistency in the preregistered lists; it adds no new capability and no new primitive.",
+   "scope": "router.subgrammars only; combinator set unchanged"
+  }
+ ]
+}

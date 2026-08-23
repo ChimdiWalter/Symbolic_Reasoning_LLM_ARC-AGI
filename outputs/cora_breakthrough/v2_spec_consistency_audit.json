@@ -1,0 +1,169 @@
+{
+ "scope": "FROZEN CONTRACT ONLY (implementation not consulted)",
+ "method": "fixed-point inhabitation over the specification's own type schemes (no depth cap); reachability requires every sibling argument to be inhabited; higher-order types are reported as underspecification, not contradiction",
+ "roots": {
+  "ROOT-01": {
+   "title": "function-term formation is not specified",
+   "detail": "The table contains higher-order operators (MapOver, Fold, Repeat) but never says how a Function term is formed. Under a first-order reading no production returns a Function, so those operators look uninhabitable; under a higher-order reading, partial application or stage composition would form them. The document does not say which, so this is UNDERSPECIFICATION, not contradiction.",
+   "symptoms": [
+    "MapOver",
+    "Fold",
+    "Repeat",
+    "Key",
+    "Compose"
+   ]
+  },
+  "ROOT-02": {
+   "title": "Seed and Domain are undeclared types",
+   "detail": "Propagate takes Seed and Domain; neither appears in the specification's type list, so nothing can supply them, and Propagate's result Set[Cell] therefore never exists, which in turn strands Erase.",
+   "symptoms": [
+    "Propagate",
+    "Erase"
+   ]
+  },
+  "ROOT-03": {
+   "title": "Sequence[T] has no consumer",
+   "detail": "Order produces Sequence[T] and no production consumes a Sequence, so ordering can never influence an output. This is independent of the higher-order question and may be a genuine dead end, unless pre-freeze sequence-extension material specifies the missing consumer.",
+   "symptoms": [
+    "Order"
+   ]
+  }
+ },
+ "findings": [
+  {
+   "production": "Propagate",
+   "status": "SPEC_UNDERSPECIFICATION",
+   "root": "ROOT-02",
+   "detail": "type 'Seed' is used but never declared"
+  },
+  {
+   "production": "Propagate",
+   "status": "SPEC_UNDERSPECIFICATION",
+   "root": "ROOT-02",
+   "detail": "type 'Domain' is used but never declared"
+  },
+  {
+   "production": "Compose",
+   "status": "SPEC_UNDERSPECIFICATION",
+   "root": "ROOT-01",
+   "detail": "argument written 'stage*': a variadic placeholder with no element type"
+  },
+  {
+   "production": "MapOver",
+   "status": "SPEC_UNDERSPECIFICATION",
+   "root": "ROOT-01",
+   "detail": "argument 'Function[T,U]' has no constructor under a FIRST-ORDER reading"
+  },
+  {
+   "production": "Order",
+   "status": "SPEC_DEAD_PRODUCTION",
+   "root": "ROOT-03",
+   "detail": "result 'Sequence[T]' cannot compositionally reach Grid once every sibling argument must also be inhabited"
+  },
+  {
+   "production": "Key",
+   "status": "SPEC_DEAD_PRODUCTION",
+   "root": "ROOT-01",
+   "detail": "result 'FeatureValue' cannot compositionally reach Grid once every sibling argument must also be inhabited"
+  },
+  {
+   "production": "Repeat",
+   "status": "SPEC_DEAD_PRODUCTION",
+   "root": "ROOT-01",
+   "detail": "result 'Function' cannot compositionally reach Grid once every sibling argument must also be inhabited"
+  }
+ ],
+ "grouped": {
+  "ROOT-02": [
+   {
+    "production": "Propagate",
+    "status": "SPEC_UNDERSPECIFICATION",
+    "root": "ROOT-02",
+    "detail": "type 'Seed' is used but never declared"
+   },
+   {
+    "production": "Propagate",
+    "status": "SPEC_UNDERSPECIFICATION",
+    "root": "ROOT-02",
+    "detail": "type 'Domain' is used but never declared"
+   }
+  ],
+  "ROOT-01": [
+   {
+    "production": "Compose",
+    "status": "SPEC_UNDERSPECIFICATION",
+    "root": "ROOT-01",
+    "detail": "argument written 'stage*': a variadic placeholder with no element type"
+   },
+   {
+    "production": "MapOver",
+    "status": "SPEC_UNDERSPECIFICATION",
+    "root": "ROOT-01",
+    "detail": "argument 'Function[T,U]' has no constructor under a FIRST-ORDER reading"
+   },
+   {
+    "production": "Key",
+    "status": "SPEC_DEAD_PRODUCTION",
+    "root": "ROOT-01",
+    "detail": "result 'FeatureValue' cannot compositionally reach Grid once every sibling argument must also be inhabited"
+   },
+   {
+    "production": "Repeat",
+    "status": "SPEC_DEAD_PRODUCTION",
+    "root": "ROOT-01",
+    "detail": "result 'Function' cannot compositionally reach Grid once every sibling argument must also be inhabited"
+   }
+  ],
+  "ROOT-03": [
+   {
+    "production": "Order",
+    "status": "SPEC_DEAD_PRODUCTION",
+    "root": "ROOT-03",
+    "detail": "result 'Sequence[T]' cannot compositionally reach Grid once every sibling argument must also be inhabited"
+   }
+  ]
+ },
+ "inhabited_schemes": [
+  "AnchorExpr",
+  "Bound",
+  "Colour",
+  "ColourBijection",
+  "Domain",
+  "Entity",
+  "FeatureExpr",
+  "FeatureValue",
+  "Feature[T]",
+  "Function",
+  "Grid",
+  "Lattice",
+  "Map[FeatureValue,Colour]",
+  "PartitionExpr",
+  "Placement",
+  "Predicate[T]",
+  "Relation",
+  "Relation[T,T]",
+  "Seed",
+  "SegmentationExpr",
+  "Sequence[T]",
+  "Set[Cell]",
+  "Set[Entity]",
+  "Set[Grid]",
+  "Set[Orbit]",
+  "Set[Pair[T,U]]",
+  "Set[Pair[T]]",
+  "Set[Placement]",
+  "Set[Region]",
+  "Set[Set[T]]",
+  "Set[T]",
+  "Set[U]",
+  "T",
+  "TransformExpr"
+ ],
+ "multi_placement_in_frozen_spec": {
+  "Set[Placement]_inhabited": true,
+  "Set[Placement]_reaches_Grid": true,
+  "Set[Grid]_reaches_Grid": true
+ },
+ "headline": "The frozen V2 document is not yet a complete formal higher-order grammar. Its defects reduce to a small number of root underspecifications with dependent symptoms, not to many independent contradictions.",
+ "multi_placement_in_frozen_spec_status": "PROVISIONAL. Open polymorphic schemes such as Set[T] may still act as inhabitation witnesses (the witness filter excludes bare type variables but not schemes with free variables), and instantiated result types are not propagated (Unique : Set[T] -> T currently follows the uninstantiated T rather than Entity). Do NOT state that the frozen table formally supports multi-instance placement."
+}

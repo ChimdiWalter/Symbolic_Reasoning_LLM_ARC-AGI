@@ -1,0 +1,87 @@
+{
+ "stage": "Level 4 Step A: run manifest",
+ "frozen_before": "the single 450-record extraction run. Nothing pinned here may change once that run starts.",
+ "references": {
+  "bundle_freeze_sha256": "c96826bfc46694b9ff220703ada36fc8e6a6f859ca9b9f7107f29463a09a20c5",
+  "bundle_data_inputs": {
+   "concepts_redacted.json": "baa487a5c2bf5362ffbd15e4b4c33b48753f504410b48f76b82d6aa0bdedfcc0",
+   "contract_redacted.json": "1cc000271d667f263dc100e32b09b1420a400205c167ef0e0edbbac5d9fe5c9b",
+   "invention_corpus.jsonl": "a190a9fbcec31c3be80539e96ff33e51e3ce43a6112f915f4c42496c1070ea17",
+   "machine_manifest.json": "1c3dd5b538c002762614cca5be79d697750ec8842d7cca13b850c4a5a7d20c45"
+  },
+  "bundle_executable_inputs": {
+   "__init__.py": "443c3bebc2a6236ab51bf7b19d66026438d29d6d23464b3398b2125dffaab6e6",
+   "concept.py": "4d7bda597fc6361654f018619ad6411cecf6682ba6bb7b7170c7fac7c9361394",
+   "env.py": "68bd7bd3de0bc04aff3cbcaef45fc3db6d508c5d7655798a658f1e6299439c05",
+   "runtime.py": "a7373b30f13e42d1d1a29cbafa8bba0088f46fd034e8c369f24d54af5607d744",
+   "search.py": "3c88fa1f92395a4c29f4450b2b01683cf16c060054cea2e1470ac0638be75012"
+  },
+  "machine_manifest_document_sha256": "607ed54c305df5f7"
+ },
+ "stepA_executables": {
+  "scripts/cora_level4_stepA_extract.py": "d76adfaa3c14419e6eb849aafbfa41539ca07a2e2bf7f049c2e0df7c9f1607f9",
+  "level4_blind_runtime/stepA_trace_search.py": "dedae0fa2556485b3ff0e8f063646e9f714393e2bb3e98456ac5db215c8bfa3b",
+  "scripts/cora_level4_build_trace_search.py": "9bd6ed6debf1a9788378929b5cd17d557bbad41362da6de5be801bdb9a65743b",
+  "scripts/cora_level4_stepA_gates.py": "d08c75011787b945e62d6589e0e488a43096f25c8103a5661a2d953cc27b24ac"
+ },
+ "gate_artifacts": {
+  "level4_stepA_gates.json": "b275122b0c4046f1a3d1d81294db45f8bbd53748e03fb7ddb2c02e43689d79eb",
+  "level4_stepA_trace_build.json": "68fee7481ab2cf25bf00b732a9c290b8684d0edfdb2af57e436f0c2ab2b0d076",
+  "level4_leak_check.json": "96c6c0086f68293cb6068c6c5da03f04152754c34ccadb98479e1772526da851"
+ },
+ "gate_summary": {
+  "tracing_changes_nothing_on_untruncated_fixtures": true,
+  "runner_protocol_checks": [
+   "certified_task_yields_no_frontiers",
+   "unsolved_task_yields_failed_folds",
+   "unsolved_task_yields_frontiers",
+   "single_source_never_eligible",
+   "single_source_had_enough_records",
+   "non_goal_frontier_has_no_residual",
+   "goal_frontier_has_residual",
+   "three_sources_can_be_eligible",
+   "eligibility_counts_sources_not_records",
+   "records_carry_the_frozen_schema",
+   "failure_classes_are_the_frozen_five"
+  ],
+  "byte_deterministic": true,
+  "leak_check": "0 findings over 5 data + 7 executable inputs"
+ },
+ "protocol": {
+  "corpus": "level4_mechanism_inputs/invention_corpus.jsonl",
+  "corpus_records": 450,
+  "fold_failure": "the ranked winner of the ordinary blind search on the other demonstrations does not reproduce the held-out output; a fold with no discovered program fails too",
+  "frontier_schema_version": 1,
+  "frontier_fields": [
+   "source_token",
+   "fold_index",
+   "frontier_ast",
+   "frontier_type",
+   "goal_type",
+   "frontier_surface_depth",
+   "frontier_value_signature",
+   "goal_delta_signature",
+   "behavioural_residual",
+   "repeated_structure",
+   "failure_class",
+   "diagnostics"
+  ],
+  "failure_class_precedence": [
+   "budget",
+   "type_connectivity",
+   "routing",
+   "slot_learning",
+   "semantic"
+  ],
+  "execution_test_cap": 3000,
+  "cluster_key": [
+   "frontier_type",
+   "goal_type",
+   "goal_delta_signature",
+   "failure_class"
+  ],
+  "cluster_eligibility_distinct_source_tokens": 3,
+  "output_discipline": "counts only to stdout during the run; records, fold summary and clusters written to files; their SHA-256 pinned before any semantic inspection"
+ },
+ "prohibitions": "no extension proposal, no E_transfer, no Promotion, no Lockbox, no repair of any failure, no reclassification after the fact"
+}

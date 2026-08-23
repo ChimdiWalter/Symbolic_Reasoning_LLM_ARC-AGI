@@ -1,0 +1,1129 @@
+{
+ "stage": "Level 4 Step A.1: read-only secondary analysis",
+ "primary_result": {
+  "output_hash": "2a14610cf90a2d6ccfd09d4da2f53522a253217a1d09b159bfc0457a00a932b6",
+  "status": "accepted, never rerun or altered; all counts here are derived views of the pinned files"
+ },
+ "wording_correction_of_record": "Step A found a strong type-level concentration: 60/62 eligible cluster keys have frontier_type=Set[Region] and are labelled slot_learning under the frozen precedence. This identifies the first observed blocker along the current derivations, not a sufficient missing capability.",
+ "inputs_verified": {
+  "level4_stepA_frontier_records.jsonl": true,
+  "level4_stepA_fold_summary.json": true,
+  "level4_stepA_clusters.json": true
+ },
+ "records_read": 100613,
+ "source_token_dedup": {
+  "reported_source_token_mass_sum_over_eligible_clusters": 497,
+  "unique_sources_across_eligible_clusters": 384,
+  "unique_sources_by_frozen_class": {
+   "semantic": 4,
+   "slot_learning": 381
+  },
+  "unique_failing_sources_in_all_records": 445,
+  "note": "the mass sum double-counts a task appearing in several eligible clusters; the unique counts here are the deduplicated task-level quantities"
+ },
+ "secondary_classification": {
+  "definition": {
+   "PURE_SLOT": "slot_fit_failures > 0 and no continuation was fitted, executed or exact",
+   "MIXED_SLOT_SEMANTIC": "slot_fit_failures > 0 and at least one continuation got past fitting (slot_fits_ok + executed_not_exact + exact > 0)",
+   "never_overwrites": "the frozen failure_class field is untouched"
+  },
+  "record_level": {
+   "PURE_SLOT": 95842
+  },
+  "record_level_by_shape": {
+   "same/PURE_SLOT": 57766,
+   "shape_changing/PURE_SLOT": 37256,
+   "varies_or_undefined/PURE_SLOT": 820
+  },
+  "source_level_all_slot_learning": {
+   "sources": 429,
+   "all_records_PURE_SLOT": 429,
+   "any_record_MIXED_SLOT_SEMANTIC": 0
+  },
+  "source_level_by_shape": {
+   "same": {
+    "sources": 272,
+    "all_records_PURE_SLOT": 272,
+    "any_record_MIXED_SLOT_SEMANTIC": 0
+   },
+   "shape_changing": {
+    "sources": 156,
+    "all_records_PURE_SLOT": 156,
+    "any_record_MIXED_SLOT_SEMANTIC": 0
+   },
+   "varies_or_undefined": {
+    "sources": 5,
+    "all_records_PURE_SLOT": 5,
+    "any_record_MIXED_SLOT_SEMANTIC": 0
+   }
+  }
+ },
+ "eligible_cluster_diversity": [
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "smaller"
+   },
+   "distinct_source_tokens": 69,
+   "records": 17807,
+   "distinct_frontier_value_signatures": 48,
+   "distinct_frontier_ast_skeletons": 158
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "smaller"
+   },
+   "distinct_source_tokens": 29,
+   "records": 6281,
+   "distinct_frontier_value_signatures": 39,
+   "distinct_frontier_ast_skeletons": 158
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "larger"
+   },
+   "distinct_source_tokens": 27,
+   "records": 4524,
+   "distinct_frontier_value_signatures": 25,
+   "distinct_frontier_ast_skeletons": 145
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 23,
+   "records": 3938,
+   "distinct_frontier_value_signatures": 27,
+   "distinct_frontier_ast_skeletons": 158
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 17,
+   "records": 2148,
+   "distinct_frontier_value_signatures": 31,
+   "distinct_frontier_ast_skeletons": 156
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 17,
+   "records": 1833,
+   "distinct_frontier_value_signatures": 33,
+   "distinct_frontier_ast_skeletons": 145
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": true,
+    "colours_removed": true,
+    "palette_relation": "other",
+    "shape_relation": "smaller"
+   },
+   "distinct_source_tokens": 14,
+   "records": 4342,
+   "distinct_frontier_value_signatures": 25,
+   "distinct_frontier_ast_skeletons": 145
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 14,
+   "records": 2454,
+   "distinct_frontier_value_signatures": 27,
+   "distinct_frontier_ast_skeletons": 158
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 14,
+   "records": 2148,
+   "distinct_frontier_value_signatures": 25,
+   "distinct_frontier_ast_skeletons": 156
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 13,
+   "records": 1496,
+   "distinct_frontier_value_signatures": 24,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 12,
+   "records": 1965,
+   "distinct_frontier_value_signatures": 21,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 12,
+   "records": 1206,
+   "distinct_frontier_value_signatures": 21,
+   "distinct_frontier_ast_skeletons": 143
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": "VARIES",
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 11,
+   "records": 1599,
+   "distinct_frontier_value_signatures": 18,
+   "distinct_frontier_ast_skeletons": 105
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 9,
+   "records": 1885,
+   "distinct_frontier_value_signatures": 25,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 9,
+   "records": 1051,
+   "distinct_frontier_value_signatures": 18,
+   "distinct_frontier_ast_skeletons": 134
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 9,
+   "records": 889,
+   "distinct_frontier_value_signatures": 21,
+   "distinct_frontier_ast_skeletons": 154
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 8,
+   "records": 1028,
+   "distinct_frontier_value_signatures": 20,
+   "distinct_frontier_ast_skeletons": 98
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "10+",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 8,
+   "records": 821,
+   "distinct_frontier_value_signatures": 24,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 8,
+   "records": 744,
+   "distinct_frontier_value_signatures": 16,
+   "distinct_frontier_ast_skeletons": 145
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 7,
+   "records": 1223,
+   "distinct_frontier_value_signatures": 18,
+   "distinct_frontier_ast_skeletons": 158
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "larger"
+   },
+   "distinct_source_tokens": 7,
+   "records": 1176,
+   "distinct_frontier_value_signatures": 13,
+   "distinct_frontier_ast_skeletons": 111
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 7,
+   "records": 841,
+   "distinct_frontier_value_signatures": 26,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 6,
+   "records": 816,
+   "distinct_frontier_value_signatures": 18,
+   "distinct_frontier_ast_skeletons": 100
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 6,
+   "records": 705,
+   "distinct_frontier_value_signatures": 22,
+   "distinct_frontier_ast_skeletons": 123
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 6,
+   "records": 468,
+   "distinct_frontier_value_signatures": 19,
+   "distinct_frontier_ast_skeletons": 154
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": false,
+    "colours_removed": "VARIES",
+    "palette_relation": "VARIES",
+    "shape_relation": "smaller"
+   },
+   "distinct_source_tokens": 5,
+   "records": 1384,
+   "distinct_frontier_value_signatures": 19,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "10+",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 5,
+   "records": 890,
+   "distinct_frontier_value_signatures": 19,
+   "distinct_frontier_ast_skeletons": 158
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": "VARIES",
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 5,
+   "records": 726,
+   "distinct_frontier_value_signatures": 12,
+   "distinct_frontier_ast_skeletons": 128
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 5,
+   "records": 595,
+   "distinct_frontier_value_signatures": 13,
+   "distinct_frontier_ast_skeletons": 102
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": "VARIES",
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 5,
+   "records": 546,
+   "distinct_frontier_value_signatures": 18,
+   "distinct_frontier_ast_skeletons": 134
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "3",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 5,
+   "records": 508,
+   "distinct_frontier_value_signatures": 15,
+   "distinct_frontier_ast_skeletons": 143
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 5,
+   "records": 504,
+   "distinct_frontier_value_signatures": 17,
+   "distinct_frontier_ast_skeletons": 109
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 1033,
+   "distinct_frontier_value_signatures": 12,
+   "distinct_frontier_ast_skeletons": 133
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "10+",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 808,
+   "distinct_frontier_value_signatures": 21,
+   "distinct_frontier_ast_skeletons": 147
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "10+",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 632,
+   "distinct_frontier_value_signatures": 16,
+   "distinct_frontier_ast_skeletons": 136
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 613,
+   "distinct_frontier_value_signatures": 14,
+   "distinct_frontier_ast_skeletons": 139
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 448,
+   "distinct_frontier_value_signatures": 17,
+   "distinct_frontier_ast_skeletons": 100
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "3",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 440,
+   "distinct_frontier_value_signatures": 13,
+   "distinct_frontier_ast_skeletons": 143
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 412,
+   "distinct_frontier_value_signatures": 11,
+   "distinct_frontier_ast_skeletons": 102
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 377,
+   "distinct_frontier_value_signatures": 20,
+   "distinct_frontier_ast_skeletons": 89
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 328,
+   "distinct_frontier_value_signatures": 13,
+   "distinct_frontier_ast_skeletons": 116
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 4,
+   "records": 306,
+   "distinct_frontier_value_signatures": 6,
+   "distinct_frontier_ast_skeletons": 94
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 766,
+   "distinct_frontier_value_signatures": 6,
+   "distinct_frontier_ast_skeletons": 134
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<100%",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 629,
+   "distinct_frontier_value_signatures": 18,
+   "distinct_frontier_ast_skeletons": 107
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 598,
+   "distinct_frontier_value_signatures": 12,
+   "distinct_frontier_ast_skeletons": 114
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "NOT_APPLICABLE",
+    "changed_components_uniform_colour": "NOT_APPLICABLE",
+    "changed_fraction_class": "NOT_APPLICABLE",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "VARIES"
+   },
+   "distinct_source_tokens": 3,
+   "records": 561,
+   "distinct_frontier_value_signatures": 14,
+   "distinct_frontier_ast_skeletons": 120
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<100%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 528,
+   "distinct_frontier_value_signatures": 1,
+   "distinct_frontier_ast_skeletons": 50
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": "VARIES",
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 511,
+   "distinct_frontier_value_signatures": 11,
+   "distinct_frontier_ast_skeletons": 98
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "10+",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 498,
+   "distinct_frontier_value_signatures": 12,
+   "distinct_frontier_ast_skeletons": 154
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": true,
+    "palette_relation": "other",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 489,
+   "distinct_frontier_value_signatures": 8,
+   "distinct_frontier_ast_skeletons": 122
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 479,
+   "distinct_frontier_value_signatures": 9,
+   "distinct_frontier_ast_skeletons": 105
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 477,
+   "distinct_frontier_value_signatures": 15,
+   "distinct_frontier_ast_skeletons": 105
+  },
+  {
+   "frontier_type": "Grid",
+   "failure_class": "semantic",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "VARIES",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 454,
+   "distinct_frontier_value_signatures": 3,
+   "distinct_frontier_ast_skeletons": 171
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<100%",
+    "colours_introduced": true,
+    "colours_removed": true,
+    "palette_relation": "other",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 453,
+   "distinct_frontier_value_signatures": 5,
+   "distinct_frontier_ast_skeletons": 102
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "100%",
+    "colours_introduced": true,
+    "colours_removed": true,
+    "palette_relation": "other",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 423,
+   "distinct_frontier_value_signatures": 13,
+   "distinct_frontier_ast_skeletons": 75
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "2",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<100%",
+    "colours_introduced": false,
+    "colours_removed": true,
+    "palette_relation": "subset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 394,
+   "distinct_frontier_value_signatures": 10,
+   "distinct_frontier_ast_skeletons": 118
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "1",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 382,
+   "distinct_frontier_value_signatures": 5,
+   "distinct_frontier_ast_skeletons": 119
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "10+",
+    "changed_components_uniform_colour": false,
+    "changed_fraction_class": "<=10%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 371,
+   "distinct_frontier_value_signatures": 15,
+   "distinct_frontier_ast_skeletons": 98
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "3",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": true,
+    "palette_relation": "other",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 341,
+   "distinct_frontier_value_signatures": 11,
+   "distinct_frontier_ast_skeletons": 102
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": "VARIES",
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": false,
+    "colours_removed": false,
+    "palette_relation": "same",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 324,
+   "distinct_frontier_value_signatures": 10,
+   "distinct_frontier_ast_skeletons": 87
+  },
+  {
+   "frontier_type": "Set[Region]",
+   "failure_class": "slot_learning",
+   "goal_delta_signature": {
+    "changed_component_count_class": "4-9",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": true,
+    "palette_relation": "other",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 224,
+   "distinct_frontier_value_signatures": 10,
+   "distinct_frontier_ast_skeletons": 120
+  },
+  {
+   "frontier_type": "Grid",
+   "failure_class": "semantic",
+   "goal_delta_signature": {
+    "changed_component_count_class": "VARIES",
+    "changed_components_uniform_colour": true,
+    "changed_fraction_class": "<=50%",
+    "colours_introduced": true,
+    "colours_removed": false,
+    "palette_relation": "superset",
+    "shape_relation": "same"
+   },
+   "distinct_source_tokens": 3,
+   "records": 111,
+   "distinct_frontier_value_signatures": 3,
+   "distinct_frontier_ast_skeletons": 66
+  }
+ ],
+ "continues_predicate_audit": {
+  "distinct_skeletons": 332,
+  "pairs_tested": 110224,
+  "containment_positive": 503,
+  "structural_positive": 503,
+  "disagreements": 0,
+  "examples": [],
+  "frozen_runner_sha256": "d76adfaa3c14419e6eb849aafbfa41539ca07a2e2bf7f049c2e0df7c9f1607f9",
+  "matched_computations_in_frozen_runner": 1,
+  "dead_overwritten_matched_in_frozen_runner": false,
+  "note": "a mid-development version of the runner briefly contained two consecutive `matched = [...]` assignments, the first dead; that was removed BEFORE the freeze (recorded in ledger entry -116), and the frozen runner hashed here contains exactly one. The containment-vs-structural comparison above is the empirical trust test for the one that ran."
+ }
+}

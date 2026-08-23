@@ -1,0 +1,486 @@
+{
+ "name": "CORA V2.1 semantic contract",
+ "version": 2,
+ "created": "2026-08-21",
+ "supersedes": {
+  "sha256": "512bba3335ae7070",
+  "reason": "single grade per rule conflated three separate questions: what behaviour was observed, whether THIS typed signature is evidenced, and whether the parametric generality is evidenced"
+ },
+ "grades": {
+  "OBSERVED": "literally executed or explicitly represented before the freeze",
+  "LOGICALLY_REQUIRED": "necessary for an observed artefact to type or execute",
+  "SPEC_INTENDED": "stated by the frozen design, not independently demonstrated",
+  "COMPATIBLE": "consistent with the evidence but not uniquely implied",
+  "DESIGN_RESOLUTION": "a choice made by us to render an observed behaviour in a typed form the evidence did not fix; must carry a rationale and an id",
+  "UNRESOLVED": "evidence insufficient to choose semantics",
+  "MONOMORPHIC_NO_VARIABLES": "the signature carries no type variables, so no polymorphism claim"
+ },
+ "design_resolutions": {
+  "DR-01": {
+   "title": "Expr[A=>B] as the type of a context-evaluated expression",
+   "rationale": "The artefact shows Key and Lookup evaluated under a current element and a current value. Nothing in it says whether that is a value of a function type or a contextual judgement. Expr[A=>B] is OUR notation for the minimal reading; the behaviour is observed, this typing is chosen.",
+   "alternatives_not_taken": [
+    "first-class Function[A,B] values (C02b, COMPATIBLE)"
+   ]
+  },
+  "DR-02": {
+   "title": "PaintEach : Set[Coloured] -> Grid",
+   "rationale": "Amendment (a). The OBSERVED behaviour is that selected regions receive individually computed colours and are rendered. Frozen Paint : Set[Region] x Colour -> Grid cannot express that. This signature is our resolution of the observed behaviour; the operator did NOT exist historically and is not claimed to have.",
+   "alternatives_not_taken": [
+    "a renderer consuming a set of grids",
+    "a per-region Paint applied under a map"
+   ]
+  },
+  "DR-03": {
+   "title": "Compose_V1 typed over Expr stages",
+   "rationale": "The observed Compose threaded Partition/Select/Map/Paint, which are pipeline stages, not Expr values. Typing it over Expr is our reconstruction and is why Compose-as-function-combinator stays inactive.",
+   "alternatives_not_taken": [
+    "(A->B) x (B->C) -> (A->C) as a function combinator (C04b)"
+   ]
+  },
+  "DR-04": {
+   "title": "Concept : ConceptSchema x SlotBinding -> Expr[A=>B]",
+   "rationale": "C11a observes a typed schema whose binding yields an executable transformation. Expressing that as a production with these argument types is our choice; grammar re-entry itself remains SPEC_INTENDED (C11b) and is what Level 3 must demonstrate.",
+   "alternatives_not_taken": [
+    "concept applied through a dedicated search branch"
+   ]
+  }
+ },
+ "layer_A_evidence_minimal": {
+  "description": "Contextual evaluation, not first-class functions: the minimum that types the pre-freeze executable artefact.",
+  "judgements": [
+   {
+    "rule": "Expr_formation",
+    "form": "FeatureExpr -> Expr[Region=>FeatureValue] ; Map -> Expr[FeatureValue=>Colour]",
+    "behavior_grade": "LOGICALLY_REQUIRED",
+    "signature_grade": "DESIGN_RESOLUTION",
+    "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+    "active": true,
+    "evidence": [
+     "C02a",
+     "C03a"
+    ],
+    "design_resolution_id": "DR-01",
+    "note": "Key and Lookup given their terminal arguments ARE the constructors of Expr"
+   },
+   {
+    "rule": "Key",
+    "form": "FeatureExpr -> Expr[Region=>FeatureValue]",
+    "behavior_grade": "OBSERVED",
+    "signature_grade": "DESIGN_RESOLUTION",
+    "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+    "active": true,
+    "evidence": [
+     "C02a",
+     "C03a"
+    ],
+    "design_resolution_id": "DR-01",
+    "note": "behaviour ran in the pre-freeze program; the Expr typing is ours"
+   },
+   {
+    "rule": "Lookup",
+    "form": "Map -> Expr[FeatureValue=>Colour]",
+    "behavior_grade": "OBSERVED",
+    "signature_grade": "DESIGN_RESOLUTION",
+    "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+    "active": true,
+    "evidence": [
+     "C02a"
+    ],
+    "design_resolution_id": "DR-01"
+   },
+   {
+    "rule": "Map_V1",
+    "form": "Set[A] x Expr[A=>B] -> Set[B]",
+    "behavior_grade": "OBSERVED",
+    "signature_grade": "LOGICALLY_REQUIRED",
+    "polymorphism_grade": "COMPATIBLE",
+    "active": true,
+    "evidence": [
+     "C05a"
+    ],
+    "design_resolution_id": "DR-01",
+    "note": "structure is logically required (a set plus an element-dependent expression yielding a set); the Expr[A=>B] NOTATION is DR-01. Only A=Region, B=Colour was ever observed, hence polymorphism COMPATIBLE."
+   },
+   {
+    "rule": "Compose_V1",
+    "form": "Expr[A=>B] x Expr[B=>C] -> Expr[A=>C]",
+    "behavior_grade": "OBSERVED",
+    "signature_grade": "DESIGN_RESOLUTION",
+    "polymorphism_grade": "COMPATIBLE",
+    "active": true,
+    "evidence": [
+     "C04a"
+    ],
+    "design_resolution_id": "DR-03",
+    "note": "observed threading was over pipeline stages, not Expr values"
+   }
+  ]
+ },
+ "layer_B_frozen_design": {
+  "description": "The frozen higher-order generalisation, held inactive where unsupported.",
+  "rules": [
+   {
+    "rule": "Function",
+    "form": "Function[A,B]",
+    "behavior_grade": "SPEC_INTENDED",
+    "signature_grade": "SPEC_INTENDED",
+    "polymorphism_grade": "SPEC_INTENDED",
+    "active": false,
+    "evidence": [
+     "C02b",
+     "C03b"
+    ],
+    "note": "inactive: no active rule constructs it (C04b is COMPATIBLE only)"
+   },
+   {
+    "rule": "MapOver",
+    "form": "Set[A] x Function[A,B] -> Set[B]",
+    "behavior_grade": "SPEC_INTENDED",
+    "signature_grade": "SPEC_INTENDED",
+    "polymorphism_grade": "SPEC_INTENDED",
+    "active": false,
+    "evidence": [
+     "C05a",
+     "C05b"
+    ],
+    "note": "inactive: argument type Function[A,B] has no active constructor"
+   },
+   {
+    "rule": "Compose_as_combinator",
+    "form": "(A -> B) x (B -> C) -> (A -> C)",
+    "behavior_grade": "COMPATIBLE",
+    "signature_grade": "COMPATIBLE",
+    "polymorphism_grade": "COMPATIBLE",
+    "active": false,
+    "evidence": [
+     "C04b"
+    ],
+    "note": "inactive: no pre-freeze artefact uses Compose in function position"
+   },
+   {
+    "rule": "Concept",
+    "form": "ConceptSchema x SlotBinding -> Expr[A=>B]",
+    "behavior_grade": "OBSERVED",
+    "signature_grade": "DESIGN_RESOLUTION",
+    "polymorphism_grade": "SPEC_INTENDED",
+    "active": true,
+    "evidence": [
+     "C11a",
+     "C11b"
+    ],
+    "design_resolution_id": "DR-04",
+    "note": "schema and binding observed (C11a); grammar re-entry is intent (C11b)"
+   }
+  ]
+ },
+ "active_productions": [
+  {
+   "rule": "Partition",
+   "form": "Grid x PartitionExpr -> Set[Region]",
+   "behavior_grade": "OBSERVED",
+   "signature_grade": "OBSERVED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C01",
+    "C05a"
+   ],
+   "note": "observed exactly in this monomorphic form in the pre-freeze program"
+  },
+  {
+   "rule": "Select",
+   "form": "Set[A] x Predicate -> Set[A]",
+   "behavior_grade": "OBSERVED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "SPEC_INTENDED",
+   "active": true,
+   "evidence": [
+    "C05a"
+   ],
+   "note": "behaviour observed on regions; 'universally polymorphic over arbitrary A' is a much stronger claim than the artefact supports"
+  },
+  {
+   "rule": "PaintEach",
+   "form": "Set[Coloured] -> Grid",
+   "behavior_grade": "LOGICALLY_REQUIRED",
+   "signature_grade": "DESIGN_RESOLUTION",
+   "polymorphism_grade": "DESIGN_RESOLUTION",
+   "active": true,
+   "evidence": [
+    "C05a"
+   ],
+   "design_resolution_id": "DR-02",
+   "note": "There was NO historical node named PaintEach: the pre-freeze AST ended in Paint(). The behaviour is required by that artefact; this operator and its Set[Coloured] signature are our later resolution of it (amendment (a)).",
+   "observed_behavior": "selected regions receive individually computed colours and are rendered into the output"
+  },
+  {
+   "rule": "Entities",
+   "form": "Grid x SegmentationExpr -> Set[Entity]",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ],
+   "note": "no pre-freeze meta-language artefact executed Entities"
+  },
+  {
+   "rule": "Paint",
+   "form": "Set[Region] x Colour -> Grid",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ],
+   "note": "the pre-freeze program needed per-region colour, not this"
+  },
+  {
+   "rule": "Group",
+   "form": "Set[A] x Relation -> Set[Set[A]]",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "SPEC_INTENDED",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ]
+  },
+  {
+   "rule": "Unique",
+   "form": "Set[A] -> A",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "SPEC_INTENDED",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ]
+  },
+  {
+   "rule": "ArgMax",
+   "form": "Set[A] x FeatureExpr -> A",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "SPEC_INTENDED",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ],
+   "note": "frozen table wrote Feature[T]; the vocabulary declares FeatureExpr"
+  },
+  {
+   "rule": "ArgMin",
+   "form": "Set[A] x FeatureExpr -> A",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "SPEC_INTENDED",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ],
+   "note": "same naming inconsistency as ArgMax"
+  },
+  {
+   "rule": "Transform",
+   "form": "Entity x Transform -> Entity",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ]
+  },
+  {
+   "rule": "Anchor",
+   "form": "Entity x Anchor -> Placement",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ]
+  },
+  {
+   "rule": "Recolour",
+   "form": "Entity x ColourBijection -> Entity",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ]
+  },
+  {
+   "rule": "Copy",
+   "form": "Entity x Placement -> Grid",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ],
+   "note": "single placement; multi-instance remains UNRESOLVED (C10)"
+  },
+  {
+   "rule": "Overlay",
+   "form": "Grid x Grid -> Grid",
+   "behavior_grade": "SPEC_INTENDED",
+   "signature_grade": "SPEC_INTENDED",
+   "polymorphism_grade": "MONOMORPHIC_NO_VARIABLES",
+   "active": true,
+   "evidence": [
+    "C05b"
+   ]
+  }
+ ],
+ "inactive_unresolved": [
+  {
+   "rule": "Fold",
+   "form": "",
+   "behavior_grade": "UNRESOLVED",
+   "signature_grade": "UNRESOLVED",
+   "polymorphism_grade": "UNRESOLVED",
+   "active": false,
+   "evidence": [
+    "C06"
+   ],
+   "note": "no pre-freeze fold; (T,T)->T is a textbook default, not evidence"
+  },
+  {
+   "rule": "Repeat",
+   "form": "",
+   "behavior_grade": "UNRESOLVED",
+   "signature_grade": "UNRESOLVED",
+   "polymorphism_grade": "UNRESOLVED",
+   "active": false,
+   "evidence": [
+    "C07"
+   ],
+   "note": "appears in no pre-freeze artefact"
+  },
+  {
+   "rule": "Propagate_with_Seed",
+   "form": "",
+   "behavior_grade": "UNRESOLVED",
+   "signature_grade": "UNRESOLVED",
+   "polymorphism_grade": "UNRESOLVED",
+   "active": false,
+   "evidence": [
+    "C08"
+   ],
+   "note": "Domain OBSERVED (whole grid | Region); Seed appears nowhere pre-freeze"
+  },
+  {
+   "rule": "Sequence_consumer",
+   "form": "",
+   "behavior_grade": "UNRESOLVED",
+   "signature_grade": "UNRESOLVED",
+   "polymorphism_grade": "UNRESOLVED",
+   "active": false,
+   "evidence": [
+    "C09"
+   ],
+   "note": "the trace names SEQUENCE_EXTEND_1D but specifies no operation over a Sequence"
+  },
+  {
+   "rule": "Collection_to_Grid",
+   "form": "",
+   "behavior_grade": "UNRESOLVED",
+   "signature_grade": "UNRESOLVED",
+   "polymorphism_grade": "UNRESOLVED",
+   "active": false,
+   "evidence": [
+    "C10"
+   ],
+   "note": "the crux of the template family: the NEED for repeated instances is evidenced, the MECHANISM for combining them is not. Left inactive on purpose."
+  }
+ ],
+ "terminals": {
+  "description": "Types supplied to the grammar rather than produced by a rule, each with its own provenance.",
+  "types": {
+   "Grid": "the task input",
+   "PartitionExpr": "frozen vocabulary",
+   "SegmentationExpr": "frozen vocabulary",
+   "Predicate": "frozen vocabulary",
+   "FeatureExpr": "frozen vocabulary",
+   "Relation": "frozen vocabulary",
+   "Colour": "a grid value",
+   "Region": "an element of a partition",
+   "Entity": "an element of a segmentation",
+   "Placement": "a positioned entity",
+   "Coloured": "a region paired with its computed colour",
+   "Map": "induced by the feature-colour learner (OBSERVED in concept_0001)",
+   "ColourBijection": "induced by the bijection learner",
+   "Transform": "induced by the transform learner",
+   "Anchor": "induced by the anchor learner",
+   "Lattice": "induced by the lattice learner",
+   "SequenceRule": "induced; consumer UNRESOLVED (C09)",
+   "Bound": "a small integer",
+   "ConceptSchema": "produced by anti-unification, outside the grammar (OBSERVED, C11a)",
+   "SlotBinding": "produced by the typed slot learners (OBSERVED)"
+  }
+ },
+ "closure_rule": "No ACTIVE rule may depend on a type that no ACTIVE rule constructs. Checked COARSELY by head type in scripts/cora_contract_consistency.py.",
+ "evidence_discipline": "Checked by scripts/cora_contract_evidence_audit.py: no COMPATIBLE-only rule may be implementation_required, no UNRESOLVED rule may be active, every DESIGN_RESOLUTION carries a rationale, every OBSERVED behaviour cites evidence, every polymorphic signature carries its own grade, and no rule upgrades intent to observation.",
+ "consequence": "V2.1 ships the contextual elementwise mechanism the evidence demonstrates and no first-class function values. The template family is therefore even less likely to be solvable, which is the accepted recorded trade.",
+ "revision_2c": {
+  "date": "2026-08-22",
+  "change": "DESIGN_RESOLUTION grade introduced; every rule regraded on three axes (behaviour, signature, polymorphism); PaintEach corrected from OBSERVED to LOGICALLY_REQUIRED behaviour with a DESIGN_RESOLUTION signature; Select's polymorphism downgraded to SPEC_INTENDED.",
+  "note": "grades assigned individually, never copied across the three axes"
+ },
+ "polymorphism_policy": {
+  "rule": "A COMPATIBLE polymorphism grade must NOT become executable generality. Where the generality is reconstructed rather than demonstrated, the implementation takes the OBSERVED instantiation only. Widening it later requires an explicit DESIGN_RESOLUTION, never a silent implementation choice.",
+  "instantiations": {
+   "Map_V1": {
+    "contract_form": "Set[A] x Expr[A=>B] -> Set[B]",
+    "implemented_form": "Set[Region] x Expr[Region=>Colour] -> Set[Coloured]",
+    "reason": "polymorphism_grade is COMPATIBLE; only this instantiation was observed",
+    "implemented_signature": "Set[Region] x Expr[Region,Colour] -> Set[Coloured]"
+   },
+   "Compose_V1": {
+    "contract_form": "Expr[A=>B] x Expr[B=>C] -> Expr[A=>C]",
+    "implemented_form": "stage threading for the observed pipeline only (Partition -> Select -> Map_V1 -> PaintEach)",
+    "reason": "polymorphism_grade is COMPATIBLE and the observed threading was over pipeline stages; a universal composition calculus is NOT implemented",
+    "implemented_signature": "Expr[Region,FeatureValue] x Expr[FeatureValue,Colour] -> Expr[Region,Colour]"
+   },
+   "Select": {
+    "contract_form": "Set[A] x Predicate -> Set[A]",
+    "implemented_form": "instantiated at the declared ground types only",
+    "reason": "polymorphism_grade is SPEC_INTENDED, so instantiation is bounded",
+    "implemented_signature": "Set[Region] x Predicate -> Set[Region]"
+   }
+  },
+  "note": "implemented_signature strings are the ONLY source of a constrained rule's runtime signature. The implementation may not write a signature of its own; it supplies evaluators keyed by rule name and nothing else."
+ },
+ "frozen_for_implementation": {
+  "date": "2026-08-22",
+  "note": "Contract frozen here. Implementation consumes THIS file; no independently maintained signature list may exist. Hard stopping rule in force: no new semantic primitive before the first V2.1 Level-3 experiment. Bugs and contract violations may be fixed; reasoning capability may not be added."
+ },
+ "v21_kernel": {
+  "derivation": "operator closure of the two certified source programs, computed from outputs/cora_breakthrough/v21_phase2_sources.json rather than chosen",
+  "rules": [
+   "Compose_V1",
+   "Key",
+   "Lookup",
+   "Map_V1",
+   "PaintEach",
+   "Partition"
+  ],
+  "note": "the smallest fixed language able to reproduce the two source concepts. Other contract-active rules (Group, Transform, Anchor, Recolour, Copy, Entities, Paint, Unique, ArgMax, ArgMin, Overlay, Concept) are NOT in the kernel and are not executable in it. This is a scope statement, not a claim that they are unsupported."
+ },
+ "revisions": [
+  {
+   "date": "2026-08-22",
+   "change": "parseable implemented_signature added for the three policy-constrained rules; v21_kernel derived from the source-program operator closure",
+   "capability_added": "none"
+  }
+ ]
+}

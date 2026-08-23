@@ -1,0 +1,216 @@
+{
+ "computed_set": [
+  {
+   "task": "7b6016b9",
+   "seconds": 0.63,
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "typed_hypotheses": 724,
+   "semantic_classes": 1,
+   "found": 1,
+   "outcome": "DISCOVERED",
+   "ast": {
+    "op": "PaintEach",
+    "args": [
+     {
+      "op": "MapOver",
+      "args": [
+       {
+        "op": "Partition",
+        "args": [
+         {
+          "lit": "\"background_components\""
+         }
+        ]
+       },
+       {
+        "op": "Compose",
+        "args": [
+         {
+          "op": "Key",
+          "args": [
+           {
+            "lit": "\"touches_border\""
+           }
+          ]
+         },
+         {
+          "op": "Lookup",
+          "args": [
+           {
+            "lit": "[[false, 2], [true, 3]]"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "ops": [
+    "Compose",
+    "Key",
+    "Key:touches_border",
+    "Lookup",
+    "MapOver",
+    "PaintEach",
+    "Partition",
+    "Partition:background_components"
+   ],
+   "slot_evidence": {
+    "?Map[FeatureValue,Colour]": {
+     "support": 3,
+     "observations": 13,
+     "fold_coverable": true,
+     "conflicts": 0,
+     "cost": 2
+    }
+   },
+   "test_correct": true,
+   "loo_by_rediscovery": "3/3"
+  },
+  {
+   "task": "83302e8f",
+   "seconds": 0.81,
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "typed_hypotheses": 724,
+   "semantic_classes": 1,
+   "found": 1,
+   "outcome": "DISCOVERED",
+   "ast": {
+    "op": "PaintEach",
+    "args": [
+     {
+      "op": "MapOver",
+      "args": [
+       {
+        "op": "Partition",
+        "args": [
+         {
+          "lit": "\"background_components\""
+         }
+        ]
+       },
+       {
+        "op": "Compose",
+        "args": [
+         {
+          "op": "Key",
+          "args": [
+           {
+            "lit": "\"is_rect\""
+           }
+          ]
+         },
+         {
+          "op": "Lookup",
+          "args": [
+           {
+            "lit": "[[false, 4], [true, 3]]"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "ops": [
+    "Compose",
+    "Key",
+    "Key:is_rect",
+    "Lookup",
+    "MapOver",
+    "PaintEach",
+    "Partition",
+    "Partition:background_components"
+   ],
+   "slot_evidence": {
+    "?Map[FeatureValue,Colour]": {
+     "support": 3,
+     "observations": 36,
+     "fold_coverable": true,
+     "conflicts": 0,
+     "cost": 2
+    }
+   },
+   "test_correct": true,
+   "loo_by_rediscovery": "3/3"
+  }
+ ],
+ "template": [
+  {
+   "task": "39e1d7f9",
+   "seconds": 1.05,
+   "routes": [
+    "computed_set",
+    "template_placement"
+   ],
+   "typed_hypotheses": 799,
+   "semantic_classes": 0,
+   "found": 0,
+   "outcome": "NO_CANDIDATE_FIT_DEMONSTRATIONS"
+  },
+  {
+   "task": "7e0986d6",
+   "seconds": 0.05,
+   "routes": [
+    "template_placement",
+    "relational"
+   ],
+   "typed_hypotheses": 78,
+   "semantic_classes": 0,
+   "found": 0,
+   "outcome": "NO_CANDIDATE_FIT_DEMONSTRATIONS"
+  },
+  {
+   "task": "fe45cba4",
+   "seconds": 1.81,
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "typed_hypotheses": 7923,
+   "semantic_classes": 0,
+   "found": 0,
+   "outcome": "NO_CANDIDATE_FIT_DEMONSTRATIONS"
+  }
+ ],
+ "lattice": [
+  {
+   "task": "05269061",
+   "seconds": 0.11,
+   "routes": [
+    "computed_set",
+    "relational"
+   ],
+   "typed_hypotheses": 727,
+   "semantic_classes": 0,
+   "found": 0,
+   "outcome": "NO_CANDIDATE_FIT_DEMONSTRATIONS"
+  },
+  {
+   "task": "8eb1be9a",
+   "seconds": 5.37,
+   "routes": [
+    "computed_set",
+    "orbit_sequence",
+    "template_placement"
+   ],
+   "typed_hypotheses": 3177,
+   "semantic_classes": 0,
+   "found": 0,
+   "outcome": "NO_CANDIDATE_FIT_DEMONSTRATIONS"
+  }
+ ]
+}

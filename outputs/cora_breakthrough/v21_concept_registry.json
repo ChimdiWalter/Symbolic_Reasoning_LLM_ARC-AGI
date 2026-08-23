@@ -1,0 +1,63 @@
+{
+ "concept_0001": {
+  "name": "concept_0001",
+  "schema": {
+   "op": "PaintEach",
+   "args": [
+    {
+     "op": "Map_V1",
+     "args": [
+      {
+       "op": "Partition",
+       "args": [
+        {
+         "lit": "\"background_components\""
+        }
+       ]
+      },
+      {
+       "op": "Compose_V1",
+       "args": [
+        {
+         "op": "Key",
+         "args": [
+          {
+           "lit": "\"?v0\""
+          }
+         ]
+        },
+        {
+         "op": "Lookup",
+         "args": [
+          {
+           "lit": "\"?v1\""
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "slot_types": {
+   "?v0": "FeatureExpr",
+   "?v1": "Map"
+  },
+  "arg_types": [
+   "FeatureExpr",
+   "Map"
+  ],
+  "result_type": "Grid",
+  "provenance": [
+   "7b6016b9",
+   "83302e8f"
+  ],
+  "source_program_sha256": [
+   "faed2dc067ae028a",
+   "4a077479c8e96d17"
+  ],
+  "cost": 1,
+  "status": "provisional"
+ }
+}

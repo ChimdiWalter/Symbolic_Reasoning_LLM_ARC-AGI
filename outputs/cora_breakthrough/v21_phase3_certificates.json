@@ -1,0 +1,96 @@
+{
+ "concept": {
+  "name": "concept_0001",
+  "schema": {
+   "op": "PaintEach",
+   "args": [
+    {
+     "op": "Map_V1",
+     "args": [
+      {
+       "op": "Partition",
+       "args": [
+        {
+         "lit": "\"background_components\""
+        }
+       ]
+      },
+      {
+       "op": "Compose_V1",
+       "args": [
+        {
+         "op": "Key",
+         "args": [
+          {
+           "lit": "\"?v0\""
+          }
+         ]
+        },
+        {
+         "op": "Lookup",
+         "args": [
+          {
+           "lit": "\"?v1\""
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "slot_types": {
+   "?v0": "FeatureExpr",
+   "?v1": "Map"
+  },
+  "arg_types": [
+   "FeatureExpr",
+   "Map"
+  ],
+  "result_type": "Grid",
+  "provenance": [
+   "7b6016b9",
+   "83302e8f"
+  ],
+  "source_program_sha256": [
+   "faed2dc067ae028a",
+   "4a077479c8e96d17"
+  ],
+  "cost": 1,
+  "status": "provisional"
+ },
+ "certificates": {
+  "symmetry_up_to_renaming": true,
+  "source_bindings_typecheck": {
+   "7b6016b9": {
+    "?v0": true,
+    "?v1": true
+   },
+   "83302e8f": {
+    "?v0": true,
+    "?v1": true
+   }
+  },
+  "exact_reconstruction": {
+   "7b6016b9": true,
+   "83302e8f": true
+  },
+  "least_generality": {
+   "every_slot_is_a_real_disagreement": true,
+   "agreements_retained": true
+  },
+  "freshness": {
+   "registry_was_empty_at_start": true,
+   "old_registry_not_loaded": true,
+   "no_task_ids_in_anti_unifier": true,
+   "no_concept_names_in_logic": true,
+   "source_program_sha256": [
+    "faed2dc067ae028a",
+    "4a077479c8e96d17"
+   ]
+  }
+ },
+ "all_green": true,
+ "status": "V2.1-native reproduction of Level-2 abstraction invention; NOT prospective transfer evidence"
+}

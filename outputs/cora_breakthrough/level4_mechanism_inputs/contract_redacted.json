@@ -1,0 +1,192 @@
+{
+ "note": "Redacted view for the Level-4 mechanism. Productions appear at the EXACT grounded instantiation the baseline runs, never as a generic base rule, so no polymorphic generality is implied that the baseline does not operationally possess. Every production the mechanism may not use appears as an opaque identifier, whether it is contract-inactive or was found inadmissible; the mechanism knows how many names are forbidden, never which, and cannot tell the two reasons apart.",
+ "usable_productions": [
+  {
+   "production": "ArgMax@Entity",
+   "signature": "Set[Entity] x FeatureExpr -> Entity",
+   "arg_types": [
+    "Set[Entity]",
+    "FeatureExpr"
+   ],
+   "result_type": "Entity"
+  },
+  {
+   "production": "ArgMin@Entity",
+   "signature": "Set[Entity] x FeatureExpr -> Entity",
+   "arg_types": [
+    "Set[Entity]",
+    "FeatureExpr"
+   ],
+   "result_type": "Entity"
+  },
+  {
+   "production": "Compose_V1",
+   "signature": "Expr[Region,FeatureValue] x Expr[FeatureValue,Colour] -> Expr[Region,Colour]",
+   "arg_types": [
+    "Expr[Region,FeatureValue]",
+    "Expr[FeatureValue,Colour]"
+   ],
+   "result_type": "Expr[Region,Colour]"
+  },
+  {
+   "production": "Entities",
+   "signature": "SegmentationExpr -> Set[Entity]",
+   "arg_types": [
+    "SegmentationExpr"
+   ],
+   "result_type": "Set[Entity]"
+  },
+  {
+   "production": "Key",
+   "signature": "FeatureExpr -> Expr[Region,FeatureValue]",
+   "arg_types": [
+    "FeatureExpr"
+   ],
+   "result_type": "Expr[Region,FeatureValue]"
+  },
+  {
+   "production": "Lookup",
+   "signature": "Map -> Expr[FeatureValue,Colour]",
+   "arg_types": [
+    "Map"
+   ],
+   "result_type": "Expr[FeatureValue,Colour]"
+  },
+  {
+   "production": "Map_V1",
+   "signature": "Set[Region] x Expr[Region,Colour] -> Set[Coloured]",
+   "arg_types": [
+    "Set[Region]",
+    "Expr[Region,Colour]"
+   ],
+   "result_type": "Set[Coloured]"
+  },
+  {
+   "production": "PaintEach",
+   "signature": "Set[Coloured] -> Grid",
+   "arg_types": [
+    "Set[Coloured]"
+   ],
+   "result_type": "Grid"
+  },
+  {
+   "production": "Partition",
+   "signature": "PartitionExpr -> Set[Region]",
+   "arg_types": [
+    "PartitionExpr"
+   ],
+   "result_type": "Set[Region]"
+  },
+  {
+   "production": "Select",
+   "signature": "Set[Region] x Predicate -> Set[Region]",
+   "arg_types": [
+    "Set[Region]",
+    "Predicate"
+   ],
+   "result_type": "Set[Region]"
+  },
+  {
+   "production": "Unique@Entity",
+   "signature": "Set[Entity] -> Entity",
+   "arg_types": [
+    "Set[Entity]"
+   ],
+   "result_type": "Entity"
+  }
+ ],
+ "usable_instantiations": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity"
+ ],
+ "non_runtime_judgements": [
+  "Concept",
+  "Expr_formation"
+ ],
+ "forbidden_production_ids": [
+  "forbidden_00",
+  "forbidden_01",
+  "forbidden_02",
+  "forbidden_03",
+  "forbidden_04",
+  "forbidden_05",
+  "forbidden_06",
+  "forbidden_07",
+  "forbidden_08",
+  "forbidden_09",
+  "forbidden_10",
+  "forbidden_11",
+  "forbidden_12",
+  "forbidden_13",
+  "forbidden_14",
+  "forbidden_15",
+  "forbidden_16",
+  "forbidden_17",
+  "forbidden_18",
+  "forbidden_19"
+ ],
+ "forbidden_count": 20,
+ "terminals": {
+  "Grid": "the task input",
+  "PartitionExpr": "frozen vocabulary",
+  "SegmentationExpr": "frozen vocabulary",
+  "Predicate": "frozen vocabulary",
+  "FeatureExpr": "frozen vocabulary",
+  "Colour": "a grid value",
+  "Region": "an element of a partition",
+  "Entity": "an element of a segmentation",
+  "Coloured": "a region paired with its computed colour",
+  "Map": "induced by the feature-colour learner (OBSERVED in concept_0001)"
+ },
+ "terminal_values": {
+  "PartitionExpr": [
+   "background_components",
+   "colour_components",
+   "enclosed_regions",
+   "separator_panels"
+  ],
+  "SegmentationExpr": [
+   "same_colour_4",
+   "same_colour_8"
+  ],
+  "Predicate": [
+   "all",
+   "not_rectangular",
+   "not_touching_border",
+   "rectangular",
+   "single_colour",
+   "square",
+   "touching_border"
+  ],
+  "FeatureExpr": [
+   "sole_neighbour_colour",
+   "touches_border",
+   "is_rect",
+   "is_square",
+   "area",
+   "hw",
+   "colour",
+   "n_colours",
+   "neighbour_colours",
+   "shape",
+   "row_band",
+   "col_band"
+  ]
+ },
+ "induced_types": [
+  "Map"
+ ],
+ "goal_type": "Grid",
+ "polymorphism_policy": {
+  "rule": "A COMPATIBLE polymorphism grade must NOT become executable generality. Where the generality is reconstructed rather than demonstrated, the implementation takes the OBSERVED instantiation only. Widening it later requires an explicit DESIGN_RESOLUTION, never a silent implementation choice."
+ }
+}
