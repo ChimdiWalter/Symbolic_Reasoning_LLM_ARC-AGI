@@ -1,0 +1,2608 @@
+{
+ "component": "K2.2 constructor inventory",
+ "design": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+ "families": [
+  "select",
+  "project",
+  "reindex",
+  "aggregate",
+  "combine",
+  "embed",
+  "reduce"
+ ],
+ "induced_types": {
+  "Colour": "learn_colour",
+  "Frame": "learn_frame",
+  "IndexMap": "learn_index_map",
+  "Map": "frozen runtime learner"
+ },
+ "instance_count": 70,
+ "instances": [
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "Predicate"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "select.by_predicate@Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "select.by_predicate"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "Predicate"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "select.by_predicate@Entity",
+   "result_type": "Set[Entity]",
+   "schema_id": "select.by_predicate"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "Predicate"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "select.by_predicate@Region",
+   "result_type": "Set[Region]",
+   "schema_id": "select.by_predicate"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "FeatureExpr",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "select.extremal@Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "select.extremal"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "FeatureExpr",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "select.extremal@Entity",
+   "result_type": "Set[Entity]",
+   "schema_id": "select.extremal"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "FeatureExpr",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "select.extremal@Region",
+   "result_type": "Set[Region]",
+   "schema_id": "select.extremal"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "S": "FeatureValue"
+   },
+   "name": "project.feature@Coloured,FeatureValue",
+   "result_type": "Set[FeatureValue]",
+   "schema_id": "project.feature"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Entity",
+    "S": "FeatureValue"
+   },
+   "name": "project.feature@Entity,FeatureValue",
+   "result_type": "Set[FeatureValue]",
+   "schema_id": "project.feature"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Region",
+    "S": "FeatureValue"
+   },
+   "name": "project.feature@Region,FeatureValue",
+   "result_type": "Set[FeatureValue]",
+   "schema_id": "project.feature"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "expr"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "Expr[Region,Colour]"
+   ],
+   "binding": {
+    "A": "Region",
+    "B": "Colour"
+   },
+   "name": "project.expr@Region,Colour",
+   "result_type": "Set[Colour]",
+   "schema_id": "project.expr"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "expr"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "Expr[Region,FeatureValue]"
+   ],
+   "binding": {
+    "A": "Region",
+    "B": "FeatureValue"
+   },
+   "name": "project.expr@Region,FeatureValue",
+   "result_type": "Set[FeatureValue]",
+   "schema_id": "project.expr"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "C": "Entity"
+   },
+   "name": "project.cells@Coloured,Entity",
+   "result_type": "Set[Entity]",
+   "schema_id": "project.cells"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "C": "Region"
+   },
+   "name": "project.cells@Coloured,Region",
+   "result_type": "Set[Region]",
+   "schema_id": "project.cells"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]"
+   ],
+   "binding": {
+    "A": "Entity",
+    "C": "Entity"
+   },
+   "name": "project.cells@Entity,Entity",
+   "result_type": "Set[Entity]",
+   "schema_id": "project.cells"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]"
+   ],
+   "binding": {
+    "A": "Entity",
+    "C": "Region"
+   },
+   "name": "project.cells@Entity,Region",
+   "result_type": "Set[Region]",
+   "schema_id": "project.cells"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]"
+   ],
+   "binding": {
+    "A": "Region",
+    "C": "Entity"
+   },
+   "name": "project.cells@Region,Entity",
+   "result_type": "Set[Entity]",
+   "schema_id": "project.cells"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]"
+   ],
+   "binding": {
+    "A": "Region",
+    "C": "Region"
+   },
+   "name": "project.cells@Region,Region",
+   "result_type": "Set[Region]",
+   "schema_id": "project.cells"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "reindex.elements@Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "reindex.elements"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "reindex.elements@Entity",
+   "result_type": "Set[Entity]",
+   "schema_id": "reindex.elements"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "reindex.elements@Region",
+   "result_type": "Set[Region]",
+   "schema_id": "reindex.elements"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Coloured",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "reindex.value@Coloured",
+   "result_type": "Coloured",
+   "schema_id": "reindex.value"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Entity",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "reindex.value@Entity",
+   "result_type": "Entity",
+   "schema_id": "reindex.value"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Grid",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Grid"
+   },
+   "name": "reindex.value@Grid",
+   "result_type": "Grid",
+   "schema_id": "reindex.value"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Region",
+    "IndexMap"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "reindex.value@Region",
+   "result_type": "Region",
+   "schema_id": "reindex.value"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "SetOp"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "aggregate.fold@Coloured",
+   "result_type": "Coloured",
+   "schema_id": "aggregate.fold"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "SetOp"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "aggregate.fold@Entity",
+   "result_type": "Entity",
+   "schema_id": "aggregate.fold"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "SetOp"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "aggregate.fold@Region",
+   "result_type": "Region",
+   "schema_id": "aggregate.fold"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "FeatureExpr",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "aggregate.extremum@Coloured",
+   "result_type": "Coloured",
+   "schema_id": "aggregate.extremum"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "FeatureExpr",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "aggregate.extremum@Entity",
+   "result_type": "Entity",
+   "schema_id": "aggregate.extremum"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "FeatureExpr",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "aggregate.extremum@Region",
+   "result_type": "Region",
+   "schema_id": "aggregate.extremum"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Colour]"
+   ],
+   "binding": {
+    "A": "Colour"
+   },
+   "name": "aggregate.unique@Colour",
+   "result_type": "Colour",
+   "schema_id": "aggregate.unique"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]"
+   ],
+   "binding": {
+    "A": "Coloured"
+   },
+   "name": "aggregate.unique@Coloured",
+   "result_type": "Coloured",
+   "schema_id": "aggregate.unique"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]"
+   ],
+   "binding": {
+    "A": "Entity"
+   },
+   "name": "aggregate.unique@Entity",
+   "result_type": "Entity",
+   "schema_id": "aggregate.unique"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[FeatureValue]"
+   ],
+   "binding": {
+    "A": "FeatureValue"
+   },
+   "name": "aggregate.unique@FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "aggregate.unique"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]"
+   ],
+   "binding": {
+    "A": "Region"
+   },
+   "name": "aggregate.unique@Region",
+   "result_type": "Region",
+   "schema_id": "aggregate.unique"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[Colour]",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "Colour"
+   },
+   "name": "aggregate.scalar@Colour",
+   "result_type": "Colour",
+   "schema_id": "aggregate.scalar"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Set[FeatureValue]",
+    "Extremum"
+   ],
+   "binding": {
+    "A": "FeatureValue"
+   },
+   "name": "aggregate.scalar@FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "aggregate.scalar"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "expr"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "Expr[Region,Colour]"
+   ],
+   "binding": {
+    "A": "Region",
+    "B": "Colour",
+    "P": "Coloured"
+   },
+   "name": "combine.pair@Region,Colour,Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "combine.pair"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "Colour"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "B": "Colour",
+    "P": "Coloured"
+   },
+   "name": "combine.pair_const@Coloured,Colour,Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "combine.pair_const"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "Colour"
+   ],
+   "binding": {
+    "A": "Entity",
+    "B": "Colour",
+    "P": "Coloured"
+   },
+   "name": "combine.pair_const@Entity,Colour,Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "combine.pair_const"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "Colour"
+   ],
+   "binding": {
+    "A": "Region",
+    "B": "Colour",
+    "P": "Coloured"
+   },
+   "name": "combine.pair_const@Region,Colour,Coloured",
+   "result_type": "Set[Coloured]",
+   "schema_id": "combine.pair_const"
+  },
+  {
+   "arg_modes": [],
+   "arg_types": [],
+   "binding": {
+    "C": "Grid"
+   },
+   "name": "embed.context@Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.context"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Coloured",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Coloured,Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Entity",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Entity",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Entity,Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Grid",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Grid",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Grid,Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Region",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Region",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Region,Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Set[Coloured]",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Set[Coloured],Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Set[Entity]",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Set[Entity],Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]",
+    "Frame"
+   ],
+   "binding": {
+    "A": "Set[Region]",
+    "C": "Grid"
+   },
+   "name": "embed.into_carrier@Set[Region],Grid",
+   "result_type": "Grid",
+   "schema_id": "embed.into_carrier"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Colour]"
+   ],
+   "binding": {
+    "A": "Colour",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.cardinality@Colour,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.cardinality"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Coloured]"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.cardinality@Coloured,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.cardinality"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Entity]"
+   ],
+   "binding": {
+    "A": "Entity",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.cardinality@Entity,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.cardinality"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[FeatureValue]"
+   ],
+   "binding": {
+    "A": "FeatureValue",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.cardinality@FeatureValue,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.cardinality"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Set[Region]"
+   ],
+   "binding": {
+    "A": "Region",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.cardinality@Region,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.cardinality"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Coloured",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.feature@Coloured,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.feature"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Entity",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Entity",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.feature@Entity,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.feature"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Grid",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Grid",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.feature@Grid,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.feature"
+  },
+  {
+   "arg_modes": [
+    "value",
+    "terminal"
+   ],
+   "arg_types": [
+    "Region",
+    "FeatureExpr"
+   ],
+   "binding": {
+    "A": "Region",
+    "S": "FeatureValue"
+   },
+   "name": "reduce.feature@Region,FeatureValue",
+   "result_type": "FeatureValue",
+   "schema_id": "reduce.feature"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Coloured"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "B": "Colour"
+   },
+   "name": "reduce.colour@Coloured,Colour",
+   "result_type": "Colour",
+   "schema_id": "reduce.colour"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Entity"
+   ],
+   "binding": {
+    "A": "Entity",
+    "B": "Colour"
+   },
+   "name": "reduce.colour@Entity,Colour",
+   "result_type": "Colour",
+   "schema_id": "reduce.colour"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Grid"
+   ],
+   "binding": {
+    "A": "Grid",
+    "B": "Colour"
+   },
+   "name": "reduce.colour@Grid,Colour",
+   "result_type": "Colour",
+   "schema_id": "reduce.colour"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Region"
+   ],
+   "binding": {
+    "A": "Region",
+    "B": "Colour"
+   },
+   "name": "reduce.colour@Region,Colour",
+   "result_type": "Colour",
+   "schema_id": "reduce.colour"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Coloured"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "C": "Entity"
+   },
+   "name": "reduce.extent@Coloured,Entity",
+   "result_type": "Entity",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Coloured"
+   ],
+   "binding": {
+    "A": "Coloured",
+    "C": "Region"
+   },
+   "name": "reduce.extent@Coloured,Region",
+   "result_type": "Region",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Entity"
+   ],
+   "binding": {
+    "A": "Entity",
+    "C": "Entity"
+   },
+   "name": "reduce.extent@Entity,Entity",
+   "result_type": "Entity",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Entity"
+   ],
+   "binding": {
+    "A": "Entity",
+    "C": "Region"
+   },
+   "name": "reduce.extent@Entity,Region",
+   "result_type": "Region",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Grid"
+   ],
+   "binding": {
+    "A": "Grid",
+    "C": "Entity"
+   },
+   "name": "reduce.extent@Grid,Entity",
+   "result_type": "Entity",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Grid"
+   ],
+   "binding": {
+    "A": "Grid",
+    "C": "Region"
+   },
+   "name": "reduce.extent@Grid,Region",
+   "result_type": "Region",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Region"
+   ],
+   "binding": {
+    "A": "Region",
+    "C": "Entity"
+   },
+   "name": "reduce.extent@Region,Entity",
+   "result_type": "Entity",
+   "schema_id": "reduce.extent"
+  },
+  {
+   "arg_modes": [
+    "value"
+   ],
+   "arg_types": [
+    "Region"
+   ],
+   "binding": {
+    "A": "Region",
+    "C": "Region"
+   },
+   "name": "reduce.extent@Region,Region",
+   "result_type": "Region",
+   "schema_id": "reduce.extent"
+  }
+ ],
+ "meta_families": {
+  "Colour": {
+   "value": "fitted constant"
+  },
+  "Frame": {
+   "constants": "fitted",
+   "fill_rules": [
+    "context_content",
+    "context_background",
+    "constant"
+   ],
+   "offset": "fitted",
+   "origin_rules": [
+    "zero",
+    "value_min"
+   ],
+   "shape_rules": [
+    "value_extent",
+    "context_extent",
+    "constant"
+   ]
+  },
+  "IndexMap": {
+   "dilations": [
+    1,
+    2,
+    3
+   ],
+   "matrices": [
+    [
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     -1,
+     0,
+     0,
+     -1
+    ],
+    [
+     -1,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     -1,
+     -1,
+     0
+    ],
+    [
+     0,
+     -1,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     -1,
+     0
+    ],
+    [
+     0,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     -1
+    ]
+   ],
+   "offset": "fitted",
+   "origin_rules": [
+    "zero",
+    "value_min"
+   ]
+  }
+ },
+ "schemas": [
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "terminal",
+     "role": "predicate",
+     "type": "Predicate"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"terminal\", \"role\": \"predicate\", \"type\": \"Predicate\"}], \"cost\": 1, \"family\": \"select\", \"result\": \"Set[A]\", \"schema_id\": \"select.by_predicate\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_select_by_predicate",
+    "source_sha256": "892c6522c2ea2822cb82da2f879061164760b6e6de0ff5fb05020efc898b5ed7"
+   },
+   "family": "select",
+   "induced_slot_types": [],
+   "note": "elements whose frozen descriptor table satisfies the predicate",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 select"
+   },
+   "result_type_rule": "Set[A]",
+   "schema_id": "select.by_predicate",
+   "terminal_types": [
+    "Predicate"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "terminal",
+     "role": "feature",
+     "type": "FeatureExpr"
+    },
+    {
+     "mode": "terminal",
+     "role": "direction",
+     "type": "Extremum"
+    }
+   ],
+   "arity": 3,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"terminal\", \"role\": \"feature\", \"type\": \"FeatureExpr\"}, {\"mode\": \"terminal\", \"role\": \"direction\", \"type\": \"Extremum\"}], \"cost\": 1, \"family\": \"select\", \"result\": \"Set[A]\", \"schema_id\": \"select.extremal\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_select_extremal",
+    "source_sha256": "70992836adbaadc479fba9beed89570b099cbcf357234a82deb965db0ce31df7"
+   },
+   "family": "select",
+   "induced_slot_types": [],
+   "note": "all elements attaining the extremal value of a feature",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 select"
+   },
+   "result_type_rule": "Set[A]",
+   "schema_id": "select.extremal",
+   "terminal_types": [
+    "Extremum",
+    "FeatureExpr"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "terminal",
+     "role": "feature",
+     "type": "FeatureExpr"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"terminal\", \"role\": \"feature\", \"type\": \"FeatureExpr\"}], \"cost\": 1, \"family\": \"project\", \"result\": \"Set[S]\", \"schema_id\": \"project.feature\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"S\", \"requires\": [[\"only:scalar\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Entity",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Region",
+      "S": "FeatureValue"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "S",
+     "requires": [
+      [
+       "only:scalar"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_project_feature",
+    "source_sha256": "9f82eb719ad98d587a87c2da45716ba254c54af153ced120e380dfd76e2db836"
+   },
+   "family": "project",
+   "induced_slot_types": [],
+   "note": "phi = a frozen descriptor",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 project"
+   },
+   "result_type_rule": "Set[S]",
+   "schema_id": "project.feature",
+   "terminal_types": [
+    "FeatureExpr"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "expr",
+     "role": "map",
+     "type": "Expr[A,B]"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"expr\", \"role\": \"map\", \"type\": \"Expr[A,B]\"}], \"cost\": 1, \"family\": \"project\", \"result\": \"Set[B]\", \"schema_id\": \"project.expr\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"B\", \"requires\": [[\"scalar\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 2,
+    "pruned_by_universe_membership": 6,
+    "requirement_space": 8,
+    "well_formed_instantiations": [
+     {
+      "A": "Region",
+      "B": "Colour"
+     },
+     {
+      "A": "Region",
+      "B": "FeatureValue"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "B",
+     "requires": [
+      [
+       "scalar"
+      ]
+     ],
+     "universe_types_satisfying": 2
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_project_expr",
+    "source_sha256": "615c896238d7c5cef1fbe4d696f5f6707251da50b783bace62136dab131f8866"
+   },
+   "family": "project",
+   "induced_slot_types": [],
+   "note": "phi = a contextual expression of the frozen language",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 project"
+   },
+   "result_type_rule": "Set[B]",
+   "schema_id": "project.expr",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    }
+   ],
+   "arity": 1,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}], \"cost\": 1, \"family\": \"project\", \"result\": \"Set[C]\", \"schema_id\": \"project.cells\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"C\", \"requires\": [[\"only:cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 6,
+    "pruned_by_universe_membership": 2,
+    "requirement_space": 8,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "C": "Entity"
+     },
+     {
+      "A": "Coloured",
+      "C": "Region"
+     },
+     {
+      "A": "Entity",
+      "C": "Entity"
+     },
+     {
+      "A": "Entity",
+      "C": "Region"
+     },
+     {
+      "A": "Region",
+      "C": "Entity"
+     },
+     {
+      "A": "Region",
+      "C": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "C",
+     "requires": [
+      [
+       "only:cells"
+      ]
+     ],
+     "universe_types_satisfying": 2
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_project_cells",
+    "source_sha256": "6860a3fe1cc40e27de8578b0c2d6c64c4dc66efe9fc37bf692061850bd9b0b56"
+   },
+   "family": "project",
+   "induced_slot_types": [],
+   "note": "phi = the cell set each element carries",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 project"
+   },
+   "result_type_rule": "Set[C]",
+   "schema_id": "project.cells",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "value",
+     "role": "map",
+     "type": "IndexMap"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"value\", \"role\": \"map\", \"type\": \"IndexMap\"}], \"cost\": 1, \"family\": \"reindex\", \"result\": \"Set[A]\", \"schema_id\": \"reindex.elements\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_reindex_elements",
+    "source_sha256": "a60b090b5dee6ceadce3a111ce012774c6ab43f4938de22eede5230ff989737d"
+   },
+   "family": "reindex",
+   "induced_slot_types": [
+    "IndexMap"
+   ],
+   "note": "each element's cells under one lattice map (induced)",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 reindex"
+   },
+   "result_type_rule": "Set[A]",
+   "schema_id": "reindex.elements",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "A"
+    },
+    {
+     "mode": "value",
+     "role": "map",
+     "type": "IndexMap"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"A\"}, {\"mode\": \"value\", \"role\": \"map\", \"type\": \"IndexMap\"}], \"cost\": 1, \"family\": \"reindex\", \"result\": \"A\", \"schema_id\": \"reindex.value\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 4,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "Grid"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_reindex_value",
+    "source_sha256": "ad76ab75aba53ec656eaea202985ce9fc489c695ba3928f4e5ffc611eda177fc"
+   },
+   "family": "reindex",
+   "induced_slot_types": [
+    "IndexMap"
+   ],
+   "note": "a value's cells under a lattice map (induced)",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 reindex"
+   },
+   "result_type_rule": "A",
+   "schema_id": "reindex.value",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "terminal",
+     "role": "operator",
+     "type": "SetOp"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"terminal\", \"role\": \"operator\", \"type\": \"SetOp\"}], \"cost\": 1, \"family\": \"aggregate\", \"result\": \"A\", \"schema_id\": \"aggregate.fold\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_aggregate_fold",
+    "source_sha256": "1fe8ec5df2ac7279a0337934cea9ebd32628a13cec7a24ab917fecd852d0341c"
+   },
+   "family": "aggregate",
+   "induced_slot_types": [],
+   "note": "union / intersection of the elements' cells",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 aggregate"
+   },
+   "result_type_rule": "A",
+   "schema_id": "aggregate.fold",
+   "terminal_types": [
+    "SetOp"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "terminal",
+     "role": "feature",
+     "type": "FeatureExpr"
+    },
+    {
+     "mode": "terminal",
+     "role": "direction",
+     "type": "Extremum"
+    }
+   ],
+   "arity": 3,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"terminal\", \"role\": \"feature\", \"type\": \"FeatureExpr\"}, {\"mode\": \"terminal\", \"role\": \"direction\", \"type\": \"Extremum\"}], \"cost\": 1, \"family\": \"aggregate\", \"result\": \"A\", \"schema_id\": \"aggregate.extremum\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_aggregate_extremum",
+    "source_sha256": "4baf42109e7264f42d21da8e7904a5f9473b1f1a41a68cd7c749808bab0517db"
+   },
+   "family": "aggregate",
+   "induced_slot_types": [],
+   "note": "the unique element attaining a feature's extremum",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 aggregate"
+   },
+   "result_type_rule": "A",
+   "schema_id": "aggregate.extremum",
+   "terminal_types": [
+    "Extremum",
+    "FeatureExpr"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    }
+   ],
+   "arity": 1,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}], \"cost\": 1, \"family\": \"aggregate\", \"result\": \"A\", \"schema_id\": \"aggregate.unique\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"], [\"scalar\"], [\"carrier\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 5,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 6,
+    "well_formed_instantiations": [
+     {
+      "A": "Colour"
+     },
+     {
+      "A": "Coloured"
+     },
+     {
+      "A": "Entity"
+     },
+     {
+      "A": "FeatureValue"
+     },
+     {
+      "A": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ],
+      [
+       "scalar"
+      ],
+      [
+       "carrier"
+      ]
+     ],
+     "universe_types_satisfying": 6
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_aggregate_unique",
+    "source_sha256": "8e6f8701a8318c7a3afa03c7fd770d1bf42c2c13a46e86934c1612b73718fcd8"
+   },
+   "family": "aggregate",
+   "induced_slot_types": [],
+   "note": "the sole element of a singleton collection",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 aggregate"
+   },
+   "result_type_rule": "A",
+   "schema_id": "aggregate.unique",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "terminal",
+     "role": "direction",
+     "type": "Extremum"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"terminal\", \"role\": \"direction\", \"type\": \"Extremum\"}], \"cost\": 1, \"family\": \"aggregate\", \"result\": \"A\", \"schema_id\": \"aggregate.scalar\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"scalar\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 2,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 2,
+    "well_formed_instantiations": [
+     {
+      "A": "Colour"
+     },
+     {
+      "A": "FeatureValue"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "scalar"
+      ]
+     ],
+     "universe_types_satisfying": 2
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_aggregate_scalar",
+    "source_sha256": "34e14da8d096df377d25570316ec0d84d3ff1cd98df2186c6a6c6e6cd236392a"
+   },
+   "family": "aggregate",
+   "induced_slot_types": [],
+   "note": "max / min over scalars",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 aggregate"
+   },
+   "result_type_rule": "A",
+   "schema_id": "aggregate.scalar",
+   "terminal_types": [
+    "Extremum"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "expr",
+     "role": "map",
+     "type": "Expr[A,B]"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"expr\", \"role\": \"map\", \"type\": \"Expr[A,B]\"}], \"cost\": 1, \"family\": \"combine\", \"result\": \"Set[P]\", \"schema_id\": \"combine.pair\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"B\", \"requires\": [[\"colour\", \"scalar\"]]}, {\"name\": \"P\", \"requires\": [[\"only:cells,colour\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 1,
+    "pruned_by_universe_membership": 3,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Region",
+      "B": "Colour",
+      "P": "Coloured"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "B",
+     "requires": [
+      [
+       "colour",
+       "scalar"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    },
+    {
+     "name": "P",
+     "requires": [
+      [
+       "only:cells,colour"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_combine_pair",
+    "source_sha256": "fe730f63b8809b6c6d0204e2ba3cac9621d26aa35811fc3fb23f3f9c81a4a071"
+   },
+   "family": "combine",
+   "induced_slot_types": [],
+   "note": "each element paired with the colour an expression assigns it",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 combine"
+   },
+   "result_type_rule": "Set[P]",
+   "schema_id": "combine.pair",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    },
+    {
+     "mode": "value",
+     "role": "colour",
+     "type": "B"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}, {\"mode\": \"value\", \"role\": \"colour\", \"type\": \"B\"}], \"cost\": 1, \"family\": \"combine\", \"result\": \"Set[P]\", \"schema_id\": \"combine.pair_const\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"B\", \"requires\": [[\"colour\", \"scalar\"]]}, {\"name\": \"P\", \"requires\": [[\"only:cells,colour\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 3,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "B": "Colour",
+      "P": "Coloured"
+     },
+     {
+      "A": "Entity",
+      "B": "Colour",
+      "P": "Coloured"
+     },
+     {
+      "A": "Region",
+      "B": "Colour",
+      "P": "Coloured"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "B",
+     "requires": [
+      [
+       "colour",
+       "scalar"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    },
+    {
+     "name": "P",
+     "requires": [
+      [
+       "only:cells,colour"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_combine_pair_const",
+    "source_sha256": "3cd56a2da37152bc46d4913ac090007255cdac34c67b954d541633ec795574e6"
+   },
+   "family": "combine",
+   "induced_slot_types": [
+    "Colour"
+   ],
+   "note": "each element paired with one colour (induced)",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 combine"
+   },
+   "result_type_rule": "Set[P]",
+   "schema_id": "combine.pair_const",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [],
+   "arity": 0,
+   "canonical_serialization": "{\"arguments\": [], \"cost\": 1, \"family\": \"embed\", \"result\": \"C\", \"schema_id\": \"embed.context\", \"type_variables\": [{\"name\": \"C\", \"requires\": [[\"carrier\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 1,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 1,
+    "well_formed_instantiations": [
+     {
+      "C": "Grid"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "C",
+     "requires": [
+      [
+       "carrier"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_embed_context",
+    "source_sha256": "9b17584f1c51a886125622b0f1354003d81ac85cbaa654dc80231c7512351d8a"
+   },
+   "family": "embed",
+   "induced_slot_types": [],
+   "note": "the identity embedding of the context carrier",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 embed"
+   },
+   "result_type_rule": "C",
+   "schema_id": "embed.context",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "A"
+    },
+    {
+     "mode": "value",
+     "role": "frame",
+     "type": "Frame"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"A\"}, {\"mode\": \"value\", \"role\": \"frame\", \"type\": \"Frame\"}], \"cost\": 1, \"family\": \"embed\", \"result\": \"C\", \"schema_id\": \"embed.into_carrier\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"], [\"collection\", \"elem:cells\"]]}, {\"name\": \"C\", \"requires\": [[\"carrier\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 7,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 7,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "C": "Grid"
+     },
+     {
+      "A": "Entity",
+      "C": "Grid"
+     },
+     {
+      "A": "Grid",
+      "C": "Grid"
+     },
+     {
+      "A": "Region",
+      "C": "Grid"
+     },
+     {
+      "A": "Set[Coloured]",
+      "C": "Grid"
+     },
+     {
+      "A": "Set[Entity]",
+      "C": "Grid"
+     },
+     {
+      "A": "Set[Region]",
+      "C": "Grid"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ],
+      [
+       "collection",
+       "elem:cells"
+      ]
+     ],
+     "universe_types_satisfying": 7
+    },
+    {
+     "name": "C",
+     "requires": [
+      [
+       "carrier"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_embed_into_carrier",
+    "source_sha256": "77506294d4af8f8c9a4b020ff7ae4afa77013d1fdc3e381dabc42e8b0ba224ac"
+   },
+   "family": "embed",
+   "induced_slot_types": [
+    "Frame"
+   ],
+   "note": "the value's coloured cells placed into a fresh carrier (induced frame)",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 embed"
+   },
+   "result_type_rule": "C",
+   "schema_id": "embed.into_carrier",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "Set[A]"
+    }
+   ],
+   "arity": 1,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"Set[A]\"}], \"cost\": 1, \"family\": \"reduce\", \"result\": \"S\", \"schema_id\": \"reduce.cardinality\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"], [\"scalar\"], [\"carrier\"]]}, {\"name\": \"S\", \"requires\": [[\"only:scalar\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 5,
+    "pruned_by_universe_membership": 1,
+    "requirement_space": 6,
+    "well_formed_instantiations": [
+     {
+      "A": "Colour",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Coloured",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Entity",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "FeatureValue",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Region",
+      "S": "FeatureValue"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ],
+      [
+       "scalar"
+      ],
+      [
+       "carrier"
+      ]
+     ],
+     "universe_types_satisfying": 6
+    },
+    {
+     "name": "S",
+     "requires": [
+      [
+       "only:scalar"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_reduce_cardinality",
+    "source_sha256": "1ba11bd7bb69649a363fd37ad37525fc437345afd1e2ee5b6876220d052fa33b"
+   },
+   "family": "reduce",
+   "induced_slot_types": [],
+   "note": "number of elements",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 reduce"
+   },
+   "result_type_rule": "S",
+   "schema_id": "reduce.cardinality",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "A"
+    },
+    {
+     "mode": "terminal",
+     "role": "feature",
+     "type": "FeatureExpr"
+    }
+   ],
+   "arity": 2,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"A\"}, {\"mode\": \"terminal\", \"role\": \"feature\", \"type\": \"FeatureExpr\"}], \"cost\": 1, \"family\": \"reduce\", \"result\": \"S\", \"schema_id\": \"reduce.feature\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"S\", \"requires\": [[\"only:scalar\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 4,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Entity",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Grid",
+      "S": "FeatureValue"
+     },
+     {
+      "A": "Region",
+      "S": "FeatureValue"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "S",
+     "requires": [
+      [
+       "only:scalar"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_reduce_feature",
+    "source_sha256": "67eb2204967772ea9ebd74385f98a650beef9ab2ab83d7e45b0971a0e3668f37"
+   },
+   "family": "reduce",
+   "induced_slot_types": [],
+   "note": "one frozen descriptor of a value",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 reduce"
+   },
+   "result_type_rule": "S",
+   "schema_id": "reduce.feature",
+   "terminal_types": [
+    "FeatureExpr"
+   ]
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "A"
+    }
+   ],
+   "arity": 1,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"A\"}], \"cost\": 1, \"family\": \"reduce\", \"result\": \"B\", \"schema_id\": \"reduce.colour\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"B\", \"requires\": [[\"colour\", \"scalar\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 4,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 4,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "B": "Colour"
+     },
+     {
+      "A": "Entity",
+      "B": "Colour"
+     },
+     {
+      "A": "Grid",
+      "B": "Colour"
+     },
+     {
+      "A": "Region",
+      "B": "Colour"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "B",
+     "requires": [
+      [
+       "colour",
+       "scalar"
+      ]
+     ],
+     "universe_types_satisfying": 1
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_reduce_colour",
+    "source_sha256": "2af56bacc79a0b74065a6812c6e095b8d41c762401ff27091463733d73aeaf92"
+   },
+   "family": "reduce",
+   "induced_slot_types": [],
+   "note": "the single colour a value carries",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 reduce"
+   },
+   "result_type_rule": "B",
+   "schema_id": "reduce.colour",
+   "terminal_types": []
+  },
+  {
+   "argument_roles": [
+    {
+     "mode": "value",
+     "role": "source",
+     "type": "A"
+    }
+   ],
+   "arity": 1,
+   "canonical_serialization": "{\"arguments\": [{\"mode\": \"value\", \"role\": \"source\", \"type\": \"A\"}], \"cost\": 1, \"family\": \"reduce\", \"result\": \"C\", \"schema_id\": \"reduce.extent\", \"type_variables\": [{\"name\": \"A\", \"requires\": [[\"cells\"]]}, {\"name\": \"C\", \"requires\": [[\"only:cells\"]]}]}",
+   "cost": 1,
+   "counterfactual_applicability": {
+    "count": 8,
+    "pruned_by_universe_membership": 0,
+    "requirement_space": 8,
+    "well_formed_instantiations": [
+     {
+      "A": "Coloured",
+      "C": "Entity"
+     },
+     {
+      "A": "Coloured",
+      "C": "Region"
+     },
+     {
+      "A": "Entity",
+      "C": "Entity"
+     },
+     {
+      "A": "Entity",
+      "C": "Region"
+     },
+     {
+      "A": "Grid",
+      "C": "Entity"
+     },
+     {
+      "A": "Grid",
+      "C": "Region"
+     },
+     {
+      "A": "Region",
+      "C": "Entity"
+     },
+     {
+      "A": "Region",
+      "C": "Region"
+     }
+    ]
+   },
+   "declared_type_variables": [
+    {
+     "name": "A",
+     "requires": [
+      [
+       "cells"
+      ]
+     ],
+     "universe_types_satisfying": 4
+    },
+    {
+     "name": "C",
+     "requires": [
+      [
+       "only:cells"
+      ]
+     ],
+     "universe_types_satisfying": 2
+    }
+   ],
+   "executable_semantics": {
+    "function": "sem_reduce_extent",
+    "source_sha256": "06ab724ba429ec4c3cbd20b6e5f5e3d757117dfde5250db533e7e30cde0b9845"
+   },
+   "family": "reduce",
+   "induced_slot_types": [],
+   "note": "the bounding extent of a value's cells",
+   "provenance": {
+    "document": "docs/CORA_LEVEL4_STEPB_DESIGN.md",
+    "section": "K2.2 reduce"
+   },
+   "result_type_rule": "C",
+   "schema_id": "reduce.extent",
+   "terminal_types": []
+  }
+ ],
+ "terminal_types": {
+  "Extremum": [
+   "max",
+   "min"
+  ],
+  "FeatureExpr": [
+   "sole_neighbour_colour",
+   "touches_border",
+   "is_rect",
+   "is_square",
+   "area",
+   "hw",
+   "colour",
+   "n_colours",
+   "neighbour_colours",
+   "shape",
+   "row_band",
+   "col_band"
+  ],
+  "PartitionExpr": [
+   "background_components",
+   "colour_components",
+   "enclosed_regions",
+   "separator_panels"
+  ],
+  "Predicate": [
+   "all",
+   "not_rectangular",
+   "not_touching_border",
+   "rectangular",
+   "single_colour",
+   "square",
+   "touching_border"
+  ],
+  "SegmentationExpr": [
+   "same_colour_4",
+   "same_colour_8"
+  ],
+  "SetOp": [
+   "union",
+   "intersection"
+  ]
+ },
+ "type_universe": [
+  "Colour",
+  "Coloured",
+  "Entity",
+  "Expr[FeatureValue,Colour]",
+  "Expr[Region,Colour]",
+  "Expr[Region,FeatureValue]",
+  "Extremum",
+  "FeatureExpr",
+  "FeatureValue",
+  "Frame",
+  "Grid",
+  "IndexMap",
+  "Map",
+  "PartitionExpr",
+  "Predicate",
+  "Region",
+  "SegmentationExpr",
+  "SetOp",
+  "Set[Colour]",
+  "Set[Coloured]",
+  "Set[Entity]",
+  "Set[FeatureValue]",
+  "Set[Region]"
+ ],
+ "well_formedness_rule": "a schema is well formed on a binding iff every type variable's capability requirement holds (kinds.satisfies over structural capabilities) and every ground argument type is a universe type and the result is a value type; no other condition"
+}

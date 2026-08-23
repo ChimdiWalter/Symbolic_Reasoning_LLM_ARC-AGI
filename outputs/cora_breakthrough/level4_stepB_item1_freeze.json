@@ -1,0 +1,36 @@
+{
+ "artifacts": {
+  "level4_stepB_inventory.json": "c0043265e91fb0cad09ad7daf1d870a6fbd949307083f5f31229c5dbe1d54f2a",
+  "level4_stepB_k1_lattice.json": "90d05b8116990e0395deb8fe61c212ec98645dc998d203d40e30f919f6a64517",
+  "level4_stepB_witnesses.json": "6d3459f93683ce9257e148ae82ad224c617f2567c7fc0487f56978a126e16223"
+ },
+ "audit_report_sha256": "c27618c7fa3434bd6bd870aa5b3e6ad9f141ef324aaf3ffe8e1c44eecfd4096d",
+ "counts": {
+  "families": 7,
+  "ground_instances": 70,
+  "k1_candidates": 31,
+  "schemas": 19,
+  "type_universe": 23,
+  "witness_contexts": 6
+ },
+ "depends_on": {
+  "blind_bundle": "level4_bundle_freeze.json",
+  "design_pin": "level4_stepB_design_hash.txt"
+ },
+ "design_document_sha256": "28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d",
+ "executables": {
+  "__init__.py": "51367881d1795fef1bdf7bb74b16ea11c6439a3e767875316fed65cbed7252f0",
+  "cora_level4_stepB_audit.py": "964eb131d0f13f9a4c0a7a67cdd41e4f19b4034cd7fad5a96995c2a4ce5f5900",
+  "cora_level4_stepB_freeze_item1.py": "b8fa91ffc1eefa3bd2de71924eff207bbb9ad439cac2c1a15990a52da0acc451",
+  "install.py": "164c483a060910f6ffa03a497de548374242e68ce0cfcf8a3ec3eea5e862be00",
+  "k1_lattice.py": "83b01e99076bd2c10aa10199a4a4afe7de947b4d4cac296d618999791496e7d7",
+  "k2_inventory.py": "8bcf7eea880758adf2770fac309c8d58d620e046cff939c0e04bd8d134c7287e",
+  "k2_slots.py": "9898f89eba451410f4b5ed418f5aa2f0ee7d3338b74d7f13c68ad652fdd75b4d",
+  "kinds.py": "72069decb9d0a06ccbed2ae3de2e15b856eca3d859797f140a36a2dce224b55f",
+  "test_level4_stepB_item1.py": "b9fd068b45c7b75793787185dd689d3ec8d8863afac4868515d510734200e8cd",
+  "witnesses.py": "9d3df096189283346525c7f7e45067f09efc295bb23c71cbb5712877cc72086e"
+ },
+ "gate": "Step-B item-1 freeze: inventory + K1 lattice + witnesses",
+ "immutability": "the constructor inventory, the K1 lattice, the witness generator and their meta-families are frozen; they may not be widened, narrowed or re-tuned after this point, whatever the Step-B run later shows",
+ "unit_tests": "26 passed in 3.58s"
+}

@@ -1,0 +1,255 @@
+{
+ "gate": "Step-B item-1 forbidden-shapes audit",
+ "scope": "AST + source audit of level4_stepB/*.py, the frozen leak checker's lexical scan, and the counterfactual applicability of every constructor schema",
+ "modules": [
+  "__init__.py",
+  "install.py",
+  "k1_lattice.py",
+  "k2_inventory.py",
+  "k2_slots.py",
+  "kinds.py",
+  "witnesses.py"
+ ],
+ "rules": {
+  "field_tokens": [
+   "frontier",
+   "goal_type",
+   "goal_delta",
+   "delta_sig",
+   "shape_relation",
+   "failure_class",
+   "cluster",
+   "residual",
+   "n_records",
+   "n_distinct",
+   "distinct_source",
+   "source_token",
+   "frequency",
+   "changed_fraction",
+   "uniformity",
+   "slot_learning",
+   "semantic_class",
+   "stepa",
+   "step_a",
+   "eligible",
+   "ranking",
+   "rank_",
+   "census",
+   "corpus",
+   "demonstration_stat"
+  ],
+  "semantic_lexeme_sha256": [
+   "00154761637ca746c354a6d9cfbf1da1a92e79afa6bb127bb8a1c434e9c73170",
+   "1480fb125459cbca6cff13fbac5d846220d91cf906e466eb2842ef350878138b",
+   "224610f102890bc0e40c49ffb456bb93d45a6dee88dc9a7bef351fa10d3f8582",
+   "299bcf54c044b1b5d49a18da354e16f240b695a1f3a55f1e5217595de59fbb3d",
+   "318678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743b0683ee58b88cd",
+   "375676bd26868505668fce072799a6e029a37fbbe67b70b89f7b68def282344c",
+   "3781049acb7fd5d7de257b5522345fccce1e56f50ea02589ab65256ed359f37f",
+   "39ee4551970726c324df4ea3bf0760fe4ff35252340bfba7b1d4564454f9ccce",
+   "4e448897946ead9e39e8c61c2994b2ada30968ed9d14ac21ebaba710d823db64",
+   "5bfde80c12eac54d591e880500c38c55aedca10bf7e1598e9cfddc4a9f7a5bd8",
+   "5cde0f1298f41f7d1c8b907a36992a7a513225a2615bd6e307bf1a9149b06b40",
+   "683a62ce15fbabb1ac867022e56e6e4f4f581762d77c3abb2f8dc8b165b3b1b9",
+   "79bfb0e2ba76b9d447606ddbcc494834f05a4c11deb052e74b49ea307a3c5bcd",
+   "887270d0cbc560af35f1326d55e9dbdc35ea2301c2cd26633fb6d4932deee268",
+   "8b668b8994aa845107399994593d0ca831520be5257f005351a0ec13e97a39be",
+   "b4b33d2441645d4dd0a0694b5989a0a14a5cc22fe9865e6b7b7eae966e0de36c",
+   "c04bc270f965db4d7ab365b3b865b743e35e13e295c7b15fb795e2a01d24a639",
+   "c08c6acfff81cafe379f88061e6b71bfbf2e9b5c5fcba037f0ac69a6b896d41b",
+   "ccf0a763e1c0dc55d29ef500fd4d43abebb24690ca2764476a68ea15c6b5d553",
+   "d4e3fc7b0477747da28f05c27af9f1ab8e70cd60f729a2813f410fd39eb466ac",
+   "d8864644c15d33be9c0aef2d08c8fc105adc040de488b0116882a2cc6aa4492b",
+   "e0afcdbf6ad4adf566c572d7f7c34d4dfb85e5122bba750d6a3a5842f915d39b",
+   "f1cf2fd5c86895128d559088259a132d4d4689a4d6ae4e0339100393438ec986"
+  ],
+  "allowed_import_roots": [
+   "__future__",
+   "collections",
+   "contextlib",
+   "dataclasses",
+   "hashlib",
+   "inspect",
+   "itertools",
+   "json",
+   "level4_blind_runtime",
+   "level4_stepB",
+   "numpy",
+   "random",
+   "typing"
+  ],
+  "type_name_rule_scope": "every function body",
+  "selection_functions": [
+   "_bindings",
+   "_is_value_type",
+   "build",
+   "closure",
+   "instantiations",
+   "kind_of",
+   "satisfies"
+  ],
+  "selection_forbidden_names": [
+   "count",
+   "freq",
+   "support",
+   "observ",
+   "smaller",
+   "larger",
+   "size",
+   "shape",
+   "mass",
+   "n_"
+  ],
+  "declared_exemptions": [
+   {
+    "file": "witnesses.py",
+    "function": "_induced_value",
+    "reason": "induced meta-families are addressed by their type's name"
+   },
+   {
+    "file": "k2_inventory.py",
+    "function": "inventory_record",
+    "reason": "composes the machine-readable report, decides nothing"
+   }
+  ]
+ },
+ "structural_findings": [
+  {
+   "file": "k2_inventory.py",
+   "line": 737,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "inventory_record: string 'IndexMap'",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "k2_inventory.py",
+   "line": 741,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "inventory_record: string 'Frame'",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "k2_inventory.py",
+   "line": 745,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "inventory_record: string 'Colour'",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "witnesses.py",
+   "line": 117,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "_induced_value: string 'Map'",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "witnesses.py",
+   "line": 124,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "_induced_value: string 'IndexMap'",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "witnesses.py",
+   "line": 127,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "_induced_value: string 'Frame'",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "witnesses.py",
+   "line": 133,
+   "kind": "TYPE_NAME_IN_CODE",
+   "detail": "_induced_value: string 'Colour'",
+   "level": "EXEMPT"
+  }
+ ],
+ "lexical_findings": [],
+ "forbidden_production_names_checked": 35,
+ "applicability_findings": [
+  {
+   "schema_id": "select.by_predicate",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "select.extremal",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "project.feature",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "project.expr",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "6 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "project.cells",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "2 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "reindex.elements",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "aggregate.fold",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "aggregate.extremum",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "aggregate.unique",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "combine.pair",
+   "level": "WARNING",
+   "kind": "SINGLE_INSTANTIATION_PRUNED_BY_UNIVERSE",
+   "detail": "4 requirement-satisfying bindings, 1 well formed; the others need a ground argument type absent from the frozen universe",
+   "argument_types": [
+    "Set[A]",
+    "Expr[A,B]"
+   ]
+  },
+  {
+   "schema_id": "combine.pair_const",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  },
+  {
+   "schema_id": "embed.context",
+   "level": "INFO",
+   "kind": "SINGLE_INSTANTIATION_FORCED_BY_SIGNATURE",
+   "detail": "only one universe type satisfies the requirement"
+  },
+  {
+   "schema_id": "reduce.cardinality",
+   "level": "INFO",
+   "kind": "PRUNED_BY_UNIVERSE",
+   "detail": "1 bindings dropped for universe membership"
+  }
+ ],
+ "fail_count": 0,
+ "verdict": "PASS"
+}

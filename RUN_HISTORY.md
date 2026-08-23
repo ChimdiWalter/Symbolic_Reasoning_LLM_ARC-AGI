@@ -11861,3 +11861,78 @@ pre-existing evidence that forces it.
 Next: enumerate inventory + K1 lattice + witness generator -> leak check -> Step-B run manifest
 citing this hash -> synthetic gates -> single run -> pin before inspection. E_transfer,
 Promotion, the Lockbox and the sealed expectation remain closed.
+
+## 2026-08-23 — STEP-B ITEM 1 BUILT AND FROZEN: inventory + K1 lattice + witness generator
+
+Pre-invention git checkpoint first (commit 053b07f): everything before it is failure
+analysis, everything after is semantic invention. Then item 1 only, per directive; the
+proposal runner does NOT exist and the 62 clusters were never read.
+
+### What was built (package level4_stepB/, blind runtime untouched on disk)
+- kinds.py: structural capability table (the only place a type is named), uniform value
+  accessors; capabilities {cells, colour, colour_field, carrier, scalar, collection, expr,
+  vocab, induced}; representation verified against the frozen runtime by test.
+- k2_inventory.py: 19 schemas across the seven frozen families. Well-formedness is DATA
+  (capability requirements per type variable) checked by one generic function; universe =
+  closure of the frozen registry's types + parameter types under instantiation results
+  (23 types; goal type read from the frozen search's own default, not named). 70 ground
+  instances. Uniform cost 1. Machine-readable record with, per schema: type variables,
+  argument roles/modes, result rule, induced-slot types, executable-semantics sha, canonical
+  serialization, design-section provenance, and counterfactual applicability A(c).
+- k2_slots.py: parameter meta-families and 3 generic learners. Terminals SetOp/Extremum.
+  Induced: IndexMap (orthogonal 2x2 integer matrices GENERATED from the orthogonality
+  equations x dilation 1-3 x origin rule x fitted offset), Frame (shape/origin/fill rules x
+  fitted constants), Colour (fitted constant). Learners locate their source sub-term BY
+  CAPABILITY and try meta-family members in frozen order, first-consistent wins.
+- k1_lattice.py: all 31 non-empty drop-subsets of the five frozen guards (each guard's
+  frozen source line verified verbatim in the frozen learner). Relaxation semantics fixed
+  per guard; conservativity (all 31 == frozen where guards hold) and per-guard non-vacuity
+  both TESTED. Label SLOT_LEARNER_REPAIR.
+- witnesses.py: seeded (424242), 6 contexts, per-type seeded streams, no I/O, no cluster
+  knowledge; Expr witnesses built generically from whatever registry productions have that
+  result type. Byte-deterministic. Behaviour fingerprints for later dedup/separation.
+- install.py: context-managed, mode-aware evaluation bridge (Expr args unevaluated for
+  inventory productions); every runtime table restored on exit.
+
+### The audit (scripts/cora_level4_stepB_audit.py) — VERDICT PASS
+Six mechanical rule groups: field tokens; ARC-shaped semantic lexemes matched by SHA256 of
+the normalised word (no such word exists in plaintext anywhere — the seal's own
+discipline); type names forbidden in EVERY function body with 2 declared exemptions
+(witness induced-value sampler; report composer), both listed in the report; imports+I/O
+whitelist; statistics/shape reads inside well-formedness code; and the FROZEN leak
+checker's own scan (imported unchanged) over all modules. Counterfactual applicability
+computed for every schema: 1 WARNING — combine.pair has a single instantiation because the
+frozen universe contains no Expr[Entity,-]/Expr[Coloured,-] types (forced by the universe,
+reported, not silenced); all other prunings reported as INFO.
+
+The audit caught real things during the build, all fixed and recorded: docstring prose
+tokens; TWO individually-sealed lexemes in the new files (one in prose, one in the audit's
+own then-plaintext forbidden list — the list is now stored hashed); the goal type named in
+code (now read from the frozen search's default); the feature vocabulary named in the
+witness generator (now iterates descriptor values). Honest note: remediation revealed those
+two sealed words to the session; the inventory's content predates that knowledge and only
+wording changed after it.
+
+### Tests: 26/26 (tests/test_level4_stepB_item1.py, synthetic only)
+Highlights: representation-vs-runtime; determinism; every schema semantically alive on the
+witness set; result kinds match declarations; BASELINE REPRODUCTION (select@Region==Select,
+aggregate.extremum@Entity==ArgMax/ArgMin, aggregate.unique@Entity==Unique, combine.pair@
+Region==Map_V1, embed with context frame==PaintEach) — the design's strongest-form
+requirement that generic constructors compose into baseline behaviour with no special-case
+primitive; K1 conservativity + non-vacuity per guard; install/restore exactness; frozen
+search unbroken with all 70 instances installed; audit negative controls (injected field
+branch / I/O / import / type-name / hashed lexeme all rejected).
+
+### Freeze (scripts/cora_level4_stepB_freeze_item1.py)
+Gates: design pin verified; audit PASS; tests green; double generation byte-identical;
+leak scan over emitted artifacts 0 findings. Artifacts level4_stepB_inventory.json /
+level4_stepB_k1_lattice.json / level4_stepB_witnesses.json; freeze record
+level4_stepB_item1_freeze.json sha256
+ca695dfa47aff5cffd85902ce1e6869fe85c0af2fbee2cff845c3eb44fdfbf84, pinned in
+level4_stepB_item1_hash.txt. Inventory, lattice, witness generator and meta-families are
+now IMMUTABLE.
+
+### State at the close of this entry
+STOPPED FOR REVIEW, as directed. Items 2/3 (runner leak audit -> run manifest -> synthetic
+gates -> the single 62-cluster run with no early stop -> pin before inspection) await the
+user's go-ahead. E_transfer, Promotion, the Lockbox and the sealed expectation remain closed.
