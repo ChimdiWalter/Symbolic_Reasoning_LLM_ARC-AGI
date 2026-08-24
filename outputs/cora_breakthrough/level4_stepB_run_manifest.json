@@ -1,0 +1,179 @@
+{
+ "blind_runtime": {
+  "__init__.py": "443c3bebc2a6236ab51bf7b19d66026438d29d6d23464b3398b2125dffaab6e6",
+  "concept.py": "4d7bda597fc6361654f018619ad6411cecf6682ba6bb7b7170c7fac7c9361394",
+  "env.py": "68bd7bd3de0bc04aff3cbcaef45fc3db6d508c5d7655798a658f1e6299439c05",
+  "runtime.py": "a7373b30f13e42d1d1a29cbafa8bba0088f46fd034e8c369f24d54af5607d744",
+  "search.py": "3c88fa1f92395a4c29f4450b2b01683cf16c060054cea2e1470ac0638be75012",
+  "stepA_trace_search.py": "dedae0fa2556485b3ff0e8f063646e9f714393e2bb3e98456ac5db215c8bfa3b"
+ },
+ "bundle_freeze_sha256": "c96826bfc46694b9ff220703ada36fc8e6a6f859ca9b9f7107f29463a09a20c5",
+ "design_document_sha256": "28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d",
+ "enumeration_bounds": {
+  "max_depth": 4,
+  "per_type_cap": 4000
+ },
+ "executable_identity": {
+  "current": {
+   "level4_stepB/candidates.py": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
+   "scripts/cora_level4_stepB_run.py": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7"
+  },
+  "gates_tested": {
+   "tested_candidates_sha256": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
+   "tested_design_sha256": "28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d",
+   "tested_item1_freeze_sha256": "ca695dfa47aff5cffd85902ce1e6869fe85c0af2fbee2cff845c3eb44fdfbf84",
+   "tested_runner_sha256": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7"
+  },
+  "rule": "manifest refused unless current == gates_tested == runner_audit_audited",
+  "runner_audit_audited": {
+   "level4_stepB/candidates.py": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
+   "scripts/cora_level4_stepB_gates.py": "6478314612aa8322b7a7a68e25a309eb3a5fc12113d7c7d01b95e0582ab612f3",
+   "scripts/cora_level4_stepB_manifest.py": "4d77f2f743f082a05951165eaa1333ebbd5d886e85bdd89ee1cd6d8a2c5a07f9",
+   "scripts/cora_level4_stepB_run.py": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7"
+  }
+ },
+ "frozen_before": "the single run over every eligible Step-A cluster. Nothing pinned here may change once that run starts; the runner refuses to start unless its own hash is the one pinned below",
+ "gate_artifacts": {
+  "level4_stepB_audit.json": "9ebb2b8ca924d40e70d6405eae96d511ee2a0c15d41de63b5c6bc37390be2d48",
+  "level4_stepB_gates.json": "6f81c61d7890c1b820c87ac36b0d03830358bbb14d081fc6a7bdb46e9e827418",
+  "level4_stepB_runner_audit.json": "be490748daa8f6888cbe1f505fbe9df442a59f148b18d0f696c5e2eb80ebab2f"
+ },
+ "gate_summary": {
+  "determinism": false,
+  "determinism_deadline_hits": 49,
+  "gates_passed": true,
+  "loo_fidelity": true,
+  "neutrality": {
+   "generated_identical": true,
+   "runtime_restored": true,
+   "typed_identical": true,
+   "winner_identical": true
+  },
+  "package_audit": "PASS",
+  "package_audit_modules": [
+   "__init__.py",
+   "candidates.py",
+   "install.py",
+   "k1_lattice.py",
+   "k2_inventory.py",
+   "k2_slots.py",
+   "kinds.py",
+   "witnesses.py"
+  ],
+  "protocol_checks": {
+   "K1_labelled_repair": true,
+   "K1_proposals_only_from_learners_that_drop_a_guard": true,
+   "K1_single_witness_not_certified": true,
+   "certified_subset_of_proposing": true,
+   "every_cluster_processed": true,
+   "extent_K2_labelled_new_semantic_production": true,
+   "extent_candidate_kept_with_2plus_certified_sources": true,
+   "extent_proposed_by_K2": true,
+   "kept_requires_2_certified": true,
+   "labels_fixed_by_lane": true,
+   "resolution_uses_candidate_when_certified": true,
+   "single_witness_proposed_by_K1": true,
+   "unrelated_task_never_proposed": true
+  },
+  "runner_audit": "PASS",
+  "runner_audit_files": [
+   "scripts/cora_level4_stepB_run.py",
+   "level4_stepB/candidates.py",
+   "scripts/cora_level4_stepB_gates.py",
+   "scripts/cora_level4_stepB_manifest.py"
+  ]
+ },
+ "item1_artifacts": {
+  "level4_stepB_inventory.json": "c0043265e91fb0cad09ad7daf1d870a6fbd949307083f5f31229c5dbe1d54f2a",
+  "level4_stepB_k1_lattice.json": "90d05b8116990e0395deb8fe61c212ec98645dc998d203d40e30f919f6a64517",
+  "level4_stepB_witnesses.json": "6d3459f93683ce9257e148ae82ad224c617f2567c7fc0487f56978a126e16223"
+ },
+ "item1_executables": {
+  "__init__.py": "51367881d1795fef1bdf7bb74b16ea11c6439a3e767875316fed65cbed7252f0",
+  "cora_level4_stepB_audit.py": "964eb131d0f13f9a4c0a7a67cdd41e4f19b4034cd7fad5a96995c2a4ce5f5900",
+  "cora_level4_stepB_freeze_item1.py": "b8fa91ffc1eefa3bd2de71924eff207bbb9ad439cac2c1a15990a52da0acc451",
+  "install.py": "164c483a060910f6ffa03a497de548374242e68ce0cfcf8a3ec3eea5e862be00",
+  "k1_lattice.py": "83b01e99076bd2c10aa10199a4a4afe7de947b4d4cac296d618999791496e7d7",
+  "k2_inventory.py": "8bcf7eea880758adf2770fac309c8d58d620e046cff939c0e04bd8d134c7287e",
+  "k2_slots.py": "9898f89eba451410f4b5ed418f5aa2f0ee7d3338b74d7f13c68ad652fdd75b4d",
+  "kinds.py": "72069decb9d0a06ccbed2ae3de2e15b856eca3d859797f140a36a2dce224b55f",
+  "test_level4_stepB_item1.py": "b9fd068b45c7b75793787185dd689d3ec8d8863afac4868515d510734200e8cd",
+  "witnesses.py": "9d3df096189283346525c7f7e45067f09efc295bb23c71cbb5712877cc72086e"
+ },
+ "item1_freeze_sha256": "ca695dfa47aff5cffd85902ce1e6869fe85c0af2fbee2cff845c3eb44fdfbf84",
+ "labels_at_generation": {
+  "K1": "SLOT_LEARNER_REPAIR",
+  "K2": "NEW_SEMANTIC_PRODUCTION"
+ },
+ "mechanism_inputs": {
+  "concepts_redacted.json": "baa487a5c2bf5362ffbd15e4b4c33b48753f504410b48f76b82d6aa0bdedfcc0",
+  "contract_redacted.json": "1cc000271d667f263dc100e32b09b1420a400205c167ef0e0edbbac5d9fe5c9b",
+  "invention_corpus.jsonl": "a190a9fbcec31c3be80539e96ff33e51e3ce43a6112f915f4c42496c1070ea17",
+  "machine_manifest.json": "1c3dd5b538c002762614cca5be79d697750ec8842d7cca13b850c4a5a7d20c45"
+ },
+ "prohibitions": "no widening/narrowing of inventory, lattice or witnesses; no human cluster selection; no early stop; no repair after the fact; no reading of E_transfer, Promotion, the Lockbox or the sealed expectation",
+ "protocol": {
+  "candidate_lanes": {
+   "K1": "frozen registry bodies x 31 guard-relaxation learners; label SLOT_LEARNER_REPAIR",
+   "K2": "inventory instances + registry expression formers; label NEW_SEMANTIC_PRODUCTION"
+  },
+  "cluster_input_to_generation": "the interface (frontier_type, goal_type) only",
+  "cluster_order": "(-N_distinct_sources, -N_records, canonical(cluster_key))",
+  "dedup": "witness-equivalence classes: equal (lane, signature, behaviour fingerprint over the frozen witness set, learner); equality on a finite probe set is NOT a proof of global denotational equivalence",
+  "label_discipline": "NEW_SEMANTIC_PRODUCTION is the K2 generation-lane label only; semantic novelty is decided by the separation certificate at certification",
+  "no_early_stop": "every eligible cluster, every candidate, every witness-equivalence class, every proposing source",
+  "not_computed_here": [
+   "semantic separation certificate",
+   "criteria 3, 5, 6",
+   "E_transfer",
+   "Lockbox"
+  ],
+  "output_discipline": "counts only to stdout; all records to files; output hash pinned by the runner at completion, before inspection; timing kept out of hashed files",
+  "proposal_K1": "the ordinary unchanged search with the relaxed learner installed, per (learner, source)",
+  "proposal_K2": "the source's failed frontier terms, deduplicated by their values on the demonstration inputs, plugged into the candidate's port; terminal parameters in vocabulary order; induced parameters fitted by the ordinary learners; the first exact fit on ALL demonstrations is the proposal",
+  "resolution": "per (class representative, proposing source), EVERY representative, in MDL-then-id order: unchanged search on the full demonstrations + leave-one-out by complete rediscovery with only that candidate installed; certified iff found, uses the candidate (K2), all folds pass",
+  "selection": "kept iff >= 2 certified distinct source tokens of a proposing cluster; ties by MDL then lexicographic"
+ },
+ "resolution_policy": "exhaustive after witness-fingerprint deduplication: every witness-equivalence-class representative of every proposing source is resolution-tested; no cap, no early stop",
+ "search_limits_unchanged": {
+  "budget_seconds": 8.0,
+  "max_candidates": 8,
+  "max_depth": 5,
+  "per_type_cap": 4000
+ },
+ "stage": "Level 4 Step B: run manifest",
+ "stepA1_analysis_sha256": "c6a255ae1337de2202d0f667f2b51dc2631653001f48895627f6b9b887a77f6f",
+ "stepA_output_hash": "2a14610cf90a2d6ccfd09d4da2f53522a253217a1d09b159bfc0457a00a932b6",
+ "stepA_run_manifest_sha256": "deacfe635c894cc55a4317e4f2287cf2d67b1d8fef3a6a5c6f84f52cfcebf9fa",
+ "stepB_executables": {
+  "level4_stepB/candidates.py": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
+  "scripts/cora_level4_stepA_extract.py": "d76adfaa3c14419e6eb849aafbfa41539ca07a2e2bf7f049c2e0df7c9f1607f9",
+  "scripts/cora_level4_stepB_audit.py": "964eb131d0f13f9a4c0a7a67cdd41e4f19b4034cd7fad5a96995c2a4ce5f5900",
+  "scripts/cora_level4_stepB_gates.py": "6478314612aa8322b7a7a68e25a309eb3a5fc12113d7c7d01b95e0582ab612f3",
+  "scripts/cora_level4_stepB_manifest.py": "9c34626d1efee584e1c3b422a0409d39e7e4a924ac7a65b42a9100e2998650a7",
+  "scripts/cora_level4_stepB_run.py": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7",
+  "scripts/cora_level4_stepB_runner_audit.py": "13975003e5b15df05af6bcb5c27d679dc741f2918274b80fd7c2d6cfffe9d367",
+  "tests/test_level4_stepB_item2.py": "8a88534cef92b09e2f3e4e89c18231eee93268a0dc53157b1193963e06627b33"
+ },
+ "witness_bounds": {
+  "alphabet": 10,
+  "cellset_size": [
+   1,
+   6
+  ],
+  "cellsets_per_context": 4,
+  "collection_size": [
+   1,
+   3
+  ],
+  "colours_per_context": 4,
+  "contexts": 6,
+  "expr_depth": 2,
+  "side": [
+   2,
+   6
+  ],
+  "values_per_type": 4
+ },
+ "witness_seed": 424242
+}

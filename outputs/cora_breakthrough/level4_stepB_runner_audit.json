@@ -1,0 +1,233 @@
+{
+ "gate": "Step-B item-2 runner audit",
+ "files": [
+  "scripts/cora_level4_stepB_run.py",
+  "level4_stepB/candidates.py",
+  "scripts/cora_level4_stepB_gates.py",
+  "scripts/cora_level4_stepB_manifest.py"
+ ],
+ "audited_files_sha256": [
+  {
+   "path": "scripts/cora_level4_stepB_run.py",
+   "sha256": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7",
+   "mechanism": true
+  },
+  {
+   "path": "level4_stepB/candidates.py",
+   "sha256": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
+   "mechanism": true
+  },
+  {
+   "path": "scripts/cora_level4_stepB_gates.py",
+   "sha256": "6478314612aa8322b7a7a68e25a309eb3a5fc12113d7c7d01b95e0582ab612f3",
+   "mechanism": false
+  },
+  {
+   "path": "scripts/cora_level4_stepB_manifest.py",
+   "sha256": "4d77f2f743f082a05951165eaa1333ebbd5d886e85bdd89ee1cd6d8a2c5a07f9",
+   "mechanism": false
+  }
+ ],
+ "mechanism_executables": [
+  "scripts/cora_level4_stepB_run.py",
+  "level4_stepB/candidates.py"
+ ],
+ "support_scripts_rules_1_to_4_only": [
+  "scripts/cora_level4_stepB_gates.py",
+  "scripts/cora_level4_stepB_manifest.py"
+ ],
+ "rules": {
+  "field_names": [
+   "frontier_type",
+   "goal_type",
+   "goal_delta_signature",
+   "goal_delta",
+   "failure_class",
+   "shape_relation",
+   "changed_",
+   "palette_",
+   "colours_introduced",
+   "colours_removed",
+   "behavioural_residual",
+   "residual",
+   "diagnostics",
+   "frontier_value_signature",
+   "repeated_structure"
+  ],
+  "path_whitelist": [
+   "level4_stepA_frontier_records.jsonl",
+   "level4_stepA_fold_summary.json",
+   "level4_stepA_clusters.json",
+   "level4_stepA_output_hash.txt",
+   "level4_stepA1_analysis.json",
+   "level4_stepA1_hash.txt",
+   "CORA_LEVEL4_STEPB_DESIGN.md",
+   "level4_stepB_design_hash.txt",
+   "level4_stepB_item1_freeze.json",
+   "level4_stepB_item1_hash.txt",
+   "level4_stepB_inventory.json",
+   "level4_stepB_k1_lattice.json",
+   "level4_stepB_witnesses.json",
+   "machine_manifest.json",
+   "invention_corpus.jsonl",
+   "level4_stepB_run_manifest.json",
+   "level4_stepB_run_manifest_hash.txt",
+   "cora_level4_stepA_extract.py",
+   "scripts/cora_level4_stepB_run.py",
+   "level4_stepB",
+   "scripts",
+   "tests",
+   "outputs",
+   "cora_breakthrough",
+   "level4_mechanism_inputs",
+   "docs",
+   "cora_level4_stepB_audit.py",
+   "cora_level4_stepB_runner_audit.py",
+   "cora_level4_stepB_gates.py",
+   "cora_level4_stepB_manifest.py",
+   "cora_level4_stepB_freeze_item1.py",
+   "cora_level4_leak_check.py",
+   "test_level4_stepB_item2.py",
+   "test_level4_stepB_item1.py",
+   "level4_stepB_audit.json",
+   "level4_stepB_runner_audit.json",
+   "level4_stepB_gates.json",
+   "level4_bundle_freeze.json",
+   "level4_stepB_gate_outputs",
+   "v21_phase2_sources.json",
+   "level4_stepA_run_manifest.json",
+   "_candidates.json",
+   "_k2_proposal_units.jsonl",
+   "_k1_searches.jsonl",
+   "_proposals.jsonl",
+   "_resolution.jsonl",
+   "_selection.json",
+   "_summary.json",
+   "_timing.json",
+   "_output_hash.txt"
+  ],
+  "forbidden_path_parts": [
+   "data/",
+   "firewall",
+   "arc-agi",
+   "challenges",
+   "solutions",
+   "withheld",
+   "seal"
+  ],
+  "environment_names": [
+   "environ",
+   "getenv",
+   "putenv",
+   "setenv"
+  ],
+  "early_stop_exemptions": [
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "propose_k2",
+    "reason": "first exact fit in canonical order is the proposal record (design: learners keep the first consistent member); candidates are never skipped"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "_value_classes",
+    "reason": "a term undefined on some demonstration is skipped (for/else)"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "verify_pins",
+    "reason": "path resolution helper"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "group_records",
+    "reason": "records outside eligible clusters are skipped"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "_progress",
+    "reason": "print throttle"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "_env_with",
+    "reason": "lane dispatch"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "_param_options",
+    "reason": "slot iteration"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "main",
+    "reason": "returns only on pin/manifest drift before the run starts; the cluster, unit and candidate loops contain no break (checked separately by rule 2b)"
+   }
+  ],
+  "lexeme_exemptions": [
+   {
+    "file": "cora_level4_stepB_run.py",
+    "token": "cora_level4_stepA_extract.py",
+    "reason": "file name of the frozen Step-A runner (sha pinned in the Step-A run manifest), imported for build_env / verify_inputs only"
+   }
+  ],
+  "semantic_lexeme_sha256": [
+   "00154761637ca746c354a6d9cfbf1da1a92e79afa6bb127bb8a1c434e9c73170",
+   "1480fb125459cbca6cff13fbac5d846220d91cf906e466eb2842ef350878138b",
+   "224610f102890bc0e40c49ffb456bb93d45a6dee88dc9a7bef351fa10d3f8582",
+   "299bcf54c044b1b5d49a18da354e16f240b695a1f3a55f1e5217595de59fbb3d",
+   "318678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743b0683ee58b88cd",
+   "375676bd26868505668fce072799a6e029a37fbbe67b70b89f7b68def282344c",
+   "3781049acb7fd5d7de257b5522345fccce1e56f50ea02589ab65256ed359f37f",
+   "39ee4551970726c324df4ea3bf0760fe4ff35252340bfba7b1d4564454f9ccce",
+   "4e448897946ead9e39e8c61c2994b2ada30968ed9d14ac21ebaba710d823db64",
+   "5bfde80c12eac54d591e880500c38c55aedca10bf7e1598e9cfddc4a9f7a5bd8",
+   "5cde0f1298f41f7d1c8b907a36992a7a513225a2615bd6e307bf1a9149b06b40",
+   "683a62ce15fbabb1ac867022e56e6e4f4f581762d77c3abb2f8dc8b165b3b1b9",
+   "79bfb0e2ba76b9d447606ddbcc494834f05a4c11deb052e74b49ea307a3c5bcd",
+   "887270d0cbc560af35f1326d55e9dbdc35ea2301c2cd26633fb6d4932deee268",
+   "8b668b8994aa845107399994593d0ca831520be5257f005351a0ec13e97a39be",
+   "b4b33d2441645d4dd0a0694b5989a0a14a5cc22fe9865e6b7b7eae966e0de36c",
+   "c04bc270f965db4d7ab365b3b865b743e35e13e295c7b15fb795e2a01d24a639",
+   "c08c6acfff81cafe379f88061e6b71bfbf2e9b5c5fcba037f0ac69a6b896d41b",
+   "ccf0a763e1c0dc55d29ef500fd4d43abebb24690ca2764476a68ea15c6b5d553",
+   "d4e3fc7b0477747da28f05c27af9f1ab8e70cd60f729a2813f410fd39eb466ac",
+   "d8864644c15d33be9c0aef2d08c8fc105adc040de488b0116882a2cc6aa4492b",
+   "e0afcdbf6ad4adf566c572d7f7c34d4dfb85e5122bba750d6a3a5842f915d39b",
+   "f1cf2fd5c86895128d559088259a132d4d4689a4d6ae4e0339100393438ec986"
+  ]
+ },
+ "structural_findings": [
+  {
+   "file": "cora_level4_stepB_run.py",
+   "line": 298,
+   "kind": "EARLY_STOP",
+   "detail": "Break in _value_classes",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "cora_level4_stepB_run.py",
+   "line": 350,
+   "kind": "EARLY_STOP",
+   "detail": "Break in propose_k2",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "cora_level4_stepB_run.py",
+   "line": 352,
+   "kind": "EARLY_STOP",
+   "detail": "Break in propose_k2",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "cora_level4_stepB_run.py",
+   "line": 96,
+   "kind": "SEMANTIC_LEXEME",
+   "detail": "'cora_level4_stepA_extract.py' contains a hashed forbidden lexeme",
+   "level": "EXEMPT"
+  }
+ ],
+ "lexical_findings": [],
+ "forbidden_production_names_checked": 35,
+ "fail_count": 0,
+ "verdict": "PASS"
+}

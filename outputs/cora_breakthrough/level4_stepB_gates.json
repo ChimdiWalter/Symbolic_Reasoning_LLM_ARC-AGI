@@ -1,0 +1,115 @@
+{
+ "gate": "Step-B pre-run gates",
+ "tested_executables": {
+  "tested_runner_sha256": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7",
+  "tested_candidates_sha256": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
+  "tested_item1_freeze_sha256": "ca695dfa47aff5cffd85902ce1e6869fe85c0af2fbee2cff845c3eb44fdfbf84",
+  "tested_design_sha256": "28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d",
+  "tested_blind_runtime": {
+   "__init__.py": "443c3bebc2a6236ab51bf7b19d66026438d29d6d23464b3398b2125dffaab6e6",
+   "concept.py": "4d7bda597fc6361654f018619ad6411cecf6682ba6bb7b7170c7fac7c9361394",
+   "env.py": "68bd7bd3de0bc04aff3cbcaef45fc3db6d508c5d7655798a658f1e6299439c05",
+   "runtime.py": "a7373b30f13e42d1d1a29cbafa8bba0088f46fd034e8c369f24d54af5607d744",
+   "search.py": "3c88fa1f92395a4c29f4450b2b01683cf16c060054cea2e1470ac0638be75012",
+   "stepA_trace_search.py": "dedae0fa2556485b3ff0e8f063646e9f714393e2bb3e98456ac5db215c8bfa3b"
+  }
+ },
+ "passed": true,
+ "protocol": {
+  "gate": "the runner obeys the frozen protocol",
+  "passed": true,
+  "checks": {
+   "extent_proposed_by_K2": true,
+   "extent_K2_labelled_new_semantic_production": true,
+   "extent_candidate_kept_with_2plus_certified_sources": true,
+   "kept_requires_2_certified": true,
+   "certified_subset_of_proposing": true,
+   "single_witness_proposed_by_K1": true,
+   "K1_labelled_repair": true,
+   "K1_single_witness_not_certified": true,
+   "K1_proposals_only_from_learners_that_drop_a_guard": true,
+   "unrelated_task_never_proposed": true,
+   "labels_fixed_by_lane": true,
+   "every_cluster_processed": true,
+   "resolution_uses_candidate_when_certified": true
+  },
+  "proposals": 7365,
+  "kept_pairs": 383,
+  "deadline_hits": 25
+ },
+ "loo_fidelity": {
+  "gate": "the runner's LOO loop equals the frozen function",
+  "passed": true,
+  "rows": [
+   {
+    "fixture": "solvable",
+    "frozen": [
+     3,
+     3
+    ],
+    "runner": [
+     3,
+     3
+    ],
+    "identical": true,
+    "deadline_hits": 0
+   },
+   {
+    "fixture": "extent",
+    "frozen": [
+     0,
+     3
+    ],
+    "runner": [
+     0,
+     3
+    ],
+    "identical": true,
+    "deadline_hits": 0
+   },
+   {
+    "fixture": "once",
+    "frozen": [
+     0,
+     3
+    ],
+    "runner": [
+     0,
+     3
+    ],
+    "identical": true,
+    "deadline_hits": 0
+   }
+  ]
+ },
+ "neutrality": {
+  "gate": "installing the substrate changes nothing for the frozen search",
+  "passed": true,
+  "checks": {
+   "winner_identical": true,
+   "generated_identical": true,
+   "typed_identical": true,
+   "runtime_restored": true
+  }
+ },
+ "determinism": {
+  "gate": "byte-identical output on repeated runs, modulo deadline-hit work",
+  "passed": true,
+  "identical": false,
+  "identical_after_masking_deadline_affected_records": true,
+  "comparison": {
+   "identical_full": false,
+   "identical_masked": true,
+   "files_differing_after_mask": [],
+   "masked_k1_searches": 0,
+   "masked_resolution_pairs": 25,
+   "masked_sources": 3
+  },
+  "deadline_hits_in_both_runs": 49,
+  "note": "timing is not hashed; a search that hits the frozen deadline explores a timing-dependent amount, so byte-determinism is required of everything EXCEPT the records downstream of such a search, which are masked in both runs and counted here; this fixture recorded 49 deadline hit(s); synthetic outputs kept in level4_stepB_gate_outputs/ for inspection",
+  "digests": [
+   "7f67d6b8395a13aebc076a2ae3f1d64800842ab7b155e245d56e3b3b6bc7f2c6",
+   "fa6d184a875695dbf888ef7f5522c5444e4562cb6f3ea5aff0e5c1028da76ed3"
+  ]
+ }
+}
