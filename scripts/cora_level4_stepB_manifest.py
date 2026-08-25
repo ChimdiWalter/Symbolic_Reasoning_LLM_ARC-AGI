@@ -160,6 +160,8 @@ def main() -> int:
             "neutrality": gates["neutrality"]["checks"],
             "determinism": gates["determinism"]["identical"],
             "determinism_deadline_hits": gates["determinism"]["deadline_hits_in_both_runs"],
+            "checkpoint_resume": gates["checkpoint_resume"]["passed"],
+            "checkpoint_resume_checks": gates["checkpoint_resume"]["checks"],
         },
         "enumeration_bounds": dict(CA.BOUNDS),
         "resolution_policy": ("exhaustive after witness-fingerprint deduplication: "

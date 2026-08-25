@@ -82,6 +82,9 @@ PATH_WHITELIST = (
     "_candidates.json", "_k2_proposal_units.jsonl", "_k1_searches.jsonl",
     "_proposals.jsonl", "_resolution.jsonl", "_selection.json",
     "_summary.json", "_timing.json", "_output_hash.txt",
+    # crash-recovery journal: header-pinned, never hashed, deleted at
+    # completion, same no-inspection discipline as the outputs
+    "_journal.jsonl",
 )
 FORBIDDEN_PATH_PARTS = ("data/", "firewall", "arc-agi", "challenges",
                         "solutions", "withheld", "seal")
@@ -108,9 +111,15 @@ EARLY_STOP_EXEMPT = {
     ("cora_level4_stepB_run.py", "_env_with"): "lane dispatch",
     ("cora_level4_stepB_run.py", "_param_options"): "slot iteration",
     ("cora_level4_stepB_run.py", "main"):
-        "returns only on pin/manifest drift before the run starts; the "
+        "returns only on pin/manifest drift before the run starts, or on "
+        "the gate-only --stop-after-units checkpoint stop (which drops no "
+        "work: every finished unit is journaled and a rerun resumes); the "
         "cluster, unit and candidate loops contain no break (checked "
         "separately by rule 2b)",
+    ("cora_level4_stepB_run.py", "_journal_load"):
+        "a torn FINAL journal line (crash between write and fsync) is "
+        "skipped and that unit recomputed; an invalid line anywhere else "
+        "aborts; results are never dropped or filtered",
 }
 
 

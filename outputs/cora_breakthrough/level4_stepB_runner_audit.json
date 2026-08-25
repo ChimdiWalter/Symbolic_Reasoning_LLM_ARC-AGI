@@ -9,7 +9,7 @@
  "audited_files_sha256": [
   {
    "path": "scripts/cora_level4_stepB_run.py",
-   "sha256": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7",
+   "sha256": "c853f7989d1cb2b431e5e80ee917984d4c691866a7bcb7a4992c7ce30c2f1b02",
    "mechanism": true
   },
   {
@@ -19,12 +19,12 @@
   },
   {
    "path": "scripts/cora_level4_stepB_gates.py",
-   "sha256": "6478314612aa8322b7a7a68e25a309eb3a5fc12113d7c7d01b95e0582ab612f3",
+   "sha256": "6f35470d88c4ddbdfa995d1d5312b802cc7c051ef20f037661f2694fbb7ad8b7",
    "mechanism": false
   },
   {
    "path": "scripts/cora_level4_stepB_manifest.py",
-   "sha256": "4d77f2f743f082a05951165eaa1333ebbd5d886e85bdd89ee1cd6d8a2c5a07f9",
+   "sha256": "07ce7d16afa8d7c1032cacd979547eab8b8f0a5111697df61afb263dbb1008ed",
    "mechanism": false
   }
  ],
@@ -104,7 +104,8 @@
    "_selection.json",
    "_summary.json",
    "_timing.json",
-   "_output_hash.txt"
+   "_output_hash.txt",
+   "_journal.jsonl"
   ],
   "forbidden_path_parts": [
    "data/",
@@ -160,7 +161,12 @@
    {
     "file": "cora_level4_stepB_run.py",
     "function": "main",
-    "reason": "returns only on pin/manifest drift before the run starts; the cluster, unit and candidate loops contain no break (checked separately by rule 2b)"
+    "reason": "returns only on pin/manifest drift before the run starts, or on the gate-only --stop-after-units checkpoint stop (which drops no work: every finished unit is journaled and a rerun resumes); the cluster, unit and candidate loops contain no break (checked separately by rule 2b)"
+   },
+   {
+    "file": "cora_level4_stepB_run.py",
+    "function": "_journal_load",
+    "reason": "a torn FINAL journal line (crash between write and fsync) is skipped and that unit recomputed; an invalid line anywhere else aborts; results are never dropped or filtered"
    }
   ],
   "lexeme_exemptions": [
@@ -199,28 +205,35 @@
  "structural_findings": [
   {
    "file": "cora_level4_stepB_run.py",
-   "line": 298,
+   "line": 316,
    "kind": "EARLY_STOP",
    "detail": "Break in _value_classes",
    "level": "EXEMPT"
   },
   {
    "file": "cora_level4_stepB_run.py",
-   "line": 350,
+   "line": 368,
    "kind": "EARLY_STOP",
    "detail": "Break in propose_k2",
    "level": "EXEMPT"
   },
   {
    "file": "cora_level4_stepB_run.py",
-   "line": 352,
+   "line": 370,
    "kind": "EARLY_STOP",
    "detail": "Break in propose_k2",
    "level": "EXEMPT"
   },
   {
    "file": "cora_level4_stepB_run.py",
-   "line": 96,
+   "line": 471,
+   "kind": "EARLY_STOP",
+   "detail": "Break in _journal_load",
+   "level": "EXEMPT"
+  },
+  {
+   "file": "cora_level4_stepB_run.py",
+   "line": 114,
    "kind": "SEMANTIC_LEXEME",
    "detail": "'cora_level4_stepA_extract.py' contains a hashed forbidden lexeme",
    "level": "EXEMPT"

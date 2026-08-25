@@ -11936,3 +11936,87 @@ now IMMUTABLE.
 STOPPED FOR REVIEW, as directed. Items 2/3 (runner leak audit -> run manifest -> synthetic
 gates -> the single 62-cluster run with no early stop -> pin before inspection) await the
 user's go-ahead. E_transfer, Promotion, the Lockbox and the sealed expectation remain closed.
+
+## 2026-08-24 — STEP-B ITEM 2: RUNNER BUILT/AUDITED, GATES PASSED, MANIFEST FROZEN, REAL RUN LAUNCHED, REBOOT, RELAUNCHED CLEAN
+
+### Runner + audit (2026-08-23)
+level4_stepB/candidates.py (uniform interface-directed enumerator; K2 = 70 inventory
+instances + registry expression formers, K1 = frozen registry paired with the 31 lattice
+learners by structural slot-type lookup; bounds frozen max_depth 4 / per_type_cap 4000,
+0 dropped; 4784 candidates total: K2 816, K1 3968) and
+scripts/cora_level4_stepB_run.py (pins verified first; byte-identical regeneration of
+pinned artifacts required; PROPOSAL/RESOLUTION/SELECTION per the frozen design; dedup
+before certification per witness-equivalence-class representative, least MDL then id;
+NO per-source cap — user directive: parallelise, never censor the tail).
+scripts/cora_level4_stepB_runner_audit.py VERDICT PASS (2 declared exemptions);
+package audit PASS; tests/test_level4_stepB_item2.py 9/9.
+Two real bugs found and fixed by tests/gates: (1) worker init built the base env after
+installing the substrate; (2) install() context manager held in a local was collected and
+restored the bare 11-production registry in workers (K2 never proposed) — now kept alive
+in _STATE.
+
+### Gates (final, cap-free runner)
+Run #2 (capped, superseded) and diagnostic run #3 (predates identity fields, filed
+DIAGNOSTIC_ONLY, never citable). FINAL gates finished 2026-08-24 07:58: ALL PASSED —
+protocol 13/13, LOO fidelity 3/3 identical, neutrality 4/4, determinism masked-identical
+(49 deadline hits, differing []). Determinism boundary per Step A: byte identity OR
+identity after masking records downstream of deadline-hit searches in BOTH runs. Timing
+kept out of every hashed file. level4_stepB_gates.json records tested_executables
+(runner 70bfe1be..., candidates b43d1c8c...) == files on disk.
+
+### Manifest + checkpoint
+level4_stepB_run_manifest.json frozen 09:47, sha256
+2beb5069de5c34f1b3ff10c0a0ff04c7aedd9b955d4050f7cf45d74d4dad943f; writer verified
+current == gates-tested == audit-audited plus design 28cc8734 / item-1 ca695dfa /
+Step A 2a14610c / A.1 c6a255ae / blind-runtime pins. Git checkpoint "CORA Level 4:
+freeze Step B invention run" = last repo state before any real semantic proposals exist.
+
+### Real run, reboot, relaunch
+Run 1 launched 09:56 (--workers 20 --require-manifest), healthy (62 clusters /
+2 interfaces / frozen inputs verified / 4784 candidates). Planned machine reboot
+~12:00+ killed it after ~2 h — SAFE by design: the runner writes outputs only at the
+end, so nothing was on disk; all frozen inputs survived. Post-reboot (~13:00): verified
+no live runner and no level4_stepB_output_hash.txt, then
+scripts/restart_stepB_after_reboot.sh relaunched (pid 8088, same flags, log
+logs/level4_stepB_run.log); header re-verified frozen inputs True. Persistent watchdog
+re-attached (5-min poll: "STEP B FROZEN" / runner death / error signature). Rerun is
+scientifically clean modulo the accepted deadline-hit masking boundary; only cost was
+the lost compute.
+
+### State at the close of this entry
+REAL RUN IN FLIGHT (relaunch), expected hours. Standing order unchanged:
+run -> write -> hash -> pin -> ONLY THEN inspect. Monitoring quantitative only.
+NEW_SEMANTIC_PRODUCTION = K2 lane label only; novelty is decided later by the separation
+certificate against K_L4*. E_transfer, Promotion, the Lockbox and the sealed expectation
+remain closed.
+
+## 2026-08-25: checkpointing retrofit (user directive), run restarted
+The relaunched run's first progress line ("propose K2 25/497 54657s") projected the
+uncapped protocol at WEEKS of wall-clock, not hours; a reboot would have lost everything
+(no partial artifacts by design). User first accepted "let it run", then directed
+"implement checkpointing". Old run killed cleanly at ~22.8 h (nothing on disk).
+
+IMPLEMENTATION CORRECTION (proposal/resolution/selection semantics untouched):
+- runner: append-only fsynced journal <tag>_journal.jsonl; header pins runner sha,
+  manifest sha and every input file sha (mismatch ABORTS); one line per completed unit
+  keyed (phase, sha256(canonical(unit))); a restart replays journaled results
+  byte-for-byte (same canonical() serialisation as the hashed outputs) and computes only
+  missing units; a torn FINAL line (crash between write and fsync) is skipped and that
+  unit recomputed, any other invalid line aborts; journal is NOT hashed, DELETED at
+  STEP B FROZEN, and holds proposal records mid-run so it inherits the no-inspection
+  discipline. Gate-only --stop-after-units N (default 0 = inert) exits 3 after N newly
+  journaled units, dropping no work.
+- gates: new gate 5 checkpoint-resume — stop a fixture run after 5 units (exit 3,
+  journal persists, NO outputs), resume, complete, journal removed, outputs
+  masked-identical to the uninterrupted reference run (same deadline-hit boundary as
+  gate 4); ckpt* fixture outputs kept in level4_stepB_gate_outputs/.
+- manifest writer: refuses unless gates["checkpoint_resume"] passed.
+- audit: _journal.jsonl whitelisted; torn-final-line break in _journal_load a declared
+  exemption. Unit tests 16/16 (7 new journal tests). Runner audit VERDICT PASS (0 fails,
+  5 declared exemptions). Old passed gates log archived as
+  logs/level4_stepB_gates_v1_prejournal.log.
+
+Sequence from here (unchanged discipline): full gates rerun (IN FLIGHT) -> manifest
+rewrite + pin -> git checkpoint -> restart script update -> single relaunch
+--workers 20 --require-manifest -> run -> write -> hash -> pin -> ONLY THEN inspect.
+After relaunch a crash/reboot costs only the units in flight.

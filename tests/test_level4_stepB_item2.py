@@ -153,6 +153,96 @@ def test_runner_audit_passes():
     assert audit.main(write=False) == 0
 
 
+HEADER = {"tag": "t", "runner_sha256": "r" * 64, "manifest_sha256": None,
+          "inputs_are_frozen": False, "records_sha256": "a" * 64,
+          "clusters_sha256": "b" * 64, "corpus_sha256": "c" * 64}
+
+
+def test_journal_roundtrip_and_replay(tmp_path):
+    path = tmp_path / "t_journal.jsonl"
+    j = RUN._Journal(path, HEADER)
+    key = RUN._Journal.key("propose K2", {"cluster_id": "C001",
+                                          "source_token": "s1"})
+    result = {"found": True, "n": 3, "xs": [1, 2.5, "z"], "sub": {"k": None}}
+    j.append(key, result)
+    j.handle.close()
+    j2 = RUN._Journal(path, HEADER)
+    assert j2.cache[key] == result
+    #  the replayed result must serialise to the SAME bytes as the fresh one
+    assert RUN.canonical(j2.cache[key]) == RUN.canonical(result)
+    j2.handle.close()
+
+
+def test_journal_key_distinguishes_units_and_phases():
+    u1 = {"cluster_id": "C001", "source_token": "s1"}
+    u2 = {"cluster_id": "C001", "source_token": "s2"}
+    assert RUN._Journal.key("propose K2", u1) != RUN._Journal.key("propose K2", u2)
+    assert RUN._Journal.key("propose K2", u1) != RUN._Journal.key("resolve", u1)
+    assert RUN._Journal.key("propose K2", u1) == RUN._Journal.key("propose K2",
+                                                                  dict(u1))
+
+
+def test_journal_header_mismatch_aborts(tmp_path):
+    path = tmp_path / "t_journal.jsonl"
+    RUN._Journal(path, HEADER).handle.close()
+    other = dict(HEADER, runner_sha256="x" * 64)
+    with pytest.raises(SystemExit):
+        RUN._Journal(path, other)
+
+
+def test_journal_torn_final_line_is_skipped(tmp_path):
+    path = tmp_path / "t_journal.jsonl"
+    j = RUN._Journal(path, HEADER)
+    k1 = RUN._Journal.key("propose K1", {"learner_id": "L", "source_token": "s"})
+    k2 = RUN._Journal.key("propose K1", {"learner_id": "L", "source_token": "u"})
+    j.append(k1, {"found": False})
+    j.append(k2, {"found": True})
+    j.handle.close()
+    with path.open("a") as handle:
+        handle.write('{"phase": "propose K1", "unit_sha256": "dead')  # torn
+    j2 = RUN._Journal(path, HEADER)
+    assert j2.cache[k1] == {"found": False}
+    assert j2.cache[k2] == {"found": True}
+    assert len(j2.cache) == 2
+    j2.handle.close()
+
+
+def test_journal_corrupt_middle_line_aborts(tmp_path):
+    path = tmp_path / "t_journal.jsonl"
+    j = RUN._Journal(path, HEADER)
+    j.append(RUN._Journal.key("resolve", {"candidate_id": "K", "source_token": "s"}),
+             {"certified": False})
+    j.handle.close()
+    text = path.read_text().splitlines()
+    path.write_text(text[0] + "\n" + "NOT JSON\n" + text[1] + "\n")
+    with pytest.raises(SystemExit):
+        RUN._Journal(path, HEADER)
+
+
+def test_journal_stop_after_units(tmp_path):
+    path = tmp_path / "t_journal.jsonl"
+    j = RUN._Journal(path, HEADER, stop_after=2)
+    j.append(RUN._Journal.key("resolve", {"candidate_id": "A",
+                                          "source_token": "s"}), {"n": 1})
+    with pytest.raises(RUN._CheckpointStop):
+        j.append(RUN._Journal.key("resolve", {"candidate_id": "B",
+                                              "source_token": "s"}), {"n": 2})
+    j.handle.close()
+    #  BOTH units were journaled before the stop: nothing is dropped
+    j2 = RUN._Journal(path, HEADER)
+    assert len(j2.cache) == 2
+    j2.handle.close()
+
+
+def test_journal_finish_removes_the_file(tmp_path):
+    path = tmp_path / "t_journal.jsonl"
+    j = RUN._Journal(path, HEADER)
+    j.append(RUN._Journal.key("resolve", {"candidate_id": "A",
+                                          "source_token": "s"}), {"n": 1})
+    j.finish()
+    assert not path.exists()
+
+
 def test_runner_audit_negative_controls(tmp_path):
     audit = _load("runner_audit", ROOT / "scripts" / "cora_level4_stepB_runner_audit.py")
     item1 = _load("stepB_audit", ROOT / "scripts" / "cora_level4_stepB_audit.py")

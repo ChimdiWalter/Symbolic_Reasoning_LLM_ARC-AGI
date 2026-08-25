@@ -23,6 +23,11 @@ No pinned cluster, record or corpus file is read.
                   hit the frozen deadline, identical after masking every
                   record downstream of that search in both runs; masked
                   work is counted and reported, never hidden
+  5 checkpoint    a run stopped mid-phase (gate-only --stop-after-units)
+                  leaves its journal and NO outputs; rerunning resumes
+                  from the journal, completes, removes the journal, and
+                  the outputs equal the uninterrupted reference run's
+                  under the same deadline-hit masking as gate 4
 
 This script is a GATE. Its record is an input to the run manifest, never
 to the runner.
@@ -174,17 +179,20 @@ def run_step_a(corpus_path: Path, workdir: Path, tag: str, workers: int) -> None
 
 
 def run_step_b(corpus_path: Path, workdir: Path, a_tag: str, tag: str,
-               workers: int) -> dict:
+               workers: int, extra: tuple = (), expect: tuple = (0,),
+               load: bool = True) -> dict:
     result = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "cora_level4_stepB_run.py"),
          "--corpus", str(corpus_path), "--outdir", str(workdir), "--tag", tag,
          "--records", str(workdir / f"{a_tag}_frontier_records.jsonl"),
          "--clusters", str(workdir / f"{a_tag}_clusters.json"),
-         "--workers", str(workers)],
+         "--workers", str(workers), *extra],
         capture_output=True, text=True, cwd=str(ROOT))
-    if result.returncode != 0:
+    if result.returncode not in expect:
         raise SystemExit(f"Step-B runner failed:\n{result.stdout}\n{result.stderr}")
-    out = {"stdout": result.stdout}
+    out = {"stdout": result.stdout, "returncode": result.returncode}
+    if not load:
+        return out
     for name in ("candidates", "selection", "summary"):
         out[name] = json.loads((workdir / f"{tag}_{name}.json").read_text())
     for name in ("proposals", "resolution", "k1_searches"):
@@ -383,6 +391,46 @@ def gate_determinism(workdir: Path, corpus_path: Path, a_tag: str,
             "digests": digests}
 
 
+def gate_checkpoint_resume(workdir: Path, corpus_path: Path, a_tag: str,
+                           workers: int) -> dict:
+    """A run stopped mid-phase must resume from its journal to the same
+    outputs as an uninterrupted run (masked by the same deadline-hit
+    boundary the determinism gate accepts), and the journal must persist
+    at the stop and be removed at completion."""
+    stopped = run_step_b(corpus_path, workdir, a_tag, "ckpt", workers,
+                         extra=("--stop-after-units", "5"), expect=(3,),
+                         load=False)
+    journal = workdir / "ckpt_journal.jsonl"
+    checks = {}
+    checks["stop_flag_exits_with_code_3"] = stopped["returncode"] == 3
+    checks["stop_message_printed"] = "CHECKPOINT STOP" in stopped["stdout"]
+    checks["journal_persists_at_stop"] = journal.exists()
+    checks["journal_holds_header_plus_5_units"] = (
+        journal.exists() and len(journal.read_text().splitlines()) == 6)
+    checks["no_outputs_written_at_stop"] = not any(
+        (workdir / f"ckpt_{n}").exists() for n in
+        ("output_hash.txt", "summary.json", "selection.json"))
+    resumed = run_step_b(corpus_path, workdir, a_tag, "ckpt", workers)
+    checks["resume_replays_journaled_units"] = (
+        "replayed from journal" in resumed["stdout"])
+    checks["resume_completes"] = "STEP B FROZEN" in resumed["stdout"]
+    checks["journal_removed_at_completion"] = not journal.exists()
+    compare = masked_compare(workdir, "deta", "ckpt")
+    checks["resumed_outputs_identical_masked"] = compare["identical_masked"]
+    keep = OUT / "level4_stepB_gate_outputs"
+    keep.mkdir(exist_ok=True)
+    for path in sorted(workdir.glob("ckpt*")):
+        (keep / path.name).write_bytes(path.read_bytes())
+    return {"gate": "a stopped run resumes from its journal to the same outputs",
+            "passed": all(checks.values()), "checks": checks,
+            "identical_full": compare["identical_full"],
+            "comparison": compare,
+            "note": ("run 1 stops after 5 journaled units (exit 3); run 2 "
+                     "resumes and completes; outputs are compared against "
+                     "the uninterrupted reference run under the same "
+                     "deadline-hit masking as the determinism gate")}
+
+
 def tested_executables() -> dict:
     """SHA-256 of exactly what this gate run exercised, recorded so the
     manifest can prove the gates apply to the executable about to run."""
@@ -428,6 +476,12 @@ def main() -> int:
               f"deadline hits {determinism['deadline_hits_in_both_runs']}  "
               f"differing {determinism['comparison']['files_differing_after_mask']}")
 
+        print("gate 5: checkpoint resume (stopped Step-B run + resumed run)")
+        sys.stdout.flush()
+        checkpoint = gate_checkpoint_resume(workdir, corpus_path, "syn", workers)
+        for name, value in checkpoint["checks"].items():
+            print(f"  {'PASS' if value else 'FAIL'}  {name}")
+
     print("gate 2: LOO fidelity")
     sys.stdout.flush()
     loo = gate_loo_fidelity(manifest)
@@ -442,9 +496,11 @@ def main() -> int:
     report = {"gate": "Step-B pre-run gates",
               "tested_executables": tested_executables(),
               "passed": all(g["passed"] for g in
-                            (protocol, loo, neutrality, determinism)),
+                            (protocol, loo, neutrality, determinism,
+                             checkpoint)),
               "protocol": protocol, "loo_fidelity": loo,
-              "neutrality": neutrality, "determinism": determinism}
+              "neutrality": neutrality, "determinism": determinism,
+              "checkpoint_resume": checkpoint}
     (OUT / "level4_stepB_gates.json").write_text(json.dumps(report, indent=1))
     print()
     print("ALL GATES PASSED" if report["passed"] else "GATES FAILED")

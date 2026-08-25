@@ -57,6 +57,23 @@ of every file pinned by this runner at completion, before inspection.
 Byte-determinism is claimable only for searches that finish inside the
 frozen budget; every search records a deadline flag (timing itself is
 kept out of every hashed file).
+
+CHECKPOINT JOURNAL: every completed unit's result is appended, fsynced,
+to <tag>_journal.jsonl as it finishes, keyed by (phase, SHA-256 of the
+unit). A restarted run REPLAYS journaled results byte-for-byte (they are
+serialised exactly as the hashed outputs are) and computes only the
+missing units, so the final outputs are identical to an uninterrupted
+run's, modulo the same deadline-hit masking boundary the determinism
+gate already accepts. The journal's header pins the runner's own hash,
+the run manifest hash and every input file hash; a journal written by
+any other configuration ABORTS the run rather than being silently mixed
+in. The journal is NOT part of the output hash, is DELETED when the run
+completes, and — because it holds proposal records mid-run — falls under
+the same discipline as the outputs: never inspected before the pin.
+--stop-after-units N (gate use only; default 0 = never) stops the run
+with exit code 3 after N newly journaled units so the resume path can be
+gate-tested; it drops no work, since unfinished units simply run on
+resume.
 """
 from __future__ import annotations
 
@@ -65,6 +82,7 @@ import hashlib
 import importlib.util
 import json
 import multiprocessing as mp
+import os
 import sys
 import time
 from pathlib import Path
@@ -415,20 +433,115 @@ def resolve(unit: dict) -> dict:
 
 
 # --------------------------------------------------------------------------
+# the checkpoint journal
+# --------------------------------------------------------------------------
+
+class _CheckpointStop(Exception):
+    """--stop-after-units reached (gate use only); no work is dropped."""
+
+
+def _journal_load(path: Path, header: dict):
+    """Parse an existing journal; None if there is none.
+
+    The header must match EXACTLY (runner hash, manifest hash, input file
+    hashes): a journal from any other configuration aborts the run. A torn
+    FINAL line (a crash between write and fsync) is skipped — that unit is
+    simply recomputed; an invalid line anywhere else is corruption and
+    aborts.
+    """
+    if not path.exists():
+        return None
+    lines = path.read_text().splitlines()
+    if not lines:
+        return None
+    try:
+        first = json.loads(lines[0])
+    except ValueError:
+        first = None
+    if not isinstance(first, dict) or first.get("journal_header") != header:
+        print(f"ABORT: journal {path.name} was written by a different "
+              "configuration (header mismatch); delete it to start over")
+        raise SystemExit(1)
+    cache = {}
+    for index, line in enumerate(lines[1:], start=2):
+        try:
+            row = json.loads(line)
+        except ValueError:
+            if index == len(lines):
+                break                       # torn final write from a crash
+            print(f"ABORT: corrupt journal line {index} in {path.name}")
+            raise SystemExit(1)
+        cache[(row["phase"], row["unit_sha256"])] = row["result"]
+    return cache
+
+
+class _Journal:
+    """Append-only, fsynced, per-unit result journal (see module docstring)."""
+
+    def __init__(self, path: Path, header: dict, stop_after: int = 0):
+        self.path = path
+        self.stop_after = stop_after
+        self.new = 0
+        loaded = _journal_load(path, header)
+        self.cache = {} if loaded is None else loaded
+        self.handle = path.open("a")
+        if loaded is None:
+            self.handle.write(canonical({"journal_header": header}) + "\n")
+            self.handle.flush()
+            os.fsync(self.handle.fileno())
+
+    @staticmethod
+    def key(label: str, unit: dict) -> tuple:
+        return (label, hashlib.sha256(canonical(unit).encode()).hexdigest())
+
+    def append(self, key: tuple, result: dict) -> None:
+        self.handle.write(canonical({"phase": key[0], "unit_sha256": key[1],
+                                     "result": result}) + "\n")
+        self.handle.flush()
+        os.fsync(self.handle.fileno())
+        self.cache[key] = result
+        self.new += 1
+        if self.stop_after and self.new >= self.stop_after:
+            raise _CheckpointStop(self.new)
+
+    def finish(self) -> None:
+        """The run is complete and its outputs are hashed: remove the journal."""
+        self.handle.close()
+        self.path.unlink()
+
+
+# --------------------------------------------------------------------------
 # the run
 # --------------------------------------------------------------------------
 
-def _run(pool, fn, units, label, started):
-    out = []
-    if pool is None:
-        for done, unit in enumerate(units, start=1):
-            out.append(fn(unit))
-            _progress(label, done, len(units), started)
-    else:
-        for done, result in enumerate(
-                pool.imap_unordered(fn, units, chunksize=1), start=1):
-            out.append(result)
-            _progress(label, done, len(units), started)
+_PHASE_FN = {"propose K2": propose_k2, "propose K1": propose_k1,
+             "resolve": resolve}
+
+
+def _unit_call(args):
+    label, key, unit = args
+    return key, _PHASE_FN[label](unit)
+
+
+def _run(pool, label, units, started, journal):
+    out, pending = [], []
+    for unit in units:
+        key = journal.key(label, unit)
+        if key in journal.cache:
+            out.append(journal.cache[key])
+        else:
+            pending.append((label, key, unit))
+    if out:
+        print(f"  {label:12} {len(out)}/{len(units)} replayed from journal")
+        sys.stdout.flush()
+    done = len(out)
+    iterator = (map(_unit_call, pending) if pool is None else
+                pool.imap_unordered(_unit_call, pending, chunksize=1))
+    for key, result in iterator:
+        journal.append(key, result)
+        out.append(result)
+        done += 1
+        _progress(label, done, len(units), started)
     return out
 
 
@@ -448,6 +561,9 @@ def main() -> int:
     parser.add_argument("--tag", default="level4_stepB")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--require-manifest", action="store_true")
+    parser.add_argument("--stop-after-units", type=int, default=0,
+                        help="gate use only: exit 3 after N newly journaled "
+                             "units (0 = never); drops no work")
     args = parser.parse_args()
 
     frozen_inputs = (Path(args.records).resolve() == (OUT / STEP_A_FILES[0]).resolve()
@@ -491,6 +607,19 @@ def main() -> int:
     print(f"workers                   {args.workers}")
     sys.stdout.flush()
     started = time.monotonic()
+
+    #  the journal header pins everything a replayed result depends on;
+    #  workers and --stop-after-units are deliberately NOT in it (neither
+    #  affects any result beyond the accepted deadline-hit boundary)
+    journal = _Journal(Path(args.outdir) / f"{args.tag}_journal.jsonl",
+                       {"tag": args.tag,
+                        "runner_sha256": sha(Path(__file__).resolve()),
+                        "manifest_sha256": manifest_hash,
+                        "inputs_are_frozen": frozen_inputs,
+                        "records_sha256": sha(Path(args.records)),
+                        "clusters_sha256": sha(Path(args.clusters)),
+                        "corpus_sha256": sha(Path(args.corpus))},
+                       args.stop_after_units)
 
     # -- candidates per interface, fingerprinted over the frozen witnesses --
     types, instances = I.build()
@@ -551,46 +680,59 @@ def main() -> int:
         _init_worker(manifest, corpus, interfaces)
 
     # -- proposal ------------------------------------------------------------
-    k2_results = _run(pool, propose_k2, k2_units, "propose K2", started)
-    k2_results.sort(key=lambda r: (r["cluster_id"], r["source_token"]))
-    k1_results = _run(pool, propose_k1, k1_units, "propose K1", started)
-    k1_results.sort(key=lambda r: (r["learner_id"], r["source_token"]))
+    try:
+        k2_results = _run(pool, "propose K2", k2_units, started, journal)
+        k2_results.sort(key=lambda r: (r["cluster_id"], r["source_token"]))
+        k1_results = _run(pool, "propose K1", k1_units, started, journal)
+        k1_results.sort(key=lambda r: (r["learner_id"], r["source_token"]))
 
-    proposals = []
-    for r in k2_results:
-        proposals.extend(r["hits"])
-    k1_found = {(r["learner_id"], r["source_token"]) for r in k1_results if r["found"]}
-    for c in clusters:
-        cand_ids = by_interface[tuple(c["interface"])]
-        for cand_id in cand_ids:
-            rec = by_id[cand_id]
-            if rec["lane"] != "K1":
-                continue
-            for token in grouped[c["cluster_id"]]:
-                if (rec["learner"], token) in k1_found:
-                    proposals.append({"candidate_id": cand_id,
-                                      "cluster_id": c["cluster_id"],
-                                      "source_token": token, "lane": "K1"})
-    proposals.sort(key=lambda p: (p["cluster_id"], p["candidate_id"],
-                                  p["source_token"]))
-    print(f"proposals                 {len(proposals)}  "
-          f"K2 {sum(p['lane'] == 'K2' for p in proposals)}  "
-          f"K1 {sum(p['lane'] == 'K1' for p in proposals)}")
-    sys.stdout.flush()
+        proposals = []
+        for r in k2_results:
+            proposals.extend(r["hits"])
+        k1_found = {(r["learner_id"], r["source_token"])
+                    for r in k1_results if r["found"]}
+        for c in clusters:
+            cand_ids = by_interface[tuple(c["interface"])]
+            for cand_id in cand_ids:
+                rec = by_id[cand_id]
+                if rec["lane"] != "K1":
+                    continue
+                for token in grouped[c["cluster_id"]]:
+                    if (rec["learner"], token) in k1_found:
+                        proposals.append({"candidate_id": cand_id,
+                                          "cluster_id": c["cluster_id"],
+                                          "source_token": token, "lane": "K1"})
+        proposals.sort(key=lambda p: (p["cluster_id"], p["candidate_id"],
+                                      p["source_token"]))
+        print(f"proposals                 {len(proposals)}  "
+              f"K2 {sum(p['lane'] == 'K2' for p in proposals)}  "
+              f"K1 {sum(p['lane'] == 'K1' for p in proposals)}")
+        sys.stdout.flush()
 
-    # -- resolution, per (class representative, source) ---------------------
-    #    a proposal by any member of a class is resolved through the class's
-    #    representative (equal fingerprint on the frozen witness set). EVERY
-    #    representative of EVERY proposing source is resolved: no cap, no
-    #    early stop; the work is only parallelised
-    by_source = {}
-    for p in proposals:
-        by_source.setdefault(p["source_token"], set()).add(rep_of[p["candidate_id"]])
-    res_units = []
-    for token in sorted(by_source):
-        for rep in sorted(by_source[token], key=lambda i: (by_id[i]["mdl"], i)):
-            res_units.append({"candidate_id": rep, "source_token": token})
-    resolutions = _run(pool, resolve, res_units, "resolve", started)
+        # -- resolution, per (class representative, source) -----------------
+        #    a proposal by any member of a class is resolved through the
+        #    class's representative (equal fingerprint on the frozen witness
+        #    set). EVERY representative of EVERY proposing source is
+        #    resolved: no cap, no early stop; the work is only parallelised
+        by_source = {}
+        for p in proposals:
+            by_source.setdefault(p["source_token"], set()).add(
+                rep_of[p["candidate_id"]])
+        res_units = []
+        for token in sorted(by_source):
+            for rep in sorted(by_source[token],
+                              key=lambda i: (by_id[i]["mdl"], i)):
+                res_units.append({"candidate_id": rep, "source_token": token})
+        resolutions = _run(pool, "resolve", res_units, started, journal)
+    except _CheckpointStop:
+        #  gate use only: the last unit IS journaled before the stop, so a
+        #  rerun without the flag resumes with nothing lost
+        print(f"CHECKPOINT STOP after {journal.new} newly journaled units "
+              "(--stop-after-units); rerun without the flag to resume")
+        if pool is not None:
+            pool.terminate()
+            pool.join()
+        return 3
     resolutions.sort(key=lambda r: (r["candidate_id"], r["source_token"]))
     if pool is not None:
         pool.close()
@@ -724,6 +866,7 @@ def main() -> int:
     output_hash = digest.hexdigest()
     (outdir / f"{args.tag}_output_hash.txt").write_text(
         output_hash + "\n" + "\n".join(lines) + "\n")
+    journal.finish()                # outputs written and hashed: journal gone
 
     print()
     print("STEP B COMPLETE")
