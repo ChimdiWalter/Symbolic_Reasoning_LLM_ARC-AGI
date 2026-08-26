@@ -16,29 +16,41 @@
  "executable_identity": {
   "current": {
    "level4_stepB/candidates.py": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
-   "scripts/cora_level4_stepB_run.py": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7"
+   "scripts/cora_level4_stepB_run.py": "c853f7989d1cb2b431e5e80ee917984d4c691866a7bcb7a4992c7ce30c2f1b02"
   },
   "gates_tested": {
    "tested_candidates_sha256": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
    "tested_design_sha256": "28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d",
    "tested_item1_freeze_sha256": "ca695dfa47aff5cffd85902ce1e6869fe85c0af2fbee2cff845c3eb44fdfbf84",
-   "tested_runner_sha256": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7"
+   "tested_runner_sha256": "c853f7989d1cb2b431e5e80ee917984d4c691866a7bcb7a4992c7ce30c2f1b02"
   },
   "rule": "manifest refused unless current == gates_tested == runner_audit_audited",
   "runner_audit_audited": {
    "level4_stepB/candidates.py": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
-   "scripts/cora_level4_stepB_gates.py": "6478314612aa8322b7a7a68e25a309eb3a5fc12113d7c7d01b95e0582ab612f3",
-   "scripts/cora_level4_stepB_manifest.py": "4d77f2f743f082a05951165eaa1333ebbd5d886e85bdd89ee1cd6d8a2c5a07f9",
-   "scripts/cora_level4_stepB_run.py": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7"
+   "scripts/cora_level4_stepB_gates.py": "6f35470d88c4ddbdfa995d1d5312b802cc7c051ef20f037661f2694fbb7ad8b7",
+   "scripts/cora_level4_stepB_manifest.py": "07ce7d16afa8d7c1032cacd979547eab8b8f0a5111697df61afb263dbb1008ed",
+   "scripts/cora_level4_stepB_run.py": "c853f7989d1cb2b431e5e80ee917984d4c691866a7bcb7a4992c7ce30c2f1b02"
   }
  },
  "frozen_before": "the single run over every eligible Step-A cluster. Nothing pinned here may change once that run starts; the runner refuses to start unless its own hash is the one pinned below",
  "gate_artifacts": {
   "level4_stepB_audit.json": "9ebb2b8ca924d40e70d6405eae96d511ee2a0c15d41de63b5c6bc37390be2d48",
-  "level4_stepB_gates.json": "6f81c61d7890c1b820c87ac36b0d03830358bbb14d081fc6a7bdb46e9e827418",
-  "level4_stepB_runner_audit.json": "be490748daa8f6888cbe1f505fbe9df442a59f148b18d0f696c5e2eb80ebab2f"
+  "level4_stepB_gates.json": "76530a6fbe56e1ad1fb3a01a11e5a8ec420419a00752726b4f4b93e4afc10b7d",
+  "level4_stepB_runner_audit.json": "e2f5773d3108eb08a0dbe38748b5c95e62dc62f487e9e89349eb97bc54d93a35"
  },
  "gate_summary": {
+  "checkpoint_resume": true,
+  "checkpoint_resume_checks": {
+   "journal_holds_header_plus_5_units": true,
+   "journal_persists_at_stop": true,
+   "journal_removed_at_completion": true,
+   "no_outputs_written_at_stop": true,
+   "resume_completes": true,
+   "resume_replays_journaled_units": true,
+   "resumed_outputs_identical_masked": true,
+   "stop_flag_exits_with_code_3": true,
+   "stop_message_printed": true
+  },
   "determinism": false,
   "determinism_deadline_hits": 49,
   "gates_passed": true,
@@ -149,11 +161,11 @@
   "level4_stepB/candidates.py": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
   "scripts/cora_level4_stepA_extract.py": "d76adfaa3c14419e6eb849aafbfa41539ca07a2e2bf7f049c2e0df7c9f1607f9",
   "scripts/cora_level4_stepB_audit.py": "964eb131d0f13f9a4c0a7a67cdd41e4f19b4034cd7fad5a96995c2a4ce5f5900",
-  "scripts/cora_level4_stepB_gates.py": "6478314612aa8322b7a7a68e25a309eb3a5fc12113d7c7d01b95e0582ab612f3",
-  "scripts/cora_level4_stepB_manifest.py": "9c34626d1efee584e1c3b422a0409d39e7e4a924ac7a65b42a9100e2998650a7",
-  "scripts/cora_level4_stepB_run.py": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7",
-  "scripts/cora_level4_stepB_runner_audit.py": "13975003e5b15df05af6bcb5c27d679dc741f2918274b80fd7c2d6cfffe9d367",
-  "tests/test_level4_stepB_item2.py": "8a88534cef92b09e2f3e4e89c18231eee93268a0dc53157b1193963e06627b33"
+  "scripts/cora_level4_stepB_gates.py": "6f35470d88c4ddbdfa995d1d5312b802cc7c051ef20f037661f2694fbb7ad8b7",
+  "scripts/cora_level4_stepB_manifest.py": "07ce7d16afa8d7c1032cacd979547eab8b8f0a5111697df61afb263dbb1008ed",
+  "scripts/cora_level4_stepB_run.py": "c853f7989d1cb2b431e5e80ee917984d4c691866a7bcb7a4992c7ce30c2f1b02",
+  "scripts/cora_level4_stepB_runner_audit.py": "f55ccd7a32f46c47b1ff33bc83031b677060e3fa9afd678c4bec738c91a5b946",
+  "tests/test_level4_stepB_item2.py": "1ad1be500850089678057c4d8f3228f3fc971a17b1515e7263f96084041212e0"
  },
  "witness_bounds": {
   "alphabet": 10,

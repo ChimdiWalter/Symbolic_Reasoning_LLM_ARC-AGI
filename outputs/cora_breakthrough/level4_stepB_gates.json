@@ -1,7 +1,7 @@
 {
  "gate": "Step-B pre-run gates",
  "tested_executables": {
-  "tested_runner_sha256": "70bfe1be3babde61add73b219dab52a628e5fca8cce1c8189cbcefd2062f4de7",
+  "tested_runner_sha256": "c853f7989d1cb2b431e5e80ee917984d4c691866a7bcb7a4992c7ce30c2f1b02",
   "tested_candidates_sha256": "b43d1c8c54cb3cd054512a3c85c1fc5a9cb73addd8af8cc04a976f6256abf9a9",
   "tested_item1_freeze_sha256": "ca695dfa47aff5cffd85902ce1e6869fe85c0af2fbee2cff845c3eb44fdfbf84",
   "tested_design_sha256": "28cc8734330345bf03100da60207957c7de679591978faa650da775c2b26b28d",
@@ -35,7 +35,7 @@
   },
   "proposals": 7365,
   "kept_pairs": 383,
-  "deadline_hits": 25
+  "deadline_hits": 24
  },
  "loo_fidelity": {
   "gate": "the runner's LOO loop equals the frozen function",
@@ -108,8 +108,33 @@
   "deadline_hits_in_both_runs": 49,
   "note": "timing is not hashed; a search that hits the frozen deadline explores a timing-dependent amount, so byte-determinism is required of everything EXCEPT the records downstream of such a search, which are masked in both runs and counted here; this fixture recorded 49 deadline hit(s); synthetic outputs kept in level4_stepB_gate_outputs/ for inspection",
   "digests": [
-   "7f67d6b8395a13aebc076a2ae3f1d64800842ab7b155e245d56e3b3b6bc7f2c6",
-   "fa6d184a875695dbf888ef7f5522c5444e4562cb6f3ea5aff0e5c1028da76ed3"
+   "ef546ce641c88e5b01a1910569c8d105091765236b049eac4b8428f22740b9b8",
+   "709c4faa7186d851401e0b6a78d3f8370e53919d13c49a94c564e08ff9c3eb84"
   ]
+ },
+ "checkpoint_resume": {
+  "gate": "a stopped run resumes from its journal to the same outputs",
+  "passed": true,
+  "checks": {
+   "stop_flag_exits_with_code_3": true,
+   "stop_message_printed": true,
+   "journal_persists_at_stop": true,
+   "journal_holds_header_plus_5_units": true,
+   "no_outputs_written_at_stop": true,
+   "resume_replays_journaled_units": true,
+   "resume_completes": true,
+   "journal_removed_at_completion": true,
+   "resumed_outputs_identical_masked": true
+  },
+  "identical_full": false,
+  "comparison": {
+   "identical_full": false,
+   "identical_masked": true,
+   "files_differing_after_mask": [],
+   "masked_k1_searches": 0,
+   "masked_resolution_pairs": 24,
+   "masked_sources": 3
+  },
+  "note": "run 1 stops after 5 journaled units (exit 3); run 2 resumes and completes; outputs are compared against the uninterrupted reference run under the same deadline-hit masking as the determinism gate"
  }
 }
