@@ -12020,3 +12020,43 @@ Sequence from here (unchanged discipline): full gates rerun (IN FLIGHT) -> manif
 rewrite + pin -> git checkpoint -> restart script update -> single relaunch
 --workers 20 --require-manifest -> run -> write -> hash -> pin -> ONLY THEN inspect.
 After relaunch a crash/reboot costs only the units in flight.
+
+### Gates, re-freeze and relaunch (2026-08-25 afternoon)
+ALL GATES PASSED on the journaled runner: protocol 13/13; determinism masked-identical
+(49 deadline hits, differing []); NEW gate 5 checkpoint-resume 9/9 — a run stopped after
+5 journaled units exits 3, leaves the journal and NO outputs, and the resumed run replays
+those units, completes, removes the journal, and produces outputs masked-identical to the
+uninterrupted reference run; LOO fidelity 3/3 identical; neutrality 4/4.
+tested_executables verified == files on disk (runner c853f798, candidates b43d1c8c).
+
+Manifest re-frozen: 8476b211400f1c3f53b0fbb2db693fbb899dfa90490e7885b8fd9481651703e4.
+Git: 69fe51a (WIP) then 783568d "re-freeze Step B invention run with checkpoint journal" =
+last repository state before any real semantic proposals exist.
+
+Real run relaunched pid 46975 (--workers 20 --require-manifest); header re-verified
+62 clusters / 2 interfaces / frozen inputs True / 4784 candidates; journal live. A crash or
+reboot now costs only the units in flight: scripts/restart_stepB_after_reboot.sh resumes and
+reports how many completed units it will replay. Standing order unchanged: run -> write ->
+hash -> pin -> ONLY THEN inspect; the journal itself holds proposal records and inherits the
+same no-inspection discipline.
+
+### Claim-discipline corrections logged this session (external review)
+- SEALED SCORE: the single artifact-backed number is 185/1000 (v23, 2026-08-19 =
+  unified_harness_v23/results.json total_solved 183 + v23_arbitration 2/2 recovered).
+  "181" is v22 and must not appear as the current score; the paper still says 181 and its
+  refresh stays queued. One number in paper, README, abstract and slides.
+- NOVELTY: do NOT write "no previous system invents concepts from failure" — Popper's
+  learning-from-failures line includes predicate invention (POPPI) and ADVENT (2026)
+  invents and accumulates predicates; DreamCoder/LILO grow libraries from solved programs
+  and DreamCoder has been applied to ARC. The defensible claim is the CONJUNCTION:
+  failure-frontier-triggered typed semantic self-extension in an ARC program-induction
+  system, candidates generated under a frozen blind proposal language, accepted only through
+  complete leave-one-out re-induction, semantically separated from the pre-extension
+  language, and tested for held-out cross-task transfer — with blinded task identity,
+  deterministic all-cluster processing, multi-source certification, causal ablation, and
+  provenance hashing preventing retroactive DSL engineering. A related-work sweep is
+  required before any precedence sentence.
+- FRAMING: two distinct races. Leaderboard (frontier models are far ahead; CORA is not close)
+  and mechanism (autonomous expansion of the reasoning language, certified). The paper's
+  story is the causal trajectory K_t -> failure -> e -> K_{t+1}, new solves, new abstractions,
+  held-out gain, gains destroyed by ablation — not a percentage.
