@@ -12060,3 +12060,13 @@ same no-inspection discipline.
   and mechanism (autonomous expansion of the reasoning language, certified). The paper's
   story is the causal trajectory K_t -> failure -> e -> K_{t+1}, new solves, new abstractions,
   held-out gain, gains destroyed by ablation — not a percentage.
+
+### Checkpoint mechanism validated in production (2026-08-26)
+The machine rebooted 08:57 (kernel 7.0.0-28 -> 7.0.0-30) and killed the Step-B run at ~13 h
+(pid 46975, last log line "propose K2 25/497  46857s"). Under the pre-checkpoint runner this
+would have destroyed the third consecutive multi-hour run. Instead the journal survived with
+25 completed units; scripts/restart_stepB_after_reboot.sh reported "25 completed units will be
+replayed" and relaunched as pid 106593, whose log confirms "propose K2 25/497 replayed from
+journal" — no finished work recomputed. The retrofit paid for itself one day after landing.
+Only the ~20 units in flight at the reboot were lost. Every pin re-verified on the resume
+(--require-manifest, journal header = runner + manifest + input shas).
