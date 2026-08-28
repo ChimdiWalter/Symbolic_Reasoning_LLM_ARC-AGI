@@ -42,8 +42,8 @@ over failure \emph{traces} mined the dominant parameter-divergence family
 and produced a relational spelling that flipped its motivating task to
 certified-and-correct.  We propose the \textbf{Certified Solve Rate (CSR)}
 and its calibration curve as a reporting standard for reasoning benchmarks,
-and release the fully certified corpus: 181/1000 ARC-AGI-2 training tasks
-solved with certificates (18.1\% CSR; 19.5\% measured under Kaggle
+and release the fully certified corpus: 185/1000 ARC-AGI-2 training tasks
+solved with certificates (18.5\% CSR; 19.9\% measured under Kaggle
 best-of-2), including 2 certified generative solves---tasks whose programs
 use machine-discovered content-creating operations---and an honest 0/120 on
 the public evaluation split: coverage collapses out of distribution, and
@@ -178,7 +178,7 @@ test access---the preference order is empirical, not aesthetic.
 Combining E1/E4: certificate class is a calibration curve
 (certified~$\approx 0.95$ $\to$ uncertified-constant~0.09).
 Operationalized as the two-attempt policy: attempt\_1 certified, attempt\_2
-best-uncertified---$+14$ task-outputs on training (19.5\% best-of-2 at the
+best-uncertified---$+14$ task-outputs on training (19.9\% best-of-2 at the
 final engine), i.e.\ the leaderboard cost of certification is measured,
 not argued.
 
@@ -280,9 +280,14 @@ The 3 apparent additional losses were separated by solo arbitration into
 pure 16-worker contention artifacts, leaving 1 measured harm recorded as the
 intervention's price.  The net $+4$ (177 to 181) was achieved with zero new
 vocabulary: the same programs, the same gate, only a different allocation of
-search time across segmentation variants.
-The evaluation-split number is \textbf{unchanged at 0/120}: this
-bought coverage on the training distribution and nothing on the harder one.
+search time across segmentation variants.  A further round---emission-signature
+widening, which lets the ray family reach modes it already had the vocabulary
+for, together with two certified exemplars of the line-periodic and
+two-anchor-path rules---added a second net $+4$ with no losses, sealing the
+final corpus at \textbf{185/1000}.
+The evaluation-split number is \textbf{unchanged at 0/120} across both
+rounds: this bought coverage on the training distribution and nothing on the
+harder one.
 
 \subsection{E10---The system reinvents its own primitives}
 
@@ -511,7 +516,7 @@ MindsAI, NVARC and descendants~\citep{mindsai2024arcprize,
 akyurek2024loo} achieve the strongest ARC-AGI-2 evaluation scores via
 augmentation ensembles and per-task fine-tuning.  These systems report no
 per-task generalization evidence; our framework prices that evidence and
-shows it need not cost much accuracy (19.5\% best-of-2 vs.\ 18.1\%
+shows it need not cost much accuracy (19.9\% best-of-2 vs.\ 18.5\%
 certified-only on training).  Notably, the leave-one-out construction these
 systems use to \emph{generate training data}~\citep{akyurek2024loo} is the
 same construction we use as a \emph{blocking acceptance test}---the two
@@ -559,7 +564,7 @@ framework prices its own extensions the same way it prices solves.
 We propose that reasoning-benchmark results report (certified, best-of-$k$,
 calibration curve) rather than a single accuracy: three numbers that
 together make a solve count falsifiable.  For our final system these are
-(18.1\%, 19.5\%, \{certified~0.95 $\to$ constant~0.09\}).  The gap between
+(18.5\%, 19.9\%, \{certified~0.95 $\to$ constant~0.09\}).  The gap between
 the first two is the measured price of certification; the curve is what a
 consumer of the predictions can actually rely on per confidence class.
 

@@ -35,7 +35,7 @@ Competition: https://kaggle.com/competitions/arc-prize-2026-paper-track
    - Confirm you are submitting to the **Paper Track**, not the ARC-AGI-2 prediction track.
 
 6. **Review Against Rubric Before Submitting**
-   - Accuracy: training 181/1000 (18.1% CSR), eval 0/120 — honestly stated.
+   - Accuracy: training 185/1000 (18.5% CSR), eval 0/120 — honestly stated.
    - Universality: protocol is domain-general; E9 demonstrates on neural learner.
    - Progress: honest map of what works/doesn't; E10 primitive invention.
    - Theory: the falsifiability thesis; three-way triangulation.

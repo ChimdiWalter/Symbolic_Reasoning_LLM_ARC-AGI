@@ -33,8 +33,8 @@ family and produced a relational spelling that flipped its motivating
 task to certified-and-correct. We propose the
 **Certified Solve Rate (CSR)** and its calibration curve as a reporting
 standard for reasoning benchmarks, and release the fully certified corpus:
-181/1000 ARC-AGI-2 training tasks solved with certificates
-(18.1% CSR; 19.5% measured under Kaggle best-of-2), including 2
+185/1000 ARC-AGI-2 training tasks solved with certificates
+(18.5% CSR; 19.9% measured under Kaggle best-of-2), including 2
 certified generative solves — tasks whose programs use
 machine-discovered content-creating operations — and an honest 0/120 on
 the public evaluation split: coverage collapses out of distribution, and
@@ -151,7 +151,7 @@ the preference order is empirical, not aesthetic. [Table 2]
 Combining E1/E4: certificate class is a calibration curve
 (certified ≈0.95 → uncertified-constant 0.09). Operationalized as the
 two-attempt policy: attempt_1 certified, attempt_2 best-uncertified —
-+14 task-outputs on training (19.5% best-of-2 at the final engine), i.e. the leaderboard cost
++14 task-outputs on training (19.9% best-of-2 at the final engine), i.e. the leaderboard cost
 of certification is measured, not argued. [Table 3: the 8-class table]
 
 ### E6 — Self-extension under certificates (operator library)
@@ -245,9 +245,13 @@ apparent additional losses were separated by solo arbitration into pure
 16-worker contention artifacts, leaving 1 measured harm. The net +4
 (177 to 181) was achieved with zero new vocabulary: the same programs, the
 same gate, only a different allocation of search time across segmentation
-variants. The evaluation-split number is
-**unchanged at 0/120**: this bought coverage on the training
-distribution and nothing on the harder one.
+variants. A further round (emission-signature widening, which lets the
+ray family reach modes it already had the vocabulary for, plus two
+certified exemplars of the line-periodic and two-anchor-path rules) added
+a second net +4 with no losses — 0a938d79, 292dd178, 41e4d17e and
+992798f6 — sealing the final corpus at **185/1000**. The evaluation-split
+number is **unchanged at 0/120** across both rounds: this bought coverage
+on the training distribution and nothing on the harder one.
 
 ### E10 — The system reinvents its own primitives
 
@@ -471,7 +475,7 @@ same way.
 achieve the strongest ARC-AGI-2 evaluation scores via augmentation
 ensembles and per-task fine-tuning. These systems report no per-task
 generalization evidence; our framework prices that evidence and shows
-it need not cost much accuracy (19.5% best-of-2 vs 18.1% certified-only
+it need not cost much accuracy (19.9% best-of-2 vs 18.5% certified-only
 on training). Notably, the leave-one-out construction these systems use
 to *generate training data* (Akyürek et al., 2024) is the same
 construction we use as a *blocking acceptance test* — the two uses are
@@ -517,7 +521,7 @@ same way it prices solves.
 **CSR as a reporting standard.** We propose that reasoning-benchmark
 results report (certified, best-of-k, calibration curve) rather than a
 single accuracy: three numbers that together make a solve count
-falsifiable. For our final system these are (18.1%, 19.5%, {certified
+falsifiable. For our final system these are (18.5%, 19.9%, {certified
 0.95 → constant 0.09}). The gap between the first two is the measured
 price of certification; the curve is what a consumer of the predictions
 can actually rely on per confidence class.
@@ -558,9 +562,10 @@ Kaggle notebook (offline, CPU, governed 12 h) included.
 ---
 *Numbers directory: E1/E4 outputs/paper_e1_e4/; E2 outputs/paper_e2/;
 calibration outputs/paper_calibrated_csr.json; E3
-outputs/unified_harness_eval_frozen/; corpus v21
-outputs/unified_harness_v22/ + outputs/v22_arbitration/ (181/1000 sealed =
-176 in-run + 5 solo-arbitrated, trajectory 153→181); E7 miner
+outputs/unified_harness_eval_frozen/; corpus v23
+outputs/unified_harness_v23/ + outputs/v23_arbitration/ (185/1000 sealed =
+183 in-run + 2 solo-arbitrated, trajectory 153→185; the superseded v22
+seal of 181 = 176 + 5 remains in outputs/unified_harness_v22/); E7 miner
 outputs/meta_m2_chains.json + battery outputs/meta_m2_orphan_battery.json
 + task-level registration logs/meta_m3_register*.log + delta-level
 registration logs/meta_m3b_delta_v3.log →

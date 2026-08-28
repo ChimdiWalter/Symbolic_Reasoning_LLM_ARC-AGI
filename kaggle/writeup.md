@@ -29,7 +29,7 @@ A syntactic preference lattice over parameter expressions predicts hidden-test c
 | Induced-map | 0.40 |
 | Constant | 0.09 |
 
-Combined with E1, this yields graduated certificates — calibrated confidence classes rather than a binary verdict. We operationalize this as a two-attempt policy: attempt_1 certified, attempt_2 best-uncertified — measuring a leaderboard cost of certification at +14 task-outputs (19.5% best-of-2 vs 18.1% certified-only).
+Combined with E1, this yields graduated certificates — calibrated confidence classes rather than a binary verdict. We operationalize this as a two-attempt policy: attempt_1 certified, attempt_2 best-uncertified — measuring a leaderboard cost of certification at +14 task-outputs (19.9% best-of-2 vs 18.5% certified-only).
 
 ## Machine-Invented Primitives (E10)
 
@@ -49,7 +49,7 @@ The frozen-model variant: a 1.8M-parameter network at 94% per-cell accuracy pass
 
 ## The Honest Map
 
-181/1000 ARC-AGI-2 training tasks solved with certificates (18.1% CSR). 0/120 on the public evaluation split: coverage collapses out of distribution, and with one gate acceptance there (test-wrong), evaluation-split calibration remains undetermined. Training-split calibration is strong (40/42 correct among certified).
+185/1000 ARC-AGI-2 training tasks solved with certificates (18.5% CSR). 0/120 on the public evaluation split: coverage collapses out of distribution, and with one gate acceptance there (test-wrong), evaluation-split calibration remains undetermined. Training-split calibration is strong (40/42 correct among certified).
 
 The last +4 came from a variant-budget scheduling policy (fold-stable, time-allocation only, zero new vocabulary) that cured a chronically budget-starved task and unlocked 4 others through better search-time allocation, while its one measured harm (a task solving only under the old schedule) is recorded as the intervention's price, alongside the arbitration discipline that separated 3 apparent losses (contention) from the 1 real one.
 

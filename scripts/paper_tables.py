@@ -6,24 +6,25 @@ from collections import Counter
 
 out = {}
 
-# Corpus headline (v22 sealed = in-run 176 + 5 arbitration recoveries = 181)
-RUN = "outputs/unified_harness_v22"
-ARB = "outputs/v22_arbitration"
-v22 = json.load(open(f"{RUN}/results.json"))
-# Merge arbitration results (0ca9ddb6, dc1df850, 5168d44c, 64a7c07e, ccd554ac)
-# NOTE: 868de0fa is NOT in the sealed set — it is the recorded cost of the new flags
+# Corpus headline (v23 sealed = in-run 183 + 2 arbitration recoveries = 185)
+# This is THE sealed number: it must agree with paper, README and slides.
+# Superseded: v22 = 176 in-run + 5 arbitrated = 181.
+RUN = "outputs/unified_harness_v23"
+ARB = "outputs/v23_arbitration"
+run = json.load(open(f"{RUN}/results.json"))
+# Merge arbitration results (dc1df850, ef26cbf6 recovered from contention)
 arb = json.load(open(f"{ARB}/results.json"))
-v22_ids = {r["task_id"] for r in v22["solved"]}
+sealed_ids = {r["task_id"] for r in run["solved"]}
 for r in arb.get("solved", []):
-    if r["task_id"] not in v22_ids:
-        v22["solved"].append(r)
-        v22_ids.add(r["task_id"])
-sealed_count = len(v22_ids)
+    if r["task_id"] not in sealed_ids:
+        run["solved"].append(r)
+        sealed_ids.add(r["task_id"])
+sealed_count = len(sealed_ids)
 # recompute the origin / induced breakdowns over the merged sealed set
-by_origin = dict(Counter(r.get("origin") for r in v22["solved"]))
-n_induced = sum(1 for r in v22["solved"] if r.get("origin_class") == "induced")
-out["corpus"] = {"solved": sealed_count, "total": v22["total_tested"],
-                 "csr": sealed_count / v22["total_tested"],
+by_origin = dict(Counter(r.get("origin") for r in run["solved"]))
+n_induced = sum(1 for r in run["solved"] if r.get("origin_class") == "induced")
+out["corpus"] = {"solved": sealed_count, "total": run["total_tested"],
+                 "csr": sealed_count / run["total_tested"],
                  "by_origin": by_origin,
                  "induced_fraction": n_induced / sealed_count}
 
@@ -58,8 +59,8 @@ for line in open("outputs/unified_harness_v17_emit/progress.jsonl"):
                 if att2[i] is not None):
             a2_correct.add(tid)
 out["e5_best_of_2"] = {"attempt_2_renders": n_renders,
-                       "attempt_2_correct_beyond_certified": len(a2_correct - v22_ids),
-                       "best_of_2": len(v22_ids | a2_correct)}
+                       "attempt_2_correct_beyond_certified": len(a2_correct - sealed_ids),
+                       "best_of_2": len(sealed_ids | a2_correct)}
 
 # program-family census of the certified corpus
 fam = Counter()
