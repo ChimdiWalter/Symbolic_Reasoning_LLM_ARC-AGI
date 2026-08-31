@@ -132,3 +132,24 @@ The strongest eventual paper tells the mechanism story, not a score:
 - Gate failures from here justify implementation corrections restoring the declared
   protocol; they never justify changing the protocol.
 - E_transfer, Promotion, the Lockbox and the sealed expectation remain closed.
+
+---
+
+## Continuation (2026-08-31, additive)
+
+This roadmap is now the FIRST layer of a larger recorded program. Nothing above
+changes; the extensions live in their own documents on branch `cora-tti-dev`:
+
+- docs/CORA_TTI_MASTER_PLAN.md — the two-track directive (science vs competition),
+  CORA-TTI (certified test-time invention), gates C0–C5, timeline to the 2026 ARC Prize.
+- docs/CORA_SEMANTIC_PLASTICITY_THEORY.md — K_global vs K_j,r formal core.
+- docs/CORA_ARCHITECTURE_PLASTICITY_ROADMAP.md — frontier survey + the ten ideas.
+- docs/CORA_PARENT_ARCHITECTURE.md — the unified eleven-idea parent architecture
+  (A_t = (R,K,S,M,W;V)), phases P0–P7, breakthrough bar A–H.
+- docs/CORA_COGNITIVE_PLASTICITY_THEORY.md — three timescales, cognitive credit
+  assignment, rate–distortion.
+- docs/CORA_FUTURE_EXPERIMENT_LADDER.md — Levels 5–9 with falsifiable criteria.
+- docs/CORA_RELATED_WORK_NOVELTY_MATRIX.md — claim-by-claim matrix (UNKNOWNs marked).
+- docs/CORA_DATA_ACCESS_DAG.md — which module may read which split, and when.
+
+The immutability preamble governing the running Step-B experiment applies to all of it.
