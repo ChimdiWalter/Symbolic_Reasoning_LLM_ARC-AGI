@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 #: Packages governed by this isolation contract (extend as TTI modules appear).
-GUARDED_PACKAGES = ["cora_parent"]
+GUARDED_PACKAGES = ["cora_parent", "cora_tti"]
 
 #: Substrings that must never appear in guarded sources (case-insensitive).
 FORBIDDEN_MARKERS = (
