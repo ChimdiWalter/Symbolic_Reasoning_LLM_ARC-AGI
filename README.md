@@ -18,6 +18,12 @@ failures for new capabilities, and subjects every extension: operators,
 generative primitives, even its own research hypotheses: to the same
 falsifiable standard.
 
+**Certified corpus (v23, artifact-backed): 185/1000 ARC-AGI-2 training
+tasks solved with certificates (18.5% CSR; 19.9% under the two-attempt
+policy), and an honest 0/120 on the public evaluation split.** Every
+number regenerates from disk with one script; the paper reports the
+calibration evidence in full.
+
 ## What is new here
 
 1. **Procedure-level certificates.** Solves are accepted by leave-one-out
@@ -96,14 +102,49 @@ Recent rounds:
   to a per-task neural learner (retrain per fold from scratch): 100%
   gated precision, zero false positives, n=37.
 
+## Current research program: can failure grow the language itself?
+
+The evidence ladder above stops where most systems stop: composing and
+re-certifying capabilities a designer already named. The active experiment
+(Level 4, "Step B") asks the next question: **can certified failures cause
+the system to propose new typed semantic productions that were provably
+not expressible in its frozen language?** The run is deliberately strict:
+task identities are blinded behind one-way tokens, the proposal language
+and every input are hash-pinned in a run manifest before launch, every
+eligible failure cluster is processed with no early stop, a candidate is
+kept only when at least two independent sources certify it through full
+leave-one-out re-induction, and nothing is inspected before the output
+hash is recorded. A kept candidate still proves nothing by itself: it must
+then pass a semantic separation test against the frozen language and
+transfer to a held-out split it played no part in creating. A null result
+is a publishable finding about the limits of this kind of invention; the
+protocol forbids patching it after the fact.
+
+The forward roadmap lives on the `cora-tti-dev` branch: certified
+test-time invention (adapting the reasoning language per task at
+inference, then discarding the adaptation), a failure-conditioned
+proposal model trained by operator dropout with family holdouts, a
+semantics-preserving batched executor with differential tests against the
+exact interpreter, and a domain-general meta-extension interface. See
+`docs/CORA_TTI_MASTER_PLAN.md`, `docs/CORA_PARENT_ARCHITECTURE.md` and
+`docs/CORA_FUTURE_EXPERIMENT_LADDER.md` on that branch. Related work in
+library learning and predicate invention (DreamCoder, LILO, POPPI,
+ADVENT) is acknowledged there explicitly; the claim under test is the
+conjunction of blinded failure-triggered proposal, certificate-carrying
+acceptance, semantic separation, and held-out transfer, not any single
+ingredient.
+
 ## Repository map
 | Path | Contents |
 |---|---|
 | `geocat_arc/object_reasoning/` | the certified induction engine (segmentation, correspondence, delta vocabulary, generative programs, derived-pattern + ray modes, generator mining) |
+| `level4_blind_runtime/` | the frozen typed runtime + search used by the blind invention experiment |
+| `level4_stepB/` | the frozen Step-B substrate: generic constructor inventory, learner lattice, witness generator |
+| `docs/` | design documents, frozen experiment designs, roadmaps (see also branch `cora-tti-dev`) |
 | `paper/` | full paper (`DRAFT.md`) + LaTeX build (`latex/main.pdf`, 10 pp) |
 | `kaggle/` | competition package: writeup, cover image, dataset build, submission checklist |
-| `scripts/` | harness runners, diagnosis + trace tooling, paper table generation |
-| `tests/` | per-round regression + certification tests (engine suite 440+) |
+| `scripts/` | harness runners, diagnosis + trace tooling, Step-B runner/gates/audits, paper table generation |
+| `tests/` | per-round regression + certification tests (engine suite 500+) |
 | `RUN_HISTORY.md` | the complete experimental chronology, including every negative result |
 
 ## Reproducing the numbers
