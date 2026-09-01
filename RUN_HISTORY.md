@@ -12070,3 +12070,16 @@ replayed" and relaunched as pid 106593, whose log confirms "propose K2 25/497 re
 journal" — no finished work recomputed. The retrofit paid for itself one day after landing.
 Only the ~20 units in flight at the reboot were lost. Every pin re-verified on the resume
 (--require-manifest, journal header = runner + manifest + input shas).
+
+### CORA-TTI track: execution directive + real-engine baseline underway (2026-09-01)
+(Worktree cora-tti-dev only; the frozen Step-B run untouched, 125/497 + 146 journal units.)
+P2 infrastructure complete on the branch (commits through 82c8677): emulator, TFG +
+real extractor, dropout curriculum, GPN v1, batched executor 5.3x, scheduler, diversity,
+hash-chained ledger, CFL corpus, and the first end-to-end result: 5/12 VERIFIED certified
+reconstructions of withheld known operators (base 0 by construction) - RECONSTRUCTION, not
+invention, and recorded as such. 14-item execution directive filed
+(docs/CORA_TTI_EXECUTION_DIRECTIVE.md, 35dfa5d); blueprint tier-A corrected to
+"synthetically demonstrated / real Step-B result pending". Item 1 in progress:
+FullEngineSolver adapts harness.run_one_task (the sealed-185 engine, v23 chain flags)
+to the emulator; smoke clean (per-task wall 6s-616s; frames fallback adds ~345s to the
+object cap); S_base DEV-60 measurement running -> outputs/tti/dev60_base_v1.json.
