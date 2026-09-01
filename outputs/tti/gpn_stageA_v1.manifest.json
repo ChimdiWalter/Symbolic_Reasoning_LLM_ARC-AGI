@@ -1,0 +1,49 @@
+{
+ "counts": {
+  "family_holdout": 12,
+  "train": 72
+ },
+ "episodes_per_production": 12,
+ "files": {
+  "gpn_stageA_v1.family_holdout.jsonl": "6068642b71b79c1df24065403fd2604da40422f4be12e4fbc5c29cce828481a6",
+  "gpn_stageA_v1.train.jsonl": "2df8406e15b14e0e335f86ed90c3585c8fb7e453c30268f69d59fbe0ecb1594c"
+ },
+ "holdout_families": [
+  "Select"
+ ],
+ "productions": [
+  "ArgMax@Entity",
+  "ArgMin@Entity",
+  "Compose_V1",
+  "Entities",
+  "Key",
+  "Lookup",
+  "Map_V1",
+  "PaintEach",
+  "Partition",
+  "Select",
+  "Unique@Entity"
+ ],
+ "registry_fingerprint": "a841520dbf0af73c567a646895007bc7b81f1c47da2939f55efcc3576a17e968",
+ "search_budget_s": 0.5,
+ "seed": 20260901,
+ "stage": "GPN curriculum Stage A: operator dropout",
+ "under_target": {
+  "ArgMax@Entity": {
+   "attempts": 240,
+   "made": 0
+  },
+  "ArgMin@Entity": {
+   "attempts": 240,
+   "made": 0
+  },
+  "Entities": {
+   "attempts": 240,
+   "made": 0
+  },
+  "Unique@Entity": {
+   "attempts": 240,
+   "made": 0
+  }
+ }
+}
