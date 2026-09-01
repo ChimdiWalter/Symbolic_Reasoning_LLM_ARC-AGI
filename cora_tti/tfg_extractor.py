@@ -87,9 +87,17 @@ def _demo_nodes(pairs) -> tuple[list, list]:
 
 def _mismatch_signature(ast, pairs, env) -> Mapping[str, Any] | None:
     """HOW an executed-not-exact term differs from the target, on the first
-    demonstration where it is defined: wrong shape, or cell disagreement."""
+    demonstration where it is defined: wrong shape, or cell disagreement.
+
+    The observer records the SLOTTED surface AST, and a raw slot inside a
+    higher-order position is outside the oracle's input domain (it raises;
+    see the batched-executor suite) — so evaluation failures here degrade to
+    "undefined" evidence rather than crashing the extraction."""
     for grid_in, grid_out in pairs:
-        rendered = E.evaluate(ast, grid_in, env)
+        try:
+            rendered = E.evaluate(ast, grid_in, env)
+        except Exception:
+            return {"defined": False}
         if rendered is None:
             continue
         if rendered.shape != grid_out.shape:
