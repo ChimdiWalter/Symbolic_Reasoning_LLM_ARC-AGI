@@ -3221,9 +3221,26 @@ def _induce_composed(train_pairs: list[GridPair], config: InductionConfig,
         from .meta_induction import (induce_computed_candidates,
                                      meta_induction_enabled)
         if meta_induction_enabled():
+            # Ephemeral task-local concepts (CORA-TTI): ARC_TTI_CONCEPTS names
+            # a JSON list of ConceptRecord dicts loaded fresh on every call --
+            # including every leave-one-out fold, which therefore re-derives
+            # any concept-guided candidate for itself.  Unset (the default)
+            # this is byte-identical to the pre-TTI behaviour.  Proposal only:
+            # ranking and acceptance below are unchanged.
+            import os as _os
+            _tti_concepts = ()
+            _tti_path = _os.environ.get("ARC_TTI_CONCEPTS", "")
+            if _tti_path:
+                try:
+                    from .concept_registry import ConceptRecord
+                    with open(_tti_path) as _fh:
+                        _tti_concepts = tuple(ConceptRecord.from_dict(d)
+                                              for d in json.load(_fh))
+                except Exception:
+                    _tti_concepts = ()
             computed, _stats = induce_computed_candidates(
                 [(gi.to_numpy(), go.to_numpy()) for gi, go in train_pairs],
-                deadline=deadline)
+                deadline=deadline, concepts=_tti_concepts)
             if computed:
                 meta.events.append("META_COMPUTED_CANDIDATE_FOUND")
                 attempt.programs = rank_candidates(
