@@ -48,7 +48,18 @@
   "Map[FeatureValue,Colour]"
  ],
  "interface_holdout": "INFEASIBLE_V1_SINGLE_INTERFACE (reported shortfall)",
- "key_features": [],
+ "key_features": [
+  "sole_neighbour_colour",
+  "touches_border",
+  "is_rect",
+  "is_square",
+  "area",
+  "hw",
+  "neighbour_colours",
+  "shape",
+  "row_band",
+  "col_band"
+ ],
  "model": {
   "family": "TFG encoder + interface embedding + grammar-constrained sequential decoder",
   "hidden_max": 256,
@@ -70,8 +81,19 @@
   "Partition",
   "Select"
  ],
- "partitions": [],
- "predicates": [],
+ "partitions": [
+  "background_components",
+  "colour_components",
+  "enclosed_regions",
+  "separator_panels"
+ ],
+ "predicates": [
+  "all",
+  "not_rectangular",
+  "not_touching_border",
+  "rectangular",
+  "touching_border"
+ ],
  "probes": {
   "components": [
    1,
@@ -85,7 +107,7 @@
    10
   ]
  },
- "protocol": "CORA-TTI Item-2 constructive proposer, v1",
+ "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
  "protocol_doc_sha256": "b9587eabb6c76e53122e87c75870da748d5e66ddc1df034c1ecdd8abe12d8495",
  "ranking": {
   "beam": 16,
@@ -126,6 +148,11 @@
   ],
   "train_seeds": "11000+",
   "val_seeds": "12000+"
+ },
+ "supersedes": {
+  "corrected": "2026-09-03",
+  "defect": "v1 manifest generation imported meta_ast without meta_induction, so register_vocabulary had not run and the terminal lists serialized empty. The frozen protocol DOCUMENT always carried the correct terminals; this corrects a mechanical omission in the machine manifest only. No experiment, dataset row, or model existed under v1. Discovered by constructive_vocabulary's own validation smoke.",
+  "v1_manifest_sha256": "c5cfe088775c07a2a5d6a3bf6c074195ee5957863453d4bb58abd30a11b1c557"
  },
  "type_universe": [
   "Grid",
