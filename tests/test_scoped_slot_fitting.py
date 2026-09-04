@@ -188,7 +188,7 @@ def test_no_global_registry_mutation():
 def test_fitter_takes_no_target_metadata():
     import inspect
     params = set(inspect.signature(SF.fit_induced_occurrences).parameters)
-    assert params == {"schema", "pairs"}
+    assert params == {"schema", "pairs", "require_exact_replay"}
     for name, fn in vars(SF).items():
         if inspect.isfunction(fn) and not name.startswith("_"):
             p = set(inspect.signature(fn).parameters)

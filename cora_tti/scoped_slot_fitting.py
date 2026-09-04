@@ -176,11 +176,18 @@ def _selected_sets(partition: str, predicates: Sequence[str],
 # the fitter
 # --------------------------------------------------------------------------
 
-def fit_induced_occurrences(schema, pairs) -> tuple:
+def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) -> tuple:
     """Fit every induced-slot occurrence independently.
 
     Returns (instantiated_schema, evidence) on success, or (None, evidence)
     with evidence["failure"] set to a code from FIT_FAILURES.
+
+    require_exact_replay=True is the ADMISSION path: no fit succeeds unless the
+    instantiated schema reproduces every demonstration exactly. The False mode
+    exists only for the requirement-7 baseline audit, which must ask what a
+    baseline schema DOES on the frozen probes even when it does not replay the
+    demonstrations exactly (v1.1 had this shape because its learner and its
+    exactness check were separate steps). Target admission never uses it.
     """
     evidence: dict = {"fitter": fitter_identity()[:16], "slots": {}}
     occs = occurrences(schema)
@@ -344,6 +351,11 @@ def fit_induced_occurrences(schema, pairs) -> tuple:
 
     instantiated = M.instantiate(schema, bindings)
 
+    if not require_exact_replay:
+        evidence["exact_replay"] = False
+        evidence["constraint_only"] = True
+        return instantiated, evidence
+
     #  ---- mandatory exact replay; no fit succeeds without it ----
     for grid_in, grid_out in pairs:
         rendered = M.evaluate(instantiated, np.asarray(grid_in), MI.descriptors)
@@ -391,15 +403,26 @@ def baseline_single_block_schemas() -> list:
 def base_search_with_scoped_fitter(pairs) -> dict:
     """The fixed single-block search, fitted with the SAME scoped fitter.
 
-    Returns the exact fits found and the fitted-but-inexact schemas, so
-    protocol v2 can record requirement 4 and requirement 6 separately."""
+    Two distinct pieces of evidence are recorded, never inferred from each
+    other:
+      exact   - schemas that fit AND replay every demonstration exactly
+                (requirement 4 fixed-base failure, requirement 6 exclusion)
+      fitted  - schemas whose occurrence constraints are satisfiable at all,
+                including those that do not replay exactly; these are the
+                candidates the requirement-7 frozen-probe witness-separation
+                audit must compare against.
+    """
     exact, fitted = [], []
     for schema in baseline_single_block_schemas():
-        instantiated, evidence = fit_induced_occurrences(schema, pairs)
-        if instantiated is None:
+        strict, _ = fit_induced_occurrences(schema, pairs)
+        if strict is not None:
+            exact.append((schema, strict))
+            fitted.append((schema, strict))
             continue
-        fitted.append((schema, instantiated))
-        exact.append((schema, instantiated))     # the fitter replays exactly
+        loose, _ = fit_induced_occurrences(schema, pairs,
+                                           require_exact_replay=False)
+        if loose is not None:
+            fitted.append((schema, loose))
     return {"enumerated": len(baseline_single_block_schemas()),
             "fitted": len(fitted), "exact": len(exact),
             "exact_schemas": [s for s, _ in exact],
