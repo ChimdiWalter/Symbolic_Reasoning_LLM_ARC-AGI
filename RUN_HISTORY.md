@@ -12083,3 +12083,18 @@ invention, and recorded as such. 14-item execution directive filed
 FullEngineSolver adapts harness.run_one_task (the sealed-185 engine, v23 chain flags)
 to the emulator; smoke clean (per-task wall 6s-616s; frames fallback adds ~345s to the
 object cap); S_base DEV-60 measurement running -> outputs/tti/dev60_base_v1.json.
+
+### CORA-TTI protocol v2 recovery phase begins (2026-09-04, cora-tti-dev)
+The v1.1 constructive pilot is complete and immutable: 60/60 slots, 1500 target attempts,
+0 admitted, independent audit PASS. Root cause recorded in
+docs/CORA_TTI_CONSTRUCTIVE_V1_1_POSTMORTEM.md: requirements 4 and 5 were mutually exclusive
+because the sole registered slot learner reads one flat (partition, predicate, feature)
+triple through bound_values while the fixed base search enumerates exactly that 200-triple
+space, so R5 success implied R4 failure; families with no Select stage were independently
+unfittable. The null is retained, never reinterpreted.
+Protocol v2 is a human-designed versioned follow-up, not a bug fix and not a machine
+invention: induced values are fitted by typed lexical occurrence. Single-block
+conservativity holds (scoped fitter matches the v1.1 learner on all 200 baseline schemas,
+zero new-success cases), and the symmetry break is demonstrated on controls (a two-block
+target with different partitions per block is fitted exactly while the base search using
+the same fitter finds 0/200). Feasibility manifest frozen d0cef126; census running.
