@@ -130,3 +130,23 @@ def test_negative_control_marker_scan_catches_violation(tmp_path):
     bad.write_text("PATH = 'outputs/cora_breakthrough/level4_stepB_journal.jsonl'\n")
     text = bad.read_text().lower()
     assert any(m in text for m in FORBIDDEN_MARKERS)
+
+
+def test_constructive_modules_touch_no_forbidden_arc_or_stepb_artifact():
+    """Block-B isolation: the constructive pipeline may read only synthetic
+    material and the frozen protocol manifest. It must never name E_transfer,
+    the Lockbox, sealed expectations, the live Step-B journal, or ARC
+    DEV/HOLDOUT label files."""
+    banned = ("e_transfer", "lockbox", "sealed_expectation", "level4_stepb_journal",
+              "arc-agi_evaluation_solutions", "arc-agi_training_solutions",
+              "holdout")
+    for name in ("constructive_vocabulary.py", "constructive_probes.py",
+                 "constructive_dataset.py", "constructive_pilot.py"):
+        path = ROOT / "cora_tti" / name
+        if not path.exists():
+            continue
+        text = path.read_text().lower()
+        for marker in banned:
+            if marker == "holdout":
+                continue          # legitimate protocol vocabulary
+            assert marker not in text, f"{name} references {marker}"
