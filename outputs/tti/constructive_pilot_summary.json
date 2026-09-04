@@ -1,0 +1,47 @@
+{
+ "admitted": 0,
+ "attempt_cap_per_slot": 25,
+ "mean_slot_s": 0.46,
+ "measurement": "Item-2 Block-B constructive pilot, protocol v1.1",
+ "rejections_by_family": {
+  "(0,0)": {
+   "execution_undefined": 4,
+   "target_schema_failed": 296
+  },
+  "(0,0,0)": {
+   "execution_undefined": 4,
+   "target_schema_failed": 246
+  },
+  "(0,1)": {
+   "base_search_solved": 20,
+   "execution_undefined": 61,
+   "target_schema_failed": 194
+  },
+  "(1,0)": {
+   "base_search_solved": 20,
+   "execution_undefined": 49,
+   "target_schema_failed": 206
+  },
+  "(1,1)": {
+   "base_search_solved": 14,
+   "execution_undefined": 80,
+   "target_schema_failed": 156
+  },
+  "(2,)": {
+   "base_search_solved": 23,
+   "execution_undefined": 24,
+   "target_schema_failed": 28
+  },
+  "(2,1)": {
+   "base_search_solved": 1,
+   "execution_undefined": 41,
+   "target_schema_failed": 33
+  }
+ },
+ "root_cause": "Requirements 4 and 5 are mutually exclusive under protocol v1.1. The sole registered slot learner fits Map[FeatureValue,Colour] through meta_ast.bound_values, which returns ONE (partition, predicate, feature) triple; the fixed base search enumerates exactly that 200-triple product with the same learner. Therefore any target the learner can fit (R5) is findable by the base search (R4 violated). Pre-freeze exploration: of 266 family-(2,) targets passing R5, 262 were base_search_solved and 4 witness_not_separated, 0 admitted.",
+ "second_blocker": "Families with no Select stage anywhere ((0,) (0,0) (0,0,0)) are structurally dead: bound_values yields no Predicate, so induce_feature_colour_map refuses immediately. Measured 0/240 R5 survivors for each of (0,0) and (0,0,0); families with >=1 Select survive R5 at only 6-9% and then hit the R4 wall.",
+ "slots_hitting_cap": 60,
+ "slots_requested": 60,
+ "targets_attempted": 1500,
+ "total_wall_s": 27.7
+}

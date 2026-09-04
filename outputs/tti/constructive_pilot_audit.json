@@ -1,0 +1,48 @@
+{
+ "checks": {
+  "accounting_reconciles": true,
+  "all_admitted_rows_pass_recomputation": true,
+  "ast_holdout_disjoint_from_train": true,
+  "banned_families_absent": true,
+  "digests_unique": true,
+  "every_slot_has_terminal_outcome": true,
+  "generation_manifest_hash": true,
+  "no_slot_exceeded_attempt_cap": true,
+  "protocol_manifest_hash": true,
+  "regime_c_absent_and_declared_infeasible": true,
+  "rejection_codes_are_frozen_vocabulary": true,
+  "slot_records_pin_generation_manifest": true,
+  "structural_holdout_families_absent_from_train_val": true
+ },
+ "code_hash": "e7caa8a56d77fc2782685a0b3c05321ebd2e28ad659b86ae29c81e5f0d8b345f",
+ "notes": {
+  "achieved_by_family": {},
+  "achieved_by_split": {},
+  "admitted": 0,
+  "attempted_targets": 1500,
+  "infrastructure_failures": {},
+  "rejections_by_code": {
+   "base_search_solved": 78,
+   "execution_undefined": 263,
+   "target_schema_failed": 1159
+  },
+  "requested_by_family": {
+   "(0,0)": 12,
+   "(0,0,0)": 10,
+   "(0,1)": 11,
+   "(1,0)": 11,
+   "(1,1)": 10,
+   "(2,)": 3,
+   "(2,1)": 3
+  },
+  "requested_by_split": {
+   "test/ast_holdout": 6,
+   "test/structural_holdout": 6,
+   "train/train_pool": 40,
+   "val/train_pool": 8
+  },
+  "slots_found": 60
+ },
+ "per_row": [],
+ "verdict": "PASS"
+}
