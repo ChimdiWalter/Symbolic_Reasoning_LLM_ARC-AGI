@@ -1,0 +1,77 @@
+{
+ "baseline_enumeration": "complete (1,) product = 200 schemas, SAME scoped fitter",
+ "budgets": {
+  "per_target_s": 120.0,
+  "tfg_s": 2.0
+ },
+ "declaration": "This phase tests implementation semantics only. It produces no training, validation or test rows, uses no DEV or HOLDOUT data, and reads no live Step-B information.",
+ "dirty_tree": false,
+ "engine": {
+  "meta_ast.py": "0f5ca4794db649d0f7c9c0b5112356d66b10aee7450ef194b696d0b28977f47e",
+  "meta_induction.py": "c0156098086388c04ebfc86f6b255d821396e92c21dab60cf9bac40eec94b423"
+ },
+ "environment": {
+  "numpy": "2.4.3",
+  "python": "3.12.3"
+ },
+ "families_tested": {
+  "structural_holdout": [
+   [
+    2
+   ],
+   [
+    2,
+    1
+   ]
+  ],
+  "training": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "feasibility_runner_sha256": "1f4236646a73e23e63b97c95332f12747330e236897f299b446fcce1d4d61e59",
+ "fixture_seed_namespace": 5100000,
+ "frozen": "before the deterministic feasibility census; produces NO train/val/test rows",
+ "git_commit": "bebc2b83f5637a76ca1ad967a1eb4cb98e2c706d",
+ "manifest": "CORA-TTI protocol v2 FEASIBILITY manifest (method development, disposable fixtures)",
+ "negative_control_requirement": "baseline-expressible and unobservable targets must be rejected",
+ "parity_suite_seeds": "50000 + set*101 + demo (tests/test_scoped_slot_parity.py)",
+ "positive_control_requirement": "at least one mechanically generated target per family satisfying R1-R12",
+ "postmortem_sha256": "ee71579881c10addb6d95267ce4b823fc239f9f8ec03fcb1ebeea234ce7615b9",
+ "probe_config_sha256": "2842ff4004ddd6aeaab6eb5b4424e837ae58aabe8187ea7fa63a2311ee9ad60d",
+ "requirements_applied": "R1-R12 of the v2 directive, unmodified",
+ "resource_limits": {
+  "blas_threads": 1,
+  "nice": 15,
+  "workers": 1
+ },
+ "reused_v1_1_modules": {
+  "constructive_dataset.py": "603cc36d7dce9d87b9561a68e40750df528bd6fadc7724ce6b09993b62f88f81",
+  "constructive_probes.py": "82aaa5f13681c729a1bbf93e0cdc0fdefc06dfa465cfdec51f7798f6ead80159",
+  "constructive_vocabulary.py": "13722af84fa038f9a5029e229728afbcc54bfd2cb48f554877df0396a829ce34"
+ },
+ "scoped_learner_sha256": "5b8ba615a0e3759f688ac60a7c7c5cc11e0b3ff4f14e046f11db443812fe253d",
+ "targets_attempted_per_family": 120,
+ "v1_1_generation_sha256": "36b6989ab77f96a0e68bafe36fd008aa8e51d3388b4b9861ba76c1ccebf03960",
+ "v1_1_protocol_sha256": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3",
+ "v2_dataset_sha256": "32077ea5c94f7c8c888bb25317e922315e1d5166f6c12f4eacb3e6e9ffdcc178"
+}
