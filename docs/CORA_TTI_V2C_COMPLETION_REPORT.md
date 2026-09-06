@@ -200,6 +200,20 @@ Two qualifications belong with the number, not in a footnote:
   is the exact-fit failure of all 200 baseline hypotheses, which is recorded and
   complete for every one of the 95 attempts that reached it.
 
+All 13 admitted episodes were re-checked on disk: each carries a graph whose
+baseline and trace configuration digests match the attempt that produced it, and
+each records a complete 200-hypothesis search. The provenance defect is closed.
+
+**A consequence that matters for what comes next: every one of the 13 failure
+graphs has ZERO frontier terms.** The frontier is built from the
+constraint-consistent set, and that set is empty for the same structural reason.
+So the failure evidence this baseline can hand a future proposer is
+demonstration evidence, per-code and per-partition slot-failure counts, and the
+execution census. It contains no near-miss programs. That is an honest
+description of the signal available, and it is thin. Any proposer study has to
+either work from that, or first establish a baseline whose failures leave a
+richer frontier.
+
 ## 12. The three zero-yield families
 
 No admissible target was found among the 128 attempts under this generator and

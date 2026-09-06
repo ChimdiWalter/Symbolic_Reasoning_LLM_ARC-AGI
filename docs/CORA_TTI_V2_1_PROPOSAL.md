@@ -78,6 +78,20 @@ yield is itself a finding to state rather than engineer around. Whether 13
 distinct targets can support a train and holdout split at all is the first
 question a scoping run must answer, before any model exists.
 
+## 5b. A prerequisite the census exposed: the failure graph is thin
+
+Every one of the 13 admitted episodes carries a failure graph with ZERO frontier
+terms, because the constraint-consistent set that feeds the frontier is empty in
+this grammar. The signal a proposer could condition on is therefore
+demonstration evidence, slot-failure counts by code and by partition, and the
+execution census, with no near-miss programs at all.
+
+This is a prerequisite, not a detail. Before any proposer is trained, the study
+must establish that this signal is sufficient to distinguish the targets it must
+propose. If it is not, the honest options are to enrich the baseline so its
+failures leave a frontier, or to report that the failure representation cannot
+carry the study. Neither is a reason to loosen the admission law.
+
 ## 6. Baseline the study must beat
 
 A learned proposer must be compared against unlearned search over the same
