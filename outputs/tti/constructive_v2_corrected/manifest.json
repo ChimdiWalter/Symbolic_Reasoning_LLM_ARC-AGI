@@ -1,0 +1,285 @@
+{
+ "admission": {
+  "ablation_outcomes": [
+   "REPRODUCING_ABLATION_FOUND",
+   "NO_REPRODUCING_ABLATION_FOUND_WITHIN_DECLARED_PROCEDURE",
+   "INCONCLUSIVE",
+   "NOT_APPLICABLE"
+  ],
+  "infrastructure_namespace": "infra_exception:",
+  "min_defined_probes": 1,
+  "rejection_codes": [
+   "grammar_invalid",
+   "type_invalid",
+   "execution_undefined",
+   "trivial_output",
+   "base_search_solved",
+   "baseline_shape_fit",
+   "witness_not_separated",
+   "slot_unobservable",
+   "slot_key_unobserved",
+   "slot_nonfunctional",
+   "region_colour_conflict",
+   "scoped_fit_failed",
+   "final_execution_mismatch",
+   "locally_reducible_block",
+   "locally_reducible_select",
+   "prior_v1_target_overlap",
+   "duplicate_target",
+   "split_collision",
+   "tfg_leak",
+   "generation_timeout",
+   "fit_execution_error",
+   "probe_execution_error",
+   "irreducibility_inconclusive",
+   "baseline_tfg_config_mismatch",
+   "probe_coverage_vacuous",
+   "baseline_incomplete"
+  ],
+  "requirements": "R1-R12 of the v2 directive, with the section-B amendment"
+ },
+ "attempts_per_family": 128,
+ "banned_target_families": [
+  "(0,)",
+  "(1,)"
+ ],
+ "baseline_config": {
+  "evaluator": "meta_ast.evaluate with meta_induction.descriptors",
+  "fitter": "cora_tti.scoped_slot_fitting.fit_outcome",
+  "hypothesis_generator": "single_block_product",
+  "inspection_options": [
+   [
+    "blocks_must_jointly_cover_change",
+    true
+   ],
+   [
+    "cell_ownership",
+    "last_writer"
+   ],
+   [
+    "key_codec",
+    "raw_value_keys+typed_json"
+   ],
+   [
+    "min_key_witnesses",
+    2
+   ],
+   [
+    "require_exact_replay",
+    false
+   ],
+   [
+    "touched_region_must_change_entirely",
+    true
+   ]
+  ],
+  "max_frontier_terms": 12,
+  "ordering": "sorted_partitions;sorted_predicates;registered_key_features",
+  "strict_options": [
+   [
+    "blocks_must_jointly_cover_change",
+    true
+   ],
+   [
+    "cell_ownership",
+    "last_writer"
+   ],
+   [
+    "key_codec",
+    "raw_value_keys+typed_json"
+   ],
+   [
+    "min_key_witnesses",
+    2
+   ],
+   [
+    "require_exact_replay",
+    true
+   ],
+   [
+    "touched_region_must_change_entirely",
+    true
+   ]
+  ],
+  "success_predicate": "EXACT_DEMONSTRATION_FIT on every demonstration",
+  "trace_observer": "per-schema structured outcome record",
+  "wall_clock_limit_s": null,
+  "work_limit_schemas": 200
+ },
+ "baseline_config_digest": "29bec39b4cd542ff2831f80abcbb0b2867ec8600d9980b45ebdf866649caae66",
+ "baseline_enumeration": {
+  "evidence": "outputs/tti/constructive_v2_corrected/baseline_enumeration_identity.json",
+  "hypothesis_set": "complete single-block product of the frozen terminals",
+  "ordering_differs_from_actual_search": true,
+  "set_equal_to_actual_search": true,
+  "size": 200,
+  "work_limit": "fixed: all enumerated schemas; wall clock is an operational safeguard only"
+ },
+ "budgets": {
+  "note": "a per-target wall clock is an operational safeguard; if it fires the attempt is recorded as a checker failure (generation_timeout), never as a scientific property of the target",
+  "per_target_s": 300.0
+ },
+ "checker_failure_codes": [
+  "fit_execution_error",
+  "probe_execution_error",
+  "irreducibility_inconclusive",
+  "baseline_tfg_config_mismatch",
+  "baseline_incomplete",
+  "generation_timeout"
+ ],
+ "code_hash": "b131ade1dc92f06c1d986591b93a8fce2618b5cd6ea4f2095ed5ad6c5561d8df",
+ "code_hashes": {
+  "cora_parent/interfaces.py": "b69a65cf2b7d7400960af6c95fe5ef5def8bfcd5cda26123c7d4b57b5046f50c",
+  "cora_parent/tfg.py": "df6e71510b8e580eb14d6a9b5ac2df167184700feecf1b38476ac012e7b99cd2",
+  "cora_tti/constructive_dataset.py": "603cc36d7dce9d87b9561a68e40750df528bd6fadc7724ce6b09993b62f88f81",
+  "cora_tti/constructive_probes.py": "82aaa5f13681c729a1bbf93e0cdc0fdefc06dfa465cfdec51f7798f6ead80159",
+  "cora_tti/constructive_v2_dataset.py": "32077ea5c94f7c8c888bb25317e922315e1d5166f6c12f4eacb3e6e9ffdcc178",
+  "cora_tti/constructive_v2c.py": "7ca696d900d94cfd3d78225ef4a43bfb10505e2edac6ad18110994219b7ce91a",
+  "cora_tti/constructive_v2c_census.py": "8d77d0a1ad9e96375ef025947e86c20df53372bde95a6ff2367bc8a9d07466f3",
+  "cora_tti/constructive_vocabulary.py": "13722af84fa038f9a5029e229728afbcc54bfd2cb48f554877df0396a829ce34",
+  "cora_tti/meta_baseline.py": "60bd452b76de34be4abb1805f58ec74424c789af8b42633b333ff3659634942d",
+  "cora_tti/scoped_slot_fitting.py": "2cc45152c430f8a2f9cfbcfd8c0bd6ad02ca6793819c6fcf16ede2060e6fc9d7"
+ },
+ "declaration": "Method development on disposable synthetic fixtures. Produces no training, validation or test rows for any model, uses no DEV or HOLDOUT ARC data, and reads nothing from the live Step-B experiment.",
+ "dirty_tree": false,
+ "engine": {
+  "meta_ast.py": "0f5ca4794db649d0f7c9c0b5112356d66b10aee7450ef194b696d0b28977f47e",
+  "meta_induction.py": "c0156098086388c04ebfc86f6b255d821396e92c21dab60cf9bac40eec94b423"
+ },
+ "environment": {
+  "PYTHONHASHSEED": "0",
+  "numpy": "2.4.3",
+  "python": "3.12.3"
+ },
+ "evidence_status": {
+  "path": "docs/CORA_TTI_V2_EVIDENCE_STATUS.md",
+  "sha256": "dc56fc31b10efa926f6fc3bb4321ffed6aa10e565b8f528e14a19ee059680603"
+ },
+ "families": {
+  "structural_holdout": [
+   [
+    2
+   ],
+   [
+    2,
+    1
+   ]
+  ],
+  "training": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "fitter_identity": "2cc45152c430f8a2f9cfbcfd8c0bd6ad02ca6793819c6fcf16ede2060e6fc9d7",
+ "fitter_options_inspection": {
+  "blocks_must_jointly_cover_change": true,
+  "cell_ownership": "last_writer",
+  "key_codec": "raw_value_keys+typed_json",
+  "min_key_witnesses": 2,
+  "require_exact_replay": false,
+  "touched_region_must_change_entirely": true
+ },
+ "fitter_options_strict": {
+  "blocks_must_jointly_cover_change": true,
+  "cell_ownership": "last_writer",
+  "key_codec": "raw_value_keys+typed_json",
+  "min_key_witnesses": 2,
+  "require_exact_replay": true,
+  "touched_region_must_change_entirely": true
+ },
+ "fitter_statuses": [
+  "EXACT_DEMONSTRATION_FIT",
+  "CONSTRAINT_CONSISTENT_BINDING",
+  "FIT_FAILURE",
+  "EXECUTION_ERROR",
+  "RESOURCE_EXHAUSTED"
+ ],
+ "frozen_before": "the first attempt of the corrected census",
+ "generation": {
+  "candidate_grids": 14,
+  "grid_seed_formula": "seed*97 + i",
+  "min_demos": 3,
+  "table_grids": 6
+ },
+ "git_commit": "9c1f4386c22dce536e4fa9ae72b23dd26ecffddf",
+ "historical_exclusion": {
+  "derived_from": "digest(CD.sample_target(seed, requested_family)) for every recorded attempt",
+  "path": "outputs/tti/constructive_v1_1_target_exclusion.json",
+  "sha256": "856721d18948878c4b9b5e2e5362ce9be651819673209ee688e1e06a3616d690",
+  "unique_digests": 1453
+ },
+ "holdout_families": [
+  "(2,)",
+  "(2,1)"
+ ],
+ "key_codec": "raw descriptor values as dictionary keys; typed JSON for serialization; no eval",
+ "manifest": "CORA-TTI corrected feasibility census (v2c)",
+ "original_v2_manifest_sha256": "d0cef1262444f848ce635f0bcf631ccbd6a298c2841eb9ed88e7a14728d295d0",
+ "original_v2_results_sha256": "d2f53cd8cff5c3e1480ccfd5f82eed218786dd54ed153a837d6c8abceb9b0d5c",
+ "output_schema": {
+  "admitted": "outputs/tti/constructive_v2_corrected/admitted/<family>_<attempt>.json",
+  "attempts": "outputs/tti/constructive_v2_corrected/attempts.jsonl, one JSON object per attempt including every failure",
+  "execution": "outputs/tti/constructive_v2_corrected/execution_record.json",
+  "results": "outputs/tti/constructive_v2_corrected/results.json",
+  "units": [
+   "attempt",
+   "unique schema",
+   "concrete instantiation",
+   "demonstration bundle"
+  ]
+ },
+ "prelaunch_amendment": {
+  "path": "docs/CORA_TTI_V2C_PRELAUNCH_AMENDMENT.md",
+  "sha256": "62944a3c535bfd7f80bc6f95f16b774629cb5ede1f3fcf521f1bb32a375eec1a"
+ },
+ "probe_config": {
+  "count": 16,
+  "max_components": 4,
+  "max_size": 10,
+  "min_components": 1,
+  "min_size": 5,
+  "seed": 20260903
+ },
+ "probe_config_sha256": "2842ff4004ddd6aeaab6eb5b4424e837ae58aabe8187ea7fa63a2311ee9ad60d",
+ "probe_set_digest": "257702e1c0304fd242b147c06d5d0cff52e4ab81971e2898cf7af9fa1f6d7b52",
+ "resource_limits": {
+  "blas_threads": 1,
+  "nice": 15,
+  "note": "a separate live experiment has CPU priority on this host",
+  "workers": 1
+ },
+ "reused_v1_1_modules": {
+  "constructive_dataset.py": "603cc36d7dce9d87b9561a68e40750df528bd6fadc7724ce6b09993b62f88f81",
+  "constructive_probes.py": "82aaa5f13681c729a1bbf93e0cdc0fdefc06dfa465cfdec51f7798f6ead80159",
+  "constructive_vocabulary.py": "13722af84fa038f9a5029e229728afbcc54bfd2cb48f554877df0396a829ce34"
+ },
+ "seed_schedule": {
+  "attempt_stride": 7919,
+  "family_stride": 2000003,
+  "formula": "namespace + family_index*family_stride + attempt*attempt_stride",
+  "namespace": 5300000,
+  "note": "distinct stride per family index; no two families share a schedule"
+ },
+ "supersedes_nothing": "the original 120-attempt census stands as executed; its family-coverage decision remains NO-GO and this run cannot convert it into a GO",
+ "trace_config_digest": "4ed0071f5b72669328975e566aa05483c9e2c9ca48277fa9458b64bc3d3ee849",
+ "v1_1_protocol_sha256": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3"
+}

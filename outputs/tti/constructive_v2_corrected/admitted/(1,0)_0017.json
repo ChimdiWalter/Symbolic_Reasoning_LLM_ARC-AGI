@@ -1,0 +1,2146 @@
+{
+ "baseline_config": {
+  "evaluator": "meta_ast.evaluate with meta_induction.descriptors",
+  "fitter": "cora_tti.scoped_slot_fitting.fit_outcome",
+  "hypothesis_generator": "single_block_product",
+  "inspection_options": [
+   [
+    "blocks_must_jointly_cover_change",
+    true
+   ],
+   [
+    "cell_ownership",
+    "last_writer"
+   ],
+   [
+    "key_codec",
+    "raw_value_keys+typed_json"
+   ],
+   [
+    "min_key_witnesses",
+    2
+   ],
+   [
+    "require_exact_replay",
+    false
+   ],
+   [
+    "touched_region_must_change_entirely",
+    true
+   ]
+  ],
+  "max_frontier_terms": 12,
+  "ordering": "sorted_partitions;sorted_predicates;registered_key_features",
+  "strict_options": [
+   [
+    "blocks_must_jointly_cover_change",
+    true
+   ],
+   [
+    "cell_ownership",
+    "last_writer"
+   ],
+   [
+    "key_codec",
+    "raw_value_keys+typed_json"
+   ],
+   [
+    "min_key_witnesses",
+    2
+   ],
+   [
+    "require_exact_replay",
+    true
+   ],
+   [
+    "touched_region_must_change_entirely",
+    true
+   ]
+  ],
+  "success_predicate": "EXACT_DEMONSTRATION_FIT on every demonstration",
+  "trace_observer": "per-schema structured outcome record",
+  "wall_clock_limit_s": null,
+  "work_limit_schemas": 200
+ },
+ "baseline_config_digest": "29bec39b4cd542ff2831f80abcbb0b2867ec8600d9980b45ebdf866649caae66",
+ "baseline_trace": {
+  "census": {
+   "FIT_FAILURE": 200
+  },
+  "complete": true,
+  "config_digest": "29bec39b4cd542ff2831f80abcbb0b2867ec8600d9980b45ebdf866649caae66",
+  "constraint_consistent": 0,
+  "enumerated_total": 200,
+  "errors": 0,
+  "exact": 0,
+  "exhausted": 0,
+  "fitter_identity": "2cc45152c430f8a2f9cfbcfd8c0bd6ad02ca6793819c6fcf16ede2060e6fc9d7",
+  "incompleteness_reasons": [],
+  "inspection_errors": 0,
+  "seconds": 0.186,
+  "truncated": false,
+  "truncation_causes": [],
+  "work_done": 200
+ },
+ "block_count": 2,
+ "code_hash": "b131ade1dc92f06c1d986591b93a8fce2618b5cd6ea4f2095ed5ad6c5561d8df",
+ "demonstrations": [
+  {
+   "input": [
+    [
+     0,
+     0,
+     0,
+     8,
+     0,
+     0,
+     6,
+     6,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     8,
+     8,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     8,
+     8,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2,
+     2,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     0,
+     2,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     2,
+     2,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "output": [
+    [
+     1,
+     1,
+     1,
+     8,
+     1,
+     1,
+     6,
+     6,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     8,
+     8,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     8,
+     8,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     5,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "input": [
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     5,
+     5,
+     0,
+     0,
+     0,
+     0,
+     7,
+     7,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     7,
+     7,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     2,
+     0,
+     0,
+     8,
+     8,
+     8,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     8,
+     0,
+     8,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     8,
+     8,
+     8,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "output": [
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     5,
+     5,
+     1,
+     1,
+     1,
+     1,
+     7,
+     7,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     7,
+     7,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     2,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     5,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "input": [
+    [
+     2,
+     2,
+     0,
+     0,
+     0,
+     0,
+     6,
+     6,
+     0,
+     0,
+     0
+    ],
+    [
+     2,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     6,
+     6,
+     6,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     6,
+     0,
+     6,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     6,
+     6,
+     6,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "output": [
+    [
+     2,
+     2,
+     1,
+     1,
+     1,
+     1,
+     6,
+     6,
+     1,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     3,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     5,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "input": [
+    [
+     7,
+     7,
+     0,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     7,
+     7,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     7,
+     7,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     3,
+     3,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     3,
+     3,
+     3,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "output": [
+    [
+     7,
+     7,
+     1,
+     3,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     7,
+     7,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     7,
+     7,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     5,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "input": [
+    [
+     0,
+     0,
+     0,
+     6,
+     0,
+     0,
+     8,
+     8,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     8,
+     8,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     0,
+     0,
+     0,
+     4,
+     4,
+     4,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     0,
+     4,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     4,
+     4,
+     4,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   ],
+   "output": [
+    [
+     1,
+     1,
+     1,
+     6,
+     1,
+     1,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     2,
+     2,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     5,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     8,
+     8,
+     8,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  }
+ ],
+ "environment": {
+  "PYTHONHASHSEED": "0"
+ },
+ "episode_id": "v2c-census-(1,0)-0017",
+ "fitter_identity": "2cc45152c430f8a2f9cfbcfd8c0bd6ad02ca6793819c6fcf16ede2060e6fc9d7",
+ "fitter_options": {
+  "baseline_inspection": {
+   "blocks_must_jointly_cover_change": true,
+   "cell_ownership": "last_writer",
+   "key_codec": "raw_value_keys+typed_json",
+   "min_key_witnesses": 2,
+   "require_exact_replay": false,
+   "touched_region_must_change_entirely": true
+  },
+  "baseline_strict": {
+   "blocks_must_jointly_cover_change": true,
+   "cell_ownership": "last_writer",
+   "key_codec": "raw_value_keys+typed_json",
+   "min_key_witnesses": 2,
+   "require_exact_replay": true,
+   "touched_region_must_change_entirely": true
+  },
+  "target": {
+   "blocks_must_jointly_cover_change": true,
+   "cell_ownership": "last_writer",
+   "key_codec": "raw_value_keys+typed_json",
+   "min_key_witnesses": 2,
+   "require_exact_replay": true,
+   "touched_region_must_change_entirely": true
+  }
+ },
+ "generation": {
+  "candidate_grids": 14,
+  "grid_seed_formula": "seed*97 + i",
+  "min_demos": 3,
+  "table_grids": 6
+ },
+ "generation_seed": 7434626,
+ "irreducibility": {
+  "ablations": [
+   {
+    "demonstrations_only_reproduced": false,
+    "direct": {
+     "both_defined_probes": 5,
+     "defined_probes": 16,
+     "demo_behaviour": "differs",
+     "probe_errors": 0,
+     "probe_fingerprint_equal": false
+    },
+    "index": 0,
+    "kind": "block",
+    "outcome": "NO_REPRODUCING_ABLATION_FOUND_WITHIN_DECLARED_PROCEDURE",
+    "reason": "direct: demo=differs probe_equal=False; refitted: FIT_FAILURE/scoped_fit_failed",
+    "refitted": {
+     "code": "scoped_fit_failed",
+     "comparison": null,
+     "grammar_valid": true,
+     "status": "FIT_FAILURE"
+    },
+    "seconds": 0.006,
+    "vacuous_probe_match": false
+   },
+   {
+    "demonstrations_only_reproduced": false,
+    "direct": {
+     "both_defined_probes": 2,
+     "defined_probes": 2,
+     "demo_behaviour": "differs",
+     "probe_errors": 0,
+     "probe_fingerprint_equal": false
+    },
+    "index": 1,
+    "kind": "block",
+    "outcome": "NO_REPRODUCING_ABLATION_FOUND_WITHIN_DECLARED_PROCEDURE",
+    "reason": "direct: demo=differs probe_equal=False; refitted: FIT_FAILURE/scoped_fit_failed",
+    "refitted": {
+     "code": "scoped_fit_failed",
+     "comparison": null,
+     "grammar_valid": true,
+     "status": "FIT_FAILURE"
+    },
+    "seconds": 0.004,
+    "vacuous_probe_match": false
+   },
+   {
+    "demonstrations_only_reproduced": true,
+    "direct": {
+     "both_defined_probes": 5,
+     "defined_probes": 16,
+     "demo_behaviour": "exact",
+     "probe_errors": 0,
+     "probe_fingerprint_equal": false
+    },
+    "index": [
+     0,
+     0
+    ],
+    "kind": "select",
+    "outcome": "NO_REPRODUCING_ABLATION_FOUND_WITHIN_DECLARED_PROCEDURE",
+    "reason": "direct: demo=exact probe_equal=False; refitted: EXACT_DEMONSTRATION_FIT/None demo=exact probe_equal=False",
+    "refitted": {
+     "code": null,
+     "comparison": {
+      "both_defined_probes": 5,
+      "defined_probes": 16,
+      "demo_behaviour": "exact",
+      "probe_errors": 0,
+      "probe_fingerprint_equal": false
+     },
+     "grammar_valid": true,
+     "status": "EXACT_DEMONSTRATION_FIT"
+    },
+    "seconds": 0.032,
+    "vacuous_probe_match": false
+   }
+  ],
+  "counts": {
+   "INCONCLUSIVE": 0,
+   "NOT_APPLICABLE": 0,
+   "NO_REPRODUCING_ABLATION_FOUND_WITHIN_DECLARED_PROCEDURE": 3,
+   "REPRODUCING_ABLATION_FOUND": 0
+  },
+  "deadline_exhausted": false,
+  "demonstration_only_reproducing_ablations": 1,
+  "demonstrations_do_not_witness_a_stage": true,
+  "inconclusive": false,
+  "probe_count": 16,
+  "reducible": false,
+  "scope": "local single-ablation search; never global minimality",
+  "target_defined_probes": 5,
+  "vacuous_probe_matches": 0
+ },
+ "node_count": 12,
+ "probe_coverage": {
+  "probe_count": 16,
+  "target_defined_probes": 5,
+  "target_probe_errors": 0
+ },
+ "probe_fingerprint": "1aea922e0deb9f97791fa143a814dbb4f3e71e2e54ee1cadb560a43152462edc",
+ "protocol_hash": "281624001ee3c69b9c2f1cb4bac700f580eb3f30ba809f31445a8f6d42ac4790",
+ "regime": "train_pool",
+ "schema_mdl": 12,
+ "scoped_fit_evidence": {
+  "exact_replay": true,
+  "slots": {
+   "?0": {
+    "ast_path": [
+     2,
+     "Map",
+     "Lookup"
+    ],
+    "block_index": 0,
+    "entries": 1,
+    "key_expression": "hw",
+    "local_prefix": [
+     "colour_components",
+     [
+      "not_rectangular"
+     ]
+    ]
+   },
+   "?1": {
+    "ast_path": [
+     5,
+     "Map",
+     "Lookup"
+    ],
+    "block_index": 1,
+    "entries": 2,
+    "key_expression": "is_rect",
+    "local_prefix": [
+     "background_components",
+     []
+    ]
+   }
+  }
+ },
+ "slot_declarations": {
+  "?0": "Map[FeatureValue,Colour]",
+  "?1": "Map[FeatureValue,Colour]"
+ },
+ "slot_occurrences": [
+  {
+   "ast_path": [
+    2,
+    "Map",
+    "Lookup"
+   ],
+   "block_index": 0,
+   "key_expression": "hw",
+   "local_prefix": [
+    "colour_components",
+    [
+     "not_rectangular"
+    ]
+   ],
+   "slot": "?0"
+  },
+  {
+   "ast_path": [
+    5,
+    "Map",
+    "Lookup"
+   ],
+   "block_index": 1,
+   "key_expression": "is_rect",
+   "local_prefix": [
+    "background_components",
+    []
+   ],
+   "slot": "?1"
+  }
+ ],
+ "split": "census",
+ "stage_count": 7,
+ "structural_family": [
+  1,
+  0
+ ],
+ "target_concrete_json": {
+  "args": [
+   {
+    "args": [
+     {
+      "lit": "\"colour_components\""
+     }
+    ],
+    "op": "Partition"
+   },
+   {
+    "args": [
+     {
+      "lit": "\"not_rectangular\""
+     }
+    ],
+    "op": "Select"
+   },
+   {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"hw\""
+       }
+      ],
+      "op": "Key"
+     },
+     {
+      "args": [
+       {
+        "lit": "[[[3, 3], 8]]"
+       }
+      ],
+      "op": "Lookup"
+     }
+    ],
+    "op": "Map"
+   },
+   {
+    "args": [],
+    "op": "Paint"
+   },
+   {
+    "args": [
+     {
+      "lit": "\"background_components\""
+     }
+    ],
+    "op": "Partition"
+   },
+   {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"is_rect\""
+       }
+      ],
+      "op": "Key"
+     },
+     {
+      "args": [
+       {
+        "lit": "[[false, 1], [true, 5]]"
+       }
+      ],
+      "op": "Lookup"
+     }
+    ],
+    "op": "Map"
+   },
+   {
+    "args": [],
+    "op": "Paint"
+   }
+  ],
+  "op": "Compose"
+ },
+ "target_digest": "080f1da7c646ee51f3ee85cc836b7ea4d74e54c18aeb66e81e9c2299b7379c42",
+ "target_fitted_json": {
+  "args": [
+   {
+    "args": [
+     {
+      "lit": "\"colour_components\""
+     }
+    ],
+    "op": "Partition"
+   },
+   {
+    "args": [
+     {
+      "lit": "\"not_rectangular\""
+     }
+    ],
+    "op": "Select"
+   },
+   {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"hw\""
+       }
+      ],
+      "op": "Key"
+     },
+     {
+      "args": [
+       {
+        "lit": "[[[3, 3], 8]]"
+       }
+      ],
+      "op": "Lookup"
+     }
+    ],
+    "op": "Map"
+   },
+   {
+    "args": [],
+    "op": "Paint"
+   },
+   {
+    "args": [
+     {
+      "lit": "\"background_components\""
+     }
+    ],
+    "op": "Partition"
+   },
+   {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"is_rect\""
+       }
+      ],
+      "op": "Key"
+     },
+     {
+      "args": [
+       {
+        "lit": "[[false, 1], [true, 5]]"
+       }
+      ],
+      "op": "Lookup"
+     }
+    ],
+    "op": "Map"
+   },
+   {
+    "args": [],
+    "op": "Paint"
+   }
+  ],
+  "op": "Compose"
+ },
+ "target_schema_json": {
+  "args": [
+   {
+    "args": [
+     {
+      "lit": "\"colour_components\""
+     }
+    ],
+    "op": "Partition"
+   },
+   {
+    "args": [
+     {
+      "lit": "\"not_rectangular\""
+     }
+    ],
+    "op": "Select"
+   },
+   {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"hw\""
+       }
+      ],
+      "op": "Key"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"?0\""
+       }
+      ],
+      "op": "Lookup"
+     }
+    ],
+    "op": "Map"
+   },
+   {
+    "args": [],
+    "op": "Paint"
+   },
+   {
+    "args": [
+     {
+      "lit": "\"background_components\""
+     }
+    ],
+    "op": "Partition"
+   },
+   {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"is_rect\""
+       }
+      ],
+      "op": "Key"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"?1\""
+       }
+      ],
+      "op": "Lookup"
+     }
+    ],
+    "op": "Map"
+   },
+   {
+    "args": [],
+    "op": "Paint"
+   }
+  ],
+  "op": "Compose"
+ },
+ "target_tokens": [
+  [
+   "P",
+   "colour_components"
+  ],
+  [
+   "S",
+   "not_rectangular"
+  ],
+  [
+   "M",
+   "hw"
+  ],
+  [
+   "PAINT"
+  ],
+  [
+   "P",
+   "background_components"
+  ],
+  [
+   "M",
+   "is_rect"
+  ],
+  [
+   "PAINT"
+  ],
+  [
+   "EOS"
+  ]
+ ],
+ "tfg": {
+  "edges": [
+   [
+    "delta0",
+    "blocks",
+    "goal"
+   ],
+   [
+    "delta1",
+    "blocks",
+    "goal"
+   ],
+   [
+    "delta2",
+    "blocks",
+    "goal"
+   ],
+   [
+    "delta3",
+    "blocks",
+    "goal"
+   ],
+   [
+    "delta4",
+    "blocks",
+    "goal"
+   ],
+   [
+    "palette0",
+    "observed_on",
+    "delta0"
+   ],
+   [
+    "palette1",
+    "observed_on",
+    "delta1"
+   ],
+   [
+    "palette2",
+    "observed_on",
+    "delta2"
+   ],
+   [
+    "palette3",
+    "observed_on",
+    "delta3"
+   ],
+   [
+    "palette4",
+    "observed_on",
+    "delta4"
+   ],
+   [
+    "search",
+    "fails",
+    "goal"
+   ],
+   [
+    "shape0",
+    "observed_on",
+    "delta0"
+   ],
+   [
+    "shape1",
+    "observed_on",
+    "delta1"
+   ],
+   [
+    "shape2",
+    "observed_on",
+    "delta2"
+   ],
+   [
+    "shape3",
+    "observed_on",
+    "delta3"
+   ],
+   [
+    "shape4",
+    "observed_on",
+    "delta4"
+   ],
+   [
+    "slotcode0",
+    "fails",
+    "goal"
+   ],
+   [
+    "slotcode1",
+    "fails",
+    "goal"
+   ],
+   [
+    "slotcode2",
+    "fails",
+    "goal"
+   ],
+   [
+    "slotpart0",
+    "fails",
+    "goal"
+   ],
+   [
+    "slotpart1",
+    "fails",
+    "goal"
+   ],
+   [
+    "slotpart2",
+    "fails",
+    "goal"
+   ],
+   [
+    "slotpart3",
+    "fails",
+    "goal"
+   ]
+  ],
+  "interface": [
+   "Grid",
+   "Grid"
+  ],
+  "nodes": [
+   {
+    "attrs": {
+     "grows": false,
+     "same_shape": true,
+     "shrinks": false
+    },
+    "id": "delta0",
+    "kind": "delta_signature",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "grows": false,
+     "same_shape": true,
+     "shrinks": false
+    },
+    "id": "delta1",
+    "kind": "delta_signature",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "grows": false,
+     "same_shape": true,
+     "shrinks": false
+    },
+    "id": "delta2",
+    "kind": "delta_signature",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "grows": false,
+     "same_shape": true,
+     "shrinks": false
+    },
+    "id": "delta3",
+    "kind": "delta_signature",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "grows": false,
+     "same_shape": true,
+     "shrinks": false
+    },
+    "id": "delta4",
+    "kind": "delta_signature",
+    "type": ""
+   },
+   {
+    "attrs": {},
+    "id": "goal",
+    "kind": "goal",
+    "type": "Grid"
+   },
+   {
+    "attrs": {
+     "introduced": 2,
+     "n_in": 4,
+     "n_out": 4,
+     "removed": 2
+    },
+    "id": "palette0",
+    "kind": "palette_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "introduced": 0,
+     "n_in": 6,
+     "n_out": 5,
+     "removed": 1
+    },
+    "id": "palette1",
+    "kind": "palette_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "introduced": 2,
+     "n_in": 5,
+     "n_out": 6,
+     "removed": 1
+    },
+    "id": "palette2",
+    "kind": "palette_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "introduced": 3,
+     "n_in": 3,
+     "n_out": 5,
+     "removed": 1
+    },
+    "id": "palette3",
+    "kind": "palette_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "introduced": 1,
+     "n_in": 6,
+     "n_out": 5,
+     "removed": 2
+    },
+    "id": "palette4",
+    "kind": "palette_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "baseline_config": "29bec39b4cd542ff2831f80abcbb0b2867ec8600d9980b45ebdf866649caae66",
+     "deadline_hit": false,
+     "enumerated_total": 200,
+     "generated": 200,
+     "max_depth": 1,
+     "outcome_census": {
+      "FIT_FAILURE": 200
+     },
+     "rejected": 200,
+     "search_complete": true,
+     "semantic_classes": 0,
+     "trace_config": "4ed0071f5b72669328975e566aa05483c9e2c9ca48277fa9458b64bc3d3ee849",
+     "typed": 200
+    },
+    "id": "search",
+    "kind": "execution",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "cells_changed": 74,
+     "fraction_changed": 0.9136
+    },
+    "id": "shape0",
+    "kind": "shape_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "cells_changed": 75,
+     "fraction_changed": 0.75
+    },
+    "id": "shape1",
+    "kind": "shape_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "cells_changed": 81,
+     "fraction_changed": 0.8182
+    },
+    "id": "shape2",
+    "kind": "shape_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "cells_changed": 103,
+     "fraction_changed": 0.9364
+    },
+    "id": "shape3",
+    "kind": "shape_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "cells_changed": 74,
+     "fraction_changed": 0.8222
+    },
+    "id": "shape4",
+    "kind": "shape_change",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "code": "region_colour_conflict",
+     "failures": 40
+    },
+    "id": "slotcode0",
+    "kind": "slot",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "code": "scoped_fit_failed",
+     "failures": 159
+    },
+    "id": "slotcode1",
+    "kind": "slot",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "code": "slot_nonfunctional",
+     "failures": 1
+    },
+    "id": "slotcode2",
+    "kind": "slot",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "failures": 50,
+     "op": "background_components"
+    },
+    "id": "slotpart0",
+    "kind": "slot",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "failures": 50,
+     "op": "colour_components"
+    },
+    "id": "slotpart1",
+    "kind": "slot",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "failures": 50,
+     "op": "enclosed_regions"
+    },
+    "id": "slotpart2",
+    "kind": "slot",
+    "type": ""
+   },
+   {
+    "attrs": {
+     "failures": 50,
+     "op": "separator_panels"
+    },
+    "id": "slotpart3",
+    "kind": "slot",
+    "type": ""
+   }
+  ]
+ },
+ "tfg_digest": "cafaf560cf38778ed4e72eed1cc66ddee784f2179c88bf6fb9e70d3efe9cb1cd",
+ "trace_config_digest": "4ed0071f5b72669328975e566aa05483c9e2c9ca48277fa9458b64bc3d3ee849",
+ "units": {
+  "attempt_index": 17,
+  "concrete_digest": "de7dcd13cdcb995821f9e9d13954f9a6bc576297673410f488ad59940ccad1e4",
+  "demo_bundle_digest": "2020f83de21fdb10efa3602eff98250563fb4704fb6066f3bb02c41245e8dc02",
+  "family": "(1,0)",
+  "schema_digest": "080f1da7c646ee51f3ee85cc836b7ea4d74e54c18aeb66e81e9c2299b7379c42"
+ },
+ "witness_separation": {
+  "both_defined_probes_max": null,
+  "both_defined_probes_min": null,
+  "comparison_errors": 0,
+  "comparison_set_empty": true,
+  "constraint_consistent_baselines": 0,
+  "note": "separation established against this set only; an empty set means the requirement was satisfied with nothing to compare against",
+  "vacuous_fingerprint_matches": 0,
+  "witness_equivalent": 0
+ }
+}
