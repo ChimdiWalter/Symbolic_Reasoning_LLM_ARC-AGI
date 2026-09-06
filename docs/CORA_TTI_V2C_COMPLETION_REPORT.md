@@ -161,9 +161,24 @@ process, and identically again under a different `PYTHONHASHSEED`.
 Zero checker failures and zero infrastructure errors across all 896 attempts.
 No `baseline_incomplete`, no `irreducibility_inconclusive`, no
 `fit_execution_error`, no `probe_execution_error`, no timeout, no uncaught
-exception. Dominant scientific rejections are `slot_key_unobserved` (200),
-`region_colour_conflict` (210), `slot_unobservable` (150),
-`execution_undefined` (174) and `base_search_solved` (37).
+exception. The complete outcome distribution over all 896 attempts:
+
+| outcome | count |
+| --- | --- |
+| region_colour_conflict | 210 |
+| slot_key_unobserved | 200 |
+| execution_undefined | 174 |
+| slot_unobservable | 150 |
+| prior_v1_target_overlap | 41 |
+| base_search_solved | 38 |
+| probe_coverage_vacuous | 32 |
+| duplicate_target | 14 |
+| ADMITTED | 13 |
+| scoped_fit_failed | 12 |
+| locally_reducible_select | 12 |
+
+Attempts reaching each later stage: 95 ran the baseline, 25 reached witness
+separation, 25 reached the irreducibility audit, 13 were admitted.
 
 ## 11. What the 13 admissions are, and their weaknesses
 
