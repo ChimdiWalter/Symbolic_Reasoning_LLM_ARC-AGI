@@ -161,12 +161,41 @@ class BaselineTrace:
     constraint_consistent: list     # [(open_schema, program, signature)] inspection only
     census: dict
     work_done: int
-    truncated: bool
+    enumerated_total: int           # size of the full hypothesis space
+    truncated: bool                 # wall-clock cut OR work limit below the full space
+    truncation_causes: list
+    errors: int                     # schemas whose verdict is an EXECUTION_ERROR
+    exhausted: int                  # schemas never judged because a limit fired
+    inspection_errors: int          # errors in the inspection-only refit (not a verdict)
     seconds: float
+
+    def complete(self) -> bool:
+        """True only when every hypothesis in the declared space received a
+        scientific verdict. A baseline that did not complete cannot support the
+        statement "the baseline failed"."""
+        return (not self.truncated and self.errors == 0 and self.exhausted == 0
+                and self.work_done == self.enumerated_total)
+
+    def incompleteness_reasons(self) -> list:
+        reasons = []
+        if self.work_done != self.enumerated_total:
+            reasons.append(f"work_done {self.work_done} != enumerated {self.enumerated_total}")
+        if self.truncated:
+            reasons.extend(self.truncation_causes or ["truncated"])
+        if self.errors:
+            reasons.append(f"{self.errors} schema verdicts were EXECUTION_ERROR")
+        if self.exhausted:
+            reasons.append(f"{self.exhausted} schemas were never judged")
+        return reasons
 
     def summary(self) -> dict:
         return {"config_digest": self.config_digest, "fitter_identity": self.fitter_identity,
-                "work_done": self.work_done, "truncated": self.truncated,
+                "work_done": self.work_done, "enumerated_total": self.enumerated_total,
+                "truncated": self.truncated, "truncation_causes": list(self.truncation_causes),
+                "errors": self.errors, "exhausted": self.exhausted,
+                "inspection_errors": self.inspection_errors,
+                "complete": self.complete(),
+                "incompleteness_reasons": self.incompleteness_reasons(),
                 "census": dict(sorted(self.census.items())),
                 "exact": len(self.exact),
                 "constraint_consistent": len(self.constraint_consistent),
@@ -180,11 +209,20 @@ def run_baseline(pairs, config: BaselineConfig) -> BaselineTrace:
     deadline = (None if config.wall_clock_limit_s is None
                 else started + float(config.wall_clock_limit_s))
     records, exact, consistent, census = [], [], [], {}
-    truncated, work_done = False, 0
-    space = hypothesis_space(config)[:config.work_limit_schemas]
+    truncated, work_done, causes = False, 0, []
+    inspection_errors = 0
+    full_space = hypothesis_space(config)
+    space = full_space[:config.work_limit_schemas]
+    if len(space) < len(full_space):
+        #  a work limit below the declared space is itself a truncation and is
+        #  never allowed to look like a complete search that found nothing
+        truncated = True
+        causes.append(f"work_limit_schemas={config.work_limit_schemas} "
+                      f"< hypothesis space {len(full_space)}")
     for index, schema in enumerate(space):
         if deadline is not None and time.monotonic() > deadline:
             truncated = True
+            causes.append("wall_clock_limit")
             for rest_index in range(index, len(space)):
                 records.append({"index": rest_index, "triple": list(_triple(space[rest_index])),
                                 "status": "RESOURCE_EXHAUSTED", "code": "wall_clock_limit",
@@ -199,7 +237,9 @@ def run_baseline(pairs, config: BaselineConfig) -> BaselineTrace:
         if strict["status"] == "EXACT_DEMONSTRATION_FIT":
             exact.append((schema, strict["program"]))
         elif strict["status"] == "FIT_FAILURE" and strict["code"] == "final_execution_mismatch":
-            #  bindings exist but do not replay exactly: inspection-only set
+            #  bindings exist but do not replay exactly: inspection-only set. The
+            #  STRICT verdict already stands; a failure of this inspection call is
+            #  recorded as such and never overwrites the scientific verdict.
             loose = SF.fit_outcome(schema, pairs, require_exact_replay=False)
             if loose["status"] == "CONSTRAINT_CONSISTENT_BINDING":
                 signature = _mismatch_signature(loose["program"], pairs)
@@ -207,14 +247,29 @@ def run_baseline(pairs, config: BaselineConfig) -> BaselineTrace:
                 record["code"] = None
                 record["signature"] = signature
                 consistent.append((schema, loose["program"], signature))
+            elif loose["status"] in ("EXECUTION_ERROR", "RESOURCE_EXHAUSTED"):
+                inspection_errors += 1
+                record["inspection_status"] = loose["status"]
+                record["inspection_code"] = loose["code"]
             else:
                 record["status"] = loose["status"]
                 record["code"] = loose["code"]
         census[record["status"]] = census.get(record["status"], 0) + 1
         records.append(record)
+    #  the hypotheses that were never reached at all, if the space was cut
+    for index in range(len(space), len(full_space)):
+        records.append({"index": index, "triple": list(_triple(full_space[index])),
+                        "status": "RESOURCE_EXHAUSTED", "code": "work_limit_schemas",
+                        "detail": ""})
+        census["RESOURCE_EXHAUSTED"] = census.get("RESOURCE_EXHAUSTED", 0) + 1
     return BaselineTrace(config_digest=config.digest(), fitter_identity=SF.fitter_identity(),
                          records=records, exact=exact, constraint_consistent=consistent,
-                         census=census, work_done=work_done, truncated=truncated,
+                         census=census, work_done=work_done,
+                         enumerated_total=len(full_space), truncated=truncated,
+                         truncation_causes=causes,
+                         errors=census.get("EXECUTION_ERROR", 0),
+                         exhausted=census.get("RESOURCE_EXHAUSTED", 0),
+                         inspection_errors=inspection_errors,
                          seconds=time.monotonic() - started)
 
 
@@ -292,15 +347,17 @@ def tfg_from_trace(pairs, trace: BaselineTrace, config: BaselineConfig) -> Concr
         nodes.append(TFGNode(node_id, "slot", "", {"op": partition, "failures": count}))
         edges.append(TFGEdge(node_id, "fails", "goal"))
 
-    if trace.truncated:
-        nodes.append(TFGNode("cause0", "cause", "", {"truncation": "wall_clock_limit"}))
-        edges.append(TFGEdge("cause0", "blocks", "goal"))
+    for index, cause in enumerate(trace.truncation_causes or []):
+        nodes.append(TFGNode(f"cause{index}", "cause", "", {"truncation": str(cause)}))
+        edges.append(TFGEdge(f"cause{index}", "blocks", "goal"))
 
     nodes.append(TFGNode("search", "execution", "", {
         "typed": int(trace.work_done), "generated": int(trace.work_done),
         "rejected": int(trace.work_done - len(trace.exact)),
         "max_depth": 1, "semantic_classes": int(len(trace.exact)),
         "outcome_census": {k: trace.census[k] for k in sorted(trace.census)},
+        "enumerated_total": int(trace.enumerated_total),
+        "search_complete": bool(trace.complete()),
         "deadline_hit": bool(trace.truncated),
         "baseline_config": trace.config_digest,
         "trace_config": trace_config_digest(config)}))

@@ -70,7 +70,25 @@ REJECTION_CODES_V2C = V2.REJECTION_CODES_V2 + (
     "irreducibility_inconclusive",    # no ablation reproduced, but a check was incomplete
     "baseline_tfg_config_mismatch",   # failure and TFG from different configurations
     "probe_coverage_vacuous",         # target defined on fewer probes than the manifest floor
+    "baseline_incomplete",            # the baseline did not finish, so "it failed" is unsupported
 )
+
+#: outcomes that report a failure OF THE CHECKER, never a scientific property of
+#: the target. They are counted apart from both scientific rejections and
+#: infrastructure exceptions, because a broken check must never read as evidence.
+CHECKER_FAILURE_CODES = (
+    "fit_execution_error", "probe_execution_error", "irreducibility_inconclusive",
+    "baseline_tfg_config_mismatch", "baseline_incomplete", "generation_timeout",
+)
+
+#: the demonstration protocol; the runner passes the manifest's copy, and this
+#: default exists only so the module is usable in tests without a manifest
+DEFAULT_GENERATION = {
+    "grid_seed_formula": "seed*97 + i",
+    "candidate_grids": 14,
+    "table_grids": 6,
+    "min_demos": 3,
+}
 
 ABLATION_OUTCOMES = (
     "REPRODUCING_ABLATION_FOUND",
@@ -217,9 +235,28 @@ def _compare_program(program, pairs, target_fp: str, target_status: list) -> dic
 
 
 def _reproduces(comparison: dict | None) -> bool:
-    return bool(comparison and comparison.get("demo_behaviour") == "exact"
-                and comparison.get("probe_fingerprint_equal") is True
-                and comparison.get("probe_errors", 1) == 0)
+    """Behavioural agreement, and never a vacuous one.
+
+    Every program that is undefined on every frozen probe has the SAME
+    all-undefined fingerprint (measured: three semantically different programs
+    collide), so fingerprint equality alone is not evidence of agreement. A
+    match counts only when the two programs are jointly defined on at least one
+    probe. Under the frozen manifest the target already clears
+    admission.min_defined_probes >= 1, so this guard is inert there; it exists so
+    the criterion is correct independently of that floor."""
+    if not comparison or comparison.get("probe_errors", 1) != 0:
+        return False
+    if comparison.get("demo_behaviour") != "exact":
+        return False
+    if comparison.get("probe_fingerprint_equal") is not True:
+        return False
+    return int(comparison.get("both_defined_probes", 0)) > 0
+
+
+def _vacuous_probe_match(comparison: dict | None) -> bool:
+    """Fingerprints equal only because neither program is defined anywhere."""
+    return bool(comparison and comparison.get("probe_fingerprint_equal") is True
+                and int(comparison.get("both_defined_probes", 0)) == 0)
 
 
 def _incomplete(comparison: dict | None, refit_status: str | None = None) -> bool:
@@ -296,6 +333,19 @@ def irreducibility_audit_v2c(schema, fitted_program, pairs, target_fp: str,
         entry["direct"] = direct
         entry["refitted"] = refit
         entry["seconds"] = round(time.monotonic() - started, 3)
+        #  demonstration behaviour and frozen-probe behaviour are reported
+        #  separately: an ablation that replays every demonstration but differs
+        #  on the probes does NOT meet the declared reducibility criterion, yet
+        #  it means the demonstrations never witness the need for the removed
+        #  stage. That is recorded, never silently folded into "irreducible".
+        entry["vacuous_probe_match"] = bool(
+            _vacuous_probe_match(direct) or _vacuous_probe_match(refit["comparison"]))
+        entry["demonstrations_only_reproduced"] = bool(
+            (direct.get("demo_behaviour") == "exact"
+             and direct.get("probe_fingerprint_equal") is False)
+            or (refit["comparison"] is not None
+                and refit["comparison"].get("demo_behaviour") == "exact"
+                and refit["comparison"].get("probe_fingerprint_equal") is False))
         if _reproduces(direct) or _reproduces(refit["comparison"]):
             entry["outcome"] = "REPRODUCING_ABLATION_FOUND"
             entry["reason"] = ("direct" if _reproduces(direct) else "refitted") + \
@@ -313,10 +363,18 @@ def irreducibility_audit_v2c(schema, fitted_program, pairs, target_fp: str,
                                   f"probe_equal={refit['comparison'].get('probe_fingerprint_equal')}"
                                   if refit["comparison"] else ""))
         counts[entry["outcome"]] += 1
+    demo_only = sum(1 for a in ablations if a.get("demonstrations_only_reproduced"))
+    vacuous = sum(1 for a in ablations if a.get("vacuous_probe_match"))
     return {"ablations": ablations, "counts": counts,
+            "demonstration_only_reproducing_ablations": demo_only,
+            "demonstrations_do_not_witness_a_stage": demo_only > 0,
+            "vacuous_probe_matches": vacuous,
             "reducible": counts["REPRODUCING_ABLATION_FOUND"] > 0,
             "inconclusive": counts["REPRODUCING_ABLATION_FOUND"] == 0
             and counts["INCONCLUSIVE"] > 0,
+            "deadline_exhausted": any(
+                a.get("refitted", {}).get("status") == "RESOURCE_EXHAUSTED"
+                for a in ablations),
             "target_defined_probes": sum(1 for s in target_probe_status if s == "OK"),
             "probe_count": len(target_probe_status),
             "scope": "local single-ablation search; never global minimality"}
@@ -329,7 +387,8 @@ def irreducibility_audit_v2c(schema, fitted_program, pairs, target_fp: str,
 def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
                         allowed_families: Sequence[tuple], state: CensusState,
                         config: MB.BaselineConfig, budgets: Mapping[str, float],
-                        row_index: int, min_defined_probes: int = 0) -> tuple:
+                        row_index: int, min_defined_probes: int = 1,
+                        generation: Mapping[str, object] | None = None) -> tuple:
     """Returns (outcome, episode|None, evidence). One terminal outcome per
     attempt; the state is updated for EVERY attempt that reached a digest."""
     started = time.monotonic()
@@ -350,7 +409,8 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
                      concrete_digest=concrete_digest, demo_digest=demo_digest)
         evidence["units"] = {"schema_digest": digest or None,
                              "concrete_digest": concrete_digest,
-                             "demo_bundle_digest": demo_digest}
+                             "demo_bundle_digest": demo_digest,
+                             "family": CV.family_text(family) if digest else None}
         return outcome
 
     #  R1 grammar validity and family law
@@ -379,17 +439,24 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
         stamp("r9")
         return finish("split_collision"), None, evidence
 
-    #  R2 executability and R3 nontriviality (deterministic instantiation)
-    grid_seeds = [seed * 97 + i for i in range(14)]
-    concrete = instantiate_tables(schema, [CD.generate_grid(s) for s in grid_seeds[:6]])
+    #  R2 executability and R3 nontriviality (deterministic instantiation).
+    #  Every constant of the demonstration protocol comes from the manifest.
+    gen = dict(DEFAULT_GENERATION, **(generation or {}))
+    if gen["grid_seed_formula"] != DEFAULT_GENERATION["grid_seed_formula"]:
+        raise ValueError(f"unknown grid seed formula {gen['grid_seed_formula']!r}")
+    evidence["generation"] = gen
+    grid_seeds = [seed * 97 + i for i in range(int(gen["candidate_grids"]))]
+    concrete = instantiate_tables(schema,
+                                  [CD.generate_grid(s) for s in grid_seeds[:int(gen["table_grids"])]])
     if concrete is None:
         stamp("r2")
         evidence["demo_diagnostic"] = {"undefined": "all_generation_grids", "trivial": 0}
         return finish("execution_undefined"), None, evidence
     concrete_digest = CV.digest(concrete)
-    pairs, demo_diag = CD.render_demonstrations(concrete, grid_seeds, min_demos=3)
+    pairs, demo_diag = CD.render_demonstrations(concrete, grid_seeds,
+                                                min_demos=int(gen["min_demos"]))
     evidence["demo_diagnostic"] = demo_diag
-    if len(pairs) < 3:
+    if len(pairs) < int(gen["min_demos"]):
         stamp("r2")
         return finish("trivial_output" if demo_diag["trivial"] >= demo_diag["undefined"]
                       else "execution_undefined"), None, evidence
@@ -425,11 +492,21 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
         return finish("baseline_tfg_config_mismatch"), None, evidence
     if trace.exact:
         return finish("base_search_solved"), None, evidence
+    #  "the baseline failed" is a claim about a search that RAN. A truncated,
+    #  errored or partially judged baseline cannot support it, so the attempt is
+    #  rejected as a checker failure rather than admitted on absent evidence.
+    if not trace.complete():
+        evidence["baseline_incompleteness"] = trace.incompleteness_reasons()
+        return finish("baseline_incomplete"), None, evidence
     if time.monotonic() > deadline:
         evidence["truncated_by_wall_clock"] = "after_r4"
         return finish("generation_timeout"), None, evidence
 
     #  R7 frozen-probe witness separation, with coverage accounting
+    if time.monotonic() > deadline:
+        evidence["truncated_by_wall_clock"] = "before_r7"
+        stamp("r7")
+        return finish("generation_timeout"), None, evidence
     target_fp, target_status = CP.fingerprint_with_diagnostics(fitted_target, _evaluate)
     target_defined = sum(1 for s in target_status if s == "OK")
     evidence["probe_coverage"] = {"target_defined_probes": target_defined,
@@ -443,20 +520,29 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
         stamp("r7")
         return finish("probe_coverage_vacuous"), None, evidence
     equivalent, comparison_errors, both_defined = 0, 0, []
+    vacuous_matches = 0
     for _schema_b, program_b, _signature in trace.constraint_consistent:
         fp_b, status_b = CP.fingerprint_with_diagnostics(program_b, _evaluate)
         if any(s.startswith(CP.ERROR_PREFIX) for s in status_b):
             comparison_errors += 1
             continue
-        both_defined.append(sum(1 for s, t in zip(status_b, target_status)
-                                if s == "OK" and t == "OK"))
+        joint = sum(1 for s, t in zip(status_b, target_status) if s == "OK" and t == "OK")
+        both_defined.append(joint)
         if fp_b == target_fp:
-            equivalent += 1
+            #  an all-undefined collision is not behavioural equivalence
+            if joint > 0:
+                equivalent += 1
+            else:
+                vacuous_matches += 1
     evidence["witness_separation"] = {
         "constraint_consistent_baselines": len(trace.constraint_consistent),
+        "comparison_set_empty": len(trace.constraint_consistent) == 0,
         "witness_equivalent": equivalent, "comparison_errors": comparison_errors,
+        "vacuous_fingerprint_matches": vacuous_matches,
         "both_defined_probes_min": min(both_defined) if both_defined else None,
-        "both_defined_probes_max": max(both_defined) if both_defined else None}
+        "both_defined_probes_max": max(both_defined) if both_defined else None,
+        "note": ("separation established against this set only; an empty set means the "
+                 "requirement was satisfied with nothing to compare against")}
     stamp("r7")
     if equivalent:
         return finish("witness_not_separated"), None, evidence
@@ -466,8 +552,14 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
     #  R8 local irreducibility under the explicit contract
     audit = irreducibility_audit_v2c(schema, fitted_target, pairs, target_fp,
                                      target_status, deadline=deadline)
-    evidence["irreducibility"] = {"counts": audit["counts"], "reducible": audit["reducible"],
-                                  "inconclusive": audit["inconclusive"]}
+    evidence["irreducibility"] = {
+        "counts": audit["counts"], "reducible": audit["reducible"],
+        "inconclusive": audit["inconclusive"],
+        "deadline_exhausted": audit["deadline_exhausted"],
+        "demonstration_only_reproducing_ablations":
+            audit["demonstration_only_reproducing_ablations"]}
+    if audit["deadline_exhausted"]:
+        evidence["truncated_by_wall_clock"] = "during_r8"
     stamp("r8")
     if audit["reducible"]:
         kinds = {a["kind"] for a in audit["ablations"]
@@ -487,10 +579,11 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
     stamp("tfg")
 
     episode = {
-        "episode_id": f"v2c-{split}-{regime}-{row_index:04d}",
+        "episode_id": f"v2c-{split}-{CV.family_text(family)}-{row_index:04d}",
         "split": split, "regime": regime, "generation_seed": seed,
         "units": {"schema_digest": digest, "concrete_digest": concrete_digest,
-                  "demo_bundle_digest": demo_digest, "attempt_index": row_index},
+                  "demo_bundle_digest": demo_digest, "attempt_index": row_index,
+                  "family": CV.family_text(family)},
         "demonstrations": [{"input": a.tolist(), "output": b.tolist()} for a, b in pairs],
         "target_schema_json": M.ast_to_json(schema),
         "target_concrete_json": M.ast_to_json(concrete),
@@ -510,6 +603,7 @@ def evaluate_target_v2c(schema, *, seed: int, split: str, regime: str,
         "baseline_config_digest": config.digest(),
         "trace_config_digest": MB.trace_config_digest(config),
         "baseline_trace": trace.summary(),
+        "generation": gen,
         "fitter_identity": SF.fitter_identity(),
         "fitter_options": {"target": SF.fitter_options(True),
                            "baseline_strict": dict(config.strict_options),
@@ -565,14 +659,19 @@ def _protocol_hash_v2c() -> str:
     return path.read_text().split()[0] if path.exists() else "UNFROZEN"
 
 
-CODE_FILES_V2C = ("constructive_vocabulary.py", "constructive_probes.py",
-                  "constructive_dataset.py", "scoped_slot_fitting.py",
-                  "meta_baseline.py", "constructive_v2c.py", "constructive_v2c_census.py")
+#: every module the evidence path executes, including the graph builder whose
+#: canonical digest lands on each admitted episode and the v2 module supplying
+#: the shared rejection vocabulary
+CODE_FILES_V2C = ("cora_tti/constructive_vocabulary.py", "cora_tti/constructive_probes.py",
+                  "cora_tti/constructive_dataset.py", "cora_tti/scoped_slot_fitting.py",
+                  "cora_tti/meta_baseline.py", "cora_tti/constructive_v2c.py",
+                  "cora_tti/constructive_v2c_census.py", "cora_tti/constructive_v2_dataset.py",
+                  "cora_parent/tfg.py", "cora_parent/interfaces.py")
 
 
 def code_hashes_v2c() -> dict:
-    return {name: hashlib.sha256((ROOT / "cora_tti" / name).read_bytes()).hexdigest()
-            for name in CODE_FILES_V2C if (ROOT / "cora_tti" / name).exists()}
+    return {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+            for name in CODE_FILES_V2C if (ROOT / name).exists()}
 
 
 def code_hash_v2c() -> str:

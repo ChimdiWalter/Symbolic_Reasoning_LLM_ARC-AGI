@@ -7,6 +7,7 @@ instantiation; baseline/TFG configuration identity; typed key codec.
 from __future__ import annotations
 
 import inspect
+import json
 import os
 import subprocess
 import sys
@@ -52,6 +53,27 @@ def _first_fittable(family, start=0, limit=400):
         if fit["status"] == "EXACT_DEMONSTRATION_FIT":
             return seed, schema, concrete, pairs, fit["program"]
     pytest.skip(f"no fittable generated target found for {family}")
+
+
+def _first_redundant_select_fixture(limit=800):
+    """A generated single-block target carrying the identity filter Select("all")
+    whose fitted program is defined on at least one frozen probe, so the
+    reducibility comparison is non-vacuous."""
+    for attempt in range(limit):
+        seed = 7_000_000 + attempt * 7919 + 1013
+        base = CD.sample_target(seed, (0,))
+        partition, _selects, feature = CV.blocks_from_ast(base)[0]
+        schema = CV.ast_from_blocks([(partition, ("all",), feature)])
+        _concrete, pairs = _demos_for(schema, seed)
+        if len(pairs) < 3:
+            continue
+        fit = SF.fit_outcome(schema, pairs)
+        if fit["status"] != "EXACT_DEMONSTRATION_FIT":
+            continue
+        _fp, status = CP.fingerprint_with_diagnostics(fit["program"], V2C._evaluate)
+        if sum(1 for st in status if st == "OK") > 0:
+            return schema, pairs, fit
+    return None
 
 
 # ---------------------------------------------------------------- codec ---
@@ -235,14 +257,12 @@ def test_direct_ablation_detects_a_provably_redundant_select():
     """Select("all") is the identity filter (proved in the predicate audit), so a
     single-block target carrying it is locally reducible: removing that stage
     must reproduce both the demonstrations and the frozen-probe behaviour."""
-    seed, single, _c, _p, _prog = _first_fittable((0,), limit=600)
-    partition, _selects, feature = CV.blocks_from_ast(single)[0]
-    schema = CV.ast_from_blocks([(partition, ("all",), feature)])
-    _concrete, pairs = _demos_for(schema, seed)
-    assert len(pairs) >= 3
-    fit = SF.fit_outcome(schema, pairs)
-    assert fit["status"] == "EXACT_DEMONSTRATION_FIT", fit["code"]
+    found = _first_redundant_select_fixture()
+    if found is None:
+        pytest.skip("no probe-defined redundant-Select fixture in the searched range")
+    schema, pairs, fit = found
     fp, status = CP.fingerprint_with_diagnostics(fit["program"], V2C._evaluate)
+    assert sum(1 for s in status if s == "OK") > 0, "fixture must be probe-defined"
     audit = V2C.irreducibility_audit_v2c(schema, fit["program"], pairs, fp, status)
     assert audit["reducible"], audit["counts"]
     hit = [a for a in audit["ablations"] if a.get("outcome") == "REPRODUCING_ABLATION_FOUND"]
@@ -358,3 +378,170 @@ def test_seed_schedule_is_collision_free_for_the_manifest_shape():
     from cora_tti import constructive_v2c_census as R
     seeds = [R.seed_for(manifest, fi, a) for fi in range(7) for a in range(128)]
     assert len(seeds) == len(set(seeds)) == 896
+
+
+# --------------------------------- checker failures are never scientific ---
+
+def test_incomplete_baseline_cannot_support_admission(monkeypatch):
+    """A truncated or errored baseline is not evidence that the baseline failed."""
+    seed, schema, _c, _p, _prog = _first_fittable((0, 0))
+    state = V2C.CensusState(v1_exclusion=set())
+    cut = MB.BaselineConfig(work_limit_schemas=50)
+    outcome, episode, evidence = V2C.evaluate_target_v2c(
+        schema, seed=seed, split="t", regime="train_pool", allowed_families=[(0, 0)],
+        state=state, config=cut, budgets=BUDGETS, row_index=0)
+    assert outcome == "baseline_incomplete", outcome
+    assert episode is None
+    assert evidence["baseline_incompleteness"]
+    assert evidence["baseline"]["complete"] is False
+
+    #  and an erroring baseline likewise
+    real = MB.run_baseline
+
+    def erroring(pairs, config):
+        trace = real(pairs, config)
+        trace.errors = 3
+        trace.census["EXECUTION_ERROR"] = 3
+        return trace
+    monkeypatch.setattr(MB, "run_baseline", erroring)
+    state2 = V2C.CensusState(v1_exclusion=set())
+    outcome2, _e, ev2 = V2C.evaluate_target_v2c(
+        schema, seed=seed, split="t", regime="train_pool", allowed_families=[(0, 0)],
+        state=state2, config=CONFIG, budgets=BUDGETS, row_index=0)
+    assert outcome2 == "baseline_incomplete", outcome2
+    assert any("EXECUTION_ERROR" in reason for reason in ev2["baseline_incompleteness"])
+
+
+def test_checker_failure_codes_are_disjoint_from_scientific_rejections():
+    from cora_tti import constructive_v2c_census as R
+    assert set(V2C.CHECKER_FAILURE_CODES) <= set(V2C.REJECTION_CODES_V2C)
+    rows = []
+    for index, outcome in enumerate(["ADMITTED", "scoped_fit_failed", "baseline_incomplete",
+                                     "irreducibility_inconclusive", "probe_execution_error",
+                                     "infra_exception:ValueError"]):
+        rows.append({"family": [0, 0], "family_text": "(0,0)", "attempt": index,
+                     "regime": "train_pool", "outcome": outcome, "schema_digest": f"d{index}",
+                     "units": {}, "seconds": 0.1})
+    scientific = {r["outcome"] for r in rows
+                  if not r["outcome"].startswith(V2C.INFRA_PREFIX)
+                  and r["outcome"] not in V2C.CHECKER_FAILURE_CODES}
+    assert scientific == {"ADMITTED", "scoped_fit_failed"}
+    checker = {r["outcome"] for r in rows if r["outcome"] in V2C.CHECKER_FAILURE_CODES}
+    assert checker == {"baseline_incomplete", "irreducibility_inconclusive",
+                       "probe_execution_error"}
+
+
+def test_baseline_work_limit_below_the_space_is_recorded_as_truncation():
+    seed, _s, _c, pairs, _p = _first_fittable((0, 0))
+    full = MB.run_baseline(pairs, CONFIG)
+    assert full.complete() and full.work_done == full.enumerated_total == 200
+    cut = MB.run_baseline(pairs, MB.BaselineConfig(work_limit_schemas=50))
+    assert not cut.complete() and cut.truncated
+    assert cut.exhausted == 150
+    assert any("work_limit_schemas" in c for c in cut.truncation_causes)
+    assert cut.summary()["search_complete" if "search_complete" in cut.summary() else "complete"] is False
+
+
+# ----------------------------------------------- restart and provenance ---
+
+def test_restart_restores_the_guard_state_of_an_errored_attempt():
+    from cora_tti import constructive_v2c_census as R
+    manifest = {"historical_exclusion": {
+        "path": "outputs/tti/constructive_v1_1_target_exclusion.json",
+        "sha256": __import__("hashlib").sha256(
+            (ROOT / "outputs/tti/constructive_v1_1_target_exclusion.json").read_bytes()).hexdigest()}}
+    rows = [
+        {"family_text": "(0,0)", "attempt": 0, "regime": "train_pool", "outcome": "ADMITTED",
+         "schema_digest": "aaa", "units": {"schema_digest": "aaa", "concrete_digest": "c1",
+                                           "demo_bundle_digest": "d1"}},
+        #  an attempt that raised: units empty, digest only at top level
+        {"family_text": "(0,0)", "attempt": 1, "regime": "train_pool",
+         "outcome": "infra_exception:ValueError", "schema_digest": "bbb", "units": {}},
+    ]
+    state = R.rebuild_state(manifest, rows)
+    assert "bbb" in state.seen_digests, "restart lost the digest of an errored attempt"
+    assert "aaa" in state.seen_train_digests
+    assert state.units()["unique_schemas"] == 2
+
+
+def test_resume_refuses_rows_from_a_different_manifest(tmp_path, monkeypatch):
+    from cora_tti import constructive_v2c_census as R
+    attempts = tmp_path / "attempts.jsonl"
+    attempts.write_text(json.dumps({"manifest_sha256": "OTHER", "family_text": "(0,0)",
+                                    "attempt": 0, "regime": "train_pool",
+                                    "outcome": "ADMITTED", "schema_digest": "x"}) + "\n")
+    monkeypatch.setattr(R, "ATTEMPTS", attempts)
+    with pytest.raises(RuntimeError, match="different"):
+        R.existing_rows("MINE")
+    assert R.existing_rows("OTHER")
+
+
+def test_every_recorded_setting_the_admission_law_uses_comes_from_its_argument():
+    """The demonstration protocol is passed in, not hard-coded on the path."""
+    source = (ROOT / "cora_tti" / "constructive_v2c.py").read_text()
+    body = source[source.index("def evaluate_target_v2c("):]
+    assert "range(14)" not in body and "grid_seeds[:6]" not in body
+    assert "min_demos=3" not in body
+    assert 'gen["candidate_grids"]' in body and 'gen["min_demos"]' in body
+
+
+def test_demonstration_only_reproduction_is_recorded_separately():
+    """An ablation that replays the demonstrations but differs on the probes does
+    not meet the reducibility criterion, and must not vanish silently."""
+    found = _first_redundant_select_fixture()
+    if found is None:
+        pytest.skip("no probe-defined redundant-Select fixture")
+    schema, pairs, fit = found
+    fp, status = CP.fingerprint_with_diagnostics(fit["program"], V2C._evaluate)
+    audit = V2C.irreducibility_audit_v2c(schema, fit["program"], pairs, fp, status)
+    assert "demonstration_only_reproducing_ablations" in audit
+    assert "demonstrations_do_not_witness_a_stage" in audit
+    for entry in audit["ablations"]:
+        if entry.get("outcome") != "NOT_APPLICABLE":
+            assert "demonstrations_only_reproduced" in entry
+
+
+def test_code_hash_set_covers_the_graph_builder():
+    assert "cora_parent/tfg.py" in V2C.CODE_FILES_V2C
+    assert "cora_tti/constructive_v2_dataset.py" in V2C.CODE_FILES_V2C
+    hashes = V2C.code_hashes_v2c()
+    assert set(hashes) == set(V2C.CODE_FILES_V2C)
+
+
+def test_episode_ids_are_unique_across_families():
+    ids = set()
+    for family in ((0, 0), (1, 1)):
+        seed, schema, _c, _p, _prog = _first_fittable(family)
+        state = V2C.CensusState(v1_exclusion=set())
+        outcome, episode, _ev = V2C.evaluate_target_v2c(
+            schema, seed=seed, split="census", regime="train_pool",
+            allowed_families=[family], state=state, config=CONFIG, budgets=BUDGETS,
+            row_index=7)
+        if outcome == V2C.ADMITTED:
+            assert episode["episode_id"] not in ids, "episode id collision across families"
+            ids.add(episode["episode_id"])
+
+
+def test_all_undefined_fingerprints_collide_and_never_count_as_agreement():
+    """Every program undefined on every probe shares one fingerprint, so a
+    match there is not evidence of behavioural agreement."""
+    def prog(partition, feature, key, colour):
+        return ("Compose", (("Partition", (partition,)),
+                            ("Map", (("Key", (feature,)), ("Lookup", (((key, colour),),)))),
+                            ("Paint", ())))
+    a = prog("enclosed_regions", "area", 999_999, 7)
+    b = prog("colour_components", "area", 888_888, 3)
+    fa, sa = CP.fingerprint_with_diagnostics(a, V2C._evaluate)
+    fb, sb = CP.fingerprint_with_diagnostics(b, V2C._evaluate)
+    assert sum(1 for s in sa if s == "OK") == 0 and sum(1 for s in sb if s == "OK") == 0
+    assert fa == fb, "precondition: all-undefined fingerprints collide"
+    vacuous = {"demo_behaviour": "exact", "probe_fingerprint_equal": True,
+               "both_defined_probes": 0, "probe_errors": 0}
+    real = dict(vacuous, both_defined_probes=4)
+    assert not V2C._reproduces(vacuous), "a vacuous match must not establish redundancy"
+    assert V2C._vacuous_probe_match(vacuous)
+    assert V2C._reproduces(real) and not V2C._vacuous_probe_match(real)
+
+
+def test_probe_floor_defaults_to_non_vacuous():
+    assert inspect.signature(V2C.evaluate_target_v2c).parameters["min_defined_probes"].default == 1

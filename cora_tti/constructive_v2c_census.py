@@ -28,6 +28,8 @@ import time
 from collections import Counter
 from pathlib import Path
 
+import numpy as np
+
 ROOT = Path(__file__).resolve().parents[1]
 for entry in (str(ROOT), str(ROOT / "src")):
     if entry not in sys.path:
@@ -44,7 +46,7 @@ MANIFEST = OUT / "manifest.json"
 MANIFEST_HASH = OUT / "manifest_hash.txt"
 ATTEMPTS = OUT / "attempts.jsonl"
 ADMITTED_DIR = OUT / "admitted"
-EXECUTION = OUT / "execution_record.json"
+EXECUTION = OUT / "execution_records.jsonl"
 RESULTS = OUT / "results.json"
 
 
@@ -81,23 +83,41 @@ def load_exclusion(manifest: dict) -> set:
     return set(doc["digests"])
 
 
-def existing_rows() -> list:
+def existing_rows(manifest_sha: str) -> list:
+    """Rows of THIS census only. A row written under a different manifest is a
+    different experiment; resuming across one would let a single results.json
+    report attempts from two protocols, so it is refused rather than skipped."""
     if not ATTEMPTS.exists():
         return []
-    rows = []
+    rows, foreign = [], []
     for line in ATTEMPTS.read_text().splitlines():
-        if line.strip():
-            rows.append(json.loads(line))
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        if row.get("manifest_sha256") != manifest_sha:
+            foreign.append(row.get("manifest_sha256"))
+            continue
+        rows.append(row)
+    if foreign:
+        raise RuntimeError(
+            f"{len(foreign)} attempt rows in {ATTEMPTS} were written under a different "
+            f"manifest ({sorted(set(foreign))[:2]}); move that file aside before running "
+            f"this census, do not mix protocols in one result")
     return rows
 
 
 def rebuild_state(manifest: dict, rows: list) -> V2C.CensusState:
-    """Run-wide identity state, restored from the durable attempt log."""
+    """Run-wide identity state, restored from the durable attempt log.
+
+    The schema digest is taken from the row's own top-level field, which is
+    written for EVERY attempt including one that raised, so a restart restores
+    exactly the guard state a continuous run would have held."""
     state = V2C.CensusState(v1_exclusion=load_exclusion(manifest))
     for row in rows:
         units = row.get("units") or {}
-        state.record(digest=units.get("schema_digest") or "", regime=row["regime"],
-                     outcome=row["outcome"], concrete_digest=units.get("concrete_digest"),
+        digest = units.get("schema_digest") or row.get("schema_digest") or ""
+        state.record(digest=digest, regime=row["regime"], outcome=row["outcome"],
+                     concrete_digest=units.get("concrete_digest"),
                      demo_digest=units.get("demo_bundle_digest"))
     return state
 
@@ -137,24 +157,47 @@ def run() -> dict:
         raise RuntimeError("trace configuration digest differs from the manifest")
     if SF.fitter_identity() != manifest["fitter_identity"]:
         raise RuntimeError("fitter identity differs from the manifest")
+    #  the manifest records the fitter's scientific OPTIONS; check the live
+    #  implementation actually runs under them, so a hashed option set can never
+    #  be reported as executed while a different one ran
+    if SF.fitter_options(True) != manifest["fitter_options_strict"] or \
+            SF.fitter_options(False) != manifest["fitter_options_inspection"]:
+        raise RuntimeError("live fitter options differ from the manifest")
+    if dict(config.strict_options) != manifest["fitter_options_strict"]:
+        raise RuntimeError("baseline strict options differ from the manifest fitter options")
+    #  every generated schema, grid and probe comes from numpy's Generator, which
+    #  carries no cross-version stream guarantee
+    if np.__version__ != manifest["environment"]["numpy"]:
+        raise RuntimeError(f"numpy {np.__version__} != manifest "
+                           f"{manifest['environment']['numpy']}; the generator stream is "
+                           f"not guaranteed across versions")
+    if platform.python_version() != manifest["environment"]["python"]:
+        raise RuntimeError(f"python {platform.python_version()} != manifest "
+                           f"{manifest['environment']['python']}")
 
     OUT.mkdir(parents=True, exist_ok=True)
     ADMITTED_DIR.mkdir(exist_ok=True)
-    rows = existing_rows()
+    manifest_sha = _sha_file(MANIFEST)
+    rows = existing_rows(manifest_sha)
     done = {(r["family_text"], r["attempt"]) for r in rows}
     state = rebuild_state(manifest, rows)
     families = families_of(manifest)
     per_family = int(manifest["attempts_per_family"])
     budgets = dict(manifest["budgets"])
     min_defined = int(manifest["admission"]["min_defined_probes"])
+    generation = dict(manifest["generation"])
 
     execution = {"started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                  "git_head": _git_head(), "code_hashes_at_start": code_at_start,
-                 "manifest_sha256": _sha_file(MANIFEST),
+                 "manifest_sha256": manifest_sha,
                  "PYTHONHASHSEED": os.environ.get("PYTHONHASHSEED"),
-                 "python": platform.python_version(), "resources_at_start": _resource_snapshot(),
+                 "python": platform.python_version(), "numpy": np.__version__,
+                 "resources_at_start": _resource_snapshot(),
                  "resumed_from_rows": len(rows)}
-    EXECUTION.write_text(json.dumps(execution, indent=1, sort_keys=True))
+    #  appended, never overwritten: a restarted census keeps the provenance of
+    #  every process that contributed attempts to it
+    with EXECUTION.open("a") as handle:
+        handle.write(json.dumps(execution, sort_keys=True) + "\n")
 
     started = time.monotonic()
     for family_index, family in enumerate(families):
@@ -170,13 +213,15 @@ def run() -> dict:
                 outcome, episode, evidence = V2C.evaluate_target_v2c(
                     schema, seed=seed, split="census", regime=regime,
                     allowed_families=[family], state=state, config=config,
-                    budgets=budgets, row_index=attempt, min_defined_probes=min_defined)
+                    budgets=budgets, row_index=attempt, min_defined_probes=min_defined,
+                    generation=generation)
             except Exception as error:                            # noqa: BLE001
                 outcome = f"{V2C.INFRA_PREFIX}{type(error).__name__}"
                 episode, evidence = None, {"infra_error": repr(error)[:300], "units": {}}
                 state.record(digest=CV.digest(schema), regime=regime, outcome=outcome,
                              concrete_digest=None, demo_digest=None)
-            row = {"family": list(family), "family_text": family_text, "attempt": attempt,
+            row = {"manifest_sha256": manifest_sha,
+                   "family": list(family), "family_text": family_text, "attempt": attempt,
                    "seed": seed, "regime": regime, "outcome": outcome,
                    "schema_digest": CV.digest(schema),
                    "blocks": [[p, list(s), f] for p, s, f in CV.blocks_from_ast(schema)],
@@ -188,6 +233,10 @@ def run() -> dict:
                    "probe_coverage": evidence.get("probe_coverage"),
                    "irreducibility": evidence.get("irreducibility"),
                    "demo_diagnostic": evidence.get("demo_diagnostic"),
+                   "leak_findings": evidence.get("leak_findings"),
+                   "baseline_incompleteness": evidence.get("baseline_incompleteness"),
+                   "baseline_truncated": (evidence.get("baseline") or {}).get("truncated"),
+                   "baseline_complete": (evidence.get("baseline") or {}).get("complete"),
                    "truncated_by_wall_clock": evidence.get("truncated_by_wall_clock"),
                    "infra_error": evidence.get("infra_error"),
                    "baseline_config_digest": evidence.get("baseline_config_digest"),
@@ -220,20 +269,47 @@ def finalize(manifest: dict, rows: list, state: V2C.CensusState, execution: dict
         text = CV.family_text(family)
         frows = [r for r in rows if r["family_text"] == text]
         outcomes = Counter(r["outcome"] for r in frows)
-        scientific = {k: v for k, v in outcomes.items() if not k.startswith(V2C.INFRA_PREFIX)}
+        #  THREE categories, never two: a scientific verdict about the target, a
+        #  failure of the checking machinery, and an uncaught exception. Only the
+        #  first is evidence about the research question.
         infra = {k: v for k, v in outcomes.items() if k.startswith(V2C.INFRA_PREFIX)}
+        checker = {k: v for k, v in outcomes.items() if k in V2C.CHECKER_FAILURE_CODES}
+        scientific = {k: v for k, v in outcomes.items()
+                      if not k.startswith(V2C.INFRA_PREFIX) and k not in V2C.CHECKER_FAILURE_CODES}
         admitted = [r for r in frows if r["outcome"] == V2C.ADMITTED]
+        evaluated = sum(scientific.values())
         report["families"][text] = {
             "family": list(family), "attempts": len(frows),
+            "scientifically_evaluated_attempts": evaluated,
             "admitted_attempts": len(admitted),
             "admitted_distinct_schemas": len({r["schema_digest"] for r in admitted}),
             "feasible": len(admitted) > 0,
+            "no_admission_but_nothing_was_evaluated": evaluated == 0 and not admitted,
             "scientific_outcomes": dict(sorted(scientific.items())),
+            "checker_failures": dict(sorted(checker.items())),
             "infrastructure_errors": dict(sorted(infra.items())),
-            "wall_clock_truncations": sum(1 for r in frows if r.get("truncated_by_wall_clock")),
-            "irreducibility_inconclusive": scientific.get("irreducibility_inconclusive", 0),
+            "target_wall_clock_truncations": sum(1 for r in frows
+                                                 if r.get("truncated_by_wall_clock")),
+            "baseline_truncations": sum(1 for r in frows if r.get("baseline_truncated")),
+            "baseline_incomplete": checker.get("baseline_incomplete", 0),
+            "irreducibility_inconclusive": checker.get("irreducibility_inconclusive", 0),
+            "admitted_with_demonstration_only_reproducing_ablation": sum(
+                1 for r in admitted
+                if (r.get("irreducibility") or {}).get(
+                    "demonstration_only_reproducing_ablations", 0) > 0),
             "seconds": round(sum(r["seconds"] for r in frows), 1)}
     fams = report["families"]
+    #  a family that evaluated nothing is not evidence of infeasibility; it is a
+    #  measurement that did not happen, and the gates say so explicitly
+    report["families_with_no_evaluated_attempt"] = [
+        k for k, v in fams.items() if v["no_admission_but_nothing_was_evaluated"]]
+    report["gate_validity"] = {
+        "all_families_evaluated_something": not report["families_with_no_evaluated_attempt"],
+        "checker_failures_total": sum(sum(v["checker_failures"].values()) for v in fams.values()),
+        "infrastructure_errors_total": sum(sum(v["infrastructure_errors"].values())
+                                           for v in fams.values()),
+        "note": ("a False gate means no admissible target was found among the attempts under "
+                 "this generator and admission procedure; it is not a proof of impossibility")}
     report["decision_a_gates"] = {
         "g2_multi_block_target": any(v["feasible"] and len(v["family"]) > 1 for v in fams.values()),
         "g3_repeated_select_target": any(v["feasible"] and 2 in v["family"] for v in fams.values()),
@@ -243,11 +319,26 @@ def finalize(manifest: dict, rows: list, state: V2C.CensusState, execution: dict
         "families_with_admissions": [k for k, v in fams.items() if v["feasible"]],
         "families_without_admissions": [k for k, v in fams.items() if not v["feasible"]],
     }
+    report["units_recorded"] = {
+        "attempts": len(rows),
+        "unique_schemas": len({r["schema_digest"] for r in rows}),
+        "unique_concrete_instantiations": len({(r.get("units") or {}).get("concrete_digest")
+                                               for r in rows} - {None}),
+        "unique_demonstration_bundles": len({(r.get("units") or {}).get("demo_bundle_digest")
+                                             for r in rows} - {None}),
+        "distinct_admitted_schemas": len({r["schema_digest"] for r in rows
+                                          if r["outcome"] == V2C.ADMITTED}),
+    }
     code_at_end = V2C.code_hashes_v2c()
-    report["execution"] = dict(execution, finished_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                               code_hashes_at_end=code_at_end,
-                               code_unchanged_during_run=code_at_end == execution["code_hashes_at_start"],
-                               resources_at_end=_resource_snapshot(), seconds_this_process=round(seconds, 1))
+    all_executions = [json.loads(line) for line in EXECUTION.read_text().splitlines() if line.strip()]
+    report["execution"] = dict(
+        execution, finished_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        code_hashes_at_end=code_at_end,
+        code_unchanged_during_run=all(
+            record["code_hashes_at_start"] == code_at_end for record in all_executions),
+        processes_that_contributed=len(all_executions),
+        all_process_records=all_executions,
+        resources_at_end=_resource_snapshot(), seconds_this_process=round(seconds, 1))
     report["attempts_sha256"] = _sha_file(ATTEMPTS)
     RESULTS.write_text(json.dumps(report, indent=2, sort_keys=True))
     print("V2C_CENSUS_DONE", json.dumps(report["decision_a_gates"]), flush=True)
