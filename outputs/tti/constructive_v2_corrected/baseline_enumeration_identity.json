@@ -1,0 +1,94 @@
+{
+ "actual_search": {
+  "count": 200,
+  "count_confirmed_by_live_call": true,
+  "key_features_order": [
+   "sole_neighbour_colour",
+   "touches_border",
+   "is_rect",
+   "is_square",
+   "area",
+   "hw",
+   "neighbour_colours",
+   "shape",
+   "row_band",
+   "col_band"
+  ],
+  "live_call_hypotheses": 200,
+  "order_source": "container insertion order of meta_induction.PARTITIONS, PREDICATES, KEY_FEATURES",
+  "partitions_order": [
+   "enclosed_regions",
+   "background_components",
+   "colour_components",
+   "separator_panels"
+  ],
+  "predicates_order": [
+   "all",
+   "touching_border",
+   "not_touching_border",
+   "rectangular",
+   "not_rectangular"
+  ]
+ },
+ "adapter": {
+  "count": 200,
+  "key_features_order": [
+   "sole_neighbour_colour",
+   "touches_border",
+   "is_rect",
+   "is_square",
+   "area",
+   "hw",
+   "neighbour_colours",
+   "shape",
+   "row_band",
+   "col_band"
+  ],
+  "order_source": "sorted(meta_ast.PARTITIONS), sorted(meta_ast.PREDICATES), meta_ast.KEY_FEATURES",
+  "partitions_order": [
+   "background_components",
+   "colour_components",
+   "enclosed_regions",
+   "separator_panels"
+  ],
+  "predicates_order": [
+   "all",
+   "not_rectangular",
+   "not_touching_border",
+   "rectangular",
+   "touching_border"
+  ]
+ },
+ "ordering": {
+  "first_divergence_index": 0,
+  "identical_sequence": false,
+  "note": "the actual search has no ranking among enumerated schemas beyond deduplication by observational signature (fewest nodes kept) and the final sort by (node count, repr); ordering matters only when a deadline truncates enumeration"
+ },
+ "procedural_differences_beyond_the_hypothesis_set": {
+  "budget": {
+   "actual": "wall-clock deadline (ARC_META_BUDGET_S, default 8 s) can truncate",
+   "adapter": "fixed work limit: all enumerated schemas, no deadline"
+  },
+  "deduplication": {
+   "actual": "by rendered signature, cheapest kept",
+   "adapter": "none (every exact schema is reported)"
+  },
+  "fitter": {
+   "actual": "meta_induction._induce_table with the two-witness rule (require_fold_coverable=True)",
+   "adapter": "scoped_slot_fitting.fit_induced_occurrences (strict, exact replay required) then constraint-only for the R7 set",
+   "parity_evidence": "tests/test_scoped_slot_parity.py (family (1,), verdict and rendering parity) plus the positive-coverage suite added in this block"
+  },
+  "success_predicate": {
+   "actual": "observational_signature is not None (exact replay of every demo)",
+   "adapter": "exact replay of every demo inside the strict fitter"
+  }
+ },
+ "set_equality": {
+  "actual_equals_adapter": true,
+  "actual_equals_vocab": true,
+  "actual_minus_adapter": [],
+  "adapter_equals_vocab": true,
+  "adapter_minus_actual": []
+ },
+ "verdict": "HYPOTHESIS_SET_EQUIVALENT; ordering differs; procedures differ in fitter, deduplication and budget (recorded above); the adapter is retained as the baseline hypothesis generator with these differences declared"
+}

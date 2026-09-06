@@ -1,0 +1,1160 @@
+{
+ "engine_hashes": {
+  "meta_ast.py": "0f5ca4794db649d0f7c9c0b5112356d66b10aee7450ef194b696d0b28977f47e",
+  "meta_induction.py": "c0156098086388c04ebfc86f6b255d821396e92c21dab60cf9bac40eec94b423"
+ },
+ "headline_new_conjunction_observed_distinct": {
+  "background_components": [
+   [
+    "touching_border > rectangular",
+    0,
+    60
+   ],
+   [
+    "touching_border > not_rectangular",
+    0,
+    60
+   ],
+   [
+    "not_touching_border > rectangular",
+    0,
+    60
+   ],
+   [
+    "not_touching_border > not_rectangular",
+    0,
+    60
+   ],
+   [
+    "rectangular > touching_border",
+    0,
+    60
+   ],
+   [
+    "rectangular > not_touching_border",
+    0,
+    60
+   ],
+   [
+    "not_rectangular > touching_border",
+    0,
+    60
+   ],
+   [
+    "not_rectangular > not_touching_border",
+    0,
+    60
+   ]
+  ],
+  "colour_components": [
+   [
+    "touching_border > rectangular",
+    0,
+    60
+   ],
+   [
+    "touching_border > not_rectangular",
+    0,
+    60
+   ],
+   [
+    "not_touching_border > rectangular",
+    21,
+    60
+   ],
+   [
+    "not_touching_border > not_rectangular",
+    0,
+    60
+   ],
+   [
+    "rectangular > touching_border",
+    0,
+    60
+   ],
+   [
+    "rectangular > not_touching_border",
+    21,
+    60
+   ],
+   [
+    "not_rectangular > touching_border",
+    0,
+    60
+   ],
+   [
+    "not_rectangular > not_touching_border",
+    0,
+    60
+   ]
+  ],
+  "enclosed_regions": [
+   [
+    "touching_border > rectangular",
+    0,
+    26
+   ],
+   [
+    "touching_border > not_rectangular",
+    0,
+    26
+   ],
+   [
+    "not_touching_border > rectangular",
+    0,
+    26
+   ],
+   [
+    "not_touching_border > not_rectangular",
+    0,
+    26
+   ],
+   [
+    "rectangular > touching_border",
+    0,
+    26
+   ],
+   [
+    "rectangular > not_touching_border",
+    0,
+    26
+   ],
+   [
+    "not_rectangular > touching_border",
+    0,
+    26
+   ],
+   [
+    "not_rectangular > not_touching_border",
+    0,
+    26
+   ]
+  ],
+  "separator_panels": [
+   [
+    "touching_border > rectangular",
+    0,
+    60
+   ],
+   [
+    "touching_border > not_rectangular",
+    0,
+    60
+   ],
+   [
+    "not_touching_border > rectangular",
+    0,
+    60
+   ],
+   [
+    "not_touching_border > not_rectangular",
+    0,
+    60
+   ],
+   [
+    "rectangular > touching_border",
+    0,
+    60
+   ],
+   [
+    "rectangular > not_touching_border",
+    0,
+    60
+   ],
+   [
+    "not_rectangular > touching_border",
+    0,
+    60
+   ],
+   [
+    "not_rectangular > not_touching_border",
+    0,
+    60
+   ]
+  ]
+ },
+ "part_a_executor_state": {
+  "Map_reads": [
+   "s",
+   "grid"
+  ],
+  "Paint_writes": "out",
+  "Partition_reads": [
+   "grid"
+  ],
+  "Select_reads": [
+   "s",
+   "grid"
+  ],
+  "empty_selection_aborts_program": true,
+  "executable_check": {
+   "last_writer_colour": 9,
+   "note": "if the second block had read the painted grid it would still find an area-4 component (colour 7) and paint 9; both readings give 9 here, so the source fact, not this check, is the authority on WHICH grid is read; the check confirms last-writer ownership",
+   "second_block_saw_original_component_of_area_4": true
+  },
+  "later_block_reads": "UNDETERMINED_FROM_SOURCE",
+  "overlap_rule": "last writer wins: Paint assigns colours to `out` in stage order",
+  "status": "PROVED_FROM_SOURCE"
+ },
+ "part_b_predicate_purity": {
+  "all": {
+   "descriptor_fields_read": [],
+   "pure_function_of_descriptors": true,
+   "source": "lambda d: True"
+  },
+  "not_rectangular": {
+   "descriptor_fields_read": [
+    "is_rect"
+   ],
+   "pure_function_of_descriptors": true,
+   "source": "lambda d: not d[\"is_rect\"]"
+  },
+  "not_touching_border": {
+   "descriptor_fields_read": [
+    "touches_border"
+   ],
+   "pure_function_of_descriptors": true,
+   "source": "lambda d: not d[\"touches_border\"]"
+  },
+  "rectangular": {
+   "descriptor_fields_read": [
+    "is_rect"
+   ],
+   "pure_function_of_descriptors": true,
+   "source": "lambda d: d[\"is_rect\"]"
+  },
+  "touching_border": {
+   "descriptor_fields_read": [
+    "touches_border"
+   ],
+   "pure_function_of_descriptors": true,
+   "source": "lambda d: d[\"touches_border\"]"
+  }
+ },
+ "part_c_closure_proof": {
+  "all_domain_points_realized": true,
+  "class_counts": {
+   "CONTRADICTORY": 4,
+   "EQUIVALENT_TO_SINGLE": 13,
+   "NEW_CONJUNCTION": 8
+  },
+  "commutativity": "PROVED (conjunction is commutative; all 25 pairs commute)",
+  "domain_fields": [
+   "touches_border",
+   "is_rect"
+  ],
+  "domain_points_realized": {
+   "(False, False)": {
+    "area": 8,
+    "partition": "colour_components"
+   },
+   "(False, True)": {
+    "area": 1,
+    "partition": "enclosed_regions"
+   },
+   "(True, False)": {
+    "area": 74,
+    "partition": "background_components"
+   },
+   "(True, True)": {
+    "area": 2,
+    "partition": "colour_components"
+   }
+  },
+  "ordered_pairs": {
+   "all > all": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "all"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "all > not_rectangular": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "not_rectangular"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     false,
+     true,
+     false
+    ]
+   },
+   "all > not_touching_border": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "not_touching_border"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     true,
+     false,
+     false
+    ]
+   },
+   "all > rectangular": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "rectangular"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     true,
+     false,
+     true
+    ]
+   },
+   "all > touching_border": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "touching_border"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     true,
+     true
+    ]
+   },
+   "not_rectangular > all": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "not_rectangular"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     false,
+     true,
+     false
+    ]
+   },
+   "not_rectangular > not_rectangular": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "not_rectangular"
+    ],
+    "redundant_stage": "not_rectangular",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     false,
+     true,
+     false
+    ]
+   },
+   "not_rectangular > not_touching_border": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     false,
+     false,
+     false
+    ]
+   },
+   "not_rectangular > rectangular": {
+    "class": "CONTRADICTORY",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "not_rectangular > touching_border": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     true,
+     false
+    ]
+   },
+   "not_touching_border > all": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "not_touching_border"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     true,
+     false,
+     false
+    ]
+   },
+   "not_touching_border > not_rectangular": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     false,
+     false,
+     false
+    ]
+   },
+   "not_touching_border > not_touching_border": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "not_touching_border"
+    ],
+    "redundant_stage": "not_touching_border",
+    "truth_table_over_(touches_border,is_rect)": [
+     true,
+     true,
+     false,
+     false
+    ]
+   },
+   "not_touching_border > rectangular": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     true,
+     false,
+     false
+    ]
+   },
+   "not_touching_border > touching_border": {
+    "class": "CONTRADICTORY",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "rectangular > all": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "rectangular"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     true,
+     false,
+     true
+    ]
+   },
+   "rectangular > not_rectangular": {
+    "class": "CONTRADICTORY",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "rectangular > not_touching_border": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     true,
+     false,
+     false
+    ]
+   },
+   "rectangular > rectangular": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "rectangular"
+    ],
+    "redundant_stage": "rectangular",
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     true,
+     false,
+     true
+    ]
+   },
+   "rectangular > touching_border": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     false,
+     true
+    ]
+   },
+   "touching_border > all": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "touching_border"
+    ],
+    "redundant_stage": "all",
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     true,
+     true
+    ]
+   },
+   "touching_border > not_rectangular": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     true,
+     false
+    ]
+   },
+   "touching_border > not_touching_border": {
+    "class": "CONTRADICTORY",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "touching_border > rectangular": {
+    "class": "NEW_CONJUNCTION",
+    "commutes": true,
+    "equivalent_singles": [],
+    "redundant_stage": null,
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     false,
+     true
+    ]
+   },
+   "touching_border > touching_border": {
+    "class": "EQUIVALENT_TO_SINGLE",
+    "commutes": true,
+    "equivalent_singles": [
+     "touching_border"
+    ],
+    "redundant_stage": "touching_border",
+    "truth_table_over_(touches_border,is_rect)": [
+     false,
+     false,
+     true,
+     true
+    ]
+   }
+  },
+  "proof_basis": "every registered predicate is a function of the descriptor fields above (Part B); the executor applies Select stages to sets computed from the unchanged input grid (Part A); therefore Select(q2)(Select(q1)(S)) = {r in S : q1(r) and q2(r)}, and two ordered pairs are equivalent iff their conjunction truth tables agree over the 4-point domain, PROVIDED every domain point is realizable",
+  "single_truth_tables": {
+   "all": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "not_rectangular": [
+    true,
+    false,
+    true,
+    false
+   ],
+   "not_touching_border": [
+    true,
+    true,
+    false,
+    false
+   ],
+   "rectangular": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "touching_border": [
+    false,
+    false,
+    true,
+    true
+   ]
+  },
+  "status": "PROVED_FROM_DEFINITIONS",
+  "unordered_new_conjunctions": [
+   [
+    "not_rectangular",
+    "not_touching_border"
+   ],
+   [
+    "not_rectangular",
+    "touching_border"
+   ],
+   [
+    "not_touching_border",
+    "rectangular"
+   ],
+   [
+    "rectangular",
+    "touching_border"
+   ]
+  ]
+ },
+ "part_d_observed_separation": {
+  "generator_seeds": "90000 + i",
+  "n_grids": 60,
+  "per_partition": {
+   "background_components": {
+    "all > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "all > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "all > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "all > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 31,
+     "grids_partition_defined": 60
+    },
+    "all > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 31,
+     "grids_partition_defined": 60
+    },
+    "rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 31,
+     "grids_partition_defined": 60
+    },
+    "rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 57,
+     "grids_partition_defined": 60
+    },
+    "touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 57,
+     "grids_partition_defined": 60
+    },
+    "touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    }
+   },
+   "colour_components": {
+    "all > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "all > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "all > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 3,
+     "grids_partition_defined": 60
+    },
+    "all > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "all > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 3,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 34,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 3,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 21,
+     "grids_composed_empty": 6,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 21,
+     "grids_composed_empty": 6,
+     "grids_partition_defined": 60
+    },
+    "rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    }
+   },
+   "enclosed_regions": {
+    "all > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "all > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "all > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "all > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "all > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "not_touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "not_touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "not_touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "not_touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 26
+    },
+    "rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    },
+    "touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 26,
+     "grids_partition_defined": 26
+    }
+   },
+   "separator_panels": {
+    "all > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "all > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "all > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 30,
+     "grids_partition_defined": 60
+    },
+    "all > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "all > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 30,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 30,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 30,
+     "grids_partition_defined": 60
+    },
+    "not_touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "rectangular > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "rectangular > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "rectangular > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 30,
+     "grids_partition_defined": 60
+    },
+    "rectangular > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 0,
+     "grids_partition_defined": 60
+    },
+    "rectangular > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "touching_border > all": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "touching_border > not_rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "touching_border > not_touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 60,
+     "grids_partition_defined": 60
+    },
+    "touching_border > rectangular": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    },
+    "touching_border > touching_border": {
+     "grids_composed_differs_from_every_single": 0,
+     "grids_composed_empty": 4,
+     "grids_partition_defined": 60
+    }
+   }
+  },
+  "status": "OBSERVED_ON_FINITE_GRIDS"
+ }
+}

@@ -36,7 +36,9 @@ behaviour exactly; callers opt in by calling this module directly.
 from __future__ import annotations
 
 import hashlib
+import json
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -264,7 +266,7 @@ def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) ->
                         #  observable in this demonstration
                         key = MI.descriptors(cells, grid_in).get(feature)
                         if key is not None:
-                            hidden[block_index].add(_key_repr(key))
+                            hidden[block_index].add(key)
                     continue
                 #  v1.1 parity rule: a touched region must change entirely
                 if touched != visible:
@@ -284,17 +286,17 @@ def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) ->
                                           f"{sorted(colours)}")
                     return None, evidence
                 colour = colours.pop()
-                slot_key = (block_index, _key_repr(key))
+                slot_key = (block_index, key)
                 previous = constraints.get(slot_key)
                 if previous is not None and previous != colour:
                     evidence["failure"] = "slot_nonfunctional"
                     evidence["detail"] = (f"block {block_index} key "
-                                          f"{_key_repr(key)} demands "
+                                          f"{key!r} demands "
                                           f"{previous} and {colour}")
                     return None, evidence
                 constraints[slot_key] = colour
                 witnesses.setdefault(slot_key, set()).add(demo_index)
-                observed[block_index].add(_key_repr(key))
+                observed[block_index].add(key)
                 owned_change[block_index] += 1
                 covered |= set(visible)
 
@@ -318,7 +320,7 @@ def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) ->
         if hidden[block_index] - observed[block_index]:
             evidence["failure"] = "slot_key_unobserved"
             evidence["detail"] = (f"block {block_index} keys never visible: "
-                                  f"{sorted(hidden[block_index] - observed[block_index])[:3]}")
+                                  f"{sorted(map(repr, hidden[block_index] - observed[block_index]))[:3]}")
             return None, evidence
         if owned_change[block_index] == 0:
             evidence["failure"] = "slot_unobservable"
@@ -327,7 +329,7 @@ def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) ->
         for key in keys:
             if len(witnesses[(block_index, key)]) < MIN_KEY_WITNESSES:
                 evidence["failure"] = "slot_key_unobserved"
-                evidence["detail"] = (f"block {block_index} key {key} witnessed "
+                evidence["detail"] = (f"block {block_index} key {key!r} witnessed "
                                       f"by {len(witnesses[(block_index, key)])} "
                                       f"< {MIN_KEY_WITNESSES} demonstrations")
                 return None, evidence
@@ -336,8 +338,11 @@ def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) ->
     bindings = {}
     for occurrence in occs:
         block_index = occurrence.block_index
+        #  keys are the raw descriptor values, exactly as the v1.1 learner's own
+        #  table dict keyed them (reference lookup semantics); the ordering rule
+        #  is the v1.1 rule, repr-sorted
         table = tuple(sorted(
-            ((_key_from_repr(key), colour)
+            ((key, colour)
              for (b, key), colour in constraints.items() if b == block_index),
             key=lambda kv: repr(kv[0])))
         bindings[occurrence.slot_name] = table
@@ -366,20 +371,80 @@ def fit_induced_occurrences(schema, pairs, require_exact_replay: bool = True) ->
     return instantiated, evidence
 
 
-#: descriptors may return unhashable values (tuples are fine, lists are not);
-#: repr is the canonical key form used throughout, matching the v1.1 learner's
-#: own ``repr``-sorted table ordering.
-def _key_repr(key) -> str:
-    return repr(key)
+# --------------------------------------------------------------------------
+# key codec: typed, eval-free, reference semantics preserved
+# --------------------------------------------------------------------------
+#
+# Constraint keys are the RAW descriptor values (ints, bools, None, nested
+# tuples), used directly as dictionary keys exactly as the v1.1 learner used
+# them, so lookup semantics are the reference semantics by construction (no
+# Boolean/integer distinction is added or removed: Python's dict already treats
+# True and 1 as one key, and no registered feature mixes the two). Serialization
+# for evidence and audit uses the SAME typed JSON codec meta_ast uses for Lookup
+# tables (json + tuple restoration); nothing is ever eval'd.
+
+FIT_STATUSES = ("EXACT_DEMONSTRATION_FIT", "CONSTRAINT_CONSISTENT_BINDING",
+                "FIT_FAILURE", "EXECUTION_ERROR", "RESOURCE_EXHAUSTED")
 
 
-_KEY_CACHE: dict = {}
+def encode_key(value) -> str:
+    """Typed, canonical text for a descriptor value (tuples become JSON arrays)."""
+    return json.dumps(value, default=list, sort_keys=True)
 
 
-def _key_from_repr(text: str):
-    if text not in _KEY_CACHE:
-        _KEY_CACHE[text] = eval(text, {"__builtins__": {}}, {})   # noqa: S307
-    return _KEY_CACHE[text]
+def decode_key(text: str):
+    """Inverse of encode_key: JSON arrays become tuples again, so the decoded
+    value is usable as a Lookup key with reference dict semantics."""
+    return M._tuplify(json.loads(text))
+
+
+def fitter_options(require_exact_replay: bool = True) -> dict:
+    """Every scientific option the fitter runs under, recorded on both the
+    baseline and the target path (hash equality alone is not fairness)."""
+    return {"require_exact_replay": bool(require_exact_replay),
+            "min_key_witnesses": MIN_KEY_WITNESSES,
+            "cell_ownership": "last_writer",
+            "touched_region_must_change_entirely": True,
+            "blocks_must_jointly_cover_change": True,
+            "key_codec": "raw_value_keys+typed_json"}
+
+
+def fit_outcome(schema, pairs, *, require_exact_replay: bool = True,
+                deadline=None) -> dict:
+    """Structured fitting result with explicit, separated outcomes.
+
+        EXACT_DEMONSTRATION_FIT       bindings found AND every demo replays exactly
+        CONSTRAINT_CONSISTENT_BINDING bindings found; exact replay NOT required
+                                      or not established (inspection only; never
+                                      certifies or admits a target)
+        FIT_FAILURE                   the declared fitter found no bindings (code)
+        EXECUTION_ERROR               the fitter or evaluator raised (never
+                                      converted into a scientific failure)
+        RESOURCE_EXHAUSTED            the caller's deadline had already passed
+    """
+    result = {"fitter_identity": fitter_identity(),
+              "options": fitter_options(require_exact_replay),
+              "status": None, "code": None, "detail": "", "program": None,
+              "evidence": {}}
+    if deadline is not None and time.monotonic() > deadline:
+        result.update(status="RESOURCE_EXHAUSTED", code="deadline_before_start")
+        return result
+    try:
+        program, evidence = fit_induced_occurrences(
+            schema, pairs, require_exact_replay=require_exact_replay)
+    except Exception as error:                                    # noqa: BLE001
+        result.update(status="EXECUTION_ERROR", code=type(error).__name__,
+                      detail=repr(error)[:200])
+        return result
+    result["evidence"] = evidence
+    if program is None:
+        result.update(status="FIT_FAILURE", code=evidence.get("failure"),
+                      detail=evidence.get("detail", ""))
+        return result
+    result["program"] = program
+    result["status"] = ("EXACT_DEMONSTRATION_FIT" if evidence.get("exact_replay")
+                        else "CONSTRAINT_CONSISTENT_BINDING")
+    return result
 
 
 # --------------------------------------------------------------------------
