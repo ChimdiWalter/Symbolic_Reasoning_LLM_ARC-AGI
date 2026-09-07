@@ -154,3 +154,93 @@ abstraction has to move.
 Nothing here changes the holdout, adds a learner, trains a model, runs D3, opens
 protected data, or merges into main. The frozen Step-B experiment was neither
 read nor modified.
+
+---
+
+# Interpretation correction, appended 2026-09-07
+
+The result artifact and commit `4894056` are unchanged. This section corrects
+the interpretation above. Where the two disagree, this section governs.
+
+## C1. The sweeping claim was wrong at the held-out level
+
+Above I wrote that the library did "nothing it could not already do". That is
+supported at the DEMONSTRATION-FIT level and not at the level that matters most.
+
+| level | library-only successes |
+| --- | --- |
+| exact demonstration fit | 0 |
+| held-out output correctness | **1, episode 8** |
+
+On episode 8, expanded search fit the demonstrations at 53 units and its
+selected program was **wrong** on the held-out grids. The library fit at 13
+units and its program was **right** on all four. Recomputed from the artifact:
+library held-out successes {8, 12, 21}, expanded-search held-out successes
+{0,1,2,3,4,5,11,12,13,14,16,19,21}, so the library-only held-out set is {8}.
+
+The narrow observation worth preserving: previously acquired structure changed
+WHICH explanation was selected, and on one target that changed the outcome from
+a demonstration-fitting but incorrect explanation into one that predicted the
+held-out outputs correctly. Learning can improve hypothesis selection, not only
+search reach. This does not establish greater expressivity, and it does not
+overturn the aggregate, where expanded search has 13 held-out successes against
+the library's 3.
+
+## C2. The ablation reading was inverted in emphasis
+
+Three demonstration fits **persist** after the particular winning entry is
+removed, because another entry fits. Only episode 8 loses its fit. Correctly
+stated:
+
+- episode 8 shows dependence on one particular entry within this procedure;
+- the other three have **redundant support** inside the library;
+- redundancy does not establish that the library as a whole is causally
+  irrelevant, which is what "not attributable" invited a reader to conclude.
+
+A further limitation: the stored ablation records whether the remainder still
+fits the demonstrations. It does **not** record whether the remainder's
+replacement program is held-out correct. Entry necessity, library-level
+benefit, and held-out prediction change are three different questions and only
+the first was measured.
+
+## C3. The cost figures are retrospective subtotals, not a learning cost
+
+The 10,182-unit figure pools discoveries from all six study arms, merges
+identical structures, and charges each retained structure only its CHEAPEST
+recorded successful acquisition. It therefore excludes unsuccessful searches and
+searches that contributed no retained entry. It is a subtotal, not the cost of
+the procedure that produced the library.
+
+The 190-unit saving is summed over the four successful library fits, including
+the one whose held-out prediction was wrong, and excludes library-lookup cost on
+the 18 targets where the library failed and any fallback search.
+
+Consequently **the "216 successful targets to break even" figure is not an
+established deployment prediction** and should not be cited as one. The relevant
+accounting for a deployed learner is acquisition plus, for every target, library
+lookup plus fallback search, reported alongside correctness. A cheap wrong
+answer is not a search-efficiency success.
+
+## C4. The source-exclusion boundary is incomplete
+
+The prototype is retrospective: it reuses the already-inspected 24-episode study
+rather than evaluating a frozen library on a separate transfer set.
+
+The library includes structures discovered by the shuffled-trace arms. Those
+arms read the NEXT episode's trace, while the entry records and excludes only
+the episode whose demonstrations produced the fit. So excluding an entry's
+direct `source_episode` does not establish that the target had no influence
+through a shuffled trace. The code does not record that second dependency.
+
+This does not show that any reported transfer is contaminated. It shows the
+claimed exclusion boundary is incomplete, and that the next experiment must use
+genuinely separate acquisition and transfer pools.
+
+## C5. Status of this experiment
+
+Exploratory cross-episode reuse, with one held-out prediction rescue. Not a
+prospectively frozen transfer evaluation, not full-pipeline leave-one-out, and
+not an integrated promotion into the ordinary engine followed by re-induction.
+The script fits stored schemas directly; it is a library-only loop with no
+fallback, so it measures library coverage rather than whether adding a library
+helps the full reasoner.
