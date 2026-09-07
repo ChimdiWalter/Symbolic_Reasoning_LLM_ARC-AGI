@@ -1,0 +1,8120 @@
+{
+ "arms": [
+  "none",
+  "aggregate",
+  "associated:individual",
+  "associated:complementary",
+  "shuffled:individual",
+  "shuffled:complementary"
+ ],
+ "baseline_config_digest": "29bec39b4cd542ff2831f80abcbb0b2867ec8600d9980b45ebdf866649caae66",
+ "budget_note": "one unit is one candidate fit attempt; the failure-extraction cost (the baseline's 200 hypotheses) is charged to every condition that reads a failure representation",
+ "budget_rule": "declared BEFORE any measurement: 5 per cent of the 57600-candidate proposal space, i.e. 2880 units, identical for every condition",
+ "budget_units_per_condition": 2880,
+ "by_family": {
+  "(0,0)": {
+   "aggregate": {
+    "episodes": 6,
+    "heldout_correct": 6,
+    "solved": 6
+   },
+   "associated:complementary": {
+    "episodes": 6,
+    "heldout_correct": 3,
+    "solved": 3
+   },
+   "associated:individual": {
+    "episodes": 6,
+    "heldout_correct": 3,
+    "solved": 3
+   },
+   "none": {
+    "episodes": 6,
+    "heldout_correct": 6,
+    "solved": 6
+   },
+   "shuffled:complementary": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   },
+   "shuffled:individual": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   }
+  },
+  "(0,1)": {
+   "aggregate": {
+    "episodes": 6,
+    "heldout_correct": 5,
+    "solved": 6
+   },
+   "associated:complementary": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   },
+   "associated:individual": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   },
+   "none": {
+    "episodes": 6,
+    "heldout_correct": 5,
+    "solved": 6
+   },
+   "shuffled:complementary": {
+    "episodes": 6,
+    "heldout_correct": 3,
+    "solved": 3
+   },
+   "shuffled:individual": {
+    "episodes": 6,
+    "heldout_correct": 3,
+    "solved": 3
+   }
+  },
+  "(1,0)": {
+   "aggregate": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 4
+   },
+   "associated:complementary": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 2
+   },
+   "associated:individual": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 2
+   },
+   "none": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 4
+   },
+   "shuffled:complementary": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   },
+   "shuffled:individual": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   }
+  },
+  "(1,1)": {
+   "aggregate": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 3
+   },
+   "associated:complementary": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 2
+   },
+   "associated:individual": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   },
+   "none": {
+    "episodes": 6,
+    "heldout_correct": 2,
+    "solved": 3
+   },
+   "shuffled:complementary": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   },
+   "shuffled:individual": {
+    "episodes": 6,
+    "heldout_correct": 1,
+    "solved": 1
+   }
+  }
+ },
+ "code_hash": "06cd3799e7d0655ef00a506d1b1b67cdbd08ba5bc65e2503352949176075f503",
+ "conditions": [
+  "none",
+  "aggregate",
+  "associated",
+  "shuffled"
+ ],
+ "data_access": {
+  "proposer_never_receives": [
+   "target schema",
+   "target tables",
+   "target digest",
+   "family label",
+   "generator metadata",
+   "held-out grids"
+  ],
+  "proposer_receives": [
+   "demonstrations",
+   "the constructive grammar",
+   "the condition's failure representation"
+  ],
+  "scoring_only": [
+   "target_digest for exact-AST reporting",
+   "held-out grids for output correctness"
+  ]
+ },
+ "development_namespace": 6100000,
+ "environment": {
+  "PYTHONHASHSEED": "0",
+  "python": "3.12.3"
+ },
+ "episodes": 24,
+ "episodes_per_family_requested": 6,
+ "git_commit": "73d96ae6c4a6e65c28d2c02abab2ed07322a90b9",
+ "observer_cost": {
+  "baseline_seconds_one_episode": 0.521,
+  "coverage_report": {
+   "fully_unknown_records": 3,
+   "populated_fields": {
+    "cells_changed": 158,
+    "cells_covered": 158,
+    "conflict_block": 39,
+    "coverage_fraction": 158,
+    "witnesses_required": 4,
+    "witnesses_seen": 4
+   },
+   "records": 200,
+   "unparsed_details": 0
+  },
+  "observation_seconds_one_episode": 0.00211
+ },
+ "observer_version": "candidate_trace:v1",
+ "proposal_space_size": 57600,
+ "ranking_rules": [
+  "individual",
+  "complementary"
+ ],
+ "rows": [
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 0,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,0)",
+   "found_digest": "e7bdcda50bb9ea45190763f1e7c0f66fbff9f4774edde198ab81b1983b6ea859",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 141,
+   "rule": "individual",
+   "seconds": 2.7019913300173357,
+   "seed": 6547514,
+   "solved": true,
+   "total_units": 142,
+   "units_used": 142
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 0,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "e7bdcda50bb9ea45190763f1e7c0f66fbff9f4774edde198ab81b1983b6ea859",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 141,
+   "rule": "individual",
+   "seconds": 1.9590520049678162,
+   "seed": 6547514,
+   "solved": true,
+   "total_units": 342,
+   "units_used": 142
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 0,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "8037c5774340d61dc9e86d9f1418e9dc5fe6018277abee7fc0d5866bf8ff287a",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_rectangular\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2453,
+   "rule": "individual",
+   "seconds": 16.809405716019683,
+   "seed": 6547514,
+   "solved": true,
+   "total_units": 2654,
+   "units_used": 2454
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 0,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "8037c5774340d61dc9e86d9f1418e9dc5fe6018277abee7fc0d5866bf8ff287a",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_rectangular\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2129,
+   "rule": "complementary",
+   "seconds": 14.3482438379433,
+   "seed": 6547514,
+   "solved": true,
+   "total_units": 2330,
+   "units_used": 2130
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 0,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 22.029554669978097,
+   "seed": 6547514,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 0,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 13.557568856980652,
+   "seed": 6547514,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 1,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,0)",
+   "found_digest": "24582cd2940e9ba1106fcbfe88b642ffc6cc13e383ed9c80c4f9b6be2f09ea6c",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 132,
+   "rule": "individual",
+   "seconds": 0.9739703169325367,
+   "seed": 6555433,
+   "solved": true,
+   "total_units": 133,
+   "units_used": 133
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 1,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "24582cd2940e9ba1106fcbfe88b642ffc6cc13e383ed9c80c4f9b6be2f09ea6c",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 132,
+   "rule": "individual",
+   "seconds": 1.148315366008319,
+   "seed": 6555433,
+   "solved": true,
+   "total_units": 333,
+   "units_used": 133
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 1,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 10.093098348006606,
+   "seed": 6555433,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 1,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 11.148997087962925,
+   "seed": 6555433,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 1,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "24582cd2940e9ba1106fcbfe88b642ffc6cc13e383ed9c80c4f9b6be2f09ea6c",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1218,
+   "rule": "individual",
+   "seconds": 4.530173368984833,
+   "seed": 6555433,
+   "solved": true,
+   "total_units": 1419,
+   "units_used": 1219
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 1,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "24582cd2940e9ba1106fcbfe88b642ffc6cc13e383ed9c80c4f9b6be2f09ea6c",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 777,
+   "rule": "complementary",
+   "seconds": 3.704401394003071,
+   "seed": 6555433,
+   "solved": true,
+   "total_units": 978,
+   "units_used": 778
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 2,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,0)",
+   "found_digest": "9d6aa8d0f699b7d1c7dd1b1af42a57a1c1db6f87018f357c15c72155115d69d2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1252,
+   "rule": "individual",
+   "seconds": 3.19331186497584,
+   "seed": 6571271,
+   "solved": true,
+   "total_units": 1253,
+   "units_used": 1253
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 2,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "9d6aa8d0f699b7d1c7dd1b1af42a57a1c1db6f87018f357c15c72155115d69d2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1252,
+   "rule": "individual",
+   "seconds": 4.3265342930099,
+   "seed": 6571271,
+   "solved": true,
+   "total_units": 1453,
+   "units_used": 1253
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 2,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "9d6aa8d0f699b7d1c7dd1b1af42a57a1c1db6f87018f357c15c72155115d69d2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1442,
+   "rule": "individual",
+   "seconds": 7.424135493929498,
+   "seed": 6571271,
+   "solved": true,
+   "total_units": 1643,
+   "units_used": 1443
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 2,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "9d6aa8d0f699b7d1c7dd1b1af42a57a1c1db6f87018f357c15c72155115d69d2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1001,
+   "rule": "complementary",
+   "seconds": 4.833216726081446,
+   "seed": 6571271,
+   "solved": true,
+   "total_units": 1202,
+   "units_used": 1002
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 2,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 11.61992523598019,
+   "seed": 6571271,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 2,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 10.450158112915233,
+   "seed": 6571271,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 3,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,0)",
+   "found_digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"col_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 59,
+   "rule": "individual",
+   "seconds": 0.7763076929841191,
+   "seed": 6634623,
+   "solved": true,
+   "total_units": 60,
+   "units_used": 60
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 3,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"col_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 59,
+   "rule": "individual",
+   "seconds": 0.9464749851031229,
+   "seed": 6634623,
+   "solved": true,
+   "total_units": 260,
+   "units_used": 60
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 3,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"col_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1643,
+   "rule": "individual",
+   "seconds": 7.4981258700136095,
+   "seed": 6634623,
+   "solved": true,
+   "total_units": 1844,
+   "units_used": 1644
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 3,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"col_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 919,
+   "rule": "complementary",
+   "seconds": 4.149128474993631,
+   "seed": 6634623,
+   "solved": true,
+   "total_units": 1120,
+   "units_used": 920
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 3,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 11.276097713038325,
+   "seed": 6634623,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 3,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 9.860503365052864,
+   "seed": 6634623,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 4,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,0)",
+   "found_digest": "fbc69bfc8c7fc73a2383684063cbe34aa1c2543b4ce15510eba314416733d02e",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 53,
+   "rule": "individual",
+   "seconds": 0.7198644829913974,
+   "seed": 6650461,
+   "solved": true,
+   "total_units": 54,
+   "units_used": 54
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 4,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "fbc69bfc8c7fc73a2383684063cbe34aa1c2543b4ce15510eba314416733d02e",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 53,
+   "rule": "individual",
+   "seconds": 0.7995228730142117,
+   "seed": 6650461,
+   "solved": true,
+   "total_units": 254,
+   "units_used": 54
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 4,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 7.101918076048605,
+   "seed": 6650461,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 4,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.663060191087425,
+   "seed": 6650461,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 4,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.277704798034392,
+   "seed": 6650461,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 4,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 7.3732197739882395,
+   "seed": 6650461,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 5,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,0)",
+   "found_digest": "695dcdf248304dee88f4686289d3430c55a425c32fd8846d701ea6604e75904a",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1261,
+   "rule": "individual",
+   "seconds": 4.749930424964987,
+   "seed": 6872193,
+   "solved": true,
+   "total_units": 1262,
+   "units_used": 1262
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 5,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": "695dcdf248304dee88f4686289d3430c55a425c32fd8846d701ea6604e75904a",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1261,
+   "rule": "individual",
+   "seconds": 3.946957768057473,
+   "seed": 6872193,
+   "solved": true,
+   "total_units": 1462,
+   "units_used": 1262
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 5,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.00803669297602,
+   "seed": 6872193,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 5,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.581055548042059,
+   "seed": 6872193,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 5,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.181764359935187,
+   "seed": 6872193,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 5,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.648938294034451,
+   "seed": 6872193,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 6,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,0)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.7275928610470146,
+   "seed": 9531693,
+   "solved": true,
+   "total_units": 53,
+   "units_used": 53
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 6,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.7936639239778742,
+   "seed": 9531693,
+   "solved": true,
+   "total_units": 253,
+   "units_used": 53
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 6,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.914586544968188,
+   "seed": 9531693,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 6,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 9.471585790044628,
+   "seed": 9531693,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 6,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 11.471355521003716,
+   "seed": 9531693,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 6,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 9.42116889799945,
+   "seed": 9531693,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "none",
+   "episode": 7,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,0)",
+   "found_digest": "6f19f06ec1301db08a45fa08e26273dccb7eb4a6c13673ad1ea8375eda5d50c4",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_rectangular\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1861,
+   "rule": "individual",
+   "seconds": 12.570874418015592,
+   "seed": 9563369,
+   "solved": true,
+   "total_units": 1862,
+   "units_used": 1862
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "aggregate",
+   "episode": 7,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "46cd1b8e887ff277b6951e6a7c9a633b4d2093bb839033da701cbc64929a8ced",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_rectangular\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1407,
+   "rule": "individual",
+   "seconds": 14.483874291996472,
+   "seed": 9563369,
+   "solved": true,
+   "total_units": 1608,
+   "units_used": 1408
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "associated",
+   "episode": 7,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 18.565920857014135,
+   "seed": 9563369,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "associated",
+   "episode": 7,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 16.886037969961762,
+   "seed": 9563369,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "shuffled",
+   "episode": 7,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.193028673995286,
+   "seed": 9563369,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "shuffled",
+   "episode": 7,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.172216892940924,
+   "seed": 9563369,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 8,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,0)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.8360311989672482,
+   "seed": 9618802,
+   "solved": true,
+   "total_units": 53,
+   "units_used": 53
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 8,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.8461980780120939,
+   "seed": 9618802,
+   "solved": true,
+   "total_units": 253,
+   "units_used": 53
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 8,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 4.873724370962009,
+   "seed": 9618802,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 8,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 4.722094943979755,
+   "seed": 9618802,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 8,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 726,
+   "rule": "individual",
+   "seconds": 2.4556699550012127,
+   "seed": 9618802,
+   "solved": true,
+   "total_units": 927,
+   "units_used": 727
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 8,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 126,
+   "rule": "complementary",
+   "seconds": 1.0413211591076106,
+   "seed": 9618802,
+   "solved": true,
+   "total_units": 327,
+   "units_used": 127
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 9,
+   "exact_ast_recovered": null,
+   "extraction_units": 0,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 7.18524914898444,
+   "seed": 9666316,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2880
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 9,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.653357633040287,
+   "seed": 9666316,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 9,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "10207e31a64ee1f8cb3c35aeea2933bb1ea17775ceb2642ae722ca93d360a5c4",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"sole_neighbour_colour\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1320,
+   "rule": "individual",
+   "seconds": 3.9496619739802554,
+   "seed": 9666316,
+   "solved": true,
+   "total_units": 1521,
+   "units_used": 1321
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 9,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "10207e31a64ee1f8cb3c35aeea2933bb1ea17775ceb2642ae722ca93d360a5c4",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"sole_neighbour_colour\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 720,
+   "rule": "complementary",
+   "seconds": 2.7670495139900595,
+   "seed": 9666316,
+   "solved": true,
+   "total_units": 921,
+   "units_used": 721
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 9,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 8.7547513860045,
+   "seed": 9666316,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 9,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.074164165998809,
+   "seed": 9666316,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 10,
+   "exact_ast_recovered": null,
+   "extraction_units": 0,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 9.314793551922776,
+   "seed": 9690073,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2880
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 10,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 7.870164936990477,
+   "seed": 9690073,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 10,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 13.103632767917588,
+   "seed": 9690073,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 10,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 10.882271075970493,
+   "seed": 9690073,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 10,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.455204405006953,
+   "seed": 9690073,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 10,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 7.360489355050959,
+   "seed": 9690073,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 11,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,0)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 51,
+   "rule": "individual",
+   "seconds": 0.7475057489937171,
+   "seed": 9832615,
+   "solved": true,
+   "total_units": 52,
+   "units_used": 52
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 11,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 51,
+   "rule": "individual",
+   "seconds": 0.792648502974771,
+   "seed": 9832615,
+   "solved": true,
+   "total_units": 252,
+   "units_used": 52
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 11,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2405,
+   "rule": "individual",
+   "seconds": 5.917710514040664,
+   "seed": 9832615,
+   "solved": true,
+   "total_units": 2606,
+   "units_used": 2406
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 11,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1105,
+   "rule": "complementary",
+   "seconds": 3.0234711200464517,
+   "seed": 9832615,
+   "solved": true,
+   "total_units": 1306,
+   "units_used": 1106
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 11,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.141205946099944,
+   "seed": 9832615,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 11,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,0)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.095753522939049,
+   "seed": 9832615,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 12,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,1)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.7186904910486192,
+   "seed": 12555467,
+   "solved": true,
+   "total_units": 53,
+   "units_used": 53
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 12,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.7726280690403655,
+   "seed": 12555467,
+   "solved": true,
+   "total_units": 253,
+   "units_used": 53
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 12,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.00005847599823,
+   "seed": 12555467,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 12,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.357238162076101,
+   "seed": 12555467,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 12,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1298,
+   "rule": "individual",
+   "seconds": 3.490555982920341,
+   "seed": 12555467,
+   "solved": true,
+   "total_units": 1499,
+   "units_used": 1299
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 12,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2,
+   "rule": "complementary",
+   "seconds": 0.7538887149421498,
+   "seed": 12555467,
+   "solved": true,
+   "total_units": 203,
+   "units_used": 3
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 13,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,1)",
+   "found_digest": "ac44d93ddfd364d9039ce0ac585832ffea321b2225c0d3dd33c4c4a2c6fb8270",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 133,
+   "rule": "individual",
+   "seconds": 0.90210499195382,
+   "seed": 12579224,
+   "solved": true,
+   "total_units": 134,
+   "units_used": 134
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 13,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "ac44d93ddfd364d9039ce0ac585832ffea321b2225c0d3dd33c4c4a2c6fb8270",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 133,
+   "rule": "individual",
+   "seconds": 1.0134752119192854,
+   "seed": 12579224,
+   "solved": true,
+   "total_units": 334,
+   "units_used": 134
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 13,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.847053523990326,
+   "seed": 12579224,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 13,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.809499193099327,
+   "seed": 12579224,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 13,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "ac44d93ddfd364d9039ce0ac585832ffea321b2225c0d3dd33c4c4a2c6fb8270",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2316,
+   "rule": "individual",
+   "seconds": 4.037582105025649,
+   "seed": 12579224,
+   "solved": true,
+   "total_units": 2517,
+   "units_used": 2317
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 13,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "ac44d93ddfd364d9039ce0ac585832ffea321b2225c0d3dd33c4c4a2c6fb8270",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2060,
+   "rule": "complementary",
+   "seconds": 3.623708160012029,
+   "seed": 12579224,
+   "solved": true,
+   "total_units": 2261,
+   "units_used": 2061
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 14,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,1)",
+   "found_digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 54,
+   "rule": "individual",
+   "seconds": 0.7200444000773132,
+   "seed": 12682171,
+   "solved": true,
+   "total_units": 55,
+   "units_used": 55
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 14,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 54,
+   "rule": "individual",
+   "seconds": 0.7707270449027419,
+   "seed": 12682171,
+   "solved": true,
+   "total_units": 255,
+   "units_used": 55
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 14,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2309,
+   "rule": "individual",
+   "seconds": 4.083753515034914,
+   "seed": 12682171,
+   "solved": true,
+   "total_units": 2510,
+   "units_used": 2310
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 14,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2053,
+   "rule": "complementary",
+   "seconds": 3.9088893509469926,
+   "seed": 12682171,
+   "solved": true,
+   "total_units": 2254,
+   "units_used": 2054
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 14,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "a17aee4e46f12ace0e7d58aceb31f96ff2b4ed6978613f775da28c875d495eac",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"rectangular\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2160,
+   "rule": "individual",
+   "seconds": 5.19622141495347,
+   "seed": 12682171,
+   "solved": true,
+   "total_units": 2361,
+   "units_used": 2161
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 14,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "a17aee4e46f12ace0e7d58aceb31f96ff2b4ed6978613f775da28c875d495eac",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"rectangular\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 864,
+   "rule": "complementary",
+   "seconds": 2.629100125050172,
+   "seed": 12682171,
+   "solved": true,
+   "total_units": 1065,
+   "units_used": 865
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 15,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,1)",
+   "found_digest": "b9956c43dff0e15f07ae716a0ba733f541e73510b178b94f8d82931a82958b0e",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"row_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 334,
+   "rule": "individual",
+   "seconds": 1.4755796550307423,
+   "seed": 12737604,
+   "solved": true,
+   "total_units": 335,
+   "units_used": 335
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 15,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "b9956c43dff0e15f07ae716a0ba733f541e73510b178b94f8d82931a82958b0e",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"row_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 334,
+   "rule": "individual",
+   "seconds": 1.2935405529569834,
+   "seed": 12737604,
+   "solved": true,
+   "total_units": 535,
+   "units_used": 335
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 15,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.658894347026944,
+   "seed": 12737604,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 15,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.201387047069147,
+   "seed": 12737604,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 15,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.757232839940116,
+   "seed": 12737604,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 15,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.6057059849845245,
+   "seed": 12737604,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 16,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,1)",
+   "found_digest": "6e05b8a7ff0d6aec18fd66086b236f7c921b49640753a6891e41ec89cea5d069",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 131,
+   "rule": "individual",
+   "seconds": 0.8535171779803932,
+   "seed": 12745523,
+   "solved": true,
+   "total_units": 132,
+   "units_used": 132
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 16,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "6e05b8a7ff0d6aec18fd66086b236f7c921b49640753a6891e41ec89cea5d069",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 131,
+   "rule": "individual",
+   "seconds": 0.9378092710394412,
+   "seed": 12745523,
+   "solved": true,
+   "total_units": 332,
+   "units_used": 132
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 16,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.92692499095574,
+   "seed": 12745523,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 16,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.614123641978949,
+   "seed": 12745523,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 16,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.909000013023615,
+   "seed": 12745523,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 16,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.802157290978357,
+   "seed": 12745523,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "none",
+   "episode": 17,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(0,1)",
+   "found_digest": "e7bdcda50bb9ea45190763f1e7c0f66fbff9f4774edde198ab81b1983b6ea859",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"enclosed_regions\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 141,
+   "rule": "individual",
+   "seconds": 1.287953201099299,
+   "seed": 12800956,
+   "solved": true,
+   "total_units": 142,
+   "units_used": 142
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "aggregate",
+   "episode": 17,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": "65c426b43f9062ceb22fbcbd206dd44bbb1dba57f0d08db1cabb26070b6271e8",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 757,
+   "rule": "individual",
+   "seconds": 6.0545638559851795,
+   "seed": 12800956,
+   "solved": true,
+   "total_units": 958,
+   "units_used": 758
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "associated",
+   "episode": 17,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 12.279595937929116,
+   "seed": 12800956,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "associated",
+   "episode": 17,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 12.111548718996346,
+   "seed": 12800956,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "shuffled",
+   "episode": 17,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.516775078955106,
+   "seed": 12800956,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": true,
+   "condition": "shuffled",
+   "episode": 17,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(0,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.977115388028324,
+   "seed": 12800956,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 18,
+   "exact_ast_recovered": null,
+   "extraction_units": 0,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.411559993983246,
+   "seed": 15618836,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2880
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 18,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.135128729045391,
+   "seed": 15618836,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 18,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.84128366492223,
+   "seed": 15618836,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 18,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "65a69f6dc4eb61cfa6d049cfc109073edef559635180d4cc71f6962b3b649c89",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"area\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2051,
+   "rule": "complementary",
+   "seconds": 5.809171414934099,
+   "seed": 15618836,
+   "solved": true,
+   "total_units": 2252,
+   "units_used": 2052
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 18,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.1972975470125675,
+   "seed": 15618836,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 18,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 4.806502704974264,
+   "seed": 15618836,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 19,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,1)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 51,
+   "rule": "individual",
+   "seconds": 0.6744030279805884,
+   "seed": 15721783,
+   "solved": true,
+   "total_units": 52,
+   "units_used": 52
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 19,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 51,
+   "rule": "individual",
+   "seconds": 0.7093770169885829,
+   "seed": 15721783,
+   "solved": true,
+   "total_units": 252,
+   "units_used": 52
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 19,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.042428561951965,
+   "seed": 15721783,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 19,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.9599451929097995,
+   "seed": 15721783,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 19,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1288,
+   "rule": "individual",
+   "seconds": 3.0537532499292865,
+   "seed": 15721783,
+   "solved": true,
+   "total_units": 1489,
+   "units_used": 1289
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 19,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "2f151d251e0ea1ca7ba976a4e23bc03e148685675571afc87c928b9386fdb613",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 1288,
+   "rule": "complementary",
+   "seconds": 3.276002562022768,
+   "seed": 15721783,
+   "solved": true,
+   "total_units": 1489,
+   "units_used": 1289
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 20,
+   "exact_ast_recovered": null,
+   "extraction_units": 0,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 4.5671864240430295,
+   "seed": 15785135,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2880
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 20,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 4.338640409056097,
+   "seed": 15785135,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 20,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "10207e31a64ee1f8cb3c35aeea2933bb1ea17775ceb2642ae722ca93d360a5c4",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"sole_neighbour_colour\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2185,
+   "rule": "individual",
+   "seconds": 4.113554971991107,
+   "seed": 15785135,
+   "solved": true,
+   "total_units": 2386,
+   "units_used": 2186
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 20,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "10207e31a64ee1f8cb3c35aeea2933bb1ea17775ceb2642ae722ca93d360a5c4",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"separator_panels\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"not_touching_border\""
+       }
+      ],
+      "op": "Select"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"sole_neighbour_colour\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_square\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 2185,
+   "rule": "complementary",
+   "seconds": 3.9257881570374593,
+   "seed": 15785135,
+   "solved": true,
+   "total_units": 2386,
+   "units_used": 2186
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 20,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 4.737504118937068,
+   "seed": 15785135,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 20,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.2823920079972595,
+   "seed": 15785135,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 21,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,1)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.7023747579660267,
+   "seed": 15840568,
+   "solved": true,
+   "total_units": 53,
+   "units_used": 53
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 21,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"is_rect\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": true,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 52,
+   "rule": "individual",
+   "seconds": 0.7870988950598985,
+   "seed": 15840568,
+   "solved": true,
+   "total_units": 253,
+   "units_used": 53
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 21,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.555764073971659,
+   "seed": 15840568,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 21,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 4.928587920963764,
+   "seed": 15840568,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 21,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.917436146060936,
+   "seed": 15840568,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 21,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.670928401988931,
+   "seed": 15840568,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 22,
+   "exact_ast_recovered": null,
+   "extraction_units": 0,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.913454173016362,
+   "seed": 15856406,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2880
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 22,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.830514508066699,
+   "seed": 15856406,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 22,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.3795860359678045,
+   "seed": 15856406,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 22,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 5.562471510027535,
+   "seed": 15856406,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 22,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 5.049122972995974,
+   "seed": 15856406,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 22,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 4.840037869056687,
+   "seed": 15856406,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "none",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "none",
+   "episode": 23,
+   "exact_ast_recovered": false,
+   "extraction_units": 0,
+   "family": "(1,1)",
+   "found_digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"col_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 59,
+   "rule": "individual",
+   "seconds": 0.7720671329880133,
+   "seed": 16093976,
+   "solved": true,
+   "total_units": 60,
+   "units_used": 60
+  },
+  {
+   "arm": "aggregate",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "aggregate",
+   "episode": 23,
+   "exact_ast_recovered": false,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "found_schema_json": {
+    "args": [
+     {
+      "args": [
+       {
+        "lit": "\"background_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"touches_border\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?0\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     },
+     {
+      "args": [
+       {
+        "lit": "\"colour_components\""
+       }
+      ],
+      "op": "Partition"
+     },
+     {
+      "args": [
+       {
+        "args": [
+         {
+          "lit": "\"col_band\""
+         }
+        ],
+        "op": "Key"
+       },
+       {
+        "args": [
+         {
+          "lit": "\"?1\""
+         }
+        ],
+        "op": "Lookup"
+       }
+      ],
+      "op": "Map"
+     },
+     {
+      "args": [],
+      "op": "Paint"
+     }
+    ],
+    "op": "Compose"
+   },
+   "heldout_correct": false,
+   "heldout_defined": 4,
+   "heldout_total": 4,
+   "rank_of_solution": 59,
+   "rule": "individual",
+   "seconds": 0.9116601250134408,
+   "seed": 16093976,
+   "solved": true,
+   "total_units": 260,
+   "units_used": 60
+  },
+  {
+   "arm": "associated:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 23,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.525909077026881,
+   "seed": 16093976,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "associated:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "associated",
+   "episode": 23,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.260609830962494,
+   "seed": 16093976,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:individual",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 23,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "individual",
+   "seconds": 6.090017118956894,
+   "seed": 16093976,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  },
+  {
+   "arm": "shuffled:complementary",
+   "baseline_complete": true,
+   "baseline_solved_it": false,
+   "condition": "shuffled",
+   "episode": 23,
+   "exact_ast_recovered": null,
+   "extraction_units": 200,
+   "family": "(1,1)",
+   "found_digest": null,
+   "found_schema_json": null,
+   "heldout_correct": null,
+   "heldout_defined": null,
+   "heldout_total": null,
+   "rank_of_solution": null,
+   "rule": "complementary",
+   "seconds": 6.408035701955669,
+   "seed": 16093976,
+   "solved": false,
+   "total_units": 2880,
+   "units_used": 2680
+  }
+ ],
+ "seed_namespace": 6500000,
+ "study_version": "failure_signal_study:v1",
+ "summary": {
+  "aggregate": {
+   "episodes": 24,
+   "exact_ast_rate_of_solved": 0.0,
+   "exact_ast_recovered": 0,
+   "extraction_units": 200,
+   "heldout_correct_rate_of_solved": 0.7895,
+   "heldout_output_correct": 15,
+   "mean_search_units_when_solved": 321.2,
+   "mean_total_units_when_solved": 521.2,
+   "median_rank_of_solution": 59,
+   "median_total_units_when_solved": 260,
+   "total_seconds": 74.12,
+   "useful_recovery": 19,
+   "useful_recovery_rate": 0.7917
+  },
+  "associated:complementary": {
+   "episodes": 24,
+   "exact_ast_rate_of_solved": 0.0,
+   "exact_ast_recovered": 0,
+   "extraction_units": 200,
+   "heldout_correct_rate_of_solved": 1.0,
+   "heldout_output_correct": 8,
+   "mean_search_units_when_solved": 1521.4,
+   "mean_total_units_when_solved": 1721.4,
+   "median_rank_of_solution": 2051,
+   "median_total_units_when_solved": 2252,
+   "total_seconds": 165.93,
+   "useful_recovery": 8,
+   "useful_recovery_rate": 0.3333
+  },
+  "associated:individual": {
+   "episodes": 24,
+   "exact_ast_rate_of_solved": 0.0,
+   "exact_ast_recovered": 0,
+   "extraction_units": 200,
+   "heldout_correct_rate_of_solved": 1.0,
+   "heldout_output_correct": 7,
+   "mean_search_units_when_solved": 1966.3,
+   "mean_total_units_when_solved": 2166.3,
+   "median_rank_of_solution": 2185,
+   "median_total_units_when_solved": 2386,
+   "total_seconds": 182.51,
+   "useful_recovery": 7,
+   "useful_recovery_rate": 0.2917
+  },
+  "none": {
+   "episodes": 24,
+   "exact_ast_rate_of_solved": 0.0,
+   "exact_ast_recovered": 0,
+   "extraction_units": 0,
+   "heldout_correct_rate_of_solved": 0.7895,
+   "heldout_output_correct": 15,
+   "mean_search_units_when_solved": 312.6,
+   "mean_total_units_when_solved": 312.6,
+   "median_rank_of_solution": 59,
+   "median_total_units_when_solved": 60,
+   "total_seconds": 69.5,
+   "useful_recovery": 19,
+   "useful_recovery_rate": 0.7917
+  },
+  "shuffled:complementary": {
+   "episodes": 24,
+   "exact_ast_rate_of_solved": 0.0,
+   "exact_ast_recovered": 0,
+   "extraction_units": 200,
+   "heldout_correct_rate_of_solved": 1.0,
+   "heldout_output_correct": 6,
+   "mean_search_units_when_solved": 853.8,
+   "mean_total_units_when_solved": 1053.8,
+   "median_rank_of_solution": 864,
+   "median_total_units_when_solved": 1065,
+   "total_seconds": 141.44,
+   "useful_recovery": 6,
+   "useful_recovery_rate": 0.25
+  },
+  "shuffled:individual": {
+   "episodes": 24,
+   "exact_ast_rate_of_solved": 0.0,
+   "exact_ast_recovered": 0,
+   "extraction_units": 200,
+   "heldout_correct_rate_of_solved": 1.0,
+   "heldout_output_correct": 6,
+   "mean_search_units_when_solved": 1502.0,
+   "mean_total_units_when_solved": 1702.0,
+   "median_rank_of_solution": 1298,
+   "median_total_units_when_solved": 1499,
+   "total_seconds": 160.34,
+   "useful_recovery": 6,
+   "useful_recovery_rate": 0.25
+  }
+ },
+ "total_seconds": 806.6
+}

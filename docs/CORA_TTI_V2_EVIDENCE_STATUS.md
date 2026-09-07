@@ -223,3 +223,37 @@ contract), 47 of the 112 audited episodes survive, covering 17 distinct
 schemas across all four two-block families. That is the honest residual of the
 exploratory result. It is not a validated finding, and it does not restore the
 family-coverage GO.
+
+
+## 7. Test-suite status, closed 2026-09-07
+
+The repository-wide suite was compared against the pinned pre-change snapshot at
+`e5ef8b5` (`logs/run_slow_suites.sh`, output `logs/slow_suites_ab.log`). The
+comparison is closed and no further audit is open.
+
+| set | current tree | pinned snapshot |
+| --- | --- | --- |
+| `test_v2_preserves_v1_behavior` + `test_v21_contract_integrity` | 3 failed, 15 passed | 3 failed, 15 passed |
+| test files 7 to 20 | 5 failed, 239 passed | 5 failed, 239 passed |
+
+The failing test identifiers are identical in both trees:
+
+- `test_v2_preserves_v1_behavior::test_v2_reproduces_v1_certified` for `d89b689b`,
+  `e9ac8c9e` and `a48eeaf7`;
+- `test_adaptive_loop::TestAdaptiveReasoningLoop::test_multi_view_tried_on_failure`;
+- `test_adaptive_orchestrator::TestNoModuleBypassesVerifier::test_orchestrator_always_verifies`;
+- `test_baseline_restore_regressions::test_frontier_operator_regression` for
+  `bb43febb` and `a5313dff`;
+- `test_composed_frontier_operators::TestSelectThenRecolorOperator::test_verifier_accepts_correct_proposal`.
+
+None is caused by this work. One reports `status=timeout` and these suites run 36
+to 64 minutes under the live experiment's load, so some may be load-induced
+rather than logic failures; that is a hypothesis, not a finding. They are
+pre-existing repository debt to triage before any merge to main.
+
+Every suite that imports the modules changed in this block passes: 116 tests
+across `test_cora_parent_isolation`, `test_constructive_dataset`,
+`test_constructive_probes`, `test_constructive_vocabulary`,
+`test_scoped_slot_fitting`, `test_scoped_slot_parity`,
+`test_v2c_evidence_contract`, `test_meta_v2_architecture` and `test_mdl_v2`,
+plus 9 in `test_candidate_trace`.
