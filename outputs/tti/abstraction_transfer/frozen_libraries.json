@@ -1,0 +1,204 @@
+{
+ "concepts": {
+  "R1_family": [
+   {
+    "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"?2\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?3\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"?4\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?5\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+    "enumerable_slots": {
+     "?2": "PartitionExpr",
+     "?3": "FeatureExpr",
+     "?4": "PartitionExpr",
+     "?5": "FeatureExpr"
+    },
+    "expansion": 1600,
+    "induced_slots": {
+     "?0": "Map[FeatureValue,Colour]",
+     "?1": "Map[FeatureValue,Colour]"
+    },
+    "member_digests": [
+     "3a37b6f8368c0312",
+     "41097013582b5a74",
+     "5388cebf24285584",
+     "5a145e4999411067",
+     "763478bb7164b44c",
+     "85e3a9624e9cd125",
+     "ae8a52da72e4f8d6",
+     "ce9fc1de094cff99"
+    ],
+    "members": 8,
+    "n_blocks": 2,
+    "name": "R1_family:(0,0)",
+    "sources": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     8,
+     10,
+     13,
+     14,
+     15
+    ]
+   }
+  ],
+  "R2_family_and_first_partition": [
+   {
+    "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?2\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?3\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+    "enumerable_slots": {
+     "?2": "FeatureExpr",
+     "?3": "FeatureExpr"
+    },
+    "expansion": 100,
+    "induced_slots": {
+     "?0": "Map[FeatureValue,Colour]",
+     "?1": "Map[FeatureValue,Colour]"
+    },
+    "member_digests": [
+     "3a37b6f8368c0312",
+     "5388cebf24285584",
+     "5a145e4999411067",
+     "763478bb7164b44c",
+     "85e3a9624e9cd125",
+     "ae8a52da72e4f8d6",
+     "ce9fc1de094cff99"
+    ],
+    "members": 7,
+    "n_blocks": 2,
+    "name": "R2_family_and_first_partition:('(0,0)', 'background_components')",
+    "sources": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     8,
+     10,
+     13,
+     14,
+     15
+    ]
+   }
+  ]
+ },
+ "concrete": [
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"sole_neighbour_colour\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "3a37b6f8368c03122528ec674df0bffbcb83c4ca2150dafa580401631eccb690",
+   "sources": [
+    10
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"separator_panels\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"neighbour_colours\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "41097013582b5a744f7855c8f47c6c67407c8816e9242c9a5b19be1c0b716581",
+   "sources": [
+    5
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"col_band\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"col_band\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "5388cebf24285584ee9556e905f87079ad3ae1005726de665a8edf19917d6945",
+   "sources": [
+    1
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"col_band\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "5a145e499941106765ed1b2b10f1b777a89db24b5de35d33895a708f6365a4c9",
+   "sources": [
+    15
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"not_rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"enclosed_regions\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "6f19f06ec1301db08a45fa08e26273dccb7eb4a6c13673ad1ea8375eda5d50c4",
+   "sources": [
+    6,
+    12
+   ],
+   "structure_family": "(1,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "763478bb7164b44c66a7980d1f80dd47ae40700e02dc1c1aa97bdbeb819479e2",
+   "sources": [
+    2,
+    4,
+    8,
+    13
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"area\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "85e3a9624e9cd1256511eaf5e0d89d336f395e18ea81434137404fc9c5a34c78",
+   "sources": [
+    14
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"row_band\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "ae8a52da72e4f8d6765abc1e3d9ffe759753968ba726b45007082c81cb9160ae",
+   "sources": [
+    0
+   ],
+   "structure_family": "(0,0)"
+  },
+  {
+   "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"touches_border\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"colour_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"col_band\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+   "digest": "ce9fc1de094cff990ffc576c77b395b18bd0450413f94f21926fad4e0a6d679d",
+   "sources": [
+    3
+   ],
+   "structure_family": "(0,0)"
+  }
+ ],
+ "controls": {
+  "R1_family": [
+   {
+    "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"?2\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?3\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"?4\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?5\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+    "enumerable_slots": {
+     "?2": "PartitionExpr",
+     "?3": "FeatureExpr",
+     "?4": "PartitionExpr",
+     "?5": "FeatureExpr"
+    },
+    "expansion": 1600,
+    "induced_slots": {
+     "?0": "Map[FeatureValue,Colour]",
+     "?1": "Map[FeatureValue,Colour]"
+    },
+    "member_digests": [],
+    "members": 0,
+    "n_blocks": 2,
+    "name": "ctrl:R1_family:(0,0)",
+    "sources": []
+   }
+  ],
+  "R2_family_and_first_partition": [
+   {
+    "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?2\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"?3\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+    "enumerable_slots": {
+     "?2": "FeatureExpr",
+     "?3": "FeatureExpr"
+    },
+    "expansion": 100,
+    "induced_slots": {
+     "?0": "Map[FeatureValue,Colour]",
+     "?1": "Map[FeatureValue,Colour]"
+    },
+    "member_digests": [],
+    "members": 0,
+    "n_blocks": 2,
+    "name": "ctrl:R2_family_and_first_partition:('(0,0)', 'background_components')",
+    "sources": []
+   }
+  ]
+ }
+}
