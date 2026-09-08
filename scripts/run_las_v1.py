@@ -106,20 +106,42 @@ def git_head() -> str:
         return "UNKNOWN"
 
 
-def build_pool(namespace: int, per_family: int, label: str) -> list:
+#: DE-COLLISION RULE, declared before any transfer outcome is opened.
+#: The schema space is finite, so two pools built from disjoint SEED namespaces
+#: can still sample the same target SCHEMA. Pools are built in the fixed order
+#: source, validate, transfer, and an episode whose target identity already
+#: appears in an earlier pool is skipped and the seed scan continues. This
+#: enforces the pinned zero-overlap requirement mechanically. It never inspects
+#: outcomes and never prefers a task for being favourable. Every skip is counted
+#: and reported.
+COLLISION_SKIPS: list = []
+
+
+def build_pool(namespace: int, per_family: int, label: str, taken: set) -> list:
     pool = []
     for family_index, family in enumerate(FS.STUDY_FAMILIES):
-        found, attempt = 0, 0
+        found, attempt, skipped = 0, 0, 0
         while found < per_family and attempt < 8000:
             seed = namespace + family_index * 3_000_017 + attempt * 7919
             attempt += 1
             episode = FS.build_episode(seed, family)
             if episode is None:
                 continue
+            if episode.target_digest in taken:
+                skipped += 1
+                COLLISION_SKIPS.append({"pool": label, "family": CV.family_text(family),
+                                        "seed": seed,
+                                        "target_digest": episode.target_digest[:16]})
+                continue
+            taken.add(episode.target_digest)
             pool.append(episode)
             found += 1
         print(f"  {label} {CV.family_text(family)}: {found}/{per_family} "
-              f"after {attempt} attempts", flush=True)
+              f"after {attempt} attempts ({skipped} skipped as schema collisions)",
+              flush=True)
+        if found < per_family:
+            print(f"    SHORTFALL: {label} {CV.family_text(family)} reached only {found}",
+                  flush=True)
     return pool
 
 
@@ -138,9 +160,10 @@ def score_program(program, heldout) -> dict:
 
 # ======================= STAGE 1: pools =======================
 print("STAGE 1: building three disjoint pools", flush=True)
-SOURCE = build_pool(SOURCE_NS, SOURCE_PER_FAMILY, "source")
-VALIDATE = build_pool(VALIDATE_NS, VALIDATE_PER_FAMILY, "validate")
-TRANSFER = build_pool(TRANSFER_NS, TRANSFER_PER_FAMILY, "transfer")
+TAKEN: set = set()
+SOURCE = build_pool(SOURCE_NS, SOURCE_PER_FAMILY, "source", TAKEN)
+VALIDATE = build_pool(VALIDATE_NS, VALIDATE_PER_FAMILY, "validate", TAKEN)
+TRANSFER = build_pool(TRANSFER_NS, TRANSFER_PER_FAMILY, "transfer", TAKEN)
 pool_ids = {name: [e.target_digest for e in pool] for name, pool in
             (("source", SOURCE), ("validate", VALIDATE), ("transfer", TRANSFER))}
 overlaps = {}
@@ -350,6 +373,7 @@ frozen = {
                "objective": "lexicographic: max heldout, min wrong-but-demo-consistent, "
                             "min validation units, min expansion, min MDL, canonical tiebreak"},
     "pool_identities": pool_ids, "pool_overlaps": {k: v for k, v in overlaps.items()},
+    "schema_collision_skips": COLLISION_SKIPS,
     "concrete": [{"digest": e["digest"], "structure_family": e["structure_family"],
                   "sources": e["sources"], "canonical": CV.canonical(e["schema"])}
                  for e in CONCRETE],
@@ -509,9 +533,14 @@ report = {
     "pools": {"sizes": {"source": len(SOURCE), "validate": len(VALIDATE),
                         "transfer": len(TRANSFER)},
               "identity_overlaps": {k: len(v) for k, v in overlaps.items()},
+              "schema_collision_skips": len(COLLISION_SKIPS),
+              "schema_collision_detail": COLLISION_SKIPS,
               "structural_schema_overlap_note": (
-                  "target identities are disjoint; schema-identity collisions in a finite "
-                  "space are recorded above as the overlap lists, which are empty here")},
+                  "the schema space is finite, so disjoint seed namespaces can still sample "
+                  "the same target schema. Pools are built in the fixed order source, "
+                  "validate, transfer and a colliding episode is skipped by a rule declared "
+                  "before any transfer outcome. Every skip is counted above. Final "
+                  "target-identity overlap is therefore zero by construction")},
     "acquisition": {"policy": "ordinary smallest-first constructive search",
                     "episodes": len(SOURCE), "discovered": len(discovered),
                     "failed": len(SOURCE) - len(discovered),
