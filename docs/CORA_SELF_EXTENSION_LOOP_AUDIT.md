@@ -126,3 +126,29 @@ poorly calibrated, and it needs a substrate that has task outputs at all.
 No file outside this worktree was modified. The live Step-B run was not touched,
 inspected semantically, accelerated or delayed. No merge to main. No new
 experiment. No LAS work of any kind.
+
+## Correction added 2026-09-13: the disclosure above was incomplete
+
+A mechanical scan of the tool-call inputs of every agent in this session found
+more pre-freeze exposure than the disclosure at the top of this document
+records. That disclosure is kept exactly as written. The complete record, and
+the quarantine rules the gate must follow, are in
+`docs/CORA_STEPB_PREFREEZE_DEVIATIONS.md`.
+
+In short. The corpus row was decoded in full in process memory and its
+demonstration count was printed, in addition to its keys. A separate agent
+printed the name and typed signature of every instance in the frozen candidate
+inventory. Agents read the Step-B runner and package source. ARC evaluation
+inputs, holdout inputs among them, were loaded into memory while a predicate was
+computed on the 60 development tasks only.
+
+Two claims listed above under "Reported by the audit and NOT independently
+verified here" derive from those reads and are now QUARANTINED. They may not
+serve as premises in any gate rule, substrate choice or threshold:
+
+- that the blind runtime already carries a `Set[Region] -> Grid` bridge;
+- that the Step-B corpus carries no test pair and no task identifier.
+
+The four facts verified directly against source in this document concern the
+real-engine concept path under `geocat_arc/` and are unaffected by the
+quarantine.
