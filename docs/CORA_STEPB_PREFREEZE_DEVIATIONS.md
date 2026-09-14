@@ -162,3 +162,19 @@ and no task identifier.
 **Q6.** Any further pre-freeze agent work receives an explicit forbidden-path
 list, and its tool-call inputs are scanned against that list afterwards, before
 its output is used.
+
+## Permitted operations under the gate protocol, before the freeze
+
+Recorded 2026-09-14. Both read `/proc` alone and neither read any experiment file.
+
+- **Runner identity check.** `freeze_pin.runner_processes()` was run against the
+  live process table to confirm that the pin's readiness rule can see the
+  runner. It matched 21 processes including the parent. Only process argv,
+  executable links and working directories were read.
+- **P0.2 environment capture.** `scripts/gate_capture_run_env.py` recorded argv,
+  executable, working directory, start time and environment for every matched
+  process into `outputs/tti/stepB_gate/stepB_run_env.json`, committed. Values
+  were recorded only for allowlisted reproducibility variables; every other
+  variable was counted, not named.
+
+Neither operation exposed anything the run proposed, kept or selected.
