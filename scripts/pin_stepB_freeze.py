@@ -1,6 +1,7 @@
 """Command line for the Step-B freeze pin. The logic lives in cora_tti/freeze_pin.py.
 
     python3 scripts/pin_stepB_freeze.py            create the pin, exactly once
+    python3 scripts/pin_stepB_freeze.py --bind     after committing the pin: write the binding
     python3 scripts/pin_stepB_freeze.py --verify   verify the pin; fails closed
     python3 scripts/pin_stepB_freeze.py --dry-run  synthetic fixture trees only
 
@@ -35,6 +36,12 @@ def main(argv=None) -> int:
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--verify", action="store_true", help="verify the existing pin")
+    mode.add_argument("--bind", action="store_true",
+                      help="after the pin is committed, record its commit in a tracked binding file")
+    mode.add_argument("--verify-modules", action="store_true",
+                      help="verify the committed G2 module pin")
+    mode.add_argument("--require-binding", action="store_true",
+                      help="with --verify semantics, also require the committed binding")
     mode.add_argument("--dry-run", action="store_true",
                       help="fixture trees only; refused on the live experiment tree")
     mode.add_argument("--allow-unfrozen", action="store_true", help=argparse.SUPPRESS)
@@ -42,6 +49,12 @@ def main(argv=None) -> int:
 
     if args.verify:
         result = FP.verify_pin().to_json()
+    elif args.verify_modules:
+        result = FP.verify_module_pin().to_json()
+    elif args.require_binding:
+        result = FP.verify_pin(require_binding=True).to_json()
+    elif args.bind:
+        result = FP.bind_pin()
     elif args.dry_run or args.allow_unfrozen:
         result = FP.dry_run()
     else:
