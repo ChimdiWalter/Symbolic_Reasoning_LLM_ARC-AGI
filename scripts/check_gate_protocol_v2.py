@@ -99,7 +99,8 @@ need("C15 sealed number", "185/1000" in doc)
 need("C15 rejected defects section", re.search(r"^#+\s*\d*\.?\s*rejected defects", doc, re.I | re.M))
 need("C15 forbidden phrasings kept", "forbidden phrasing" in low)
 need("C16 implementation status section", re.search(r"^#+\s*\d*\.?\s*implementation status", doc, re.I | re.M))
-need("C16 61 tests", re.search(r"\b61 tests\b", low))
+need("C16 current test counts recorded", all(x in doc for x in ("| 51 |", "| 42 |", "| 10 |", "| 6 |")))
+need("C16 no unfilled placeholder", "<<" not in doc)
 
 # ---- structure
 headings = re.findall(r"^## (\d+)\.", doc, re.M)
