@@ -9,13 +9,15 @@ Required, in this order:
   1. PYTHONHASHSEED is "0".
   2. OMP_NUM_THREADS, MKL_NUM_THREADS and OPENBLAS_NUM_THREADS are each "1".
   3. Every gate tooling file is committed at HEAD, and its on-disk bytes equal
-     the committed blob.
+     the committed blob. Tooling is every file matching TOOLING_GLOBS, on disk
+     or tracked, plus REQUIRED_TOOLING, so a new or deleted gate script is caught.
   4. The dev worktree is porcelain clean.
 
 Recorded, not required: the main checkout's dirty file count. The gate never
 writes into the main checkout, so it cannot make that checkout clean, and
 requiring it would leave no lawful way forward at the freeze marker. The pin
-records the same count.
+records the same count. Git is run with --no-optional-locks, so reading status
+does not rewrite either checkout's index.
 
 The first output line is `OUTCOME <name>`, and each outcome has a fixed exit code.
 """
@@ -41,8 +43,23 @@ EXIT_CODES = {PREFLIGHT_OK: 0, PREFLIGHT_HASHSEED: 21, PREFLIGHT_THREADS: 22,
               PREFLIGHT_UNCOMMITTED_TOOLING: 24, PREFLIGHT_DIRTY_WORKTREE: 23}
 
 THREAD_VARIABLES = ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS")
-TOOLING = ("cora_tti/freeze_pin.py", "cora_tti/gate_guard.py", "scripts/pin_stepB_freeze.py",
-           "scripts/gate_preflight.py", "scripts/gate_capture_run_env.py")
+REQUIRED_TOOLING = ("cora_tti/freeze_pin.py", "cora_tti/gate_guard.py", "cora_tti/split_extract.py",
+                    "scripts/pin_stepB_freeze.py", "scripts/gate_preflight.py",
+                    "scripts/gate_capture_run_env.py")
+TOOLING = REQUIRED_TOOLING
+TOOLING_GLOBS = ("cora_tti/*.py", "scripts/gate_*.py", "scripts/pin_stepB_freeze.py",
+                 "scripts/check_gate_protocol_*.py")
+
+
+def tooling_files() -> list:
+    """Required tooling, plus every file matching the globs on disk or at HEAD."""
+    found = set(REQUIRED_TOOLING)
+    for pattern in TOOLING_GLOBS:
+        found.update(p.relative_to(FP.TTI).as_posix() for p in FP.TTI.glob(pattern) if p.is_file())
+    tracked = FP._git("ls-files", "--", *TOOLING_GLOBS)
+    if tracked:
+        found.update(line for line in tracked.splitlines() if line)
+    return sorted(found)
 
 
 def run(env=None) -> dict:
@@ -55,7 +72,7 @@ def run(env=None) -> dict:
     if any(env.get(name) != "1" for name in THREAD_VARIABLES):
         return {"outcome": PREFLIGHT_THREADS, **record}
     uncommitted = []
-    for relative in TOOLING:
+    for relative in tooling_files():
         path = FP.TTI / relative
         blob = FP._git("cat-file", "blob", f"HEAD:{relative}", binary=True)
         if not path.is_file() or blob is None or blob != path.read_bytes():

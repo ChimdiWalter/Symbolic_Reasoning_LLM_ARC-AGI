@@ -17,6 +17,10 @@ worker environments are stored once.
 
 It writes outputs/tti/stepB_gate/stepB_run_env.json once, with exclusive
 create, and never overwrites it. The printed summary carries counts only.
+
+G1 derives its standing environment caveats from the committed record with
+run_env_caveats(), never from /proc: ENV-RUN-UNKNOWN, ENV-HASHSEED-UNSET-AT-RUN,
+ENV-THREADS-UNSET-AT-RUN and ENV_CAPTURE_PARTIAL.
 """
 from __future__ import annotations
 
@@ -45,6 +49,26 @@ ENV_RUN_UNKNOWN = "ENV-RUN-UNKNOWN"
 ENV_CAPTURE_PARTIAL = "ENV_CAPTURE_PARTIAL"
 ENV_CAPTURE_EXISTS = "ENV_CAPTURE_EXISTS"
 EXIT_CODES = {ENV_CAPTURED: 0, ENV_RUN_UNKNOWN: 30, ENV_CAPTURE_PARTIAL: 31, ENV_CAPTURE_EXISTS: 32}
+
+ENV_HASHSEED_UNSET_AT_RUN = "ENV-HASHSEED-UNSET-AT-RUN"
+ENV_THREADS_UNSET_AT_RUN = "ENV-THREADS-UNSET-AT-RUN"
+THREAD_VARIABLES = ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS")
+
+
+def run_env_caveats(record: dict) -> list:
+    """Standing caveats G1 records, derived only from a committed capture record."""
+    environments = list((record.get("environments") or {}).values())
+    if record.get("outcome") == ENV_RUN_UNKNOWN or not environments:
+        return [ENV_RUN_UNKNOWN]
+    caveats = []
+    values = [environment.get("values") or {} for environment in environments]
+    if any(not str(v.get("PYTHONHASHSEED") or "").isdigit() for v in values):
+        caveats.append(ENV_HASHSEED_UNSET_AT_RUN)
+    if any(v.get(name) is None for v in values for name in THREAD_VARIABLES):
+        caveats.append(ENV_THREADS_UNSET_AT_RUN)
+    if record.get("outcome") == ENV_CAPTURE_PARTIAL:
+        caveats.append(ENV_CAPTURE_PARTIAL)
+    return caveats
 
 
 def record_path() -> Path:

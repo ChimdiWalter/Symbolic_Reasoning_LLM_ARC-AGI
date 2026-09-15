@@ -35,13 +35,21 @@ ATOMIC. The pin and its digest are written into a private staging directory,
 flushed, and renamed into place in one step, so a crash cannot leave a pin
 without its digest.
 
-BOUND TO A COMMIT. A digest stored beside the pin cannot detect a pin that was
-deleted and recreated. So after the pin directory is committed, `bind_pin`
-writes a tracked binding record naming the pin's sha256 and its commit. Every
-stage after stage 2 verifies with `require_binding=True`: the binding is
-committed exactly once, its pin commit is an ancestor of HEAD, and the on-disk
-pin and digest are byte-identical to the blobs in that commit. A recreated pin
-has different bytes and fails as PIN_COMMIT_MISMATCH.
+BOUND TO A COMMIT AND ANCHORED OUTSIDE THE REPOSITORY. A digest stored beside
+the pin cannot detect a pin that was deleted and recreated, and the history of
+one branch cannot detect a pin recreated on another. So after the pin directory
+is committed, `bind_pin` writes a tracked binding record naming the pin's sha256
+and its commit, and, with exclusive create, an anchor record outside both
+checkouts. Every stage after stage 2 verifies with `require_binding=True`: the
+binding is committed exactly once; the pin and the binding each have exactly
+one distinct blob across all refs and the reflog; the pin commit is an ancestor
+of HEAD; the on-disk pin and digest equal the blobs in that commit; and the
+anchor names the same sha256 and commit. The anchor is a second copy, not a
+tamper-proof store, so the protocol also copies it into the review record.
+
+OUTPUT SIZES. Byte sizes and line counts are recorded only for the run log.
+For every other artifact the pin records path, sha256 and mtime, so reading the
+pin cannot hint at the size of any result.
 """
 from __future__ import annotations
 
@@ -63,12 +71,12 @@ PROC = Path("/proc")
 
 PIN_VERSION = "stepB_capability_gate_pin:v3"
 BINDING_VERSION = "stepB_capability_gate_pin_binding:v1"
+ANCHOR_VERSION = "stepB_capability_gate_pin_anchor:v1"
 FREEZE_MARKER = "STEP B FROZEN"
 RUNNER_SCRIPT = "cora_level4_stepB_run.py"
 RUNNER_MODULE = "cora_level4_stepB_run"
 FINAL_OUTPUT_HASH_NAME = "level4_stepB_output_hash.txt"
 CHUNK = 1 << 20
-LINE_COUNTED_SUFFIXES = (".jsonl", ".log", ".txt")
 
 CONTENT_POLICY = (
     "Artifact bytes were read transiently, in fixed-size binary blocks, only for "
@@ -107,6 +115,17 @@ MODULE_PIN_MISSING = "MODULE_PIN_MISSING"
 MODULE_PIN_ALTERED = "MODULE_PIN_ALTERED"
 MODULE_ARTIFACT_MISSING = "MODULE_ARTIFACT_MISSING"
 MODULE_ARTIFACT_DRIFT = "MODULE_ARTIFACT_DRIFT"
+PIN_WRITTEN_BUT_UNVERIFIED = "PIN_WRITTEN_BUT_UNVERIFIED"
+PIN_RECREATED_IN_HISTORY = "PIN_RECREATED_IN_HISTORY"
+PIN_ANCHOR_MISSING = "PIN_ANCHOR_MISSING"
+PIN_ANCHOR_MISMATCH = "PIN_ANCHOR_MISMATCH"
+PIN_ANCHOR_EXISTS_REFUSING_OVERWRITE = "PIN_ANCHOR_EXISTS_REFUSING_OVERWRITE"
+MODULE_PIN_WRITTEN = "MODULE_PIN_WRITTEN"
+MODULE_PIN_EXISTS_REFUSING_OVERWRITE = "MODULE_PIN_EXISTS_REFUSING_OVERWRITE"
+MODULE_PIN_EMPTY = "MODULE_PIN_EMPTY"
+MODULE_SCOPE_CHANGED = "MODULE_SCOPE_CHANGED"
+MODULE_TREE_MISMATCH = "MODULE_TREE_MISMATCH"
+CLI_USAGE_ERROR = "CLI_USAGE_ERROR"
 
 READINESS_OUTCOMES = (READY, FREEZE_MARKER_ABSENT, FREEZE_OUTPUT_NOT_READY,
                       FREEZE_RUNNER_STILL_ACTIVE)
@@ -114,7 +133,10 @@ PROVENANCE_FAILURES = (PIN_MISSING, PIN_HASH_RECORD_MISSING, PIN_JSON_ALTERED,
                        PIN_ARTIFACT_MISSING, PIN_ARTIFACT_DRIFT,
                        PIN_SCOPE_GREW_AFTER_FREEZE, PIN_BINDING_MISSING,
                        PIN_BINDING_REWRITTEN, PIN_COMMIT_MISMATCH, MODULE_PIN_MISSING,
-                       MODULE_PIN_ALTERED, MODULE_ARTIFACT_MISSING, MODULE_ARTIFACT_DRIFT)
+                       MODULE_PIN_ALTERED, MODULE_ARTIFACT_MISSING, MODULE_ARTIFACT_DRIFT,
+                       PIN_WRITTEN_BUT_UNVERIFIED, PIN_RECREATED_IN_HISTORY, PIN_ANCHOR_MISSING,
+                       PIN_ANCHOR_MISMATCH, MODULE_PIN_EMPTY, MODULE_SCOPE_CHANGED,
+                       MODULE_TREE_MISMATCH)
 
 EXIT_CODES = {
     PIN_CREATED: 0, PIN_VERIFIED: 0, DRY_RUN_OK: 0,
@@ -128,6 +150,10 @@ EXIT_CODES = {
     PIN_BINDING_EXISTS_REFUSING_OVERWRITE: 15, PIN_WRITE_FAILED: 16,
     MODULE_PIN_VERIFIED: 0, MODULE_PIN_MISSING: 17, MODULE_PIN_ALTERED: 18,
     MODULE_ARTIFACT_MISSING: 19, MODULE_ARTIFACT_DRIFT: 20,
+    PIN_WRITTEN_BUT_UNVERIFIED: 40, PIN_RECREATED_IN_HISTORY: 41, PIN_ANCHOR_MISSING: 42,
+    PIN_ANCHOR_MISMATCH: 43, PIN_ANCHOR_EXISTS_REFUSING_OVERWRITE: 44, MODULE_PIN_WRITTEN: 0,
+    MODULE_PIN_EXISTS_REFUSING_OVERWRITE: 45, MODULE_PIN_EMPTY: 46, MODULE_SCOPE_CHANGED: 47,
+    MODULE_TREE_MISMATCH: 48, CLI_USAGE_ERROR: 64,
 }
 
 #  ------------------------------------------------------------- locations
@@ -164,6 +190,11 @@ def pin_hash_path() -> Path:
 def binding_path() -> Path:
     """Tracked, not ignored: the binding must live in git history."""
     return TTI / "docs" / "stepB_gate" / "pin_binding.json"
+
+
+def anchor_path() -> Path:
+    """Outside both checkouts. Written once by bind_pin, never overwritten."""
+    return TTI.resolve().parent / "CORA_reports" / "gate_anchor" / "stepB_freeze_pin_anchor.json"
 
 
 def module_pin_path() -> Path:
@@ -270,9 +301,10 @@ def describe(path) -> dict:
     digest, lines = digest_and_lines(path)
     record = {"path": str(path),
               "relative_to_main": os.path.relpath(path, MAIN.resolve()),
-              "sha256": digest, "bytes": stat.st_size,
+              "sha256": digest,
               "mtime_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(stat.st_mtime))}
-    if path.suffix in LINE_COUNTED_SUFFIXES:
+    if path.resolve() == run_log().resolve():
+        record["bytes"] = stat.st_size
         record["lines"] = lines
     return record
 
@@ -390,7 +422,7 @@ def readiness() -> Readiness:
 def git_state(repo: Path) -> dict:
     def run(*args):
         try:
-            return subprocess.run(["git", "-C", str(repo), *args], check=True,
+            return subprocess.run(["git", "--no-optional-locks", "-C", str(repo), *args], check=True,
                                   capture_output=True, text=True).stdout.strip()
         except Exception:
             return None
@@ -412,7 +444,7 @@ def environment() -> dict:
 
 
 def _identity(records: list) -> list:
-    return [(r["path"], r["sha256"], r["bytes"]) for r in records]
+    return [(r["path"], r["sha256"]) for r in records]
 
 
 def build_pin(ready: Readiness) -> tuple:
@@ -487,7 +519,8 @@ def write_pin(pin: dict) -> str:
 
 def _git(*args, binary: bool = False):
     try:
-        done = subprocess.run(["git", "-C", str(TTI), *args], capture_output=True, check=False)
+        done = subprocess.run(["git", "--no-optional-locks", "-C", str(TTI), *args],
+                              capture_output=True, check=False)
     except OSError:
         return None
     if done.returncode != 0:
@@ -504,6 +537,17 @@ def _history_count(relative: str) -> int:
     return len(out.splitlines()) if out else 0
 
 
+def distinct_blobs(relative: str) -> set:
+    """Blob ids a path has had in any commit reachable from any ref or reflog entry."""
+    out = _git("log", "--all", "--reflog", "--format=%H", "--", relative)
+    blobs = set()
+    for commit in (out.splitlines() if out else []):
+        blob = _git("rev-parse", "--verify", "-q", f"{commit}:{relative}")
+        if blob:
+            blobs.add(blob)
+    return blobs
+
+
 def bind_pin() -> dict:
     """Record, in a tracked file, which commit holds the pin. Run once, after committing the pin."""
     check = verify_pin(require_binding=False)
@@ -511,6 +555,8 @@ def bind_pin() -> dict:
         return {"outcome": check.status, "verification": check.to_json()}
     if binding_path().exists():
         return {"outcome": PIN_BINDING_EXISTS_REFUSING_OVERWRITE, "binding": str(binding_path())}
+    if anchor_path().exists():
+        return {"outcome": PIN_ANCHOR_EXISTS_REFUSING_OVERWRITE, "anchor": str(anchor_path())}
     rel_pin, rel_hash = _relative_to_tti(pin_path()), _relative_to_tti(pin_hash_path())
     for relative, path in ((rel_pin, pin_path()), (rel_hash, pin_hash_path())):
         committed = _git("cat-file", "blob", f"HEAD:{relative}", binary=True)
@@ -520,6 +566,9 @@ def bind_pin() -> dict:
         if _history_count(relative) != 1:
             return {"outcome": PIN_COMMIT_MISMATCH, "path": relative,
                     "note": "the pin has more than one commit in history"}
+        if len(distinct_blobs(relative)) != 1:
+            return {"outcome": PIN_RECREATED_IN_HISTORY, "path": relative,
+                    "note": "another ref or reflog entry holds different pin bytes"}
     pin_commit = _git("log", "-n", "1", "--format=%H", "--", rel_pin)
     record = {"binding_version": BINDING_VERSION, "pin_relpath": rel_pin, "hash_relpath": rel_hash,
               "pin_sha256": check.pin_sha256, "pin_commit": pin_commit,
@@ -527,9 +576,20 @@ def bind_pin() -> dict:
     binding_path().parent.mkdir(parents=True, exist_ok=True)
     with open(binding_path(), "x") as handle:
         handle.write(json.dumps(record, indent=1, sort_keys=True) + "\n")
+    anchor = {"anchor_version": ANCHOR_VERSION, "pin_sha256": check.pin_sha256,
+              "pin_commit": pin_commit, "bound_utc": record["bound_utc"]}
+    try:
+        anchor_path().parent.mkdir(parents=True, exist_ok=True)
+        with open(anchor_path(), "x") as handle:
+            handle.write(json.dumps(anchor, indent=1, sort_keys=True) + "\n")
+    except OSError as error:
+        binding_path().unlink()
+        return {"outcome": PIN_WRITE_FAILED, "error": str(error),
+                "note": "the anchor could not be written; the uncommitted binding was removed"}
     return {"outcome": PIN_BOUND, "binding": str(binding_path()), "pin_commit": pin_commit,
-            "pin_sha256": check.pin_sha256,
-            "next": "commit the binding file; no stage after stage 2 runs until it is committed"}
+            "pin_sha256": check.pin_sha256, "anchor": str(anchor_path()),
+            "next": "commit the binding file and copy the anchor record into the review record; "
+                    "no stage after stage 2 runs until both are done"}
 
 
 def verify_binding() -> str | None:
@@ -559,6 +619,16 @@ def verify_binding() -> str | None:
             return PIN_COMMIT_MISMATCH
     if hashlib.sha256(pin_path().read_bytes()).hexdigest() != pin_sha or _history_count(rel_pin) != 1:
         return PIN_COMMIT_MISMATCH
+    if any(len(distinct_blobs(rel)) != 1 for rel in (rel_pin, rel_hash, relative)):
+        return PIN_RECREATED_IN_HISTORY
+    if not anchor_path().is_file():
+        return PIN_ANCHOR_MISSING
+    try:
+        anchor = json.loads(anchor_path().read_bytes())
+    except ValueError:
+        return PIN_ANCHOR_MISMATCH
+    if anchor.get("pin_sha256") != pin_sha or anchor.get("pin_commit") != pin_commit:
+        return PIN_ANCHOR_MISMATCH
     return None
 
 
@@ -629,30 +699,102 @@ def load_pinned_digests() -> dict:
     return {r["path"]: r["sha256"] for r in json.loads(pin_path().read_bytes())["artifacts"]}
 
 
+MODULE_PIN_VERSION = "stepB_gate_module_pin:v2"
+
+
 @dataclass(frozen=True)
 class ModuleVerification:
     status: str
     missing: tuple
     drifted: tuple
+    changed: tuple = ()
 
     def ok(self) -> bool:
         return self.status == MODULE_PIN_VERIFIED
 
     def to_json(self) -> dict:
-        return {"outcome": self.status, "missing": list(self.missing), "drifted": list(self.drifted)}
+        return {"outcome": self.status, "missing": list(self.missing),
+                "drifted": list(self.drifted), "changed": list(self.changed)}
+
+
+def tree_files(root) -> list:
+    """Relative paths of every file under root, bytecode caches excluded."""
+    root = Path(root).resolve()
+    if not root.is_dir():
+        return []
+    return sorted(p.relative_to(root).as_posix() for p in root.rglob("*")
+                  if p.is_file() and not _ignored(p.relative_to(root)))
+
+
+def _cross_tree_mismatches(pairs) -> list:
+    found = []
+    for pair in pairs:
+        a, b, exempt = Path(pair["a"]), Path(pair["b"]), set(pair.get("exempt") or ())
+        files_a, files_b = set(tree_files(a)) - exempt, set(tree_files(b)) - exempt
+        found.extend(f"only in {a}: {rel}" for rel in sorted(files_a - files_b))
+        found.extend(f"only in {b}: {rel}" for rel in sorted(files_b - files_a))
+        found.extend(f"differs: {rel}" for rel in sorted(files_a & files_b)
+                     if file_digest(a / rel) != file_digest(b / rel))
+    return found
+
+
+def build_module_pin(roots=(), files=(), cross_tree=()) -> dict:
+    """The G2 module pin: whole roots with full file lists, extra files, cross-tree pairs.
+
+    Only what affects K belongs here: engine and runtime package roots in both
+    checkouts, the admissibility artifact that defines K_L4*, the split and
+    Lockbox manifests, and behaviour-preservation records. Gate scripts are
+    governed by the tool manifest at G3b, not by this pin, so a committed fix to
+    a gate script before G3b does not stop the gate.
+    """
+    artifacts, root_records, pairs = {}, [], []
+    for root in roots:
+        resolved = Path(root).resolve()
+        listing = tree_files(resolved)
+        root_records.append({"root": str(resolved), "files": listing})
+        for relative in listing:
+            artifacts[str(resolved / relative)] = file_digest(resolved / relative)
+    for path in files:
+        resolved = Path(path).resolve()
+        artifacts[str(resolved)] = file_digest(resolved)
+    for a, b, exempt in cross_tree:
+        pairs.append({"a": str(Path(a).resolve()), "b": str(Path(b).resolve()),
+                      "exempt": sorted(exempt)})
+    return {"module_pin_version": MODULE_PIN_VERSION, "roots": root_records, "cross_tree": pairs,
+            "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "artifacts": [{"path": k, "sha256": v} for k, v in sorted(artifacts.items())]}
+
+
+def write_module_pin(roots=(), files=(), cross_tree=()) -> dict:
+    """Write the module pin once, at G2. The caller commits both files. Never overwrites."""
+    if module_pin_path().exists() or module_pin_hash_path().exists():
+        return {"outcome": MODULE_PIN_EXISTS_REFUSING_OVERWRITE, "module_pin": str(module_pin_path())}
+    pin = build_module_pin(roots, files, cross_tree)
+    if not pin["artifacts"]:
+        return {"outcome": MODULE_PIN_EMPTY}
+    mismatch = _cross_tree_mismatches(pin["cross_tree"])
+    if mismatch:
+        return {"outcome": MODULE_TREE_MISMATCH, "changed": mismatch}
+    data = json.dumps(pin, indent=1, sort_keys=True).encode()
+    gate_dir().mkdir(parents=True, exist_ok=True)
+    with open(module_pin_path(), "xb") as handle:
+        handle.write(data)
+    with open(module_pin_hash_path(), "x") as handle:
+        handle.write(hashlib.sha256(data).hexdigest() + "\n")
+    return {"outcome": MODULE_PIN_WRITTEN, "artifact_count": len(pin["artifacts"]),
+            "module_pin": str(module_pin_path()),
+            "next": "commit both module pin files; no stage after G2 runs until they are committed"}
 
 
 def verify_module_pin() -> ModuleVerification:
     """Verify the second pinned set, fail closed.
 
-    The G2 module pin covers what the first pin cannot: engine and runtime
-    modules in the dev worktree, the admissibility artifact that defines
-    K_L4*, the split and Lockbox manifests, every gate script, and any
-    behaviour-preservation record. Format: {"artifacts": [{"path", "sha256"}]}
-    with a sibling digest file. Both files must be committed exactly once and
-    be byte-identical to HEAD, and every listed artifact must still hash to its
-    recorded value. The dev worktree is active, so without this a change to K
-    applied equally to both conditions would pass every digest comparison.
+    Both files must be committed exactly once, have one distinct blob across all
+    refs and the reflog, and be byte-identical to HEAD. The pin must list at
+    least one artifact. Every listed artifact must still hash to its recorded
+    value. Every pinned root must hold exactly the recorded file list, so a new
+    or removed module is caught. Every cross-tree pair must hold the same files
+    with the same digests, apart from its declared exemptions.
     """
     pin_file, hash_file = module_pin_path(), module_pin_hash_path()
     if not pin_file.is_file() or not hash_file.is_file():
@@ -663,12 +805,18 @@ def verify_module_pin() -> ModuleVerification:
     for path in (pin_file, hash_file):
         relative = _relative_to_tti(path)
         blob = _git("cat-file", "blob", f"HEAD:{relative}", binary=True)
-        if blob is None or blob != path.read_bytes() or _history_count(relative) != 1:
+        if (blob is None or blob != path.read_bytes() or _history_count(relative) != 1
+                or len(distinct_blobs(relative)) != 1):
             return ModuleVerification(MODULE_PIN_ALTERED, (), ())
     try:
-        expected = {r["path"]: r["sha256"] for r in json.loads(raw)["artifacts"]}
+        pin = json.loads(raw)
+        expected = {r["path"]: r["sha256"] for r in pin["artifacts"]}
+        roots = [(r["root"], list(r["files"])) for r in pin.get("roots") or ()]
+        pairs = list(pin.get("cross_tree") or ())
     except (ValueError, KeyError, TypeError):
         return ModuleVerification(MODULE_PIN_ALTERED, (), ())
+    if not expected:
+        return ModuleVerification(MODULE_PIN_EMPTY, (), ())
     missing, drifted = [], []
     for path, digest in sorted(expected.items()):
         candidate = Path(path)
@@ -680,6 +828,12 @@ def verify_module_pin() -> ModuleVerification:
         return ModuleVerification(MODULE_ARTIFACT_MISSING, tuple(missing), tuple(drifted))
     if drifted:
         return ModuleVerification(MODULE_ARTIFACT_DRIFT, (), tuple(drifted))
+    changed = [root for root, listing in roots if tree_files(root) != listing]
+    if changed:
+        return ModuleVerification(MODULE_SCOPE_CHANGED, (), (), tuple(changed))
+    mismatch = _cross_tree_mismatches(pairs)
+    if mismatch:
+        return ModuleVerification(MODULE_TREE_MISMATCH, (), (), tuple(mismatch))
     return ModuleVerification(MODULE_PIN_VERIFIED, (), ())
 
 
@@ -703,13 +857,25 @@ def create_pin() -> dict:
     if not stable:
         return {"outcome": PIN_SOURCE_UNSTABLE, "readiness": ready.to_json(),
                 "note": "the artifact set changed between two consecutive collections; nothing written"}
+    again = readiness()
+    if again.status != READY:
+        return {"outcome": again.status, "readiness": again.to_json(),
+                "note": "readiness changed during collection; nothing written"}
+    if _identity([describe(p) for p in scope_files()]) != _identity(pin["artifacts"]):
+        return {"outcome": PIN_SOURCE_UNSTABLE, "readiness": again.to_json(),
+                "note": "the artifact set changed just before the write; nothing written"}
     try:
         pin_digest = write_pin(pin)
     except OSError as error:
         return {"outcome": PIN_EXISTS_REFUSING_OVERWRITE if pin_dir().exists() else PIN_WRITE_FAILED,
                 "error": str(error)}
     check = verify_pin()
-    return {"outcome": PIN_CREATED if check.ok() else check.status,
+    if not check.ok():
+        return {"outcome": PIN_WRITTEN_BUT_UNVERIFIED, "terminal": True, "pin_sha256": pin_digest,
+                "verification": check.to_json(),
+                "note": "the pin exists but failed its immediate verification; the gate stops "
+                        "as a provenance failure; never repin"}
+    return {"outcome": PIN_CREATED,
             "readiness": ready.to_json(), "artifact_count": pin["artifact_count"],
             "aggregate_sha256": pin["aggregate_sha256"], "pin_sha256": pin_digest,
             "pin": str(pin_path()), "verification": check.to_json()}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import importlib.util
+import os
 import subprocess
 from pathlib import Path
 from types import SimpleNamespace
@@ -97,3 +98,31 @@ def test_the_first_output_line_names_the_outcome(repo, monkeypatch, capsys):
         monkeypatch.setenv(name, value)
     assert PF.main() == 0
     assert capsys.readouterr().out.splitlines()[0] == f"OUTCOME {PF.PREFLIGHT_OK}"
+
+
+def test_a_new_gate_script_must_be_committed(repo):
+    (repo.tti / "scripts" / "gate_new_stage.py").write_text("# new\n")
+    result = PF.run(env=dict(GOOD))
+    assert result["outcome"] == PF.PREFLIGHT_UNCOMMITTED_TOOLING
+    assert result["uncommitted"] == ["scripts/gate_new_stage.py"]
+
+
+def test_a_deleted_tracked_tooling_file_is_named(repo):
+    (repo.tti / "scripts" / "gate_capture_run_env.py").unlink()
+    result = PF.run(env=dict(GOOD))
+    assert result["outcome"] == PF.PREFLIGHT_UNCOMMITTED_TOOLING
+    assert result["uncommitted"] == ["scripts/gate_capture_run_env.py"]
+
+
+def test_reading_status_does_not_rewrite_either_index(repo):
+    run_git(repo.main, "init", "-q")
+    (repo.main / "tracked.txt").write_text("x\n")
+    run_git(repo.main, "add", "tracked.txt")
+    run_git(repo.main, "commit", "-q", "-m", "c")
+    for root in (repo.main, repo.tti):
+        for path in root.rglob("*"):
+            if ".git" not in path.parts and path.is_file():
+                os.utime(path, (1_000_000_000, 1_000_000_000))
+    before = {str(r): (r / ".git" / "index").read_bytes() for r in (repo.main, repo.tti)}
+    PF.run(env=dict(GOOD))
+    assert {str(r): (r / ".git" / "index").read_bytes() for r in (repo.main, repo.tti)} == before

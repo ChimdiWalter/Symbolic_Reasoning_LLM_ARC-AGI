@@ -514,3 +514,173 @@ def test_freeze_marker_counting(tree):
     with tree.log.open("a") as handle:
         handle.write("STEP B FROZEN again\n")
     assert FP.freeze_marker_occurrences() == 2
+
+
+#  ------------------------------------------------- round-2 review hardening
+
+def test_output_records_carry_no_sizes_or_line_counts_except_the_run_log(pinned):
+    pin = json.loads(FP.pin_path().read_bytes())
+    for record in pin["artifacts"]:
+        if record["relative_to_main"] == "logs/level4_stepB_run.log":
+            assert "bytes" in record and "lines" in record
+        else:
+            assert "bytes" not in record and "lines" not in record, record["relative_to_main"]
+
+
+def test_a_change_just_before_the_write_writes_nothing(tree, monkeypatch):
+    real, count, calls = FP.describe, len(FP.scope_files()), {"n": 0}
+
+    def flaky(path):
+        calls["n"] += 1
+        record = real(path)
+        return dict(record, sha256="0" * 64) if calls["n"] > 2 * count else record
+    monkeypatch.setattr(FP, "describe", flaky)
+    assert FP.create_pin()["outcome"] == FP.PIN_SOURCE_UNSTABLE
+    assert not FP.pin_dir().exists()
+
+
+def test_readiness_is_rechecked_just_before_the_write(tree, monkeypatch):
+    real, calls = FP.readiness, {"n": 0}
+
+    def changing():
+        calls["n"] += 1
+        ready = real()
+        if calls["n"] == 1:
+            return ready
+        return FP.Readiness(FP.FREEZE_RUNNER_STILL_ACTIVE, ready.marker_occurrences, True, (999,))
+    monkeypatch.setattr(FP, "readiness", changing)
+    assert FP.create_pin()["outcome"] == FP.FREEZE_RUNNER_STILL_ACTIVE
+    assert not FP.pin_dir().exists()
+
+
+def test_a_failure_after_the_write_is_terminal_and_never_repinned(tree, monkeypatch):
+    real_write = FP.write_pin
+
+    def write_then_grow(pin):
+        digest = real_write(pin)
+        (tree.b / "level4_stepB_gate_outputs" / "late.json").write_text("{}")
+        return digest
+    monkeypatch.setattr(FP, "write_pin", write_then_grow)
+    result = FP.create_pin()
+    assert result["outcome"] == FP.PIN_WRITTEN_BUT_UNVERIFIED and result["terminal"] is True
+    assert result["verification"]["outcome"] == FP.PIN_SCOPE_GREW_AFTER_FREEZE
+    assert FP.EXIT_CODES[FP.PIN_WRITTEN_BUT_UNVERIFIED] != 0
+    assert FP.create_pin()["outcome"] == FP.PIN_EXISTS_REFUSING_OVERWRITE
+
+
+def test_binding_writes_an_anchor_outside_both_checkouts(bound):
+    anchor = json.loads(FP.anchor_path().read_text())
+    binding = json.loads(FP.binding_path().read_text())
+    assert (anchor["pin_sha256"], anchor["pin_commit"]) == (binding["pin_sha256"], binding["pin_commit"])
+    for root in (bound.tti, bound.main):
+        with pytest.raises(ValueError):
+            FP.anchor_path().resolve().relative_to(root.resolve())
+
+
+def test_a_missing_anchor_fails_verification(bound):
+    FP.anchor_path().unlink()
+    assert FP.verify_pin(require_binding=True).status == FP.PIN_ANCHOR_MISSING
+
+
+def _redo_branch(tree):
+    first = run_git(tree.tti, "rev-list", "--max-parents=0", "HEAD").strip()
+    run_git(tree.tti, "switch", "-q", "-c", "redo", first)
+    assert not FP.pin_dir().exists() and not FP.binding_path().exists()
+    tree.files["lane"].write_text("altered before a second pin\n")
+    assert FP.create_pin()["outcome"] == FP.PIN_CREATED
+    commit_pin(tree)
+
+
+def test_a_pin_recreated_on_another_branch_cannot_be_bound(bound):
+    _redo_branch(bound)
+    assert FP.bind_pin()["outcome"] == FP.PIN_ANCHOR_EXISTS_REFUSING_OVERWRITE
+    FP.anchor_path().unlink()
+    assert FP.bind_pin()["outcome"] == FP.PIN_RECREATED_IN_HISTORY
+    assert not FP.binding_path().exists() and not FP.anchor_path().exists()
+
+
+def test_a_hand_written_binding_fails_on_history_then_on_the_anchor(bound):
+    original = FP.anchor_path().read_bytes()
+    _redo_branch(bound)
+    record = {"binding_version": FP.BINDING_VERSION,
+              "pin_relpath": "outputs/tti/stepB_gate/pin/stepB_freeze_pin.json",
+              "hash_relpath": "outputs/tti/stepB_gate/pin/stepB_freeze_pin_hash.txt",
+              "pin_sha256": hashlib.sha256(FP.pin_path().read_bytes()).hexdigest(),
+              "pin_commit": run_git(bound.tti, "rev-parse", "HEAD").strip(), "bound_utc": "x"}
+    FP.binding_path().parent.mkdir(parents=True, exist_ok=True)
+    FP.binding_path().write_text(json.dumps(record, indent=1, sort_keys=True) + "\n")
+    run_git(bound.tti, "add", "docs/stepB_gate/pin_binding.json")
+    run_git(bound.tti, "commit", "-q", "-m", "hand binding")
+    assert FP.verify_pin(require_binding=True).status == FP.PIN_RECREATED_IN_HISTORY
+    run_git(bound.tti, "branch", "-D", "main")
+    run_git(bound.tti, "reflog", "expire", "--expire=now", "--all")
+    run_git(bound.tti, "gc", "-q", "--prune=now")
+    assert FP.verify_pin(require_binding=True).status == FP.PIN_ANCHOR_MISMATCH
+    assert FP.anchor_path().read_bytes() == original
+
+
+def test_cli_verify_with_require_binding_is_one_command(bound, capsys):
+    assert CLI.main(["--verify", "--require-binding"]) == 0
+    assert capsys.readouterr().out.splitlines()[0] == f"OUTCOME {FP.PIN_VERIFIED}"
+
+
+def test_a_malformed_command_line_still_names_an_outcome(tree, capsys):
+    code = CLI.main(["--verify", "--bind"])
+    assert code == FP.EXIT_CODES[FP.CLI_USAGE_ERROR] and code not in (0, FP.EXIT_CODES[FP.PIN_MISSING])
+    assert capsys.readouterr().out.splitlines()[0] == f"OUTCOME {FP.CLI_USAGE_ERROR}"
+    assert CLI.main(["--bind", "--require-binding"]) == FP.EXIT_CODES[FP.CLI_USAGE_ERROR]
+
+
+@pytest.fixture
+def roots(tree):
+    engine = tree.tti / "geocat_arc"
+    (engine / "sub").mkdir(parents=True)
+    (engine / "meta_v21.py").write_text("# engine\n")
+    (engine / "sub" / "helpers.py").write_text("# helpers\n")
+    copy = tree.tti / "level4_blind_runtime"
+    copy.mkdir()
+    shutil.copy(tree.files["runtime"], copy / "search.py")
+    (copy / "wrapper.py").write_text("# declared additive wrapper\n")
+    return SimpleNamespace(engine=engine, copy=copy, runtime=tree.main / "level4_blind_runtime")
+
+
+def commit_module_pin(tree):
+    run_git(tree.tti, "add", "-f", "outputs/tti/stepB_gate/stepB_gate_module_pin.json",
+            "outputs/tti/stepB_gate/stepB_gate_module_pin_hash.txt")
+    run_git(tree.tti, "commit", "-q", "-m", "module pin v2")
+
+
+def write_v2(tree, roots):
+    result = FP.write_module_pin(roots=[roots.engine], files=[tree.files["manifest"]],
+                                 cross_tree=[(roots.runtime, roots.copy, ["wrapper.py"])])
+    assert result["outcome"] == FP.MODULE_PIN_WRITTEN, result
+    commit_module_pin(tree)
+
+
+def test_the_module_pin_writer_verifies_and_never_overwrites(tree, roots):
+    write_v2(tree, roots)
+    assert FP.verify_module_pin().status == FP.MODULE_PIN_VERIFIED
+    assert FP.write_module_pin(roots=[roots.engine])["outcome"] == FP.MODULE_PIN_EXISTS_REFUSING_OVERWRITE
+
+
+def test_an_empty_module_pin_is_refused_and_never_verifies(tree):
+    assert FP.write_module_pin()["outcome"] == FP.MODULE_PIN_EMPTY
+    assert not FP.module_pin_path().exists()
+    write_module_pin(tree, [])
+    assert FP.verify_module_pin().status == FP.MODULE_PIN_EMPTY
+
+
+def test_a_new_module_under_a_pinned_root_is_caught(tree, roots):
+    write_v2(tree, roots)
+    (roots.engine / "sub" / "late_import.py").write_text("# added after G2\n")
+    assert FP.verify_module_pin().status == FP.MODULE_SCOPE_CHANGED
+
+
+def test_a_file_in_only_one_tree_is_caught_at_write_and_after(tree, roots):
+    (roots.copy / "undeclared.py").write_text("# only in the dev worktree\n")
+    assert FP.write_module_pin(roots=[roots.engine], cross_tree=[
+        (roots.runtime, roots.copy, ["wrapper.py"])])["outcome"] == FP.MODULE_TREE_MISMATCH
+    (roots.copy / "undeclared.py").unlink()
+    write_v2(tree, roots)
+    (roots.copy / "search.py").write_text("MAX_DEPTH = 6\n")
+    assert FP.verify_module_pin().status == FP.MODULE_TREE_MISMATCH

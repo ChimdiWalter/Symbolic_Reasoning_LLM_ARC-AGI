@@ -96,3 +96,25 @@ def test_the_printed_summary_carries_no_values(world, capsys):
     out = capsys.readouterr().out
     assert out.splitlines()[0] == f"OUTCOME {CAP.ENV_CAPTURED}"
     assert SECRET not in out and "PYTHONHASHSEED" not in out
+
+
+def test_caveats_are_derived_from_a_record_only():
+    seeded_values = {"PYTHONHASHSEED": "0", "OMP_NUM_THREADS": "1", "MKL_NUM_THREADS": "1",
+                     "OPENBLAS_NUM_THREADS": "1"}
+    unset = {"outcome": CAP.ENV_CAPTURED, "environments": {"h": {"values": {"LANG": "C"}}}}
+    assert CAP.run_env_caveats(unset) == [CAP.ENV_HASHSEED_UNSET_AT_RUN, CAP.ENV_THREADS_UNSET_AT_RUN]
+    seeded = {"outcome": CAP.ENV_CAPTURED, "environments": {"h": {"values": seeded_values}}}
+    assert CAP.run_env_caveats(seeded) == []
+    randomized = {"outcome": CAP.ENV_CAPTURED,
+                  "environments": {"h": {"values": dict(seeded_values, PYTHONHASHSEED="random")}}}
+    assert CAP.run_env_caveats(randomized) == [CAP.ENV_HASHSEED_UNSET_AT_RUN]
+    assert CAP.run_env_caveats(dict(seeded, outcome=CAP.ENV_CAPTURE_PARTIAL)) == [CAP.ENV_CAPTURE_PARTIAL]
+    assert CAP.run_env_caveats({"outcome": CAP.ENV_RUN_UNKNOWN, "environments": {}}) == [CAP.ENV_RUN_UNKNOWN]
+
+
+def test_the_committed_capture_yields_the_recorded_caveats():
+    record_file = Path(__file__).resolve().parents[1] / "outputs" / "tti" / "stepB_gate" / "stepB_run_env.json"
+    if not record_file.is_file():
+        pytest.skip("no committed capture in this checkout")
+    caveats = CAP.run_env_caveats(json.loads(record_file.read_text()))
+    assert caveats == [CAP.ENV_HASHSEED_UNSET_AT_RUN, CAP.ENV_THREADS_UNSET_AT_RUN]
