@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CORA Field Report</title>
+<meta name="description" content="What the CORA reasoning program is trying to show, what it has measured, what Step B is running now, and how the Capability-Growth Gate will judge it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Martian+Mono:wght@400;600&family=Schibsted+Grotesk:wght@500;700;800&display=swap">
+<style>
+:root {
+  --ground: #F1F3F2;
+  --surface: #FAFBFA;
+  --surface-2: #E6EBE8;
+  --ink: #15201C;
+  --muted: #56625D;
+  --rule: #D0D8D3;
+  --accent: #1459A8;
+  --accent-ink: #FFFFFF;
+  --grid-line: #15201C;
+  --sw-green: #2ECC40;
+  --sw-yellow: #FFDC00;
+  --sw-red: #FF4136;
+  --sw-azure: #7FDBFF;
+  --sw-grey: #AAAAAA;
+  --sw-maroon: #870C25;
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+  --font-mono: "Martian Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0D1311;
+    --surface: #141C19;
+    --surface-2: #1C2622;
+    --ink: #E3EBE7;
+    --muted: #98A6A0;
+    --rule: #28332F;
+    --accent: #7DB5F2;
+    --accent-ink: #0D1311;
+    --grid-line: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0D1311;
+  --surface: #141C19;
+  --surface-2: #1C2622;
+  --ink: #E3EBE7;
+  --muted: #98A6A0;
+  --rule: #28332F;
+  --accent: #7DB5F2;
+  --accent-ink: #0D1311;
+  --grid-line: #000000;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.64;
+  padding-inline: clamp(16px, 4vw, 44px);
+  padding-block: 0 80px;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+code {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 2px;
+  overflow-wrap: anywhere;
+}
+pre {
+  margin: 0;
+  background: var(--surface-2);
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.75;
+  border-radius: 2px;
+}
+pre code { background: none; padding: 0; font-size: inherit; overflow-wrap: normal; }
+
+.shell {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 56px;
+}
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-block: 44px 24px;
+}
+.rail-label, .kicker, .altitude, .mini-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+.rail nav ol { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 1px; }
+.rail nav a {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 5px 0 5px 12px;
+  border-left: 2px solid var(--rule);
+}
+.rail nav a:hover { color: var(--ink); border-left-color: var(--accent); }
+.rail-status { margin-top: 28px; display: grid; gap: 10px; }
+.rail-status div { display: grid; gap: 2px; }
+.rail-status span:last-child { font-family: var(--font-display); font-size: 0.84rem; line-height: 1.35; }
+
+main { min-width: 0; padding-block: 44px 0; }
+
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-weight: 800; font-size: clamp(2.3rem, 5.2vw, 3.4rem); line-height: 1.02; letter-spacing: -0.025em; margin-top: 10px; }
+.lede { font-size: 1.1875rem; line-height: 1.55; max-width: 60ch; margin: 16px 0 0; }
+h2 { font-weight: 700; font-size: 1.75rem; line-height: 1.15; letter-spacing: -0.01em; margin-top: 6px; }
+h3 { font-weight: 700; font-size: 1.1875rem; line-height: 1.25; margin-top: 34px; }
+section { padding-block: 52px 0; scroll-margin-top: 16px; }
+section p, section li { max-width: 68ch; }
+section > p, .flow > p { margin: 14px 0 0; }
+ul.plain, ol.plain { margin: 14px 0 0; padding-left: 1.2em; display: grid; gap: 6px; }
+
+.ladder-glyph { margin: 0; display: grid; gap: 10px; justify-items: end; }
+.arc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 38px);
+  grid-auto-rows: 38px;
+  gap: 3px;
+  padding: 3px;
+  background: var(--grid-line);
+}
+.arc-grid span { display: block; }
+.c-yes { background: var(--sw-green); }
+.c-narrow { background: var(--sw-yellow); }
+.c-no { background: var(--sw-red); }
+.c-pending { background: var(--sw-azure); }
+.c-unmeasured { background: var(--sw-grey); }
+.ladder-glyph figcaption { font-family: var(--font-mono); font-size: 0.62rem; line-height: 1.5; color: var(--muted); max-width: 150px; text-align: right; }
+
+.now {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+.now div {
+  flex: 1 1 170px;
+  background: var(--surface);
+  padding: 12px 14px;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.now strong { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+.chip::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  flex: none;
+  background: var(--c, var(--sw-grey));
+  box-shadow: 0 0 0 1px var(--grid-line);
+}
+.chip.yes { --c: var(--sw-green); }
+.chip.narrow { --c: var(--sw-yellow); }
+.chip.no { --c: var(--sw-red); }
+.chip.pending { --c: var(--sw-azure); }
+.chip.unmeasured { --c: var(--sw-grey); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; }
+
+.tbl { overflow-x: auto; margin-top: 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.93rem; line-height: 1.45; }
+th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 14px 8px 0;
+  border-bottom: 1px solid var(--ink);
+}
+td { padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td.v { font-family: var(--font-display); font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+td.m { font-family: var(--font-mono); font-size: 0.72rem; white-space: nowrap; }
+
+figure { margin: 0; }
+.figure { margin-top: 24px; background: var(--surface); border: 1px solid var(--rule); padding: 18px 18px 14px; }
+.figure svg { display: block; width: 100%; height: auto; }
+.figure .scroll { overflow-x: auto; }
+.figure .scroll svg { min-width: 620px; }
+.figure figcaption { font-size: 0.86rem; line-height: 1.5; color: var(--muted); margin-top: 10px; max-width: 72ch; }
+.node rect { fill: var(--ground); stroke: var(--ink); stroke-width: 1.2; }
+.node.accent rect { fill: var(--accent); stroke: var(--accent); }
+.node text { fill: var(--ink); font-family: var(--font-display); font-size: 13px; font-weight: 700; }
+.node text.sub { font-family: var(--font-mono); font-size: 9.5px; font-weight: 400; fill: var(--muted); }
+.node.accent text, .node.accent text.sub { fill: var(--accent-ink); }
+.edge { stroke: var(--muted); stroke-width: 1.4; fill: none; }
+.arrowhead { fill: var(--muted); }
+.edge-label { fill: var(--muted); font-family: var(--font-mono); font-size: 10px; }
+.chart .grid { stroke: var(--rule); stroke-width: 1; }
+.chart .axis { stroke: var(--ink); stroke-width: 1; }
+.chart text { fill: var(--muted); font-family: var(--font-mono); font-size: 10.5px; }
+.chart .dot { fill: var(--muted); }
+.chart .ref { stroke: var(--ink); stroke-width: 1.4; }
+.chart .ref-label { fill: var(--ink); }
+.chart .las { stroke: var(--accent); stroke-width: 2; }
+.chart .las-dot { fill: var(--accent); }
+.chart .las-label { fill: var(--accent); font-weight: 600; }
+
+.thesis { margin-top: 22px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); padding-block: 16px; display: grid; gap: 8px; }
+.thesis p { margin: 0; font-size: 1.125rem; line-height: 1.5; }
+.thesis .formal { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent); }
+
+.rungs { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 0; }
+.rungs li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; padding-block: 12px; border-top: 1px solid var(--rule); max-width: none; }
+.rungs .tag { font-family: var(--font-mono); font-weight: 600; font-size: 0.78rem; color: var(--accent); padding-top: 3px; }
+.rungs b { font-family: var(--font-display); }
+.rungs p { margin: 2px 0 0; }
+
+.note { margin-top: 22px; border: 1px solid var(--ink); background: var(--surface); padding: 18px 22px; }
+.note > p { margin: 10px 0 0; }
+.note ol { margin: 12px 0 0; padding-left: 1.3em; display: grid; gap: 8px; }
+
+.phases { margin-top: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.phase { display: grid; gap: 6px; }
+.phase .bar { height: 12px; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--rule); }
+.phase .fill { height: 100%; background: var(--accent); }
+.phase b { font-family: var(--font-display); font-size: 0.9rem; }
+.phase span { font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); }
+
+.stages { list-style: none; margin: 20px 0 0; padding: 0; counter-reset: none; }
+.stages li { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 14px; padding-block: 11px; border-top: 1px solid var(--rule); max-width: none; }
+.stages .code { font-family: var(--font-mono); font-weight: 600; font-size: 0.78rem; color: var(--accent); padding-top: 3px; }
+.stages b { font-family: var(--font-display); }
+.stages p { margin: 2px 0 0; }
+.event { display: inline-block; margin-top: 6px; font-family: var(--font-mono); font-size: 0.66rem; color: var(--sw-maroon); border: 1px solid currentColor; padding: 2px 7px; }
+:root[data-theme="dark"] .event { color: #F08A9D; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .event { color: #F08A9D; } }
+
+.legs { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.leg { background: var(--surface); padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.leg .letter { font-family: var(--font-mono); font-weight: 600; font-size: 1.5rem; line-height: 1; color: var(--accent); }
+.leg .name { font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); overflow-wrap: anywhere; }
+.leg p { margin: 0; font-size: 0.93rem; line-height: 1.5; }
+
+.split { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.panel { border-top: 2px solid var(--ink); padding-top: 12px; }
+.panel h3 { margin-top: 0; }
+.panel ul { margin: 10px 0 0; padding-left: 1.1em; display: grid; gap: 8px; }
+.panel dl { margin: 10px 0 0; display: grid; gap: 10px; }
+.panel dt { font-family: var(--font-mono); font-size: 0.72rem; overflow-wrap: anywhere; }
+.panel dd { margin: 2px 0 0; font-size: 0.93rem; line-height: 1.5; }
+
+.cmd { margin-top: 22px; display: grid; gap: 8px; }
+.cmd h3 { margin-top: 0; font-size: 1.05rem; }
+.cmd p { margin: 0; }
+
+.terms { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px 32px; }
+.terms div { border-top: 1px solid var(--rule); padding-top: 10px; }
+.terms dt { font-family: var(--font-display); font-weight: 700; }
+.terms dd { margin: 4px 0 0; font-size: 0.93rem; line-height: 1.5; }
+
+footer { margin-top: 64px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 0.86rem; color: var(--muted); }
+footer p { max-width: 80ch; margin: 6px 0 0; }
+
+@media (max-width: 980px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .rail { position: static; max-height: none; padding-block: 22px 0; }
+  .rail nav ol { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  .rail nav a { border-left: 0; padding: 2px 0; }
+  .rail-status { display: none; }
+  main { padding-top: 18px; }
+}
+@media (max-width: 640px) {
+  .masthead { grid-template-columns: minmax(0, 1fr); }
+  .ladder-glyph { justify-items: start; }
+  .ladder-glyph figcaption { text-align: left; max-width: none; }
+  .phases { grid-template-columns: minmax(0, 1fr); }
+  .rungs li, .stages li { grid-template-columns: 44px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+@media print {
+  body { padding-inline: 0; }
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .rail { display: none; }
+  section { break-inside: auto; padding-block: 28px 0; }
+  .figure, .note, .leg, table, pre { break-inside: avoid; }
+}
+</style>
+</head><body>
+
+
+<div class="shell">
+  <aside class="rail" aria-label="Contents">
+    <p class="rail-label">Contents</p>
+    <nav>
+      <ol>
+        <li><a href="#question">The question</a></li>
+        <li><a href="#evidence">The evidence so far</a></li>
+        <li><a href="#correction">A correction</a></li>
+        <li><a href="#stepb">Running now: Step B</a></li>
+        <li><a href="#gate">How it will be judged</a></li>
+        <li><a href="#provenance">Provenance</a></li>
+        <li><a href="#code">The code</a></li>
+        <li><a href="#run">How to run it</a></li>
+        <li><a href="#tested">Tested and in flight</a></li>
+        <li><a href="#direction">Direction</a></li>
+        <li><a href="#terms">Terms</a></li>
+      </ol>
+    </nav>
+    <div class="rail-status">
+      <div><span class="mini-label">Step B</span><span>Running, no freeze marker</span></div>
+      <div><span class="mini-label">Counter</span><span>K2 proposals 275 / 497</span></div>
+      <div><span class="mini-label">Gate protocol</span><span>v2 frozen, commit 670a7d1</span></div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="masthead">
+      <div>
+        <p class="kicker">CORA research program &middot; status report &middot; 15 September 2026</p>
+        <h1>CORA Field Report</h1>
+        <p class="lede">CORA is a program-induction reasoner for ARC puzzles that certifies every answer it gives. This report sets out what the program is trying to show, what it has already measured, what is running right now, and how the next result will be judged. Each part opens with the big picture and then gives the detail.</p>
+      </div>
+      <figure class="ladder-glyph">
+        <div class="arc-grid" role="img" aria-label="Evidence ladder as a three by three grid: search and prior transfer yes; predictive selection transfer narrowly; abstraction information narrowly; Level 3A efficiency established; learned abstraction beats memory no; search-reach gain no; Level 3B capability no; Level 4 pending; full-pipeline leave-one-out for LAS not measured.">
+          <span class="c-yes" title="Search and prior transfer: yes"></span>
+          <span class="c-narrow" title="Predictive-selection transfer: yes, narrowly"></span>
+          <span class="c-narrow" title="Abstraction carries information: yes, narrowly"></span>
+          <span class="c-yes" title="Level 3A efficiency transfer: established"></span>
+          <span class="c-no" title="Learned abstraction beats concrete memory: no"></span>
+          <span class="c-no" title="Bounded search-reach gain: no"></span>
+          <span class="c-no" title="Level 3B capability transfer: not achieved"></span>
+          <span class="c-pending" title="Level 4 semantic self-extension: pending Step B"></span>
+          <span class="c-unmeasured" title="Full-pipeline leave-one-out for LAS: not measured"></span>
+        </div>
+        <figcaption>The evidence ladder drawn as an ARC grid, one cell per rung, in ARC's own colors.</figcaption>
+      </figure>
+    </header>
+
+    <div class="now" aria-label="Current status">
+      <div><span class="mini-label">Step B run</span><strong>Running. No freeze marker yet.</strong></div>
+      <div><span class="mini-label">Phase counter</span><strong>K2 proposals, 275 of 497</strong></div>
+      <div><span class="mini-label">Last quantitative check</span><strong>20:15 UTC, 15 Sep 2026</strong></div>
+      <div><span class="mini-label">Gate protocol</span><strong>v2 frozen 15 Sep, commit 670a7d1. Three review rounds, 102 of 102 checks.</strong></div>
+      <div><span class="mini-label">Dev branch</span><strong>cora-tti-dev, clean and pushed</strong></div>
+    </div>
+
+    <!-- ============================================================ question -->
+    <section id="question">
+      <p class="altitude">Big picture</p>
+      <h2>What CORA is trying to show</h2>
+      <p>An ARC task shows a few input and output grids of colored cells and asks for the output of a new input. The rule is never stated. CORA answers by searching a typed language of grid programs, fitting a program to the demonstrations, and accepting it only if it survives leave-one-out re-induction: rebuilt from all demonstrations but one, it must still predict the one left out, for every fold. A CORA answer is therefore a program that can be checked, not a guess.</p>
+      <p>The research question sits one level above that engine. Better search and better priors have already been measured, and they help. What has never been shown is whether a reasoner can respond to its own failure by growing the language it reasons in, prove that the growth is real, and keep it only when it carries over to tasks that did not produce it.</p>
+      <div class="thesis">
+        <p>Training a model changes its parameters.</p>
+        <p class="formal">&theta; &rarr; &theta;&prime;</p>
+        <p>Capability growth changes the language. A new typed operation <i>e</i> joins the productions CORA can use.</p>
+        <p class="formal">K &rarr; K&prime; = K &cup; {e}</p>
+      </div>
+      <p>The claim only means something if it is certified. An operation counts when the old language, searched completely within its bounds, could not reach the task; the new language does; the accepted answer actually uses the operation; re-induction from held-out demonstrations passes; the output is correct; and removing the operation destroys the gain.</p>
+
+      <figure class="figure">
+        <div class="scroll">
+          <svg viewBox="0 0 760 178" role="img" aria-label="The loop CORA is testing: K fails on a task, diagnose why, construct a typed operation e, install K union e as an addition, verify with six legs, and retain e for the next round only if it transfers.">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path class="arrowhead" d="M0,0 L10,5 L0,10 z"></path>
+              </marker>
+            </defs>
+            <g class="node"><rect x="8" y="26" width="128" height="58"></rect><text x="72" y="52" text-anchor="middle">K fails</text><text class="sub" x="72" y="70" text-anchor="middle">on a task</text></g>
+            <g class="node"><rect x="160" y="26" width="128" height="58"></rect><text x="224" y="52" text-anchor="middle">Diagnose</text><text class="sub" x="224" y="70" text-anchor="middle">why it failed</text></g>
+            <g class="node accent"><rect x="312" y="26" width="128" height="58"></rect><text x="376" y="52" text-anchor="middle">Construct e</text><text class="sub" x="376" y="70" text-anchor="middle">a typed operation</text></g>
+            <g class="node"><rect x="464" y="26" width="128" height="58"></rect><text x="528" y="52" text-anchor="middle">Install K &cup; {e}</text><text class="sub" x="528" y="70" text-anchor="middle">as an addition</text></g>
+            <g class="node"><rect x="616" y="26" width="136" height="58"></rect><text x="684" y="52" text-anchor="middle">Verify</text><text class="sub" x="684" y="70" text-anchor="middle">six witness legs</text></g>
+            <path class="edge" d="M136,55 L156,55" marker-end="url(#ah)"></path>
+            <path class="edge" d="M288,55 L308,55" marker-end="url(#ah)"></path>
+            <path class="edge" d="M440,55 L460,55" marker-end="url(#ah)"></path>
+            <path class="edge" d="M592,55 L612,55" marker-end="url(#ah)"></path>
+            <path class="edge" d="M684,84 L684,128 L72,128 L72,88" marker-end="url(#ah)"></path>
+            <text class="edge-label" x="378" y="148" text-anchor="middle">keep e only if it transfers to tasks that did not produce it</text>
+            <text class="edge-label" x="378" y="164" text-anchor="middle">K(t+1) = K(t) &cup; {e}</text>
+          </svg>
+        </div>
+        <figcaption>The loop under test. Step B is the first run of the construct stage at scale. The Capability-Growth Gate is the verify stage.</figcaption>
+      </figure>
+
+      <h3>Four levels of claim, never collapsed</h3>
+      <p>Each level includes the one before it. The gate assigns them mechanically from recorded outcomes.</p>
+      <ol class="rungs">
+        <li><span class="tag">L1</span><div><b>Generation-lane candidate</b><p>The frozen proposal lane emitted it. That licenses nothing about novelty. The lane's label, <code>NEW_SEMANTIC_PRODUCTION</code>, is never read by any rule.</p></div></li>
+        <li><span class="tag">L2</span><div><b>Operational language extension</b><p>Added to K, it lets the fixed-budget search reach source tasks K could not reach. A macro of existing operations can do this, so L2 says nothing about new meaning.</p></div></li>
+        <li><span class="tag">L3</span><div><b>Semantic expressivity extension, bounded</b><p>On a frozen probe set and under declared bounds, it produces behaviour that no program of the prior language, K_L4*, produces on the same inputs.</p></div></li>
+        <li><span class="tag">L4</span><div><b>Semantic invention, bounded</b><p>L3, plus a full six-leg capability-growth witness on a transfer task that took no part in inventing it.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================================================ evidence -->
+    <section id="evidence">
+      <p class="altitude">Big picture</p>
+      <h2>What the evidence says so far</h2>
+      <p>The engine is real and certified on training tasks. Everything learned on top of it so far has made CORA choose better and search cheaper. None of it has made CORA solve a task it could not already solve.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Measure</th><th>Value</th><th>Reading</th></tr></thead>
+          <tbody>
+            <tr><td>Certified ARC training tasks</td><td class="v">185 of 1000</td><td>The sealed result, version 23.</td></tr>
+            <tr><td>Public evaluation tasks certified</td><td class="v">0 of 120</td><td>Nothing certified has carried over to the evaluation set yet.</td></tr>
+            <tr><td>Certified precision, training</td><td class="v">40 of 42</td><td>A certified training answer is almost always correct.</td></tr>
+            <tr><td>Certified precision, evaluation development split</td><td class="v">0 of 11</td><td>The same check carries almost no information off distribution.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The evidence ladder</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Rung</th><th>Status</th><th>What established it</th></tr></thead>
+          <tbody>
+            <tr><td>Search and prior transfer</td><td><span class="chip yes">Yes</span></td><td>Structures found on source tasks make fresh tasks cheaper: 243,503 search units against 268,937 for ordinary search, over 256 targets.</td></tr>
+            <tr><td>Predictive-selection transfer</td><td><span class="chip narrow">Yes, narrowly</span></td><td>Learned knowledge changes which demonstration-consistent explanation is chosen. Removing it loses exactly 4 held-out successes.</td></tr>
+            <tr><td>Abstraction carries information</td><td><span class="chip narrow">Yes, narrowly</span></td><td>The learned library beat 32 of 32 matched controls that differ only in pseudo-random terminals.</td></tr>
+            <tr><td>Level 3A efficiency transfer</td><td><span class="chip yes">Established</span></td><td>An earlier independent result, reinforced by the LAS-R1 costs.</td></tr>
+            <tr><td>Learned abstraction beats concrete memory</td><td><span class="chip no">No</span></td><td>The preregistered replication gave +3 with a 95 percent interval of &minus;1 to 8, which includes zero.</td></tr>
+            <tr><td>Bounded search-reach gain</td><td><span class="chip no">No</span></td><td>Zero witnesses. Every policy solved the same 188 of 256 targets.</td></tr>
+            <tr><td>Level 3B capability transfer</td><td><span class="chip no">Not achieved</span></td><td>No case yet of baseline failure, success with the addition, use of it, passing leave-one-out, a correct output, and loss on removal.</td></tr>
+            <tr><td>Level 4 semantic self-extension</td><td><span class="chip pending">Pending</span></td><td>The question Step B exists to answer.</td></tr>
+            <tr><td>Full-pipeline leave-one-out for LAS</td><td><span class="chip unmeasured">Not measured</span></td><td>No certification procedure was run for LAS, and none is claimed.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="figure">
+        <svg id="nullchart" class="chart" viewBox="0 0 720 206" role="img" aria-label="LAS-R1: 32 matched null libraries scored between 117 and 162 held-out correct targets out of 256; ordinary search 160; concrete memory 161; the LAS-v1 library 164."></svg>
+        <figcaption>LAS-R1, 256 fresh targets. Each grey dot is one of 32 matched null libraries, identical to the learned library in masks, slot types and expansion sizes but with pseudo-random terminals. The learned library scored 164, above every null, which shows its invariants carry information. Concrete memory scored 161, and that 3-target margin did not survive the preregistered test.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ============================================================ correction -->
+    <section id="correction">
+      <p class="altitude">Detail</p>
+      <h2>The correction that changed the reading</h2>
+      <p>An earlier test of test-time invention inside the real certified engine, on 60 development tasks, recorded 49 invention activations and zero acceptances by the certification gate. The plain engine and the invention arm both scored zero, and the invention arm used 1.57 times the wall time. For a while that looked like evidence that invention does not help. A read-only audit checked the code and found the test could not have shown a gain.</p>
+      <div class="note">
+        <p class="mini-label">Verified against source</p>
+        <ol>
+          <li>In <code>geocat_arc/object_reasoning/meta_induction.py</code>, <code>induce_computed_candidates</code> at line 550 checks its trigger before it consults installed concepts, so on many tasks the extension was never consulted.</li>
+          <li>When a concept did fit, the same function returned those programs at once. Ordinary search never ran, so the arm replaced K instead of adding to it.</li>
+          <li><code>search_with_concepts</code> at line 378 omits the fold-coverability filter that ordinary <code>search</code> applies at line 455. Its only extra reach was exactly the programs the leave-one-out gate is built to reject.</li>
+        </ol>
+        <p>That result is infrastructure evidence only. It is not evidence against extension, and the gate now requires a genuinely additive comparison.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ step b -->
+    <section id="stepb">
+      <p class="altitude">Big picture, then detail</p>
+      <h2>What is running now: Step B</h2>
+      <p>Step B is the blind invention run. Step A had already taken the failures CORA certifies on its training experience and grouped them into clusters by the shape of what was missing, never by task identity. Step B proposes candidate typed operations for each cluster from a frozen proposal language, installs them, and checks which ones resolve the failures under the unchanged verifier. Task identities stay hidden behind source tokens, and the transfer tasks are held out entirely.</p>
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td>Failure clusters</td><td class="v">62</td><td>Grouped by frontier type, goal type and residual, never by task.</td></tr>
+            <tr><td>Frozen candidates</td><td class="v">4,784</td><td>816 new typed productions in the K2 lane, and 3,968 slot-learner repairs in the K1 lane.</td></tr>
+            <tr><td>Declared phases</td><td class="v">3</td><td>K2 proposals over 497 units; K1 proposals over about 11,900 searches; resolution of every class representative against every source.</td></tr>
+            <tr><td>Run manifest</td><td class="m">8476b211&hellip;</td><td>Every input, the runner and the candidate inventory are pinned. The runner refuses to start if any differs.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="phases" aria-label="Phase counter">
+        <div class="phase"><b>K2 proposals</b><div class="bar"><div class="fill" style="width: 55.33%"></div></div><span>275 of 497 units</span></div>
+        <div class="phase"><b>K1 proposals</b><div class="bar"><div class="fill" style="width: 0%"></div></div><span>not started</span></div>
+        <div class="phase"><b>Resolution</b><div class="bar"><div class="fill" style="width: 0%"></div></div><span>not started</span></div>
+      </div>
+      <p class="mini-label" style="margin-top: 8px;">Counter reading only. No completion estimate is made from it.</p>
+
+      <h3>Latest quantitative check</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Signal</th><th>Reading at 20:15 UTC, 15 Sep 2026</th></tr></thead>
+          <tbody>
+            <tr><td>Runner</td><td class="v">Alive, pid 106593, 22 processes</td></tr>
+            <tr><td>Elapsed</td><td class="v">19 days 16 hours</td></tr>
+            <tr><td>Phase</td><td class="v">propose K2, 275 of 497</td></tr>
+            <tr><td>Checkpoint journal</td><td class="v">288 lines</td></tr>
+            <tr><td>Error, traceback or abort signatures</td><td class="v">0</td></tr>
+            <tr><td>Final output hash file</td><td class="v">Absent</td></tr>
+            <tr><td><code>STEP B FROZEN</code> marker</td><td class="v">Absent</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Until the marker appears the run is watched by counts alone: process identity, the phase counter, journal line count, error signatures, and whether the final hash exists. No journal content, candidate, token mapping, transfer task or Lockbox item is read, and elapsed time is never treated as scientific progress.</p>
+
+      <div class="note">
+        <p class="mini-label">Recorded before the outcome</p>
+        <p>The runner's environment was captured from <code>/proc</code> on 14 September while it was still live. It sets <code>LANG</code> and <code>VIRTUAL_ENV</code>, and it does not set <code>PYTHONHASHSEED</code> or any thread limit. The gate will therefore carry <code>ENV-HASHSEED-UNSET-AT-RUN</code> and <code>ENV-THREADS-UNSET-AT-RUN</code> as standing caveats on the run. The recorded mitigation is the pre-run determinism gate, which passed on a masked comparison.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ gate -->
+    <section id="gate">
+      <p class="altitude">Big picture, then detail</p>
+      <h2>How the result will be judged</h2>
+      <p>When Step B freezes, nothing is looked at until its output is pinned. Then eleven stages run in a fixed order. Every stage has an entry condition, a closed vocabulary of outcomes, refusal conditions, and a stated claim it licenses alongside one it does not. The protocol is written and checked now, before any outcome exists, so no rule can be chosen after seeing a result.</p>
+
+      <ol class="stages">
+        <li><span class="code">G1</span><div><b>Pin the output</b><p>Preflight, then pin every Step-B artifact once and atomically, commit it, bind the pin to its commit, and keep an anchor copy outside the repository.</p><span class="event">needs STEP B FROZEN, the output hash file, and a stopped runner</span></div></li>
+        <li><span class="code">G2</span><div><b>Pin everything that defines K</b><p>A module pin over the engine package roots, the admissibility artifact and the manifests, committed once. Gate scripts answer to the tool manifest instead. Nothing that affects K may change after this.</p></div></li>
+        <li><span class="code">G3a</span><div><b>Prepare without looking</b><p>Design source and pre-run records only. Additivity preflight and substrate checks on synthetic fixtures. Commit the tool manifest and prove the audit hook works.</p><span class="event">the event g3b_open unlocks Step-B outputs</span></div></li>
+        <li><span class="code">G3b</span><div><b>First look</b><p>Recompute the output hash, check the declared schema assumptions, and count retained classes before reading any one of them.</p></div></li>
+        <li><span class="code">G4</span><div><b>Characterize each candidate</b><p>Typed interface, proposing sources, exact semantics, and bounded separation from K_L4*.</p></div></li>
+        <li><span class="code">G5</span><div><b>Assign rungs</b><p>L1 to L4, mechanically. The generation label is never an input.</p></div></li>
+        <li><span class="code">G6</span><div><b>Witness on the source tasks</b><p>All six legs on the tasks that produced each extension, under an additive comparison.</p></div></li>
+        <li><span class="code">G7a</span><div><b>Admit</b><p>No-regression and counterexample criteria, then admission, then commit the admitted set.</p><span class="event">the event g7b_open unlocks the firewall and the Promotion extract, and spends E_transfer</span></div></li>
+        <li><span class="code">G7b</span><div><b>Resolve provenance</b><p>Read the firewall for the first time. Leak and Promotion-regression checks may only withdraw. Commit the withdrawals.</p><span class="event">the event g8_open unlocks the E_transfer extract</span></div></li>
+        <li><span class="code">G8</span><div><b>Transfer, once</b><p>E_transfer150 is opened a single time. The primary count N_w is the number of extension and task pairs outside the invention provenance whose six legs all pass. The event g8_closed then seals E_transfer for good.</p></div></li>
+        <li><span class="code">G9</span><div><b>Promote</b><p>Only under the existing promotion protocol, with the promoting runner frozen inside its own manifest.</p></div></li>
+        <li><span class="code">G10</span><div><b>Analyse</b><p>Rediscovery, automatic abstraction, K against K plus C, and ablation, with Level 3A and 3B reported separately.</p></div></li>
+        <li><span class="code">G11</span><div><b>Close</b><p>Completion record, and Lockbox200 asserted untouched. The Lockbox class opens in code only after the transfer pass has closed and the closure record says eligible.</p></div></li>
+      </ol>
+
+      <h3>The six legs of a capability-growth witness</h3>
+      <p>A witness is one extension on one task with all six legs passing. Every leg carries its own evidence object and exactly one status: <code>PASS</code>, <code>FAIL</code>, <code>INCONCLUSIVE</code>, <code>CHECKER_ERROR</code>, <code>RESOURCE_EXHAUSTED</code> or <code>NOT_MEASURED</code>. Only <code>PASS</code> counts, and nothing missing ever defaults to success.</p>
+      <div class="legs">
+        <div class="leg"><span class="letter">B</span><span class="name">baseline_K_fails</span><p>K, searched completely within its bounds, cannot reach the task. If any program K can find fits the demonstrations and gives the right output, K succeeded, even when it ranked a wrong program first.</p></div>
+        <div class="leg"><span class="letter">P</span><span class="name">production_proposed</span><p>The frozen generation record shows the extension was proposed by the declared mechanism.</p></div>
+        <div class="leg"><span class="letter">U</span><span class="name">winner_uses_production</span><p>With the extension added, the accepted program actually uses it.</p></div>
+        <div class="leg"><span class="letter">L</span><span class="name">full_adaptive_LOO_passes</span><p>Every fold rebuilds everything that depended on the task's demonstrations, including the choice of the extension when the task helped invent it.</p></div>
+        <div class="leg"><span class="letter">T</span><span class="name">final_output_correct</span><p>The single accepted program, in one attempt, gets every licensed held-out output exactly right.</p></div>
+        <div class="leg"><span class="letter">A</span><span class="name">ablation_without_e_fails</span><p>An independent run with only the extension removed loses the gain, judged by the same reach rule as B.</p></div>
+      </div>
+
+      <h3>An additive comparison, or no comparison</h3>
+      <p>K and K plus <i>e</i> must differ only in <i>e</i>: the same solver, budget, ordering outside the extension, fitter, verifier, demonstrations and timeouts. A preflight on synthetic fixtures must show that the runtime never drops or reorders one of K's candidates when an extension is added. The old concept path is run through the same preflight as a negative control, and it must fail. A runtime that cannot pass records <code>ADDITIVE_INSTALL_PATH_UNAVAILABLE</code>, and the comparison is never weakened to fit it.</p>
+
+      <h3>Admission, substrate, and the failure branch</h3>
+      <p>An extension reaches the transfer set only if, on at least one task that produced it, the baseline fails, the proposal is on record, the winner uses it, and the ablation fails. Leave-one-out and output correctness on that task must pass, or be unmeasurable for a declared structural reason. Admission licenses measurement, not a claim.</p>
+      <p>A witness is claimed only on a runtime that passes every capability check on synthetic fixtures, in a fixed order, before any witness run. If none passes, the outcome is <code>WITNESS_SUBSTRATE_INCOMPLETE</code>. That is a recorded result, not permission to improvise another test after seeing a candidate.</p>
+      <p>If Step B yields no semantically separated, causally useful extension, the gate stops and records the negative as a negative about this constructor under these bounds. It does not license a return to memory, ranking or abstraction-selection work.</p>
+    </section>
+
+    <!-- ============================================================ provenance -->
+    <section id="provenance">
+      <p class="altitude">Detail</p>
+      <h2>Provenance and sealed data</h2>
+      <p>The gate's value depends on proving what was seen before the freeze, and that the bytes judged are the bytes the run produced. Both are enforced in code and covered by tests.</p>
+      <ul class="plain">
+        <li><b>Readiness.</b> The one immutable pin can only be created when the freeze marker is present, the final output hash file exists, and no runner process remains, so the log cannot grow after it is hashed.</li>
+        <li><b>Content.</b> Artifact bytes are read only to hash them and count lines. They are never parsed, interpreted, printed, returned or written into the pin, and no output size is recorded.</li>
+        <li><b>Binding.</b> After the pin is committed, a tracked record and an anchor copy outside the repository name its hash and commit. A pin deleted and recreated, on any branch, no longer matches and stops the gate.</li>
+        <li><b>Events.</b> Each unlock is a one-shot event file, committed once, bound to the hash of what it attests and chained to the event before it. A draft committed early unlocks nothing.</li>
+        <li><b>K is fixed.</b> A second pinned set covers everything that defines K, and every stage after G2 re-verifies both sets on every read.</li>
+        <li><b>Mixed files.</b> The raw ARC training file holds the Lockbox200 and transfer tasks alongside everything else, so no stage reads it except through a filtered extractor that decodes only the licensed tasks and counts the rest.</li>
+      </ul>
+
+      <h3>What unlocks when</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Sealed class</th><th>Holds</th><th>Opens</th></tr></thead>
+          <tbody>
+            <tr><td>Step-B source</td><td>Runner, proposal inventory, frozen runtime</td><td>Stage 3</td></tr>
+            <tr><td>Pre-run records</td><td>Step A, admissibility, earlier concept records</td><td>Stage 3</td></tr>
+            <tr><td>Step-B outputs</td><td>Classes, inventory, witnesses, gate lanes, mechanism inputs</td><td>Stage 3, after the event g3b_open</td></tr>
+            <tr><td>Transfer provenance</td><td>The firewall holding transfer identities</td><td>Stage 7, after the event g7b_open</td></tr>
+            <tr><td>Promotion data</td><td>The Promotion task extract</td><td>Stage 7, after the event g7b_open</td></tr>
+            <tr><td>E_transfer</td><td>The E_transfer task extract</td><td>Stage 8, after the event g8_open, until g8_closed</td></tr>
+            <tr><td>Lockbox</td><td>Lockbox200, holdout splits, every raw ARC data file</td><td>Never inside the gate, except filtered extraction of licensed tasks</td></tr>
+            <tr><td>Never</td><td>The checkpoint journal, the withheld expectation seal</td><td>Never</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Exposures before the freeze, recorded and quarantined</h3>
+      <p>A scan of what earlier helper agents actually executed found more than their own summaries reported. None of it touched the running experiment or revealed what it proposed, kept or selected. All of it is recorded, and none of it may shape a rule, threshold, pool or substrate choice.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Id</th><th>What happened</th><th>Scope</th></tr></thead>
+          <tbody>
+            <tr><td class="m">D1</td><td>One invention-corpus row decoded; its keys and demonstration count printed</td><td>Schema only</td></tr>
+            <tr><td class="m">D2</td><td>The frozen candidate inventory listed by name and type</td><td>Pre-run search space, not results</td></tr>
+            <tr><td class="m">D3</td><td>Runner and Step-B package source read</td><td>Design source, not outputs</td></tr>
+            <tr><td class="m">D4</td><td>ARC evaluation inputs loaded while a predicate ran on 60 development tasks</td><td>Nothing scored</td></tr>
+            <tr><td class="m">D5</td><td>Early dry runs hashed live files</td><td>Only pre-run gate lanes exposed</td></tr>
+            <tr><td class="m">D6</td><td>Split documentation read</td><td>Zero identifiers</td></tr>
+            <tr><td class="m">D7</td><td>Lockbox directory filenames listed</td><td>Names only</td></tr>
+            <tr><td class="m">D8</td><td>Guard misclassified worktree copies and the firewall</td><td>Fixed before any access</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================================================ code -->
+    <section id="code">
+      <p class="altitude">Detail</p>
+      <h2>The code</h2>
+      <p>Two checkouts of one repository. The main checkout holds the live experiment and is never written by gate work. The dev worktree holds everything else, is pushed, and is never merged into main.</p>
+      <div class="split">
+        <div class="panel">
+          <h3>Main checkout</h3>
+          <p class="mini-label">Reasoning_Project &middot; branch main</p>
+          <dl>
+            <div><dt>scripts/cora_level4_stepB_run.py</dt><dd>The Step-B runner, pinned by its manifest and sealed until inspection.</dd></div>
+            <div><dt>scripts/restart_stepB_after_reboot.sh</dt><dd>The only permitted way to relaunch Step B. It resumes from the journal.</dd></div>
+            <div><dt>level4_stepB/</dt><dd>The frozen proposal inventory, probe-witness generator and install path.</dd></div>
+            <div><dt>level4_blind_runtime/</dt><dd>The frozen typed runtime that defines the baseline language K_L4*.</dd></div>
+            <div><dt>outputs/cora_breakthrough/</dt><dd>Run artifacts, manifests, the checkpoint journal and the firewall.</dd></div>
+            <div><dt>logs/level4_stepB_run.log</dt><dd>The one file watched for the freeze marker.</dd></div>
+            <div><dt>RESUME_STAGE1.md</dt><dd>The running project log, local and untracked.</dd></div>
+          </dl>
+        </div>
+        <div class="panel">
+          <h3>Dev worktree</h3>
+          <p class="mini-label">Reasoning_Project_tti &middot; branch cora-tti-dev</p>
+          <dl>
+            <div><dt>geocat_arc/object_reasoning/</dt><dd>The certified engine: the typed meta-language, induction with the leave-one-out gate, concept search, and the v21 engine.</dd></div>
+            <div><dt>cora_tti/freeze_pin.py</dt><dd>Pin readiness, the atomic pin, commit binding with an outside anchor, and the module pin writer and verifier.</dd></div>
+            <div><dt>cora_tti/gate_guard.py</dt><dd>Sealed classes, chained unlock events, filtered extraction, provenance checks and the access ledger.</dd></div>
+            <div><dt>cora_tti/split_extract.py</dt><dd>A structure-only JSON scanner that decodes licensed tasks and nothing else.</dd></div>
+            <div><dt>cora_tti/scoped_slot_fitting.py, meta_baseline.py, abstraction_lattice.py</dt><dd>The fitter, the identified baseline reasoner and the abstraction lattice behind the synthetic studies.</dd></div>
+            <div><dt>cora_tti/tfg_extractor.py, tti_loop.py, ablation_ledger.py</dt><dd>Typed failure graphs, the test-time loop and the witness ledger.</dd></div>
+            <div><dt>cora_parent/interfaces.py</dt><dd>The frozen failure-cause vocabulary and component contracts.</dd></div>
+            <div><dt>scripts/pin_stepB_freeze.py, gate_preflight.py, gate_capture_run_env.py, check_gate_protocol_v2.py</dt><dd>Command-line gate tooling.</dd></div>
+            <div><dt>docs/</dt><dd>Protocols, results, the evidence ladder and the deviation record.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ run -->
+    <section id="run">
+      <p class="altitude">Detail</p>
+      <h2>How to run it</h2>
+      <div class="cmd">
+        <h3>Run the gate tooling tests</h3>
+        <p>All five suites use synthetic fixture trees and never touch the live run.</p>
+<pre><code>cd /deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti
+/home/cnptp/.venvs/lesegenv/bin/python -m pytest -q -p no:cacheprovider \
+  tests/test_stepB_freeze_pin.py tests/test_gate_guard.py \
+  tests/test_gate_preflight.py tests/test_gate_capture_run_env.py \
+  tests/test_split_extract.py</code></pre>
+      </div>
+      <div class="cmd">
+        <h3>Check Step B, by counts only</h3>
+<pre><code>cd /deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project
+pgrep -af cora_level4_stepB_run.py | head -1
+tail -c 300 logs/level4_stepB_run.log | tr '\r' '\n' | tail -1
+wc -l &lt; outputs/cora_breakthrough/level4_stepB_journal.jsonl
+grep -c 'STEP B FROZEN' logs/level4_stepB_run.log
+test -f outputs/cora_breakthrough/level4_stepB_output_hash.txt &amp;&amp; echo hash-present</code></pre>
+      </div>
+      <div class="cmd">
+        <h3>At the freeze marker, before looking at anything</h3>
+        <p>Every command prints <code>OUTCOME &lt;name&gt;</code> first, with a fixed exit code per outcome.</p>
+<pre><code>cd /deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti
+export PYTHONHASHSEED=0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+python3 scripts/gate_preflight.py                 # expect PREFLIGHT_OK
+python3 scripts/pin_stepB_freeze.py               # PIN_CREATED, or a not-ready outcome
+git add -f outputs/tti/stepB_gate/pin
+git commit -m "Pin the frozen Step B output"
+python3 scripts/pin_stepB_freeze.py --bind        # expect PIN_BOUND
+git add docs/stepB_gate/pin_binding.json
+git commit -m "Bind the Step B freeze pin to its commit"
+python3 scripts/pin_stepB_freeze.py --verify --require-binding
+# copy the anchor values into RESUME_STAGE1.md</code></pre>
+      </div>
+      <div class="cmd">
+        <h3>Verify at any later point</h3>
+<pre><code>python3 scripts/pin_stepB_freeze.py --verify --require-binding
+python3 scripts/pin_stepB_freeze.py --verify-modules
+python3 scripts/check_gate_protocol_v2.py docs/CORA_CAPABILITY_GROWTH_GATE.md</code></pre>
+      </div>
+      <div class="cmd">
+        <h3>If the Step-B runner dies</h3>
+<pre><code>cd /deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project
+bash scripts/restart_stepB_after_reboot.sh</code></pre>
+      </div>
+      <div class="cmd">
+        <h3>The certified engine harness</h3>
+        <p>From the repository README. Not while Step B holds the machine's cores.</p>
+<pre><code>python3 scripts/run_unified_harness.py --workers 16 --out-dir outputs/run --run-id repro
+python3 scripts/paper_tables.py</code></pre>
+      </div>
+    </section>
+
+    <!-- ============================================================ tested -->
+    <section id="tested">
+      <p class="altitude">Detail</p>
+      <h2>What has been tested, and what is still in flight</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Study</th><th>Question</th><th>What it found</th></tr></thead>
+          <tbody>
+            <tr><td>Evidence-closure census</td><td>Were the constructive positives real and reproducible?</td><td>The original census could not be reproduced because it used an unseeded hash. The corrected census admitted 13 distinct targets in 896 attempts.</td></tr>
+            <tr><td>Failure-signal study</td><td>Does ranking proposals by their recorded failures help?</td><td>No. Held-out correctness fell from 15 of 24 to 7 or 8 of 24 at about three times the cost, and the real failure trace beat a shuffled one only 8 against 6.</td></tr>
+            <tr><td>Acquisition-and-transfer cycle</td><td>Can a constructed schema do useful work on tasks that did not create it?</td><td>Search improved on 4 of 22 targets. Operational growth was weak, and no semantic growth was claimed.</td></tr>
+            <tr><td>Prospective abstraction transfer</td><td>Do abstractions formed from discovered programs beat concrete schemas?</td><td>No. Concrete-schema reuse beat both abstraction rules on every measure, and one rule was indistinguishable from its unlearned control. A held-out prediction rescue did reproduce prospectively, and was necessary under ablation.</td></tr>
+            <tr><td>LAS-v1</td><td>Can CORA choose the useful level of abstraction from source evidence alone?</td><td>Yes on correctness, no on cost: 16 against 14 held-out successes over 24 targets, a two-target margin that is not a resolvable effect, at about 2.8 times ordinary search's total cost.</td></tr>
+            <tr><td>LAS-R1</td><td>Does LAS-v1 replicate on 256 new targets?</td><td>Not robustly. It beat all 32 matched nulls and was cheapest, but its +3 over concrete memory has an interval that includes zero. The synthetic line is closed.</td></tr>
+            <tr><td>Real-engine invention arm</td><td>Does test-time invention inside the certified engine help on development tasks?</td><td>Not testable as built. 49 activations, zero acceptances, and a pass@2 of zero in both arms, but the concept hook replaced ordinary search on a hit, so the arm could not have shown a gain.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Gate tooling</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Suite</th><th>Tests</th><th>What it proves</th></tr></thead>
+          <tbody>
+            <tr><td>Freeze pin</td><td class="v">65</td><td>Refuses early pins, never overwrites, catches drift, deletion, growth and repinning, and leaks no content.</td></tr>
+            <tr><td>Access guard</td><td class="v">64</td><td>Sealed data opens only at its stage and chained event, extraction returns licensed tasks only, and provenance failures stop the gate.</td></tr>
+            <tr><td>Preflight</td><td class="v">13</td><td>The hash seed, thread limits, committed tooling and a clean worktree are enforced.</td></tr>
+            <tr><td>Environment capture</td><td class="v">8</td><td>Only allowlisted values ever reach the record.</td></tr>
+            <tr><td>Filtered extraction</td><td class="v">12</td><td>Licensed tasks come back, and nothing unlicensed is ever decoded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>All 162 ran under a Python audit hook that recorded zero touches of the live experiment tree. A canary confirmed the hook catches a touch it is told to forbid.</p>
+
+      <h3>Still in flight</h3>
+      <ul class="plain">
+        <li><b>Step B itself.</b> The only experiment that can move the Level 4 rung.</li>
+        <li><b>Protocol v2 is frozen.</b> Commit 670a7d1, after two design review rounds and a fix-verification round. Two verification reviewers could not read the code, so the code repairs rest on the test suites. Later changes are allowed only as dated tightening amendments.</li>
+        <li><b>Gate machinery not yet built.</b> The separation certificate, the six-leg witness runner, the adaptive leave-one-out harness, final-output and ablation instrumentation, the additivity preflight, the split extractor and the stage scripts. Each has a deadline before the first look, and the candidate-independent pieces may be built now.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================ direction -->
+    <section id="direction">
+      <p class="altitude">Big picture</p>
+      <h2>Direction</h2>
+      <div class="split">
+        <div class="panel">
+          <h3>If Step B yields a certified extension</h3>
+          <ul>
+            <li>Turn the one-off into a loop: fail, construct, verify, transfer, retain, repeated over many tasks.</li>
+            <li>Accumulate several genuine capability-growth witnesses before building anything learned.</li>
+            <li>Only then train a controller that predicts which kind of extension to construct.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>If it does not</h3>
+          <ul>
+            <li>Record the negative as a negative about this constructor under these bounds.</li>
+            <li>Do not return to memory, ranking or abstraction selection. That line has a documented ceiling.</li>
+            <li>Redesign only the semantic constructor: a typed meta-constructor that builds bridges such as <code>Set[Region] -&gt; Grid</code>, <code>Relation[A, B] -&gt; Mapping[A, B]</code> and <code>Collection[A] -&gt; Aggregate[B]</code>, under a new pre-registered protocol and a fresh holdout.</li>
+          </ul>
+        </div>
+      </div>
+      <h3>Either way</h3>
+      <p><b>Certification has to hold off distribution.</b> It is right 40 times in 42 on training tasks and 0 times in 11 on the evaluation development split. Until a passing leave-one-out check means something on unseen task families, no invention result will carry to the real benchmark. Nothing currently addresses this, and working on it needs development and training runs that the current directive holds until the Step-B verdict.</p>
+      <p><b>The calendar is tight.</b> Project notes record a Kaggle submission on 2 November and a paper on 8 November, with a bar of more than 200 certified training tasks and more than zero on evaluation before Kaggle. The only capability-growth experiment waits on a run with no completion estimate.</p>
+    </section>
+
+    <!-- ============================================================ terms -->
+    <section id="terms">
+      <p class="altitude">Reference</p>
+      <h2>Terms</h2>
+      <dl class="terms">
+        <div><dt>ARC</dt><dd>The Abstraction and Reasoning Corpus: grid puzzles given as a few demonstrations with a hidden rule.</dd></div>
+        <div><dt>K</dt><dd>CORA's current operational language, the typed productions its search may use.</dd></div>
+        <div><dt>e</dt><dd>A candidate extension: one new typed operation.</dd></div>
+        <div><dt>K_L4*</dt><dd>The 11 grounded productions that existed before Level 4 and are reachable under the frozen search. The baseline for separation.</dd></div>
+        <div><dt>Leave-one-out re-induction</dt><dd>Rebuild the answer from all demonstrations but one and predict the one left out, for every fold.</dd></div>
+        <div><dt>Step A and Step B</dt><dd>Step A extracted certified failure frontiers into 62 clusters. Step B is the blind invention run over them.</dd></div>
+        <div><dt>K1 and K2 lanes</dt><dd>Slot-learner repairs, and new typed productions. Only K2 can ever yield an extension.</dd></div>
+        <div><dt>Experience, Promotion, Lockbox</dt><dd>The 600, 200 and 200 task splits of the 1000 ARC training tasks.</dd></div>
+        <div><dt>E_invent and E_transfer150</dt><dd>The 450 and 150 Experience tasks reserved for invention and for transfer.</dd></div>
+        <div><dt>Freeze pin and module pin</dt><dd>The immutable digest records of Step B's artifacts and of everything that defines K.</dd></div>
+        <div><dt>LAS</dt><dd>Learned abstraction selection, the synthetic study line now closed.</dd></div>
+        <div><dt>Typed failure graph</dt><dd>A structured record of why a search failed, built from the real search trace.</dd></div>
+      </dl>
+    </section>
+
+    <footer>
+      <p>Compiled from <code>docs/CORA_EVIDENCE_LADDER.md</code>, <code>docs/CORA_LAS_R1_RESULT.md</code>, <code>docs/CORA_SELF_EXTENSION_LOOP_AUDIT.md</code>, <code>docs/CORA_STEPB_PREFREEZE_DEVIATIONS.md</code>, <code>docs/LOCKBOX_PROTOCOL.md</code>, <code>docs/CORA_LEVEL4_MANIFEST.md</code>, the frozen gate protocol <code>docs/CORA_CAPABILITY_GROWTH_GATE.md</code>, and the project log.</p>
+      <p>Nothing sealed was read to write this page. The 185 of 1000 figure is the single sealed ARC number, and no other score is implied.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var svg = document.getElementById("nullchart");
+  if (!svg) return;
+  var NS = "http://www.w3.org/2000/svg";
+  var nulls = [117, 117, 128, 129, 132, 132, 133, 136, 138, 138, 139, 142, 146, 148, 148, 148,
+               157, 158, 158, 158, 158, 159, 159, 160, 160, 160, 160, 160, 160, 161, 162, 162];
+  var x0 = 56, x1 = 700, lo = 110, hi = 170, base = 132;
+  function X(v) { return x0 + (v - lo) * (x1 - x0) / (hi - lo); }
+  function el(tag, attrs, text) {
+    var node = document.createElementNS(NS, tag);
+    for (var k in attrs) node.setAttribute(k, attrs[k]);
+    if (text !== undefined) node.textContent = text;
+    svg.appendChild(node);
+    return node;
+  }
+  for (var v = lo; v <= hi; v += 10) {
+    el("line", { x1: X(v), x2: X(v), y1: 36, y2: base + 8, "class": "grid" });
+    el("text", { x: X(v), y: base + 24, "text-anchor": "middle" }, String(v));
+  }
+  el("line", { x1: x0, x2: x1, y1: base + 8, y2: base + 8, "class": "axis" });
+  var seen = {};
+  nulls.forEach(function (value) {
+    seen[value] = (seen[value] || 0) + 1;
+    el("circle", { cx: X(value), cy: base - (seen[value] - 1) * 11, r: 4.2, "class": "dot" });
+  });
+  [[160, "ordinary search 160", base + 44], [161, "concrete memory 161", base + 60]].forEach(function (ref) {
+    el("line", { x1: X(ref[0]), x2: X(ref[0]), y1: base + 10, y2: ref[2] - 10, "class": "ref" });
+    el("text", { x: X(ref[0]) - 4, y: ref[2], "text-anchor": "end", "class": "ref-label" }, ref[1]);
+  });
+  el("line", { x1: X(164), x2: X(164), y1: 30, y2: base + 8, "class": "las" });
+  el("circle", { cx: X(164), cy: base, r: 5.5, "class": "las-dot" });
+  el("text", { x: X(164) - 8, y: 24, "text-anchor": "end", "class": "las-label" }, "learned library 164");
+  el("text", { x: x0, y: base + 76 }, "held-out correct, of 256 targets");
+})();
+</script>
+
+</body></html>
