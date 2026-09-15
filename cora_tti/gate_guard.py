@@ -12,7 +12,9 @@ and across stages is enforced too:
     E_TRANSFER_PROVENANCE   the provenance firewall                          stage 7 + event g7b_open
     E_TRANSFER              the E_transfer extract and artifacts             stage 8 + event g8_open,
                                                                              closed by event g8_closed
-    LOCKBOX                 Lockbox200, holdout splits, the Lockbox          stage 11 + event g11_complete
+    LOCKBOX                 Lockbox200, holdout splits, the Lockbox          stage 11 + event g11_complete,
+                                                                             which follows g8_closed and needs a
+                                                                             committed LOCKBOX-ELIGIBLE closure record
                             manifest, and every raw ARC data file
     NEVER                   the checkpoint journal, the withheld seal        never
 
@@ -111,7 +113,8 @@ EVENTS = {
     "g8_open": EventSpec("event_g8_open.json", "g7b_open", "etransfer_withdrawals.json",
                          ("g7b_record.json",)),
     "g8_closed": EventSpec("event_g8_closed.json", "g8_open", "etransfer_ledger.jsonl"),
-    "g11_complete": EventSpec("event_g11_complete.json", None, "gate_completion_record.json"),
+    "g11_complete": EventSpec("event_g11_complete.json", "g8_closed", "gate_completion_record.json",
+                              ("lockbox_closure.json",)),
 }
 
 UNLOCKS = {
@@ -144,6 +147,7 @@ EVENT_CHAIN_BROKEN = "EVENT_CHAIN_BROKEN"
 EVENT_MALFORMED = "EVENT_MALFORMED"
 EVENT_REQUIREMENT_NOT_COMMITTED = "EVENT_REQUIREMENT_NOT_COMMITTED"
 EVENT_ADMITTED_SET_EMPTY = "EVENT_ADMITTED_SET_EMPTY"
+EVENT_LOCKBOX_NOT_ELIGIBLE = "EVENT_LOCKBOX_NOT_ELIGIBLE"
 
 #  Keys look like "main:<relpath>", "tti:<relpath>" or "abs:<path>", lowercased.
 #  1. Sealed names matched ANYWHERE in the key, so moved copies keep their class.
@@ -191,6 +195,9 @@ ANCHORED_PATTERNS = (
         "*:outputs/cora_breakthrough/level4_runtime_hash_hunt.json")),
     (SealedClass.STEP_B_OUTPUTS, ("*:outputs/cora_breakthrough/level4_stepb_*",)),
 )
+
+#  Every file among the extracts is sealed whatever its name; one without a known stem fails closed.
+EXTRACTS_FAIL_CLOSED = ("tti:outputs/tti/stepb_gate/extracts/*",)
 
 NON_AUTHORITATIVE = ("tti:outputs/cora_breakthrough/*",)
 WATCHED_ROOTS = ("outputs", "logs")
@@ -240,6 +247,8 @@ def classify(path) -> SealedClass | None:
     anywhere = [cls for cls, patterns in ANYWHERE_PATTERNS if _matches(key, patterns)]
     if anywhere:
         return _strictest(anywhere)
+    if _matches(key, EXTRACTS_FAIL_CLOSED):
+        return SealedClass.E_TRANSFER
     if _matches(key, ALWAYS_PERMITTED):
         return None
     anchored = [cls for cls, patterns in ANCHORED_PATTERNS if _matches(key, patterns)]
@@ -309,6 +318,8 @@ def event_status(name: str) -> tuple:
         if (required_commit is None
                 or FP._git("merge-base", "--is-ancestor", required_commit, commit) is None):
             return EVENT_CHAIN_BROKEN, commit
+    if name == "g11_complete" and not lockbox_eligible():
+        return EVENT_CHAIN_BROKEN, commit
     if spec.predecessor:
         predecessor_status, predecessor_commit = event_status(spec.predecessor)
         if (predecessor_status != EVENT_VALID
@@ -334,6 +345,15 @@ def remaining_admitted() -> set:
     return _ids("etransfer_admitted_set.json", "admitted") - _ids("etransfer_withdrawals.json", "withdrawn")
 
 
+def lockbox_eligible() -> bool:
+    """True only when the committed G11 closure record says LOCKBOX-ELIGIBLE."""
+    path = FP.gate_dir() / "lockbox_closure.json"
+    try:
+        return path.is_file() and json.loads(path.read_bytes()).get("outcome") == "LOCKBOX-ELIGIBLE"
+    except (ValueError, AttributeError):
+        return False
+
+
 def write_event(name: str) -> dict:
     """Write an event once, at the step that owns it. The caller commits it."""
     spec, path = EVENTS[name], _event_path(name)
@@ -352,6 +372,8 @@ def write_event(name: str) -> dict:
         record["attests_sha256"] = FP.file_digest(artifact)
     if name in ("g7b_open", "g8_open") and not remaining_admitted():
         return {"outcome": EVENT_ADMITTED_SET_EMPTY, "event": name}
+    if name == "g11_complete" and not lockbox_eligible():
+        return {"outcome": EVENT_LOCKBOX_NOT_ELIGIBLE, "event": name}
     if spec.predecessor:
         predecessor_status, predecessor_commit = event_status(spec.predecessor)
         if predecessor_status != EVENT_VALID:

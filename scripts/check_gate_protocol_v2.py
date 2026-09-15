@@ -100,7 +100,7 @@ need("C15 rejected defects section", re.search(r"^#+\s*\d*\.?\s*rejected defects
 need("C15 forbidden phrasings kept", "forbidden phrasing" in low)
 need("C16 implementation status section", re.search(r"^#+\s*\d*\.?\s*implementation status", doc, re.I | re.M))
 need("C16 current test counts recorded",
-     all(x in doc for x in ("| 65 |", "| 61 |", "| 13 |", "| 8 |", "| 12 |")))
+     all(x in doc for x in ("| 65 |", "| 64 |", "| 13 |", "| 8 |", "| 12 |")))
 need("C16 no unfilled placeholder", "<<" not in doc)
 
 # ---- C17 round-2 review repairs
@@ -111,7 +111,7 @@ for code in ("PIN_RECREATED_IN_HISTORY", "PIN_ANCHOR_MISSING", "PIN_ANCHOR_MISMA
              "MODULE_TREE_MISMATCH", "MODULE_CLOSURE_OUTSIDE_PIN", "PIN_OUTPUT_HASH_MISMATCH",
              "EVENT_ADMITTED_SET_EMPTY", "ADDITIVITY_VIOLATED_ON_REAL_TASK", "WITNESS-RECORD-INVALID",
              "TERM-HALTED", "TERM-NO-L2", "TERM-ADMIT-REFUSED-INTEGRITY", "TERM-ALL-WITHDRAWN",
-             "TERM-RESIDUAL", "CONSTRUCTOR-UNDECIDED", "XFER-SKIP-CONTENT-DUPLICATE", "CLI_USAGE_ERROR"):
+             "TERM-RESIDUAL", "CONSTRUCTOR-UNDECIDED", "EVENT_LOCKBOX_NOT_ELIGIBLE", "XFER-CRASH-RERUN", "P0.15", "XFER-SKIP-CONTENT-DUPLICATE", "CLI_USAGE_ERROR"):
     need(f"C17 code {code}", code in doc)
 need("C17 G3a and G3b blocks", "#### G3a." in doc and "#### G3b." in doc)
 need("C17 G7a and G7b blocks", "#### G7a." in doc and "#### G7b." in doc)

@@ -123,13 +123,15 @@ def gate_file(name, payload=None):
 
 
 PAYLOADS = {"etransfer_admitted_set.json": {"admitted": ["aaaa1111", "bbbb2222"]},
-            "etransfer_withdrawals.json": {"withdrawn": ["bbbb2222"]}}
+            "etransfer_withdrawals.json": {"withdrawn": ["bbbb2222"]},
+            "lockbox_closure.json": {"outcome": "LOCKBOX-ELIGIBLE"}}
+FULL_CHAIN = ("g3b_open", "g7b_open", "g8_open", "g8_closed", "g11_complete")
 
 
 def open_event(tree, event):
     """Commit what the event requires and attests, then write and commit the event."""
     spec = G.EVENTS[event]
-    needed = [gate_file(n) for n in spec.requires if not (FP.gate_dir() / n).exists()]
+    needed = [gate_file(n, PAYLOADS.get(n)) for n in spec.requires if not (FP.gate_dir() / n).exists()]
     if spec.attests and not (FP.gate_dir() / spec.attests).exists():
         needed.append(gate_file(spec.attests, PAYLOADS.get(spec.attests)))
     if needed:
@@ -382,13 +384,15 @@ def test_lockbox_needs_the_committed_completion_event(tree):
         GateGuard(Stage.POST_PROMOTION_ANALYSIS).check(tree.p["lockbox"])
     with pytest.raises(SealedAccessError, match="g11_complete"):
         GateGuard(Stage.GATE_COMPLETE).check(tree.p["lockbox"])
-    open_event(tree, "g11_complete")
+    for event in FULL_CHAIN:
+        open_event(tree, event)
     GateGuard(Stage.GATE_COMPLETE).check(tree.p["lockbox"])
 
 
 def test_the_journal_and_the_seal_are_refused_even_after_completion(tree):
     ready(tree)
-    open_event(tree, "g11_complete")
+    for event in FULL_CHAIN:
+        open_event(tree, event)
     guard = GateGuard(Stage.GATE_COMPLETE)
     for key in ("journal", "seal"):
         with pytest.raises(SealedAccessError, match="NEVER"):
@@ -634,3 +638,32 @@ def test_the_ledger_is_append_only(tree):
     guard.permits(tree.p["runtime"])
     guard.write_ledger()
     assert len(path.read_text().splitlines()) == 2
+
+
+#  ------------------------------------------------------ completion and extracts
+
+def test_completion_cannot_be_declared_before_the_transfer_pass_closes(tree):
+    ready(tree)
+    commit_files(tree, gate_file("gate_completion_record.json"),
+                 gate_file("lockbox_closure.json", PAYLOADS["lockbox_closure.json"]))
+    assert G.write_event("g11_complete")["outcome"] == G.EVENT_PREDECESSOR_NOT_VALID
+    with pytest.raises(SealedAccessError):
+        GateGuard(Stage.GATE_COMPLETE).check(tree.p["lockbox"])
+
+
+def test_completion_never_opens_lockbox_unless_eligible(tree):
+    ready(tree)
+    for event in FULL_CHAIN[:-1]:
+        open_event(tree, event)
+    commit_files(tree, gate_file("gate_completion_record.json"),
+                 gate_file("lockbox_closure.json", {"outcome": "LOCKBOX-CLOSED"}))
+    assert G.write_event("g11_complete")["outcome"] == G.EVENT_LOCKBOX_NOT_ELIGIBLE
+    with pytest.raises(SealedAccessError):
+        GateGuard(Stage.GATE_COMPLETE).check(tree.p["lockbox"])
+
+
+def test_an_unrecognized_file_among_the_extracts_fails_closed(tree):
+    extracts = tree.tti / "outputs" / "tti" / "stepB_gate" / "extracts"
+    assert classify(extracts / "notes.json") is SealedClass.E_TRANSFER
+    assert classify(tree.p["extract_promotion"]) is SealedClass.PROMOTION_DATA
+    assert classify(tree.tti / "outputs" / "tti" / "stepB_gate" / "etransfer_results.jsonl") is None
