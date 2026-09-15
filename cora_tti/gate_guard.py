@@ -330,7 +330,7 @@ def _ids(file: str, key: str) -> set:
 
 
 def remaining_admitted() -> set:
-    """Admitted task ids minus withdrawn ones, from the committed gate records."""
+    """Admitted extension ids minus withdrawn ones, from the committed gate records."""
     return _ids("etransfer_admitted_set.json", "admitted") - _ids("etransfer_withdrawals.json", "withdrawn")
 
 
