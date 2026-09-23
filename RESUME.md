@@ -7,7 +7,7 @@ Last updated 2026-09-23. Read this first.
 Observation repair DONE and measured. Nothing else implemented, pending
 review.
 
-**Repaired failure channel classification: PARTIAL.**
+**Repaired failure channel classification: INFORMATIVE.**
 Report: `records/FRONTIER_AUDIT_V2_20260923.md`.
 Event mapping: `records/ENGINE_EVENT_MAPPING.md`.
 Preregistered gate: `records/REPAIR_SPEC_FRONTIER_V2.md`.
@@ -18,15 +18,15 @@ The trace is task-conditioned, 12 distinct frontier operators instead of 1,
 62 candidates fitted, 36 executed and non-exact, 7 exact. Observation does
 not change the search result.
 
-One evidence class is still missing from the graph: value and mismatch
-signatures are created but every one is `{"defined": false}`, because
-`tfg_extractor._mismatch_signature` renders through the blind-runtime
-evaluator, which cannot execute object programs. The same candidates give
-defined evidence, 17 of 17, under the engine's own renderer.
+The candidate-executor compatibility repair then carried the evidence into
+the graph: 18 defined value signatures where there were 0. Scored against the
+unchanged preregistered threshold, 9 of 12 tasks carry >= 2 frontier terms
+and 8 of 12 carry defined candidate-associated evidence, so 8 of 12 meet both
+conditions. The threshold was at least 8 of 12, so the channel is
+INFORMATIVE. Three independent runs gave the identical verdict.
 
-Scored against the unchanged preregistered threshold: 9 of 12 tasks carry
->= 2 frontier terms, 0 of 12 carry defined value evidence in the graph, 8 of
-12 would qualify on the producer-side reading. PARTIAL, not INFORMATIVE.
+Cautions: it sits exactly at the threshold, the qualifying eight are the same
+eight the producer probe found, and 3 of 12 tasks emit no candidates at all.
 
 ## Earlier state, superseded
 
@@ -43,20 +43,13 @@ describes the blind-runtime path, which was deliberately left unchanged.
 
 ## Next action, exactly one
 
-Give `build_tfg` an executor for the candidates it is handed: one optional
-parameter, defaulting to today's behaviour, threaded to `_mismatch_signature`
-in place of the hardwired `E.evaluate`. The full-engine adapter then passes
-the engine's own renderer.
+Implement the already-specified grammar-constrained constructive AST
+proposer: typed failure graph plus typed interface to a NEW canonical AST
+absent from the catalogue. Not name selection. This is now licensed, because
+the channel measured INFORMATIVE against the preregistered threshold.
 
-It needs a decision first, because it touches `cora_tti/tfg_extractor.py` in
-`Reasoning_Project_tti`, which the repair block was told not to modify.
-Either authorize that one edit or vendor the extractor into this workspace.
-Re-run the same 12-task audit afterwards and score it against the unchanged
-threshold.
-
-Not licensed: the Stage-B constructive AST proposer and the
-ConstructiveExtensionCompiler. Both remain SPECIFIED_ONLY. Do not build
-either until the channel measures INFORMATIVE.
+The ConstructiveExtensionCompiler stays a separate responsibility and remains
+SPECIFIED_ONLY until the proposer exists. Do not merge the two.
 
 Still deferred on purpose: the blind runtime's goal-typed-only enumeration,
 so that only one variable moves at a time.

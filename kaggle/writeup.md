@@ -70,3 +70,17 @@ Single benchmark family (ARC). The certificate multiplies induction cost by the 
 ## Reproducibility
 
 All artifacts released. Every table regenerates from disk with one script. The Kaggle notebook (offline, CPU, 12h governed) is attached.
+
+---
+
+## Scope note, 2026-09-23
+
+This writeup describes the generalization-certificate system and the method
+that is actually implemented in the accompanying notebook. It is a different
+paper from `docs/PAPER_SKELETON.md`, which is the working manuscript on
+separating search, hypothesis selection and capability growth.
+
+The failure-driven constructive extension path described in that manuscript
+is not part of the submitted notebook. Its constructive AST proposer and its
+extension compiler are specified and not implemented, so no claim about
+task-time capability construction applies to the method submitted here.

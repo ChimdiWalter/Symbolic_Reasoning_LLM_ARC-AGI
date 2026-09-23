@@ -14,7 +14,7 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
 
 from cora_arc2026 import engine_trace as ET                      # noqa: E402
-from cora_tti import tfg_extractor as X                          # noqa: E402
+from cora_arc2026.vendor import tfg_extractor as X               # noqa: E402
 
 TASKS = os.path.join(HERE, "data", "arc", "dev60_challenges.json")
 OUT = os.path.join(HERE, "outputs", "frontier_audit")

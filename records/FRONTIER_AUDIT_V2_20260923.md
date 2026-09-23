@@ -159,3 +159,75 @@ the unchanged threshold.
 
 The constructive AST proposer and the ConstructiveExtensionCompiler remain
 unbuilt and SPECIFIED_ONLY, in every branch.
+
+---
+
+# Addendum: candidate-executor compatibility repair, same day
+
+The PARTIAL classification above was correct for the state it measured. The
+bottleneck it identified has since been repaired and re-measured.
+
+## What changed
+
+The extractor was vendored into `cora_arc2026/vendor/tfg_extractor.py` with
+the source checksum recorded in `cora_arc2026/vendor/PROVENANCE.md`, because
+the research worktree is frozen. One backward-compatible change: `build_tfg`
+and `extract` take `candidate_evaluator=None`, threaded to
+`_mismatch_signature`, which uses it when given and falls back to the
+blind-runtime evaluator otherwise. With no evaluator supplied the vendored
+copy behaves exactly as the original. The diff is six hunks and nothing else.
+
+The full-engine adapter supplies `render_object_program`, which reconstructs
+the recorded object program and renders it with the engine's own executor. It
+returns None for anything that is not a real-engine candidate, so the old
+path is preserved.
+
+This changes only how an already-observed candidate is executed to produce
+diagnostic evidence. Search, candidate generation, candidate ordering,
+fitting, grammar, verifier, acceptance, budgets, Step B and the research tree
+are all unchanged.
+
+## Measured result, same 12 tasks, same threshold
+
+| quantity | before | after |
+|---|---|---|
+| defined value signatures in the graph | 0 | 18 |
+| tasks with >= 2 frontier terms | 9 of 12 | 9 of 12 |
+| tasks with defined candidate-associated evidence | 0 of 12 | 8 of 12 |
+| tasks meeting both preregistered conditions | 0 of 12 | 8 of 12 |
+
+**Classification: INFORMATIVE**, at the preregistered threshold of at least
+8 of 12, which was fixed before the repair and not reinterpreted.
+
+## Stability
+
+The audit was run three times. All three runs gave 9 of 12 tasks with at
+least two frontier terms, 8 of 12 with defined evidence, 8 of 12 qualifying
+and 18 defined signatures in total. The verdict did not move.
+
+| run | >= 2 frontier terms | defined evidence | qualifying | verdict |
+|---|---|---|---|---|
+| 1 | 9 of 12 | 8 of 12 | 8 of 12 | INFORMATIVE |
+| 2 | 9 of 12 | 8 of 12 | 8 of 12 | INFORMATIVE |
+| 3 | 9 of 12 | 8 of 12 | 8 of 12 | INFORMATIVE |
+
+## Honest cautions
+
+The result sits exactly at the threshold, not comfortably above it. The
+qualifying set is the same eight tasks the producer-side probe had already
+identified, so the repair transported evidence that existed rather than
+creating new evidence. Three of the twelve tasks emit no candidates at all,
+because the engine gives up before rule induction, and no repair of this kind
+can make them qualify.
+
+## What this licenses
+
+Under the decision rule fixed in `records/REPAIR_SPEC_FRONTIER_V2.md`, an
+INFORMATIVE channel licenses the next implementation: the already-specified
+grammar-constrained constructive AST proposer, mapping a typed failure graph
+and a typed interface to a new AST absent from the language. The
+ConstructiveExtensionCompiler stays a separate responsibility and remains
+SPECIFIED_ONLY until the proposer exists.
+
+Nothing about construction, invention, reach gain or score is claimed here.
+No proposer, compiler, extension, install or scoring was built or run.

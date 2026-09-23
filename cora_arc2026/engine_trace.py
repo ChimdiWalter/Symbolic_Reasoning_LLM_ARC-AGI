@@ -25,7 +25,7 @@ for _p in (TTI, HERE):
 
 from level4_blind_runtime import env as E                        # noqa: E402
 from level4_blind_runtime import stepA_trace_search as TS        # noqa: E402
-from cora_tti import tfg_extractor as X                          # noqa: E402
+from cora_arc2026.vendor import tfg_extractor as X               # noqa: E402
 
 from geocat_arc.object_reasoning import _trace_hook as HOOK      # noqa: E402
 
@@ -56,6 +56,31 @@ UNMAPPED = {
     "selector_failed": "_induce_selector_for returned None; a real engine "
                        "state that no existing outcome name describes",
 }
+
+
+def render_object_program(ast, grid, env=None):
+    """Execute a real-engine candidate for diagnostic evidence only.
+
+    Supplied to the vendored build_tfg as ``candidate_evaluator``. It renders
+    an already-observed candidate; it does not generate, order, fit, prune,
+    accept or rank anything. Returns None when the candidate is not a
+    real-engine program, so the caller falls through to undefined evidence
+    exactly as before.
+    """
+    from geocat_arc.object_reasoning.actions import render_program
+    from geocat_arc.object_reasoning.types import ObjectProgram
+    from geocat_arc.perception.grid import Grid
+
+    if not (isinstance(ast, tuple) and len(ast) == 2
+            and isinstance(ast[0], str) and ast[0].startswith("prog:")):
+        return None
+    detail = ast[1][0] if ast[1] else None
+    if not isinstance(detail, dict):
+        return None
+    program = ObjectProgram.from_dict(detail)
+    source = grid if hasattr(grid, "height") else Grid.from_list(
+        [[int(v) for v in row] for row in grid])
+    return render_program(program, source).to_numpy()
 
 
 def _stats_from(census, seconds):
@@ -118,7 +143,8 @@ def extract(task_id, train_pairs, budget_s=8.0, goal_type="Grid",
     cap = (X.MAX_FRONTIER_TERMS if max_frontier_terms is None
            else max_frontier_terms)
     tfg = X.build_tfg(pairs, _stats_from(census, seconds), observer,
-                      E.BASE_ENV, goal_type, cap)
+                      E.BASE_ENV, goal_type, cap,
+                      candidate_evaluator=render_object_program)
     return {"solved": solved, "tfg": tfg, "census": census,
             "seconds": seconds, "observer": observer, "result": result}
 
