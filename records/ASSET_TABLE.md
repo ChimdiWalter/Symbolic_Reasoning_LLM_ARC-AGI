@@ -35,3 +35,15 @@ Three of five tasks produced uncertified attempt-2 material stamped `loo`. That 
 same class as the documented 236-task fold-death pool, and it points at relational
 parameter fitting rather than composition. Sample of five; treated as a direction to
 test, not a finding.
+
+## Dated correction, 2026-09-23
+
+The proposed new deterministic MetaConstructor substantially duplicated CORA-TTI Item 2
+and is withdrawn as a new component. The existing constructive semantic proposer
+architecture is the authoritative architecture. The next work is the implementation-status
+audit, recorded in FEATURE_INVENTORY_20260923.md, followed by repair of the smallest
+missing link. Historical evidence identifies the informative failure frontier as the
+leading candidate for that link, and the audit adds a second candidate: the loop's
+proposer returns registry names, not constructed ASTs. The five-task v23 rehearsal remains
+BASELINE and ENGINEERING evidence only. Relational parameter fitting is no longer the
+primary intervention and may serve later as an inner slot fitter. No earlier record is erased.
