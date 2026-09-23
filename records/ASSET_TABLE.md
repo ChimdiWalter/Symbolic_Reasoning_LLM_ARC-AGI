@@ -28,6 +28,9 @@ Two bounded runs: 3 tasks under a 240s budget (206s wall), 5 tasks under a 60s b
 | 20270e3b | none | none | none |
 
 Dominant recorded bottleneck: programs reach the leave-one-out fold and die there.
+NOTE 2026-09-23: the headline intervention is now failure-conditioned construction
+(docs/EXPERIMENT_SPEC_CONSTRUCTION.md), not relational parameter fitting. The fold-death
+class is a selection problem and is measured separately from the construction classes.
 Three of five tasks produced uncertified attempt-2 material stamped `loo`. That is the
 same class as the documented 236-task fold-death pool, and it points at relational
 parameter fitting rather than composition. Sample of five; treated as a direction to
