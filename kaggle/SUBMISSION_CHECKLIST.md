@@ -49,3 +49,64 @@ Competition: https://kaggle.com/competitions/arc-prize-2026-paper-track
 ## Also Submit to Track A (ARC-AGI-2 Prediction)
 
 The Paper Track requires an attached public notebook that is also your Track A submission. Submit the same `arc-certified-solver` notebook to Track A as well. Expected score is low (0/120 eval certified) but the leaderboard number feeds the Accuracy criterion and makes you eligible.
+
+---
+
+## Paper Track and release checklist, added 2026-09-23
+
+### Deadlines
+
+| item | date, UTC |
+|---|---|
+| ARC-AGI-2 entry deadline | 2026-10-26, 23:59 |
+| final prediction and code submission | 2026-11-02, 23:59 |
+| Paper Track final deadline | 2026-11-09, 23:59 |
+
+A draft or unsubmitted writeup at the deadline does not count.
+
+### Paper Track artifacts
+
+- [ ] Kaggle Writeup, at most 1,500 words. Source: `kaggle/writeup.md`.
+- [ ] Cover image. Spec: `kaggle/COVER_IMAGE_SPEC.md`. Build:
+      `kaggle/cover_image.py`.
+- [ ] Attached public notebook.
+- [ ] Optional public project link, which may host the technical PDF. The URL
+      must be reachable without login or paywall.
+
+### Pending fields, never invented
+
+| field | value |
+|---|---|
+| ARC-AGI-2 submission id | PENDING |
+| public notebook URL | PENDING |
+| public leaderboard score | PENDING |
+| private leaderboard score | PENDING |
+| final measured runtime | PENDING |
+
+### Consistency gate, binding
+
+The method described in the notebook, the writeup and the manuscript must be
+the same method. Anything absent from the notebook is labelled ongoing
+research and contributes nothing to the leaderboard claim. As of 2026-09-23
+that includes the constructive AST proposer and the ConstructiveExtensionCompiler.
+
+### Open-source gate before any public release
+
+- [ ] remove protected research artifacts
+- [ ] remove private data
+- [ ] remove all Step-B sealed material
+- [ ] verify licenses
+- [ ] verify no secret tokens or private paths remain
+- [ ] verify notebook dependencies resolve with the internet disabled
+
+Nothing is published automatically.
+
+### Author notes: evidence mapped to the Universality criterion
+
+Not for the submitted paper. Strong evidence: a domain-independent formalism
+over a domain tuple; a typed failure representation carrying no task id,
+family name or answer; separation of verifier from proposer; both task-local
+and persistent adaptation mechanisms; no task-family lookup; no direct answer
+generation as the invention mechanism. Current limitation: empirical
+cross-domain transfer is not demonstrated. No rubric-score prediction goes in
+the paper.

@@ -1,86 +1,180 @@
-# The Learner Must Re-Derive: Procedure-Level Generalization Certificates for Abstract Reasoning
+# CORA: Separating Search, Hypothesis Selection, and Capability Growth
 
-## The Problem: Accuracy Is Unfalsifiable
+### A non-LLM ARC-AGI-2 solver with immutable verification, and an experiment on whether a reasoner can change its own language
 
-Benchmark accuracy cannot distinguish reasoning from recall. A system that memorizes coincidences and one that grasps a rule can produce identical scores. On ARC-AGI-2 we demonstrate this concretely: the same search, freed from any generalization requirement, quintuples its claimed solves while hidden-test precision collapses from 0.95 to 0.33. Leaderboard accuracy, reported alone, is unfalsifiable as a reasoning claim.
+## 1. Problem and thesis
 
-We propose that a reasoning-benchmark solve should come with a machine-checkable certificate of the process that produced it. We build a complete ARC program-induction system around one such certificate — leave-one-out-by-reinduction — and show it is measurably load-bearing, extends to multiple learner classes, and enables the system to invent its own primitives under the same falsifiability discipline.
+Most progress on ARC is reported as a score. A score cannot tell you which of
+three very different things improved: the search found a program faster, the
+selection rule picked a better program from the same pool, or the system
+became able to express something it previously could not. These are not the
+same, and conflating them makes progress hard to interpret.
 
-## The Certificate: Leave-One-Out by Reinduction
+CORA is built around that separation. Ordinary learning adapts parameters,
+writing theta to theta prime. Ordinary program induction searches for a
+program inside a fixed executable language K. CORA asks a third question:
+when search inside K fails, can the system represent why it failed, construct
+an executable extension e, and let a fixed verifier decide whether K together
+with e gained genuinely new reach?
 
-A task counts as solved only if the entire learning procedure, re-run from N-1 of its training examples, independently re-derives a program that solves the held-out example — for every fold. The certificate validates the *learner*, not the artifact: a lucky program cannot pass it, because luck does not re-run.
+We do not claim to have answered that question. This writeup reports what is
+built, what is measured, and what is still missing.
 
-**The certificate is load-bearing (E1).** Certified programs are correct on hidden tests 95.3% of the time versus 18.4% for the same search's uncertified train-perfect programs — a 5x truth gap.
+## 2. What CORA does
 
-**Accuracy up, truth down (E2).** Disabling the gate raises claimed solves 5.3x (43 to 229) while collapsing precision from 0.953 to 0.332. Raw accuracy rewards exactly the behavior the certificate exposes.
+CORA is a non-LLM symbolic system. No language model runs at inference.
 
-**Weak gates have zero precision (R2).** A post-hoc relift pass attempted to upgrade 187 constant-parameter programs by substituting relational expressions and verifying only by direct LOO rendering — a weaker standard than full reinduction. 40/187 passed this weak gate. Test-verified precision: 0/40 — 0.00. The weak gate's precision is zero, independently re-validating E1 at a new site.
+Perception segments each grid into objects under several segmentation
+variants. Induction builds correspondences between input and output objects,
+induces a selector that picks the objects a rule applies to, and fits typed
+parameter expressions for the action that rule performs. Programs are
+assembled from those rules and executed exactly.
 
-These three results triangulate the thesis from independent directions. E1 measures the certificate's discrimination. E2 measures the cost of removing it. R2 measures the cost of weakening it. All three converge: without full procedure-level reinduction, acceptance gates are unreliable.
+Acceptance is the part that matters. A program counts as solved only if the
+entire learning procedure, re-run from all demonstrations but one,
+independently re-derives a program that solves the held-out example, for
+every fold. This validates the learner rather than the artifact. A program
+that fits by luck does not survive, because luck does not re-run.
 
-## The Calibration Lattice: Graduated Certificates
+Every task output receives two predictions. Attempt one is the certified
+output under the frozen policy. Attempt two is a complementary uncertified
+candidate chosen to be independently plausible rather than merely different.
 
-A syntactic preference lattice over parameter expressions predicts hidden-test correctness monotonically with zero test access (E4):
+## 3. Fixed-language reasoning versus language adaptation
 
-| Parameter class | Hidden-test precision |
-|---|---|
-| Relational | 0.92 |
-| Feature | 0.75 |
-| Induced-map | 0.40 |
-| Constant | 0.09 |
+The distinction is empirical, not rhetorical, and our own measurements are
+what forced it.
 
-Combined with E1, this yields graduated certificates — calibrated confidence classes rather than a binary verdict. We operationalize this as a two-attempt policy: attempt_1 certified, attempt_2 best-uncertified — measuring a leaderboard cost of certification at +14 task-outputs (19.9% best-of-2 vs 18.5% certified-only).
+In one study, several competing policies were compared. They differed in
+efficiency and changed some individual predictions, but every policy solved
+the same 188 of 256 targets. Bounded reach was identical. Something improved,
+and it was not capability.
 
-## Machine-Invented Primitives (E10)
+In a later study, an earlier version of our test-time adaptation path
+appeared to activate often. When the comparison was examined it turned out
+not to be additive, so activation counts could not be read as evidence of
+anything. Architecture has to be tested causally, not inferred from how often
+a component fires.
 
-The self-extension discipline enables the system to invent its own content-creating operations from failure data. A mining loop harvests residual paint — exact cells the best composite cannot explain — clusters residuals by geometric relation to source objects, searches a bounded hypothesis language, and admits a mined generator only under the delta-level reinduction gate (fit on N-1 pairs, predict held-out residual exactly, every fold, at least two tasks).
+That is why CORA insists on a six-leg causal witness before calling anything
+capability growth: the baseline language must fail, the extension must be
+produced, the winning program must use it, full adaptive leave-one-out must
+pass, the final output must be exactly correct, and removing the extension
+must destroy the gain.
 
-With hand-added generators disabled, the miner ran blind: from 427 residuals over 33 tasks it admitted 44 distinct generators and reinvented both the cross-line structure and the intersection-color rule — re-certifying the same task with no human having named either primitive. A third hand-added mode was not rediscovered; the trace identified why: its direction parameter is relational per pair, structurally outside the per-object hypothesis language — the precise next rung of the ladder, located by the experiment.
+We also keep a four-rung claim ladder. Generating a new program is not a new
+capability. A new composition is not automatically new semantics. A macro is
+not semantic novelty. A score gain is not invention.
 
-The honest statement: the hand-authored layer moved one level down, from generators to the hypothesis language. Each rung is smaller than the one above and validated by the same gate. To our knowledge no published program-induction system invents its own primitives (not compositions of given primitives) under a falsifiable acceptance test.
+## 4. ARC-AGI-2 submission system
 
-## The Gate Across Learner Classes (E9)
+The submitted notebook runs offline within the twelve-hour limit and emits
+submission.json covering every task id and every test-output position, each
+with two attempts. A fallback guarantees two syntactically valid attempts for
+every task, so no task id can be missing even if a solver path fails or times
+out. A global time governor rescales per-task budgets against remaining wall
+clock, so the run finishes inside budget rather than being cut off.
 
-The certificate protocol is model-agnostic: "predict each held-out training pair from the others, exactly" does not care whether the predictor is a program or a network. We test this with a per-task MDL learner (181K parameters, trained from scratch per task, no pretraining).
+The submitted inference system is the induction, execution and verification
+stack described in section 2. The failure-driven construction research
+described below is not part of it, and no part of the leaderboard result may
+be attributed to it.
 
-Strong-form LOO gate on all 37 train-exact tasks — retrain from scratch on N-1 pairs per fold, require exact held-out prediction: **3/3 test-correct tasks pass at least one fold; 0/34 test-wrong tasks pass any fold — 100% gated precision, zero false positives** (replicating an n=8 pilot at 4.6x the sample size).
+## 5. Results
 
-The frozen-model variant: a 1.8M-parameter network at 94% per-cell accuracy passed zero of 120 evaluation gates — the gate correctly refused every render of a model that had learned grid statistics but not rules.
+Leaderboard results are pending: submission id, notebook version, scores and
+measured runtime. We do not substitute training accuracy for leaderboard
+accuracy, and no hypothetical score appears here.
 
-## The Honest Map
+The results we can report are diagnostic, and one is a negative result we
+consider important.
 
-185/1000 ARC-AGI-2 training tasks solved with certificates (18.5% CSR). 0/120 on the public evaluation split: coverage collapses out of distribution, and with one gate acceptance there (test-wrong), evaluation-split calibration remains undetermined. Training-split calibration is strong (40/42 correct among certified).
+We audited the failure representation that the construction path was supposed
+to consume, on twelve development tasks fixed by a rule committed before any
+result was computed. That channel produced 64,610 candidate events and 144
+frontier terms, but zero executed near misses, zero value signatures and zero
+mismatch signatures. On eleven of the twelve tasks its candidate census was
+byte-identical. Three structurally unrelated synthetic tasks reproduced the
+same census and the same ordered candidates. Every frontier term came from a
+single operator.
 
-The last +4 came from a variant-budget scheduling policy (fold-stable, time-allocation only, zero new vocabulary) that cured a chronically budget-starved task and unlocked 4 others through better search-time allocation, while its one measured harm (a task solving only under the old schedule) is recorded as the intervention's price, alongside the arbitration discipline that separated 3 apparent losses (contention) from the 1 real one.
+The cause was not the idea. It was a disconnect: the thing doing the real
+reasoning was not the thing being observed. The trace observer was attached
+to a restricted eleven-primitive proxy search, while the deployed object
+reasoner had no trace path at all. This also explains an earlier null result
+in which shuffled failure evidence performed about as well as real failure
+evidence. There was almost no task-specific information in the real evidence
+to destroy.
 
-The last three came from the same discipline turned on a declared plateau (R19): a structural-vocabulary census named a class of *derived* patterns, trace-first falsification accepted 3 modes out of 15 candidate exemplars and recorded the 12 rejections, and the accepted modes store no cell lists at all — `frame_minority` has zero parameters, its thickness being the count of the object's own minority-colour cells. Tellingly, one of the three gains (d037b0a7) lies outside the diagnosed exemplar set entirely: the derived modes generalized past the traces that motivated them, which a stored-exemplar mode cannot do. The evaluation split stayed at 0/120.
+We then instrumented the deployed reasoner in an isolated copy, without
+changing its search. Fixtures require that the result with observation equals
+the result without observation, compared on exactness, strategy, training
+accuracy, leave-one-out score, best accuracy, failure stage, pixel fit and
+the serialized programs. Those fixtures pass.
 
-Why the gap is structural, not budgetary: a framing census attributes the evaluation collapse to program-family coverage — compositional, generative, and multi-step structures the current four families cannot express. A near-solve graduation experiment (R1) showed 194/269 near-solves blocked on relational parameter expressions the grammar does not yet cover; the relift experiment (R2) confirmed this is a vocabulary-width problem. We regard "honest zero with intact calibration" as the correct behavior of a certified system out of distribution and exactly the information a deployment decision needs.
+On the same twelve tasks the repaired channel produced 494 candidate events,
+twelve distinct frontier operator families instead of one, 62 successful
+parameter fits, 36 executable near misses and 7 exact candidates. A final
+compatibility repair let the failure graph execute the real candidate
+representation instead of assuming the proxy one, which carried the mismatch
+evidence into the graph: 18 defined value signatures where there had been
+zero. Eight of twelve tasks met the preregistered diagnostic threshold, which
+was fixed in advance at eight of twelve, and the verdict was identical across
+three independent runs.
 
-For the field: if these tasks are supposed to measure reasoning, systems should report what fraction of their claimed solves are falsifiable — and what fraction survive falsification.
+That is a diagnostic result about an evidence channel. It is not a capability
+result, and nothing about reach or score follows from it.
 
-## Universality
+## 6. Why it works or fails
 
-The certification protocol is domain-general. Any system that induces a predictor from a few-shot task and can re-run that induction on subsets of the evidence can produce the same certificate. For samplers and refinement models, resample-from-N-1 consistency is the natural analogue. E9 demonstrates this concretely on a neural learner. We propose the Certified Solve Rate and its calibration curve as a reporting standard for reasoning benchmarks.
+The diagnosis categories we track are: no useful candidate generated;
+candidate present but not selected; candidate fit the demonstrations but was
+wrong; verification rejected it; resources exhausted; output lost in
+packaging.
 
-## Limitations
+The audit above added a category we had not been able to see before. On three
+of the twelve tasks the reasoner emits no candidates at all, because it gives
+up before rule induction at segmentation or matching. No repair of the
+evidence channel can help there. That is a perception and correspondence
+limit, not a language limit, and it tells us where the next real work is.
 
-Single benchmark family (ARC). The certificate multiplies induction cost by the fold count. The primitive core — delta vocabulary, feature registry, expression grammar — is hand-authored; E7 and E10 shrink this by one level but the grammar of laws and expressions remains ours. Absolute evaluation-split performance is zero. The neural gate sample (n=37) is small. Transfer rate of the MDL learner is low (7.5%), with the dominant unresolved lever being color equivariance. All negatives are reported as first-class results.
+## 7. Universality
 
-## Reproducibility
+CORA separates the domain-specific semantics of ARC from a domain-general
+control loop. ARC supplies grids, objects and executable transformations.
+CORA supplies failure localization, typed interfaces, executable
+construction, exact evaluation, leave-one-out verification and causal
+ablation. We formalize a reasoning domain as a tuple of observations,
+targets, a type system, an executable capability language, an executor and an
+immutable verifier, and define the adaptation loop over that tuple. ARC is
+then one instantiation rather than the definition of the method. In another
+executable domain the grid vocabulary can be replaced while the control
+architecture is retained.
 
-All artifacts released. Every table regenerates from disk with one script. The Kaggle notebook (offline, CPU, 12h governed) is attached.
+We claim architectural portability, not demonstrated cross-domain
+performance. Three levels should not be confused: the loop is independent of
+grids; a new domain could supply its own types, operators and verifier; and
+the same implementation actually succeeding elsewhere is a third claim we do
+not make. Empirical transfer beyond ARC remains future work.
 
----
+One design choice supports this more than any argument. CORA refuses
+task-family lookup, handwritten operators added after inspecting a failure,
+and direct answer generation. Those would raise an ARC score and produce a
+less general system. What remains are generic concepts: failure, type,
+executable behaviour, causal necessity and held-out reconstruction.
 
-## Scope note, 2026-09-23
+## 8. Limitations
 
-This writeup describes the generalization-certificate system and the method
-that is actually implemented in the accompanying notebook. It is a different
-paper from `docs/PAPER_SKELETON.md`, which is the working manuscript on
-separating search, hypothesis selection and capability growth.
+The limitations are substantial. The public ARC score is not yet measured and
+may remain low. Our verification has shown poor off-distribution calibration:
+40 of 42 on training against 0 of 11 on an evaluation development split. The
+repaired failure evidence has not yet produced any autonomous construction.
+The constructive proposer and its compiler are specified and unimplemented.
+A separate durable capability-growth experiment is still running and has no
+interpretable verdict, and none of its candidates or outcomes are used here.
+The diagnostic classification rests on twelve tasks and sits exactly at its
+threshold. ARC results alone do not establish general intelligence.
 
-The failure-driven constructive extension path described in that manuscript
-is not part of the submitted notebook. Its constructive AST proposer and its
-extension compiler are specified and not implemented, so no claim about
-task-time capability construction applies to the method submitted here.
+What we offer is a system that refuses to confuse a better score with a
+better reasoner, and an honest account of the point at which its own
+self-observation was broken and how we found it.

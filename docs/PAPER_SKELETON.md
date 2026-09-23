@@ -1,107 +1,307 @@
 # CORA: Separating Search, Hypothesis Selection, and Capability Growth in ARC-AGI-2
 
-Status: working manuscript for the ARC Prize 2026 paper track. Updated
-2026-09-23. This file is the authoritative source for this paper. No LaTeX
-source, compiled PDF or bibliography file exists yet in this workspace; the
-related-work list below is the bibliography stub. The separate
-`kaggle/writeup.md` is a different paper, about generalization certificates,
-and is not superseded by this one.
+Authoritative technical manuscript for the ARC Prize 2026 Paper Track.
+Updated 2026-09-23. No LaTeX source, compiled PDF or BibTeX file exists in
+this workspace yet, so there is no compile step and no page count to report;
+section 16 is the bibliography stub. The concise Paper Track writeup is
+`kaggle/writeup.md`, which must stay under 1,500 words and must describe the
+same implemented system as this document.
 
 The title changes to match the measured result, never the desired one.
 
 ## Abstract
 
-CORA studies the distinction between finding a better program inside a fixed
-reasoning language and changing the reasoning language itself. We develop a
-non-LLM symbolic reasoning system with immutable verification, separate
-gains in search and hypothesis selection from gains in capability, and run
-two independent self-extension experiments at different timescales: a
-durable one under a frozen gate, and a task-local one at test time.
+CORA studies the difference between searching for a program within a fixed
+executable language and adapting the language itself. The system combines
+non-LLM program induction with immutable leave-one-out verification and
+separates, both formally and empirically, three things that reasoning
+research often conflates: better search, better hypothesis selection, and
+growth in capability.
 
 A diagnostic audit reported here found that the original test-time failure
-channel observed a restricted proxy reasoner rather than the full ARC
-engine. Over twelve prospectively fixed development tasks that channel
-produced no executed near misses and no mismatch evidence at all, and its
-candidate census was identical across unrelated tasks. That explains an
-earlier null result in which shuffled failure evidence performed about as
-well as real failure evidence: the real evidence carried almost no
-task-specific information.
+representation observed a restricted proxy search rather than the deployed
+ARC reasoner. Over twelve prospectively fixed development tasks that channel
+produced no executed near misses and no mismatch evidence, and its candidate
+census was identical across structurally unrelated tasks. That explains a
+previous null result in which shuffled failure evidence performed about as
+well as real failure evidence.
 
-Instrumenting the actual reasoner, without changing its search, produced
-task-dependent semantic frontiers, twelve distinct frontier operator
-families instead of one, and executable near-miss candidates. A subsequent
-evaluator-compatibility repair carried the mismatch evidence into the typed
-failure graph, moving the channel across its preregistered threshold. The
-constructive components that would consume that evidence remain unbuilt.
+Instrumenting the deployed reasoner, without changing its search, exposed
+task-dependent candidate frontiers, successful parameter fits and executable
+near misses. A subsequent compatibility repair between the real candidate
+representation and the failure-graph evaluator carried that evidence into the
+graph and moved the channel across its preregistered diagnostic threshold.
+The constructive components that would consume the evidence remain
+unimplemented, so no capability claim follows from it.
 
-Durable semantic invention remains under evaluation in the independent
-frozen Step-B experiment, whose verdict is unknown and uninspected. We do
-not claim that CORA has invented a new semantic primitive.
+Durable semantic invention remains under independent evaluation in the frozen
+Step-B experiment, which is ongoing and has no interpretable verdict. We do
+not claim that CORA has demonstrated semantic invention.
 
 ## Contributions
 
-1. A formal separation of search improvement, hypothesis-selection
-   improvement and capability growth, with measurements that keep them apart.
-2. An immutable-verification and causal-witness discipline under which a
-   score gain is never reported as invention.
-3. A protocol for durable capability growth, frozen before results, with a
-   staged gate and sealed data access.
-4. An architecture for task-local language adaptation that installs an
-   extension for one task and resets afterwards.
-5. An empirical diagnosis of a failure-observation disconnect in that
-   architecture, and its repair, with before and after measurements.
-6. Negative results showing why score and search improvements alone are not
-   evidence of invention.
+1. A formal and empirical separation of search improvement, hypothesis
+   selection and capability growth.
+2. A non-LLM ARC reasoning system with immutable leave-one-out verification.
+3. A frozen causal-witness protocol for durable capability growth.
+4. CORA-TTI, an architecture for failure-conditioned task-local language
+   adaptation.
+5. An empirical diagnosis showing that an earlier failure representation
+   observed the wrong reasoning process.
+6. A repaired full-engine observation path that exposes task-specific
+   semantic frontiers and executable near misses.
+7. Negative results showing why score gains, search gains and known-operator
+   reconstruction are insufficient evidence of semantic invention.
 
-## 1. Problem
+## 1. Competition facts this paper is written against
 
-ARC-AGI-2 under a twelve-hour offline budget, two outputs per test input,
-exact match. The research question is whether a task-local, executable
-program construction can improve held-out predictions beyond ordinary search
-over the same building blocks, under matched total compute.
+| item | value |
+|---|---|
+| ARC-AGI-2 entry deadline | 2026-10-26, 23:59 UTC |
+| final prediction and code submission | 2026-11-02, 23:59 UTC |
+| Paper Track final deadline | 2026-11-09, 23:59 UTC |
+| submission form | Kaggle Notebook |
+| runtime limit | 12 hours CPU, or 12 hours GPU |
+| internet | disabled |
+| external data | freely and publicly available external data allowed |
+| output | `submission.json` |
+| predictions per task output | exactly two, `attempt_1` and `attempt_2` |
+| coverage | every task id in the challenge JSON must appear |
+| scoring | exact match; credit if either attempt matches exactly |
+| Paper Track requirements | Kaggle Writeup, cover image, attached public notebook |
+| Paper Track optional | public project link, which may host this PDF |
+| writeup limit | 1,500 words |
 
-The principal prospective comparison is fixed-language reasoning against
-failure-driven language adaptation.
+A draft or unsubmitted writeup at the deadline does not count.
 
-Working thesis, stated as architecture and hypothesis rather than as a
-validated finding: when a fixed reasoning language fails, CORA represents the
-failure mechanistically, constructs a task-local typed program, re-enters the
-original reasoner with that program installed, and lets an immutable verifier
-decide whether the new reasoning path survives. The constructive step of that
-sentence is not yet implemented, so the sentence is a hypothesis about the
-architecture, not a result.
+The Paper Track scores six criteria with equal weight: Accuracy,
+Universality, Progress, Theory, Completeness and Novelty. Accuracy is one
+sixth of the score and rests on the actual leaderboard submission, so the
+leaderboard is not a formality here. The remaining five sixths are where the
+distinction between fixed-language search and verified language adaptation
+has to be documented carefully and without overstating unfinished work. The
+sections below are organized to give measured evidence for each criterion,
+not to argue for them rhetorically.
 
-## 2. The system, in one page
+## 2. Accuracy: the submitted configuration
 
-Three-layer certified induction. A program is accepted only if, rebuilt from
-all demonstrations but one, it predicts the one left out, for every fold. Two
-outputs per test input: attempt one certified, attempt two error-diverse. One
-global time governor.
+| field | value |
+|---|---|
+| ARC-AGI-2 submission id | PENDING |
+| public notebook URL | PENDING |
+| notebook version | PENDING FINAL SUBMISSION |
+| solver policy version | PENDING FINAL SUBMISSION |
+| attempt_1 policy | certified output under the frozen final policy |
+| attempt_2 policy | complementary uncertified candidate, chosen to maximize genuine independent probability of correctness |
+| measured runtime | NOT YET MEASURED |
+| public leaderboard score | NOT YET MEASURED |
+| private leaderboard score | NOT YET MEASURED |
 
-Ordinary machine adaptation changes parameters:
+No hypothetical score appears anywhere in this paper. Training-set accuracy
+is never substituted for leaderboard accuracy, and no training headline
+number appears in the results sections.
+
+## 3. Universality
+
+### 3.1 What is ARC-specific and what is not
+
+ARC-specific: the grid representation; object segmentation; the colour
+vocabulary; spatial relations; rendering operations; the executable
+primitives themselves; and the Kaggle submission and output policy.
+
+Domain-general: the executable hypothesis language as a replaceable
+parameter; a mechanistic representation of reasoning failure; typed
+interfaces between capabilities; failure-conditioned proposal of executable
+structure; exact execution; immutable verification; adaptive leave-one-out
+reconstruction; the additive comparison of K against K with e; causal
+removal; the distinction between selection gain, search gain, operational
+extension and semantic extension; the separation of ephemeral from
+persistent capability growth; and provenance-controlled promotion.
+
+The universality argument rests entirely on the second group.
+
+### 3.2 The domain-general loop
+
+    observations D
+      -> reason using executable language K
+      -> detect failure
+      -> represent the failure mechanistically
+      -> identify a missing typed capability interface A -> B
+      -> construct a candidate executable capability e
+      -> K' = K union {e}
+      -> reason again
+      -> verify
+      -> retain temporarily, or promote persistently
+
+ARC is one instantiation of this loop. The loop has not been validated
+outside ARC, because no such experiment exists.
+
+### 3.3 A formal domain abstraction
+
+Let a reasoning domain be
+
+    D = (X, Y, T, K, Execute, V)
+
+where X are observations, Y are target outputs or behaviours, T is a type
+system, K is the current executable capability language, Execute is the
+domain executor and V is the immutable verification procedure. CORA operates
+on D together with failure evidence. It does not require X and Y to be grids.
+
+ARC is the concrete instantiation in which X are grids, T contains Grid,
+Entity, Region and Relation, K is the set of ARC executable productions,
+Execute is the exact renderer, and V is demonstration fit plus adaptive
+leave-one-out plus external exact output scoring.
+
+### 3.4 Why this could translate
+
+The transferable object is not an ARC pattern. It is the pair of a typed
+executable capability and a verifier. Another domain should be able to
+replace Grid, Region, Object, Paint and Translate with its own executable
+types and operations while retaining failure localization, typed gap
+identification, construction, exact execution, verification, causal ablation
+and promotion or reset.
+
+CORA does not claim one universal object vocabulary. It proposes a
+potentially reusable protocol for reasoning about and extending a domain's
+executable vocabulary.
+
+The following mappings are analogies that show how the abstraction could
+translate. They are not completed experimental transfer.
+
+| CORA abstraction | ARC instantiation | example non-ARC instantiation |
+|---|---|---|
+| state or observation | grid | molecule, cell state, image, graph |
+| entity | object or region | protein residue, cell, lesion, gene module |
+| relation | spatial relation | interaction, neighbourhood, temporal dependency |
+| capability | grid transformation | geometric transformation, biological operator, analysis procedure |
+| failure frontier | near-miss ARC programs | partially successful models or procedures |
+| typed gap | set of regions to grid | molecular state to property, cell population to aggregate state |
+| verifier | exact held-out grid | held-out measurement, simulation, or assay-compatible criterion |
+| extension e | task-local ARC production | new executable analysis or transformation rule |
+
+### 3.5 Three levels of universality
+
+- U1, architectural portability: the failure, construct, execute, verify loop
+  is independent of grids.
+- U2, representational portability: a new domain can supply its own typed
+  entities, relations, operators and verifier while preserving the control
+  architecture.
+- U3, empirical cross-domain transfer: the same implementation or learned
+  construction strategy succeeds in a non-ARC domain.
+
+Current evidence supports U1 and, by construction, parts of U2. U3 is not
+claimed. No cross-domain experiment has been run, and none is reported here.
+
+### 3.6 Why the failure representation was designed to be domain-general
+
+The typed failure graph was deliberately built from abstract content: which
+partial programs were executable, what types they produced, what type was
+required, which slots failed, which relations were preserved or violated, how
+partial outputs differed, and at what stage verification failed. It carries no
+task identifier, no family name, no natural-language solution and no hidden
+answer.
+
+The honest qualification matters here. That domain-general representation was
+connected to the wrong reasoner. As section 8 reports, the initial
+implementation observed a restricted proxy search, and full-engine
+instrumentation was required before the abstraction could receive meaningful
+task-specific evidence at all.
+
+That negative result strengthens rather than weakens the methodological
+point: a representation is general only in the sense that it is connected to
+the actual reasoning process. Generality of format is not generality of
+content.
+
+### 3.7 The two timescales as general concepts
+
+    fast adaptation:    K -> K union {e_j} -> solve task j -> reset
+    durable learning:   K_t -> verified transferable e -> K_{t+1}
+
+Both make sense outside ARC. A system could construct a temporary analysis
+procedure for one scientific problem, and separately promote a repeatedly
+verified procedure into a persistent library. This is architectural
+applicability, not demonstrated behaviour.
+
+### 3.8 Four different generalization claims
+
+These are distinct and one is never used as evidence for another:
+
+1. generalization across ARC tasks within a structural family;
+2. transfer across ARC structural families;
+3. transfer of a constructed capability from one ARC task to another;
+4. transfer of the architecture to a different executable domain.
+
+Only the first is partially evidenced by ordinary ARC measurement. The third
+is the subject of the transfer leg in the durable experiment. The fourth is
+untested.
+
+### 3.9 What the project refuses to do, and why that matters here
+
+CORA rejects task-family lookup, handwritten solution operators added after
+inspecting a failure, direct answer-grid invention, and success defined only
+by leaderboard gain. Those shortcuts would produce a better ARC score and a
+less general system. Instead the system is built to operate on generic
+concepts: failure, type, executable behaviour, causal necessity and held-out
+reconstruction. That refusal is part of the universality argument rather than
+an aside.
+
+### 3.10 Summary of universality boundaries
+
+| claim | status |
+|---|---|
+| within-ARC generalization | partially evidenced by ordinary measurement |
+| architectural portability, U1 | supported by design and by the formal abstraction |
+| representational portability, U2 | supported by construction, not yet exercised |
+| cross-domain empirical transfer, U3 | not demonstrated, no experiment run |
+| transfer to biology, protein design or omics | not demonstrated, prospective only |
+
+## 4. Theory: the question being asked
+
+Ordinary learning adapts parameters:
 
     theta -> theta'
 
-CORA's question is about the language itself:
+Ordinary fixed-language reasoning searches inside a language:
 
-    K -> K' = K union {e}
+    search over p in K
 
-## 3. The distinction the paper is built on
+CORA asks a different question:
+
+    search over p in K -> failure -> construct e -> K' = K union {e}
+      -> reason again
+
+The theoretical hypothesis is that some reasoning failures are not merely
+incorrect hypotheses but reflect inadequacy of the current executable
+language, and that a capable reasoner should therefore be able to reason
+about the limitations of its own language.
+
+CORA has not proven this hypothesis. The work reported here builds and
+repairs the machinery needed to test it.
+
+## 5. Progress: the distinction this work adds
 
 Search improvement, hypothesis-selection improvement and capability growth
-are three different things. In a prior measurement every compared policy
-solved the same 188 of 256 targets, so the learned system searched more
-cheaply and changed some predictions without gaining reach. A score gain is
-never reported as invention.
+are three different things, and ARC research frequently conflates them.
+
+Two of our own prior measurements make the point empirically. In one, every
+compared policy solved the same 188 of 256 targets: the learned system
+searched more cheaply and changed some predictions while bounded reach stayed
+identical. In another, an earlier task-time comparison turned out to be
+non-additive, so activation counts could not be read as evidence of
+capability; only a causal, matched comparison could settle it.
+
+The prospective experiment that follows from this is fixed K against
+failure-driven K plus e, under matched compute. It is future work and is not
+presented as a completed contribution.
 
 Four distinctions are used throughout:
 
 - a new program is not a new capability;
-- a new composition is not semantic invention;
+- a new composition is not automatically new semantics;
 - a macro is not semantic novelty;
-- a score improvement is not capability growth.
+- a score gain is not invention.
 
-## 4. Two experimental timescales
+## 6. Two experimental timescales
 
 CORA tests one idea at two timescales. They share the idea and share no
 evidence. Results from one are never merged into the other.
@@ -113,15 +313,17 @@ evidence. Results from one are never merged into the other.
       CORA-SCIENCE                      CORA-TTI
       Step B, durable                   task-time, ephemeral
             |                               |
-    historical certified failures       a new task
+    certified historical failures       a new task
             |                               |
-    failure clustering                  K fails
+    62 failure clusters                 K fails
             |                               |
-    frozen candidate extensions         observe the real frontier
+    4,784 frozen candidates             observe the real frontier  [repaired]
             |                               |
-    K + e, exhaustive resolution        construct e  [not implemented]
+    candidate installation              typed failure graph        [measured]
             |                               |
-    capability-growth gate              compile and install e  [not implemented]
+    resolution testing                  constructive AST proposal  [specified only]
+            |                               |
+    frozen capability-growth gate       compile and install e      [specified only]
             |                               |
     bounded semantic separation         reason again, verify
             |                               |
@@ -129,73 +331,75 @@ evidence. Results from one are never merged into the other.
             |                               |
     possible persistent promotion       reset to K
 
-### 4.1 CORA-SCIENCE, Step B
+Status marks: repaired and measured components are implemented and have
+numbers in section 9. Components marked specified only are not implemented
+and are not part of any submitted system.
 
-Purpose: durable capability growth. It asks whether durable machine
-capability growth exists at all under a frozen gate.
+### 6.1 Durable capability growth: CORA-SCIENCE Step B
 
-Step B contains 62 failure clusters and 4,784 frozen candidates, split into
-816 K2 semantic-production candidates and 3,968 K1 repair candidates.
+Step B is not the competition solver. It is an independent experiment asking
+whether a candidate capability deserves to become durable knowledge.
 
-Step B is still running. No semantic result has been inspected. No Step-B
-candidate is used by the ARC delivery sprint. Its verdict remains unknown.
+    certified historical failures -> 62 failure clusters
+      -> 4,784 frozen candidate extensions -> candidate installation
+      -> resolution testing -> frozen capability-growth gate
+      -> bounded semantic separation -> transfer -> possible promotion
 
-Latest recorded checkpoint, not a live claim: K2 at 350 of 497 proposal
-units, runner alive, zero recorded errors, no freeze marker and no final
-output hash. Two phases follow K2, namely K1 and resolution.
+Frozen candidate inventory: 816 K2 semantic-production candidates and 3,968
+K1 repair candidates.
 
-### 4.2 CORA-TTI, ARC delivery
+Latest recorded checkpoint, not a live claim and not an inspection of
+semantics: K2 proposal phase at 350 of 497 units, zero recorded errors, no
+freeze marker and no final output hash.
 
-Purpose: task-local language adaptation. It asks whether failure-driven
-capability construction can run fast enough at test time to improve ARC
-reasoning.
+Step B remains ongoing and has no interpretable semantic verdict at the time
+of this manuscript revision. No Step-B candidate or outcome is used by the
+ARC delivery sprint.
 
-    K -> reason -> fail -> typed failure graph -> construct e
-      -> temporary K + e -> reason again -> verify -> predict -> reset to K
+### 6.2 Task-time language adaptation: CORA-TTI
 
-The task-local extension is discarded after the task and never becomes
-permanent knowledge.
+CORA-TTI asks whether a temporary executable capability can be constructed
+during inference quickly enough to improve ARC performance.
 
-## 5. Implementation status, corrected
+    K -> ordinary reasoning -> failure -> typed failure graph
+      -> constructive AST proposal -> ephemeral K union {e}
+      -> ordinary re-induction -> verification -> prediction -> reset to K
 
-The architecture is largely built. The constructive path is not.
+Step B produces a durable extension. CORA-TTI produces an ephemeral,
+task-local extension that is discarded after the task.
 
-Built and tested: typed failure graph machinery; the constructive vocabulary
-and legal AST grammar; AST canonicalization and token round-trip;
-constructive datasets and holdout machinery; occurrence-scoped fitting; TTI
-orchestration; a Stage-A known-name proposer; exact execution; leave-one-out
-verification; an ablation ledger; scheduler and diversity; ephemeral
-task-local install and reset; a Kaggle emulator.
+## 7. Implementation status, corrected
 
-Two corrections to earlier internal descriptions are recorded here because
-they change what the paper may claim.
+Implemented and tested: typed failure graph infrastructure; the constructive
+grammar and vocabulary; AST canonicalization; occurrence-scoped fitting; TTI
+orchestration; a Stage-A known-name proposal network; exact execution; the
+leave-one-out verifier; an ablation ledger; task-local install and reset
+infrastructure; scheduler and diversity; a Kaggle emulator.
 
-`mdl_fallback_proposer` is not a MetaConstructor. Its contract is a failure
-graph and a count in, existing catalogue production names out, ranked by cost
-and name. That is known-operator reconstruction.
+Two corrections to earlier internal descriptions, recorded because they
+change what may be claimed.
 
-`constructive_vocabulary` defines the law of legal constructive ASTs. It
-answers what constitutes a legal new program. It does not answer which new
-program to construct from a failed trace, and it is not a proposal
-mechanism.
+`mdl_fallback_proposer` is not a MetaConstructor. It ranks existing catalogue
+production names by cost and name and returns the top few. That is
+known-operator reconstruction.
 
-The currently implemented proposal path therefore performs failure to known
-production selection, not failure to unseen executable AST.
+`constructive_vocabulary` defines what a legal constructive AST is. It does
+not decide which new AST should be constructed from a failed trace, and it is
+not a proposal mechanism.
 
-Unfinished and specified only: the grammar-constrained constructive AST
-proposer, and the ConstructiveExtensionCompiler. Neither is implemented.
-Neither is presented here as implemented.
+Not implemented: the grammar-constrained unseen-AST proposer, and the
+ConstructiveExtensionCompiler. Neither is marked complete anywhere in this
+paper or in any figure, and neither is part of the submitted inference
+system.
 
-## 6. Diagnostic result: the failure-frontier audit
+## 8. Diagnostic experiment: the failure-frontier audit
 
-A negative result, reported in full.
+Twelve development tasks were fixed by a rule committed before any result was
+computed: the first twelve task identifiers in ascending order. Only the
+existing failure path was run. Nothing was proposed, constructed, installed
+or scored, and no test outputs were read.
 
-Twelve development tasks were fixed by a selection rule committed before any
-result was computed: the first twelve task identifiers in ascending order.
-Only the existing failure path was run. Nothing was proposed, constructed,
-installed or scored, and no test outputs were read.
-
-On the original instrumented path:
+Original observed channel:
 
 | quantity | value |
 |---|---|
@@ -206,150 +410,154 @@ On the original instrumented path:
 | value signatures | 0 |
 | mismatch signatures | 0 |
 
-On eleven of the twelve tasks the observer census was identical:
+On eleven of twelve tasks the census was identical:
 
     {typed: 2736, slot_fit_failed: 2736}
 
-The twelfth differed only because it hit its deadline. Three unrelated
-synthetic tasks, a tiling, a transpose and a crop, reproduced the same census
-and the same ordered list of frontier programs. Every frontier candidate used
-a single root operator, `PaintEach`, which was the only primitive in the
-eleven-primitive environment that returned a grid.
+The twelfth differed only because it hit its deadline. Three structurally
+unrelated synthetic tasks, a tiling, a transpose and a crop, reproduced the
+same census and the same ordered frontier programs. Every frontier term came
+from a single root, `PaintEach`, the only primitive in that eleven-primitive
+environment returning a grid.
 
-Interpretation: the candidate-associated failure signal was effectively a
-constant of the toy language rather than a function of the ARC task.
+Conclusion: the original candidate-associated evidence was effectively
+invariant to the ARC task. This explains why a prior shuffled-evidence
+control performed similarly to real associated evidence. There was almost no
+task-specific information to destroy.
 
-This retrospectively explains an earlier failure-signal experiment in which
-real candidate-associated evidence and shuffled candidate-associated evidence
-performed about equally well. They performed equally well because the real
-signal carried almost no task-specific information to destroy.
+## 9. Root cause and repair
 
-## 7. Root cause
+### 9.1 Root cause
 
-The thing doing the reasoning was not the thing being observed.
+The thing doing the real ARC reasoning was not the thing being observed.
 
-The original trace observer was attached to an eleven-primitive blind-runtime
-search. The full ARC object reasoner never emitted its internal candidate
-lifecycle to the failure representation. A search of the engine, harness and
-source directories for the observer returned nothing, and the real-engine
-task-local install path contained no reference to the failure graph.
+The trace observer was attached to the restricted eleven-primitive blind
+runtime. The full object reasoner had no equivalent trace path, so the
+failure graph never exposed the semantic frontier of the deployed reasoner.
+The old null result is therefore not evidence that failure-conditioned
+construction is useless.
 
-Classification: no near misses actually generated, with root cause the full
-engine not being instrumented.
+### 9.2 Full-engine observation repair
 
-This does not show that failure-conditioned construction is ineffective. It
-shows that the intended constructor had never been given the actual
-full-engine reasoning frontier.
+The isolated delivery copy of the real object reasoner was instrumented to
+expose its candidate lifecycle: typed, then slot fitting that fails or
+succeeds, then a program that executes non-exactly or exactly. The live
+research engine running Step B was not modified, verified afterwards by
+confirming that the shared failure-graph code and the research engine
+directories were unchanged.
 
-## 8. The full-engine observation repair
+One engine property mattered: the reasoner assembles a program only when every
+object group is explained, so its genuine near misses are the partial
+programs it builds at the failure branch and then discards.
 
-An instrumentation repair, not a new reasoning system. CORA's existing
-reasoner was made observable to CORA's existing failure representation.
+This is instrumentation, not a new solver. Noninterference fixtures require
+that the result with observation equals the result without observation,
+compared on exactness, strategy, training accuracy, leave-one-out score, best
+accuracy, failure stage, pixel fit and both serialized programs. Those
+fixtures passed.
 
-Only the isolated delivery workspace copy was modified. The research engine
-running Step B was untouched, verified afterwards by checking that the shared
-failure-graph code and the research engine directories were unmodified.
+### 9.3 Repaired frontier result
 
-The repair emits the existing candidate lifecycle from the actual object
-reasoner: a typed candidate group, then parameter fitting that either fails
-or succeeds, then an assembled or partial program that either reproduces
-every demonstration or does not.
+Same twelve tasks, same budget, same frontier cap:
 
-One engine property mattered. The reasoner assembles a program only when
-every object group has been explained, so its genuine near misses are the
-partial programs it builds at the failure branch and then discards. Those are
-what had to be observed.
-
-Observation is designed to be noninterfering. Tests verify that installing
-the observer does not change the solver result, comparing exactness,
-strategy, training accuracy, leave-one-out score, best accuracy, failure
-stage, pixel fit and both serialized programs. Candidate ordering, search
-depth, parameter fitting, pruning, acceptance, verifier rules, budgets,
-ranking and language contents are unchanged.
-
-One outcome name was not emitted. The object grammar constructs only
-well-typed rules, so there is no program-level typecheck rejection to
-observe, and the name was reported as unmapped rather than redefined.
-Selector-induction failure is a real engine state that no existing outcome
-name describes, and it was left unnamed for the same reason.
-
-## 9. Repaired-frontier result
-
-Across the same frozen twelve-task audit, same budget, same frontier cap,
-same thresholds:
-
-| quantity | original channel | repaired channel |
+| quantity | original | repaired |
 |---|---|---|
 | candidate events | 64,610 | 494 |
 | identical census across unrelated tasks | yes | no |
 | distinct frontier operator families | 1 | 12 |
-| tasks with at least two frontier terms | 12, all identical | 9 |
 | parameter-fitting successes | 0 | 62 |
 | executed-but-non-exact candidates | 0 | 36 |
 | exact candidates | 0 | 7 |
 
-Task-dependent frontier operators included grow, translate, copy, copy_part,
-composite, paint and keep, in place of one invariant operator.
+Observed operator families included grow, translate, copy, copy_part,
+composite, paint and keep, in place of one invariant operator. Three of the
+twelve tasks emit nothing, because the engine gives up before rule induction;
+that is a property of the engine on those tasks, not a trace defect.
 
-Three of the twelve tasks emit nothing. On those the engine gives up before
-rule induction, at segmentation or matching, so there is no candidate to
-observe. That is a property of the engine on those tasks, not a trace defect.
-
-## 10. Candidate-executor compatibility repair
+### 9.4 Candidate-executor compatibility
 
 The repaired producer recorded fitted, executable object programs, but the
-failure-graph consumer still evaluated every candidate with the
-blind-runtime evaluator, which cannot execute them. Evaluation raised, the
-exception was caught, and every value signature degraded to undefined. The
-channel was therefore classified PARTIAL at that point: the evidence existed
-at the producer and did not reach the graph.
+failure-graph consumer still evaluated every candidate with the blind-runtime
+evaluator, which cannot execute that representation. Every value signature
+degraded to undefined, so the evidence existed at the producer and did not
+reach the graph. At that point the channel was classified PARTIAL.
 
 The compatibility repair adds one optional evaluator parameter to the graph
 builder, defaulting to the previous behaviour, so the builder asks which
-executor owns a candidate instead of assuming every candidate belongs to the
-old runtime. The full-engine adapter supplies the engine's own renderer. It
-changes only how an already-observed candidate is executed for diagnostic
-evidence. It does not change search, candidate generation, candidate
-ordering, fitting, grammar, verifier, acceptance, budgets, Step B, or the
-research tree. The change was made on a vendored copy inside the delivery
-workspace, with the source checksum recorded, because the research worktree
-is frozen.
+executor owns a candidate rather than assuming every candidate belongs to the
+old runtime. The adapter supplies the engine's own renderer. It changes only
+how an already-observed candidate is executed for diagnostic evidence, and
+changes nothing about search, candidate generation, ordering, fitting,
+grammar, verifier, acceptance, budgets, Step B or the research tree. It is a
+compatibility seam inside CORA-TTI, not another architecture, another solver,
+another language or semantic invention.
 
-Measured outcome, same twelve tasks, threshold fixed in advance and not
-reinterpreted:
+Measured, same twelve tasks, threshold fixed in advance:
 
-| quantity | before compatibility repair | after |
+| quantity | before | after |
 |---|---|---|
 | defined value signatures in the graph | 0 | 18 |
 | tasks with at least two frontier terms | 9 of 12 | 9 of 12 |
-| tasks with defined candidate-associated mismatch evidence | 0 of 12 | 8 of 12 |
+| tasks with defined candidate-associated evidence | 0 of 12 | 8 of 12 |
 | tasks meeting both preregistered conditions | 0 of 12 | 8 of 12 |
 
-The preregistered threshold for an informative channel was at least eight of
-twelve tasks meeting both conditions. The repaired channel meets it at
-exactly eight, and the result was identical across three independent runs.
-A representative recorded signature is a candidate that matched the target
-shape with 64 cells wrong, a wrong fraction of 0.16 and no extra palette
-entries.
+The preregistered diagnostic threshold was at least eight of twelve on both
+conditions jointly, so the repaired channel is classified INFORMATIVE. The
+verdict was identical across three independent runs.
 
-Two cautions belong with this number. It sits exactly at the threshold rather
-than comfortably above it, and the qualifying set is the same eight tasks the
-producer-side probe had already identified, so the repair transported
-existing evidence rather than creating new evidence. The three tasks that
-emit nothing cannot qualify under any repair of this kind.
+Three cautions belong with that classification. It sits exactly at the
+threshold rather than comfortably above it. The qualifying eight tasks are
+the same eight the producer-side probe had already identified, so the repair
+transported existing evidence rather than creating new evidence. And this is
+a classification of a diagnostic channel only. It is not a capability result,
+and nothing about construction, reach or score follows from it.
 
-## 11. What has not been tested
+## 10. Completeness: the submitted system end to end
 
-CORA has not demonstrated on real ARC any of the following:
+The submitted ARC-AGI-2 inference system, as it stands, is:
 
-- autonomous construction of an unseen AST from a real failure graph;
-- a ConstructiveExtensionCompiler operating end to end;
-- a clean constructive reach gain;
-- bounded semantic extension from the task-time path;
-- transferred semantic invention from the task-time path.
+1. input demonstrations are read from the challenge JSON;
+2. perception segments each grid into objects under several segmentation
+   variants;
+3. ordinary induction runs three layers, building correspondences, selectors
+   and parameterized actions;
+4. failure detection records the stage at which induction gave up;
+5. failure representation builds the typed failure graph from the observed
+   candidate lifecycle;
+6. candidate generation assembles programs from induced rules;
+7. parameter fitting fits typed parameter expressions per object group;
+8. exact execution renders a program on every demonstration;
+9. leave-one-out verification re-runs the entire learning procedure from all
+   demonstrations but one and requires it to re-derive a program that solves
+   the held-out example, for every fold;
+10. output selection ranks certified programs;
+11. the two-attempt policy emits a certified attempt one and a complementary
+    uncertified attempt two;
+12. a global time-budget governor rescales per-task budgets against remaining
+    wall clock;
+13. the submission writer emits `submission.json` covering every task id and
+    every test-output position;
+14. a failure fallback guarantees two syntactically valid attempts for every
+    task, so no task id is ever missing.
 
-These are prospective experiments. No placeholder in this manuscript is to be
-read as an observation.
+Steps 5 and the observation repair are research instrumentation. The
+constructive AST proposer and the extension compiler are absent from the
+notebook and are labelled ongoing research throughout. If they remain absent
+at code freeze they stay labelled that way, and no part of the leaderboard
+result may be attributed to them.
+
+## 11. ARC-AGI-2 submission architecture
+
+The notebook runs inside twelve hours on CPU or GPU with no internet, and
+emits `submission.json` containing every task id, every test-output position,
+and both attempts.
+
+Attempt one carries the strongest evidence-supported output under the frozen
+final policy. Attempt two is chosen to maximize genuine complementary
+probability of correctness rather than to be merely syntactically different.
+
+Reported for the final run: pass@1, pass@2, attempt-two rescue count,
+runtime, task failures and resource exhaustion. All are currently unmeasured.
 
 ## 12. Claim ladder
 
@@ -361,114 +569,128 @@ read as an observation.
 - L4, bounded semantic invention: L3 together with causal new reach and
   independent transfer.
 
-## 13. Six-leg causal witness
+## 13. Strong causal witness
 
-A strong capability-growth witness requires all six legs:
+All six legs are required before anything is called a strong
+capability-growth witness:
 
 - B: the baseline language fails;
 - P: the extension is produced;
-- U: the winning reasoning path uses it;
+- U: the winning program uses it;
 - L: full adaptive leave-one-out passes;
-- T: the final output is correct;
+- T: the final output is exactly correct;
 - A: removing the extension destroys the gain.
 
 The comparison must be genuinely additive, with matched solver conditions and
-resource accounting. This standard governs Step B and the future constructive
-test-time experiment alike.
+resource accounting.
 
-## 14. The controlled comparison
+## 14. Results
 
-BASE, BASE_PLUS_INTERVENTION, MATCHED_EXPANDED_SEARCH and ABLATION, under one
-fixed budget and a schedule frozen before scoring. Paired wins and losses are
-reported, never a net figure.
+### Table A: current evidence
 
-## 15. Results table
+| line of evidence | result |
+|---|---|
+| search and prior transfer | transfer observed; no reach gain |
+| selection transfer | observed; no reach gain |
+| learned-prior replication | not robustly replicated |
+| bounded reach across policies | identical, 188 of 256 targets |
+| previous task-time comparison | non-additive, infrastructure evidence only |
+| original frontier audit | EMPTY_OR_UNUSABLE, task-invariant census |
+| repaired frontier audit | INFORMATIVE, 8 of 12, stable across 3 runs |
+| Step-B state | ongoing, K2 at 350 of 497 recorded, no verdict |
 
-Entries not yet measured say so. They are not reported as zero.
+### Table B: final ARC submission results
 
 | quantity | value |
 |---|---|
-| BASE pass@1 | NOT YET MEASURED |
-| BASE pass@2 | NOT YET MEASURED |
-| TTI pass@1 | NOT YET MEASURED |
-| TTI pass@2 | NOT YET MEASURED |
-| second-answer rescues | NOT YET MEASURED |
+| pass@1 | NOT YET MEASURED |
+| pass@2 | NOT YET MEASURED |
+| attempt-two rescues | NOT YET MEASURED |
 | construction activations | NOT YET MEASURED |
-| successful constructions | NOT YET MEASURED |
-| constructive reach witnesses | NOT YET MEASURED |
-| semantic-separation witnesses | NOT YET MEASURED |
+| constructive reach gains | NOT YET MEASURED |
+| semantic-extension witnesses | NOT YET MEASURED |
 | transferred witnesses | NOT YET MEASURED |
 | tasks harmed | NOT YET MEASURED |
-| timeout and resource failures | NOT YET MEASURED |
-| end-to-end runtime | NOT YET MEASURED |
+| runtime | NOT YET MEASURED |
+| timeouts and resource exhaustion | NOT YET MEASURED |
 
-## 16. The engineering rehearsal, kept in its place
+Unknown quantities are never written as zero.
 
-A five-task rehearsal of the previous library version was a baseline and
-engineering measurement only. It established that packaging works, that the
-submission schema works, that the global time governor binds but showed an
-overrun, that the previous version solved none of the five, and that some
-failures reached the leave-one-out or matching stages. It did not test
-failure-conditioned semantic construction.
-
-Relational parameter fitting was provisionally selected after that
-diagnostic. It is no longer the primary scientific treatment and may return
-later as an inner slot fitter. This history is kept rather than erased.
-
-## 17. Preserved negative results
+## 15. Preserved negative results
 
 - A learned-prior study did not robustly beat concrete memory, and every
-  compared policy had the same bounded search reach, so no reach witness was
-  established there.
-- An earlier development-set comparison of the task-time path was not
-  additive, so it is infrastructure evidence only.
+  compared policy had the same bounded reach, so no reach witness existed.
+- An earlier task-time comparison was not additive and is infrastructure
+  evidence only.
 - The first proposal network performed known-name reconstruction.
 - The first constructive census admitted nothing.
 - The corrected census admitted thirteen supplied candidate structures, which
   are not thirteen autonomous inventions.
-- The original failure channel carried no task-conditioned candidate
-  evidence, as reported in section 6.
+- The original failure channel carried no task-conditioned evidence.
+- A five-task rehearsal of the previous library version was engineering only:
+  packaging and schema worked, the governor bound but overran, the previous
+  version solved none of the five, and some failures reached the
+  leave-one-out or matching stages. Relational parameter fitting was
+  provisionally selected after that diagnostic and is no longer the primary
+  scientific treatment; it may return later as an inner fitter.
 
-These negatives are what keep selection, search, operational extension and
-semantic capability growth separate in this paper.
+## 16. Novelty and related work
 
-## 18. Why it helps or fails
+CORA is not claimed to be the first program-library learner, the first
+system to invent operators, the first adaptive symbolic solver or the first
+self-extending system. No precedence wording is used without a current
+primary-source check.
 
-The diagnosis table: no useful candidate; candidate present but not selected;
-demonstration-fitting but wrong; verification rejection; resource
-exhaustion; packaging loss.
+The novelty case is the conjunction: reasoning failure, to mechanistic
+failure evidence, to an executable candidate extension, to an additive
+comparison of the language with and without it, to adaptive leave-one-out, to
+causal removal, to bounded semantic separation, to independent transfer, to
+promotion controlled by an immutable verifier.
 
-## 19. Limitations
+Related work to be discussed and distinguished: DreamCoder, LILO, predicate
+invention and POPPI, AlphaEvolve, program synthesis and library learning, and
+relevant non-LLM ARC methods. This section is the bibliography stub; no
+formal bibliography file exists yet.
 
-Certification does not transfer off distribution: 40 of 42 on training
-against 0 of 11 on the evaluation development split. No training-set headline
-number appears in the results section. The frontier audit measured twelve
-tasks, which is a small and deliberately fixed sample. The informative
-classification sits exactly at its threshold. The blind runtime's top-level
-enumeration still admits only goal-typed candidates, so a type gap cannot be
-represented there; that limitation was deliberately left unrepaired so that
-only one variable moved at a time.
+## 17. Limitations
 
-## 20. Related work
+- The public ARC score may remain low, and it is not yet measured.
+- Verification has shown poor off-distribution calibration in previous
+  measurements: 40 of 42 on training against 0 of 11 on the evaluation
+  development split.
+- The repaired failure evidence has not yet produced any autonomous
+  unseen-AST capability.
+- The constructive AST proposer is unfinished.
+- The extension compiler is unfinished.
+- Step B has no verdict.
+- The informative classification rests on twelve tasks and sits exactly at
+  its threshold.
+- Three of those twelve tasks emit no candidates at all, and no repair of
+  this kind can change that.
+- Bounded semantic separation does not establish universal non-definability.
+- ARC results alone do not establish general intelligence.
 
-DreamCoder, LILO, predicate invention and POPPI, AlphaEvolve, program
-synthesis and library learning, and relevant non-LLM ARC systems.
+## 18. Cover figure specification
 
-CORA is not claimed to be the first system to invent operations or to grow a
-program library. The novelty case is the conjunction: reasoning failure, to
-typed and mechanistic failure evidence, to an executable language extension,
-to an additive comparison of the language with and without it, to adaptive
-leave-one-out, to causal ablation, to bounded semantic separation, to
-independent transfer, to promotion controlled by an immutable verifier. No
-precedence wording is used without a fresh primary-source check.
+One figure. Left panel: fixed K reasoning reaching failure. Centre panel: the
+semantic failure frontier and the typed failure graph. Right panel: temporary
+K plus e reasoning again. Below, two paths: Step B leading to durable
+promotion, and CORA-TTI leading to a task-local reset.
 
-## 21. Relationship to Step B in this paper
+Every component carries a visual status label: measured, ongoing, or
+specified only. Unfinished components must not appear complete. Specification
+kept in `kaggle/COVER_IMAGE_SPEC.md`.
 
-This manuscript stands without Step B. Step B is named as ongoing, with no
-semantic verdict and no partial candidates or outcomes used. If Step B
-finishes later, its result is incorporated only after its frozen gate permits
-interpretation, and only as a separate durable-capability-growth section.
+## 19. Release and open-source checklist
+
+Prize eligibility requires appropriate open sourcing of the solution
+artifacts. Before any public release: remove protected research artifacts,
+remove private data, remove all Step-B sealed material, verify licenses,
+verify that no secret tokens or private paths remain, and verify notebook
+dependencies resolve with the internet disabled. Nothing is published
+automatically.
 
 ## Out of scope
 
-The capability-growth gate internals, VDCG and biological applications.
+Capability-growth gate internals, the parallel verified-capability scaling
+project, and biological applications.
