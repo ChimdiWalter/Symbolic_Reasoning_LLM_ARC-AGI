@@ -55,15 +55,41 @@ evidence differs substantially. The unfitted evidence prior saturates.
 Nothing was tuned after seeing this. Full record:
 `records/PROPOSER_BLOCK_20260923.md`.
 
-## Next action, exactly one
+## The scorer fit is BLOCKED
 
-Fit the scorer weights on the existing constructive dataset, per the frozen
-model specification in the manifest: TFG encoder, interface embedding,
-grammar-constrained decoder, non-LLM, hidden at most 256, stopping at 2000
-epochs or a 200-epoch plateau in validation exact@5. The scorer already
-exposes a `weights` mapping, so fitting changes no interface. Afterwards
-re-run the same controls and the same smoke test and require the rank-one
-candidate to vary where the evidence varies.
+Attempted and stopped. Full record: `records/SCORER_FIT_BLOCKED_20260923.md`.
+
+There is no corpus of informative-failure-graph to target-AST pairs, and none
+can be produced under the frozen v1.1 admission law.
+
+1. The v1.1 pilot generated all 60 slots on 2026-09-04 and admitted ZERO of
+   1,500 attempted targets. Its own recorded root cause is structural: R4 and
+   R5 are mutually exclusive, because the sole registered slot learner and the
+   fixed base search enumerate the same 200-triple product. Of 266 family-(2,)
+   targets passing R5, 262 were base-search-solved. A second recorded blocker
+   kills families with no Select stage, which includes two frozen train
+   families.
+2. The only verified admitted episodes, the 13 in the corrected v2 census,
+   each contain ZERO frontier_term nodes. They came from the proxy runtime,
+   which is the exact defect repaired earlier. They are also protocol v2 with
+   no recorded protocol hash, and 13 is far too few. The reconstruction
+   directories were audited and downgraded earlier and are not evidence.
+
+Real ARC failures now give informative graphs but carry no target AST, and no
+hidden answer may be read to supply one.
+
+## Next action, exactly one, and it needs your decision
+
+Propose and freeze a v1.2 amendment regenerating the constructive corpus
+through the repaired full-engine observation path. It must fix, before
+generation: how R4 and R5 become jointly satisfiable; that episode graphs come
+from the deployed reasoner so the frontier is non-empty by construction, with
+the twelve-entry feature allowlist extended to the repaired channel's
+evidence; and whether Select-free families leave the train list or the
+induction path that refuses them changes.
+
+Those are protocol changes and scientific choices. I have not made any of
+them.
 
 The ConstructiveExtensionCompiler stays a separate responsibility and remains
 SPECIFIED_ONLY. Do not merge the two. Data-consumption order is fixed in

@@ -630,9 +630,15 @@ is a perception and correspondence limit rather than a language limit.
 - An earlier task-time comparison was not additive, so activation counts
   could not be read as evidence. Architecture must be tested causally.
 - The first proposal network performed known-name reconstruction.
-- The first constructive census admitted nothing.
+- The first constructive census admitted nothing, and its own recorded root
+  cause shows it cannot: the registered slot learner and the fixed base
+  search enumerate the same product, so any target the learner can fit is
+  already reachable by the baseline. Zero of 1,500 attempted targets were
+  admitted.
 - The corrected census admitted thirteen supplied candidate structures, which
-  are not thirteen autonomous inventions.
+  are not thirteen autonomous inventions. Every one of those thirteen carries
+  an empty failure frontier, so they also predate the observation repair and
+  cannot supervise a failure-conditioned proposer.
 - The original failure channel carried no task-conditioned evidence.
 - A five-task rehearsal of the previous library version was engineering only:
   packaging and schema worked, the governor bound but overran, the previous
