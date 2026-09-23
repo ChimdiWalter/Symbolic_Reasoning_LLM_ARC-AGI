@@ -4,17 +4,35 @@ One figure, for the Kaggle Media Gallery. Build script: `kaggle/cover_image.py`.
 
 ## Layout
 
-Three panels left to right, one band underneath.
+One vertical flow, with the two timescales branching underneath.
 
-    +----------------------+  +----------------------+  +----------------------+
-    | fixed K reasons      |  | semantic failure     |  | temporary K + e      |
-    | and reaches failure  |  | frontier, the typed  |  | reasons again        |
-    |                      |  | failure graph        |  |                      |
-    | [MEASURED]           |  | [MEASURED, REPAIRED] |  | [SPECIFIED ONLY]     |
-    +----------------------+  +----------------------+  +----------------------+
+    INPUT TASK
+        |
+        v
+    FIXED-LANGUAGE CORA, K                      [IMPLEMENTED]
+        |
+        +---- solve ----> prediction
+        |
+        +---- fail
+               |
+               v
+        SEMANTIC FAILURE FRONTIER               [REPAIRED, MEASURED]
+               |
+               v
+        CONSTRUCT e                             [SPECIFIED ONLY]
+               |
+               v
+           K + {e}                              [SPECIFIED ONLY]
+               |
+               v
+        VERIFY and ABLATE                       [IMPLEMENTED]
+               |
+               v
+           prediction
 
-    Step B, durable promotion path            CORA-TTI, task-local reset path
-    [ONGOING, NO VERDICT]                     [PARTIALLY IMPLEMENTED]
+    CORA-TTI: temporary e, then reset           [PARTIALLY IMPLEMENTED]
+    Step B:   verified transferable e,          [ONGOING, NO VERDICT]
+              then durable promotion
 
 ## Status labels
 
@@ -25,14 +43,14 @@ style so an unfinished component can never read as complete:
 - ONGOING: running, no interpretable result.
 - SPECIFIED ONLY: designed and not implemented.
 
-The right panel is SPECIFIED ONLY, because the constructive AST proposer and
-the extension compiler are not implemented. It must not be drawn in the same
-style as the left and centre panels.
+The construct and install steps are SPECIFIED ONLY, because the constructive
+AST proposer and the extension compiler are not implemented. They must not be
+drawn in the same style as the implemented and measured steps.
 
 ## Content notes
 
-The centre panel is the honest centre of the paper: the frontier is what was
-broken, diagnosed and repaired. It may show the before and after contrast,
-one invariant operator against twelve task-dependent operator families.
+The frontier node is the honest centre of the paper: it is what was broken,
+diagnosed and repaired. It may carry the before and after contrast, one
+invariant operator against twelve task-dependent operator families.
 
 No score appears on the cover. No claim of invention appears on the cover.
