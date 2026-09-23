@@ -47,3 +47,14 @@ leading candidate for that link, and the audit adds a second candidate: the loop
 proposer returns registry names, not constructed ASTs. The five-task v23 rehearsal remains
 BASELINE and ENGINEERING evidence only. Relational parameter fitting is no longer the
 primary intervention and may serve later as an inner slot fitter. No earlier record is erased.
+
+---
+
+## Correction, 2026-09-23 (second)
+
+The status rows in this file and in `FEATURE_INVENTORY_20260923.md` are
+superseded by `records/IMPLEMENTATION_MATRIX_CORRECTED_20260923.md`.
+`mdl_fallback_proposer` ranks existing catalogue names and is not a
+MetaConstructor. `constructive_vocabulary.py` is the grammar law, not a
+proposal mechanism. Measured failure-channel status is in
+`records/FRONTIER_AUDIT_20260923.md`.
