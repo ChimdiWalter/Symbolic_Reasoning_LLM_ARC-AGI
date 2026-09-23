@@ -1,0 +1,787 @@
+{
+ "selection": "first 12 dev60 ids, ascending",
+ "channel": "repaired full-engine trace",
+ "budget_s": 8.0,
+ "event_mapping": {
+  "typed": "a delta group is formed and enters rule induction",
+  "slot_fit_failed": "_induce_action_for_group returned None (FailureStage.PARAMETER)",
+  "slot_fit_ok": "selector and action both induced; ObjectRule complete",
+  "executed_not_exact": "assembled program rendered on every train pair and is not train-perfect",
+  "exact": "assembled program rendered on every train pair and is train-perfect"
+ },
+ "unmapped": {
+  "typecheck_failed": "the object grammar constructs only well-typed rules, so no program-level typecheck rejection exists to observe",
+  "selector_failed": "_induce_selector_for returned None; a real engine state that no existing outcome name describes"
+ },
+ "records": [
+  {
+   "task_id": "13e47133",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 1.091,
+   "observer_candidate_events": 24,
+   "observer_census": {
+    "typed": 12,
+    "slot_fit_failed": 12
+   },
+   "frontier_eligible_events": 12,
+   "frontier_eligible_distinct_asts": 5,
+   "truncations": [],
+   "total_tfg_nodes": 18,
+   "node_kinds": {
+    "delta_signature": 3,
+    "frontier_term": 5,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1,
+    "shape_change": 3,
+    "slot": 2
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 5,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:keep",
+    "group:paint"
+   ],
+   "frontier_distinct_asts": 5,
+   "executed_nonexact_in_frontier": 0,
+   "slot_failed_in_frontier": 5,
+   "typed_events": 12,
+   "slot_fit_ok_events": 0,
+   "executed_not_exact_events": 0,
+   "exact_events": 0,
+   "value_signature_nodes": 0,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 0,
+   "engine_value_evidence_defined": 0,
+   "engine_value_evidence_sample": [],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 3,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 2,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "142ca369",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 8.029,
+   "observer_candidate_events": 49,
+   "observer_census": {
+    "typed": 24,
+    "slot_fit_failed": 21,
+    "slot_fit_ok": 2,
+    "executed_not_exact": 2
+   },
+   "frontier_eligible_events": 23,
+   "frontier_eligible_distinct_asts": 13,
+   "truncations": [],
+   "total_tfg_nodes": 27,
+   "node_kinds": {
+    "delta_signature": 3,
+    "frontier_term": 12,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1,
+    "shape_change": 3,
+    "slot": 3,
+    "value_signature": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 12,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:grow",
+    "group:keep",
+    "prog:delete"
+   ],
+   "frontier_distinct_asts": 12,
+   "executed_nonexact_in_frontier": 1,
+   "slot_failed_in_frontier": 11,
+   "typed_events": 24,
+   "slot_fit_ok_events": 2,
+   "executed_not_exact_events": 2,
+   "exact_events": 0,
+   "value_signature_nodes": 1,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 1,
+   "engine_value_evidence_defined": 1,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 64,
+     "fraction_wrong": 0.16,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 3,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 3,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "16b78196",
+   "n_demonstrations": 2,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 9.463,
+   "observer_candidate_events": 120,
+   "observer_census": {
+    "typed": 53,
+    "slot_fit_ok": 28,
+    "slot_fit_failed": 23,
+    "executed_not_exact": 9,
+    "exact": 7
+   },
+   "frontier_eligible_events": 32,
+   "frontier_eligible_distinct_asts": 18,
+   "truncations": [],
+   "total_tfg_nodes": 27,
+   "node_kinds": {
+    "delta_signature": 2,
+    "frontier_term": 12,
+    "goal": 1,
+    "palette_change": 2,
+    "execution": 1,
+    "shape_change": 2,
+    "slot": 2,
+    "value_signature": 5
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 12,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:grow",
+    "group:translate",
+    "prog:delete",
+    "prog:keep",
+    "prog:keep+translate"
+   ],
+   "frontier_distinct_asts": 12,
+   "executed_nonexact_in_frontier": 5,
+   "slot_failed_in_frontier": 7,
+   "typed_events": 53,
+   "slot_fit_ok_events": 28,
+   "executed_not_exact_events": 9,
+   "exact_events": 7,
+   "value_signature_nodes": 5,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 5,
+   "engine_value_evidence_defined": 5,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 111,
+     "fraction_wrong": 0.1233,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 71,
+     "fraction_wrong": 0.0789,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 111,
+     "fraction_wrong": 0.1233,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 2,
+   "shape_change_nodes": 2,
+   "delta_signature_nodes": 2,
+   "slot_aggregate_nodes": 2,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "195c6913",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 14.968,
+   "observer_candidate_events": 95,
+   "observer_census": {
+    "typed": 43,
+    "slot_fit_ok": 11,
+    "slot_fit_failed": 31,
+    "executed_not_exact": 10
+   },
+   "frontier_eligible_events": 41,
+   "frontier_eligible_distinct_asts": 19,
+   "truncations": [],
+   "total_tfg_nodes": 29,
+   "node_kinds": {
+    "delta_signature": 3,
+    "frontier_term": 12,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1,
+    "shape_change": 3,
+    "slot": 3,
+    "value_signature": 3
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 12,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:keep",
+    "prog:delete"
+   ],
+   "frontier_distinct_asts": 12,
+   "executed_nonexact_in_frontier": 3,
+   "slot_failed_in_frontier": 9,
+   "typed_events": 43,
+   "slot_fit_ok_events": 11,
+   "executed_not_exact_events": 10,
+   "exact_events": 0,
+   "value_signature_nodes": 3,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 3,
+   "engine_value_evidence_defined": 3,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 126,
+     "fraction_wrong": 0.315,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 126,
+     "fraction_wrong": 0.315,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 53,
+     "fraction_wrong": 0.1325,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 3,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 3,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "20270e3b",
+   "n_demonstrations": 4,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 0.048,
+   "observer_candidate_events": 0,
+   "observer_census": {},
+   "frontier_eligible_events": 0,
+   "frontier_eligible_distinct_asts": 0,
+   "truncations": [],
+   "total_tfg_nodes": 10,
+   "node_kinds": {
+    "delta_signature": 4,
+    "goal": 1,
+    "palette_change": 4,
+    "execution": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 0,
+   "frontier_result_types": [],
+   "frontier_outcomes": [],
+   "frontier_ops": [],
+   "frontier_distinct_asts": 0,
+   "executed_nonexact_in_frontier": 0,
+   "slot_failed_in_frontier": 0,
+   "typed_events": 0,
+   "slot_fit_ok_events": 0,
+   "executed_not_exact_events": 0,
+   "exact_events": 0,
+   "value_signature_nodes": 0,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 0,
+   "engine_value_evidence_defined": 0,
+   "engine_value_evidence_sample": [],
+   "palette_change_nodes": 4,
+   "shape_change_nodes": 0,
+   "delta_signature_nodes": 4,
+   "slot_aggregate_nodes": 0,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "20a9e565",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 0.121,
+   "observer_candidate_events": 0,
+   "observer_census": {},
+   "frontier_eligible_events": 0,
+   "frontier_eligible_distinct_asts": 0,
+   "truncations": [],
+   "total_tfg_nodes": 8,
+   "node_kinds": {
+    "delta_signature": 3,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 0,
+   "frontier_result_types": [],
+   "frontier_outcomes": [],
+   "frontier_ops": [],
+   "frontier_distinct_asts": 0,
+   "executed_nonexact_in_frontier": 0,
+   "slot_failed_in_frontier": 0,
+   "typed_events": 0,
+   "slot_fit_ok_events": 0,
+   "executed_not_exact_events": 0,
+   "exact_events": 0,
+   "value_signature_nodes": 0,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 0,
+   "engine_value_evidence_defined": 0,
+   "engine_value_evidence_sample": [],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 0,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 0,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "221dfab4",
+   "n_demonstrations": 2,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 7.669,
+   "observer_candidate_events": 33,
+   "observer_census": {
+    "typed": 16,
+    "slot_fit_failed": 13,
+    "slot_fit_ok": 2,
+    "executed_not_exact": 2
+   },
+   "frontier_eligible_events": 15,
+   "frontier_eligible_distinct_asts": 9,
+   "truncations": [],
+   "total_tfg_nodes": 23,
+   "node_kinds": {
+    "delta_signature": 2,
+    "frontier_term": 9,
+    "goal": 1,
+    "palette_change": 2,
+    "execution": 1,
+    "shape_change": 2,
+    "slot": 5,
+    "value_signature": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 9,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:copy",
+    "group:copy_part",
+    "group:keep",
+    "group:paint",
+    "group:translate",
+    "prog:rotate"
+   ],
+   "frontier_distinct_asts": 9,
+   "executed_nonexact_in_frontier": 1,
+   "slot_failed_in_frontier": 8,
+   "typed_events": 16,
+   "slot_fit_ok_events": 2,
+   "executed_not_exact_events": 2,
+   "exact_events": 0,
+   "value_signature_nodes": 1,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 1,
+   "engine_value_evidence_defined": 1,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 104,
+     "fraction_wrong": 0.163,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 2,
+   "shape_change_nodes": 2,
+   "delta_signature_nodes": 2,
+   "slot_aggregate_nodes": 5,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "247ef758",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 1.164,
+   "observer_candidate_events": 8,
+   "observer_census": {
+    "typed": 4,
+    "slot_fit_failed": 2,
+    "slot_fit_ok": 1,
+    "executed_not_exact": 1
+   },
+   "frontier_eligible_events": 3,
+   "frontier_eligible_distinct_asts": 3,
+   "truncations": [],
+   "total_tfg_nodes": 17,
+   "node_kinds": {
+    "delta_signature": 3,
+    "frontier_term": 3,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1,
+    "shape_change": 3,
+    "slot": 2,
+    "value_signature": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 3,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:copy_part",
+    "group:keep",
+    "prog:grow"
+   ],
+   "frontier_distinct_asts": 3,
+   "executed_nonexact_in_frontier": 1,
+   "slot_failed_in_frontier": 2,
+   "typed_events": 4,
+   "slot_fit_ok_events": 1,
+   "executed_not_exact_events": 1,
+   "exact_events": 0,
+   "value_signature_nodes": 1,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 1,
+   "engine_value_evidence_defined": 1,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 27,
+     "fraction_wrong": 0.125,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 3,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 2,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "269e22fb",
+   "n_demonstrations": 5,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 0.176,
+   "observer_candidate_events": 0,
+   "observer_census": {},
+   "frontier_eligible_events": 0,
+   "frontier_eligible_distinct_asts": 0,
+   "truncations": [],
+   "total_tfg_nodes": 12,
+   "node_kinds": {
+    "delta_signature": 5,
+    "goal": 1,
+    "palette_change": 5,
+    "execution": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 0,
+   "frontier_result_types": [],
+   "frontier_outcomes": [],
+   "frontier_ops": [],
+   "frontier_distinct_asts": 0,
+   "executed_nonexact_in_frontier": 0,
+   "slot_failed_in_frontier": 0,
+   "typed_events": 0,
+   "slot_fit_ok_events": 0,
+   "executed_not_exact_events": 0,
+   "exact_events": 0,
+   "value_signature_nodes": 0,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 0,
+   "engine_value_evidence_defined": 0,
+   "engine_value_evidence_sample": [],
+   "palette_change_nodes": 5,
+   "shape_change_nodes": 0,
+   "delta_signature_nodes": 5,
+   "slot_aggregate_nodes": 0,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "271d71e2",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 8.03,
+   "observer_candidate_events": 67,
+   "observer_census": {
+    "typed": 33,
+    "slot_fit_failed": 28,
+    "slot_fit_ok": 4,
+    "executed_not_exact": 2
+   },
+   "frontier_eligible_events": 30,
+   "frontier_eligible_distinct_asts": 13,
+   "truncations": [],
+   "total_tfg_nodes": 29,
+   "node_kinds": {
+    "delta_signature": 3,
+    "frontier_term": 12,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1,
+    "shape_change": 3,
+    "slot": 4,
+    "value_signature": 2
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 12,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:composite",
+    "group:grow",
+    "group:keep",
+    "group:translate",
+    "prog:keep"
+   ],
+   "frontier_distinct_asts": 12,
+   "executed_nonexact_in_frontier": 2,
+   "slot_failed_in_frontier": 10,
+   "typed_events": 33,
+   "slot_fit_ok_events": 4,
+   "executed_not_exact_events": 2,
+   "exact_events": 0,
+   "value_signature_nodes": 2,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 2,
+   "engine_value_evidence_defined": 2,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 20,
+     "fraction_wrong": 0.3125,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 20,
+     "fraction_wrong": 0.3125,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 3,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 4,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "28a6681f",
+   "n_demonstrations": 3,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 0.75,
+   "observer_candidate_events": 73,
+   "observer_census": {
+    "typed": 33,
+    "slot_fit_ok": 11,
+    "slot_fit_failed": 22,
+    "executed_not_exact": 7
+   },
+   "frontier_eligible_events": 29,
+   "frontier_eligible_distinct_asts": 13,
+   "truncations": [],
+   "total_tfg_nodes": 28,
+   "node_kinds": {
+    "delta_signature": 3,
+    "frontier_term": 12,
+    "goal": 1,
+    "palette_change": 3,
+    "execution": 1,
+    "shape_change": 3,
+    "slot": 2,
+    "value_signature": 3
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 12,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:grow",
+    "group:keep",
+    "prog:grow",
+    "prog:keep"
+   ],
+   "frontier_distinct_asts": 12,
+   "executed_nonexact_in_frontier": 3,
+   "slot_failed_in_frontier": 9,
+   "typed_events": 33,
+   "slot_fit_ok_events": 11,
+   "executed_not_exact_events": 7,
+   "exact_events": 0,
+   "value_signature_nodes": 3,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 3,
+   "engine_value_evidence_defined": 3,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 8,
+     "fraction_wrong": 0.08,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 8,
+     "fraction_wrong": 0.08,
+     "palette_extra": 0
+    },
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 8,
+     "fraction_wrong": 0.08,
+     "palette_extra": 0
+    }
+   ],
+   "palette_change_nodes": 3,
+   "shape_change_nodes": 3,
+   "delta_signature_nodes": 3,
+   "slot_aggregate_nodes": 2,
+   "cause_nodes": 0
+  },
+  {
+   "task_id": "2b83f449",
+   "n_demonstrations": 2,
+   "baseline_failure": true,
+   "solved_by_full_engine": false,
+   "extraction_seconds": 8.17,
+   "observer_candidate_events": 25,
+   "observer_census": {
+    "typed": 13,
+    "slot_fit_ok": 3,
+    "slot_fit_failed": 6,
+    "executed_not_exact": 3
+   },
+   "frontier_eligible_events": 9,
+   "frontier_eligible_distinct_asts": 5,
+   "truncations": [],
+   "total_tfg_nodes": 15,
+   "node_kinds": {
+    "delta_signature": 2,
+    "frontier_term": 5,
+    "goal": 1,
+    "palette_change": 2,
+    "execution": 1,
+    "shape_change": 2,
+    "slot": 1,
+    "value_signature": 1
+   },
+   "goal_type": "Grid",
+   "frontier_term_count": 5,
+   "frontier_result_types": [
+    "<none>"
+   ],
+   "frontier_outcomes": [
+    "executed_not_exact",
+    "slot_fit_failed"
+   ],
+   "frontier_ops": [
+    "group:paint",
+    "prog:keep"
+   ],
+   "frontier_distinct_asts": 5,
+   "executed_nonexact_in_frontier": 1,
+   "slot_failed_in_frontier": 4,
+   "typed_events": 13,
+   "slot_fit_ok_events": 3,
+   "executed_not_exact_events": 3,
+   "exact_events": 0,
+   "value_signature_nodes": 1,
+   "value_signatures_defined": 0,
+   "engine_value_evidence_rows": 1,
+   "engine_value_evidence_defined": 1,
+   "engine_value_evidence_sample": [
+    {
+     "defined": true,
+     "shape_matches": true,
+     "cells_wrong": 74,
+     "fraction_wrong": 0.2996,
+     "palette_extra": 1
+    }
+   ],
+   "palette_change_nodes": 2,
+   "shape_change_nodes": 2,
+   "delta_signature_nodes": 2,
+   "slot_aggregate_nodes": 1,
+   "cause_nodes": 0
+  }
+ ]
+}
