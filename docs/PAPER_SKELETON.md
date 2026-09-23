@@ -696,11 +696,34 @@ CORA is not claimed to be first at program synthesis, learned libraries,
 predicate invention, executable code generation, test-time adaptation,
 verifier-guided search or abstraction learning. Each has prior art.
 
-To be discussed and distinguished: DreamCoder, LILO, predicate invention and
-POPPI, AlphaEvolve, program synthesis and library learning, and relevant
-non-LLM ARC systems. No precedence wording is used without a current
-primary-source check. This section is the bibliography stub; no formal
-bibliography file exists yet.
+No precedence wording is used without a current primary-source check. This
+section is the bibliography stub; no formal bibliography file exists yet.
+
+The distinctions that matter are specific rather than nominal.
+
+DreamCoder grows a reusable symbolic library, so the claim cannot be that
+this system grows a program language. The difference is what drives the
+growth. There, library learning proceeds by compression and abstraction over
+tasks already solved or replayed. Here the mechanism is prospective and
+failure conditioned: the reasoner's own failed trajectory on the unfamiliar
+task determines what gets constructed, at the moment that task is
+encountered. LILO refactors learned libraries and sits in the same family, so
+the same distinction applies to it.
+
+AlphaEvolve does produce genuinely new and useful executable artifacts, so
+the claim cannot be that a system generates novel code. The differences are
+that no general-purpose language model proposes anything here, and that
+proposal is conditioned on a typed representation of the system's own failed
+inference rather than on free-form generation filtered by an evaluator.
+
+Predicate invention from failures, POPPI in particular, is the closest prior
+art and rules out the wording that would otherwise be tempting. This work
+cannot claim to be the first system to invent concepts from failure. That
+claim is taken.
+
+What survives those three subtractions is a conjunction rather than any
+single ingredient. Several of its links are not yet demonstrated, and the
+chain is what would be claimed, never the parts.
 
 The candidate novel contribution is the conjunction: failed reasoning, to a
 mechanistic typed failure representation, to diagnosis of a capability gap,
@@ -709,6 +732,11 @@ language with and without it, to full adaptive leave-one-out, to a causal use
 test, to removal ablation, to bounded semantic separation, to independent
 transfer, to verifier-controlled promotion. The full conjunction has not been
 demonstrated and is not claimed.
+
+The operational distinction the paper defends throughout is that finding a
+better answer, finding a better program and acquiring a new capability are
+three different things. The third is the interesting one, and only if shown
+repeatedly, autonomously, and on unseen tasks.
 
 A second, smaller novel result stands on its own: the failure-frontier audit
 is a diagnostic result about machine self-observation. A system's record of
