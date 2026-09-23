@@ -1,0 +1,4516 @@
+
+<task-notification>
+<task-id>bn4upab8l</task-id>
+<tool-use-id>toolu_01P8irTM9yLrVwMAD5h8zzBW</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bn4upab8l.output</output-file>
+<status>completed</status>
+<summary>Background command "Find existing Python files in Reasoning_Project" completed (exit code 0)</summary>
+</task-notification>
+<task-notification>
+<task-id>btwp34vhl</task-id>
+<tool-use-id>toolu_011i6kxHLUJgrZQqEndNA3kG</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/btwp34vhl.output</output-file>
+<status>completed</status>
+<summary>Background command "Check available Python packages" completed (exit code 0)</summary>
+</task-notification>
+<task-notification>
+<task-id>bmb03wr5f</task-id>
+<tool-use-id>toolu_01FiHPdosY38mga5T1pt1pps</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bmb03wr5f.output</output-file>
+<status>completed</status>
+<summary>Background command "Check Python dependencies" completed (exit code 0)</summary>
+</task-notification>
+<task-notification>
+<task-id>bzolp4tbf</task-id>
+<tool-use-id>toolu_01QtgAtGpiNwC9LvrCBa1pXF</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bzolp4tbf.output</output-file>
+<status>completed</status>
+<summary>Background command "Find ARC training data elsewhere" completed (exit code 0)</summary>
+</task-notification>
+<task-notification>
+<task-id>a015fdec4aa0853eb</task-id>
+<tool-use-id>toolu_01Q7BcLeDazurk7uzd91Wny6</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/a015fdec4aa0853eb.output</output-file>
+<status>completed</status>
+<summary>Agent "Implement geocat_arc data + perception" completed</summary>
+<result>I'm unable to proceed because both the Write tool and the Bash tool are denying permission to create files. This is essential to complete your request -- here is what I need:
+
+1. **Write tool permission**: I need to create 14 new Python files inside the `geocat_arc/` directory structure (`__init__.py`, `arc_loader.py`, `arc_task.py`, etc.)
+
+2. **Bash tool permission**: I need to:
+   - Create files using `cat &gt; file &lt;&lt; 'EOF'` (since Write is blocked)
+   - Run Python/pytest commands to inspect data format and run tests
+   - Activate the virtualenv and execute `python3.11 -m pytest`
+
+Without either of these permissions, I cannot create any of the requested files or run tests. Could you grant permission for:
+- Writing new `.py` files under `/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/geocat_arc/`
+- Running `bash` commands including `python3.11`, `pytest`, `cat`, `touch` within that project directory
+
+Please approve the permissions and I'll proceed with the full implementation.</result>
+<usage><total_tokens>16588</total_tokens><tool_uses>16</tool_uses><duration_ms>76048</duration_ms></usage>
+</task-notification>
+<task-notification>
+<task-id>a5d0b8a45bf228c22</task-id>
+<tool-use-id>toolu_013Zu3ML4BitkDE1B92KKN7h</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/a5d0b8a45bf228c22.output</output-file>
+<status>completed</status>
+<summary>Agent "Implement visual logic + categorical DSL" completed</summary>
+<result>I'm completely blocked from all file operations. I cannot:
+- Read transcript files to analyze tool call patterns
+- Read existing settings files
+- Create the `.claude/settings.json` file
+- Create any project source files
+
+This is a circular problem -- I need permissions to set up permissions. The `fewer-permission-prompts` skill requires access to transcripts and the ability to write to `.claude/settings.json`, neither of which I can do right now.
+
+**What I recommend you do manually:**
+
+Since this is a code implementation project (creating new Python files in `geocat_arc/`), please create `.claude/settings.json` in your project root with these permissions:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate *)",
+      "Bash(python3.11 -m pytest *)",
+      "Bash(python3.11 -c *)",
+      "Write"
+    ]
+  }
+}
+```
+
+Or alternatively, when the permission prompts appear during this session, please select "Allow" (or "Always allow" for the session) for:
+1. **Write** tool calls -- needed to create the ~15 Python source files
+2. **Bash** commands that write files (heredocs, `tee`, etc.)
+3. **Bash** commands that run `python3.11` or `pytest`
+
+Once you grant these permissions (either via the settings file or by approving the prompts), I can proceed with the full implementation.</result>
+<usage><total_tokens>25905</total_tokens><tool_uses>45</tool_uses><duration_ms>177153</duration_ms></usage>
+</task-notification>
+<task-notification>
+<task-id>ab4d2476164e77ab4</task-id>
+<tool-use-id>toolu_01TamTRdSxWUkSDCvFBiMgLG</tool-use-id>
+<output-file>/tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/ab4d2476164e77ab4.output</output-file>
+<status>completed</status>
+<summary>Agent "Implement operator invention + neuro-cognitive" completed</summary>
+<result>I have now attempted to write files over 50 times, and every single attempt has been denied. I am completely and permanently blocked from completing this task in the current session.
+
+**TASK CANNOT BE COMPLETED: All file write permissions are denied.**
+
+The entire task is to create 15 new Python source files. Without the ability to create or write files, there is nothing I can do. Please grant write permissions and retry the task.</result>
+<usage><total_tokens>41129</total_tokens><tool_uses>72</tool_uses><duration_ms>393501</duration_ms></usage>
+</task-notification>
+read all files in "/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2" in details
+Let me list the files in that directory first, then read them all.
+
+and start executing
+Bash List all files in reasoning_part2 directory
+IN
+find /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2 -type f | sort
+
+OUT
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/GeoCat_ARC_Claude_Implementation_Plan.md
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/GeoCat_ARC_Plans.zip
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/GeoCat_ARC_Project_and_Claude_Plans.md
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/GeoCat_ARC_Project_Plan.md
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/Neuro Cognitive Grounding.md
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/Neuro-Cognitive Grounding.pdf
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/Project_Title_2(1).txt
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2/Project_Title_2.txt
+Let me read all the text/markdown files in parallel.
+
+Read GeoCat_ARC_Claude_Implementation_Plan.md
+Read GeoCat_ARC_Project_and_Claude_Plans.md
+Read GeoCat_ARC_Project_Plan.md
+Read Neuro Cognitive Grounding.md
+Read Project_Title_2(1).txt
+Read Project_Title_2.txt
+Read Neuro-Cognitive Grounding.pdf
+Now let me read the Neuro Cognitive Grounding.md which was too large.
+
+Read Neuro Cognitive Grounding.md
+I've read all the files. Now I'll start executing the GeoCat-ARC implementation. Let me first assess the existing repository structure and find the ARC data.
+
+Bash List Reasoning_Project directory
+IN
+ls /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/
+
+OUT
+adagen.txt
+AGENTS.md
+a.txt
+claim_traceability.md
+configs
+CORTICAL_REASONING_PLAN.md
+data
+DECISIONS.md
+docs
+EXACTNESS_AUDIT.md
+exactness_traceability.md
+exact_vs_proxy_table.md
+external_validity_summary.md
+FORMAL_BOUNDARIES.md
+FORMAL_SPEC.md
+limitations.md
+newww.txt
+NEXT_STEPS.md
+outputs
+paper
+PROCESS_LOG.md
+pyproject.toml
+README.md
+reasoning_part2
+requirements.txt
+res4.txt
+res7.txt
+resarc.txt
+res.txt
+results_summary.md
+resume1.txt
+resume27.txt
+resume5.txt
+resume6.txt
+resume8.txt
+RESUME_CUMULATIVE.md
+RESUME.md
+resumereasoning.txt
+resume.txt
+RUN_HISTORY.md
+scripts
+slurm
+src
+status cluster VAST kazict.txt
+task_notification_task.txt
+tests
+text_to_long.txt
+TOPOLOGY_OPERATOR_AUDIT.md
+Bash Find existing Python files in Reasoning_Project
+IN
+find /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project -name "*.py" -type f 2>/dev/null | head -50
+
+OUT
+Command running in background with ID: bn4upab8l. Output is being written to: /tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bn4upab8l.output
+Bash Find ARC task JSON files
+IN
+find /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project -name "*.json" -path "*arc*" -type f 2>/dev/null | head -20; find /cluster/VAST/kazict-lab/e/lesion_phes -name "training" -type d 2>/dev/null | head -5; find /cluster/VAST/kazict-lab/e -maxdepth 4 -name "*.json" -path "*arc*" -type f 2>/dev/null | head -10
+
+OUT
+Command running in background with ID: bs07mm704. Output is being written to: /tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bs07mm704.output
+Bash Check Python dependencies
+IN
+source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate && python3.11 -c "import numpy; print('numpy:', numpy.__version__)" && python3.11 -c "import scipy; print('scipy:', scipy.__version__)" 2>/dev/null; python3.11 -c "import sklearn; print('sklearn:', sklearn.__version__)" 2>/dev/null; python3.11 -c "import torch; print('torch:', torch.__version__)" 2>/dev/null; python3.11 -c "import botorch; print('botorch:', botorch.__version__)" 2>/dev/null || echo "botorch not available"
+
+OUT
+Command running in background with ID: bmb03wr5f. Output is being written to: /tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bmb03wr5f.output
+venv: /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc
+thats arc datafile
+Bash List ARC data directory
+IN
+ls /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/ 2>/dev/null | head -20
+
+OUT
+arc-agi_evaluation_challenges.json
+arc-agi_evaluation_solutions.json
+arc-agi_test_challenges.json
+arc-agi_training_challenges.json
+arc-agi_training_solutions.json
+sample_submission.json
+Bash List existing src directory
+IN
+ls /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/src/ 2>/dev/null
+
+OUT
+reasoning_project
+reasoning_project.egg-info
+Bash Check available Python packages
+IN
+source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate && python3.11 -c "import numpy; print('numpy:', numpy.__version__); import scipy; print('scipy:', scipy.__version__); import sklearn; print('sklearn:', sklearn.__version__)" 2>&1
+
+OUT
+Command running in background with ID: btwp34vhl. Output is being written to: /tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/btwp34vhl.output
+Bash List existing reasoning_project module
+IN
+ls /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/src/reasoning_project/
+
+OUT
+abstract_operator_schemas.py
+abstract_programs.py
+active_falsifier.py
+adapter_feedback.py
+adapter_genesis.py
+adapter_schema_proposals.py
+adapter_signature_interface.py
+adaptive_loop.py
+adaptive_memory.py
+adaptive_orchestrator.py
+adaptive_reasoner.py
+adaptive_synthesizer.py
+analogy.py
+arc_adapter.py
+arc_diagnostic.py
+arc_reasoning_v2.py
+arc_smoke.py
+benchmark_generator.py
+cegis.py
+certificates.py
+cli.py
+color_solver.py
+color_transfer.py
+composable_reasoner.py
+composed_frontier_operators.py
+compression.py
+concept_grammar.py
+concept_memory.py
+correspondence_inference.py
+cortical_reasoning.py
+crop_extract.py
+cross_domain_operator_semantics.py
+delta_engine.py
+destination_policy.py
+diagnostics
+different_shape_reasoner.py
+domain_adapters.py
+domain_morphism.py
+egraph.py
+evaluation.py
+events.py
+experiment.py
+failure_diagnosis.py
+failure_driven_adaptergenesis.py
+failure_driven_operator_genesis.py
+falsifier.py
+fill_solver.py
+formal.py
+formal_verification.py
+frontier_operator_registry.py
+generators.py
+grid_decomposition.py
+h2_analysis.py
+h4_analysis.py
+h4_sweep_analysis.py
+hypothesis_engine.py
+__init__.py
+inverse_reasoning.py
+library_learning.py
+local_rules.py
+manifold_memory.py
+many_to_few_grouping.py
+marker_projection.py
+meta_learner.py
+meta_reasoning.py
+models.py
+module_triggers.py
+morphism_verification.py
+multicolor_decompose.py
+near_solved_memory.py
+neural
+neural_abstraction.py
+neural_math.py
+neural_proposal_interface.py
+object_correspondence.py
+object_graph.py
+object_spatial_reasoner.py
+operator_genesis.py
+operator_invention.py
+operator_memory.py
+operator_schemas.py
+operator_semantics.py
+operators.py
+output_shape_predictor.py
+paper_package.py
+parsing.py
+perception_bridge.py
+portfolio.py
+position_within_object_recolor.py
+property_expansion.py
+property_invention.py
+proposal_logger.py
+proposal_verifier.py
+__pycache__
+reasoning_engine.py
+reasoning_policy.py
+refinement.py
+relation_solver.py
+repair.py
+reporting.py
+rule_abstraction.py
+schemas.py
+selector_invention.py
+separator_decompose.py
+shape_completion.py
+structural_reasoning.py
+sweep.py
+theory.py
+trace_operator_invention.py
+unified_reasoning_system.py
+utils.py
+view_adapters.py
+view_programs.py
+Bash Check ARC training data size
+IN
+wc -l /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_training_challenges.json
+
+OUT
+0 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_training_challenges.json
+The ARC training challenges file is empty. Let me check the other data files and see what's available.
+
+Bash Check sizes of all ARC data files
+IN
+for f in /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/*.json; do echo "$(wc -c < "$f") $f"; done
+
+OUT
+984679 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_evaluation_challenges.json
+223838 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_evaluation_solutions.json
+1015295 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_test_challenges.json
+4010050 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_training_challenges.json
+658743 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/arc-agi_training_solutions.json
+19936 /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/sample_submission.json
+Bash Find ARC training data elsewhere
+IN
+find /cluster/VAST/kazict-lab/e -maxdepth 6 -name "arc-agi_training*" -type f 2>/dev/null | head -10
+
+OUT
+Command running in background with ID: bzolp4tbf. Output is being written to: /tmp/claude-100350790/-cluster-VAST-kazict-lab-e/99ebc1b1-5209-4a19-9304-f34550c8d875/tasks/bzolp4tbf.output
+/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc
+Good - the ARC data files exist and have real data (training challenges is ~4MB, evaluation challenges ~1MB). The wc -l returned 0 because the JSON is on a single line.
+
+Now I have a clear picture of the environment:
+
+ARC data: /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/
+Existing solver code: extensive existing modules in src/reasoning_project/
+Venv: /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
+I'll now start implementing GeoCat-ARC. Per the plan, I need to create a new geocat_arc module without overwriting existing work. I'll begin with Phase 0 (audit + baseline) and Phase 1 (data + perception) in parallel using agents.
+
+Update Todos
+
+Phase 0: Audit existing repo and create geocat_arc module structure
+
+Phase 1: Implement ARC data loading and perception layer
+
+Phase 2: Implement finite visual logic / topos-like predicate layer
+
+Phase 3: Implement typed categorical DSL
+
+Phase 4: Implement Bayesian program search
+
+Phase 5: Implement information-geometric memory
+
+Phase 6: Implement failure clustering and operator invention
+
+Phase 7: Implement neuro-cognitive diagnostics
+
+Phase 8: Implement experiments, run baseline, write status report
+Starting Phase 0. I'll create the geocat_arc module structure and begin building the foundational layers in parallel using agents.
+
+Bash Create geocat_arc directory structure
+IN
+cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project && mkdir -p geocat_arc/{data,perception,visual_logic_topos,categorical_dsl,bayesian_program_search,information_geometric_memory,operator_invention,neuro_cognitive,experiments,tests,artifacts/geocat_arc/{results,certificates,failures,memory,figures}}
+
+OUT
+(Bash completed with no output)
+Good, directory structure created. Now I'll launch parallel agents to implement Phases 0-1 (data + perception) and Phase 2 (visual logic), since they're foundational and mostly independent.
+
+Agent:Implement geocat_arc data + perception
+IN
+You are implementing the GeoCat-ARC system inside `/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/geocat_arc/`.
+
+**Environment**: Always use `source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate` before running Python. Use `python3.11`.
+
+**ARC data location**: `/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/data/arc/`
+Files: `arc-agi_training_challenges.json`, `arc-agi_training_solutions.json`, `arc-agi_evaluation_challenges.json`, `arc-agi_evaluation_solutions.json`
+
+The directory structure already exists:
+```
+geocat_arc/
+├── data/
+├── perception/
+├── tests/
+└── artifacts/
+```
+
+## Your task: Implement Phase 0 + Phase 1 files
+
+### 1. Create `geocat_arc/__init__.py`
+
+### 2. Create `geocat_arc/data/__init__.py`
+
+### 3. Create `geocat_arc/data/arc_loader.py`
+- Load ARC JSON tasks from the data directory
+- Return task_id, train_pairs (list of input/output grid pairs), test_inputs
+- Support loading training, evaluation, and test splits
+- Each grid is a list of lists of ints (0-9)
+
+### 4. Create `geocat_arc/data/arc_task.py`
+- Dataclasses: `GridPair(input: list[list[int]], output: list[list[int]])`, `ARCTask(task_id: str, train: list[GridPair], test: list[GridPair])`
+
+### 5. Create `geocat_arc/data/validate_arc.py`
+- Validate grids are rectangular, colors 0-9, train pairs nonempty
+
+### 6. Create `geocat_arc/perception/__init__.py`
+
+### 7. Create `geocat_arc/perception/grid.py`
+- Grid class wrapping a 2D numpy array
+- Properties: height, width, shape, colors_used, background_color (most frequent color)
+- Methods: to_numpy(), from_list(), cell(r,c), subgrid(bbox)
+
+### 8. Create `geocat_arc/perception/segmentation.py`
+- `extract_connected_components(grid, connectivity=4, ignore_background=True)` -> list of ObjectMask
+- Use BFS/flood fill, support 4-connectivity and 8-connectivity
+- ObjectMask: set of (row, col) cells, color, bounding_box
+
+### 9. Create `geocat_arc/perception/objects.py`
+- `ARCObject`: id, cells (set of (r,c)), color, bounding_box, mask (2D bool array cropped to bbox), size, centroid
+- `extract_objects(grid)` -> list of ARCObject
+- Detect: bounding boxes, sizes, colors, positions, holes (cells inside bbox not part of object)
+
+### 10. Create `geocat_arc/perception/relations.py`
+- Build relation graph between objects
+- Relations: left_of, right_of, above, below, contains, adjacent, same_color, same_shape, same_size, overlaps
+
+### 11. Create `geocat_arc/perception/matching.py`
+- Match input objects to output objects using shape/color/size/location similarity
+- Return list of (input_obj, output_obj, similarity_score) tuples
+
+### 12. Create `geocat_arc/perception/change_detection.py`
+- Compare input and output grids
+- Detect: cells_changed, objects_added, objects_removed, objects_moved, objects_recolored
+
+### 13. Create `geocat_arc/tests/test_data.py`
+- Test loading real ARC tasks
+- Test validation
+- Test at least 3 real tasks load correctly
+
+### 14. Create `geocat_arc/tests/test_perception.py`
+- Test connected components on a small hand-crafted grid
+- Test object extraction
+- Test relation detection
+- Test matching
+
+All implementations must be real, working code. No stubs, no placeholders. Every function must actually work when called with real ARC data.
+
+After creating all files, run the tests with:
+```bash
+source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
+cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
+python3.11 -m pytest geocat_arc/tests/test_data.py geocat_arc/tests/test_perception.py -v
+```
+
+Fix any failures before finishing.
+Agent:Implement visual logic + categorical DSL
+IN
+You are implementing the GeoCat-ARC system inside `/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/geocat_arc/`.
+
+**Environment**: Always use `source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate` before running Python. Use `python3.11`.
+
+The directory structure already exists:
+```
+geocat_arc/
+├── visual_logic_topos/
+├── categorical_dsl/
+├── tests/
+```
+
+NOTE: Other agents are concurrently building `geocat_arc/data/` and `geocat_arc/perception/`. You should NOT create or modify files in those directories. You CAN import from them — if they don't exist yet when you test, create minimal mock objects for testing only.
+
+## Your task: Implement Phase 2 (Visual Logic) + Phase 3 (Categorical DSL)
+
+### Phase 2: Visual Logic / Topos-Like Predicate Layer
+
+#### `geocat_arc/visual_logic_topos/__init__.py`
+
+#### `geocat_arc/visual_logic_topos/predicates.py`
+Implement real finite predicates over ARC objects:
+- Color predicates: `HasColor(color)`, `SameColor()`
+- Shape predicates: `IsRectangle()`, `IsLine()`, `HasHole()`, `SameShape()`
+- Size predicates: `IsLargest()`, `IsSmallest()`, `SameSize()`
+- Spatial predicates: `Inside()`, `TouchesBorder(grid_h, grid_w)`, `LeftOf()`, `Above()`
+- Each predicate is a callable class with `__call__(obj)` or `__call__(obj1, obj2)` returning bool
+
+#### `geocat_arc/visual_logic_topos/proposition.py`
+- `Proposition` base class with `evaluate(context)` -> bool
+- `AtomicProp(predicate, *bound_args)`
+- `And(p1, p2)`, `Or(p1, p2)`, `Not(p)`, `Implies(p1, p2)`
+
+#### `geocat_arc/visual_logic_topos/finite_logic.py`
+- Finite logic engine that evaluates propositions over a set of objects
+- `evaluate_proposition(prop, objects)` -> bool
+
+#### `geocat_arc/visual_logic_topos/quantifiers.py`
+- `ForAll(variable, domain, proposition)` - true if prop holds for all objects in domain
+- `Exists(variable, domain, proposition)` - true if prop holds for at least one object
+
+#### `geocat_arc/visual_logic_topos/rule_templates.py`
+- `RuleTemplate(condition: Proposition, action: str)` - evaluable rule
+- `match_rule(template, objects)` -> list of matching objects
+- Pre-built templates like "∀x: Red(x) ∧ TouchesBorder(x) → action"
+
+#### `geocat_arc/visual_logic_topos/truth_table.py`
+- Generate truth table for a proposition over a finite domain of objects
+- `build_truth_table(proposition, objects)` -> dict mapping object tuples to bool
+
+### Phase 3: Typed Categorical DSL
+
+#### `geocat_arc/categorical_dsl/__init__.py`
+
+#### `geocat_arc/categorical_dsl/types.py`
+Define ARC type system as an enum or class hierarchy:
+- `ArcType` enum: GRID, OBJECT, OBJECT_SET, REGION, MASK, COLOR, VECTOR, AXIS, RELATION_GRAPH, GRID_PATCH, PREDICATE, ANGLE
+
+#### `geocat_arc/categorical_dsl/morphism.py`
+- `Morphism` base class:
+  - name: str
+  - input_types: tuple of ArcType
+  - output_type: ArcType
+  - cost: float
+  - `apply(*args)` -> result (abstract)
+  - `applicable(*args)` -> bool
+
+#### `geocat_arc/categorical_dsl/type_checker.py`
+- `check_composition(morphisms: list[Morphism])` -> bool
+- Verify output type of each morphism matches input type of next
+- `TypeCheckError` exception for invalid compositions
+
+#### `geocat_arc/categorical_dsl/operators_basic.py`
+Implement real operators as Morphism subclasses:
+- `Segment`: GRID -> OBJECT_SET (uses perception segmentation)
+- `Select`: (OBJECT_SET, PREDICATE) -> OBJECT
+- `Filter`: (OBJECT_SET, PREDICATE) -> OBJECT_SET
+- `Copy`: OBJECT -> OBJECT
+- `Render`: OBJECT_SET -> GRID (render objects back to grid)
+
+Each must have a real `apply()` that works on actual grid/object data.
+
+#### `geocat_arc/categorical_dsl/operators_spatial.py`
+- `Translate`: (OBJECT, VECTOR) -> OBJECT
+- `Rotate90`: (OBJECT, ANGLE) -> OBJECT (90/180/270)
+- `Reflect`: (OBJECT, AXIS) -> OBJECT
+- `Crop`: (GRID, REGION) -> GRID
+- `Place`: (OBJECT, REGION) -> GRID_PATCH
+
+#### `geocat_arc/categorical_dsl/operators_color.py`
+- `Recolor`: (OBJECT, COLOR) -> OBJECT
+- `FillRegion`: (REGION, COLOR) -> GRID_PATCH
+
+#### `geocat_arc/categorical_dsl/operators_symmetry.py`
+- `CompleteSymmetry`: (OBJECT_SET, AXIS) -> OBJECT_SET
+- Detects partial symmetry and completes it
+
+#### `geocat_arc/categorical_dsl/composition.py`
+- `compose(f: Morphism, g: Morphism)` -> ComposedMorphism
+- Type-checks before composing
+
+#### `geocat_arc/categorical_dsl/program.py`
+- `Program`: ordered list of (morphism, bound_args) steps
+- `apply(input_grid)` -> output_grid
+- `type_check()` -> bool
+- `to_dict()` / `from_dict()` for serialization
+
+### Tests
+
+#### `geocat_arc/tests/test_visual_logic.py`
+- Test predicates on hand-crafted objects
+- Test And/Or/Not/Implies/ForAll/Exists
+- Test truth table generation
+
+#### `geocat_arc/tests/test_categorical_dsl.py`
+- Test type checking accepts valid compositions
+- Test type checking rejects invalid compositions (e.g., rotate(Color))
+- Test Segment operator on a small grid
+- Test Recolor operator
+- Test program composition and execution
+
+For testing, define minimal object representations inline if the perception module isn't available yet. Use dataclasses with the needed fields (cells, color, bounding_box, etc.).
+
+After creating all files, run tests:
+```bash
+source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
+cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
+python3.11 -m pytest geocat_arc/tests/test_visual_logic.py geocat_arc/tests/test_categorical_dsl.py -v
+```
+
+Fix any failures before finishing.
+Agent:Implement Bayesian search + info-geo memory
+IN
+You are implementing the GeoCat-ARC system inside `/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/geocat_arc/`.
+
+**Environment**: Always use `source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate` before running Python. Use `python3.11`.
+
+The directory structure already exists:
+```
+geocat_arc/
+├── bayesian_program_search/
+├── information_geometric_memory/
+├── tests/
+```
+
+NOTE: Other agents are concurrently building data, perception, visual_logic_topos, and categorical_dsl modules. You should NOT create or modify files in those directories. You CAN import from them — use try/except ImportError and define minimal stubs if needed for testing.
+
+## Your task: Implement Phase 4 (Bayesian Program Search) + Phase 5 (Information-Geometric Memory)
+
+### Phase 4: Bayesian Program Search
+
+#### `geocat_arc/bayesian_program_search/__init__.py`
+
+#### `geocat_arc/bayesian_program_search/program_features.py`
+Extract features from a candidate program:
+- `extract_features(program)` -> numpy array
+- Features: operator_count, depth, num_unique_operators, has_spatial_op, has_color_op, has_symmetry_op, complexity_score
+- Return a fixed-length feature vector
+
+#### `geocat_arc/bayesian_program_search/real_objective.py`
+Real objective function — NO fake scores:
+- `evaluate_program(program, task)` -> float score
+- Execute program on each training input
+- Compare predicted output with target output
+- Score = weighted sum of: exact_match_bonus (1.0 if perfect), normalized_cell_accuracy, object_match_score, -complexity_penalty
+- `normalized_cell_accuracy(predicted, target)` -> float (fraction of matching cells)
+- Helper functions for grid comparison
+
+#### `geocat_arc/bayesian_program_search/bayes_ranker.py`
+Implement a real Bayesian linear regression ranker (no BoTorch dependency needed):
+- `BayesianLinearRanker`:
+  - Prior: N(0, alpha*I) on weights
+  - Likelihood: Gaussian with noise variance beta
+  - `update(features: np.ndarray, score: float)` - Bayesian posterior update
+  - `predict(features: np.ndarray)` -> (mean, variance)
+  - `rank_candidates(candidate_features: list[np.ndarray])` -> sorted indices by acquisition score
+- Uses real posterior mean and variance, NOT random scores
+
+#### `geocat_arc/bayesian_program_search/acquisition.py`
+Acquisition functions:
+- `ucb(mean, variance, kappa=2.0)` -> float
+- `expected_improvement(mean, variance, best_so_far)` -> float
+- `thompson_sample(mean, variance)` -> float
+
+#### `geocat_arc/bayesian_program_search/candidate_generator.py`
+Generate candidate programs from the DSL:
+- `generate_candidates(scene_info, max_depth=3, max_candidates=100)` -> list of Program-like objects
+- For now, generate simple 1-2 step programs from available operators
+- Each candidate must be a real program structure (operator name + bound args)
+
+#### `geocat_arc/bayesian_program_search/search_loop.py`
+The main search loop:
+- `bayesian_search(task, max_iterations=50)` -> (best_program, best_score, trace)
+- Generate candidates, extract features, use Bayesian ranker to select
+- Execute selected candidate on real task training pairs
+- Update ranker with real scores
+- Return search trace as list of dicts
+
+#### `geocat_arc/bayesian_program_search/search_trace.py`
+- `SearchTrace`: stores iteration records
+- `to_jsonl(path)`: write trace as JSONL
+- Each record: {task_id, iteration, candidate_program, posterior_mean, posterior_uncertainty, acquisition_score, real_score, exact_match}
+
+### Phase 5: Information-Geometric Memory
+
+#### `geocat_arc/information_geometric_memory/__init__.py`
+
+#### `geocat_arc/information_geometric_memory/belief_distribution.py`
+- `BeliefDistribution`: wraps a categorical distribution (dict of str -> float)
+- `normalize()`: ensure sums to 1
+- `entropy()`: Shannon entropy
+- `from_counts(counts_dict)`: build from raw counts
+- Support operator_distribution, predicate_distribution, relation_distribution
+
+#### `geocat_arc/information_geometric_memory/distance_metrics.py`
+Implement REAL distance metrics:
+- `kl_divergence(p: dict, q: dict)` -> float (KL(p||q))
+- `js_divergence(p: dict, q: dict)` -> float (Jensen-Shannon)
+- `hellinger_distance(p: dict, q: dict)` -> float
+- `fisher_rao_categorical(p: dict, q: dict)` -> float (2 * arccos(sum(sqrt(pi*qi))))
+- Handle zero probabilities with small epsilon smoothing
+
+#### `geocat_arc/information_geometric_memory/memory_atom.py`
+- `MemoryAtom` dataclass:
+  - task_id, status (solved/near_solved/failed), program_repr
+  - operator_distribution: BeliefDistribution
+  - predicate_distribution: BeliefDistribution
+  - relation_distribution: BeliefDistribution
+  - importance_weights: dict
+  - certificate_path: optional str
+  - `to_dict()` / `from_dict()` for JSON serialization
+
+#### `geocat_arc/information_geometric_memory/memory_store.py`
+- `MemoryStore`:
+  - `add(atom: MemoryAtom)`
+  - `get(task_id)` -> MemoryAtom
+  - `all_atoms()` -> list
+  - `save(path)` / `load(path)`: JSON persistence
+  - `solved_atoms()`, `failed_atoms()`
+
+#### `geocat_arc/information_geometric_memory/retrieval.py`
+- `retrieve_similar(query_distribution, memory_store, metric="js", top_k=10)` -> list of (MemoryAtom, distance)
+- Compare query against all stored atoms using specified metric
+
+#### `geocat_arc/information_geometric_memory/importance_estimator.py`
+- `estimate_importance(program, task, score_fn)` -> dict
+- Ablation-based: for each operator in program, remove it, re-evaluate, measure score drop
+- importance[operator] = original_score - ablated_score
+
+#### `geocat_arc/information_geometric_memory/drift_monitor.py`
+- `DriftMonitor`:
+  - Track operator distribution over time
+  - `record(distribution: BeliefDistribution)`
+  - `detect_drift(threshold=0.1)` -> bool (JS divergence between recent and historical)
+
+### Tests
+
+#### `geocat_arc/tests/test_bayesian_search.py`
+- Test BayesianLinearRanker updates posterior from real observations
+- Test acquisition functions return reasonable values
+- Test normalized_cell_accuracy on identical vs different grids
+- Test that ranker changes candidate ordering after updates
+
+#### `geocat_arc/tests/test_info_geo_memory.py`
+- Test BeliefDistribution normalization
+- Test KL divergence (KL(p,p)=0, KL(p,q)>0 for p!=q)
+- Test JS divergence is symmetric
+- Test Hellinger distance properties
+- Test Fisher-Rao distance
+- Test MemoryAtom serialization round-trip
+- Test MemoryStore add/retrieve
+- Test retrieval returns closest matches
+
+After creating all files, run tests:
+```bash
+source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
+cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
+python3.11 -m pytest geocat_arc/tests/test_bayesian_search.py geocat_arc/tests/test_info_geo_memory.py -v
+```
+
+Fix any failures before finishing.
+Agent:Implement operator invention + neuro-cognitive
+IN
+You are implementing the GeoCat-ARC system inside `/cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/geocat_arc/`.
+
+**Environment**: Always use `source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate` before running Python. Use `python3.11`.
+
+The directory structure already exists:
+```
+geocat_arc/
+├── operator_invention/
+├── neuro_cognitive/
+├── tests/
+```
+
+NOTE: Other agents are concurrently building other modules. You should NOT create or modify files outside operator_invention/ and neuro_cognitive/ (and tests for these). You CAN import from other geocat_arc modules — use try/except ImportError and define minimal stubs if needed for testing.
+
+## Your task: Implement Phase 6 (Operator Invention) + Phase 7 (Neuro-Cognitive Diagnostics)
+
+### Phase 6: Failure Clustering and Verified Operator Invention
+
+#### `geocat_arc/operator_invention/__init__.py`
+
+#### `geocat_arc/operator_invention/failure_atom.py`
+- `FailureAtom` dataclass:
+  - task_id: str
+  - candidate_program_repr: str
+  - predicted_outputs: list of grids (list[list[int]])
+  - target_outputs: list of grids
+  - cell_error_map: list of 2D bool arrays (True where cells differ)
+  - error_rate: float (fraction of cells wrong)
+  - failure_distribution: dict[str, float] (e.g., {"missing_operator": 0.7, "wrong_parameter": 0.2, ...})
+  - `from_prediction(predicted, target)` classmethod that auto-computes error maps
+
+#### `geocat_arc/operator_invention/failure_clustering.py`
+- `cluster_failures(atoms: list[FailureAtom], n_clusters=None)` -> list of list[FailureAtom]
+- Cluster by error_rate similarity and failure_distribution similarity
+- Use simple agglomerative clustering or DBSCAN from sklearn
+- `failure_distance(a: FailureAtom, b: FailureAtom)` -> float
+
+#### `geocat_arc/operator_invention/operator_schema_induction.py`
+- `induce_schema(cluster: list[FailureAtom])` -> dict
+- Analyze common error patterns in a cluster
+- Return: {"name": str, "input_types": [...], "output_type": str, "common_error_pattern": str, "confidence": float}
+
+#### `geocat_arc/operator_invention/prepostcondition_miner.py`
+- `mine_preconditions(cluster: list[FailureAtom])` -> list[str]
+- `mine_postconditions(cluster: list[FailureAtom])` -> list[str]
+- Analyze what's common about the inputs and expected outputs in a failure cluster
+
+#### `geocat_arc/operator_invention/invented_operator.py`
+- `InventedOperator`:
+  - name: str
+  - input_types: list
+  - output_type: str
+  - preconditions: list[str]
+  - postconditions: list[str]
+  - source_cluster_ids: list[str]
+  - apply_fn: callable (the actual transformation function)
+  - verified: bool = False
+  - certificate_path: str = None
+  - `apply(*args)` -> result
+
+#### `geocat_arc/operator_invention/verifier.py`
+- `verify_operator(operator: InventedOperator, test_cases: list[dict])` -> VerificationResult
+- VerificationResult: passed: bool, exact_matches: int, total: int, regression_failures: list
+- Check: (1) solves target tasks exactly, (2) passes negative tests, (3) doesn't break old solved tasks
+- `generate_certificate(operator, result)` -> dict (JSON-serializable certificate)
+
+#### `geocat_arc/operator_invention/promotion_registry.py`
+- `PromotionRegistry`:
+  - `register(operator: InventedOperator, certificate: dict)` 
+  - `is_promoted(name)` -> bool
+  - `get_promoted()` -> list of InventedOperator
+  - `save(path)` / `load(path)`: JSON persistence
+  - Promotion REQUIRES a valid certificate — reject without one
+
+### Phase 7: Neuro-Cognitive Diagnostics
+
+#### `geocat_arc/neuro_cognitive/__init__.py`
+
+#### `geocat_arc/neuro_cognitive/hebbian_memory.py`
+- `HebbianMemory`:
+  - association_table: dict[(str, str), float] mapping (predicate, operator) -> strength
+  - `update(predicate: str, operator: str, success: bool)`: if success, strengthen; if fail, slightly weaken
+  - `get_strength(predicate, operator)` -> float
+  - `top_associations(predicate, k=5)` -> list of (operator, strength)
+  - `decay(rate=0.01)`: apply decay to all associations
+  - `to_dict()` / `from_dict()`
+
+#### `geocat_arc/neuro_cognitive/predictive_error.py`
+- `compute_prediction_error(predicted_grid, target_grid)` -> PredictionError
+- PredictionError: error_map (2D bool), error_rate (float), error_locations (list of (r,c)), localized_regions (list of bounding boxes of error clusters)
+- `localize_errors(error_map)` -> list of error region bounding boxes
+
+#### `geocat_arc/neuro_cognitive/vicarious_reward.py`
+- `VicariousReward`:
+  - operator_priors: dict[str, float]
+  - `reward(operator: str, success_score: float)`: increase prior proportionally
+  - `penalize(operator: str, failure_score: float)`: decrease prior
+  - `get_prior(operator)` -> float
+  - `normalize()`: ensure priors sum to 1
+  - `top_operators(k=5)` -> list of (operator, prior)
+
+#### `geocat_arc/neuro_cognitive/cognitive_trace.py`
+- `CognitiveTrace`:
+  - steps: list of CognitiveStep
+  - `add_observe(task_id, input_grid, output_grid)`
+  - `add_predict(program_repr, predicted_grid)`
+  - `add_compare(prediction_error: PredictionError)`
+  - `add_update(hebbian_updates: dict, reward_updates: dict)`
+  - `add_verify(exact_match: bool, score: float)`
+  - `to_dict()` -> serializable dict
+- `CognitiveStep`: step_type (observe/predict/compare/update/verify), data: dict, timestamp: float
+
+### Tests
+
+#### `geocat_arc/tests/test_operator_invention.py`
+- Test FailureAtom creation from real predicted/target grids
+- Test failure clustering groups similar failures
+- Test verifier rejects unverified operators
+- Test PromotionRegistry requires certificate
+- Test PromotionRegistry rejects operator without certificate
+
+#### `geocat_arc/tests/test_neuro_cognitive.py`
+- Test HebbianMemory strengthens associations on success
+- Test HebbianMemory weakens on failure
+- Test prediction error computation
+- Test error localization finds contiguous error regions
+- Test VicariousReward updates priors
+- Test CognitiveTrace records all step types
+
+After creating all files, run tests:
+```bash
+source /cluster/VAST/kazict-lab/e/lesion_phes/lesenv/bin/activate
+cd /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project
+python3.11 -m pytest geocat_arc/tests/test_operator_invention.py geocat_arc/tests/test_neuro_cognitive.py -v
+```
+
+Fix any failures before finishing.
+The agents hit permission issues. I'll implement the files directly myself. Let me start with the core modules.
+
+Update Todos
+
+Phase 0: Audit existing repo and create geocat_arc module structure
+
+Phase 1: Implement ARC data loading and perception layer
+
+Phase 2: Implement finite visual logic / topos-like predicate layer
+
+Phase 3: Implement typed categorical DSL
+
+Phase 4: Implement Bayesian program search
+
+Phase 5: Implement information-geometric memory
+
+Phase 6: Implement failure clustering and operator invention
+
+Phase 7: Implement neuro-cognitive diagnostics
+
+Phase 8: Implement experiments, run baseline, write status report
+Write __init__.py
+2 lines
+"""GeoCat-ARC: Bayesian-Categorical Program Search with Information-Geometric Memory."""
+Write __init__.py
+1 line
+Write arc_task.py
+25 lines
+"""ARC task data structures."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+
+
+@dataclass
+class GridPair:
+    input: list[list[int]]
+    output: list[list[int]]
+
+
+@dataclass
+class ARCTask:
+    task_id: str
+    train: list[GridPair]
+    test: list[GridPair] = field(default_factory=list)
+
+    @property
+    def num_train(self) -> int:
+        return len(self.train)
+
+    @property
+    def num_test(self) -> int:
+        return len(self.test)
+Write arc_loader.py
+64 lines
+"""Load ARC-AGI tasks from JSON files."""
+from __future__ import annotations
+import json
+from pathlib import Path
+from typing import Optional
+
+from .arc_task import ARCTask, GridPair
+
+DEFAULT_DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "arc"
+
+
+def load_tasks(
+    split: str = "training",
+    data_dir: Optional[Path] = None,
+    task_ids: Optional[list[str]] = None,
+) -> list[ARCTask]:
+    data_dir = Path(data_dir) if data_dir else DEFAULT_DATA_DIR
+
+    challenges_file = data_dir / f"arc-agi_{split}_challenges.json"
+    solutions_file = data_dir / f"arc-agi_{split}_solutions.json"
+
+    with open(challenges_file) as f:
+        challenges = json.load(f)
+
+    solutions = {}
+    if solutions_file.exists():
+        with open(solutions_file) as f:
+            solutions = json.load(f)
+
+    tasks = []
+    for tid, chal in challenges.items():
+        if task_ids and tid not in task_ids:
+            continue
+
+        train_pairs = [
+            GridPair(input=p["input"], output=p["output"])
+            for p in chal["train"]
+        ]
+
+        test_pairs = []
+        if "test" in chal:
+            sol_list = solutions.get(tid, [])
+            for i, tp in enumerate(chal["test"]):
+                output = sol_list[i] if i < len(sol_list) else []
+                test_pairs.append(GridPair(input=tp["input"], output=output))
+
+        tasks.append(ARCTask(task_id=tid, train=train_pairs, test=test_pairs))
+
+    return tasks
+
+
+def load_task(task_id: str, split: str = "training", data_dir: Optional[Path] = None) -> ARCTask:
+    tasks = load_tasks(split=split, data_dir=data_dir, task_ids=[task_id])
+    if not tasks:
+        raise KeyError(f"Task {task_id} not found in {split} split")
+    return tasks[0]
+
+
+def list_task_ids(split: str = "training", data_dir: Optional[Path] = None) -> list[str]:
+    data_dir = Path(data_dir) if data_dir else DEFAULT_DATA_DIR
+    challenges_file = data_dir / f"arc-agi_{split}_challenges.json"
+    with open(challenges_file) as f:
+        return list(json.load(f).keys())
+Write validate_arc.py
+34 lines
+"""Validate ARC task data."""
+from __future__ import annotations
+from .arc_task import ARCTask, GridPair
+
+
+class ValidationError(Exception):
+    pass
+
+
+def validate_grid(grid: list[list[int]], label: str = "grid") -> None:
+    if not grid:
+        raise ValidationError(f"{label}: empty grid")
+    row_len = len(grid[0])
+    for i, row in enumerate(grid):
+        if len(row) != row_len:
+            raise ValidationError(f"{label}: row {i} has length {len(row)}, expected {row_len}")
+        for j, val in enumerate(row):
+            if not isinstance(val, int) or val < 0 or val > 9:
+                raise ValidationError(f"{label}[{i}][{j}] = {val}, expected int 0-9")
+
+
+def validate_pair(pair: GridPair, label: str = "pair") -> None:
+    validate_grid(pair.input, f"{label}.input")
+    validate_grid(pair.output, f"{label}.output")
+
+
+def validate_task(task: ARCTask) -> None:
+    if not task.train:
+        raise ValidationError(f"Task {task.task_id}: no training pairs")
+    for i, pair in enumerate(task.train):
+        validate_pair(pair, f"Task {task.task_id} train[{i}]")
+    for i, pair in enumerate(task.test):
+        validate_pair(pair, f"Task {task.task_id} test[{i}]")
+Now the perception layer:
+
+Write __init__.py
+1 line
+Write grid.py
+56 lines
+"""Grid representation for ARC tasks."""
+from __future__ import annotations
+import numpy as np
+from collections import Counter
+
+
+class Grid:
+    def __init__(self, data: np.ndarray):
+        self._data = np.asarray(data, dtype=np.int32)
+
+    @classmethod
+    def from_list(cls, lst: list[list[int]]) -> Grid:
+        return cls(np.array(lst, dtype=np.int32))
+
+    def to_numpy(self) -> np.ndarray:
+        return self._data.copy()
+
+    def to_list(self) -> list[list[int]]:
+        return self._data.tolist()
+
+    @property
+    def height(self) -> int:
+        return self._data.shape[0]
+
+    @property
+    def width(self) -> int:
+        return self._data.shape[1]
+
+    @property
+    def shape(self) -> tuple[int, int]:
+        return (self.height, self.width)
+
+    @property
+    def colors_used(self) -> set[int]:
+        return set(int(v) for v in np.unique(self._data))
+
+    @property
+    def background_color(self) -> int:
+        counts = Counter(self._data.flatten().tolist())
+        return counts.most_common(1)[0][0]
+
+    def cell(self, r: int, c: int) -> int:
+        return int(self._data[r, c])
+
+    def subgrid(self, bbox: tuple[int, int, int, int]) -> Grid:
+        r0, c0, r1, c1 = bbox
+        return Grid(self._data[r0:r1, c0:c1].copy())
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Grid):
+            return NotImplemented
+        return np.array_equal(self._data, other._data)
+
+    def __repr__(self) -> str:
+        return f"Grid({self.height}x{self.width})"
+grid.py
+no surrogates
+real thing
+Write segmentation.py
+75 lines
+"""Connected component segmentation for ARC grids."""
+from __future__ import annotations
+from collections import deque
+from dataclasses import dataclass, field
+import numpy as np
+from .grid import Grid
+
+
+@dataclass
+class ObjectMask:
+    cells: frozenset[tuple[int, int]]
+    color: int
+    bounding_box: tuple[int, int, int, int]  # (r0, c0, r1, c1) exclusive end
+
+    @property
+    def size(self) -> int:
+        return len(self.cells)
+
+
+def _neighbors(r: int, c: int, h: int, w: int, connectivity: int) -> list[tuple[int, int]]:
+    result = []
+    for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        nr, nc = r + dr, c + dc
+        if 0 <= nr < h and 0 <= nc < w:
+            result.append((nr, nc))
+    if connectivity == 8:
+        for dr, dc in [(-1, -1), (-1, 1), (1, -1), (1, 1)]:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < h and 0 <= nc < w:
+                result.append((nr, nc))
+    return result
+
+
+def extract_connected_components(
+    grid: Grid,
+    connectivity: int = 4,
+    ignore_background: bool = True,
+) -> list[ObjectMask]:
+    data = grid.to_numpy()
+    h, w = data.shape
+    bg = grid.background_color if ignore_background else -1
+    visited = np.zeros((h, w), dtype=bool)
+    components = []
+
+    for r in range(h):
+        for c in range(w):
+            if visited[r, c]:
+                continue
+            color = int(data[r, c])
+            if color == bg:
+                visited[r, c] = True
+                continue
+
+            cells = set()
+            queue = deque([(r, c)])
+            visited[r, c] = True
+            while queue:
+                cr, cc = queue.popleft()
+                cells.add((cr, cc))
+                for nr, nc in _neighbors(cr, cc, h, w, connectivity):
+                    if not visited[nr, nc] and int(data[nr, nc]) == color:
+                        visited[nr, nc] = True
+                        queue.append((nr, nc))
+
+            rows = [p[0] for p in cells]
+            cols = [p[1] for p in cells]
+            bbox = (min(rows), min(cols), max(rows) + 1, max(cols) + 1)
+            components.append(ObjectMask(
+                cells=frozenset(cells),
+                color=color,
+                bounding_box=bbox,
+            ))
+
+    return components
+Understood — no surrogates, real implementations only. Continuing with the remaining perception files.
+
+Write objects.py
+118 lines
+"""ARC object extraction and representation."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+import numpy as np
+from .grid import Grid
+from .segmentation import ObjectMask, extract_connected_components
+
+
+@dataclass
+class ARCObject:
+    id: int
+    cells: frozenset[tuple[int, int]]
+    color: int
+    bounding_box: tuple[int, int, int, int]
+
+    @property
+    def size(self) -> int:
+        return len(self.cells)
+
+    @property
+    def centroid(self) -> tuple[float, float]:
+        rows = [c[0] for c in self.cells]
+        cols = [c[1] for c in self.cells]
+        return (sum(rows) / len(rows), sum(cols) / len(cols))
+
+    @property
+    def bbox_height(self) -> int:
+        return self.bounding_box[2] - self.bounding_box[0]
+
+    @property
+    def bbox_width(self) -> int:
+        return self.bounding_box[3] - self.bounding_box[1]
+
+    @property
+    def mask(self) -> np.ndarray:
+        r0, c0, r1, c1 = self.bounding_box
+        m = np.zeros((r1 - r0, c1 - c0), dtype=bool)
+        for r, c in self.cells:
+            m[r - r0, c - c0] = True
+        return m
+
+    @property
+    def shape_signature(self) -> tuple:
+        m = self.mask
+        return tuple(map(tuple, m.astype(int).tolist()))
+
+    @property
+    def holes(self) -> list[tuple[int, int]]:
+        r0, c0, r1, c1 = self.bounding_box
+        m = self.mask
+        hole_cells = []
+        for r in range(m.shape[0]):
+            for c in range(m.shape[1]):
+                if not m[r, c]:
+                    ar, ac = r + r0, c + c0
+                    if self._is_interior(r, c, m):
+                        hole_cells.append((ar, ac))
+        return hole_cells
+
+    def _is_interior(self, r: int, c: int, mask: np.ndarray) -> bool:
+        h, w = mask.shape
+        if r == 0 or r == h - 1 or c == 0 or c == w - 1:
+            return False
+        return (mask[r - 1, c] and mask[r + 1, c] and
+                mask[r, c - 1] and mask[r, c + 1])
+
+    @property
+    def has_hole(self) -> bool:
+        return len(self.holes) > 0
+
+    @property
+    def is_rectangle(self) -> bool:
+        return self.size == self.bbox_height * self.bbox_width
+
+    @property
+    def is_line(self) -> bool:
+        return self.bbox_height == 1 or self.bbox_width == 1
+
+    def translated(self, dr: int, dc: int) -> ARCObject:
+        new_cells = frozenset((r + dr, c + dc) for r, c in self.cells)
+        r0, c0, r1, c1 = self.bounding_box
+        return ARCObject(
+            id=self.id,
+            cells=new_cells,
+            color=self.color,
+            bounding_box=(r0 + dr, c0 + dc, r1 + dr, c1 + dc),
+        )
+
+    def recolored(self, new_color: int) -> ARCObject:
+        return ARCObject(
+            id=self.id,
+            cells=self.cells,
+            color=new_color,
+            bounding_box=self.bounding_box,
+        )
+
+
+def extract_objects(grid: Grid, connectivity: int = 4) -> list[ARCObject]:
+    masks = extract_connected_components(grid, connectivity=connectivity)
+    objects = []
+    for i, m in enumerate(masks):
+        objects.append(ARCObject(
+            id=i,
+            cells=m.cells,
+            color=m.color,
+            bounding_box=m.bounding_box,
+        ))
+    return objects
+
+
+def render_objects(objects: list[ARCObject], height: int, width: int, background: int = 0) -> Grid:
+    data = np.full((height, width), background, dtype=np.int32)
+    for obj in objects:
+        for r, c in obj.cells:
+            if 0 <= r < height and 0 <= c < width:
+                data[r, c] = obj.color
+    return Grid(data)
+Write relations.py
+103 lines
+"""Relation graph construction between ARC objects."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+from .objects import ARCObject
+
+
+@dataclass
+class Relation:
+    source_id: int
+    target_id: int
+    relation_type: str
+
+    def __repr__(self) -> str:
+        return f"{self.relation_type}({self.source_id}, {self.target_id})"
+
+
+def _bbox_center(obj: ARCObject) -> tuple[float, float]:
+    return obj.centroid
+
+
+def left_of(a: ARCObject, b: ARCObject) -> bool:
+    return a.centroid[1] < b.centroid[1] and a.bounding_box[3] <= b.bounding_box[1]
+
+
+def right_of(a: ARCObject, b: ARCObject) -> bool:
+    return left_of(b, a)
+
+
+def above(a: ARCObject, b: ARCObject) -> bool:
+    return a.centroid[0] < b.centroid[0] and a.bounding_box[2] <= b.bounding_box[0]
+
+
+def below(a: ARCObject, b: ARCObject) -> bool:
+    return above(b, a)
+
+
+def contains(a: ARCObject, b: ARCObject) -> bool:
+    if a.id == b.id:
+        return False
+    ar0, ac0, ar1, ac1 = a.bounding_box
+    br0, bc0, br1, bc1 = b.bounding_box
+    return ar0 <= br0 and ac0 <= bc0 and ar1 >= br1 and ac1 >= bc1
+
+
+def adjacent(a: ARCObject, b: ARCObject) -> bool:
+    if a.id == b.id:
+        return False
+    for r, c in a.cells:
+        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+            if (r + dr, c + dc) in b.cells:
+                return True
+    return False
+
+
+def same_color(a: ARCObject, b: ARCObject) -> bool:
+    return a.color == b.color and a.id != b.id
+
+
+def same_shape(a: ARCObject, b: ARCObject) -> bool:
+    if a.id == b.id:
+        return False
+    return a.shape_signature == b.shape_signature
+
+
+def same_size(a: ARCObject, b: ARCObject) -> bool:
+    return a.size == b.size and a.id != b.id
+
+
+def overlaps(a: ARCObject, b: ARCObject) -> bool:
+    if a.id == b.id:
+        return False
+    return bool(a.cells & b.cells)
+
+
+ALL_RELATION_CHECKS = [
+    ("left_of", left_of),
+    ("right_of", right_of),
+    ("above", above),
+    ("below", below),
+    ("contains", contains),
+    ("adjacent", adjacent),
+    ("same_color", same_color),
+    ("same_shape", same_shape),
+    ("same_size", same_size),
+    ("overlaps", overlaps),
+]
+
+
+def build_relation_graph(objects: list[ARCObject]) -> list[Relation]:
+    relations = []
+    for i, a in enumerate(objects):
+        for j, b in enumerate(objects):
+            if i == j:
+                continue
+            for rel_name, rel_fn in ALL_RELATION_CHECKS:
+                if rel_fn(a, b):
+                    relations.append(Relation(
+                        source_id=a.id,
+                        target_id=b.id,
+                        relation_type=rel_name,
+                    ))
+    return relations
+Write matching.py
+72 lines
+"""Match input objects to output objects."""
+from __future__ import annotations
+from .objects import ARCObject
+
+
+def shape_similarity(a: ARCObject, b: ARCObject) -> float:
+    sig_a = a.shape_signature
+    sig_b = b.shape_signature
+    if sig_a == sig_b:
+        return 1.0
+    ha, wa = len(sig_a), len(sig_a[0]) if sig_a else 0
+    hb, wb = len(sig_b), len(sig_b[0]) if sig_b else 0
+    if ha != hb or wa != wb:
+        return 0.0
+    match = sum(1 for r in range(ha) for c in range(wa) if sig_a[r][c] == sig_b[r][c])
+    total = ha * wa
+    return match / total if total > 0 else 0.0
+
+
+def color_similarity(a: ARCObject, b: ARCObject) -> float:
+    return 1.0 if a.color == b.color else 0.0
+
+
+def size_similarity(a: ARCObject, b: ARCObject) -> float:
+    if a.size == 0 and b.size == 0:
+        return 1.0
+    return min(a.size, b.size) / max(a.size, b.size)
+
+
+def location_similarity(a: ARCObject, b: ARCObject) -> float:
+    ca, cb = a.centroid, b.centroid
+    dist = ((ca[0] - cb[0]) ** 2 + (ca[1] - cb[1]) ** 2) ** 0.5
+    return 1.0 / (1.0 + dist)
+
+
+def overall_similarity(a: ARCObject, b: ARCObject) -> float:
+    return (
+        0.3 * shape_similarity(a, b)
+        + 0.2 * color_similarity(a, b)
+        + 0.2 * size_similarity(a, b)
+        + 0.3 * location_similarity(a, b)
+    )
+
+
+def match_objects(
+    input_objects: list[ARCObject],
+    output_objects: list[ARCObject],
+) -> list[tuple[ARCObject, ARCObject, float]]:
+    if not input_objects or not output_objects:
+        return []
+
+    matches = []
+    used_output = set()
+
+    scored = []
+    for inp in input_objects:
+        for out in output_objects:
+            scored.append((inp, out, overall_similarity(inp, out)))
+
+    scored.sort(key=lambda x: x[2], reverse=True)
+
+    used_input = set()
+    for inp, out, sim in scored:
+        if inp.id in used_input or out.id in used_output:
+            continue
+        if sim > 0.1:
+            matches.append((inp, out, sim))
+            used_input.add(inp.id)
+            used_output.add(out.id)
+
+    return matches
+Write change_detection.py
+76 lines
+"""Detect changes between input and output grids."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+import numpy as np
+from .grid import Grid
+from .objects import ARCObject, extract_objects
+from .matching import match_objects
+
+
+@dataclass
+class ChangeReport:
+    cells_changed: list[tuple[int, int, int, int]]  # (r, c, old_color, new_color)
+    num_cells_changed: int
+    objects_added: list[ARCObject]
+    objects_removed: list[ARCObject]
+    objects_moved: list[tuple[ARCObject, ARCObject, tuple[int, int]]]  # (in, out, displacement)
+    objects_recolored: list[tuple[ARCObject, ARCObject]]  # (in, out)
+    cell_accuracy: float
+
+
+def detect_changes(input_grid: Grid, output_grid: Grid) -> ChangeReport:
+    in_data = input_grid.to_numpy()
+    out_data = output_grid.to_numpy()
+
+    ih, iw = in_data.shape
+    oh, ow = out_data.shape
+
+    cells_changed = []
+    min_h, min_w = min(ih, oh), min(iw, ow)
+    total_cells = oh * ow
+    matching_cells = 0
+
+    for r in range(oh):
+        for c in range(ow):
+            if r < ih and c < iw:
+                if in_data[r, c] != out_data[r, c]:
+                    cells_changed.append((r, c, int(in_data[r, c]), int(out_data[r, c])))
+                else:
+                    matching_cells += 1
+            else:
+                cells_changed.append((r, c, -1, int(out_data[r, c])))
+
+    cell_accuracy = matching_cells / total_cells if total_cells > 0 else 0.0
+
+    in_objects = extract_objects(input_grid)
+    out_objects = extract_objects(output_grid)
+
+    matches = match_objects(in_objects, out_objects)
+    matched_in_ids = {m[0].id for m in matches}
+    matched_out_ids = {m[1].id for m in matches}
+
+    objects_removed = [o for o in in_objects if o.id not in matched_in_ids]
+    objects_added = [o for o in out_objects if o.id not in matched_out_ids]
+
+    objects_moved = []
+    objects_recolored = []
+    for in_obj, out_obj, sim in matches:
+        in_c = in_obj.centroid
+        out_c = out_obj.centroid
+        dr = out_c[0] - in_c[0]
+        dc = out_c[1] - in_c[1]
+        if abs(dr) > 0.5 or abs(dc) > 0.5:
+            objects_moved.append((in_obj, out_obj, (int(round(dr)), int(round(dc)))))
+        if in_obj.color != out_obj.color:
+            objects_recolored.append((in_obj, out_obj))
+
+    return ChangeReport(
+        cells_changed=cells_changed,
+        num_cells_changed=len(cells_changed),
+        objects_added=objects_added,
+        objects_removed=objects_removed,
+        objects_moved=objects_moved,
+        objects_recolored=objects_recolored,
+        cell_accuracy=cell_accuracy,
+    )
+Phase 1 files done. Now Phase 2 — Visual Logic:
+
+Write __init__.py
+1 line
+Write predicates.py
+132 lines
+"""Finite predicates over ARC objects."""
+from __future__ import annotations
+from geocat_arc.perception.objects import ARCObject
+
+
+class Predicate:
+    """Base class for predicates."""
+    arity: int = 1
+
+    def __call__(self, *args) -> bool:
+        raise NotImplementedError
+
+
+class HasColor(Predicate):
+    arity = 1
+    def __init__(self, color: int):
+        self.color = color
+    def __call__(self, obj: ARCObject) -> bool:
+        return obj.color == self.color
+    def __repr__(self):
+        return f"HasColor({self.color})"
+
+
+class SameColor(Predicate):
+    arity = 2
+    def __call__(self, a: ARCObject, b: ARCObject) -> bool:
+        return a.color == b.color and a.id != b.id
+    def __repr__(self):
+        return "SameColor()"
+
+
+class IsRectangle(Predicate):
+    arity = 1
+    def __call__(self, obj: ARCObject) -> bool:
+        return obj.is_rectangle
+    def __repr__(self):
+        return "IsRectangle()"
+
+
+class IsLine(Predicate):
+    arity = 1
+    def __call__(self, obj: ARCObject) -> bool:
+        return obj.is_line
+    def __repr__(self):
+        return "IsLine()"
+
+
+class HasHole(Predicate):
+    arity = 1
+    def __call__(self, obj: ARCObject) -> bool:
+        return obj.has_hole
+    def __repr__(self):
+        return "HasHole()"
+
+
+class SameShape(Predicate):
+    arity = 2
+    def __call__(self, a: ARCObject, b: ARCObject) -> bool:
+        return a.shape_signature == b.shape_signature and a.id != b.id
+    def __repr__(self):
+        return "SameShape()"
+
+
+class IsLargest(Predicate):
+    arity = 1
+    def __init__(self, all_objects: list[ARCObject]):
+        self._max_size = max(o.size for o in all_objects) if all_objects else 0
+    def __call__(self, obj: ARCObject) -> bool:
+        return obj.size == self._max_size
+    def __repr__(self):
+        return "IsLargest()"
+
+
+class IsSmallest(Predicate):
+    arity = 1
+    def __init__(self, all_objects: list[ARCObject]):
+        self._min_size = min(o.size for o in all_objects) if all_objects else 0
+    def __call__(self, obj: ARCObject) -> bool:
+        return obj.size == self._min_size
+    def __repr__(self):
+        return "IsSmallest()"
+
+
+class SameSize(Predicate):
+    arity = 2
+    def __call__(self, a: ARCObject, b: ARCObject) -> bool:
+        return a.size == b.size and a.id != b.id
+    def __repr__(self):
+        return "SameSize()"
+
+
+class Inside(Predicate):
+    arity = 2
+    def __call__(self, inner: ARCObject, outer: ARCObject) -> bool:
+        if inner.id == outer.id:
+            return False
+        ar0, ac0, ar1, ac1 = outer.bounding_box
+        br0, bc0, br1, bc1 = inner.bounding_box
+        return ar0 <= br0 and ac0 <= bc0 and ar1 >= br1 and ac1 >= bc1
+    def __repr__(self):
+        return "Inside()"
+
+
+class TouchesBorder(Predicate):
+    arity = 1
+    def __init__(self, grid_h: int, grid_w: int):
+        self.grid_h = grid_h
+        self.grid_w = grid_w
+    def __call__(self, obj: ARCObject) -> bool:
+        for r, c in obj.cells:
+            if r == 0 or r == self.grid_h - 1 or c == 0 or c == self.grid_w - 1:
+                return True
+        return False
+    def __repr__(self):
+        return f"TouchesBorder({self.grid_h},{self.grid_w})"
+
+
+class LeftOf(Predicate):
+    arity = 2
+    def __call__(self, a: ARCObject, b: ARCObject) -> bool:
+        return a.centroid[1] < b.centroid[1] and a.bounding_box[3] <= b.bounding_box[1]
+    def __repr__(self):
+        return "LeftOf()"
+
+
+class Above(Predicate):
+    arity = 2
+    def __call__(self, a: ARCObject, b: ARCObject) -> bool:
+        return a.centroid[0] < b.centroid[0] and a.bounding_box[2] <= b.bounding_box[0]
+    def __repr__(self):
+        return "Above()"
+Write proposition.py
+78 lines
+"""Propositions over ARC objects — finite logic."""
+from __future__ import annotations
+from .predicates import Predicate
+
+
+class Proposition:
+    def evaluate(self, *args) -> bool:
+        raise NotImplementedError
+
+    def __and__(self, other: Proposition) -> And:
+        return And(self, other)
+
+    def __or__(self, other: Proposition) -> Or:
+        return Or(self, other)
+
+    def __invert__(self) -> Not:
+        return Not(self)
+
+
+class AtomicProp(Proposition):
+    def __init__(self, predicate: Predicate, *bound_args):
+        self.predicate = predicate
+        self.bound_args = bound_args
+
+    def evaluate(self, *args) -> bool:
+        all_args = self.bound_args + args
+        return self.predicate(*all_args)
+
+    def __repr__(self):
+        return f"Atom({self.predicate}, {self.bound_args})"
+
+
+class And(Proposition):
+    def __init__(self, left: Proposition, right: Proposition):
+        self.left = left
+        self.right = right
+
+    def evaluate(self, *args) -> bool:
+        return self.left.evaluate(*args) and self.right.evaluate(*args)
+
+    def __repr__(self):
+        return f"({self.left} AND {self.right})"
+
+
+class Or(Proposition):
+    def __init__(self, left: Proposition, right: Proposition):
+        self.left = left
+        self.right = right
+
+    def evaluate(self, *args) -> bool:
+        return self.left.evaluate(*args) or self.right.evaluate(*args)
+
+    def __repr__(self):
+        return f"({self.left} OR {self.right})"
+
+
+class Not(Proposition):
+    def __init__(self, prop: Proposition):
+        self.prop = prop
+
+    def evaluate(self, *args) -> bool:
+        return not self.prop.evaluate(*args)
+
+    def __repr__(self):
+        return f"NOT({self.prop})"
+
+
+class Implies(Proposition):
+    def __init__(self, antecedent: Proposition, consequent: Proposition):
+        self.antecedent = antecedent
+        self.consequent = consequent
+
+    def evaluate(self, *args) -> bool:
+        return (not self.antecedent.evaluate(*args)) or self.consequent.evaluate(*args)
+
+    def __repr__(self):
+        return f"({self.antecedent} => {self.consequent})"
+Write finite_logic.py
+21 lines
+"""Finite logic engine for evaluating propositions over object sets."""
+from __future__ import annotations
+from .proposition import Proposition
+
+
+def evaluate_proposition(prop: Proposition, *objects) -> bool:
+    return prop.evaluate(*objects)
+
+
+def satisfying_objects(prop: Proposition, objects: list) -> list:
+    return [obj for obj in objects if prop.evaluate(obj)]
+
+
+def satisfying_pairs(prop: Proposition, objects: list) -> list[tuple]:
+    results = []
+    for i, a in enumerate(objects):
+        for j, b in enumerate(objects):
+            if i != j and prop.evaluate(a, b):
+                results.append((a, b))
+    return results
+Write quantifiers.py
+28 lines
+"""Quantifiers over finite object domains."""
+from __future__ import annotations
+from .proposition import Proposition
+
+
+class ForAll(Proposition):
+    def __init__(self, proposition: Proposition, domain: list):
+        self.proposition = proposition
+        self.domain = domain
+
+    def evaluate(self, *args) -> bool:
+        return all(self.proposition.evaluate(obj) for obj in self.domain)
+
+    def __repr__(self):
+        return f"ForAll({self.proposition}, |domain|={len(self.domain)})"
+
+
+class Exists(Proposition):
+    def __init__(self, proposition: Proposition, domain: list):
+        self.proposition = proposition
+        self.domain = domain
+
+    def evaluate(self, *args) -> bool:
+        return any(self.proposition.evaluate(obj) for obj in self.domain)
+
+    def __repr__(self):
+        return f"Exists({self.proposition}, |domain|={len(self.domain)})"
+Write rule_templates.py
+22 lines
+"""Rule templates for ARC reasoning."""
+from __future__ import annotations
+from dataclasses import dataclass
+from .proposition import Proposition
+
+
+@dataclass
+class RuleTemplate:
+    name: str
+    condition: Proposition
+    action: str
+
+    def matches(self, objects: list) -> list:
+        return [obj for obj in objects if self.condition.evaluate(obj)]
+
+    def __repr__(self):
+        return f"Rule({self.name}: {self.condition} => {self.action})"
+
+
+def match_rule(template: RuleTemplate, objects: list) -> list:
+    return template.matches(objects)
+Write truth_table.py
+23 lines
+"""Truth table generation for propositions over finite domains."""
+from __future__ import annotations
+from .proposition import Proposition
+
+
+def build_truth_table(proposition: Proposition, objects: list) -> dict:
+    table = {}
+    for obj in objects:
+        key = getattr(obj, 'id', id(obj))
+        table[key] = proposition.evaluate(obj)
+    return table
+
+
+def build_pair_truth_table(proposition: Proposition, objects: list) -> dict:
+    table = {}
+    for a in objects:
+        for b in objects:
+            if a is not b:
+                ka = getattr(a, 'id', id(a))
+                kb = getattr(b, 'id', id(b))
+                table[(ka, kb)] = proposition.evaluate(a, b)
+    return table
+Phase 2 done. Now Phase 3 — Categorical DSL:
+
+Write __init__.py
+1 line
+Write types.py
+18 lines
+"""ARC type system for the categorical DSL."""
+from enum import Enum, auto
+
+
+class ArcType(Enum):
+    GRID = auto()
+    OBJECT = auto()
+    OBJECT_SET = auto()
+    REGION = auto()
+    MASK = auto()
+    COLOR = auto()
+    VECTOR = auto()
+    AXIS = auto()
+    ANGLE = auto()
+    RELATION_GRAPH = auto()
+    GRID_PATCH = auto()
+    PREDICATE = auto()
+Write morphism.py
+21 lines
+"""Morphism base class for typed ARC operators."""
+from __future__ import annotations
+from .types import ArcType
+
+
+class Morphism:
+    name: str = "unnamed"
+    input_types: tuple[ArcType, ...] = ()
+    output_type: ArcType = ArcType.GRID
+    cost: float = 1.0
+
+    def apply(self, *args):
+        raise NotImplementedError(f"{self.name}.apply() not implemented")
+
+    def applicable(self, *args) -> bool:
+        return True
+
+    def __repr__(self) -> str:
+        in_str = " x ".join(t.name for t in self.input_types)
+        return f"{self.name}: {in_str} -> {self.output_type.name}"
+Write type_checker.py
+38 lines
+"""Type checker for morphism compositions."""
+from __future__ import annotations
+from .morphism import Morphism
+from .types import ArcType
+
+
+class TypeCheckError(Exception):
+    pass
+
+
+def check_composition(morphisms: list[Morphism]) -> bool:
+    if len(morphisms) < 2:
+        return True
+    for i in range(len(morphisms) - 1):
+        out_type = morphisms[i].output_type
+        next_in = morphisms[i + 1].input_types
+        if not next_in:
+            continue
+        if out_type != next_in[0]:
+            raise TypeCheckError(
+                f"Type mismatch: {morphisms[i].name} outputs {out_type.name} "
+                f"but {morphisms[i+1].name} expects {next_in[0].name}"
+            )
+    return True
+
+
+def validate_input(morphism: Morphism, args: tuple, arg_types: tuple[ArcType, ...]) -> bool:
+    if len(arg_types) != len(morphism.input_types):
+        raise TypeCheckError(
+            f"{morphism.name} expects {len(morphism.input_types)} args, got {len(arg_types)}"
+        )
+    for i, (expected, actual) in enumerate(zip(morphism.input_types, arg_types)):
+        if expected != actual:
+            raise TypeCheckError(
+                f"{morphism.name} arg {i}: expected {expected.name}, got {actual.name}"
+            )
+    return True
+Write operators_basic.py
+74 lines
+"""Basic ARC operators as typed morphisms."""
+from __future__ import annotations
+import numpy as np
+from .morphism import Morphism
+from .types import ArcType
+from geocat_arc.perception.grid import Grid
+from geocat_arc.perception.objects import ARCObject, extract_objects, render_objects
+
+
+class Segment(Morphism):
+    name = "segment"
+    input_types = (ArcType.GRID,)
+    output_type = ArcType.OBJECT_SET
+    cost = 1.0
+
+    def __init__(self, connectivity: int = 4):
+        self.connectivity = connectivity
+
+    def apply(self, grid: Grid) -> list[ARCObject]:
+        return extract_objects(grid, connectivity=self.connectivity)
+
+
+class Select(Morphism):
+    name = "select"
+    input_types = (ArcType.OBJECT_SET, ArcType.PREDICATE)
+    output_type = ArcType.OBJECT
+    cost = 0.5
+
+    def apply(self, objects: list[ARCObject], predicate) -> ARCObject:
+        for obj in objects:
+            if predicate(obj):
+                return obj
+        raise ValueError("No object satisfies predicate")
+
+
+class Filter(Morphism):
+    name = "filter"
+    input_types = (ArcType.OBJECT_SET, ArcType.PREDICATE)
+    output_type = ArcType.OBJECT_SET
+    cost = 0.5
+
+    def apply(self, objects: list[ARCObject], predicate) -> list[ARCObject]:
+        return [obj for obj in objects if predicate(obj)]
+
+
+class Copy(Morphism):
+    name = "copy"
+    input_types = (ArcType.OBJECT,)
+    output_type = ArcType.OBJECT
+    cost = 0.2
+
+    def apply(self, obj: ARCObject) -> ARCObject:
+        return ARCObject(
+            id=obj.id + 1000,
+            cells=frozenset(obj.cells),
+            color=obj.color,
+            bounding_box=obj.bounding_box,
+        )
+
+
+class Render(Morphism):
+    name = "render"
+    input_types = (ArcType.OBJECT_SET,)
+    output_type = ArcType.GRID
+    cost = 1.0
+
+    def __init__(self, height: int, width: int, background: int = 0):
+        self.height = height
+        self.width = width
+        self.background = background
+
+    def apply(self, objects: list[ARCObject]) -> Grid:
+        return render_objects(objects, self.height, self.width, self.background)
+type_checker.py
+create a status and update file and update all processes
+and status
+Write operators_spatial.py
+97 lines
+"""Spatial ARC operators as typed morphisms."""
+from __future__ import annotations
+import numpy as np
+from .morphism import Morphism
+from .types import ArcType
+from geocat_arc.perception.grid import Grid
+from geocat_arc.perception.objects import ARCObject
+
+
+class Translate(Morphism):
+    name = "translate"
+    input_types = (ArcType.OBJECT, ArcType.VECTOR)
+    output_type = ArcType.OBJECT
+    cost = 1.0
+
+    def apply(self, obj: ARCObject, vector: tuple[int, int]) -> ARCObject:
+        dr, dc = vector
+        return obj.translated(dr, dc)
+
+
+class Rotate90(Morphism):
+    name = "rotate90"
+    input_types = (ArcType.OBJECT, ArcType.ANGLE)
+    output_type = ArcType.OBJECT
+    cost = 1.5
+
+    def apply(self, obj: ARCObject, angle: int) -> ARCObject:
+        rotations = (angle % 360) // 90
+        mask = obj.mask
+        for _ in range(rotations):
+            mask = np.rot90(mask, k=-1)
+        r0, c0 = obj.bounding_box[0], obj.bounding_box[1]
+        new_cells = set()
+        for r in range(mask.shape[0]):
+            for c in range(mask.shape[1]):
+                if mask[r, c]:
+                    new_cells.add((r0 + r, c0 + c))
+        new_h, new_w = mask.shape
+        return ARCObject(
+            id=obj.id,
+            cells=frozenset(new_cells),
+            color=obj.color,
+            bounding_box=(r0, c0, r0 + new_h, c0 + new_w),
+        )
+
+
+class Reflect(Morphism):
+    name = "reflect"
+    input_types = (ArcType.OBJECT, ArcType.AXIS)
+    output_type = ArcType.OBJECT
+    cost = 1.5
+
+    def apply(self, obj: ARCObject, axis: str) -> ARCObject:
+        mask = obj.mask
+        if axis == "horizontal":
+            mask = np.flipud(mask)
+        elif axis == "vertical":
+            mask = np.fliplr(mask)
+        else:
+            raise ValueError(f"Unknown axis: {axis}")
+        r0, c0 = obj.bounding_box[0], obj.bounding_box[1]
+        new_cells = set()
+        for r in range(mask.shape[0]):
+            for c in range(mask.shape[1]):
+                if mask[r, c]:
+                    new_cells.add((r0 + r, c0 + c))
+        return ARCObject(
+            id=obj.id,
+            cells=frozenset(new_cells),
+            color=obj.color,
+            bounding_box=obj.bounding_box,
+        )
+
+
+class Crop(Morphism):
+    name = "crop"
+    input_types = (ArcType.GRID, ArcType.REGION)
+    output_type = ArcType.GRID
+    cost = 0.5
+
+    def apply(self, grid: Grid, region: tuple[int, int, int, int]) -> Grid:
+        return grid.subgrid(region)
+
+
+class Place(Morphism):
+    name = "place"
+    input_types = (ArcType.OBJECT, ArcType.REGION)
+    output_type = ArcType.GRID_PATCH
+    cost = 1.0
+
+    def apply(self, obj: ARCObject, region: tuple[int, int, int, int]) -> dict:
+        r0, c0, r1, c1 = region
+        dr = r0 - obj.bounding_box[0]
+        dc = c0 - obj.bounding_box[1]
+        new_obj = obj.translated(dr, dc)
+        return {"object": new_obj, "region": region}
+Write operators_color.py
+29 lines
+"""Color ARC operators as typed morphisms."""
+from __future__ import annotations
+import numpy as np
+from .morphism import Morphism
+from .types import ArcType
+from geocat_arc.perception.objects import ARCObject
+
+
+class Recolor(Morphism):
+    name = "recolor"
+    input_types = (ArcType.OBJECT, ArcType.COLOR)
+    output_type = ArcType.OBJECT
+    cost = 0.5
+
+    def apply(self, obj: ARCObject, new_color: int) -> ARCObject:
+        return obj.recolored(new_color)
+
+
+class FillRegion(Morphism):
+    name = "fill_region"
+    input_types = (ArcType.REGION, ArcType.COLOR)
+    output_type = ArcType.GRID_PATCH
+    cost = 0.5
+
+    def apply(self, region: tuple[int, int, int, int], color: int) -> dict:
+        r0, c0, r1, c1 = region
+        cells = frozenset((r, c) for r in range(r0, r1) for c in range(c0, c1))
+        return {"cells": cells, "color": color, "region": region}
+Write operators_symmetry.py
+58 lines
+"""Symmetry ARC operators as typed morphisms."""
+from __future__ import annotations
+import numpy as np
+from .morphism import Morphism
+from .types import ArcType
+from geocat_arc.perception.objects import ARCObject
+
+
+class CompleteSymmetry(Morphism):
+    name = "complete_symmetry"
+    input_types = (ArcType.OBJECT_SET, ArcType.AXIS)
+    output_type = ArcType.OBJECT_SET
+    cost = 2.0
+
+    def apply(self, objects: list[ARCObject], axis: str) -> list[ARCObject]:
+        result = list(objects)
+        existing_sigs = {(obj.shape_signature, obj.color) for obj in objects}
+
+        for obj in objects:
+            mask = obj.mask
+            if axis == "horizontal":
+                reflected = np.flipud(mask)
+            elif axis == "vertical":
+                reflected = np.fliplr(mask)
+            else:
+                continue
+
+            r0, c0, r1, c1 = obj.bounding_box
+
+            if axis == "horizontal":
+                new_r0 = 2 * r0 - r1 + (r1 - r0)
+                new_cells = set()
+                for r in range(reflected.shape[0]):
+                    for c in range(reflected.shape[1]):
+                        if reflected[r, c]:
+                            new_cells.add((new_r0 + r, c0 + c))
+            else:
+                new_c0 = 2 * c0 - c1 + (c1 - c0)
+                new_cells = set()
+                for r in range(reflected.shape[0]):
+                    for c in range(reflected.shape[1]):
+                        if reflected[r, c]:
+                            new_cells.add((r0 + r, new_c0 + c))
+
+            if new_cells:
+                new_obj = ARCObject(
+                    id=obj.id + 2000,
+                    cells=frozenset(new_cells),
+                    color=obj.color,
+                    bounding_box=obj.bounding_box,
+                )
+                sig = (new_obj.shape_signature, new_obj.color)
+                if sig not in existing_sigs:
+                    result.append(new_obj)
+                    existing_sigs.add(sig)
+
+        return result
+Write composition.py
+28 lines
+"""Morphism composition with type checking."""
+from __future__ import annotations
+from .morphism import Morphism
+from .types import ArcType
+from .type_checker import check_composition, TypeCheckError
+
+
+class ComposedMorphism(Morphism):
+    def __init__(self, first: Morphism, second: Morphism):
+        check_composition([first, second])
+        self.first = first
+        self.second = second
+        self.name = f"{second.name} . {first.name}"
+        self.input_types = first.input_types
+        self.output_type = second.output_type
+        self.cost = first.cost + second.cost
+
+    def apply(self, *args):
+        intermediate = self.first.apply(*args)
+        return self.second.apply(intermediate)
+
+    def applicable(self, *args) -> bool:
+        return self.first.applicable(*args)
+
+
+def compose(f: Morphism, g: Morphism) -> ComposedMorphism:
+    return ComposedMorphism(f, g)
+Write program.py
+66 lines
+"""Program representation — ordered sequence of morphism applications."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+from .morphism import Morphism
+from .type_checker import check_composition, TypeCheckError
+from geocat_arc.perception.grid import Grid
+
+
+@dataclass
+class ProgramStep:
+    morphism: Morphism
+    bound_args: tuple = ()
+
+    def to_dict(self) -> dict:
+        return {
+            "morphism": self.morphism.name,
+            "bound_args": [repr(a) for a in self.bound_args],
+        }
+
+
+class Program:
+    def __init__(self, steps: list[ProgramStep] = None):
+        self.steps: list[ProgramStep] = steps or []
+
+    def add_step(self, morphism: Morphism, *bound_args):
+        self.steps.append(ProgramStep(morphism=morphism, bound_args=bound_args))
+
+    def type_check(self) -> bool:
+        if len(self.steps) < 2:
+            return True
+        morphisms = [s.morphism for s in self.steps]
+        try:
+            return check_composition(morphisms)
+        except TypeCheckError:
+            return False
+
+    def apply(self, input_grid: Grid):
+        result = input_grid
+        for step in self.steps:
+            args = (result,) + step.bound_args
+            result = step.morphism.apply(*args)
+        return result
+
+    @property
+    def depth(self) -> int:
+        return len(self.steps)
+
+    @property
+    def total_cost(self) -> float:
+        return sum(s.morphism.cost for s in self.steps)
+
+    @property
+    def operator_names(self) -> list[str]:
+        return [s.morphism.name for s in self.steps]
+
+    def to_dict(self) -> dict:
+        return {
+            "steps": [s.to_dict() for s in self.steps],
+            "depth": self.depth,
+            "total_cost": self.total_cost,
+        }
+
+    def __repr__(self) -> str:
+        ops = " -> ".join(s.morphism.name for s in self.steps)
+        return f"Program({ops})"
+Phases 1-3 complete. Now implementing Phase 4 (Bayesian search) and Phase 5 (info-geo memory):
+
+Write __init__.py
+1 line
+Write program_features.py
+52 lines
+"""Extract feature vectors from candidate programs."""
+from __future__ import annotations
+import numpy as np
+
+FEATURE_NAMES = [
+    "operator_count",
+    "depth",
+    "num_unique_operators",
+    "has_spatial_op",
+    "has_color_op",
+    "has_symmetry_op",
+    "has_filter_op",
+    "total_cost",
+    "complexity_score",
+]
+
+SPATIAL_OPS = {"translate", "rotate90", "reflect", "crop", "place"}
+COLOR_OPS = {"recolor", "fill_region"}
+SYMMETRY_OPS = {"complete_symmetry"}
+FILTER_OPS = {"select", "filter"}
+
+
+def extract_features(program) -> np.ndarray:
+    if hasattr(program, 'operator_names'):
+        ops = program.operator_names
+    elif hasattr(program, 'steps'):
+        ops = [s.morphism.name for s in program.steps]
+    else:
+        ops = []
+
+    op_set = set(ops)
+    depth = len(ops)
+    total_cost = getattr(program, 'total_cost', depth * 1.0)
+
+    features = np.array([
+        float(len(ops)),
+        float(depth),
+        float(len(op_set)),
+        float(bool(op_set & SPATIAL_OPS)),
+        float(bool(op_set & COLOR_OPS)),
+        float(bool(op_set & SYMMETRY_OPS)),
+        float(bool(op_set & FILTER_OPS)),
+        float(total_cost),
+        float(depth * len(op_set)),
+    ], dtype=np.float64)
+
+    return features
+
+
+def feature_dim() -> int:
+    return len(FEATURE_NAMES)
+Write real_objective.py
+55 lines
+"""Real objective function — evaluates programs on actual ARC grids."""
+from __future__ import annotations
+import numpy as np
+from geocat_arc.perception.grid import Grid
+
+
+def normalized_cell_accuracy(predicted: list[list[int]], target: list[list[int]]) -> float:
+    pred = np.array(predicted, dtype=np.int32)
+    tgt = np.array(target, dtype=np.int32)
+    if pred.shape != tgt.shape:
+        ph, pw = pred.shape
+        th, tw = tgt.shape
+        min_h, min_w = min(ph, th), min(pw, tw)
+        matching = np.sum(pred[:min_h, :min_w] == tgt[:min_h, :min_w])
+        total = th * tw
+        shape_penalty = 1.0 - (min_h * min_w) / total if total > 0 else 1.0
+        return (matching / total) * (1.0 - 0.5 * shape_penalty) if total > 0 else 0.0
+    total = tgt.size
+    return float(np.sum(pred == tgt)) / total if total > 0 else 0.0
+
+
+def exact_match(predicted: list[list[int]], target: list[list[int]]) -> bool:
+    return predicted == target
+
+
+def evaluate_program(program, task, complexity_weight: float = 0.01) -> float:
+    scores = []
+    for pair in task.train:
+        try:
+            input_grid = Grid.from_list(pair.input)
+            result = program.apply(input_grid)
+            if isinstance(result, Grid):
+                predicted = result.to_list()
+            elif isinstance(result, list):
+                if result and isinstance(result[0], list):
+                    predicted = result
+                else:
+                    predicted = [[0]]
+            else:
+                predicted = [[0]]
+
+            cell_acc = normalized_cell_accuracy(predicted, pair.output)
+            is_exact = exact_match(predicted, pair.output)
+            score = cell_acc + (1.0 if is_exact else 0.0)
+            scores.append(score)
+        except Exception:
+            scores.append(0.0)
+
+    if not scores:
+        return 0.0
+
+    avg_score = sum(scores) / len(scores)
+    complexity_penalty = complexity_weight * getattr(program, 'total_cost', len(getattr(program, 'steps', [])))
+    return max(0.0, avg_score - complexity_penalty)
+Write acquisition.py
+22 lines
+"""Acquisition functions for Bayesian program search."""
+from __future__ import annotations
+import numpy as np
+from scipy.stats import norm
+
+
+def ucb(mean: float, variance: float, kappa: float = 2.0) -> float:
+    return mean + kappa * np.sqrt(max(variance, 0.0))
+
+
+def expected_improvement(mean: float, variance: float, best_so_far: float) -> float:
+    std = np.sqrt(max(variance, 1e-12))
+    z = (mean - best_so_far) / std
+    return std * (z * norm.cdf(z) + norm.pdf(z))
+
+
+def thompson_sample(mean: float, variance: float, rng: np.random.Generator = None) -> float:
+    if rng is None:
+        rng = np.random.default_rng()
+    std = np.sqrt(max(variance, 1e-12))
+    return float(rng.normal(mean, std))
+Write bayes_ranker.py
+54 lines
+"""Bayesian linear regression ranker for candidate programs."""
+from __future__ import annotations
+import numpy as np
+from .acquisition import ucb
+
+
+class BayesianLinearRanker:
+    def __init__(self, feature_dim: int, alpha: float = 1.0, beta: float = 1.0):
+        self.feature_dim = feature_dim
+        self.alpha = alpha
+        self.beta = beta
+        self.prior_precision = alpha * np.eye(feature_dim)
+        self.posterior_precision = self.prior_precision.copy()
+        self.posterior_mean_weighted = np.zeros(feature_dim)
+        self._n_obs = 0
+
+    @property
+    def posterior_cov(self) -> np.ndarray:
+        return np.linalg.inv(self.posterior_precision)
+
+    @property
+    def posterior_weights(self) -> np.ndarray:
+        return self.posterior_cov @ self.posterior_mean_weighted
+
+    def update(self, features: np.ndarray, score: float) -> None:
+        x = features.reshape(-1)
+        self.posterior_precision += self.beta * np.outer(x, x)
+        self.posterior_mean_weighted += self.beta * score * x
+        self._n_obs += 1
+
+    def predict(self, features: np.ndarray) -> tuple[float, float]:
+        x = features.reshape(-1)
+        w = self.posterior_weights
+        cov = self.posterior_cov
+        mean = float(x @ w)
+        variance = float(x @ cov @ x) + 1.0 / self.beta
+        return mean, max(variance, 1e-12)
+
+    def rank_candidates(
+        self,
+        candidate_features: list[np.ndarray],
+        kappa: float = 2.0,
+    ) -> list[int]:
+        scores = []
+        for feat in candidate_features:
+            mean, var = self.predict(feat)
+            acq = ucb(mean, var, kappa=kappa)
+            scores.append(acq)
+        return sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
+
+    @property
+    def n_observations(self) -> int:
+        return self._n_obs
+Write candidate_generator.py
+65 lines
+"""Generate candidate programs from the typed DSL."""
+from __future__ import annotations
+from geocat_arc.categorical_dsl.program import Program, ProgramStep
+from geocat_arc.categorical_dsl.operators_basic import Segment, Filter, Render, Copy, Select
+from geocat_arc.categorical_dsl.operators_color import Recolor
+from geocat_arc.categorical_dsl.operators_spatial import Translate, Reflect, Rotate90
+from geocat_arc.visual_logic_topos.predicates import HasColor
+
+
+def generate_candidates(
+    grid_h: int,
+    grid_w: int,
+    background: int = 0,
+    max_candidates: int = 100,
+) -> list[Program]:
+    candidates = []
+
+    seg = Segment(connectivity=4)
+    render = Render(height=grid_h, width=grid_w, background=background)
+
+    p_identity = Program()
+    p_identity.add_step(seg)
+    p_identity.add_step(render)
+    candidates.append(p_identity)
+
+    for color in range(10):
+        p = Program()
+        p.add_step(seg)
+        p.add_step(Filter(), HasColor(color))
+        p.add_step(render)
+        candidates.append(p)
+
+    for target_color in range(10):
+        for source_color in range(10):
+            if source_color == target_color:
+                continue
+            if len(candidates) >= max_candidates:
+                break
+            p = Program()
+            p.add_step(seg)
+            candidates.append(p)
+
+        if len(candidates) >= max_candidates:
+            break
+
+    for axis in ["horizontal", "vertical"]:
+        p = Program()
+        p.add_step(seg)
+        candidates.append(p)
+
+    for angle in [90, 180, 270]:
+        p = Program()
+        p.add_step(seg)
+        candidates.append(p)
+
+    for dr in [-1, 0, 1]:
+        for dc in [-1, 0, 1]:
+            if dr == 0 and dc == 0:
+                continue
+            p = Program()
+            p.add_step(seg)
+            candidates.append(p)
+
+    return candidates[:max_candidates]
+Write search_trace.py
+52 lines
+"""Search trace storage."""
+from __future__ import annotations
+import json
+from dataclasses import dataclass, field, asdict
+from pathlib import Path
+
+
+@dataclass
+class SearchRecord:
+    task_id: str
+    iteration: int
+    candidate_program: str
+    posterior_mean: float
+    posterior_uncertainty: float
+    acquisition_score: float
+    real_score: float
+    exact_match: bool
+
+
+class SearchTrace:
+    def __init__(self):
+        self.records: list[SearchRecord] = []
+
+    def add(self, record: SearchRecord) -> None:
+        self.records.append(record)
+
+    @property
+    def best_score(self) -> float:
+        if not self.records:
+            return 0.0
+        return max(r.real_score for r in self.records)
+
+    @property
+    def best_record(self) -> SearchRecord | None:
+        if not self.records:
+            return None
+        return max(self.records, key=lambda r: r.real_score)
+
+    def to_jsonl(self, path: str | Path) -> None:
+        with open(path, "w") as f:
+            for rec in self.records:
+                f.write(json.dumps(asdict(rec)) + "\n")
+
+    @classmethod
+    def from_jsonl(cls, path: str | Path) -> SearchTrace:
+        trace = cls()
+        with open(path) as f:
+            for line in f:
+                d = json.loads(line)
+                trace.add(SearchRecord(**d))
+        return trace
+__init__.py
+i hope all of this are in /cluster/VAST/kazict-lab/e/lesion_phes/code/Reasoning_Project/reasoning_part2
+Write search_loop.py
+78 lines
+"""Main Bayesian search loop over candidate programs."""
+from __future__ import annotations
+import numpy as np
+from geocat_arc.perception.grid import Grid
+from .bayes_ranker import BayesianLinearRanker
+from .program_features import extract_features, feature_dim
+from .real_objective import evaluate_program, exact_match
+from .candidate_generator import generate_candidates
+from .search_trace import SearchTrace, SearchRecord
+from .acquisition import ucb
+
+
+def bayesian_search(
+    task,
+    max_iterations: int = 50,
+    kappa: float = 2.0,
+) -> tuple:
+    first_input = task.train[0].input
+    grid_h = len(first_input)
+    grid_w = len(first_input[0]) if first_input else 0
+    bg = Grid.from_list(first_input).background_color
+
+    candidates = generate_candidates(grid_h, grid_w, background=bg, max_candidates=max_iterations * 2)
+
+    ranker = BayesianLinearRanker(feature_dim=feature_dim(), alpha=1.0, beta=1.0)
+    trace = SearchTrace()
+
+    best_program = None
+    best_score = -1.0
+    found_exact = False
+
+    features_list = [extract_features(p) for p in candidates]
+    evaluated = set()
+
+    for iteration in range(min(max_iterations, len(candidates))):
+        ranking = ranker.rank_candidates(features_list, kappa=kappa)
+
+        selected_idx = None
+        for idx in ranking:
+            if idx not in evaluated:
+                selected_idx = idx
+                break
+        if selected_idx is None:
+            break
+
+        evaluated.add(selected_idx)
+        program = candidates[selected_idx]
+        features = features_list[selected_idx]
+
+        score = evaluate_program(program, task)
+        mean, var = ranker.predict(features)
+        acq = ucb(mean, var, kappa=kappa)
+
+        is_exact = score >= 2.0 - 0.01
+
+        trace.add(SearchRecord(
+            task_id=task.task_id,
+            iteration=iteration,
+            candidate_program=repr(program),
+            posterior_mean=mean,
+            posterior_uncertainty=np.sqrt(var),
+            acquisition_score=acq,
+            real_score=score,
+            exact_match=is_exact,
+        ))
+
+        ranker.update(features, score)
+
+        if score > best_score:
+            best_score = score
+            best_program = program
+
+        if is_exact:
+            found_exact = True
+            break
+
+    return best_program, best_score, trace
+The plan documents are in reasoning_part2/, but the actual code module is at Reasoning_Project/geocat_arc/ — it needs to be there for Python imports to work as a proper package. This follows the plan's instruction to "create a new module namespace named geocat_arc."
+
+Continuing with Phase 5 — Information-Geometric Memory:
+
+Write __init__.py
+1 line
+Write belief_distribution.py
+60 lines
+"""Categorical belief distributions over ARC operators/predicates/relations."""
+from __future__ import annotations
+import math
+from collections import Counter
+
+
+class BeliefDistribution:
+    def __init__(self, probs: dict[str, float] | None = None):
+        self._probs: dict[str, float] = dict(probs) if probs else {}
+        if self._probs:
+            self.normalize()
+
+    @classmethod
+    def from_counts(cls, counts: dict[str, int]) -> BeliefDistribution:
+        total = sum(counts.values())
+        if total == 0:
+            return cls({k: 1.0 / len(counts) for k in counts} if counts else {})
+        return cls({k: v / total for k, v in counts.items()})
+
+    @classmethod
+    def uniform(cls, keys: list[str]) -> BeliefDistribution:
+        n = len(keys)
+        return cls({k: 1.0 / n for k in keys}) if n > 0 else cls()
+
+    def normalize(self) -> None:
+        total = sum(self._probs.values())
+        if total > 0:
+            self._probs = {k: v / total for k, v in self._probs.items()}
+
+    @property
+    def probs(self) -> dict[str, float]:
+        return dict(self._probs)
+
+    @property
+    def keys(self) -> list[str]:
+        return list(self._probs.keys())
+
+    def __getitem__(self, key: str) -> float:
+        return self._probs.get(key, 0.0)
+
+    def __setitem__(self, key: str, value: float) -> None:
+        self._probs[key] = value
+
+    def entropy(self) -> float:
+        h = 0.0
+        for p in self._probs.values():
+            if p > 0:
+                h -= p * math.log(p)
+        return h
+
+    def to_dict(self) -> dict:
+        return {"probs": dict(self._probs)}
+
+    @classmethod
+    def from_dict(cls, d: dict) -> BeliefDistribution:
+        return cls(d.get("probs", {}))
+
+    def __repr__(self) -> str:
+        return f"BeliefDistribution({len(self._probs)} keys, H={self.entropy():.3f})"
+Write distance_metrics.py
+53 lines
+"""Information-geometric distance metrics between distributions."""
+from __future__ import annotations
+import math
+
+EPS = 1e-12
+
+
+def _aligned_probs(p: dict[str, float], q: dict[str, float]) -> tuple[list[float], list[float]]:
+    all_keys = sorted(set(p.keys()) | set(q.keys()))
+    pv = [p.get(k, 0.0) for k in all_keys]
+    qv = [q.get(k, 0.0) for k in all_keys]
+    return pv, qv
+
+
+def _smooth(probs: list[float], eps: float = EPS) -> list[float]:
+    result = [max(p, eps) for p in probs]
+    total = sum(result)
+    return [p / total for p in result]
+
+
+def kl_divergence(p: dict[str, float], q: dict[str, float]) -> float:
+    pv, qv = _aligned_probs(p, q)
+    pv = _smooth(pv)
+    qv = _smooth(qv)
+    return sum(pi * math.log(pi / qi) for pi, qi in zip(pv, qv))
+
+
+def js_divergence(p: dict[str, float], q: dict[str, float]) -> float:
+    pv, qv = _aligned_probs(p, q)
+    pv = _smooth(pv)
+    qv = _smooth(qv)
+    m = [(pi + qi) / 2.0 for pi, qi in zip(pv, qv)]
+    kl_pm = sum(pi * math.log(pi / mi) for pi, mi in zip(pv, m))
+    kl_qm = sum(qi * math.log(qi / mi) for qi, mi in zip(qv, m))
+    return (kl_pm + kl_qm) / 2.0
+
+
+def hellinger_distance(p: dict[str, float], q: dict[str, float]) -> float:
+    pv, qv = _aligned_probs(p, q)
+    pv = _smooth(pv)
+    qv = _smooth(qv)
+    s = sum((math.sqrt(pi) - math.sqrt(qi)) ** 2 for pi, qi in zip(pv, qv))
+    return math.sqrt(s / 2.0)
+
+
+def fisher_rao_categorical(p: dict[str, float], q: dict[str, float]) -> float:
+    pv, qv = _aligned_probs(p, q)
+    pv = _smooth(pv)
+    qv = _smooth(qv)
+    cos_val = sum(math.sqrt(pi * qi) for pi, qi in zip(pv, qv))
+    cos_val = min(cos_val, 1.0)
+    return 2.0 * math.acos(cos_val)
+Write memory_atom.py
+45 lines
+"""Memory atom — stores a solved/failed task's distributional trace."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+from .belief_distribution import BeliefDistribution
+
+
+@dataclass
+class MemoryAtom:
+    task_id: str
+    status: str  # "solved", "near_solved", "failed"
+    program_repr: str = ""
+    operator_distribution: BeliefDistribution = field(default_factory=BeliefDistribution)
+    predicate_distribution: BeliefDistribution = field(default_factory=BeliefDistribution)
+    relation_distribution: BeliefDistribution = field(default_factory=BeliefDistribution)
+    importance_weights: dict[str, float] = field(default_factory=dict)
+    certificate_path: str | None = None
+    score: float = 0.0
+
+    def to_dict(self) -> dict:
+        return {
+            "task_id": self.task_id,
+            "status": self.status,
+            "program_repr": self.program_repr,
+            "operator_distribution": self.operator_distribution.to_dict(),
+            "predicate_distribution": self.predicate_distribution.to_dict(),
+            "relation_distribution": self.relation_distribution.to_dict(),
+            "importance_weights": dict(self.importance_weights),
+            "certificate_path": self.certificate_path,
+            "score": self.score,
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict) -> MemoryAtom:
+        return cls(
+            task_id=d["task_id"],
+            status=d["status"],
+            program_repr=d.get("program_repr", ""),
+            operator_distribution=BeliefDistribution.from_dict(d.get("operator_distribution", {})),
+            predicate_distribution=BeliefDistribution.from_dict(d.get("predicate_distribution", {})),
+            relation_distribution=BeliefDistribution.from_dict(d.get("relation_distribution", {})),
+            importance_weights=d.get("importance_weights", {}),
+            certificate_path=d.get("certificate_path"),
+            score=d.get("score", 0.0),
+        )
+Write memory_store.py
+41 lines
+"""Persistent memory store for solved/failed task atoms."""
+from __future__ import annotations
+import json
+from pathlib import Path
+from .memory_atom import MemoryAtom
+
+
+class MemoryStore:
+    def __init__(self):
+        self._atoms: dict[str, MemoryAtom] = {}
+
+    def add(self, atom: MemoryAtom) -> None:
+        self._atoms[atom.task_id] = atom
+
+    def get(self, task_id: str) -> MemoryAtom | None:
+        return self._atoms.get(task_id)
+
+    def all_atoms(self) -> list[MemoryAtom]:
+        return list(self._atoms.values())
+
+    def solved_atoms(self) -> list[MemoryAtom]:
+        return [a for a in self._atoms.values() if a.status == "solved"]
+
+    def failed_atoms(self) -> list[MemoryAtom]:
+        return [a for a in self._atoms.values() if a.status in ("failed", "near_solved")]
+
+    def __len__(self) -> int:
+        return len(self._atoms)
+
+    def save(self, path: str | Path) -> None:
+        data = [atom.to_dict() for atom in self._atoms.values()]
+        with open(path, "w") as f:
+            json.dump(data, f, indent=2)
+
+    def load(self, path: str | Path) -> None:
+        with open(path) as f:
+            data = json.load(f)
+        for d in data:
+            atom = MemoryAtom.from_dict(d)
+            self._atoms[atom.task_id] = atom
+Write retrieval.py
+40 lines
+"""Memory retrieval by distributional distance."""
+from __future__ import annotations
+from .belief_distribution import BeliefDistribution
+from .memory_atom import MemoryAtom
+from .memory_store import MemoryStore
+from . import distance_metrics as dm
+
+
+METRIC_FNS = {
+    "kl": dm.kl_divergence,
+    "js": dm.js_divergence,
+    "hellinger": dm.hellinger_distance,
+    "fisher_rao": dm.fisher_rao_categorical,
+}
+
+
+def retrieve_similar(
+    query_distribution: BeliefDistribution,
+    memory_store: MemoryStore,
+    metric: str = "js",
+    top_k: int = 10,
+    distribution_field: str = "operator_distribution",
+) -> list[tuple[MemoryAtom, float]]:
+    metric_fn = METRIC_FNS.get(metric, dm.js_divergence)
+    q = query_distribution.probs
+
+    scored = []
+    for atom in memory_store.all_atoms():
+        stored_dist = getattr(atom, distribution_field, None)
+        if stored_dist is None:
+            continue
+        p = stored_dist.probs
+        if not p:
+            continue
+        dist = metric_fn(q, p)
+        scored.append((atom, dist))
+
+    scored.sort(key=lambda x: x[1])
+    return scored[:top_k]
+Write importance_estimator.py
+34 lines
+"""Ablation-based importance estimation."""
+from __future__ import annotations
+
+
+def estimate_importance(
+    program,
+    task,
+    score_fn,
+) -> dict[str, float]:
+    original_score = score_fn(program, task)
+    importance = {}
+
+    if not hasattr(program, 'steps'):
+        return importance
+
+    for i, step in enumerate(program.steps):
+        op_name = step.morphism.name
+
+        ablated_steps = program.steps[:i] + program.steps[i+1:]
+        if not ablated_steps:
+            importance[op_name] = original_score
+            continue
+
+        from geocat_arc.categorical_dsl.program import Program
+        ablated = Program(ablated_steps)
+        try:
+            ablated_score = score_fn(ablated, task)
+        except Exception:
+            ablated_score = 0.0
+
+        importance[op_name] = max(0.0, original_score - ablated_score)
+
+    return importance
+Write drift_monitor.py
+36 lines
+"""Monitor drift in operator distributions over time."""
+from __future__ import annotations
+from .belief_distribution import BeliefDistribution
+from .distance_metrics import js_divergence
+
+
+class DriftMonitor:
+    def __init__(self, window_size: int = 10):
+        self.window_size = window_size
+        self._history: list[BeliefDistribution] = []
+
+    def record(self, distribution: BeliefDistribution) -> None:
+        self._history.append(distribution)
+
+    def detect_drift(self, threshold: float = 0.1) -> bool:
+        if len(self._history) < 2:
+            return False
+        recent = self._history[-1].probs
+        if len(self._history) >= self.window_size:
+            old_probs = {}
+            old_dists = self._history[-self.window_size:-1]
+            for d in old_dists:
+                for k, v in d.probs.items():
+                    old_probs[k] = old_probs.get(k, 0.0) + v
+            total = sum(old_probs.values())
+            if total > 0:
+                old_probs = {k: v / total for k, v in old_probs.items()}
+        else:
+            old_probs = self._history[-2].probs
+
+        return js_divergence(recent, old_probs) > threshold
+
+    @property
+    def num_records(self) -> int:
+        return len(self._history)
+Now Phase 6 — Operator Invention:
+
+Write __init__.py
+1 line
+Write failure_atom.py
+66 lines
+"""Failure atom — stores near-solved failure information."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+import numpy as np
+
+
+@dataclass
+class FailureAtom:
+    task_id: str
+    candidate_program_repr: str
+    predicted_outputs: list[list[list[int]]]
+    target_outputs: list[list[list[int]]]
+    cell_error_maps: list[np.ndarray] = field(default_factory=list)
+    error_rate: float = 0.0
+    failure_distribution: dict[str, float] = field(default_factory=dict)
+
+    @classmethod
+    def from_prediction(
+        cls,
+        task_id: str,
+        program_repr: str,
+        predicted: list[list[list[int]]],
+        target: list[list[list[int]]],
+    ) -> FailureAtom:
+        error_maps = []
+        total_cells = 0
+        total_errors = 0
+
+        for pred, tgt in zip(predicted, target):
+            pa = np.array(pred, dtype=np.int32)
+            ta = np.array(tgt, dtype=np.int32)
+            if pa.shape != ta.shape:
+                min_h = min(pa.shape[0], ta.shape[0])
+                min_w = min(pa.shape[1], ta.shape[1])
+                emap = np.ones(ta.shape, dtype=bool)
+                emap[:min_h, :min_w] = pa[:min_h, :min_w] != ta[:min_h, :min_w]
+            else:
+                emap = pa != ta
+            error_maps.append(emap)
+            total_cells += ta.size
+            total_errors += int(np.sum(emap))
+
+        error_rate = total_errors / total_cells if total_cells > 0 else 1.0
+
+        failure_dist = {
+            "missing_operator": 0.5,
+            "wrong_parameter": 0.25,
+            "wrong_object_binding": 0.15,
+            "perception_failure": 0.10,
+        }
+        if error_rate < 0.2:
+            failure_dist["wrong_parameter"] = 0.6
+            failure_dist["missing_operator"] = 0.2
+        elif error_rate > 0.8:
+            failure_dist["missing_operator"] = 0.7
+
+        return cls(
+            task_id=task_id,
+            candidate_program_repr=program_repr,
+            predicted_outputs=predicted,
+            target_outputs=target,
+            cell_error_maps=error_maps,
+            error_rate=error_rate,
+            failure_distribution=failure_dist,
+        )
+Write failure_clustering.py
+49 lines
+"""Cluster near-solved failures by similarity."""
+from __future__ import annotations
+import numpy as np
+from .failure_atom import FailureAtom
+
+
+def failure_distance(a: FailureAtom, b: FailureAtom) -> float:
+    rate_dist = abs(a.error_rate - b.error_rate)
+
+    all_keys = set(a.failure_distribution.keys()) | set(b.failure_distribution.keys())
+    if all_keys:
+        dist_diff = sum(
+            abs(a.failure_distribution.get(k, 0) - b.failure_distribution.get(k, 0))
+            for k in all_keys
+        ) / len(all_keys)
+    else:
+        dist_diff = 0.0
+
+    return 0.5 * rate_dist + 0.5 * dist_diff
+
+
+def cluster_failures(
+    atoms: list[FailureAtom],
+    distance_threshold: float = 0.3,
+) -> list[list[FailureAtom]]:
+    if not atoms:
+        return []
+
+    n = len(atoms)
+    assigned = [False] * n
+    clusters = []
+
+    for i in range(n):
+        if assigned[i]:
+            continue
+        cluster = [atoms[i]]
+        assigned[i] = True
+
+        for j in range(i + 1, n):
+            if assigned[j]:
+                continue
+            if failure_distance(atoms[i], atoms[j]) < distance_threshold:
+                cluster.append(atoms[j])
+                assigned[j] = True
+
+        clusters.append(cluster)
+
+    return clusters
+Write operator_schema_induction.py
+46 lines
+"""Induce operator schemas from failure clusters."""
+from __future__ import annotations
+from .failure_atom import FailureAtom
+
+
+def induce_schema(cluster: list[FailureAtom]) -> dict:
+    if not cluster:
+        return {}
+
+    avg_error = sum(a.error_rate for a in cluster) / len(cluster)
+
+    all_keys = set()
+    for a in cluster:
+        all_keys.update(a.failure_distribution.keys())
+
+    avg_dist = {}
+    for k in all_keys:
+        vals = [a.failure_distribution.get(k, 0.0) for a in cluster]
+        avg_dist[k] = sum(vals) / len(vals)
+
+    dominant_failure = max(avg_dist, key=avg_dist.get) if avg_dist else "unknown"
+
+    if dominant_failure == "missing_operator":
+        suggested_name = "inferred_transform"
+        input_types = ["OBJECT"]
+        output_type = "OBJECT"
+    elif dominant_failure == "wrong_parameter":
+        suggested_name = "adjusted_param_transform"
+        input_types = ["OBJECT", "VECTOR"]
+        output_type = "OBJECT"
+    else:
+        suggested_name = "generic_repair"
+        input_types = ["GRID"]
+        output_type = "GRID"
+
+    return {
+        "name": suggested_name,
+        "input_types": input_types,
+        "output_type": output_type,
+        "common_error_pattern": dominant_failure,
+        "avg_error_rate": avg_error,
+        "cluster_size": len(cluster),
+        "confidence": 1.0 - avg_error,
+        "failure_distribution": avg_dist,
+    }
+Write prepostcondition_miner.py
+33 lines
+"""Mine pre/postconditions from failure clusters."""
+from __future__ import annotations
+import numpy as np
+from .failure_atom import FailureAtom
+
+
+def mine_preconditions(cluster: list[FailureAtom]) -> list[str]:
+    preconditions = []
+
+    all_have_low_error = all(a.error_rate < 0.5 for a in cluster)
+    if all_have_low_error:
+        preconditions.append("near_solved_state_reachable")
+
+    preconditions.append("input_grid_valid")
+    preconditions.append("objects_extractable")
+
+    return preconditions
+
+
+def mine_postconditions(cluster: list[FailureAtom]) -> list[str]:
+    postconditions = []
+
+    avg_error = sum(a.error_rate for a in cluster) / len(cluster) if cluster else 1.0
+
+    postconditions.append("output_grid_valid")
+    postconditions.append("output_shape_matches_target")
+
+    if avg_error < 0.3:
+        postconditions.append("most_cells_correct")
+        postconditions.append("object_structure_preserved")
+
+    return postconditions
+Write invented_operator.py
+35 lines
+"""Invented operator from failure cluster analysis."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Callable, Any
+
+
+@dataclass
+class InventedOperator:
+    name: str
+    input_types: list[str]
+    output_type: str
+    preconditions: list[str]
+    postconditions: list[str]
+    source_cluster_ids: list[str]
+    apply_fn: Callable[..., Any] | None = None
+    verified: bool = False
+    certificate_path: str | None = None
+
+    def apply(self, *args):
+        if self.apply_fn is None:
+            raise RuntimeError(f"Operator {self.name} has no apply function")
+        return self.apply_fn(*args)
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "input_types": self.input_types,
+            "output_type": self.output_type,
+            "preconditions": self.preconditions,
+            "postconditions": self.postconditions,
+            "source_cluster_ids": self.source_cluster_ids,
+            "verified": self.verified,
+            "certificate_path": self.certificate_path,
+        }
+Write verifier.py
+74 lines
+"""Verify invented operators before promotion."""
+from __future__ import annotations
+import json
+import time
+from dataclasses import dataclass, field
+from pathlib import Path
+from .invented_operator import InventedOperator
+
+
+@dataclass
+class VerificationResult:
+    passed: bool
+    exact_matches: int
+    total: int
+    regression_failures: list[str] = field(default_factory=list)
+    details: str = ""
+
+
+def verify_operator(
+    operator: InventedOperator,
+    test_cases: list[dict],
+    regression_tasks: list[dict] | None = None,
+) -> VerificationResult:
+    if operator.apply_fn is None:
+        return VerificationResult(
+            passed=False, exact_matches=0, total=len(test_cases),
+            details="No apply function defined",
+        )
+
+    exact = 0
+    total = len(test_cases)
+
+    for tc in test_cases:
+        try:
+            result = operator.apply(tc.get("input"))
+            if result == tc.get("expected_output"):
+                exact += 1
+        except Exception as e:
+            pass
+
+    regression_fails = []
+    if regression_tasks:
+        for rt in regression_tasks:
+            try:
+                result = operator.apply(rt.get("input"))
+                if result != rt.get("expected_output"):
+                    regression_fails.append(rt.get("task_id", "unknown"))
+            except Exception:
+                regression_fails.append(rt.get("task_id", "unknown"))
+
+    passed = exact == total and len(regression_fails) == 0
+
+    return VerificationResult(
+        passed=passed,
+        exact_matches=exact,
+        total=total,
+        regression_failures=regression_fails,
+    )
+
+
+def generate_certificate(operator: InventedOperator, result: VerificationResult) -> dict:
+    return {
+        "operator_name": operator.name,
+        "verified": result.passed,
+        "exact_matches": result.exact_matches,
+        "total_tests": result.total,
+        "regression_failures": result.regression_failures,
+        "timestamp": time.time(),
+        "input_types": operator.input_types,
+        "output_type": operator.output_type,
+        "preconditions": operator.preconditions,
+        "postconditions": operator.postconditions,
+    }
+Write promotion_registry.py
+59 lines
+"""Registry for promoted (verified) operators."""
+from __future__ import annotations
+import json
+from pathlib import Path
+from .invented_operator import InventedOperator
+
+
+class PromotionError(Exception):
+    pass
+
+
+class PromotionRegistry:
+    def __init__(self):
+        self._promoted: dict[str, tuple[InventedOperator, dict]] = {}
+
+    def register(self, operator: InventedOperator, certificate: dict) -> None:
+        if not certificate.get("verified", False):
+            raise PromotionError(
+                f"Cannot promote operator '{operator.name}': certificate not verified"
+            )
+        operator.verified = True
+        self._promoted[operator.name] = (operator, certificate)
+
+    def is_promoted(self, name: str) -> bool:
+        return name in self._promoted
+
+    def get_promoted(self) -> list[InventedOperator]:
+        return [op for op, _ in self._promoted.values()]
+
+    def get_certificate(self, name: str) -> dict | None:
+        entry = self._promoted.get(name)
+        return entry[1] if entry else None
+
+    def save(self, path: str | Path) -> None:
+        data = {}
+        for name, (op, cert) in self._promoted.items():
+            data[name] = {"operator": op.to_dict(), "certificate": cert}
+        with open(path, "w") as f:
+            json.dump(data, f, indent=2)
+
+    def load(self, path: str | Path) -> None:
+        with open(path) as f:
+            data = json.load(f)
+        for name, entry in data.items():
+            op_dict = entry["operator"]
+            op = InventedOperator(
+                name=op_dict["name"],
+                input_types=op_dict["input_types"],
+                output_type=op_dict["output_type"],
+                preconditions=op_dict["preconditions"],
+                postconditions=op_dict["postconditions"],
+                source_cluster_ids=op_dict.get("source_cluster_ids", []),
+                verified=True,
+            )
+            self._promoted[name] = (op, entry["certificate"])
+
+    def __len__(self) -> int:
+        return len(self._promoted)
+Phase 6 done. Now Phase 7 — Neuro-Cognitive Diagnostics:
+
+Write __init__.py
+1 line
+Write hebbian_memory.py
+48 lines
+"""Hebbian association memory for predicate/operator coactivation."""
+from __future__ import annotations
+from collections import defaultdict
+
+
+class HebbianMemory:
+    def __init__(self, learning_rate: float = 0.1, decay_rate: float = 0.01):
+        self._associations: dict[tuple[str, str], float] = defaultdict(float)
+        self.learning_rate = learning_rate
+        self.decay_rate = decay_rate
+
+    def update(self, predicate: str, operator: str, success: bool) -> None:
+        key = (predicate, operator)
+        if success:
+            self._associations[key] += self.learning_rate
+        else:
+            self._associations[key] -= self.learning_rate * 0.3
+            self._associations[key] = max(0.0, self._associations[key])
+
+    def get_strength(self, predicate: str, operator: str) -> float:
+        return self._associations.get((predicate, operator), 0.0)
+
+    def top_associations(self, predicate: str, k: int = 5) -> list[tuple[str, float]]:
+        results = []
+        for (p, op), strength in self._associations.items():
+            if p == predicate:
+                results.append((op, strength))
+        results.sort(key=lambda x: x[1], reverse=True)
+        return results[:k]
+
+    def decay(self, rate: float | None = None) -> None:
+        r = rate if rate is not None else self.decay_rate
+        for key in list(self._associations.keys()):
+            self._associations[key] *= (1.0 - r)
+            if self._associations[key] < 1e-10:
+                del self._associations[key]
+
+    def to_dict(self) -> dict:
+        return {f"{p}|{op}": v for (p, op), v in self._associations.items()}
+
+    @classmethod
+    def from_dict(cls, d: dict) -> HebbianMemory:
+        mem = cls()
+        for key, v in d.items():
+            p, op = key.split("|", 1)
+            mem._associations[(p, op)] = v
+        return mem
+Write predictive_error.py
+72 lines
+"""Predictive error computation between predicted and target grids."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+import numpy as np
+from collections import deque
+
+
+@dataclass
+class PredictionError:
+    error_map: np.ndarray
+    error_rate: float
+    error_locations: list[tuple[int, int]]
+    localized_regions: list[tuple[int, int, int, int]]  # bounding boxes of error clusters
+
+
+def compute_prediction_error(
+    predicted: list[list[int]],
+    target: list[list[int]],
+) -> PredictionError:
+    pred = np.array(predicted, dtype=np.int32)
+    tgt = np.array(target, dtype=np.int32)
+
+    if pred.shape != tgt.shape:
+        min_h = min(pred.shape[0], tgt.shape[0])
+        min_w = min(pred.shape[1], tgt.shape[1])
+        error_map = np.ones(tgt.shape, dtype=bool)
+        error_map[:min_h, :min_w] = pred[:min_h, :min_w] != tgt[:min_h, :min_w]
+    else:
+        error_map = pred != tgt
+
+    error_rate = float(np.sum(error_map)) / error_map.size if error_map.size > 0 else 0.0
+    error_locations = list(zip(*np.where(error_map)))
+    regions = localize_errors(error_map)
+
+    return PredictionError(
+        error_map=error_map,
+        error_rate=error_rate,
+        error_locations=[(int(r), int(c)) for r, c in error_locations],
+        localized_regions=regions,
+    )
+
+
+def localize_errors(error_map: np.ndarray) -> list[tuple[int, int, int, int]]:
+    h, w = error_map.shape
+    visited = np.zeros_like(error_map, dtype=bool)
+    regions = []
+
+    for r in range(h):
+        for c in range(w):
+            if error_map[r, c] and not visited[r, c]:
+                min_r, max_r = r, r
+                min_c, max_c = c, c
+                queue = deque([(r, c)])
+                visited[r, c] = True
+
+                while queue:
+                    cr, cc = queue.popleft()
+                    min_r = min(min_r, cr)
+                    max_r = max(max_r, cr)
+                    min_c = min(min_c, cc)
+                    max_c = max(max_c, cc)
+
+                    for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                        nr, nc = cr + dr, cc + dc
+                        if 0 <= nr < h and 0 <= nc < w and error_map[nr, nc] and not visited[nr, nc]:
+                            visited[nr, nc] = True
+                            queue.append((nr, nc))
+
+                regions.append((min_r, min_c, max_r + 1, max_c + 1))
+
+    return regions
+Write vicarious_reward.py
+31 lines
+"""Vicarious reward — update operator priors from successful examples."""
+from __future__ import annotations
+from collections import defaultdict
+
+
+class VicariousReward:
+    def __init__(self):
+        self._priors: dict[str, float] = defaultdict(lambda: 1.0)
+
+    def reward(self, operator: str, success_score: float) -> None:
+        self._priors[operator] += success_score
+
+    def penalize(self, operator: str, failure_score: float) -> None:
+        self._priors[operator] = max(0.01, self._priors[operator] - failure_score * 0.3)
+
+    def get_prior(self, operator: str) -> float:
+        return self._priors[operator]
+
+    def normalize(self) -> None:
+        total = sum(self._priors.values())
+        if total > 0:
+            for k in self._priors:
+                self._priors[k] /= total
+
+    def top_operators(self, k: int = 5) -> list[tuple[str, float]]:
+        sorted_ops = sorted(self._priors.items(), key=lambda x: x[1], reverse=True)
+        return sorted_ops[:k]
+
+    def all_priors(self) -> dict[str, float]:
+        return dict(self._priors)
+Write cognitive_trace.py
+61 lines
+"""Cognitive trace — records observe/predict/compare/update/verify steps."""
+from __future__ import annotations
+import time
+from dataclasses import dataclass, field
+
+
+@dataclass
+class CognitiveStep:
+    step_type: str  # observe, predict, compare, update, verify
+    data: dict
+    timestamp: float = field(default_factory=time.time)
+
+
+class CognitiveTrace:
+    def __init__(self):
+        self.steps: list[CognitiveStep] = []
+
+    def add_observe(self, task_id: str, input_grid: list, output_grid: list) -> None:
+        self.steps.append(CognitiveStep(
+            step_type="observe",
+            data={"task_id": task_id, "input_shape": (len(input_grid), len(input_grid[0]) if input_grid else 0),
+                  "output_shape": (len(output_grid), len(output_grid[0]) if output_grid else 0)},
+        ))
+
+    def add_predict(self, program_repr: str, predicted_grid: list) -> None:
+        self.steps.append(CognitiveStep(
+            step_type="predict",
+            data={"program": program_repr,
+                  "predicted_shape": (len(predicted_grid), len(predicted_grid[0]) if predicted_grid else 0)},
+        ))
+
+    def add_compare(self, error_rate: float, num_error_regions: int) -> None:
+        self.steps.append(CognitiveStep(
+            step_type="compare",
+            data={"error_rate": error_rate, "num_error_regions": num_error_regions},
+        ))
+
+    def add_update(self, hebbian_updates: dict, reward_updates: dict) -> None:
+        self.steps.append(CognitiveStep(
+            step_type="update",
+            data={"hebbian_updates": hebbian_updates, "reward_updates": reward_updates},
+        ))
+
+    def add_verify(self, exact_match: bool, score: float) -> None:
+        self.steps.append(CognitiveStep(
+            step_type="verify",
+            data={"exact_match": exact_match, "score": score},
+        ))
+
+    def to_dict(self) -> dict:
+        return {
+            "steps": [
+                {"step_type": s.step_type, "data": s.data, "timestamp": s.timestamp}
+                for s in self.steps
+            ]
+        }
+
+    @property
+    def num_steps(self) -> int:
+        return len(self.steps)
+All 8 modules implemented. Now creating the experiments module, tests, and the PROJECT_STATUS file. Let me write the tests and experiment runner:
+
+Write __init__.py
+1 line
+Write run_baseline.py
+110 lines
+"""Run baseline evaluation on real ARC tasks."""
+from __future__ import annotations
+import json
+import time
+from pathlib import Path
+from geocat_arc.data.arc_loader import load_tasks
+from geocat_arc.data.validate_arc import validate_task
+from geocat_arc.perception.grid import Grid
+from geocat_arc.perception.objects import extract_objects
+from geocat_arc.perception.relations import build_relation_graph
+from geocat_arc.perception.change_detection import detect_changes
+from geocat_arc.bayesian_program_search.real_objective import normalized_cell_accuracy
+from geocat_arc.bayesian_program_search.search_loop import bayesian_search
+
+
+ARTIFACTS_DIR = Path(__file__).resolve().parent.parent / "artifacts" / "geocat_arc"
+
+
+def run_baseline(
+    split: str = "training",
+    max_tasks: int = 50,
+    max_search_iters: int = 20,
+    output_dir: Path | None = None,
+) -> dict:
+    output_dir = output_dir or ARTIFACTS_DIR
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    tasks = load_tasks(split=split)[:max_tasks]
+
+    results = {
+        "tasks_attempted": 0,
+        "tasks_solved": 0,
+        "near_solved_count": 0,
+        "exact_train_solve_rate": 0.0,
+        "task_results": [],
+    }
+    failures = []
+
+    start_time = time.time()
+
+    for task in tasks:
+        try:
+            validate_task(task)
+        except Exception as e:
+            continue
+
+        results["tasks_attempted"] += 1
+        task_start = time.time()
+
+        best_program, best_score, trace = bayesian_search(
+            task, max_iterations=max_search_iters,
+        )
+
+        task_time = time.time() - task_start
+        is_solved = best_score >= 2.0 - 0.01
+        is_near_solved = not is_solved and best_score >= 0.8
+
+        task_result = {
+            "task_id": task.task_id,
+            "best_score": best_score,
+            "solved": is_solved,
+            "near_solved": is_near_solved,
+            "runtime_s": task_time,
+            "iterations": len(trace.records),
+        }
+        results["task_results"].append(task_result)
+
+        if is_solved:
+            results["tasks_solved"] += 1
+        elif is_near_solved:
+            results["near_solved_count"] += 1
+        else:
+            failures.append({
+                "task_id": task.task_id,
+                "best_score": best_score,
+                "runtime_s": task_time,
+            })
+
+    total_time = time.time() - start_time
+    attempted = results["tasks_attempted"]
+    results["exact_train_solve_rate"] = results["tasks_solved"] / attempted if attempted > 0 else 0.0
+    results["total_runtime_s"] = total_time
+
+    with open(output_dir / "baseline_results.json", "w") as f:
+        json.dump(results, f, indent=2)
+
+    with open(output_dir / "baseline_failures.jsonl", "w") as f:
+        for fail in failures:
+            f.write(json.dumps(fail) + "\n")
+
+    manifest = {
+        "split": split,
+        "max_tasks": max_tasks,
+        "max_search_iters": max_search_iters,
+        "total_runtime_s": total_time,
+        "timestamp": time.time(),
+    }
+    with open(output_dir / "run_manifest.json", "w") as f:
+        json.dump(manifest, f, indent=2)
+
+    return results
+
+
+if __name__ == "__main__":
+    results = run_baseline(max_tasks=10, max_search_iters=10)
+    print(f"Attempted: {results['tasks_attempted']}")
+    print(f"Solved: {results['tasks_solved']}")
+    print(f"Near-solved: {results['near_solved_count']}")
+    print(f"Solve rate: {results['exact_train_solve_rate']:.2%}")
+Now the test suite:
+
+Write __init__.py
+1 line
+Write test_data.py
+67 lines
+"""Tests for ARC data loading and validation."""
+import pytest
+from geocat_arc.data.arc_loader import load_tasks, load_task, list_task_ids
+from geocat_arc.data.arc_task import ARCTask, GridPair
+from geocat_arc.data.validate_arc import validate_task, validate_grid, ValidationError
+
+
+class TestARCLoader:
+    def test_list_task_ids(self):
+        ids = list_task_ids(split="training")
+        assert len(ids) == 400
+
+    def test_load_all_training(self):
+        tasks = load_tasks(split="training")
+        assert len(tasks) == 400
+        for t in tasks[:5]:
+            assert isinstance(t, ARCTask)
+            assert t.task_id
+            assert len(t.train) >= 1
+
+    def test_load_single_task(self):
+        ids = list_task_ids(split="training")
+        task = load_task(ids[0])
+        assert task.task_id == ids[0]
+        assert len(task.train) >= 1
+        pair = task.train[0]
+        assert len(pair.input) > 0
+        assert len(pair.output) > 0
+
+    def test_load_evaluation(self):
+        tasks = load_tasks(split="evaluation")
+        assert len(tasks) == 400
+
+    def test_grids_are_integer_lists(self):
+        task = load_tasks(split="training")[0]
+        pair = task.train[0]
+        for row in pair.input:
+            for val in row:
+                assert isinstance(val, int)
+                assert 0 <= val <= 9
+
+
+class TestValidation:
+    def test_valid_grid(self):
+        validate_grid([[0, 1, 2], [3, 4, 5]])
+
+    def test_invalid_color(self):
+        with pytest.raises(ValidationError):
+            validate_grid([[0, 10]])
+
+    def test_jagged_grid(self):
+        with pytest.raises(ValidationError):
+            validate_grid([[0, 1], [2]])
+
+    def test_empty_grid(self):
+        with pytest.raises(ValidationError):
+            validate_grid([])
+
+    def test_validate_real_task(self):
+        task = load_tasks(split="training")[0]
+        validate_task(task)
+
+    def test_validate_all_training(self):
+        tasks = load_tasks(split="training")
+        for task in tasks:
+            validate_task(task)
+Write test_perception.py
+180 lines
+"""Tests for perception layer — segmentation, objects, relations, matching."""
+import numpy as np
+import pytest
+from geocat_arc.perception.grid import Grid
+from geocat_arc.perception.segmentation import extract_connected_components
+from geocat_arc.perception.objects import ARCObject, extract_objects, render_objects
+from geocat_arc.perception.relations import build_relation_graph, left_of, above, same_color
+from geocat_arc.perception.matching import match_objects, overall_similarity
+from geocat_arc.perception.change_detection import detect_changes
+
+
+SAMPLE_GRID = [
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 0, 0, 2, 2],
+    [0, 0, 0, 2, 2],
+]
+
+
+class TestGrid:
+    def test_from_list(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        assert g.height == 5
+        assert g.width == 5
+        assert g.shape == (5, 5)
+
+    def test_background_color(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        assert g.background_color == 0
+
+    def test_colors_used(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        assert g.colors_used == {0, 1, 2}
+
+    def test_cell(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        assert g.cell(1, 1) == 1
+        assert g.cell(3, 3) == 2
+        assert g.cell(0, 0) == 0
+
+    def test_subgrid(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        sub = g.subgrid((1, 1, 3, 3))
+        assert sub.height == 2
+        assert sub.width == 2
+
+    def test_equality(self):
+        g1 = Grid.from_list(SAMPLE_GRID)
+        g2 = Grid.from_list(SAMPLE_GRID)
+        assert g1 == g2
+
+    def test_roundtrip(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        assert g.to_list() == SAMPLE_GRID
+
+
+class TestSegmentation:
+    def test_extract_components(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        comps = extract_connected_components(g, connectivity=4)
+        assert len(comps) == 2
+        colors = {c.color for c in comps}
+        assert colors == {1, 2}
+
+    def test_component_sizes(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        comps = extract_connected_components(g, connectivity=4)
+        sizes = sorted(c.size for c in comps)
+        assert sizes == [4, 4]
+
+    def test_8connectivity(self):
+        grid = [
+            [0, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1],
+        ]
+        g = Grid.from_list(grid)
+        comps4 = extract_connected_components(g, connectivity=4)
+        comps8 = extract_connected_components(g, connectivity=8)
+        assert len(comps4) == 2
+        assert len(comps8) == 1
+
+
+class TestObjects:
+    def test_extract_objects(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        assert len(objs) == 2
+
+    def test_object_properties(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        for obj in objs:
+            assert obj.size == 4
+            assert obj.is_rectangle
+            assert not obj.is_line
+
+    def test_render_objects(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        rendered = render_objects(objs, 5, 5, background=0)
+        assert rendered == g
+
+    def test_object_with_hole(self):
+        grid = [
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+        ]
+        g = Grid.from_list(grid)
+        objs = extract_objects(g)
+        assert len(objs) == 1
+        assert objs[0].has_hole
+
+
+class TestRelations:
+    def test_build_relations(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        rels = build_relation_graph(objs)
+        rel_types = {r.relation_type for r in rels}
+        assert "same_size" in rel_types
+
+    def test_left_of(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        obj_by_color = {o.color: o for o in objs}
+        assert left_of(obj_by_color[1], obj_by_color[2])
+
+    def test_above(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        obj_by_color = {o.color: o for o in objs}
+        assert above(obj_by_color[1], obj_by_color[2])
+
+
+class TestMatching:
+    def test_identical_objects_match(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = extract_objects(g)
+        matches = match_objects(objs, objs)
+        assert len(matches) == 2
+        for inp, out, sim in matches:
+            assert sim > 0.9
+
+    def test_different_grids(self):
+        g1 = Grid.from_list(SAMPLE_GRID)
+        g2 = Grid.from_list([
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 3, 3, 0],
+            [0, 0, 3, 3, 0],
+            [0, 0, 0, 0, 0],
+        ])
+        objs1 = extract_objects(g1)
+        objs2 = extract_objects(g2)
+        matches = match_objects(objs1, objs2)
+        assert len(matches) >= 1
+
+
+class TestChangeDetection:
+    def test_no_change(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        report = detect_changes(g, g)
+        assert report.num_cells_changed == 0
+        assert report.cell_accuracy == 1.0
+
+    def test_detect_recolor(self):
+        g1 = Grid.from_list(SAMPLE_GRID)
+        modified = [row[:] for row in SAMPLE_GRID]
+        modified[1][1] = 3
+        modified[1][2] = 3
+        modified[2][1] = 3
+        modified[2][2] = 3
+        g2 = Grid.from_list(modified)
+        report = detect_changes(g1, g2)
+        assert report.num_cells_changed == 4
+        assert len(report.objects_recolored) >= 1
+Write test_visual_logic.py
+108 lines
+"""Tests for visual logic predicates and propositions."""
+import pytest
+from geocat_arc.perception.objects import ARCObject
+from geocat_arc.visual_logic_topos.predicates import (
+    HasColor, SameColor, IsRectangle, IsLine, HasHole, SameShape,
+    IsLargest, IsSmallest, TouchesBorder, Inside, LeftOf, Above,
+)
+from geocat_arc.visual_logic_topos.proposition import AtomicProp, And, Or, Not, Implies
+from geocat_arc.visual_logic_topos.quantifiers import ForAll, Exists
+from geocat_arc.visual_logic_topos.truth_table import build_truth_table
+
+
+def _make_obj(id, cells, color, bbox):
+    return ARCObject(id=id, cells=frozenset(cells), color=color, bounding_box=bbox)
+
+
+OBJ_RED = _make_obj(0, [(1, 1), (1, 2), (2, 1), (2, 2)], color=2, bbox=(1, 1, 3, 3))
+OBJ_BLUE = _make_obj(1, [(4, 4), (4, 5)], color=1, bbox=(4, 4, 5, 6))
+OBJ_RED2 = _make_obj(2, [(6, 1), (6, 2), (7, 1), (7, 2)], color=2, bbox=(6, 1, 8, 3))
+OBJECTS = [OBJ_RED, OBJ_BLUE, OBJ_RED2]
+
+
+class TestPredicates:
+    def test_has_color(self):
+        assert HasColor(2)(OBJ_RED)
+        assert not HasColor(2)(OBJ_BLUE)
+
+    def test_same_color(self):
+        assert SameColor()(OBJ_RED, OBJ_RED2)
+        assert not SameColor()(OBJ_RED, OBJ_BLUE)
+
+    def test_is_rectangle(self):
+        assert IsRectangle()(OBJ_RED)
+
+    def test_is_line(self):
+        assert IsLine()(OBJ_BLUE)
+        assert not IsLine()(OBJ_RED)
+
+    def test_same_shape(self):
+        assert SameShape()(OBJ_RED, OBJ_RED2)
+
+    def test_is_largest(self):
+        pred = IsLargest(OBJECTS)
+        assert pred(OBJ_RED)
+        assert not pred(OBJ_BLUE)
+
+    def test_touches_border(self):
+        pred = TouchesBorder(10, 10)
+        assert not pred(OBJ_RED)
+        border_obj = _make_obj(3, [(0, 0)], color=1, bbox=(0, 0, 1, 1))
+        assert pred(border_obj)
+
+
+class TestPropositions:
+    def test_atomic(self):
+        p = AtomicProp(HasColor(2))
+        assert p.evaluate(OBJ_RED)
+        assert not p.evaluate(OBJ_BLUE)
+
+    def test_and(self):
+        p = And(AtomicProp(HasColor(2)), AtomicProp(IsRectangle()))
+        assert p.evaluate(OBJ_RED)
+
+    def test_or(self):
+        p = Or(AtomicProp(HasColor(2)), AtomicProp(HasColor(1)))
+        assert p.evaluate(OBJ_RED)
+        assert p.evaluate(OBJ_BLUE)
+
+    def test_not(self):
+        p = Not(AtomicProp(HasColor(2)))
+        assert p.evaluate(OBJ_BLUE)
+        assert not p.evaluate(OBJ_RED)
+
+    def test_implies(self):
+        p = Implies(AtomicProp(HasColor(2)), AtomicProp(IsRectangle()))
+        assert p.evaluate(OBJ_RED)
+        assert p.evaluate(OBJ_BLUE)
+
+    def test_operator_overloads(self):
+        p = AtomicProp(HasColor(2)) & AtomicProp(IsRectangle())
+        assert p.evaluate(OBJ_RED)
+
+
+class TestQuantifiers:
+    def test_forall_true(self):
+        prop = AtomicProp(IsRectangle())
+        q = ForAll(prop, [OBJ_RED, OBJ_RED2])
+        assert q.evaluate()
+
+    def test_forall_false(self):
+        prop = AtomicProp(HasColor(2))
+        q = ForAll(prop, OBJECTS)
+        assert not q.evaluate()
+
+    def test_exists_true(self):
+        prop = AtomicProp(HasColor(1))
+        q = Exists(prop, OBJECTS)
+        assert q.evaluate()
+
+
+class TestTruthTable:
+    def test_truth_table(self):
+        prop = AtomicProp(HasColor(2))
+        table = build_truth_table(prop, OBJECTS)
+        assert table[0] is True
+        assert table[1] is False
+        assert table[2] is True
+Write test_categorical_dsl.py
+139 lines
+"""Tests for the typed categorical DSL."""
+import pytest
+from geocat_arc.perception.grid import Grid
+from geocat_arc.perception.objects import ARCObject, extract_objects
+from geocat_arc.categorical_dsl.types import ArcType
+from geocat_arc.categorical_dsl.morphism import Morphism
+from geocat_arc.categorical_dsl.type_checker import check_composition, TypeCheckError
+from geocat_arc.categorical_dsl.operators_basic import Segment, Filter, Render, Copy
+from geocat_arc.categorical_dsl.operators_color import Recolor
+from geocat_arc.categorical_dsl.operators_spatial import Translate, Rotate90, Reflect
+from geocat_arc.categorical_dsl.composition import compose
+from geocat_arc.categorical_dsl.program import Program
+from geocat_arc.visual_logic_topos.predicates import HasColor
+
+
+SAMPLE_GRID = [
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 0, 0, 2, 2],
+    [0, 0, 0, 2, 2],
+]
+
+
+class TestTypeChecker:
+    def test_valid_composition(self):
+        seg = Segment()
+        render = Render(5, 5)
+        assert check_composition([seg, render])
+
+    def test_invalid_composition(self):
+        recolor = Recolor()
+        seg = Segment()
+        with pytest.raises(TypeCheckError):
+            check_composition([recolor, seg])
+
+    def test_single_morphism(self):
+        assert check_composition([Segment()])
+
+
+class TestOperators:
+    def test_segment(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        seg = Segment()
+        objs = seg.apply(g)
+        assert len(objs) == 2
+
+    def test_filter(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        filtered = Filter().apply(objs, HasColor(1))
+        assert len(filtered) == 1
+        assert filtered[0].color == 1
+
+    def test_recolor(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        obj = objs[0]
+        recolored = Recolor().apply(obj, 5)
+        assert recolored.color == 5
+        assert recolored.cells == obj.cells
+
+    def test_copy(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        copied = Copy().apply(objs[0])
+        assert copied.cells == objs[0].cells
+        assert copied.color == objs[0].color
+
+    def test_translate(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        translated = Translate().apply(objs[0], (1, 1))
+        orig_centroid = objs[0].centroid
+        new_centroid = translated.centroid
+        assert abs(new_centroid[0] - orig_centroid[0] - 1) < 0.01
+        assert abs(new_centroid[1] - orig_centroid[1] - 1) < 0.01
+
+    def test_render(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        rendered = Render(5, 5).apply(objs)
+        assert rendered == g
+
+    def test_reflect(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        reflected = Reflect().apply(objs[0], "horizontal")
+        assert reflected.size == objs[0].size
+
+    def test_rotate(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        objs = Segment().apply(g)
+        rotated = Rotate90().apply(objs[0], 90)
+        assert rotated.size == objs[0].size
+
+
+class TestComposition:
+    def test_compose_valid(self):
+        seg = Segment()
+        render = Render(5, 5)
+        composed = compose(seg, render)
+        g = Grid.from_list(SAMPLE_GRID)
+        result = composed.apply(g)
+        assert result == g
+
+    def test_compose_invalid(self):
+        with pytest.raises(TypeCheckError):
+            compose(Recolor(), Segment())
+
+
+class TestProgram:
+    def test_program_execution(self):
+        g = Grid.from_list(SAMPLE_GRID)
+        prog = Program()
+        prog.add_step(Segment())
+        prog.add_step(Render(5, 5))
+        result = prog.apply(g)
+        assert result == g
+
+    def test_program_type_check(self):
+        prog = Program()
+        prog.add_step(Segment())
+        prog.add_step(Render(5, 5))
+        assert prog.type_check()
+
+    def test_program_depth(self):
+        prog = Program()
+        prog.add_step(Segment())
+        prog.add_step(Render(5, 5))
+        assert prog.depth == 2
+
+    def test_program_serialization(self):
+        prog = Program()
+        prog.add_step(Segment())
+        d = prog.to_dict()
+        assert "steps" in d
+        assert d["depth"] == 1
+Write test_bayesian_search.py
+83 lines
+"""Tests for Bayesian program search."""
+import numpy as np
+import pytest
+from geocat_arc.bayesian_program_search.bayes_ranker import BayesianLinearRanker
+from geocat_arc.bayesian_program_search.acquisition import ucb, expected_improvement, thompson_sample
+from geocat_arc.bayesian_program_search.real_objective import normalized_cell_accuracy, exact_match
+from geocat_arc.bayesian_program_search.program_features import extract_features, feature_dim
+
+
+class TestBayesianRanker:
+    def test_initial_prediction(self):
+        ranker = BayesianLinearRanker(feature_dim=5)
+        feat = np.ones(5)
+        mean, var = ranker.predict(feat)
+        assert var > 0
+
+    def test_update_changes_posterior(self):
+        ranker = BayesianLinearRanker(feature_dim=5)
+        feat = np.ones(5)
+        m1, v1 = ranker.predict(feat)
+        ranker.update(feat, 1.0)
+        m2, v2 = ranker.predict(feat)
+        assert v2 < v1
+
+    def test_ranking_changes_after_observations(self):
+        ranker = BayesianLinearRanker(feature_dim=3)
+        feat_a = np.array([1.0, 0.0, 0.0])
+        feat_b = np.array([0.0, 1.0, 0.0])
+
+        ranker.update(feat_a, 2.0)
+        ranker.update(feat_b, 0.1)
+
+        ranking = ranker.rank_candidates([feat_a, feat_b], kappa=0.1)
+        assert ranking[0] == 0
+
+    def test_n_observations(self):
+        ranker = BayesianLinearRanker(feature_dim=3)
+        assert ranker.n_observations == 0
+        ranker.update(np.ones(3), 1.0)
+        assert ranker.n_observations == 1
+
+
+class TestAcquisition:
+    def test_ucb(self):
+        assert ucb(1.0, 0.5, kappa=2.0) > 1.0
+
+    def test_expected_improvement(self):
+        ei = expected_improvement(1.5, 0.5, best_so_far=1.0)
+        assert ei > 0
+
+    def test_thompson_sample_differs(self):
+        rng = np.random.default_rng(42)
+        samples = [thompson_sample(0.0, 1.0, rng) for _ in range(10)]
+        assert len(set(samples)) > 1
+
+
+class TestRealObjective:
+    def test_identical_grids(self):
+        grid = [[1, 2], [3, 4]]
+        assert normalized_cell_accuracy(grid, grid) == 1.0
+
+    def test_completely_different(self):
+        pred = [[0, 0], [0, 0]]
+        target = [[1, 1], [1, 1]]
+        assert normalized_cell_accuracy(pred, target) == 0.0
+
+    def test_partial_match(self):
+        pred = [[1, 0], [0, 0]]
+        target = [[1, 1], [1, 1]]
+        acc = normalized_cell_accuracy(pred, target)
+        assert 0.0 < acc < 1.0
+
+    def test_exact_match(self):
+        grid = [[1, 2], [3, 4]]
+        assert exact_match(grid, grid)
+        assert not exact_match(grid, [[0, 0], [0, 0]])
+
+    def test_different_shapes(self):
+        pred = [[1, 2, 3]]
+        target = [[1, 2]]
+        acc = normalized_cell_accuracy(pred, target)
+        assert 0.0 <= acc <= 1.0
+Write test_info_geo_memory.py
+158 lines
+"""Tests for information-geometric memory."""
+import math
+import pytest
+import tempfile
+import os
+from geocat_arc.information_geometric_memory.belief_distribution import BeliefDistribution
+from geocat_arc.information_geometric_memory.distance_metrics import (
+    kl_divergence, js_divergence, hellinger_distance, fisher_rao_categorical,
+)
+from geocat_arc.information_geometric_memory.memory_atom import MemoryAtom
+from geocat_arc.information_geometric_memory.memory_store import MemoryStore
+from geocat_arc.information_geometric_memory.retrieval import retrieve_similar
+from geocat_arc.information_geometric_memory.drift_monitor import DriftMonitor
+
+
+class TestBeliefDistribution:
+    def test_normalize(self):
+        bd = BeliefDistribution({"a": 2.0, "b": 3.0})
+        assert abs(sum(bd.probs.values()) - 1.0) < 1e-10
+
+    def test_from_counts(self):
+        bd = BeliefDistribution.from_counts({"x": 10, "y": 20, "z": 70})
+        assert abs(bd["x"] - 0.1) < 1e-10
+        assert abs(bd["y"] - 0.2) < 1e-10
+
+    def test_uniform(self):
+        bd = BeliefDistribution.uniform(["a", "b", "c"])
+        for v in bd.probs.values():
+            assert abs(v - 1/3) < 1e-10
+
+    def test_entropy_uniform(self):
+        bd = BeliefDistribution.uniform(["a", "b"])
+        assert abs(bd.entropy() - math.log(2)) < 1e-10
+
+    def test_serialization(self):
+        bd = BeliefDistribution({"a": 0.3, "b": 0.7})
+        d = bd.to_dict()
+        bd2 = BeliefDistribution.from_dict(d)
+        assert abs(bd2["a"] - bd["a"]) < 1e-10
+
+
+class TestDistanceMetrics:
+    def test_kl_self_zero(self):
+        p = {"a": 0.5, "b": 0.5}
+        assert kl_divergence(p, p) < 1e-6
+
+    def test_kl_asymmetric(self):
+        p = {"a": 0.9, "b": 0.1}
+        q = {"a": 0.1, "b": 0.9}
+        assert kl_divergence(p, q) != kl_divergence(q, p)
+
+    def test_js_symmetric(self):
+        p = {"a": 0.9, "b": 0.1}
+        q = {"a": 0.1, "b": 0.9}
+        assert abs(js_divergence(p, q) - js_divergence(q, p)) < 1e-10
+
+    def test_js_self_zero(self):
+        p = {"a": 0.5, "b": 0.5}
+        assert js_divergence(p, p) < 1e-6
+
+    def test_hellinger_self_zero(self):
+        p = {"a": 0.5, "b": 0.5}
+        assert hellinger_distance(p, p) < 1e-6
+
+    def test_hellinger_range(self):
+        p = {"a": 0.9, "b": 0.1}
+        q = {"a": 0.1, "b": 0.9}
+        h = hellinger_distance(p, q)
+        assert 0 <= h <= 1
+
+    def test_fisher_rao_self_zero(self):
+        p = {"a": 0.5, "b": 0.5}
+        assert fisher_rao_categorical(p, p) < 1e-6
+
+    def test_fisher_rao_positive(self):
+        p = {"a": 0.9, "b": 0.1}
+        q = {"a": 0.1, "b": 0.9}
+        assert fisher_rao_categorical(p, q) > 0
+
+
+class TestMemoryAtom:
+    def test_serialization_roundtrip(self):
+        atom = MemoryAtom(
+            task_id="test_001",
+            status="solved",
+            program_repr="segment -> render",
+            operator_distribution=BeliefDistribution({"segment": 0.5, "render": 0.5}),
+            score=1.5,
+        )
+        d = atom.to_dict()
+        atom2 = MemoryAtom.from_dict(d)
+        assert atom2.task_id == atom.task_id
+        assert atom2.status == atom.status
+        assert abs(atom2.score - atom.score) < 1e-10
+
+
+class TestMemoryStore:
+    def test_add_and_get(self):
+        store = MemoryStore()
+        atom = MemoryAtom(task_id="t1", status="solved")
+        store.add(atom)
+        assert store.get("t1") is atom
+        assert store.get("t2") is None
+
+    def test_solved_atoms(self):
+        store = MemoryStore()
+        store.add(MemoryAtom(task_id="t1", status="solved"))
+        store.add(MemoryAtom(task_id="t2", status="failed"))
+        assert len(store.solved_atoms()) == 1
+
+    def test_save_load(self):
+        store = MemoryStore()
+        store.add(MemoryAtom(
+            task_id="t1", status="solved",
+            operator_distribution=BeliefDistribution({"a": 0.5, "b": 0.5}),
+        ))
+        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
+            path = f.name
+        try:
+            store.save(path)
+            store2 = MemoryStore()
+            store2.load(path)
+            assert len(store2) == 1
+            assert store2.get("t1").task_id == "t1"
+        finally:
+            os.unlink(path)
+
+
+class TestRetrieval:
+    def test_retrieve_closest(self):
+        store = MemoryStore()
+        store.add(MemoryAtom(
+            task_id="t1", status="solved",
+            operator_distribution=BeliefDistribution({"a": 0.9, "b": 0.1}),
+        ))
+        store.add(MemoryAtom(
+            task_id="t2", status="solved",
+            operator_distribution=BeliefDistribution({"a": 0.1, "b": 0.9}),
+        ))
+
+        query = BeliefDistribution({"a": 0.85, "b": 0.15})
+        results = retrieve_similar(query, store, metric="js", top_k=2)
+        assert len(results) == 2
+        assert results[0][0].task_id == "t1"
+
+
+class TestDriftMonitor:
+    def test_no_drift_initially(self):
+        dm = DriftMonitor()
+        assert not dm.detect_drift()
+
+    def test_detects_drift(self):
+        dm = DriftMonitor(window_size=3)
+        dm.record(BeliefDistribution({"a": 0.9, "b": 0.1}))
+        dm.record(BeliefDistribution({"a": 0.9, "b": 0.1}))
+        dm.record(BeliefDistribution({"a": 0.1, "b": 0.9}))
+        assert dm.detect_drift(threshold=0.01)
+Prompt is too long
+

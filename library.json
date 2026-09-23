@@ -1,0 +1,153 @@
+{
+  "op_crop_to_by_slot_217a5f": {
+    "name": "op_crop_to_by_slot_217a5f",
+    "fragment": {
+      "selector": {
+        "predicate": {
+          "expr_class": "FreeSlotExpr",
+          "op": "free_slot",
+          "args": [
+            "slot_0",
+            "predicate"
+          ]
+        },
+        "literals": 0
+      },
+      "action": {
+        "delta_type": "crop_to",
+        "params": {
+          "region": {
+            "expr_class": "RegionExpr",
+            "op": "bbox_self",
+            "args": []
+          }
+        },
+        "parameter_class": "feature"
+      }
+    },
+    "free_slots": [
+      [
+        "slot_0",
+        "predicate"
+      ]
+    ],
+    "provenance": [
+      "0b148d64",
+      "1cf80156",
+      "23b5c85d",
+      "358ba94e",
+      "48d8fb45",
+      "a87f7484",
+      "be94b721",
+      "c909285e",
+      "cd3c21df",
+      "f5aa3634"
+    ],
+    "created_at": "2026-07-05T23:38:06.244618+00:00",
+    "loo_record": {},
+    "falsification_record": {
+      "operator": "op_crop_to_by_slot_217a5f",
+      "checked_at": "2026-07-05T23:38:23.131225+00:00",
+      "provenance_revalidation": {
+        "0b148d64": true,
+        "1cf80156": true,
+        "23b5c85d": true,
+        "358ba94e": true,
+        "48d8fb45": true,
+        "a87f7484": true,
+        "be94b721": true,
+        "c909285e": true,
+        "cd3c21df": true,
+        "f5aa3634": true
+      },
+      "provenance_passed": true,
+      "probes": {
+        "total": 10,
+        "passed": 10,
+        "regressions": 0
+      },
+      "probes_passed": true,
+      "color_invariance": {
+        "claims_color_genericity": false,
+        "violations": [],
+        "passed": true
+      },
+      "passed": true
+    }
+  },
+  "op_recolor_by_slot_0abdf2": {
+    "name": "op_recolor_by_slot_0abdf2",
+    "fragment": {
+      "selector": {
+        "predicate": {
+          "expr_class": "FreeSlotExpr",
+          "op": "free_slot",
+          "args": [
+            "slot_0",
+            "predicate"
+          ]
+        },
+        "literals": 0
+      },
+      "action": {
+        "delta_type": "recolor",
+        "params": {
+          "color": {
+            "expr_class": "FreeSlotExpr",
+            "op": "free_slot",
+            "args": [
+              "slot_1",
+              "color"
+            ]
+          }
+        },
+        "parameter_class": "induced_map"
+      }
+    },
+    "free_slots": [
+      [
+        "slot_0",
+        "predicate"
+      ],
+      [
+        "slot_1",
+        "color"
+      ]
+    ],
+    "provenance": [
+      "67385a82",
+      "810b9b61",
+      "b1948b0a",
+      "b2862040",
+      "c8f0f002",
+      "e0fb7511"
+    ],
+    "created_at": "2026-07-05T23:38:06.244651+00:00",
+    "loo_record": {},
+    "falsification_record": {
+      "operator": "op_recolor_by_slot_0abdf2",
+      "checked_at": "2026-07-05T23:38:59.928490+00:00",
+      "provenance_revalidation": {
+        "67385a82": true,
+        "810b9b61": true,
+        "b1948b0a": true,
+        "b2862040": true,
+        "c8f0f002": true,
+        "e0fb7511": true
+      },
+      "provenance_passed": true,
+      "probes": {
+        "total": 10,
+        "passed": 10,
+        "regressions": 0
+      },
+      "probes_passed": true,
+      "color_invariance": {
+        "claims_color_genericity": true,
+        "violations": [],
+        "passed": true
+      },
+      "passed": true
+    }
+  }
+}
