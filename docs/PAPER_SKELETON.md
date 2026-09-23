@@ -597,6 +597,41 @@ an aside.
 | the capability-growth half in another domain | never instantiated |
 | transfer to biology, protein design or omics | not demonstrated, prospective only |
 
+## 8.5 Corpus amendment required before the scorer can be fitted
+
+The Stage-B proposer exists and demonstrates legal new-AST generation from
+real failure graphs, deterministically and in about 0.03 seconds per task.
+Its failure conditioning remains weak: across five prospectively fixed real
+failures whose evidence differs substantially, all five share the same
+rank-one candidate.
+
+Fitting the scorer that would supply that conditioning is blocked rather than
+merely unfinished. Protocol v1.1 admitted zero of 1,500 attempted targets,
+and its own recorded root cause is structural: the type-keyed slot learner
+collapsed multiple induced-slot occurrences onto one, so the fitting
+requirement was satisfiable only for schemas that reduced to the single
+triple space the baseline enumerates. Passing the fitting requirement implied
+failing the out-of-baseline requirement. Separately, the only verified
+admitted episodes anywhere carry empty failure frontiers, because they were
+produced through the proxy runtime that the observation repair replaced.
+
+A preregistered v1.2 corpus amendment was therefore frozen before any
+generation, with the protocol document and its manifest hashed. It changes
+the target and evidence side only. The baseline keeps its productions, its
+depth, its budget and its ordering, and both sides use the same
+occurrence-scoped fitter, with an identity mismatch between them recorded as
+a fairness violation that rejects the episode. The separation is structural
+rather than a fitter privilege: the baseline enumerates 200 single-block
+schemas while the constructive grammar admits up to three blocks, so under
+occurrence-scoped fitting a multi-block target no longer collapses onto a
+single triple. Episode failure graphs now come from the repaired full-engine
+path, so training and inference share evidence semantics.
+
+Corpus quality criteria, and the controls a fitted scorer must beat, were
+fixed in the same freeze, so a non-zero admission count alone will not be
+reported as success. No v1.2 episode has been generated. Nothing about a
+trained scorer, construction, reach, transfer or score is claimed.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
