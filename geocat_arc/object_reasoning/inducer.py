@@ -46,6 +46,7 @@ from geocat_arc.perception.grid import Grid
 from geocat_arc.perception.objects import ARCObject
 
 from .actions import ObjectCanvas, apply_action, render_program
+from . import _trace_hook as _trace
 from .correspondence import delta_histogram, match_pair
 from .expressions import (
     AlignExpr,
@@ -1977,6 +1978,12 @@ def assemble_programs(seg: SegmentationResult, table: FeatureTable,
                 default_action=ActionRule(delta_type=DeltaType.DELETE),
                 output_spec=OutputSpec(mode="same_as_input")))
 
+    if _trace.get_sink() is not None:
+        for _cand in candidates:
+            _trace.emit(lambda p=_cand: _trace.program_ast(p),
+                        "exact" if _train_perfect(_cand, train_pairs)
+                        else "executed_not_exact")
+
     train_ok = _dedup_programs([p for p in candidates
                                 if _train_perfect(p, train_pairs)])
     # Rank-order HERE (LOO-free key: literals, parameter class, rules, size)
@@ -2179,6 +2186,8 @@ def _induce_rules(table: FeatureTable, groups: dict,
         _check_deadline(deadline)
         g = groups[gkey]
         target = frozenset(g["members"])
+        _trace.emit(lambda g=g: _trace.group_ast(g["delta_type"],
+                                                 len(g["members"])), "typed")
         selector = _induce_selector_for(table, target, sel_ctx, mask_cache,
                                         config.max_selector_literals,
                                         deadline, meta)
@@ -2188,9 +2197,16 @@ def _induce_rules(table: FeatureTable, groups: dict,
         action = _induce_action_for_group(table, g["delta_type"],
                                           g["members"], config, deadline, meta)
         if action is None:
+            _trace.emit(lambda g=g, s=selector: _trace.group_ast(
+                g["delta_type"], len(g["members"]), s.to_dict()),
+                "slot_fit_failed")
             failures[gkey] = "parameter"
             continue
         rules[gkey] = ObjectRule(selector=selector, action=action)
+        _trace.emit(lambda r=rules[gkey]: (
+            "rule:" + str(getattr(r.action.delta_type, "value",
+                                  r.action.delta_type)), (r.to_dict(),)),
+            "slot_fit_ok")
     return rules, failures, library_used
 
 
@@ -2274,6 +2290,11 @@ def _attempt_from_rules(seg: SegmentationResult, table: FeatureTable,
             output_spec=OutputSpec(mode="same_as_input"))
         attempt.program_partial = partial.to_dict()
         attempt.fit_pixels = explained_px / total_px
+        #  observational only: the engine has already built this fitted,
+        #  executable program and is about to discard it because some group
+        #  is unexplained. It is non-exact by construction.
+        _trace.emit(lambda p=partial: _trace.program_ast(p),
+                    "executed_not_exact")
     if octx.lossy or octx.orphans:
         attempt.stage = FailureStage.MATCHING
     elif any(s == "selector" for s in failures.values()):

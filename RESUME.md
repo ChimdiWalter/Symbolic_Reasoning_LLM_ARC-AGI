@@ -4,27 +4,36 @@ Last updated 2026-09-23. Read this first.
 
 ## State
 
-Measurement block complete. Nothing is implemented pending review.
+Observation repair DONE and measured. Nothing else implemented, pending
+review.
 
-The failure-frontier audit answered the question that gated all constructive
-work, and the answer is negative. Full report:
-`records/FRONTIER_AUDIT_20260923.md`.
+**Repaired failure channel classification: PARTIAL.**
+Report: `records/FRONTIER_AUDIT_V2_20260923.md`.
+Event mapping: `records/ENGINE_EVENT_MAPPING.md`.
+Preregistered gate: `records/REPAIR_SPEC_FRONTIER_V2.md`.
 
-**Failure channel classification: EMPTY_OR_UNUSABLE.**
-**First loss point: NO_NEAR_MISSES_ACTUALLY_GENERATED.**
-**Root cause: FULL_ENGINE_NOT_INSTRUMENTED.**
+The real ARC engine now emits the existing TraceObserver protocol at its own
+candidate transitions, and the existing `build_tfg` consumes it unchanged.
+The trace is task-conditioned, 12 distinct frontier operators instead of 1,
+62 candidates fitted, 36 executed and non-exact, 7 exact. Observation does
+not change the search result.
 
-Over 12 prospectively selected dev tasks the instrumented search produced
-64,610 candidate events, 32,305 frontier-eligible, 144 frontier terms, and
-zero executed-but-non-exact candidates, zero value signatures, zero mismatch
-signatures. The observer census is the constant `{typed: 2736,
-slot_fit_failed: 2736}` on 11 of 12 tasks, and three unrelated synthetic
-tasks reproduce that same census and the same ordered frontier ASTs. The
-candidate channel does not vary with the task.
+One evidence class is still missing from the graph: value and mismatch
+signatures are created but every one is `{"defined": false}`, because
+`tfg_extractor._mismatch_signature` renders through the blind-runtime
+evaluator, which cannot execute object programs. The same candidates give
+defined evidence, 17 of 17, under the engine's own renderer.
 
-This explains the old failure-signal study's null result without rerunning
-it: shuffled controls matched real evidence because the real evidence was
-already task-independent.
+Scored against the unchanged preregistered threshold: 9 of 12 tasks carry
+>= 2 frontier terms, 0 of 12 carry defined value evidence in the graph, 8 of
+12 would qualify on the producer-side reading. PARTIAL, not INFORMATIVE.
+
+## Earlier state, superseded
+
+The pre-repair measurement is `records/FRONTIER_AUDIT_20260923.md`:
+EMPTY_OR_UNUSABLE, NO_NEAR_MISSES_ACTUALLY_GENERATED, root cause
+FULL_ENGINE_NOT_INSTRUMENTED. Its fixture still passes and still correctly
+describes the blind-runtime path, which was deliberately left unchanged.
 
 ## Do not redo
 
@@ -34,25 +43,31 @@ already task-independent.
 
 ## Next action, exactly one
 
-Emit the existing `TraceObserver` candidate protocol from the engine that
-actually reasons over ARC, and build the TFG from that trace. Repair, not new
-architecture: reuse `TraceObserver`, `FRONTIER_OUTCOMES`, `build_tfg`.
-Scope and acceptance test are in section 8 of the audit report. Acceptance:
-`tests/test_frontier_loss_fixture.py::test_candidate_trace_is_identical_for_unrelated_tasks`
-must start failing.
+Give `build_tfg` an executor for the candidates it is handed: one optional
+parameter, defaulting to today's behaviour, threaded to `_mismatch_signature`
+in place of the hardwired `E.evaluate`. The full-engine adapter then passes
+the engine's own renderer.
 
-Make the change only in this workspace's allowlisted engine copy. The
-research tree's GEOCAT engine stays untouched.
+It needs a decision first, because it touches `cora_tti/tfg_extractor.py` in
+`Reasoning_Project_tti`, which the repair block was told not to modify.
+Either authorize that one edit or vendor the extractor into this workspace.
+Re-run the same 12-task audit afterwards and score it against the unchanged
+threshold.
 
-Not licensed yet: the Stage-B constructive AST proposer, and the
-ConstructiveExtensionCompiler. Both remain SPECIFIED_ONLY by verified code
-search. Do not build either on the current signal.
+Not licensed: the Stage-B constructive AST proposer and the
+ConstructiveExtensionCompiler. Both remain SPECIFIED_ONLY. Do not build
+either until the channel measures INFORMATIVE.
 
-## How to re-run the audit
+Still deferred on purpose: the blind runtime's goal-typed-only enumeration,
+so that only one variable moves at a time.
+
+## How to re-run
 
     export PYTHONDONTWRITEBYTECODE=1 ARC_META_BUDGET_S=8
-    .venv_arc2026/bin/python scripts/audit_failure_frontier.py
-    .venv_arc2026/bin/python -m pytest tests/test_frontier_loss_fixture.py -q
+    .venv_arc2026/bin/python scripts/audit_failure_frontier_v2.py
+    .venv_arc2026/bin/python -m pytest tests/ -q
+
+Single process, `nice -n 19`, so it cannot compete with Step B's 20 workers.
 
 `.venv_arc2026` is this sprint's own interpreter prefix. It reads packages
 from the shared environment through a path file and can never install into
