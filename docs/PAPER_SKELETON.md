@@ -480,6 +480,42 @@ translate. They are not completed experimental transfer.
 | verifier | exact held-out grid | held-out measurement, simulation, or assay-compatible criterion |
 | extension e | task-local ARC production | new executable analysis or transformation rule |
 
+### 3.4a A second executable domain, and what it does and does not show
+
+A separate project in the same research group instantiates part of this
+control architecture in a different executable domain: perturbation response
+prediction and decision policy over cell-line panels. It is independent work
+with its own aims, and it is named here only as universality evidence.
+
+What it shares is architecture, not implementation. It imports no code from
+the ARC system. What it reproduces is the verification half of the control
+loop:
+
+- an independently re-implemented verifier, whose replay module deliberately
+  does not call the routine that issued the certificate, so proposal and
+  acceptance cannot collapse into each other;
+- a protocol frozen before results and identified by hash;
+- matched comparison arms, five decision policies scored under one protocol;
+- held-out context rotation, the leave-one-out discipline applied at the
+  level of cell line rather than demonstration;
+- development-only calibration with outcome joining restricted to the
+  evaluator, the same sealed-holdout separation used here;
+- negative results reported rather than absorbed. Its one matched real trial
+  reported no yield gain for the verification policy.
+
+What it does not share is the capability-growth half. It has no typed failure
+graph, no constructive extension and no comparison of a language against
+itself plus an extension. It reports no official evaluator score and claims
+no empirical decision benefit.
+
+The honest reading is narrow. This raises representational portability from
+by-construction to partially exercised, for the verification and
+matched-comparison half of the architecture, in one other domain. It does not
+establish empirical cross-domain transfer, and it is not evidence that CORA
+generalizes to biology. The most informative thing it demonstrates is that
+the discipline survives the move: a transferred protocol that was willing to
+report a null result is behaving as intended.
+
 ### 3.5 Three levels of universality
 
 - U1, architectural portability: the failure, construct, execute, verify loop
@@ -490,8 +526,12 @@ translate. They are not completed experimental transfer.
 - U3, empirical cross-domain transfer: the same implementation or learned
   construction strategy succeeds in a non-ARC domain.
 
-Current evidence supports U1 and, by construction, parts of U2. U3 is not
-claimed. No cross-domain experiment has been run, and none is reported here.
+Current evidence supports U1 by architecture. U2 is supported by
+construction and, as section 3.4a records, partially exercised in one other
+executable domain for the verification and matched-comparison half of the
+loop. U3 is not claimed: no cross-domain experiment establishes that the
+method succeeds elsewhere, the one matched trial in that domain reported no
+gain, and the capability-growth half was never instantiated there.
 
 ### 3.6 Why the failure representation was designed to be domain-general
 
@@ -552,8 +592,9 @@ an aside.
 |---|---|
 | within-ARC generalization | partially evidenced by ordinary measurement |
 | architectural portability, U1 | supported by design and by the formal abstraction |
-| representational portability, U2 | supported by construction, not yet exercised |
-| cross-domain empirical transfer, U3 | not demonstrated, no experiment run |
+| representational portability, U2 | partially exercised in one other domain, verification half only |
+| cross-domain empirical transfer, U3 | not demonstrated; the one matched trial elsewhere reported no gain |
+| the capability-growth half in another domain | never instantiated |
 | transfer to biology, protein design or omics | not demonstrated, prospective only |
 
 ## 9. Ablations and Failure Analysis
