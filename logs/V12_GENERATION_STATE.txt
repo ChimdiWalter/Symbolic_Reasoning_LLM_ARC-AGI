@@ -1,9 +1,21 @@
 v1.2 corpus generation
-launched: 2026-09-23T23:43:24Z
-pid: 152479
+
+pid: 152484            <-- the python process, ppid 1, fully detached
+launched: 2026-09-23T23:43Z
 log: logs/v12_corpus_generation.log
-out: outputs/tti/v12_corpus/
+out: outputs/tti/v12_corpus/   (450 slots when complete)
+
 protocol sha256: 31a74764019c7ecef9d456258c9df3b6ee81d81a14c4703ee878d023bbe6bb98
 manifest sha256: 3355c9c5895c042ff397f22f1723a581ff4545bdd6041dc142e14a00d7766ba1
-resumable: yes, the script skips slots whose file already exists
-single process, nice -n 19, does not contend with Step B
+
+CAUTION recorded 2026-09-23: 'pgrep -f generate_v12_corpus.py | head -1' can
+return the wrapper pid rather than the python process. Checking the wrapper
+pid suggested the job had died when it had not, and relaunching started a
+SECOND generator. The duplicate was stopped by exact pid and an integrity
+check confirmed no corruption. Before relaunching, always run
+'pgrep -af generate_v12_corpus.py' and count the python processes.
+
+Resumable: the script skips any slot whose file already exists, so the same
+command may be rerun after a genuine interruption. Run only ONE at a time.
+
+Single process, nice -n 19. Does not contend with Step B.
