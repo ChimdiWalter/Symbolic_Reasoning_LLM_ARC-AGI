@@ -41,15 +41,34 @@ describes the blind-runtime path, which was deliberately left unchanged.
   Already run; result recorded and now explained.
 - The feature inventory. See `records/IMPLEMENTATION_MATRIX_CORRECTED_20260923.md`.
 
+## Proposer built, and half its claim is earned
+
+`cora_arc2026/constructive_proposer.py` implements
+`propose_ast(tfg, interface, k)`. 14 of 14 frozen controls pass. On five
+prospectively fixed real failures it emits 25 legal complete ASTs, all absent
+from K, in about 0.03 s per task.
+
+EARNED: new-AST generation from a real typed failure graph.
+NOT EARNED: failure conditioning on real data. All five tasks share the same
+rank-one candidate and four of five produce an identical list, although their
+evidence differs substantially. The unfitted evidence prior saturates.
+Nothing was tuned after seeing this. Full record:
+`records/PROPOSER_BLOCK_20260923.md`.
+
 ## Next action, exactly one
 
-Implement the already-specified grammar-constrained constructive AST
-proposer: typed failure graph plus typed interface to a NEW canonical AST
-absent from the catalogue. Not name selection. This is now licensed, because
-the channel measured INFORMATIVE against the preregistered threshold.
+Fit the scorer weights on the existing constructive dataset, per the frozen
+model specification in the manifest: TFG encoder, interface embedding,
+grammar-constrained decoder, non-LLM, hidden at most 256, stopping at 2000
+epochs or a 200-epoch plateau in validation exact@5. The scorer already
+exposes a `weights` mapping, so fitting changes no interface. Afterwards
+re-run the same controls and the same smoke test and require the rank-one
+candidate to vary where the evidence varies.
 
 The ConstructiveExtensionCompiler stays a separate responsibility and remains
-SPECIFIED_ONLY until the proposer exists. Do not merge the two.
+SPECIFIED_ONLY. Do not merge the two. Data-consumption order is fixed in
+`records/DATA_USAGE_ORDER.md`: no 1000-task run until the end-to-end path
+works, and no HOLDOUT until everything is frozen.
 
 Still deferred on purpose: the blind runtime's goal-typed-only enumeration,
 so that only one variable moves at a time.

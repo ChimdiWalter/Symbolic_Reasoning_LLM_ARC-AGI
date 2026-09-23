@@ -1,0 +1,1278 @@
+{
+ "interface": [
+  "Set[Region]",
+  "Grid"
+ ],
+ "top_k": 5,
+ "beam": 16,
+ "tasks": 5,
+ "total_candidates": 25,
+ "distinct_candidates_across_tasks": 8,
+ "all_absent_from_k": true,
+ "rows": [
+  {
+   "task_token": "dev01",
+   "solved_by_engine": false,
+   "evidence": {
+    "frontier_terms": 12,
+    "slot_failures": 21,
+    "executed_not_exact": 1,
+    "distinct_frontier_ops": 3,
+    "palette_introduced": 0.0,
+    "palette_removed": 0.0,
+    "shape_preserved": 1.0,
+    "shrinks": 0.0,
+    "grows": 0.0,
+    "fraction_changed": 0.09713333333333334,
+    "fraction_wrong": 0.16,
+    "palette_extra": 0.0,
+    "shape_mismatch": 0.0,
+    "defined_signatures": 1,
+    "empty": false
+   },
+   "candidates_emitted": 5,
+   "proposal_runtime_s": 0.0521,
+   "absent_from_k": 5,
+   "distinct_families": [
+    "(0,0)",
+    "(2,)"
+   ],
+   "candidates": [
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "8dac60d87f723ec9424e17ccb190ab6891385cf402811c2bb369596a325ec82b",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -6.789999,
+     "score": -7.190239,
+     "rank": 1,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 21,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09713333333333334,
+       "fraction_wrong": 0.16,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.052
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "dc6d7c29314b1f43bb7a7f68d568ffafb2464e41e2c8d51a1f032fa23fb4485c",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -6.789999,
+     "score": -7.190239,
+     "rank": 2,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 21,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09713333333333334,
+       "fraction_wrong": 0.16,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.052
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "48c080af51bc34057b90bf60a666ea774d8d40f7449e8831cc1da921b41650b5",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -8.007042,
+     "score": -8.557282,
+     "rank": 3,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 21,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09713333333333334,
+       "fraction_wrong": 0.16,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.052
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "16175be6a2093c0364d1322336fbe8e938dc6685eb16bb80c1a38dbb536732d7",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -8.007042,
+     "score": -8.557282,
+     "rank": 4,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 21,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09713333333333334,
+       "fraction_wrong": 0.16,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.052
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "707268bce5a25c0850101e59a7d4cf3d02c770de8dfcfc71daedd9744dc7a66e",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -8.007042,
+     "score": -8.557282,
+     "rank": 5,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 21,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09713333333333334,
+       "fraction_wrong": 0.16,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.052
+     }
+    }
+   ]
+  },
+  {
+   "task_token": "dev02",
+   "solved_by_engine": false,
+   "evidence": {
+    "frontier_terms": 12,
+    "slot_failures": 23,
+    "executed_not_exact": 5,
+    "distinct_frontier_ops": 5,
+    "palette_introduced": 0.0,
+    "palette_removed": 0.0,
+    "shape_preserved": 1.0,
+    "shrinks": 0.0,
+    "grows": 0.0,
+    "fraction_changed": 0.09165000000000001,
+    "fraction_wrong": 0.094,
+    "palette_extra": 0.0,
+    "shape_mismatch": 0.0,
+    "defined_signatures": 5,
+    "empty": false
+   },
+   "candidates_emitted": 5,
+   "proposal_runtime_s": 0.0219,
+   "absent_from_k": 5,
+   "distinct_families": [
+    "(0,0)",
+    "(2,)"
+   ],
+   "candidates": [
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "8dac60d87f723ec9424e17ccb190ab6891385cf402811c2bb369596a325ec82b",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -7.228244,
+     "score": -7.628484,
+     "rank": 1,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 23,
+       "executed_not_exact": 5,
+       "distinct_frontier_ops": 5,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09165000000000001,
+       "fraction_wrong": 0.094,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 5,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0218
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "dc6d7c29314b1f43bb7a7f68d568ffafb2464e41e2c8d51a1f032fa23fb4485c",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -7.228244,
+     "score": -7.628484,
+     "rank": 2,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 23,
+       "executed_not_exact": 5,
+       "distinct_frontier_ops": 5,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09165000000000001,
+       "fraction_wrong": 0.094,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 5,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0218
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "48c080af51bc34057b90bf60a666ea774d8d40f7449e8831cc1da921b41650b5",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -8.462345,
+     "score": -9.012585,
+     "rank": 3,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 23,
+       "executed_not_exact": 5,
+       "distinct_frontier_ops": 5,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09165000000000001,
+       "fraction_wrong": 0.094,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 5,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0218
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "16175be6a2093c0364d1322336fbe8e938dc6685eb16bb80c1a38dbb536732d7",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -8.462345,
+     "score": -9.012585,
+     "rank": 4,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 23,
+       "executed_not_exact": 5,
+       "distinct_frontier_ops": 5,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09165000000000001,
+       "fraction_wrong": 0.094,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 5,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0218
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "707268bce5a25c0850101e59a7d4cf3d02c770de8dfcfc71daedd9744dc7a66e",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -8.462345,
+     "score": -9.012585,
+     "rank": 5,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 23,
+       "executed_not_exact": 5,
+       "distinct_frontier_ops": 5,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.09165000000000001,
+       "fraction_wrong": 0.094,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 5,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0218
+     }
+    }
+   ]
+  },
+  {
+   "task_token": "dev03",
+   "solved_by_engine": false,
+   "evidence": {
+    "frontier_terms": 12,
+    "slot_failures": 32,
+    "executed_not_exact": 4,
+    "distinct_frontier_ops": 2,
+    "palette_introduced": 0.0,
+    "palette_removed": 0.0,
+    "shape_preserved": 1.0,
+    "shrinks": 0.0,
+    "grows": 0.0,
+    "fraction_changed": 0.12843333333333332,
+    "fraction_wrong": 0.22375,
+    "palette_extra": 0.0,
+    "shape_mismatch": 0.0,
+    "defined_signatures": 4,
+    "empty": false
+   },
+   "candidates_emitted": 5,
+   "proposal_runtime_s": 0.0256,
+   "absent_from_k": 5,
+   "distinct_families": [
+    "(0,0)",
+    "(2,)"
+   ],
+   "candidates": [
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "8dac60d87f723ec9424e17ccb190ab6891385cf402811c2bb369596a325ec82b",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -6.337595,
+     "score": -6.737835,
+     "rank": 1,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 32,
+       "executed_not_exact": 4,
+       "distinct_frontier_ops": 2,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.12843333333333332,
+       "fraction_wrong": 0.22375,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 4,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0255
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "dc6d7c29314b1f43bb7a7f68d568ffafb2464e41e2c8d51a1f032fa23fb4485c",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -6.337595,
+     "score": -6.737835,
+     "rank": 2,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 32,
+       "executed_not_exact": 4,
+       "distinct_frontier_ops": 2,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.12843333333333332,
+       "fraction_wrong": 0.22375,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 4,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0255
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "48c080af51bc34057b90bf60a666ea774d8d40f7449e8831cc1da921b41650b5",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -7.616024,
+     "score": -8.166264,
+     "rank": 3,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 32,
+       "executed_not_exact": 4,
+       "distinct_frontier_ops": 2,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.12843333333333332,
+       "fraction_wrong": 0.22375,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 4,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0255
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "16175be6a2093c0364d1322336fbe8e938dc6685eb16bb80c1a38dbb536732d7",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -7.616024,
+     "score": -8.166264,
+     "rank": 4,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 32,
+       "executed_not_exact": 4,
+       "distinct_frontier_ops": 2,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.12843333333333332,
+       "fraction_wrong": 0.22375,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 4,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0255
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "707268bce5a25c0850101e59a7d4cf3d02c770de8dfcfc71daedd9744dc7a66e",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -7.616024,
+     "score": -8.166264,
+     "rank": 5,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 12,
+       "slot_failures": 32,
+       "executed_not_exact": 4,
+       "distinct_frontier_ops": 2,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.12843333333333332,
+       "fraction_wrong": 0.22375,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 4,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0255
+     }
+    }
+   ]
+  },
+  {
+   "task_token": "dev04",
+   "solved_by_engine": false,
+   "evidence": {
+    "frontier_terms": 9,
+    "slot_failures": 13,
+    "executed_not_exact": 1,
+    "distinct_frontier_ops": 6,
+    "palette_introduced": 1.0,
+    "palette_removed": 0.0,
+    "shape_preserved": 1.0,
+    "shrinks": 0.0,
+    "grows": 0.0,
+    "fraction_changed": 0.13949999999999999,
+    "fraction_wrong": 0.163,
+    "palette_extra": 0.0,
+    "shape_mismatch": 0.0,
+    "defined_signatures": 1,
+    "empty": false
+   },
+   "candidates_emitted": 5,
+   "proposal_runtime_s": 0.0284,
+   "absent_from_k": 5,
+   "distinct_families": [
+    "(2,)",
+    "(2,0)"
+   ],
+   "candidates": [
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "8dac60d87f723ec9424e17ccb190ab6891385cf402811c2bb369596a325ec82b",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -7.942362,
+     "score": -8.342602,
+     "rank": 1,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 9,
+       "slot_failures": 13,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 6,
+       "palette_introduced": 1.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.13949999999999999,
+       "fraction_wrong": 0.163,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0283
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "dc6d7c29314b1f43bb7a7f68d568ffafb2464e41e2c8d51a1f032fa23fb4485c",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -7.942362,
+     "score": -8.342602,
+     "rank": 2,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 9,
+       "slot_failures": 13,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 6,
+       "palette_introduced": 1.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.13949999999999999,
+       "fraction_wrong": 0.163,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0283
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"sole_neighbour_colour\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"sole_neighbour_colour\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "6550ba4be46634f7d8ee28984b141c947ea124460339756e4438c250355c899c",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -7.942362,
+     "score": -8.342602,
+     "rank": 3,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 9,
+       "slot_failures": 13,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 6,
+       "palette_introduced": 1.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.13949999999999999,
+       "fraction_wrong": 0.163,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0283
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "e4365b6853e756a76df1d1c139cca01e6818870efbf15c17fd8b8f152280718e",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2,
+      0
+     ],
+     "family_text": "(2,0)",
+     "mdl": 13,
+     "estimated_cost_s": 0.036,
+     "logp": -10.935638,
+     "score": -11.585998,
+     "rank": 4,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 9,
+       "slot_failures": 13,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 6,
+       "palette_introduced": 1.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.13949999999999999,
+       "fraction_wrong": 0.163,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0283
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "58ea2173e0055d9581001d6f09cff2c9a982774e8473e98975fc685cef533035",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2,
+      0
+     ],
+     "family_text": "(2,0)",
+     "mdl": 13,
+     "estimated_cost_s": 0.036,
+     "logp": -10.935638,
+     "score": -11.585998,
+     "rank": 5,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 9,
+       "slot_failures": 13,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 6,
+       "palette_introduced": 1.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.13949999999999999,
+       "fraction_wrong": 0.163,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0283
+     }
+    }
+   ]
+  },
+  {
+   "task_token": "dev05",
+   "solved_by_engine": false,
+   "evidence": {
+    "frontier_terms": 3,
+    "slot_failures": 2,
+    "executed_not_exact": 1,
+    "distinct_frontier_ops": 3,
+    "palette_introduced": 0.0,
+    "palette_removed": 0.0,
+    "shape_preserved": 1.0,
+    "shrinks": 0.0,
+    "grows": 0.0,
+    "fraction_changed": 0.15786666666666668,
+    "fraction_wrong": 0.125,
+    "palette_extra": 0.0,
+    "shape_mismatch": 0.0,
+    "defined_signatures": 1,
+    "empty": false
+   },
+   "candidates_emitted": 5,
+   "proposal_runtime_s": 0.0255,
+   "absent_from_k": 5,
+   "distinct_families": [
+    "(0,0)",
+    "(2,)"
+   ],
+   "candidates": [
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "8dac60d87f723ec9424e17ccb190ab6891385cf402811c2bb369596a325ec82b",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -6.971666,
+     "score": -7.371906,
+     "rank": 1,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 3,
+       "slot_failures": 2,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.15786666666666668,
+       "fraction_wrong": 0.125,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0254
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"lit\": \"\\\"rectangular\\\"\"}], \"op\": \"Select\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "dc6d7c29314b1f43bb7a7f68d568ffafb2464e41e2c8d51a1f032fa23fb4485c",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      2
+     ],
+     "family_text": "(2,)",
+     "mdl": 8,
+     "estimated_cost_s": 0.024,
+     "logp": -6.971666,
+     "score": -7.371906,
+     "rank": 2,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": true,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 3,
+       "slot_failures": 2,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.15786666666666668,
+       "fraction_wrong": 0.125,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0254
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "48c080af51bc34057b90bf60a666ea774d8d40f7449e8831cc1da921b41650b5",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -7.938237,
+     "score": -8.488477,
+     "rank": 3,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 3,
+       "slot_failures": 2,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.15786666666666668,
+       "fraction_wrong": 0.125,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0254
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "16175be6a2093c0364d1322336fbe8e938dc6685eb16bb80c1a38dbb536732d7",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -7.938237,
+     "score": -8.488477,
+     "rank": 4,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 3,
+       "slot_failures": 2,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.15786666666666668,
+       "fraction_wrong": 0.125,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0254
+     }
+    },
+    {
+     "ast": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "canonical": "{\"args\": [{\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_square\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?0\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}, {\"args\": [{\"lit\": \"\\\"background_components\\\"\"}], \"op\": \"Partition\"}, {\"args\": [{\"args\": [{\"lit\": \"\\\"is_rect\\\"\"}], \"op\": \"Key\"}, {\"args\": [{\"lit\": \"\\\"?1\\\"\"}], \"op\": \"Lookup\"}], \"op\": \"Map\"}, {\"args\": [], \"op\": \"Paint\"}], \"op\": \"Compose\"}",
+     "digest": "707268bce5a25c0850101e59a7d4cf3d02c770de8dfcfc71daedd9744dc7a66e",
+     "interface": [
+      "Set[Region]",
+      "Grid"
+     ],
+     "structural_family": [
+      0,
+      0
+     ],
+     "family_text": "(0,0)",
+     "mdl": 11,
+     "estimated_cost_s": 0.024,
+     "logp": -7.938237,
+     "score": -8.488477,
+     "rank": 5,
+     "absent_from_k": true,
+     "banned_target_family": false,
+     "holdout_family": false,
+     "provenance": {
+      "protocol": "CORA-TTI Item-2 constructive proposer, v1.1",
+      "beam": 16,
+      "evidence": {
+       "frontier_terms": 3,
+       "slot_failures": 2,
+       "executed_not_exact": 1,
+       "distinct_frontier_ops": 3,
+       "palette_introduced": 0.0,
+       "palette_removed": 0.0,
+       "shape_preserved": 1.0,
+       "shrinks": 0.0,
+       "grows": 0.0,
+       "fraction_changed": 0.15786666666666668,
+       "fraction_wrong": 0.125,
+       "palette_extra": 0.0,
+       "shape_mismatch": 0.0,
+       "defined_signatures": 1,
+       "empty": false
+      },
+      "scorer": "EvidenceScorer",
+      "runtime_s": 0.0254
+     }
+    }
+   ]
+  }
+ ]
+}
