@@ -632,6 +632,50 @@ fixed in the same freeze, so a non-zero admission count alone will not be
 reported as success. No v1.2 episode has been generated. Nothing about a
 trained scorer, construction, reach, transfer or score is claimed.
 
+## 8.6 Measured: failure conditioning is not established
+
+The v1.2 corpus passed its frozen gate, which licensed fitting the scorer. The
+fit ran under a preregistration sealed beforehand and amended only before any
+score existed. The result is negative, and it is specific.
+
+Two gates were fixed in advance. Real associated failure evidence had to beat
+another episode's evidence, and it had to beat its own evidence with the
+candidate-associated features neutralized. The first passes clearly. The
+second fails.
+
+| condition | mean per-token target log-likelihood |
+|---|---|
+| real associated | -1.248 |
+| shuffled | -1.445 |
+| irrelevant | -1.442 |
+| aggregate only | -1.236 |
+| none | -1.299 |
+
+Evidence identity plainly matters. Real evidence beats another episode's by
+0.197 nats per token, on 23 of 32 paired episodes, and the top proposal
+changes on 30 of 32 episodes when evidence is swapped. With neutral evidence
+the model collapses to one proposal at zero entropy; with real evidence it
+produces 22 distinct top proposals across 32 episodes.
+
+What fails is narrower and more interesting. Removing the ten
+candidate-associated features, and keeping only the demonstration statistics,
+does not hurt and slightly helps. The conditioning that works is
+demonstration-level. The typed failure frontier, which the observation repair
+and the evaluator-compatibility repair existed to deliver, adds nothing
+measurable to constructive selection.
+
+No target was recovered in any condition. Exact-at-five is zero across all
+five, which an adversarial review predicted before the run by measuring that
+a probe knowing the target's token multiset recovers only 2 of 32 under this
+decoder. The gate metric was changed to target log-likelihood in advance for
+that reason, which is why the experiment could return a signal at all rather
+than five zeros.
+
+This does not show that failure-conditioned construction cannot work. It shows
+that on this corpus, with this model, the candidate-associated channel does
+not improve which program is proposed. The extension compiler stays blocked,
+because a failed discrimination result does not license it.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

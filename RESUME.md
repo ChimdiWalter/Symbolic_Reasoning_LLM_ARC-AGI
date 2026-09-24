@@ -4,26 +4,27 @@ Last updated 2026-09-24. Read this first.
 
 ## State
 
-**v1.2 corpus COMPLETE and PASSED its frozen gate.** 450 of 450 slots, 7,947
-targets attempted, 215 admitted: 180 train, 32 validation, 3 structural
-holdout. All eleven frozen criteria pass. Record:
-`records/V12_CORPUS_AUDIT_20260924.md`. Report:
-`outputs/tti/v12_corpus_audit.json`.
+**Scorer fit COMPLETE. Verdict: FAILURE_CONDITIONING_NOT_ESTABLISHED.**
+Record: `records/SCORER_FIT_RESULT_20260924.md`. Report:
+`outputs/tti/scorer_fit_v1.json`. Preregistration v4 sha256 `14f0bdc7...`,
+sealed before the fit.
 
-This is the first Item-2 corpus to admit anything. Version 1.1 admitted zero
-of 1,500.
+Two preregistered gates. Associated evidence beats shuffled by 0.197 nats per
+token, 23 of 32 paired: PASS. Associated beats aggregate-only: FAIL, because
+aggregate-only is better by 0.013.
 
-Key numbers: 215 distinct target digests from 215 episodes, duplicate rate
-zero. Frontier terms 2 to 12, mean 7.87, interquartile range 7.0. Distinct
-frontier operators 1 to 9. Only 382 rejections were baseline-solved, so the
-structural separation holds without touching the baseline. Only 2 rejections
-lacked informative evidence, so the repaired full-engine path delivers.
+Reading: evidence identity matters a lot, but the candidate-associated
+failure features add nothing over the demonstration statistics. The typed
+failure frontier does not improve constructive selection on this corpus.
 
-**Material limitation the gates did not cover:** the structural holdout arm
-admitted 3 of 90 slots, all family (2,1); family (2,) admitted zero. That was
-predicted in the protocol before generation, because single-block targets sit
-inside the baseline's own enumeration. Three episodes cannot support a
-structural-family held-out test.
+Exact-at-five is 0 in all five conditions. An adversarial review predicted
+this before the run, measuring that a probe knowing the target's token
+multiset recovers only 2 of 32 under this decoder, which is why the gate
+metric was changed to target log-likelihood in advance.
+
+Earlier milestones still standing: v1.2 corpus PASSED all 11 gates, 215
+admitted. Frontier channel INFORMATIVE 8/12. Proposer emits legal new ASTs
+absent from K.
 
 ## Do not redo
 
@@ -70,20 +71,16 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Fit the existing Stage-B scorer on the v1.2 corpus. `EvidenceScorer.weights`
-already exists, so fitting changes no interface. The fitted scorer must then
-beat the five frozen controls, being associated real evidence, shuffled,
-irrelevant, aggregate-only and none, on exact-at-five recovery.
+Diagnose the frozen scorer failure WITHOUT changing the corpus or the
+controls. The question the data poses: why do the candidate-associated
+features fail to help when the demonstration statistics do? Candidate
+explanations to separate are a property of the features themselves, the
+log-linear model's capacity, and the possibility that these synthetic targets
+are largely determined by demonstration-level structure.
 
-Confront the holdout thinness when designing that test. Either run the
-discrimination test on a held-out split of the training families and state
-plainly that structural-family generalization was not measured, or
-preregister a v1.3 that makes the holdout families reachable. That choice is
-prospective and must not be made after seeing a score.
-
-The ConstructiveExtensionCompiler stays separate and unbuilt until the
-discrimination test passes. Data order in `records/DATA_USAGE_ORDER.md` is
-unchanged: no 1000-task run, no protected holdout.
+Do NOT relax the gate, regenerate the corpus, drop a control, or swap the
+metric. The ConstructiveExtensionCompiler stays BLOCKED: a failed
+discrimination result does not license it.
 
 ## How to re-run
 
