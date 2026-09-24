@@ -1,0 +1,149 @@
+{
+ "protocol_sha256": "31a74764019c7ecef9d456258c9df3b6ee81d81a14c4703ee878d023bbe6bb98",
+ "manifest_sha256_recorded_in": "outputs/tti/constructive_protocol_v1.2_manifest.json.sha256",
+ "slots_written": 450,
+ "slots_requested": 450,
+ "targets_attempted": 7947,
+ "admitted_total": 215,
+ "admitted_train": 180,
+ "admitted_val": 32,
+ "admitted_structural_holdout": 3,
+ "admission_rate_per_slot": 0.4778,
+ "admission_rate_per_attempt": 0.0271,
+ "admissions_by_requested_family": {
+  "(0,0)": 65,
+  "(1,0)": 47,
+  "(0,1)": 51,
+  "(1,1)": 42,
+  "(0,0,0)": 7,
+  "(2,1)": 3
+ },
+ "admissions_by_structural_family": {
+  "(0,0)": 65,
+  "(1,0)": 47,
+  "(0,1)": 51,
+  "(1,1)": 42,
+  "(0,0,0)": 7,
+  "(2,1)": 3
+ },
+ "rejections_by_reason": {
+  "TARGET_NOT_FITTABLE": 5230,
+  "NO_INFORMATIVE_TFG": 2,
+  "OTHER_FROZEN_CODE": 327,
+  "TARGET_EXECUTION_UNDEFINED": 1790,
+  "BASELINE_SOLVED": 382,
+  "WITNESS_NOT_SEPARATED": 1
+ },
+ "unique_target_digests": 215,
+ "duplicate_digest_rate": 0.0,
+ "ast_stage_count": {
+  "min": 6,
+  "max": 9,
+  "mean": 6.99
+ },
+ "ast_block_count": {
+  "min": 2,
+  "max": 3,
+  "mean": 2.03
+ },
+ "ast_mdl": {
+  "min": 11,
+  "max": 16,
+  "mean": 12.05
+ },
+ "frontier_term_count": {
+  "min": 2,
+  "max": 12,
+  "mean": 7.87,
+  "iqr": 7.0
+ },
+ "distinct_frontier_operator_count": {
+  "min": 1,
+  "max": 9,
+  "mean": 3.66
+ },
+ "defined_value_signatures": {
+  "min": 0,
+  "max": 12,
+  "mean": 3.18
+ },
+ "executed_not_exact": {
+  "min": 0,
+  "max": 78,
+  "mean": 6.53
+ },
+ "most_common_target_share": 0.0047,
+ "wall_seconds": 2810.9,
+ "mean_seconds_per_slot": 6.25,
+ "seconds_per_admitted_episode": 13.07,
+ "criteria": [
+  {
+   "criterion": "admitted train episodes",
+   "measured": 180,
+   "threshold": ">= 120",
+   "pass": true
+  },
+  {
+   "criterion": "families admitting",
+   "measured": 6,
+   "threshold": ">= 3",
+   "pass": true
+  },
+  {
+   "criterion": "structural families among admitted train",
+   "measured": 5,
+   "threshold": ">= 3",
+   "pass": true
+  },
+  {
+   "criterion": "distinct target digests in train",
+   "measured": 180,
+   "threshold": ">= 60",
+   "pass": true
+  },
+  {
+   "criterion": "frontier_term_count IQR across admitted train",
+   "measured": 7.0,
+   "threshold": ">= 2",
+   "pass": true
+  },
+  {
+   "criterion": "distinct values of distinct_frontier_operator_count",
+   "measured": 8,
+   "threshold": ">= 2",
+   "pass": true
+  },
+  {
+   "criterion": "no single target dominates admitted set",
+   "measured": 0.0047,
+   "threshold": "< 0.5 share",
+   "pass": true
+  },
+  {
+   "criterion": "every admitted episode passes the informative gate",
+   "measured": 215,
+   "threshold": "all",
+   "pass": true
+  },
+  {
+   "criterion": "train digests disjoint from validation",
+   "measured": 0,
+   "threshold": "0 overlap",
+   "pass": true
+  },
+  {
+   "criterion": "train digests disjoint from structural holdout",
+   "measured": 0,
+   "threshold": "0 overlap",
+   "pass": true
+  },
+  {
+   "criterion": "holdout families absent from train",
+   "measured": 0,
+   "threshold": "0 overlap",
+   "pass": true
+  }
+ ],
+ "verdict": "PASS",
+ "complete": true
+}
