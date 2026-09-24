@@ -88,15 +88,28 @@ def build_calibration(man):
                 eps.append(json.load(handle))
     assert eps, "phase A produced nothing"
 
-    def stats(vectors):
+    def stats(vectors, names):
+        """Mean and effective divisor, per erratum 1.
+
+        A field constant across calibration gets a divisor of 1.0, not a
+        near-zero floor. A near-zero floor would turn any Phase-B movement on
+        that field into a standardized difference of about a billion and make
+        the distance a lookup on whichever constant field happened to move.
+        """
         n = len(vectors)
         width = len(vectors[0])
         mean = [sum(v[i] for v in vectors) / n for i in range(width)]
-        std = []
+        raw, eff, floored = [], [], []
         for i in range(width):
             var = sum((v[i] - mean[i]) ** 2 for v in vectors) / n
-            std.append(max(math.sqrt(var), 1e-9))
-        return mean, std
+            sd = math.sqrt(var)
+            raw.append(sd)
+            if sd < 1e-6:
+                eff.append(1.0)
+                floored.append(names[i])
+            else:
+                eff.append(sd)
+        return mean, eff, raw, floored
 
     demo_vecs = [[float(e["model_view"]["features"].get(k, 0) or 0)
                   if not isinstance(e["model_view"]["features"].get(k), bool)
@@ -104,8 +117,8 @@ def build_calibration(man):
                   for k in G.DEMO_FEATURES] for e in eps]
     desc_vecs = [[float(e["descriptor"].get(k, 0) or 0)
                   for k in G.DESCRIPTOR_ORDER] for e in eps]
-    dm, ds = stats(demo_vecs)
-    fm, fs = stats(desc_vecs)
+    dm, ds, ds_raw, d_floored = stats(demo_vecs, list(G.DEMO_FEATURES))
+    fm, fs, fs_raw, f_floored = stats(desc_vecs, list(G.DESCRIPTOR_ORDER))
     art = {
         "parent_protocol_sha256": man["protocol_doc_sha256"],
         "parent_manifest_sha256": hashlib.sha256(
@@ -113,9 +126,13 @@ def build_calibration(man):
         "phase_a_episodes": len(eps),
         "phase_a_target_digests": sorted({e["target_digest"] for e in eps}),
         "demo_features": list(G.DEMO_FEATURES),
-        "demo_mean": dm, "demo_std": ds,
+        "demo_mean": dm, "demo_std": ds, "demo_std_raw": ds_raw,
+        "demo_floored_fields": d_floored,
         "descriptor_order": list(G.DESCRIPTOR_ORDER),
         "descriptor_mean": fm, "descriptor_std": fs,
+        "descriptor_std_raw": fs_raw, "descriptor_floored_fields": f_floored,
+        "erratum": "erratum 1: fields with calibration std below 1e-6 use a "
+                   "divisor of 1.0, not a near-zero floor",
         "note": "calibration only; these episodes never enter any gate or split",
     }
     blob = json.dumps(art, indent=1, sort_keys=True)
