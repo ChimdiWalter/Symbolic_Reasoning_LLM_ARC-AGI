@@ -1,0 +1,26 @@
+v1.3 contrastive corpus generation
+
+phase: A (calibration)
+pid: 1214092
+launched: 2026-09-24T19:51:51Z
+log: logs/v13_phaseA.log
+out: outputs/tti/v13_calibration/
+
+protocol sha256: 66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e
+manifest sha256: 9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14
+implementation commit: 0146e20
+
+command: .venv_arc2026/bin/python -u scripts/generate_v13_contrastive_corpus.py phaseA
+resumable: a slot whose .done record exists is skipped
+single writer: verify with 'pgrep -af generate_v13_contrastive_corpus.py | grep -v bin/bash'
+             before relaunching; never count the grep shell itself
+
+--- chain wired 2026-09-24T19:56:41Z ---
+phase A resumed: pid 1225834
+  slot cap raised to 12000 (implementation detail) because per-attempt
+  admission measured ~4 percent, so 900 slots could not reach 200 episodes
+chain watcher: 1226835
+  waits for phase A, then runs the 40-group pilot
+chain log: logs/v13_chain.log
+markers: logs/V13_PILOT_DONE, logs/V13_CHAIN_STOPPED
+auditor: scripts/audit_v13_contrastive_corpus.py (sealed 4a6efd8, not yet run)
