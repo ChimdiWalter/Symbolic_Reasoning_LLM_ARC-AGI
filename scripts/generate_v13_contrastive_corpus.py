@@ -47,7 +47,7 @@ def eligible_anchors(contrast_type, train_families):
 # phase A
 # --------------------------------------------------------------------------
 
-def phase_a(man, target=200, slot_cap=900):
+def phase_a(man, target=200, slot_cap=12000):
     os.makedirs(CAL_DIR, exist_ok=True)
     budgets = man["budgets"]
     gate = man["gates"]
