@@ -676,6 +676,45 @@ that on this corpus, with this model, the candidate-associated channel does
 not improve which program is proposed. The extension compiler stays blocked,
 because a failed discrimination result does not license it.
 
+## 8.7 Diagnosis: the corpus, not the model
+
+A preregistered diagnostic separated three explanations for the negative
+above, using only the 180 training episodes, five deterministic folds, and a
+criterion fixed before any outcome.
+
+Model capacity is not the explanation. A bounded nonlinear model with one
+hidden layer does not rescue the candidate features: adding them changes
+held-out target log-likelihood by -0.016, positive on one fold of five.
+
+Compression is not the explanation either, with one recorded caveat. All 180
+episodes carry distinct candidate-feature vectors, so the summary is not
+merging different graphs. A richer descriptor built directly from the stored
+failure graph performs worse than demonstration statistics under both models.
+That test is confounded by carrying 42 features against 144 training episodes
+per fold, and the confound is reported rather than resolved.
+
+What the candidate features do is actively harm prediction. Adding them
+lowers held-out likelihood under both model classes on nearly every fold, and
+replacing each episode's candidate evidence with that of its nearest
+neighbour by demonstration evidence improves prediction rather than degrading
+it.
+
+The obvious next reading, that demonstration statistics already determine the
+target, is not supported. Predicting the target from them alone gives 0.383
+accuracy on the first partition token against a majority baseline of 0.411,
+and 0.183 on the first feature token against 0.161. They do not determine the
+target either.
+
+The accurate statement is narrower. On this corpus, at this readout, no
+evidence group recovers the target. The corpus does contain the cases the
+frontier exists to disambiguate: of the closest quartile of episode pairs by
+demonstration distance, 45 of 45 have different targets. The frontier does not
+distinguish them.
+
+So the discrimination test failed for a reason located in the corpus rather
+than in the scorer. That does not show a reasoning frontier can never inform
+construction. It shows this corpus cannot test the question.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

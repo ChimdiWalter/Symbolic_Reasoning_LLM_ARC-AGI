@@ -4,27 +4,31 @@ Last updated 2026-09-24. Read this first.
 
 ## State
 
-**Scorer fit COMPLETE. Verdict: FAILURE_CONDITIONING_NOT_ESTABLISHED.**
-Record: `records/SCORER_FIT_RESULT_20260924.md`. Report:
-`outputs/tti/scorer_fit_v1.json`. Preregistration v4 sha256 `14f0bdc7...`,
-sealed before the fit.
+**Scorer-failure diagnosis COMPLETE.** Preregistered classification:
+`CANDIDATE_SIGNAL_REDUNDANT_ON_V12`. Record:
+`records/SCORER_DIAGNOSIS_20260924.md`. Report:
+`outputs/tti/scorer_diagnosis.json`. Preregistration sha256 `6e95a7a8...`,
+sealed before any outcome.
 
-Two preregistered gates. Associated evidence beats shuffled by 0.197 nats per
-token, 23 of 32 paired: PASS. Associated beats aggregate-only: FAIL, because
-aggregate-only is better by 0.013.
+Capacity is NOT the cause: a bounded nonlinear model gives candidate features
+a delta of -0.016, positive on 1 of 5 folds. Compression is NOT the cause:
+all 180 episodes have distinct candidate vectors, zero collisions, and a
+richer 42-field graph descriptor is WORSE than demonstration statistics under
+both models, though that test is confounded by 42 features against 144
+training episodes per fold.
 
-Reading: evidence identity matters a lot, but the candidate-associated
-failure features add nothing over the demonstration statistics. The typed
-failure frontier does not improve constructive selection on this corpus.
+Candidate features actively HURT. Permuting them to a demonstration-nearest
+neighbour IMPROVES prediction.
 
-Exact-at-five is 0 in all five conditions. An adversarial review predicted
-this before the run, measuring that a probe knowing the target's token
-multiset recovers only 2 of 32 under this decoder, which is why the gate
-metric was changed to target log-likelihood in advance.
+Important qualifier on the label: demonstration statistics do NOT determine
+the target either. They predict the first partition token at 0.383 against a
+0.411 majority baseline. The accurate statement is that NO evidence group
+recovers the target on this corpus. And the corpus does contain the cases the
+frontier should disambiguate: 45 of 45 closest-quartile pairs have different
+targets.
 
-Earlier milestones still standing: v1.2 corpus PASSED all 11 gates, 215
-admitted. Frontier channel INFORMATIVE 8/12. Proposer emits legal new ASTs
-absent from K.
+Standing: scorer verdict FAILURE_CONDITIONING_NOT_ESTABLISHED, v1.2 corpus
+PASSED all 11 gates, proposer earns NEW_AST_GENERATION only.
 
 ## Do not redo
 
@@ -71,16 +75,17 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Diagnose the frozen scorer failure WITHOUT changing the corpus or the
-controls. The question the data poses: why do the candidate-associated
-features fail to help when the demonstration statistics do? Candidate
-explanations to separate are a property of the features themselves, the
-log-linear model's capacity, and the possibility that these synthetic targets
-are largely determined by demonstration-level structure.
+Preregister v1.3 as a contrastive corpus, designed so failure evidence can in
+principle identify the target. The evidence sets the requirement precisely:
+the corpus needs episode groups whose demonstration statistics are close while
+targets differ, AND whose failure frontiers differ systematically with the
+target. v1.2 already satisfies the first half and fails the second. A v1.3
+must also carry enough admitted episodes to support a wide descriptor without
+the sample-size confound that clouded the raw-graph test here.
 
-Do NOT relax the gate, regenerate the corpus, drop a control, or swap the
-metric. The ConstructiveExtensionCompiler stays BLOCKED: a failed
-discrimination result does not license it.
+Do NOT implement v1.3 in the same block as its preregistration. Do NOT
+regenerate v1.2, relax any gate, retrain the official scorer, or reinterpret
+the frozen verdict. The ConstructiveExtensionCompiler stays BLOCKED.
 
 ## How to re-run
 
