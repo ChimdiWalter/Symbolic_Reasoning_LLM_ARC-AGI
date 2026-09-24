@@ -1,17 +1,26 @@
 """Fit the Stage-B scorer on the v1.2 corpus, per the sealed preregistration.
 
-Preregistration: docs/SCORER_FIT_PREREGISTRATION_v1.md,
-sha256 ed4ac9d2109e499aed0311b86e553db804ba597316a5dee17f3ad7be207dc860.
+Version 4, after adversarial review. Three changes the review forced, all
+made before any fit was run:
 
-The minimal member of the frozen model family: a log-linear conditional model
-over grammar-legal tokens, masked by the existing GrammarState. Non-LLM, no
-hidden layer, 21 terminals by 19 inputs = 399 parameters. Nothing here reads a
-target, a digest, a family label, a split, a seed or any generation metadata
-at inference time.
+  * the scorer is now STATE-CONDITIONAL. It previously accepted the grammar
+    state and ignored it, so it scored block one and block two identically
+    while the metric demanded an ordered match. A probe that knew the target's
+    exact token multiset scored only 2 of 32 under the old design, and 0 of 20
+    on episodes containing a Select, so the experiment could not have tested
+    its hypothesis.
+  * features constant on the fit set are DROPPED before standardizing. Their
+    weights could never move off zero, and one of them was being manipulated
+    by a control, which was therefore inert.
+  * ablation vectors are filled with the fit-set mean rather than raw zero, so
+    an ablated input is neutral rather than an extreme extrapolation.
+
+Log-linear conditional model over grammar-legal tokens, masked by the existing
+GrammarState. Non-LLM, no hidden layer. Nothing reads a target, digest, family
+label, split, seed or generation metadata at inference.
 """
 from __future__ import annotations
 
-import json
 import math
 import os
 import sys
@@ -25,7 +34,7 @@ for _p in (TTI, HERE):
 
 from cora_tti import constructive_vocabulary as CV                # noqa: E402
 
-#: the 18 frozen allowlisted features, in a fixed deterministic order
+#: the 18 frozen allowlisted features, fixed deterministic order
 FEATURE_ORDER = (
     "defined_value_signature_count", "distinct_frontier_operator_count",
     "empty_frontier", "exact_count", "executed_not_exact_count",
@@ -36,13 +45,17 @@ FEATURE_ORDER = (
     "slot_fit_ok_count",
 )
 
-#: features zeroed by the aggregate-only control
+#: features the aggregate-only control ablates
 CANDIDATE_ASSOCIATED = (
     "frontier_term_count", "distinct_frontier_operator_count",
     "slot_fit_failed_count", "slot_fit_ok_count", "executed_not_exact_count",
     "exact_count", "defined_value_signature_count", "fraction_wrong_mean",
     "palette_extra_mean", "shape_mismatch_count",
 )
+
+#: structural decoder-state inputs, scaled by their frozen grammar bounds
+STATE_FEATURES = ("blocks_done", "selects_in_block", "in_block",
+                  "awaiting_paint", "stages_used")
 
 
 def terminals() -> list:
@@ -56,7 +69,15 @@ def terminals() -> list:
 
 TERMINALS = terminals()
 TERMINAL_INDEX = {t: i for i, t in enumerate(TERMINALS)}
-DIM = len(FEATURE_ORDER) + 1          # bias plus features
+
+
+def state_vector(state) -> list:
+    v = CV.vocab()
+    return [state.blocks_done / max(v["max_blocks"], 1),
+            state.selects_in_block / max(v["max_selects"], 1),
+            1.0 if state.in_block else 0.0,
+            1.0 if state.awaiting_paint else 0.0,
+            state.stages_used / max(v["max_stages"], 1)]
 
 
 class FeatureVector:
@@ -68,9 +89,9 @@ class FeatureVector:
     def as_dict(self) -> dict:
         return dict(self.features)
 
-    def vector(self) -> list:
+    def raw(self, order) -> list:
         out = []
-        for name in FEATURE_ORDER:
+        for name in order:
             value = self.features.get(name, 0)
             out.append(1.0 if value is True else 0.0 if value is False
                        else float(value))
@@ -78,132 +99,161 @@ class FeatureVector:
 
 
 class Standardizer:
-    """Zero mean, unit variance, fitted on the fit set alone."""
+    """Zero mean, unit variance, fitted on the fit set alone.
 
-    def __init__(self, mean=None, std=None):
+    Features with no variance on the fit set are dropped, not floored: a
+    constant input can never move its weights, and keeping it invites a
+    control to manipulate a column that cannot act.
+    """
+
+    def __init__(self, order=None, mean=None, std=None, dropped=None):
+        self.order = tuple(order) if order else None
         self.mean = list(mean) if mean else None
         self.std = list(std) if std else None
+        self.dropped = tuple(dropped) if dropped else ()
 
     def fit(self, vectors):
         n = len(vectors)
-        self.mean = [sum(v[i] for v in vectors) / n for i in range(len(FEATURE_ORDER))]
-        self.std = []
-        for i in range(len(FEATURE_ORDER)):
-            var = sum((v[i] - self.mean[i]) ** 2 for v in vectors) / n
-            self.std.append(max(math.sqrt(var), 1e-6))
+        keep, dropped = [], []
+        for i, name in enumerate(FEATURE_ORDER):
+            mean = sum(v[i] for v in vectors) / n
+            var = sum((v[i] - mean) ** 2 for v in vectors) / n
+            (keep if math.sqrt(var) > 1e-9 else dropped).append(
+                (name, i, mean, math.sqrt(var)))
+        self.order = tuple(k[0] for k in keep)
+        self.mean = [k[2] for k in keep]
+        self.std = [k[3] for k in keep]
+        self.dropped = tuple(d[0] for d in dropped)
         return self
 
-    def apply(self, vector) -> list:
-        return [1.0] + [(vector[i] - self.mean[i]) / self.std[i]
-                        for i in range(len(FEATURE_ORDER))]
+    def standardize(self, fv: FeatureVector) -> list:
+        raw = fv.raw(self.order)
+        return [(raw[i] - self.mean[i]) / self.std[i]
+                for i in range(len(self.order))]
+
+    def mean_vector(self) -> FeatureVector:
+        """The fit-set mean, which standardizes to exactly zero."""
+        return FeatureVector({name: self.mean[i]
+                              for i, name in enumerate(self.order)})
+
+    def neutralize(self, fv: FeatureVector, names) -> FeatureVector:
+        """Replace the named features with the fit-set mean, leaving the rest."""
+        out = dict(fv.features)
+        for i, name in enumerate(self.order):
+            if name in names:
+                out[name] = self.mean[i]
+        return FeatureVector(out)
 
     def to_dict(self) -> dict:
-        return {"mean": self.mean, "std": self.std}
+        return {"order": list(self.order), "mean": self.mean,
+                "std": self.std, "dropped": list(self.dropped)}
 
 
 class LogLinearScorer:
     """Fitted scorer, interface-compatible with the unfitted EvidenceScorer."""
 
     def __init__(self, weights=None, standardizer: Standardizer | None = None):
-        self.weights = weights or [[0.0] * DIM for _ in TERMINALS]
         self.standardizer = standardizer or Standardizer()
+        self.dim = 1 + len(self.standardizer.order or ()) + len(STATE_FEATURES)
+        self.weights = weights or [[0.0] * self.dim for _ in TERMINALS]
 
-    def _x(self, evidence) -> list:
-        vec = evidence.vector() if isinstance(evidence, FeatureVector) \
-            else FeatureVector(evidence).vector()
-        return self.standardizer.apply(vec)
+    def inputs(self, evidence, state) -> list:
+        fv = evidence if isinstance(evidence, FeatureVector) \
+            else FeatureVector(evidence)
+        return [1.0] + self.standardizer.standardize(fv) + state_vector(state)
 
     def logits(self, legal, x) -> list:
         out = []
         for token in legal:
             w = self.weights[TERMINAL_INDEX[token]]
-            out.append(sum(w[i] * x[i] for i in range(DIM)))
+            out.append(sum(w[i] * x[i] for i in range(self.dim)))
         return out
 
-    def token_logprobs(self, state, legal, evidence, interface) -> list:
-        x = self._x(evidence)
-        raw = self.logits(legal, x)
+    @staticmethod
+    def _logsoftmax(raw) -> list:
         top = max(raw)
         exps = [math.exp(r - top) for r in raw]
         total = sum(exps)
         return [math.log(e / total) for e in exps]
 
+    def token_logprobs(self, state, legal, evidence, interface) -> list:
+        return self._logsoftmax(self.logits(legal, self.inputs(evidence, state)))
+
+    def sequence_logprob(self, evidence, tokens) -> tuple:
+        """Teacher-forced log-likelihood of one target, and its step count."""
+        total, state, steps = 0.0, CV.GrammarState(), 0
+        for token in tokens:
+            legal = state.legal_tokens()
+            logs = self.token_logprobs(state, legal, evidence, None)
+            total += logs[legal.index(token)]
+            state = state.advance(token)
+            steps += 1
+        return total, steps
+
     def to_dict(self) -> dict:
         return {"terminals": [list(t) for t in TERMINALS],
-                "feature_order": list(FEATURE_ORDER),
+                "state_features": list(STATE_FEATURES),
                 "weights": self.weights,
                 "standardizer": self.standardizer.to_dict()}
 
-    @classmethod
-    def from_dict(cls, data):
-        std = Standardizer(data["standardizer"]["mean"],
-                           data["standardizer"]["std"])
-        return cls(weights=data["weights"], standardizer=std)
-
-
-# --------------------------------------------------------------------------
-# teacher-forced fitting
-# --------------------------------------------------------------------------
 
 def token_steps(tokens):
-    """(legal_tokens, chosen) at every decision point of one target."""
+    """(state, legal, chosen) at every decision point of one target."""
     state = CV.GrammarState()
     steps = []
     for token in tokens:
-        legal = state.legal_tokens()
-        steps.append((legal, token))
+        steps.append((state, state.legal_tokens(), token))
         state = state.advance(token)
     return steps
 
 
-def fit(examples, standardizer, *, lr=0.1, l2=1e-3, max_epochs=2000,
+def fit(examples, standardizer, *, lr=0.5, l2=1e-3, max_epochs=2000,
         plateau_epochs=200, eval_every=25, evaluate=None, log=print):
-    """Full-batch gradient ascent on the masked conditional log-likelihood.
-
-    ``examples`` is a list of (FeatureVector, token list). ``evaluate`` is the
-    early-stopping callback returning exact@5; it never sees the test set.
-    """
+    """Full-batch gradient ascent on the masked conditional log-likelihood."""
     scorer = LogLinearScorer(standardizer=standardizer)
-    prepared = [(scorer.standardizer.apply(fv.vector()), token_steps(tokens))
-                for fv, tokens in examples]
-    best, best_epoch, best_weights = -1.0, 0, None
+    dim = scorer.dim
+    prepared = []
+    for fv, tokens in examples:
+        prepared.append([(scorer.inputs(fv, state), legal, chosen)
+                         for state, legal, chosen in token_steps(tokens)])
+    best, best_epoch, best_weights = -float("inf"), 0, None
     history = []
+    epoch = 0
     for epoch in range(1, max_epochs + 1):
-        grad = [[0.0] * DIM for _ in TERMINALS]
+        grad = [[0.0] * dim for _ in TERMINALS]
         n_steps = 0
-        for x, steps in prepared:
-            for legal, chosen in steps:
+        for steps in prepared:
+            for x, legal, chosen in steps:
                 raw = scorer.logits(legal, x)
                 top = max(raw)
                 exps = [math.exp(r - top) for r in raw]
                 total = sum(exps)
                 for token, e in zip(legal, exps):
-                    p = e / total
-                    coeff = (1.0 if token == chosen else 0.0) - p
+                    coeff = (1.0 if token == chosen else 0.0) - e / total
                     row = grad[TERMINAL_INDEX[token]]
-                    for i in range(DIM):
+                    for i in range(dim):
                         row[i] += coeff * x[i]
                 n_steps += 1
         for t in range(len(TERMINALS)):
-            for i in range(DIM):
-                scorer.weights[t][i] += lr * (grad[t][i] / n_steps
-                                              - 2.0 * l2 * scorer.weights[t][i])
+            row, g = scorer.weights[t], grad[t]
+            for i in range(dim):
+                row[i] += lr * (g[i] / n_steps - 2.0 * l2 * row[i])
         if evaluate is not None and epoch % eval_every == 0:
             score = evaluate(scorer)
-            history.append({"epoch": epoch, "early_stop_exact_at_5": score})
-            log(f"  epoch {epoch:5d}  early-stop exact@5 {score:.4f}")
+            history.append({"epoch": epoch, "validation_metric": round(score, 6)})
+            log(f"  epoch {epoch:5d}  validation mean target logprob {score:.5f}")
             if score > best:
                 best, best_epoch = score, epoch
-                best_weights = [row[:] for row in scorer.weights]
+                best_weights = [r[:] for r in scorer.weights]
             elif epoch - best_epoch >= plateau_epochs:
-                log(f"  plateau at epoch {epoch}, best {best:.4f} "
-                    f"at epoch {best_epoch}")
+                log(f"  plateau at epoch {epoch}; best {best:.5f} at {best_epoch}")
                 break
-    final_weights = [row[:] for row in scorer.weights]
-    final_epoch = epoch
+    final = LogLinearScorer(weights=[r[:] for r in scorer.weights],
+                            standardizer=standardizer)
     if best_weights is not None:
         scorer.weights = best_weights
-    final = LogLinearScorer(weights=final_weights, standardizer=standardizer)
-    return scorer, final, {"best_early_stop_exact_at_5": best,
-                           "best_epoch": best_epoch, "final_epoch": final_epoch,
-                           "epochs_run": final_epoch, "history": history}
+    return scorer, final, {"best_validation_metric": round(best, 6),
+                           "best_epoch": best_epoch, "epochs_run": epoch,
+                           "dropped_constant_features": list(standardizer.dropped),
+                           "parameters": len(TERMINALS) * dim,
+                           "history": history}
