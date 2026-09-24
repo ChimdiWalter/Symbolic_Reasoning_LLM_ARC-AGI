@@ -19,3 +19,19 @@ Resumable: the script skips any slot whose file already exists, so the same
 command may be rerun after a genuine interruption. Run only ONE at a time.
 
 Single process, nice -n 19. Does not contend with Step B.
+
+--- audit chain wired 2026-09-23 ---
+audit script:  scripts/audit_v12_corpus.py       (thresholds read from the manifest)
+watcher:       scripts/watch_v12_then_audit.sh   pid 177060, detached
+watcher log:   logs/v12_watch.log
+done marker:   logs/V12_AUDIT_DONE
+report:        outputs/tti/v12_corpus_audit.json
+
+The watcher polls every 60 s and runs the audit when 450 slots exist, or
+earlier if the generator process disappears, in which case it audits the
+partial corpus and says so.
+
+NOTE on process counting: 'pgrep -f <pattern>' also matches the shell running
+the pgrep, because the pattern appears in that shell's own command line.
+Always filter with 'grep -v bin/bash' before counting. Verified 2026-09-23:
+exactly one generator, pid 152484.
