@@ -1,0 +1,255 @@
+{
+ "admission": {
+  "R4": "ordinary baseline must not solve it, behavioural, 8 s budget, unchanged enumeration",
+  "R5": "target fittable by the registered occurrence-scoped fitter with exact replay",
+  "group_admitted_iff": "all 8 episodes admitted AND demo match holds",
+  "informative_gate": "frontier_term_count >= 2 AND one candidate-associated class",
+  "law": "unchanged from v1.2",
+  "no_frontier_based_filter": true,
+  "reason": "filtering groups on frontier separation would manufacture the correlation under test"
+ },
+ "audit": {
+  "chance_derivation": "3 same-target and 4 different-target companions among the other 7",
+  "exact_chance": 0.428571,
+  "learned": false,
+  "primary_statistic": "within-group nearest neighbour by d_frontier; hit if the nearest of the other 7 shares the target",
+  "secondary_statistic": "per-group separation s = mean between-target distance minus mean within-target distance"
+ },
+ "autonomy": "the typed interface is still supplied; v1.3 is intermediate and is NOT autonomous gap inference",
+ "budgets": {
+  "attempts_per_episode_slot": 25,
+  "base_search_s": 8.0,
+  "full_engine_observation_s": 8.0,
+  "per_target_s": 90.0,
+  "tfg_s": 2.0
+ },
+ "calibration_phase_A": {
+  "episodes": 200,
+  "product": "per-feature mean and standard deviation for d_demo and d_frontier",
+  "published_before_phase_B": true,
+  "recomputed_later": false,
+  "schedule": "v1.2, no groups, no contrast, no selection",
+  "used_as_audit_evidence": false
+ },
+ "cannot_establish": [
+  "failure-conditioned selection",
+  "constructive reach",
+  "autonomous construction",
+  "semantic extension",
+  "transfer",
+  "structural-family generalization",
+  "any ARC score"
+ ],
+ "claim_ceiling": "V1.3 CONTRASTIVE CORPUS PROTOCOL FROZEN AND STATICALLY FEASIBLE",
+ "d_demo": {
+  "epsilon_demo": 0.5,
+  "features": [
+   "n_demonstrations",
+   "mean_cells_changed",
+   "mean_fraction_changed",
+   "same_shape_all",
+   "palette_introduced_mean",
+   "palette_removed_mean"
+  ],
+  "metric": "euclidean",
+  "reject_code": "DEMO_NOT_MATCHED",
+  "standardized_by": "phase A constants",
+  "vector": "mean over the 4 replicates"
+ },
+ "d_frontier": {
+  "descriptor": "the 42-field descriptor already executed in the v1.2 diagnosis",
+  "fields": [
+   "16 sha1(op) mod 16 operator buckets",
+   "6 outcome-name counts",
+   "surface_nodes min/mean/max",
+   "cells_wrong min/mean/max",
+   "fraction_wrong min/mean/max",
+   "palette_extra min/mean/max",
+   "distinct operator count",
+   "defined-signature count",
+   "shape-mismatch count",
+   "5 stored search execution counters"
+  ],
+  "forbidden_inputs": [
+   "target AST",
+   "target family",
+   "task id",
+   "hidden answer",
+   "seed as meaning"
+  ],
+  "metric": "euclidean",
+  "standardized_by": "phase A constants",
+  "width": 42
+ },
+ "fitter_identity_16": "2cc45152c430f8a2",
+ "frozen": "2026-09-24, before any v1.3 episode was generated",
+ "gates": {
+  "G10_evidence": "every admitted episode passes the unchanged informative-evidence gate",
+  "G1_primary_identifiability": "hit rate > 3/7, one-sided exact binomial p < 0.01, all admitted training instances",
+  "G2_contrast_type_robustness": "G1 also holds on PARTITION and FEATURE pooled, excluding SELECT",
+  "G3_separation": "fraction of training groups with s > 0 exceeds 0.5, one-sided exact binomial p < 0.01",
+  "G4_separation_magnitude": "mean s >= 0.25 standardized units",
+  "G5_scale": "at least 60 admitted training groups, being 480 episodes",
+  "G6_coverage": "at least 3 admitted groups per contrast type",
+  "G7_distinct_targets": "at least 100 distinct target digests among admitted training episodes",
+  "G8_splits": "group digests disjoint across train, validation, holdout, asserted",
+  "G9_leakage": "zero violations from the hardened scanner extended to the new metadata",
+  "adjustable_after_result": false,
+  "all_required": true
+ },
+ "group_law": {
+  "allocation": "equal across contrast types",
+  "contrast_types": [
+   "PARTITION",
+   "FEATURE",
+   "SELECT"
+  ],
+  "episodes_per_group": 8,
+  "recorded_confound": "a SELECT contrast changes the structural family, e.g. (0,0) to (1,0), while PARTITION and FEATURE stay within family; every statistic is reported split by contrast type and gate G2 excludes SELECT",
+  "replicates_for_every_scheduled_target": true,
+  "replicates_per_target": 4,
+  "targets_differ_in": "exactly one grammar position",
+  "targets_per_group": 2
+ },
+ "leakage": {
+  "model_view": "the eighteen v1.2 features plus the typed interface",
+  "path": "demonstrations -> reasoner -> its failure -> graph; never target -> graph",
+  "required_violations": 0,
+  "scanner": "hardened v1.2 scanner, extended to group id, contrast type and replicate index",
+  "trusted_never_model_input": [
+   "target AST",
+   "target digest",
+   "target tokens",
+   "structural family",
+   "contrast type",
+   "which grammar position differs",
+   "group id",
+   "replicate index",
+   "generation seed",
+   "split",
+   "admission outcome"
+  ]
+ },
+ "not_authorized_in_the_freezing_block": [
+  "generate v1.3",
+  "fit any scorer",
+  "run an MLP or graph network",
+  "train contrastive embeddings",
+  "implement a pairwise loss",
+  "build ConstructiveExtensionCompiler",
+  "run the 1000 tasks",
+  "touch protected HOLDOUT",
+  "touch Step B"
+ ],
+ "nulls": {
+  "cross_target_contrast": "different targets, demonstration matched, the B term",
+  "note": "requiring merely that two graphs differ is worthless; v1.2 had 180 of 180 distinct",
+  "within_target_replicate": "same target, independently generated demonstrations, the W term"
+ },
+ "order_after_freeze": [
+  "generate the scheduled corpus",
+  "run the frozen audit",
+  "STOP and record PASS or FAIL",
+  "only on PASS, separately preregister a new scorer experiment",
+  "only if that scorer shows incremental value, license the compiler"
+ ],
+ "protocol": "CORA-TTI Item-2 constructive corpus, v1.3 contrastive identifiability",
+ "protocol_doc_sha256": "66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e",
+ "purpose": "DATA IDENTIFIABILITY REPAIR, not an architecture revision",
+ "sample_size": {
+  "descriptor_width": 42,
+  "implied_episodes": 420,
+  "observations_per_feature": 10,
+  "power_target": "0.55 against 0.428571 one-sided p<0.01 at about 90 percent power needs of order 400 instances",
+  "requirement": "60 training groups = 480 episodes",
+  "schedule_target": {
+   "holdout_groups": 12,
+   "total_episodes": 672,
+   "total_groups": 84,
+   "train_groups": 60,
+   "val_groups": 12
+  },
+  "v1_2_criterion_reused": false
+ },
+ "seeds": {
+  "disjoint_from": {
+   "v1_1": 20260903,
+   "v1_2": 20260923
+  },
+  "groups_from": 31000,
+  "holdout_from": 33000,
+  "phase_A_from": 30000,
+  "replicate_rule": "grid seeds derived deterministically from the group seed and the replicate index",
+  "root": 20260924,
+  "val_from": 32000
+ },
+ "sizing_rule": {
+  "cap": 1200,
+  "cap_raised_afterwards": false,
+  "full_request": "ceil(84 / q) group slots where q is the pilot group admission rate",
+  "if_cap_reached": "report achieved size, evaluate every gate, state reduced power",
+  "pilot_group_slots": 40,
+  "q_re_estimated": false
+ },
+ "splits": {
+  "group_never_divided": true,
+  "holdout": 12,
+  "order": "ascending group digest",
+  "structural_family_generalization": "NOT measured by v1.3",
+  "surplus": "retained and marked unused",
+  "train": 60,
+  "val": 12
+ },
+ "supersedes": {
+  "earlier_v1_3_draft": {
+   "authoritative": false,
+   "commit": "db6f500",
+   "reason": "lacked replicates, a nonlearned audit and frozen distance laws"
+  },
+  "v1_2": {
+   "doc_sha256": "31a74764019c7ecef9d456258c9df3b6ee81d81a14c4703ee878d023bbe6bb98",
+   "preserved": true,
+   "scope": "corpus generation only"
+  }
+ },
+ "unchanged": [
+  "constructive grammar",
+  "grammar bounds",
+  "operators",
+  "terminals",
+  "banned families",
+  "ordinary baseline K and its budget, enumeration, ordering, fitting",
+  "occurrence-scoped fitter and fairness guard",
+  "deployed reasoner",
+  "repaired full-engine observer",
+  "candidate-executor compatibility repair",
+  "failure-graph representation",
+  "verifier and LOO discipline",
+  "eighteen-feature model view",
+  "prohibition on reading hidden output"
+ ],
+ "why_v1_2_failed": {
+  "capacity_not_supported": {
+   "M1_candidate_over_demo": -0.0706,
+   "M2_candidate_over_demo": -0.0156,
+   "M2_folds_positive": "1 of 5"
+  },
+  "compression_not_supported": {
+   "collisions": 0,
+   "distinct_candidate_vectors": "180 of 180",
+   "raw42_over_demo_M1": -0.1006,
+   "raw42_over_demo_M2": -0.0491,
+   "recorded_confound": "42 features against 144 training episodes per fold"
+  },
+  "demo_does_not_determine_target": {
+   "block0_partition_accuracy": 0.383,
+   "block0_partition_majority": 0.411
+  },
+  "mechanism": "the frontier is expressed in the deployed reasoner's vocabulary while the target is expressed in the constructive grammar's; v1.2 never required the two coordinate systems to be related",
+  "opportunity_existed": {
+   "closest_quartile_pairs": 45,
+   "with_different_targets": 45
+  },
+  "verdict": "FAILURE_CONDITIONING_NOT_ESTABLISHED"
+ }
+}

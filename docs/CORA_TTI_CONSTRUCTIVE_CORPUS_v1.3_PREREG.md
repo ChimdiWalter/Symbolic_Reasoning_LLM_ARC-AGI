@@ -206,3 +206,21 @@ programme currently lacks and nothing beyond it.
 Generation, fitting and testing are three separate blocks. The corpus is
 generated and audited before any fit. The extension compiler stays blocked
 throughout and is not licensed by any outcome of v1.3 alone.
+
+---
+
+## SUPERSEDED 2026-09-24
+
+This draft is **not authoritative**. It is retained for history only.
+
+The authoritative v1.3 protocol is
+`docs/CORA_TTI_CONSTRUCTIVE_PROPOSER_PROTOCOL_v1.3.md`, sha256
+`66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e`, with
+manifest `outputs/tti/constructive_protocol_v1.3_manifest.json`, sha256
+`9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14`.
+
+This draft lacked three things the authoritative protocol requires: replicates
+per target, so within-target frontier variation could not be estimated; a
+nonlearned identifiability audit, so it would have trained a model before
+establishing that the corpus contains a signal at all; and frozen distance
+laws with a calibration phase, so its thresholds had no scale.

@@ -84,13 +84,20 @@ def scan(view: dict, episode: dict) -> list:
                 findings.append(f"leaked:{name}")
                 return
             if (isinstance(leaf, (int, float)) and not isinstance(leaf, bool)
-                    and abs(float(leaf)) >= DISCRIMINATIVE_MIN
-                    and float(leaf) in view_numbers):
-                findings.append(f"leaked:{name}")
-                return
+                    and abs(float(leaf)) >= DISCRIMINATIVE_MIN):
+                #  a numeric value can also be echoed as text, so check both
+                forms = {float(leaf)}
+                texts = {str(leaf), str(int(leaf))} if float(leaf).is_integer() \
+                    else {str(leaf)}
+                if (forms & view_numbers) or (texts & view_strings):
+                    findings.append(f"leaked:{name}")
+                    return
 
+    #  extended for v1.3 contrastive metadata, per protocol v1.3 section 15
     for name in ("episode_id", "structural_family", "requested_family",
-                 "seed", "split", "regime"):
+                 "seed", "split", "regime",
+                 "group_id", "contrast_type", "replicate_index",
+                 "differing_position", "pair_digest"):
         if episode.get(name) is not None:
             flag(name, episode[name])
     if episode.get("target_tokens"):
