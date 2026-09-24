@@ -72,10 +72,12 @@ def main():
     holdout = sorted([e for e in episodes if e["split"] == "test"],
                      key=lambda e: e["target_digest"])
 
-    #  preregistered deterministic split: every 5th training episode by digest
-    test_set = [episode_parts(e) for i, e in enumerate(train) if i % 5 == 0]
+    #  preregistered split, amended 2026-09-24 before any fit: the corpus
+    #  validation episodes are the held-out discrimination set, and early
+    #  stopping comes from an inner split of the training episodes
+    test_set = [episode_parts(e) for e in val]
+    stop_set = [episode_parts(e) for i, e in enumerate(train) if i % 5 == 0]
     fit_set = [episode_parts(e) for i, e in enumerate(train) if i % 5 != 0]
-    stop_set = [episode_parts(e) for e in val]
     hold_set = [episode_parts(e) for e in holdout]
     print(f"fit {len(fit_set)}  early-stop {len(stop_set)}  "
           f"discrimination test {len(test_set)}  structural holdout {len(hold_set)}")
@@ -144,7 +146,7 @@ def main():
 
     report = {
         "preregistration_sha256":
-            "ed4ac9d2109e499aed0311b86e553db804ba597316a5dee17f3ad7be207dc860",
+            open(os.path.join(HERE, "docs", "SCORER_FIT_PREREGISTRATION_v1.md.sha256")).read().split()[0],
         "sizes": {"fit": len(fit_set), "early_stop": len(stop_set),
                   "discrimination_test": len(test_set),
                   "structural_holdout": len(hold_set)},

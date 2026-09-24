@@ -33,21 +33,41 @@ explicitly underpowered observation and take no part in the verdict.
 
 ## 2. Split, fixed by a deterministic content rule
 
+**Amended 2026-09-24, prospectively, before any fit was run and before any
+score existed.** The original version of this section carved the
+discrimination test out of the training episodes and used the 32 corpus
+validation episodes for early stopping. The instruction is now to use the 32
+validation episodes as the same-family discrimination set. That choice is
+taken before any result, so it is a legitimate amendment rather than a
+revision after data. The superseded version is preserved in git history at
+commit 41ac7bc, whose document hashed to
+`ed4ac9d2109e499aed0311b86e553db804ba597316a5dee17f3ad7be207dc860`.
+
 The 180 admitted training episodes are sorted ascending by target digest,
 which is content-derived and independent of generation order.
 
 | set | rule | size |
 |---|---|---|
-| discrimination test | every 5th episode, starting at index 0 | 36 |
+| discrimination test | the 32 admitted corpus-validation episodes | 32 |
+| early stopping | every 5th training episode by digest, from index 0 | 36 |
 | fit | the remaining training episodes | 144 |
-| early stopping | the 32 admitted corpus-validation episodes | 32 |
 
-The corpus validation split is used only for early stopping, as the frozen
-protocol requires. The discrimination test set is never seen during fitting
-or during stopping decisions.
+The discrimination test set is never used to fit weights and never used for a
+stopping decision. That is the property that makes it a valid held-out
+measurement, and it is stricter than the original plan, under which the
+validation episodes influenced when fitting stopped.
 
-Target digests are already disjoint between the corpus splits, verified in
-the corpus audit.
+**Recorded departure.** The v1.2 corpus split law says validation is used
+only for early stopping and permitted model selection. This amendment uses
+those episodes as the held-out discrimination set instead, and takes early
+stopping from an inner split of the training episodes. The departure is
+recorded rather than silent. It does not weaken the measurement: validation
+digests are disjoint from training digests, verified in the corpus audit, so
+the discrimination set remains genuinely unseen.
+
+Structural-family generalization is still not measured, for the reason in
+section 1. Both the fit set and the discrimination set are drawn from the
+same five training families.
 
 ## 3. Model
 
