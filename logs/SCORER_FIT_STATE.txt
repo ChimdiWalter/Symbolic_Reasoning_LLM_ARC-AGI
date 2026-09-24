@@ -1,0 +1,16 @@
+Stage-B scorer fit
+launched: 2026-09-24T17:49:05Z
+pid: 1064299
+log: logs/scorer_fit.log   (python buffers stdout when redirected; the log
+     fills at exit or when the buffer flushes, so judge liveness by CPU time
+     with ps, not by log size)
+report: outputs/tti/scorer_fit_v1.json
+weights: outputs/tti/scorer_weights_v1.json
+
+preregistration v4 sha256: 14f0bdc720066bbd2fda08a4441ece8d133e6982d6a1d7ee1ad03abe008be448
+corpus protocol sha256:    31a74764019c7ecef9d456258c9df3b6ee81d81a14c4703ee878d023bbe6bb98
+code commit at launch:     2d21e4c
+
+NOT resumable: a rerun starts from zero-initialized weights, which is
+deterministic, so a rerun reproduces the same result exactly.
+Single process, nice -n 19. Does not contend with Step B.
