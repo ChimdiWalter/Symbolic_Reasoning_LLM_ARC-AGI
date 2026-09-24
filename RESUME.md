@@ -1,39 +1,29 @@
 # ARC-2026 delivery sprint: resume
 
-Last updated 2026-09-23. Read this first.
+Last updated 2026-09-24. Read this first.
 
 ## State
 
-Observation repair DONE and measured. Nothing else implemented, pending
-review.
+**v1.2 corpus COMPLETE and PASSED its frozen gate.** 450 of 450 slots, 7,947
+targets attempted, 215 admitted: 180 train, 32 validation, 3 structural
+holdout. All eleven frozen criteria pass. Record:
+`records/V12_CORPUS_AUDIT_20260924.md`. Report:
+`outputs/tti/v12_corpus_audit.json`.
 
-**Repaired failure channel classification: INFORMATIVE.**
-Report: `records/FRONTIER_AUDIT_V2_20260923.md`.
-Event mapping: `records/ENGINE_EVENT_MAPPING.md`.
-Preregistered gate: `records/REPAIR_SPEC_FRONTIER_V2.md`.
+This is the first Item-2 corpus to admit anything. Version 1.1 admitted zero
+of 1,500.
 
-The real ARC engine now emits the existing TraceObserver protocol at its own
-candidate transitions, and the existing `build_tfg` consumes it unchanged.
-The trace is task-conditioned, 12 distinct frontier operators instead of 1,
-62 candidates fitted, 36 executed and non-exact, 7 exact. Observation does
-not change the search result.
+Key numbers: 215 distinct target digests from 215 episodes, duplicate rate
+zero. Frontier terms 2 to 12, mean 7.87, interquartile range 7.0. Distinct
+frontier operators 1 to 9. Only 382 rejections were baseline-solved, so the
+structural separation holds without touching the baseline. Only 2 rejections
+lacked informative evidence, so the repaired full-engine path delivers.
 
-The candidate-executor compatibility repair then carried the evidence into
-the graph: 18 defined value signatures where there were 0. Scored against the
-unchanged preregistered threshold, 9 of 12 tasks carry >= 2 frontier terms
-and 8 of 12 carry defined candidate-associated evidence, so 8 of 12 meet both
-conditions. The threshold was at least 8 of 12, so the channel is
-INFORMATIVE. Three independent runs gave the identical verdict.
-
-Cautions: it sits exactly at the threshold, the qualifying eight are the same
-eight the producer probe found, and 3 of 12 tasks emit no candidates at all.
-
-## Earlier state, superseded
-
-The pre-repair measurement is `records/FRONTIER_AUDIT_20260923.md`:
-EMPTY_OR_UNUSABLE, NO_NEAR_MISSES_ACTUALLY_GENERATED, root cause
-FULL_ENGINE_NOT_INSTRUMENTED. Its fixture still passes and still correctly
-describes the blind-runtime path, which was deliberately left unchanged.
+**Material limitation the gates did not cover:** the structural holdout arm
+admitted 3 of 90 slots, all family (2,1); family (2,) admitted zero. That was
+predicted in the protocol before generation, because single-block targets sit
+inside the baseline's own enumeration. Three episodes cannot support a
+structural-family held-out test.
 
 ## Do not redo
 
@@ -78,26 +68,22 @@ can be produced under the frozen v1.1 admission law.
 Real ARC failures now give informative graphs but carry no target AST, and no
 hidden answer may be read to supply one.
 
-## Next action, exactly one, and it needs your decision
+## Next action, exactly one
 
-Propose and freeze a v1.2 amendment regenerating the constructive corpus
-through the repaired full-engine observation path. It must fix, before
-generation: how R4 and R5 become jointly satisfiable; that episode graphs come
-from the deployed reasoner so the frontier is non-empty by construction, with
-the twelve-entry feature allowlist extended to the repaired channel's
-evidence; and whether Select-free families leave the train list or the
-induction path that refuses them changes.
+Fit the existing Stage-B scorer on the v1.2 corpus. `EvidenceScorer.weights`
+already exists, so fitting changes no interface. The fitted scorer must then
+beat the five frozen controls, being associated real evidence, shuffled,
+irrelevant, aggregate-only and none, on exact-at-five recovery.
 
-Those are protocol changes and scientific choices. I have not made any of
-them.
+Confront the holdout thinness when designing that test. Either run the
+discrimination test on a held-out split of the training families and state
+plainly that structural-family generalization was not measured, or
+preregister a v1.3 that makes the holdout families reachable. That choice is
+prospective and must not be made after seeing a score.
 
-The ConstructiveExtensionCompiler stays a separate responsibility and remains
-SPECIFIED_ONLY. Do not merge the two. Data-consumption order is fixed in
-`records/DATA_USAGE_ORDER.md`: no 1000-task run until the end-to-end path
-works, and no HOLDOUT until everything is frozen.
-
-Still deferred on purpose: the blind runtime's goal-typed-only enumeration,
-so that only one variable moves at a time.
+The ConstructiveExtensionCompiler stays separate and unbuilt until the
+discrimination test passes. Data order in `records/DATA_USAGE_ORDER.md` is
+unchanged: no 1000-task run, no protected holdout.
 
 ## How to re-run
 
