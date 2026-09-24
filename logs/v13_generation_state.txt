@@ -1,26 +1,46 @@
-v1.3 contrastive corpus generation
+v1.3 contrastive corpus: RUN STATE
 
-phase: A (calibration)
-pid: 1214092
-launched: 2026-09-24T19:51:51Z
-log: logs/v13_phaseA.log
-out: outputs/tti/v13_calibration/
+state: PHASE A RUNNING (state A of the recovery taxonomy)
+  admitted calibration episodes: 128 of 200
+  attempts so far:               2557
+  measured per-attempt admission: about 5 percent
+  calibration artifact:          not yet written
+  pilot:                         NOT STARTED
+  full generation:               NOT STARTED
+  audit:                         NOT RUN
 
-protocol sha256: 66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e
-manifest sha256: 9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14
-implementation commit: 0146e20
+processes
+  phase A generator pid: 1225834
+  repaired watcher pid:  1257057   (signals only; it does NOT launch the pilot)
+  log: logs/v13_phaseA.log      chain log: logs/v13_chain.log
+  markers: logs/V13_CALIBRATION_READY, logs/V13_PHASEA_INCOMPLETE
 
-command: .venv_arc2026/bin/python -u scripts/generate_v13_contrastive_corpus.py phaseA
-resumable: a slot whose .done record exists is skipped
-single writer: verify with 'pgrep -af generate_v13_contrastive_corpus.py | grep -v bin/bash'
-             before relaunching; never count the grep shell itself
+frozen identities
+  protocol sha256: 66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e
+  manifest sha256: 9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14
+  core + generator commit: 0146e20
+  auditor commit:          4a6efd8
+  phase A cap correction:  ca033a7
+  watcher repair:          e192636
 
---- chain wired 2026-09-24T19:56:41Z ---
-phase A resumed: pid 1225834
-  slot cap raised to 12000 (implementation detail) because per-attempt
-  admission measured ~4 percent, so 900 slots could not reach 200 episodes
-chain watcher: 1226835
-  waits for phase A, then runs the 40-group pilot
-chain log: logs/v13_chain.log
-markers: logs/V13_PILOT_DONE, logs/V13_CHAIN_STOPPED
-auditor: scripts/audit_v13_contrastive_corpus.py (sealed 4a6efd8, not yet run)
+PROVENANCE BOUNDARY, do not violate
+  The frozen protocol requires the calibration artifact to be COMMITTED
+  before any Phase B group is generated. The first watcher launched the pilot
+  on file existence alone, which is not provenance. It was stopped by exact
+  pid and replaced by a signal-only watcher. The boundary was never crossed:
+  when the defect was found, Phase A was still running, no calibration file
+  existed and zero pilot groups had been generated.
+
+NEXT STEPS, in order
+  1. let Phase A reach exactly 200 admitted episodes
+  2. verify the 200 mechanically, then write and hash calibration.json
+  3. COMMIT the calibration artifact
+  4. only then run exactly 40 pilot group slots
+  5. compute q = admitted/40, write and hash pilot_result.json, COMMIT it
+  6. full run of ceil(84/q) group slots, capped at 1200
+  7. assign splits by ascending group digest, 60/12/12
+  8. run the sealed auditor, record PASS or FAIL, STOP
+
+single writer: check with
+  pgrep -af generate_v13_contrastive_corpus.py | grep -v bin/bash
+never count the grep shell itself, and never launch a second writer.

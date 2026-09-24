@@ -4,23 +4,27 @@ Last updated 2026-09-24. Read this first.
 
 ## State
 
-**v1.3 contrastive corpus protocol FROZEN.** Nothing generated.
-Protocol `docs/CORA_TTI_CONSTRUCTIVE_PROPOSER_PROTOCOL_v1.3.md` sha256
-`66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e`.
-Manifest `outputs/tti/constructive_protocol_v1.3_manifest.json` sha256
-`9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14`.
-Decision record `records/ITEM2_V13_CONTRASTIVE_DESIGN_DECISION.md`.
-Freeze commit d6c81e2. 19 static feasibility tests pass.
+**v1.3 contrastive corpus: Phase A calibration IN PROGRESS.** No group has
+been generated, no calibration constant is frozen, no pilot has run, and the
+audit has not run. Live state is in `logs/v13_generation_state.txt`, which is
+authoritative over this summary.
 
-The earlier draft at commit db6f500 is SUPERSEDED and not authoritative.
+Protocol sha256 `66aa1c56...389d8f1e`, manifest sha256 `9492f392...ab56de14`.
+Implementation sealed before any outcome: core and generator at 0146e20, the
+nonlearned G1 to G10 auditor at 4a6efd8.
 
-Design in one line: groups of two targets differing in exactly one grammar
-position, four replicates each, judged by a NONLEARNED within-group
-nearest-neighbour test against an exact chance of 3/7.
+Two corrections made during setup, both recorded. The Phase A implementation
+slot ceiling was raised to 12000 at ca033a7, because per-attempt admission
+measures about 5 percent and the original ceiling could not reach the frozen
+200-episode target. And the chain watcher was replaced at e192636 because it
+would have launched the pilot on the mere existence of the calibration file;
+the frozen protocol requires that artifact to be COMMITTED first. The boundary
+was never crossed: at the time the defect was found Phase A was still running,
+no calibration file existed and zero pilot groups had been generated.
 
-Standing evidence, unchanged: v1.2 corpus PASSED all 11 gates, 215 admitted.
-v1.2 scorer FAILURE_CONDITIONING_NOT_ESTABLISHED. Diagnosis
-CANDIDATE_SIGNAL_REDUNDANT_ON_V12 with the qualifier that NO evidence group
+Standing evidence, unchanged: v1.2 corpus PASSED all 11 gates. v1.2 scorer
+FAILURE_CONDITIONING_NOT_ESTABLISHED. Diagnosis
+CANDIDATE_SIGNAL_REDUNDANT_ON_V12, with the qualifier that no evidence group
 recovered the target. Proposer earns NEW_AST_GENERATION only.
 
 ## Do not redo
@@ -68,22 +72,16 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Generate the scheduled v1.3 corpus and run its frozen audit. Order inside that
-block: Phase A calibration of 200 episodes first, which fixes every
-normalization constant and is published before selection begins; then the
-40-slot pilot to measure the group admission rate q; then the full request of
-ceil(84/q) group slots capped at 1200; then the nonlearned audit; then STOP and
-record PASS or FAIL.
+Complete the frozen v1.3 experiment in order: finish Phase A to exactly 200
+admitted episodes, verify them mechanically, write and hash the calibration
+artifact, COMMIT it, then run exactly 40 pilot group slots, freeze and commit
+q, then the full run of ceil(84/q) capped at 1200, then splits by ascending
+group digest at 60/12/12, then the sealed auditor, then STOP with PASS or FAIL.
 
-Expect a long detached run. v1.2 took 47 minutes for 450 episode slots, and
-v1.3 targets 672 admitted episodes in 8-episode groups where every member must
-be admitted, so plan for many hours and launch with setsid nohup and a state
-record.
-
-Do NOT fit any scorer in that block. Do NOT filter groups on their frontiers.
-Do NOT adjust a threshold. On FAIL, preserve it. The
-ConstructiveExtensionCompiler stays BLOCKED and is not licensed by any v1.3
-outcome alone.
+Nothing is trained in that chain. No group is ever filtered on any property of
+its frontier. No threshold moves. The ConstructiveExtensionCompiler stays
+BLOCKED even on a PASS, which licenses only a separately preregistered scorer
+discrimination experiment.
 
 ## How to re-run
 
