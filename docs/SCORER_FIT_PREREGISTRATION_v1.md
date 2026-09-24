@@ -212,3 +212,116 @@ The supplied typed interface means that even a pass does not establish
 autonomous gap inference. Supplied-interface constructive selection and
 autonomous missing-capability diagnosis are different claims and are not
 blurred.
+
+---
+
+# Amendment, version 4, after adversarial review and before any fit
+
+An adversarial reviewer examined the sealed code before any fit was run and
+found a defect that would have made the result uninformative. The
+preregistration permits amendment before data, and no fit had been run, so
+these changes are made now and recorded here in full.
+
+## A1. The model was position-blind, and the metric demanded order
+
+The scorer accepted the grammar state and never used it, so it scored block
+one and block two identically, while the metric required an exact ordered AST
+match. The reviewer measured the ceiling this imposes, decoding through the
+real proposer, the real beam and the real ranking on the real 32 validation
+episodes:
+
+| probe | exact@5 |
+|---|---|
+| a probe that knows the target's ordered token sequence | 32 of 32 |
+| a probe that knows the target's token multiset but not its order | 2 of 32 |
+
+Broken out, the order-blind probe scored 0 on every one of the 20 episodes
+containing a Select. A fitted model has strictly less information than that
+probe, so exact-at-five would have been zero in all five conditions, the rule
+`associated > shuffled` would have read `0 > 0`, and the block would have
+reported a failure decided before the experiment ran.
+
+Two corrections, both applied:
+
+1. The scorer is now **state-conditional**. Five structural inputs derived
+   from the grammar state it already receives, being blocks completed,
+   selects in the current block, whether a block is open, whether a paint is
+   pending, and stages used, each scaled by its frozen grammar bound.
+2. The **primary gate metric changes** to the mean per-token teacher-forced
+   log-likelihood of the target token sequence on the 32 validation episodes.
+   This has full resolution and measures directly whether the supplied
+   evidence makes the true target more probable. Exact-at-five, exact-at-one
+   and the rank diagnostics remain reported for every condition, and are no
+   longer the gate. The measured ceiling above is the recorded reason.
+
+**Success now requires both, strictly greater:**
+
+    mean per-token target logprob(real associated) > that of shuffled
+    mean per-token target logprob(real associated) > that of aggregate only
+
+Paired per-episode outcomes are reported alongside the means.
+
+## A2. Three inputs were constant and one control was inert
+
+Measured on the 180 fit episodes, `empty_frontier`, `same_shape_all` and
+`shape_mismatch_count` have zero variance, because the corpus admission gate
+guarantees a non-empty frontier and every episode preserves shape. Their
+weights could never leave zero. The aggregate-only control set
+`empty_frontier` true, which after standardizing became an enormous value
+multiplied by a permanently zero weight, so a component of a primary-gate
+control could not act at all.
+
+Constant features are now **dropped before standardizing** rather than having
+their standard deviation floored. The parameter count is recorded from the
+live feature count rather than asserted in advance.
+
+## A3. Ablations were extreme rather than neutral
+
+Setting an ablated feature to raw zero asserts an extreme low value after
+standardizing, not an absent one. The reviewer measured `n_demonstrations` at
+minus 27.5 standard deviations under the old `none` condition. A gate could
+then be won by the control being off distribution rather than by evidence
+being used.
+
+Both ablations now use the **fit-set mean**, which standardizes to exactly
+zero. `aggregate only` replaces the ten candidate-associated features with
+their fit-set means and leaves the rest. `none` supplies the fit-set mean
+vector throughout. This is what the original intent described.
+
+## A4. The collapse threshold was invented in code
+
+The threshold of five distinct rank-one targets appeared only in the script.
+The preregistration said a result is not a pass if one collapsed proposal is
+repeated for every episode. The literal reading is now used and frozen:
+**at least 2 distinct rank-one targets** across the 32 validation episodes.
+Distinct rank-one counts, entropy and modal share are reported regardless.
+
+## A5. The leak scanner could return a false clean
+
+The previous substring test could not see a digest stored as an integer, a
+token name echoed into a feature, or a short label such as a split name. The
+scanner now compares leaf by leaf, requires every feature value to be
+numeric, checks digest prefixes both as text and as an integer, matches
+strings exactly, and matches numbers only when large enough to be
+discriminative, so that a structural family of small integers does not
+collide with a legitimate feature value.
+
+Verified before fitting: 215 of 215 real views scan clean, and five injected
+leaks are all caught, being a digest as a number, a token name, a split echo,
+a seed echo and an episode identifier echo.
+
+## A6. The unfitted baseline is not like for like, and is disclosed as such
+
+The hand-designed prior is still run on the same validation episodes and
+reported at exact-at-five and exact-at-one. The old evidence structure has no
+field for five features the fitted model receives, so the comparison is
+structurally handicapped in the fitted model's favour. That is stated wherever
+the baseline appears, and the baseline is reported on decode metrics only,
+because its input space differs and target log-likelihood is not comparable.
+
+## A7. Learning rate
+
+Raised from 0.1 to 0.5, chosen once, prospectively, before any scored run,
+because the objective is averaged over roughly 1,300 steps and the earlier
+rate would not have moved the weights materially within the epoch budget. No
+other hyperparameter is changed, and none may be tuned after seeing a result.
