@@ -715,6 +715,38 @@ So the discrimination test failed for a reason located in the corpus rather
 than in the scorer. That does not show a reasoning frontier can never inform
 construction. It shows this corpus cannot test the question.
 
+## 8.8 Prospective: a contrastive corpus for failure-target identifiability
+
+v1.2 generated diverse valid supervision, 215 admitted episodes with 215
+distinct targets passing all eleven corpus gates, but its failure frontiers did
+not identify the associated constructive target under bounded diagnostic
+readouts.
+
+A v1.3 corpus protocol is therefore preregistered and hashed, and nothing has
+been generated under it. It is a data identifiability repair rather than an
+architecture revision: the grammar, the baseline, the fitter, the deployed
+reasoner, the observer and the verifier are all unchanged.
+
+Its design follows from the diagnosis. Episodes are generated in groups of two
+targets differing in exactly one grammar position, with four independent
+replicates per target, which supplies the within-target null that v1.2's one
+episode per target could not. The corpus gate is nonlearned: a within-group
+nearest-neighbour test on a target-independent frontier descriptor against an
+exact chance level of three sevenths. If the corpus cannot show that the
+frontier separates minimally different targets better than chance, no model is
+fitted to search for a signal the data cannot demonstrate.
+
+Two design commitments are worth stating because they constrain what a
+positive result could mean. No group is filtered on any property of its
+frontier, since selecting separable groups would manufacture the correlation
+under test. And one contrast type, adding a select, also changes the
+structural family, so every statistic is reported split by contrast type and
+the primary gate must hold with that type excluded.
+
+A pass would establish only that such a corpus exists and that the frontier
+distinguishes minimally different targets within it. That is the prerequisite
+the programme currently lacks, and nothing beyond it.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

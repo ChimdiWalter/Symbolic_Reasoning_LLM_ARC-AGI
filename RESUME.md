@@ -4,31 +4,24 @@ Last updated 2026-09-24. Read this first.
 
 ## State
 
-**Scorer-failure diagnosis COMPLETE.** Preregistered classification:
-`CANDIDATE_SIGNAL_REDUNDANT_ON_V12`. Record:
-`records/SCORER_DIAGNOSIS_20260924.md`. Report:
-`outputs/tti/scorer_diagnosis.json`. Preregistration sha256 `6e95a7a8...`,
-sealed before any outcome.
+**v1.3 contrastive corpus protocol FROZEN.** Nothing generated.
+Protocol `docs/CORA_TTI_CONSTRUCTIVE_PROPOSER_PROTOCOL_v1.3.md` sha256
+`66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e`.
+Manifest `outputs/tti/constructive_protocol_v1.3_manifest.json` sha256
+`9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14`.
+Decision record `records/ITEM2_V13_CONTRASTIVE_DESIGN_DECISION.md`.
+Freeze commit d6c81e2. 19 static feasibility tests pass.
 
-Capacity is NOT the cause: a bounded nonlinear model gives candidate features
-a delta of -0.016, positive on 1 of 5 folds. Compression is NOT the cause:
-all 180 episodes have distinct candidate vectors, zero collisions, and a
-richer 42-field graph descriptor is WORSE than demonstration statistics under
-both models, though that test is confounded by 42 features against 144
-training episodes per fold.
+The earlier draft at commit db6f500 is SUPERSEDED and not authoritative.
 
-Candidate features actively HURT. Permuting them to a demonstration-nearest
-neighbour IMPROVES prediction.
+Design in one line: groups of two targets differing in exactly one grammar
+position, four replicates each, judged by a NONLEARNED within-group
+nearest-neighbour test against an exact chance of 3/7.
 
-Important qualifier on the label: demonstration statistics do NOT determine
-the target either. They predict the first partition token at 0.383 against a
-0.411 majority baseline. The accurate statement is that NO evidence group
-recovers the target on this corpus. And the corpus does contain the cases the
-frontier should disambiguate: 45 of 45 closest-quartile pairs have different
-targets.
-
-Standing: scorer verdict FAILURE_CONDITIONING_NOT_ESTABLISHED, v1.2 corpus
-PASSED all 11 gates, proposer earns NEW_AST_GENERATION only.
+Standing evidence, unchanged: v1.2 corpus PASSED all 11 gates, 215 admitted.
+v1.2 scorer FAILURE_CONDITIONING_NOT_ESTABLISHED. Diagnosis
+CANDIDATE_SIGNAL_REDUNDANT_ON_V12 with the qualifier that NO evidence group
+recovered the target. Proposer earns NEW_AST_GENERATION only.
 
 ## Do not redo
 
@@ -75,17 +68,22 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Preregister v1.3 as a contrastive corpus, designed so failure evidence can in
-principle identify the target. The evidence sets the requirement precisely:
-the corpus needs episode groups whose demonstration statistics are close while
-targets differ, AND whose failure frontiers differ systematically with the
-target. v1.2 already satisfies the first half and fails the second. A v1.3
-must also carry enough admitted episodes to support a wide descriptor without
-the sample-size confound that clouded the raw-graph test here.
+Generate the scheduled v1.3 corpus and run its frozen audit. Order inside that
+block: Phase A calibration of 200 episodes first, which fixes every
+normalization constant and is published before selection begins; then the
+40-slot pilot to measure the group admission rate q; then the full request of
+ceil(84/q) group slots capped at 1200; then the nonlearned audit; then STOP and
+record PASS or FAIL.
 
-Do NOT implement v1.3 in the same block as its preregistration. Do NOT
-regenerate v1.2, relax any gate, retrain the official scorer, or reinterpret
-the frozen verdict. The ConstructiveExtensionCompiler stays BLOCKED.
+Expect a long detached run. v1.2 took 47 minutes for 450 episode slots, and
+v1.3 targets 672 admitted episodes in 8-episode groups where every member must
+be admitted, so plan for many hours and launch with setsid nohup and a state
+record.
+
+Do NOT fit any scorer in that block. Do NOT filter groups on their frontiers.
+Do NOT adjust a threshold. On FAIL, preserve it. The
+ConstructiveExtensionCompiler stays BLOCKED and is not licensed by any v1.3
+outcome alone.
 
 ## How to re-run
 
