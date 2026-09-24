@@ -1,168 +1,214 @@
-# Stage-B scorer fit: preregistration
+# Stage-B scorer fit: preregistration, version 3
 
-Written 2026-09-24, before any fitting code was written and before any score
-was computed. It fixes the evaluation strategy, the split, the model, the
-controls, the metric and the success rule. None of these may be changed after
-seeing a result.
+Written and amended 2026-09-24, entirely before any fit was run and before any
+score existed. Earlier versions are preserved in git history at commits
+41ac7bc and 3955f75. Amending before data is legitimate; nothing here may
+change after a score is seen.
 
 Corpus: the v1.2 constructive corpus, 215 admitted episodes, audited PASS on
 all eleven frozen criteria. Protocol sha256 `31a74764...bbe6bb98`.
 
-## 1. The holdout decision, taken prospectively
+## 1. Anti-reinvention check
 
-The v1.2 structural holdout admitted 3 episodes of 90 slots, all of family
-`(2,1)`, with family `(2,)` admitting none. Three episodes cannot support a
-structural-family held-out test. The protocol predicted this before
-generation, so it is a known limitation rather than a discovery.
+| component | status |
+|---|---|
+| grammar, legality masks, beam, ranking, MDL, cost | EXISTING AND REUSED, untouched |
+| `GrammarState`, `tokens_are_valid`, `ast_from_tokens` | EXISTING AND REUSED |
+| `propose_ast` decoding | EXISTING AND REUSED, unchanged |
+| `EvidenceScorer` with its `weights` mapping | EXISTING, kept as the unfitted baseline |
+| the existing prototype proposal network's `fit` | EXISTING BUT INCOMPATIBLE: it fits two heads predicting a production name and a result type, which is the Stage-A contract. It is not a grammar-constrained sequential decoder over token sequences, so it cannot carry the Stage-B contract. Not reused, and not duplicated either. |
+| v1.1 model-view leak scanner | EXISTING BUT INCOMPATIBLE: it validates against the twelve-entry v1.1 allowlist and would reject every v1.2 view. A v1.2 equivalent is required. |
+| a fitter for the Stage-B sequential decoder | MISSING, implemented here |
 
-Two options were available. Option A uses a held-out split of the training
-families and states plainly that structural-family generalization was not
-measured. Option B preregisters a v1.3 designed to make the holdout families
-reachable.
+## 2. Frozen-model compatibility, verified mechanically
 
-**Option A is chosen.** The reason is scope: the question this fit answers is
-whether real failure evidence changes what is constructed, and that question
-does not require a structural-family holdout. Option B is a separate
-experiment and remains available later.
+The model fitted here is a log-linear conditional model over grammar-legal
+tokens, masked by the existing grammar state machine, decoded sequentially by
+the existing proposer. Non-LLM. No hidden layer, which the frozen
+specification permits because it sets hidden size at most 256 as a ceiling.
+Stopping is the frozen law. Only weights are fitted; no grammar, bound, beam,
+ranking term or family set is touched.
 
-The consequence is stated once here and repeated in every report of this
-result: **structural-family generalization is not measured by this
-experiment.** Nothing in it licenses a claim about families the model never
-saw. The three structural-holdout episodes are reported as a secondary,
-explicitly underpowered observation and take no part in the verdict.
+**One recorded finding.** The scorer's contract accepts the typed interface,
+and the proposer passes it, but it cannot affect scoring in this experiment
+because the corpus contains exactly one interface, `Set[Region] -> Grid`, on
+all 215 episodes. An interface input would be a constant with zero variance.
+This is the already-frozen `INFEASIBLE_SINGLE_INTERFACE` limitation carried
+forward from v1.1, not a new defect, and it is not a model mismatch. It is
+recorded here so that no reader infers the interface was exercised.
 
-## 2. Split, fixed by a deterministic content rule
+## 3. The holdout decision, taken prospectively
 
-**Amended 2026-09-24, prospectively, before any fit was run and before any
-score existed.** The original version of this section carved the
-discrimination test out of the training episodes and used the 32 corpus
-validation episodes for early stopping. The instruction is now to use the 32
-validation episodes as the same-family discrimination set. That choice is
-taken before any result, so it is a legitimate amendment rather than a
-revision after data. The superseded version is preserved in git history at
-commit 41ac7bc, whose document hashed to
-`ed4ac9d2109e499aed0311b86e553db804ba597316a5dee17f3ad7be207dc860`.
+The v1.2 structural holdout admitted 3 episodes of 90 slots. Three episodes
+cannot support a structural-family claim. The interpretation is frozen for
+this block:
 
-The 180 admitted training episodes are sorted ascending by target digest,
-which is content-derived and independent of generation order.
+    same-family validation:            measured
+    structural-family generalization:  NOT MEASURED
+
+The structural holdout families are not changed, no easier holdout is
+generated, the admission law is not relaxed, and v1.3 is not preregistered
+now. The three episodes may be run once against the final frozen checkpoint
+and reported descriptively, individually, with an explicit statement of
+insufficient sample size. They take no part in the pass or fail decision.
+
+## 4. Split
 
 | set | rule | size |
 |---|---|---|
-| discrimination test | the 32 admitted corpus-validation episodes | 32 |
-| early stopping | every 5th training episode by digest, from index 0 | 36 |
-| fit | the remaining training episodes | 144 |
+| fit | all admitted training episodes | 180 |
+| stopping and discrimination | all admitted corpus-validation episodes | 32 |
 
-The discrimination test set is never used to fit weights and never used for a
-stopping decision. That is the property that makes it a valid held-out
-measurement, and it is stricter than the original plan, under which the
-validation episodes influenced when fitting stopped.
+No episode moves between splits. Validation episodes are never used to fit
+weights. Target digests are disjoint between splits, verified in the corpus
+audit and re-asserted at run time.
 
-**Recorded departure.** The v1.2 corpus split law says validation is used
-only for early stopping and permitted model selection. This amendment uses
-those episodes as the held-out discrimination set instead, and takes early
-stopping from an inner split of the training episodes. The departure is
-recorded rather than silent. It does not weaken the measurement: validation
-digests are disjoint from training digests, verified in the corpus audit, so
-the discrimination set remains genuinely unseen.
+## 5. Order of operations inside validation, and a recorded contamination risk
 
-Structural-family generalization is still not measured, for the reason in
-section 1. Both the fit set and the discrimination set are drawn from the
-same five training families.
+During training, validation is evaluated under **real associated evidence
+only**, with the frozen metric and the frozen stopping law. Control
+performance is not computed or inspected during training. The checkpoint is
+never chosen by the size of any associated-versus-control gap.
 
-## 3. Model
+Once the stopping law selects a checkpoint, that checkpoint is frozen. No
+further training occurs. Only then are the five evidence conditions run.
 
-The minimal member of the frozen model family: a log-linear conditional
-model over grammar-legal tokens, with the grammar state machine supplying the
-mask. Non-LLM. No hidden layer, which is permitted because the frozen
-specification sets hidden size at most 256 as an upper bound rather than a
-requirement.
+**Recorded risk.** The checkpoint is selected on the same 32 episodes that
+then carry the discrimination test, and it is selected using associated
+evidence. That gives the associated condition an advantage the controls do
+not have, and it biases the comparison toward the hypothesis. The instruction
+directs this design, and the risk is recorded here rather than discovered
+later.
 
-Parameters: for each of the 21 grammar terminals, a bias and one weight per
-allowlisted feature, giving 21 times 19, that is 399 parameters.
+**Preregistered mitigation.** The five conditions are additionally reported at
+a second checkpoint chosen without any validation influence, namely the final
+epoch reached. Both sets of numbers are reported whatever they show. The
+primary verdict uses the selected checkpoint, as instructed; the unselected
+checkpoint exists so a reader can see whether the result survives removing
+the selection advantage.
 
-Features: exactly the 18 frozen allowlisted features, no others. Booleans map
-to 0 and 1. Each feature is standardized to zero mean and unit variance using
-statistics computed on the fit set alone, with standard deviation floored at
-1e-6. Those statistics are frozen after the fit set is formed and are applied
-unchanged to every evaluation set and every control.
+## 6. Model and training accounting
 
-Objective: teacher-forced conditional log-likelihood of the target token
-sequence, normalized at each step over the grammar-legal tokens only.
+Architecture: log-linear conditional model, 21 grammar terminals by 19 inputs,
+being a bias plus the 18 frozen features, giving 399 parameters. Features are
+standardized to zero mean and unit variance using statistics computed on the
+fit set alone, standard deviation floored at 1e-6. Booleans map to 0 and 1.
 
-Optimizer: full-batch gradient ascent, learning rate 0.1, L2 penalty 1e-3,
-weights initialized to zero so the untrained model is exactly uniform over
-legal tokens.
+Objective: teacher-forced conditional log-likelihood, normalized at each step
+over grammar-legal tokens only. Optimizer: full-batch gradient ascent,
+learning rate 0.1, L2 penalty 1e-3, weights initialized to exactly zero.
 
-Stopping: at most 2000 epochs, or a 200-epoch plateau in early-stopping
-exact-at-five, evaluated every 25 epochs. This is the frozen stopping law.
+Determinism and seeds: initialization is zero and the batch is the full fit
+set, so training is deterministic and contains no stochastic element. A seed
+sweep is therefore not applicable, and none is run. This is a prospective
+statement, not a post-hoc excuse.
 
-## 4. Decoding
+Stopping: at most 2000 epochs, or 200 epochs without improvement in validation
+exact-at-five, evaluated every 25 epochs.
 
-The existing proposer, unchanged, with the fitted weights installed. Beam 16,
-top five, the frozen ranking rule. The proposer receives the evidence vector
-and the typed interface, and never the target, its digest, its family label,
-the split, the seed or any generation metadata.
+Recorded for the run: architecture, parameter count, optimizer, learning rate,
+batch size, epoch count, stopping epoch, best validation exact-at-five, the
+validation trajectory, wall time, device, checkpoint hash, code commit, corpus
+protocol hash, corpus audit commit, and the digests of every fit and
+validation episode.
 
-## 5. Controls, all five, constructed deterministically
+## 7. Leakage
 
-Evaluated on the same 36 held-out episodes, sorted by digest, index i.
+Before fitting, every fit and validation model view is scanned. The v1.1
+scanner is incompatible with the eighteen-entry v1.2 allowlist, so a v1.2
+equivalent is used, requiring: view keys within features, input type and
+output type; feature keys exactly within the eighteen frozen names; and no
+occurrence anywhere in the view of the target digest, the target tokens, the
+structural family label, the requested family, the generation seed, the
+episode identifier or the admission outcome. **Zero violations are required
+before fitting begins.**
 
-| control | evidence supplied |
+The target AST is the supervised label during training only. At inference the
+scorer receives the feature vector and the typed interface, and nothing else.
+
+## 8. The five frozen evidence conditions
+
+Evaluated on the same 32 validation episodes, sorted ascending by episode
+identifier, index i, count n = 32.
+
+| condition | evidence supplied |
 |---|---|
-| associated | episode i's own feature vector |
-| shuffled | the feature vector of held-out episode (i+1) mod 36 |
-| irrelevant | the feature vector of fit episode (i times 7) mod 144 |
-| aggregate only | episode i's vector with every candidate-associated feature zeroed |
+| real associated | episode i's own feature vector |
+| shuffled | the feature vector of episode (i+1) mod n |
+| irrelevant | the feature vector of fit episode (i times 7) mod 180, sorted by digest |
+| aggregate only | episode i's vector with every candidate-associated feature zeroed and empty_frontier set true |
 | none | the all-zero vector |
 
-The candidate-associated features zeroed for the aggregate-only control are
-frontier_term_count, distinct_frontier_operator_count, slot_fit_failed_count,
-slot_fit_ok_count, executed_not_exact_count, exact_count,
-defined_value_signature_count, fraction_wrong_mean, palette_extra_mean and
-shape_mismatch_count, with empty_frontier set true. The seven retained
-features are the demonstration statistics and the deadline flag.
+The shuffle is a genuine derangement: rotation by exactly one position over a
+sort by immutable episode identifier, wrapping the last to the first, so no
+episode can receive its own evidence. The realized mapping is asserted to
+contain no fixed point and is stored verbatim in the result artifact. The
+earlier defect, where reversing a dictionary failed to permute anything, is
+not repeated.
 
-Every control decodes with the identical fitted model, the identical beam and
-the identical ranking rule. Only the evidence vector differs.
+Candidate-associated features zeroed for aggregate only: frontier term count,
+distinct frontier operator count, slot fit failed count, slot fit ok count,
+executed not exact count, exact count, defined value signature count, fraction
+wrong mean, palette extra mean, shape mismatch count. The seven retained are
+the demonstration statistics and the deadline flag.
 
-## 6. Metric and success rule
+Every condition decodes with the identical checkpoint, beam and ranking rule.
+Only the evidence vector differs. No condition may be dropped, and none may be
+redefined.
 
-Primary metric: exact-at-five, the fraction of held-out episodes whose target
-digest appears among the five proposed candidates. Exact-at-one is reported
-alongside it.
+## 9. Primary metric and success rule
 
-**Success requires both of these, on the 36 held-out episodes:**
+Primary metric: exact-at-five recovery of the target AST, reported as
+numerator, denominator and proportion for every condition.
 
-    exact@5(associated) > exact@5(shuffled)
-    exact@5(associated) > exact@5(aggregate only)
+**Success requires both, strictly greater, not greater or equal:**
 
-Strictly greater. No tolerance band is defined, and none may be introduced
-afterwards. Irrelevant and none are reported for completeness and do not
-enter the success rule, because shuffled and aggregate-only are the
-demanding comparisons.
+    exact@5(real associated) > exact@5(shuffled)
+    exact@5(real associated) > exact@5(aggregate only)
 
-Secondary diagnostic, frozen now and reported whatever it shows: the number
-of distinct rank-one target digests across the 36 held-out episodes under
-associated evidence must be at least 5. This exists because the unfitted
-proposer produced a single rank-one candidate across five real tasks, and
-this is the measurement that would detect that failure persisting. It is
-reported as a diagnostic and is not part of the primary success rule.
+Irrelevant and none are reported and compared, and are explicitly not
+converted into additional gates.
 
-## 7. What a pass and a failure each license
+A result is not a pass if it is produced by one collapsed proposal repeated
+for every episode. The collapse check is section 10.
 
-A pass licenses exactly one next action, implementing the already-specified
-ConstructiveExtensionCompiler. It licenses no claim about constructive reach,
-capability, semantic extension, transfer or score.
+## 10. Task-conditioning diagnostics, reported whatever they show
 
-A failure is recorded unchanged. The corpus is not regenerated, the controls
-are not dropped, the metric is not swapped, and the threshold is not
-softened. A failure would mean the next block designs a prospective
-amendment, not a rerun.
+On the 32 validation episodes: distinct rank-one ASTs; distinct ordered top
+five lists; structural families appearing at rank one; the frequency
+distribution of rank-one ASTs and its entropy; the fraction sharing the modal
+rank-one AST; episodes whose rank one changes between associated and
+shuffled; episodes whose top five set changes; exact-at-one as a secondary
+diagnostic.
 
-## 8. What this experiment cannot show
+For reference, the unfitted proposer on five real tasks produced one shared
+rank-one AST and four identical top-five lists.
 
-It cannot show structural-family generalization, for the reason in section 1.
-It cannot show that a constructed program solves anything, because nothing is
-compiled or installed here. It cannot show anything about ARC score. It is a
-measurement of whether failure evidence changes what is proposed, and nothing
-more.
+## 11. Required baseline
+
+The unfitted `EvidenceScorer` is run on the same validation episodes under
+real associated evidence, and reported at exact-at-one and exact-at-five
+beside the fitted model. This answers whether fitting improved anything over
+the hand-designed prior, rather than only over zero evidence.
+
+## 12. Result classification
+
+If the success rule holds and the collapse check passes:
+`FAILURE_CONDITIONED_AST_SELECTION`. This means failure evidence measurably
+improves which new AST is proposed. It does not mean the AST works, that the
+language gained reach, that semantics were invented, or that any score moved.
+
+Otherwise: `FAILURE_CONDITIONING_NOT_ESTABLISHED`, with
+`NEW_AST_GENERATION` preserved as the standing earned result.
+
+## 13. What follows
+
+On a pass, the single recommended next action is to implement the
+already-specified ConstructiveExtensionCompiler, and this block stops before
+building it. On a failure, the single recommended next action is to diagnose
+the frozen scorer failure without changing the corpus or the controls.
+
+The supplied typed interface means that even a pass does not establish
+autonomous gap inference. Supplied-interface constructive selection and
+autonomous missing-capability diagnosis are different claims and are not
+blurred.
