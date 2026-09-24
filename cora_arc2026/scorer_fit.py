@@ -199,7 +199,11 @@ def fit(examples, standardizer, *, lr=0.1, l2=1e-3, max_epochs=2000,
                 log(f"  plateau at epoch {epoch}, best {best:.4f} "
                     f"at epoch {best_epoch}")
                 break
+    final_weights = [row[:] for row in scorer.weights]
+    final_epoch = epoch
     if best_weights is not None:
         scorer.weights = best_weights
-    return scorer, {"best_early_stop_exact_at_5": best, "best_epoch": best_epoch,
-                    "history": history}
+    final = LogLinearScorer(weights=final_weights, standardizer=standardizer)
+    return scorer, final, {"best_early_stop_exact_at_5": best,
+                           "best_epoch": best_epoch, "final_epoch": final_epoch,
+                           "epochs_run": final_epoch, "history": history}
