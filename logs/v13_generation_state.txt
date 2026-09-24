@@ -1,46 +1,48 @@
 v1.3 contrastive corpus: RUN STATE
 
-state: PHASE A RUNNING (state A of the recovery taxonomy)
-  admitted calibration episodes: 128 of 200
-  attempts so far:               2557
-  measured per-attempt admission: about 5 percent
-  calibration artifact:          not yet written
-  pilot:                         NOT STARTED
-  full generation:               NOT STARTED
-  audit:                         NOT RUN
+state: PILOT RUNNING (state C)
+  Phase A:      COMPLETE, exactly 200 admitted from 4121 attempts, 2248 s
+  calibration:  WRITTEN, HASHED and COMMITTED at aaa2972
+                sha256 ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02
+  pilot:        RUNNING, 2 of 40 slots
+  full run:     NOT STARTED
+  audit:        NOT RUN
 
 processes
-  phase A generator pid: 1225834
-  repaired watcher pid:  1257057   (signals only; it does NOT launch the pilot)
-  log: logs/v13_phaseA.log      chain log: logs/v13_chain.log
-  markers: logs/V13_CALIBRATION_READY, logs/V13_PHASEA_INCOMPLETE
+  pilot generator pid: 1449502
+  log: logs/v13_pilot.log
 
-frozen identities
-  protocol sha256: 66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e
-  manifest sha256: 9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14
-  core + generator commit: 0146e20
-  auditor commit:          4a6efd8
-  phase A cap correction:  ca033a7
-  watcher repair:          e192636
+PROVENANCE BOUNDARY: SATISFIED AND PROVABLE
+  The calibration artifact was committed at aaa2972 while zero Phase B groups
+  existed. git log on the calibration file confirms the order.
 
-PROVENANCE BOUNDARY, do not violate
-  The frozen protocol requires the calibration artifact to be COMMITTED
-  before any Phase B group is generated. The first watcher launched the pilot
-  on file existence alone, which is not provenance. It was stopped by exact
-  pid and replaced by a signal-only watcher. The boundary was never crossed:
-  when the defect was found, Phase A was still running, no calibration file
-  existed and zero pilot groups had been generated.
+ERRATUM 1 (records/ITEM2_V13_ERRATUM_01.md), recorded before any Phase B group
+  13 of 42 descriptor fields and 1 of 6 demo features are CONSTANT across the
+  200 calibration episodes. The implementation had floored their standard
+  deviation at 1e-9, so any Phase-B movement on such a field would have become
+  a standardized difference of about a billion and turned d_frontier into a
+  lookup on whichever constant field moved. Corrected to a divisor of 1.0 for
+  any field with calibration std below 1e-6. Nothing was regenerated; the same
+  200 episodes were reused and only the constants recomputed. Protocol and
+  manifest hashes unchanged.
 
-NEXT STEPS, in order
-  1. let Phase A reach exactly 200 admitted episodes
-  2. verify the 200 mechanically, then write and hash calibration.json
-  3. COMMIT the calibration artifact
-  4. only then run exactly 40 pilot group slots
-  5. compute q = admitted/40, write and hash pilot_result.json, COMMIT it
-  6. full run of ceil(84/q) group slots, capped at 1200
-  7. assign splits by ascending group digest, 60/12/12
-  8. run the sealed auditor, record PASS or FAIL, STOP
+EARLY PILOT OBSERVATION, not a verdict
+  First 2 slots: 0 admitted, 25 attempts each, and EVERY rejection is
+  TARGET_NOT_FITTABLE at the first episode of the attempt. Phase A measured
+  per-attempt admission at about 5 percent, so a slot's 25 attempts find a
+  fittable anchor roughly 72 percent of the time, and the group law then
+  additionally requires 4 anchor replicates, 4 contrast replicates and a demo
+  match, all of which must hold together. Group admission may be very low.
+  If q = 0 the frozen protocol requires STOP with ZERO_GROUP_ADMISSION_PILOT,
+  with no fallback q, no larger pilot and no change to epsilon_demo.
 
-single writer: check with
+NEXT, in order
+  1. let the pilot finish all 40 slots
+  2. compute q = admitted / 40, write and hash pilot_result.json, COMMIT it
+  3. if q = 0, STOP and report ZERO_GROUP_ADMISSION_PILOT
+  4. otherwise full run of ceil(84/q) capped at 1200
+  5. splits 60/12/12 by ascending group digest
+  6. sealed auditor, PASS or FAIL, STOP
+
+single writer check:
   pgrep -af generate_v13_contrastive_corpus.py | grep -v bin/bash
-never count the grep shell itself, and never launch a second writer.
