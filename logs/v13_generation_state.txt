@@ -59,3 +59,33 @@ the auditor had produced any number:
      group would have been counted twice. Corrected to read only records whose
      name begins with full. Record selection only; every statistic, the exact
      null of 3/7 and all ten gate definitions are unchanged.
+
+--- erratum 3 recorded 2026-09-25T12:31:51Z, commit c0fdc34 ---
+MEASURED: the generator is NOT reproducible. Comparing the first 20 slot pairs
+at identical seeds, 18 of 20 agree and 2 of 20 DIFFER (slots 1 and 19, both
+FEATURE, rejected in the pilot after 25 attempts and admitted in the full run
+at attempts 6 and 13).
+
+CAUSE: episode admission depends on two wall-clock deadlines, the ordinary
+baseline search at 8 s and the full-engine observation at 8 s. How far each
+gets depends on machine load, so the same seed can admit or reject depending
+on what else is running.
+
+CORRECTS: erratum 2's finding 1, that the pilot is a deterministic prefix of
+the full run, is WITHDRAWN. Erratum 2's record-selection fix STANDS on the
+protocol's own requirement that no pilot group count as a full-run group.
+
+REPRODUCIBILITY, stated precisely:
+  the CORPUS is not reproducible; no bitwise corpus reproduction may be claimed
+  the AUDIT is reproducible, being a deterministic computation over stored
+  records, and the wired chain runs it twice and compares byte for byte
+
+q STAYS FROZEN at 0.025 and is NOT recomputed. The cap binds, so the size run
+does not depend on q.
+
+EARLY OBSERVATION, not a result and not acted on: the full run's early
+admission rate is higher than the pilot's, 2 of the first 20 slots against
+1 of 40. If sustained, admitted groups would exceed the pre-run projection of
+about 30 and the scale gate might not fail. The projection was recorded before
+the run and may be wrong in either direction. The MEASUREMENT governs. Nothing
+about the run, the cap or any gate is adjusted in response.
