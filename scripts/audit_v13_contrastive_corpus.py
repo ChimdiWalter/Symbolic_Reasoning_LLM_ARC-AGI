@@ -38,7 +38,11 @@ def load_groups():
     if not os.path.isdir(COR_DIR):
         return groups, rejections, slots
     for name in sorted(os.listdir(COR_DIR)):
-        if not name.endswith(".json") or name.startswith("pilot_result"):
+        #  erratum 2: read ONLY full-run records. The pilot uses the same seed
+        #  schedule, so its slots reproduce full slots of the same index, and
+        #  reading both would count one admitted group twice. Record selection
+        #  only; no statistic is altered.
+        if not (name.startswith("full") and name.endswith(".json")):
             continue
         with open(os.path.join(COR_DIR, name)) as handle:
             rec = json.load(handle)
