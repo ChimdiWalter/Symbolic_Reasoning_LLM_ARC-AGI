@@ -1,0 +1,68 @@
+{
+ "admitted_detail": [
+  {
+   "anchor_family": "(0,1)",
+   "contrast_type": "SELECT",
+   "d_demo": 0.34382,
+   "distinct_targets": 2,
+   "episodes": 8,
+   "slot": 20
+  }
+ ],
+ "admitted_group_digests": [
+  "29465744d6f89879c7d70ac794f95e2c3bee6c65454b44d079d6def45aa0e02b"
+ ],
+ "admitted_groups": 1,
+ "anchor_families_attempted": {
+  "(0,0)": 10,
+  "(0,0,0)": 7,
+  "(0,1)": 9,
+  "(1,0)": 9,
+  "(1,1)": 5
+ },
+ "auditor_commit": "4a6efd8",
+ "calibration_commit": "aaa2972975fcded8ea18b4e4b7ea17e7e00a8c9e",
+ "calibration_sha256": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02",
+ "cap": 1200,
+ "cap_applied": true,
+ "contrast_types_attempted": {
+  "FEATURE": 13,
+  "PARTITION": 14,
+  "SELECT": 13
+ },
+ "full_request": 1200,
+ "full_request_formula": "ceil(84 / q)",
+ "full_request_unconstrained": 3360,
+ "implementation_commit": "0146e20",
+ "integrity": {
+  "duplicate_group_digests": false,
+  "duplicate_slot_ids": false,
+  "every_admitted_group_demo_matched": true,
+  "every_admitted_group_has_8_episodes": true,
+  "frontier_used_for_selection": false,
+  "records": 40,
+  "unreadable": 0
+ },
+ "manifest_sha256": "9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14",
+ "projection_recorded_before_the_full_run": {
+  "G5_requires_train_groups": 60,
+  "estimated_full_run_hours": 10.4,
+  "expected_admitted_groups_at_cap": 30.0,
+  "note": "at the measured q the cap binds and the expected yield is below the G5 requirement, so G5 is expected to FAIL. The protocol requires the corpus to be reported at its achieved size with every gate still evaluated and the reduced power stated. G1 to G4 remain evaluable on the admitted instances."
+ },
+ "protocol_sha256": "66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e",
+ "q": 0.025,
+ "q_definition": "admitted GROUPS divided by 40; not an episode rate, not a target rate, not partial groups",
+ "rejections": {
+  "BASELINE_SOLVED": 7,
+  "DEMO_NOT_MATCHED": 1,
+  "OTHER_FROZEN_CODE": 42,
+  "TARGET_EXECUTION_UNDEFINED": 123,
+  "TARGET_NOT_FITTABLE": 809
+ },
+ "requested_group_slots": 40,
+ "seconds_per_slot": 31.33,
+ "total_attempts": 983,
+ "wall_seconds": 1253.0,
+ "zero_admission": false
+}
