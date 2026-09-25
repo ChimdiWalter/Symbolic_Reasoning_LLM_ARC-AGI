@@ -89,3 +89,23 @@ admission rate is higher than the pilot's, 2 of the first 20 slots against
 about 30 and the scale gate might not fail. The projection was recorded before
 the run and may be wrong in either direction. The MEASUREMENT governs. Nothing
 about the run, the cap or any gate is adjusted in response.
+
+--- auditor executability verified 2026-09-25T12:35:20Z ---
+Ran the sealed auditor once purely to confirm it executes, so a crash would
+not surface only after the full run ends. Exit status 0. Its output was
+written to a scratch file that was NOT read and then deleted, and the audit
+artifact it wrote was removed, so no partial G1-G10 value has been seen and
+none could influence anything. Generation was untouched throughout and
+remained a single writer.
+
+--- current projection from 26 slots, an early sample, NOT a result ---
+  admitted 3 of 26, rate 0.115
+  mean 40.4 s per slot
+  projected at 1200 slots: about 13.5 hours and about 138 admitted groups
+  G5 requires 60 train groups
+
+  This is well above the pre-run projection of about 30 recorded in the
+  committed pilot artifact. The pilot ran under heavier machine load, which
+  erratum 3 shows changes admission because two stages are deadline bound.
+  The projection is NOT acted on: q stays frozen, the cap stays at 1200, and
+  no gate moves. The measurement at the end governs.
