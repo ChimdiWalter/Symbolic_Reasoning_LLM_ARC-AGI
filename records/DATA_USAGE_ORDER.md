@@ -4,9 +4,46 @@ Binding order for which data may be consumed at which stage. The September
 delivery plan supersedes the earlier August plan, which wanted early
 full-set measurements.
 
-    proposer -> compiler -> small DEV pilot -> freeze mechanism
-      -> 1000-task training characterization -> 60 DEV evaluation
-      -> freeze final policy -> 60 HOLDOUT -> final 120, once authorized
+    v1.3 full run and nonlearned audit
+      -> scorer discrimination
+      -> generic ConstructiveExtensionCompiler
+      -> end-to-end K plus e
+      -> small fixed DEV causal pilot
+      -> first clean six-leg constructive-reach witness
+      -> broader DEV optimization
+      -> freeze architecture and policies
+      -> 1000-task training characterization
+      -> 60 DEV evaluation
+      -> final policy freeze
+      -> 60 protected HOLDOUT
+      -> final 120 and Kaggle
+
+**The trigger for the 1000-task run is not that v1.3 passes.** Updated
+2026-09-25 to state the intermediate gates explicitly, because the earlier
+wording could be read as licensing the large run too early.
+
+Before the 1000 tasks may be consumed, all of the following must hold: the
+scorer must show that the correct associated failure frontier improves
+construction over matched controls; the compiler must work; CORA must actually
+install the extension, rerun the same reasoner, and produce at least one
+credible causal rescue on a small fixed DEV set; broader DEV work must be
+finished; and the architecture, policies, budgets, ranking, two-attempt policy
+and fallback must be frozen.
+
+The 1000-task run is then a large-scale system characterization, measuring
+base against task-time adaptation, pass@1 and pass@2, activation counts,
+rescues, harms, runtime and the failure distribution. It is the first big run
+and is not the main generalization result.
+
+The 60 DEV evaluation tasks run after that characterization and may still
+inform policy-level decisions. The 60 protected holdout tasks are not touched
+until code, scorer, compiler, budgets, ranking, the two-attempt policy and the
+fallback are all frozen; they are the clean internal generalization test. Only
+once everything is frozen may the full 120 run together as a final local
+evaluation, reporting pass@1, pass@2 and attempt-two rescues under exactly the
+configuration intended for submission.
+
+The 120 is the late generalization test, never the development loop.
 
 | stage | data | question it answers |
 |---|---|---|
