@@ -39,3 +39,23 @@ single writer check:
   pgrep -af generate_v13_contrastive_corpus.py | grep -v bin/bash
 never count the grep shell; never launch a second writer; never pkill -f
 resumable: a slot whose record exists is skipped
+
+--- audit chain wired 2026-09-25T12:27:48Z ---
+watcher: scripts/watch_v13_full_then_audit.sh pid 2152116
+  waits for the generator, requires 1200 full slot records, then runs the
+  SEALED auditor twice and compares the two reports byte for byte
+  log: logs/v13_audit_chain.log
+  markers: logs/V13_AUDIT_DONE, logs/V13_FULL_INCOMPLETE
+  reports: outputs/tti/v13_contrastive_audit_pass1.json and _pass2.json
+
+ERRATUM 2 (records/ITEM2_V13_ERRATUM_02.md), commit 94c159a, recorded BEFORE
+the auditor had produced any number:
+  1. pilot and full share the seed schedule, so full slots 0-39 reproduce the
+     pilot exactly. The pilot is a deterministic prefix of the full run. q was
+     therefore measured on slots that also appear in the corpus, which affects
+     only sizing, and the cap binds so q had no influence on the size run.
+  2. the auditor skipped only the name pilot_result, so pilot slot records
+     would have been read as full-run groups and the single admitted pilot
+     group would have been counted twice. Corrected to read only records whose
+     name begins with full. Record selection only; every statistic, the exact
+     null of 3/7 and all ten gate definitions are unchanged.
