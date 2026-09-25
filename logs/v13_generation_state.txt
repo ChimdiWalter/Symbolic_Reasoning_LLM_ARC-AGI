@@ -1,45 +1,41 @@
 v1.3 contrastive corpus: RUN STATE
 
-state: PILOT RUNNING (state A of the recovery taxonomy)
-  Phase A:      COMPLETE, exactly 200 admitted from 4121 attempts, 2248 s
-  calibration:  COMMITTED at aaa2972, sha256
-                ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02
-                committed while Phase B groups = 0, so the boundary is provable
-  pilot:        RUNNING, 26 of 40 slots
-  q:            NOT YET FROZEN
-  full run:     NOT STARTED
-  audit:        NOT RUN
+state: FULL GENERATION RUNNING (state D)
 
-processes
-  pilot generator pid: 1449502   (single writer, verified by listing)
-  log: logs/v13_pilot.log
-  no watcher will auto-launch anything; the pilot and full run are launched by hand
+  Phase A:       COMPLETE, exactly 200 admitted from 4,121 attempts, 2,248 s
+  calibration:   COMMITTED aaa2972, sha256 ba82865e52cd9e02...051c7c02
+                 committed while Phase B groups = 0
+  pilot:         COMPLETE, 40 of 40 slots, 1 group admitted
+  q:             0.025, FROZEN and COMMITTED e9ba44c with full-run groups = 0
+                 pilot sha256 c578cdf980cf4773...15028c1e9
+  full request:  unconstrained ceil(84/0.025) = 3360, CAP APPLIED, running 1200
+  full run:      RUNNING, pid 2134125
+  audit:         NOT RUN
 
-PILOT PROGRESS, not a result
-  26 slots complete, 1 group admitted so far
-  admitted: slot 20, SELECT contrast, anchor (0,1), d_demo 0.344, 8 episodes
-  rejections so far: TARGET_NOT_FITTABLE 491, TARGET_EXECUTION_UNDEFINED 88,
-  OTHER_FROZEN_CODE 25, BASELINE_SOLVED 2, DEMO_NOT_MATCHED 1
+PROJECTION RECORDED BEFORE THE RUN, inside the committed pilot artifact
+  expected admitted groups at the cap: about 30
+  G5 requires 60 train groups, so G5 is EXPECTED TO FAIL
+  the protocol requires the corpus to be reported at its achieved size with
+  every gate still evaluated and the reduced power stated
+  G1 to G4 remain evaluable on the admitted instances
+  estimated run time: about 10.4 hours at 31.3 s per slot
 
-  The dominant rejection is by a wide margin TARGET_NOT_FITTABLE, which is a
-  property of the sampled target rather than of the grid seeds or the
-  frontier. DEMO_NOT_MATCHED has fired only once, so the demonstration-match
-  threshold is not the binding constraint. The binding constraint is that the
-  all-or-nothing group law needs eight consecutive admitted episodes while
-  per-attempt target admission is about 5 percent.
+PILOT REJECTION PROFILE, 983 attempts over 40 slots
+  TARGET_NOT_FITTABLE 809, TARGET_EXECUTION_UNDEFINED 123,
+  OTHER_FROZEN_CODE 42, BASELINE_SOLVED 7, DEMO_NOT_MATCHED 1
+  The demonstration-match threshold is NOT the binding constraint. What binds
+  is the all-or-nothing group law requiring eight consecutive admitted
+  episodes while per-attempt target admission is about 5 percent.
 
-NEXT, in strict order
-  1. let the pilot finish all 40 slots; do NOT enlarge it
-  2. pilot integrity audit: 40 readable records, no duplicate slot or group
-     digest, every admitted group exactly 8 episodes, demo match satisfied,
-     no frontier metric used in selection
-  3. q = admitted groups / 40, GROUP rate only
-  4. write and hash pilot_result.json, then COMMIT it BEFORE any full group
-  5. if q = 0: STOP, report ZERO_GROUP_ADMISSION_PILOT, no fallback q, no
-     larger pilot, no change to epsilon_demo
-  6. if q > 0: N_full = min(ceil(84/q), 1200), run it, splits 60/12/12 by
-     ascending group digest, then the sealed auditor, PASS or FAIL, STOP
+NEXT, after the full run finishes
+  1. splits by ascending group digest, 60 train, 12 validation, 12 holdout,
+     surplus retained and marked unused; do NOT invent alternative split sizes
+  2. leakage audit, zero violations required
+  3. run the SEALED auditor scripts/audit_v13_contrastive_corpus.py (4a6efd8)
+  4. rerun the auditor from stored artifacts and require identical values
+  5. record PASS or FAIL, then STOP
 
 single writer check:
   pgrep -af generate_v13_contrastive_corpus.py | grep -v bin/bash
 never count the grep shell; never launch a second writer; never pkill -f
+resumable: a slot whose record exists is skipped
