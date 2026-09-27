@@ -769,6 +769,29 @@ and a minimal change in the second does not move the first systematically.
 Under the programme's own ordering, no scorer is fitted to such a corpus and
 no compiler is built on it.
 
+## 8.9 Prospective: where does target information disappear?
+
+v1.3 failed to establish target identifiability, including on the cleaner
+non-SELECT contrasts. The next preregistered experiment, v1.4, asks where the
+signal is lost, not whether a model can recover it. Either the deployed
+reasoner's internal trajectory does react to the minimal semantic change and
+the failure graph discards that information, or the trajectory itself is
+insufficiently sensitive, in which case no encoder or scorer could recover
+it. The two call for different repairs.
+
+The design removes the instance variation v1.3 could not control. Each pair
+of minimally different targets is shown the same input grids, so the two
+demonstration sets differ only through the target transformation. The
+reasoner's own ordered candidate trajectory, which the failure graph
+previously summarized and discarded, is kept, and each stage from candidate
+formation through fitting, execution and mismatch to the final graph is
+tested for target identification with a nonlearned within-group
+nearest-neighbour statistic against its exact null. Because every unsolved
+run exhausts the fixed search budget, target A is also observed a second
+time on the same input, so a reaction to the semantic change can be
+separated from timing noise. Nothing is trained, and no result is claimed
+here.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

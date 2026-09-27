@@ -4,6 +4,30 @@ Last updated 2026-09-27. Read this first.
 
 ## State
 
+**v1.4 mechanistic frontier localization: PROTOCOL FROZEN at 50841e3, NOT
+RUN.** Protocol `docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md`
+sha256 `43e798fa...f4f84518`; manifest
+`outputs/tti/mechanistic_frontier_v14_manifest.json` sha256
+`dd481b31...5af67c8a`; design record `records/ITEM2_V14_DESIGN_DECISION.md`;
+39 tests pass. No v1.4 experiment episode exists; no stage statistic has
+been computed on real data.
+
+Branch B, counterfactual twins: FEATURE contrasts only, both targets of a
+replicate see the same input grids, 4 replicates per group, target A also
+rerun on the same input as a timing-noise control, run order balanced over
+six permutations. Stagewise twin-excluded nearest neighbour against the
+exact null 1/2 (3/7 is not exact under shared inputs), qualification needs
+strict rate > 1/2 and exact binomial and randomization p < 0.01. Target 42
+groups, floor 14, caps 400 slots or 24 h; smoke projects about 2.4 h.
+
+Freeze checks cover the protocol, manifest, 11 implementation files and
+tree digests of cora_arc2026, geocat_arc and the three packages read from
+Reasoning_Project_tti. **Any edit to cora_arc2026 or geocat_arc before the
+run makes the generator refuse to start, by design.**
+
+Repo suite: 103 passed, 1 failed, the pre-existing timing-dependent
+`test_observer_state_cannot_leak_between_tasks` (see the design record).
+
 **v1.3 contrastive corpus: COMPLETE, audited, official verdict
 V1.3 CONTRASTIVE CORPUS IDENTIFIABILITY GATE FAIL.** Full record:
 `records/ITEM2_V13_CORPUS_RESULT_20260926.md`, committed e200e5a with the
@@ -76,14 +100,18 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**PRESERVE THE v1.3 FAILURE AND PREREGISTER ONLY THE SMALLEST FOLLOW-UP
-NEEDED TO ADDRESS THE RECORDED FAILURE MODE.**
+**RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT**, after
+the one adversarial review of the frozen protocol is resolved. Then STOP.
 
-Not designed, not implemented. It is the user's decision. Whatever it is must
-address identifiability first, since scaling a corpus in which the effect is
-absent could at best find a small one. The scorer discrimination experiment is
-NOT licensed. Binding data order is in `records/DATA_USAGE_ORDER.md`: the
-1000-task run is still many gates away.
+    cd Reasoning_Project_arc2026
+    setsid nohup scripts/run_v14_chain.sh > logs/v14_chain_stdout.log 2>&1 < /dev/null &
+    pgrep -af "generate_v14_twins.py full"     # the REAL pid; $! is setsid's wrapper
+
+The chain generates until 42 groups or a cap, runs the sealed auditor twice,
+requires byte-identical reports and touches `logs/V14_AUDIT_DONE`. Do not
+read partial corpus statistics while it runs. Scorer discrimination stays
+unlicensed and the ConstructiveExtensionCompiler stays blocked whatever the
+outcome. Binding data order: `records/DATA_USAGE_ORDER.md`.
 
 ## How to re-run
 
