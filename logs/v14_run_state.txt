@@ -13,3 +13,13 @@ Stop:    kill 1376604 1376598   (exact PIDs only, never pkill -f)
 Resume:  rerunning scripts/run_v14_chain.sh resumes at the first missing slot; the
          wall clock keeps counting from the first start.
 Do not read partial statistics. Nothing is interpreted before V14_AUDIT_DONE.
+
+--- verification after the block directive arrived (state B: one legitimate writer alive, left alone) ---
+Single writer: exactly one generator (1376604) and one chain shell (1376598);
+/proc/locks shows FLOCK WRITE on the writer lock held by 1376604.
+Generator environment from /proc/1376604/environ: ARC_META_BUDGET_S=8,
+PYTHONHASHSEED=0, PYTHONDONTWRITEBYTECODE=1, no other ARC_* variable.
+Launch command identical to RESUME.md line 125.
+Slot 0 finished in 119.97 s: freeze_ok true, frozen environment, runtime
+versions python 3.12.3 / numpy 2.4.3 / scipy 1.16.3, no engine-state problem.
+No stage statistic is read before logs/V14_AUDIT_DONE.
