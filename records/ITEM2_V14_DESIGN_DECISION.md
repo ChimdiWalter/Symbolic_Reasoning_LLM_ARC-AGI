@@ -1,180 +1,113 @@
 # Item-2 v1.4 mechanistic frontier localization: design decision
 
-**STATUS: DRAFT, IN PROGRESS, NOT FROZEN.** Saved 2026-09-27 mid-block at the
-user's request. No protocol hash exists yet. No stagewise hit rate, distance
-or separation has been computed on any data. No v1.4 experiment episode
-exists.
+**STATUS: FROZEN, NOT RUN.** Authoritative text:
+`docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md`. Identities in
+`outputs/tti/mechanistic_frontier_v14_manifest.json` and in section 8 below.
+No v1.4 experiment episode exists. No stagewise hit rate, distance or
+separation has been computed on any real data.
 
-## 1. Binding result that motivates v1.4
+## 1. Why v1.4 exists
 
-v1.3 complete: 1,200 of 1,200 slots, 29,763 attempts, 21 groups (FEATURE 14,
-SELECT 7, PARTITION 0), 168 episodes, 41 distinct targets. G1 79/168 = 0.470
-against 3/7, p = 0.156; G2 0.473, p = 0.195; G3 0.524; G4 mean 0.188, median
-0.025; G5, G6, G7 fail; G8 to G10 pass. Official verdict: IDENTIFIABILITY GATE
-FAIL. Identifiability not established; the designed 0.55 effect excluded; a
-smaller effect possible. Record: `records/ITEM2_V13_CORPUS_RESULT_20260926.md`.
+v1.3 is complete and failed its identifiability gate: G1 79/168 = 0.470
+against 3/7, p = 0.156; G2 0.473, p = 0.195; median separation 0.025; G1 to G7
+FAIL, G8 to G10 PASS; 21 groups, PARTITION 0. The designed 0.55 effect is
+excluded; a smaller one is not. Record:
+`records/ITEM2_V13_CORPUS_RESULT_20260926.md`.
 
-## 2. Stored-data trajectory inventory (schema only)
+v1.4 asks where target information disappears from the reasoner's own
+trajectory, so that the next repair targets the measured loss point instead
+of another scorer or a larger corpus.
 
-Inspected: key names, node kinds, attribute keys and edge relations of the 21
-stored v1.3 groups, plus the extractor and observer source. No value was
-compared across episodes.
+## 2. Branch B, selected mechanically
 
-| stage | stored in v1.3 | what exists |
-|---|---|---|
-| S0 demonstrations | AVAILABLE_PARTIAL | per-demonstration delta, palette and shape summaries; raw grids NOT stored |
-| S1 perception / objects | NOT_STORED | never emitted by the observer |
-| S2 candidate formation (`typed`) | AVAILABLE_PARTIAL | count only, in the census; group structures discarded |
-| S3 selector induction | NOT_STORED | failures never emitted; recoverable only from event ORDER, which was discarded |
-| S4 parameter fitting | AVAILABLE_PARTIAL | per-operator failure counts; `slot_fit_ok` structures discarded |
-| S5 fitted executable candidates | AVAILABLE_PARTIAL | at most 12 terms, sorted by surface size, order lost |
-| S6 near-miss mismatch | AVAILABLE_PARTIAL | one value signature per retained term, first defined demonstration only |
-| S7 TFG | AVAILABLE_RAW | the 42-field descriptor and the stored graph |
+The stored v1.3 artifacts hold only post-extraction evidence: at most 12
+frontier terms of two outcome classes, re-sorted, with the observer's ordered
+candidate list discarded and selector failures never emitted. Branch A could
+only compare two encodings of the same graph, so it cannot separate
+"trajectory differs, TFG loses it" from "trajectory does not differ". Branch B
+was chosen from the schema inventory alone, before any stage outcome.
 
-## 3. Branch selected: B, counterfactual-twin trajectory study
+## 3. The design in one paragraph
 
-Mechanical reason: everything stored is downstream of the extractor.
-`build_tfg` keeps at most `MAX_FRONTIER_TERMS = 12` terms, only
-`executed_not_exact` and `slot_fit_failed`, sorted by (class, surface, AST);
-`typed` and `slot_fit_ok` structures and the observer's ordered candidate list
-were never persisted. A stored-artifact study could only compare two
-encodings of the same post-extraction graph, so it cannot distinguish
-"trajectory differs, TFG loses it" from "trajectory does not differ", which is
-the question. Chosen before any stage outcome was inspected.
+FEATURE contrasts only. Two targets differing in exactly one grammar token,
+same family, block count, partition, selects and MDL. Four replicates per
+group; within a replicate both targets see the same input grids. The v1.3
+admission law is applied to each target unchanged, plus twin integrity. The
+existing observer's ordered candidate list is persisted, and every distinct
+executed near miss is evaluated on every demonstration after the engine
+returns. Stages S2 to S7 get target-independent descriptors from the model
+view only; S0 (demonstrations) is a baseline; S1 (perception) is not observed
+and no hook is added. Target 42 groups; floor 14; nothing trained.
 
-## 4. Observability under Branch B, with NO new engine hook
+## 4. Statistics
 
-The existing observer already records the ordered list of (AST, outcome).
-v1.4 only persists it. Emission sites (`inducer.py` 2189 to 2210): each group
-emits `typed`, then `slot_fit_failed` (carrying the induced selector),
-`slot_fit_ok` (carrying the full rule), or nothing when
-`_induce_selector_for` returned None. So:
+- Twin-excluded nearest neighbour: six companions from the other replicates,
+  three same-target and three other. Exact null expected credit 1/2 for any
+  distance matrix. v1.3's 3/7 is not exact under shared inputs.
+- Ties share credit; a strict hit needs every tied nearest to agree.
+- A stage is TARGET_IDENTIFYING only if strict rate > 1/2, exact binomial
+  p < 0.01, and exact within-twin randomization p < 0.01 (the binomial is not
+  valid under within-group dependence).
+- Sample size: p1 = 0.60 against 1/2, alpha 0.01, power 0.90, exact:
+  336 instances = 42 groups, critical 190.
+- Explanatory only: separation s = B - W across replicates; tie fraction;
+  Holm-adjusted p-values; and the self-rerun sign test.
 
-| stage | Branch B source |
-|---|---|
-| S0 | demonstration features, reusing v1.3 Phase-A calibration (baseline, not a reasoning stage) |
-| S1 | UNOBSERVABLE without a new hook; not added |
-| S2 | multiset of `typed` group structures |
-| S3 | per group, from order: selector induced (with its structure) or no fit event |
-| S4 | `slot_fit_failed` by operator, `slot_fit_ok` by fitted action structure |
-| S5 | every `executed_not_exact` and `exact` program, uncapped |
-| S6 | every distinct near miss (cap 64) rendered on EVERY demonstration by the engine's own executor, class per demonstration, associated with its program |
-| S7a | stored TFG graph before aggregation (frontier terms and their value-signature classes) |
-| S7 | the v1.3 42-field descriptor with v1.3 Phase-A calibration, exactly as audited |
+## 5. Two corrections made during this block, before freeze
 
-One generic canonicalization everywhere: numeric literals become `#`, names
-and structure kept. Set-valued stages use the Ruzicka distance, which needs no
-normalization constants. S0 and S7 reuse the committed v1.3 calibration
-`ba82865e...51c7c02`.
+1. **Deadline-bound trajectories.** The feasibility smoke showed every
+   admitted run lasts the full 8 s budget (8.03 to 8.08 s) and forms 9 to 21
+   candidate groups. Each trajectory is a load-dependent prefix, so the
+   planned "twins that did not hit the deadline" figure would have been
+   empty. Replaced by a self-rerun control: target A is observed twice on the
+   same input, and an exact sign test asks whether the twin is farther than
+   the rerun. This separates "reacts but not consistently" from "no reaction
+   beyond timing noise" under REASONER_TRAJECTORY_INSENSITIVE.
+2. **Run-order confound.** As first written, A always ran before B, so any
+   run-position effect would have read as target signal. Each replicate now
+   uses one of the six orders of (A, B, A'), chosen by a seed hash before any
+   outcome. The same ordering existed in v1.3 (anchor episodes first); v1.3
+   found no signal, so it cannot have produced that negative.
 
-## 5. Design correction that must be stated to the user
+Also found and handled: the engine rereads its growing near-solve log only
+under `ARC_OVERLAY`, and its fragment library changes only through
+`promote_and_validate`. The generator refuses to run with either switch set
+or with a library or learned-verb file present, and uses a fresh engine
+directory. v1.3's nearest-neighbour tie break by episode index favoured
+target 0 and could only raise a hit rate, so the v1.3 FAIL stands.
 
-The directive asks to keep the exact 3/7 null. **With shared inputs that null
-is no longer exact.** Replicate r of A and replicate r of B see identical
-inputs, so under the null the query's own twin is systematically nearest,
-the hit rate falls below 3/7, and the test becomes conservative in an unknown
-amount. The same null hypothesis (stage descriptor independent of target
-given the input) has an exact form under this design:
+## 6. Deviations from the directive
 
-- twin-excluded nearest neighbour: for query (t, r), companions are the six
-  episodes of the other three replicates, 3 same-target and 3 different;
-- under the null the two members of every twin are exchangeable, so the
-  exact null hit rate is **1/2** for every distance matrix (verified
-  algebraically in the implementation: averaged over the 16 within-twin
-  label swaps, each query's credit is exactly 1/2);
-- ties share credit; strict hits (all tied nearest same-target) give an
-  integer, conservative binomial test against 1/2;
-- an exact within-twin swap randomization test (16 patterns per group,
-  convolved across groups) accounts for within-group dependence.
+Null 1/2 instead of 3/7; randomization test added to the binomial; two
+classifications added (CURRENT_TFG_IDENTIFYING_UNDER_TWINS,
+TFG_AGGREGATION_LOSS); S5 counted as an execution stage; S1 unobserved;
+Branch A not viable; the self-rerun control; balanced run order. Each is
+argued in protocol section 13. All are stricter or more exact; none relaxes a
+threshold.
 
-Planned stage qualification: strict rate above 1/2 AND exact binomial
-p < 0.01 AND exact randomization p < 0.01. Stricter than the directive, never
-looser.
+## 7. Static feasibility
 
-## 6. Sample size, exact
+See protocol section 15 for the smoke and the caps. Disclosure: the smoke
+printed per-episode trajectory sizes and candidate counts for smoke episodes
+(seeds from 200,000,000, never audited); no distance or neighbour between
+any two episodes was computed.
 
-p0 = 1/2, p1 = 0.60, one-sided alpha 0.01, power at least 0.90:
-**n = 336 instances = 42 twin groups**, critical value 190 strict hits
-(size 0.00943, power 0.9106). The binomial power assumes independent
-instances; the true power is lower because instances within a group are
-dependent. For reference, 0.60 against 3/7 would need 112.
+Test status at freeze: all 39 v1.4 tests pass. The full repository suite
+gives 103 passed and 1 failed, the pre-existing
+`test_engine_trace_repair.py::test_observer_state_cannot_leak_between_tasks`.
+Its last assertion expects a deadline-bound DEV task to emit more candidates
+than the tile fixture; at load about 42 the DEV task emits 47 to 49 in 8 s and
+the fixture 100. No engine, hook or observer file has changed since that
+test's commit f54c9bd. Timing-dependent assertion, left unedited, recorded
+here.
 
-## 7. Static feasibility smoke, 2026-09-27
+## 8. Identities
 
-`logs/v14_smoke/smoke.py`, seeds from 200,000,000, disjoint from the
-experiment and from every earlier corpus. Admission mechanics and parse
-checks only; no distance between any two episodes was computed.
+Recorded at the freeze commit: protocol sha256, manifest sha256 and the
+implementation and dependency digests are in the manifest. The commit hash is
+in `RESUME.md`.
 
-221 attempts in 99.7 s, 3 twin replicates admitted:
+## 9. Next action, exactly one
 
-| code | count |
-|---|---|
-| TARGET_NOT_FITTABLE | 119 |
-| TWIN_OUTPUTS_IDENTICAL | 55 |
-| TWIN_DEMONSTRATIONS_UNDEFINED | 28 |
-| OTHER_FROZEN_CODE | 9 |
-| TWIN_INPUTS_DIFFER | 6 |
-| ADMITTED | 3 |
-| BASELINE_SOLVED | 1 |
-
-Facts established: shared-input twins are mechanically possible; the
-captured trajectory parses into S2 to S7a on real engine output; an admitted
-replicate costs about 22 s. Every FEATURE contrast sampled had equal MDL.
-**A one-feature swap often yields identical demonstration outputs on the
-same inputs (55 of 221 attempts)**, which is why twin integrity requires at
-least one differing demonstration output. This is an admission-mechanics
-fact and is not used to reinterpret v1.3.
-
-Disclosure: the smoke printed per-twin stage SIZES (event counts) for its
-three admitted smoke twins. They are counts, not distances, on seeds that are
-not experiment data, and they will not be used.
-
-## 8. Planned classification ladder
-
-Pipeline order S2, S3, S4, S5, S6, S7a, S7; S0 reported separately.
-
-1. achieved instances below the floor of 112 (14 groups): MIXED_OR_INCONCLUSIVE
-2. S7 qualifies: CURRENT_TFG_IDENTIFYING_UNDER_TWINS (outcome the directive's
-   list did not name; v1.3's negative would then be attributable to instance
-   noise)
-3. any of S2 to S5 qualifies: RAW_TRAJECTORY_SIGNAL_TFG_LOSS, loss located
-   after the last qualifying stage (S7a to S7 = aggregation loss)
-4. only S6 qualifies: LATE_EXECUTION_SIGNAL_ONLY
-5. only S7a qualifies: MIXED_OR_INCONCLUSIVE
-6. nothing qualifies and n reaches 336: REASONER_TRAJECTORY_INSENSITIVE, at
-   every OBSERVED stage (S1 unobserved)
-7. nothing qualifies and n below 336: MIXED_OR_INCONCLUSIVE
-
-A positive qualification is valid at any n at or above the floor, since power
-affects only false negatives.
-
-## 9. Planned group law
-
-FEATURE contrasts only. Slot s cycles the five eligible anchor families. Up
-to 25 (anchor, contrast) attempts per slot, seed SEED_BASE + s*10000 +
-a*100, SEED_BASE = 100,000,000. Per pair up to 8 replicate seeds; the pair is
-admitted when 4 twin replicates are admitted, abandoned once 4 is
-unreachable. |MDL difference| = 0 required. Stop at exactly 42 admitted
-groups, or at the hard compute cap, whichever first. Cap still to be fixed.
-
-## 10. Done so far, and what remains before freeze
-
-Done: `cora_arc2026/v14_loc.py` (capture, stage descriptors, twin-excluded
-NN, exact randomization test, binomial, Clopper-Pearson, Holm,
-classification), smoke script and log.
-
-Remaining, in order:
-1. fix the hard compute cap (slots and wall clock) and the diagnostic floor;
-2. `scripts/generate_v14_twins.py` and `scripts/audit_v14_localization.py`;
-3. `tests/test_v14_localization_feasibility.py`: skeleton, Ruzicka, twin
-   exclusion, exact 1/2 null identity, randomization p, sample size, ladder,
-   leakage (descriptors read only the allowlisted view), noninterference
-   (capture equals the observer's list; engine result unchanged), S3
-   derivation, FEATURE twin law, seed disjointness;
-4. protocol `docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md` and
-   manifest `outputs/tti/mechanistic_frontier_v14_manifest.json`, hash both,
-   commit (FREEZE);
-5. RESUME, manuscript prospective wording, memory; one reviewer after seal.
-
-Then STOP. Next action after freeze: RUN THE FROZEN v1.4 MECHANISTIC FRONTIER
-LOCALIZATION EXPERIMENT.
+RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT, after the
+one adversarial review of the frozen protocol. Then STOP.

@@ -1,0 +1,204 @@
+{
+ "admission": "v1.3 law per target unchanged (evaluate_target_v2 R1-R8, occurrence-scoped fitter 2cc45152c430f8a2, unweakened baseline K, full-engine informative gate frontier_term_count >= 2) plus twin integrity; no frontier property examined",
+ "branch": "B_COUNTERFACTUAL_TWIN",
+ "branch_reason": "stored v1.3 artifacts hold only post-extraction evidence (<=12 re-sorted frontier terms, ordered candidate list discarded, selector failures never emitted); chosen from schema inventory before any stage outcome",
+ "budgets": {
+  "attempts_per_episode_slot": 25,
+  "base_search_s": 8.0,
+  "full_engine_observation_s": 8.0,
+  "per_target_s": 90.0,
+  "tfg_s": 2.0
+ },
+ "calibration": {
+  "path": "outputs/tti/v13_calibration/calibration.json",
+  "sha256": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02"
+ },
+ "caps": {
+  "floor_groups": 14,
+  "slot_cap": 400,
+  "target_groups": 42,
+  "wall_clock_s": 86400
+ },
+ "capture": {
+  "mismatch": "every distinct executed_not_exact program, cap 64, evaluated on every demonstration by the engine executor after return",
+  "new_engine_hooks": 0,
+  "trajectory": "the observer's ordered (candidate, outcome) list, canonical JSON"
+ },
+ "claim_ceiling": "V1.4 MECHANISTIC FRONTIER LOCALIZATION PROTOCOL FROZEN AND STATICALLY FEASIBLE",
+ "classification_ladder": [
+  "admitted groups < 14: MIXED_OR_INCONCLUSIVE",
+  "S7 qualifies: CURRENT_TFG_IDENTIFYING_UNDER_TWINS",
+  "a search stage (S2,S3,S4) qualifies: RAW_TRAJECTORY_SIGNAL_TFG_LOSS at the earliest",
+  "an execution stage (S5,S6) qualifies: LATE_EXECUTION_SIGNAL_ONLY at the earliest",
+  "only S7a qualifies: TFG_AGGREGATION_LOSS",
+  "a reasoning stage has randomization p < 0.01 but fails the binomial: MIXED_OR_INCONCLUSIVE",
+  "nothing qualifies, groups >= 42: REASONER_TRAJECTORY_INSENSITIVE, qualified REACTS_BUT_NOT_CONSISTENTLY or NO_REACTION_BEYOND_TIMING_NOISE",
+  "nothing qualifies, groups < 42: MIXED_OR_INCONCLUSIVE"
+ ],
+ "contrast_type": "FEATURE",
+ "dependency_tree_sha256": {
+  "cora_arc2026": "652e870862b708082747e53ad19682db0db2b4725cc09a1239d779b41284ebb8",
+  "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
+  "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
+  "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
+  "level4_blind_runtime": "cad36fd5458b97ba5053c7be5cdb637e14d316c5bb000f3aba7dff7dc2c4adc8"
+ },
+ "engine": {
+  "ARC_META_BUDGET_S": "8",
+  "PYTHONHASHSEED": "0",
+  "dir": "outputs/tti/v14_engine",
+  "forbidden_env": [
+   "ARC_OVERLAY",
+   "ARC_DIHEDRAL_FRAMES"
+  ],
+  "forbidden_state_files": [
+   "library.json",
+   "learned_verbs.json"
+  ],
+  "label": "opaque sha256 prefix, no target, twin or replicate identity",
+  "run_order": "one of the six permutations of (A, B, A') per replicate, sha256('v14-order-<seed>') mod 6",
+  "self_rerun": "target A observed twice per replicate on the same input, not admission-gated"
+ },
+ "feasibility_smoke": {
+  "admitted_groups": 6,
+  "ci95": [
+   0.234,
+   0.833
+  ],
+  "distances_computed": 0,
+  "engine_run_s_admitted": [
+   8.03,
+   8.08
+  ],
+  "mean_slot_s": 91.6,
+  "rate": 0.545,
+  "rerun_path_checked_on_real_engine": 2,
+  "slots": 11
+ },
+ "group_law": {
+  "anchor_families_cycle": [
+   "(0,0)",
+   "(1,0)",
+   "(0,1)",
+   "(1,1)",
+   "(0,0,0)"
+  ],
+  "attempt_stride": 100,
+  "episodes_per_group": 8,
+  "pairs_per_slot": 25,
+  "replicate_seed": "pair_seed + k, k = 0..7 in order; pair admitted at 4 twins, abandoned when 4 is unreachable",
+  "replicates": 4,
+  "seed_base": 100000000,
+  "seeds_per_pair": 8,
+  "slot_stride": 10000,
+  "smoke_seed_base": 200000000
+ },
+ "implementation_sha256": {
+  "cora_arc2026/engine_trace.py": "adda371babb8ebd784aa129f78ea2146601bcac75b6da2d989bafc6980dd5800",
+  "cora_arc2026/v13_gen.py": "1d389abe6ddb70e2eebf7f7cd9433fb3b326dc6bcf07a6a02be62f9b5215dc08",
+  "cora_arc2026/v14_loc.py": "596e3dacdca164116e751820c80d158f1dac07da4a21d2b7f325b8f25e5f8c7d",
+  "cora_arc2026/vendor/tfg_extractor.py": "268149016febceefa7344950a5d70d37592db2d8a305d4b093b8caa67b886c81",
+  "geocat_arc/object_reasoning/_trace_hook.py": "7c3d5a52e394c422ce6a8a53a0f40f4b54c619ddd9fc46d696c486a9da3f3524",
+  "outputs/tti/constructive_protocol_v1.3_manifest.json": "9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14",
+  "outputs/tti/v13_calibration/calibration.json": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02",
+  "scripts/audit_v14_localization.py": "bac8749cdfdb8151c1137202433e011d5bfdfbfbad719bef1767098cb70fa4ec",
+  "scripts/generate_v14_twins.py": "e357b8bc22dde9bf7ed4fe30f035ef1fff92ee6c6b00dcc0badce71eff5eacf1",
+  "scripts/run_v14_chain.sh": "2264de2a51422e408c4d3c7bf980da90a1e830e764ccb4fb50caf92a266dd195",
+  "tests/test_v14_localization_feasibility.py": "208defcbd88b991018557c60f1f8f39d2144174e830fe6251617ae33e12b7300"
+ },
+ "not_authorized": [
+  "scorer fitting",
+  "any training",
+  "TFG repair",
+  "search change",
+  "ConstructiveExtensionCompiler",
+  "new solver, primitive, grammar or DSL",
+  "1000 ARC tasks",
+  "evaluation DEV",
+  "protected HOLDOUT",
+  "Kaggle",
+  "Step-B candidates, journals, outputs, E_transfer, Lockbox",
+  "any change to thresholds, descriptors, distances, caps or ladder after freeze"
+ ],
+ "order_after_freeze": [
+  "one adversarial review; blocking defects corrected by recorded erratum before any episode",
+  "scripts/run_v14_chain.sh detached, single writer, nice 19",
+  "auditor twice, byte-identical",
+  "record classification with every stage row; STOP"
+ ],
+ "parent": {
+  "v1_3_manifest_sha256": "9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14",
+  "v1_3_protocol_sha256": "66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e",
+  "v1_3_result_commit": "e200e5a",
+  "v1_3_result_record": "records/ITEM2_V13_CORPUS_RESULT_20260926.md",
+  "v1_3_verdict": "V1.3 CONTRASTIVE CORPUS IDENTIFIABILITY GATE FAIL"
+ },
+ "protocol": "CORA-TTI Item-2 v1.4 mechanistic frontier localization",
+ "protocol_doc": "docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md",
+ "protocol_doc_sha256": "43e798fa8beeee7c53b7398e6eafa6c870f35ad78def3c831f1ab972f4f84518",
+ "reproducibility": "generator not reproducible (deadline-bound, erratum 3 of v1.3); audit deterministic, run twice, byte-identical required",
+ "sample_size": {
+  "alpha_one_sided": 0.01,
+  "critical_strict_hits": 190,
+  "groups": 42,
+  "instances": 336,
+  "note": "assumes independent instances; achieved power of the joint criterion is lower",
+  "p0": "1/2",
+  "p1": 0.6,
+  "power": 0.9106,
+  "power_min": 0.9,
+  "size": 0.00943
+ },
+ "skeleton_rule": "every numeric literal replaced by '#', names and nesting kept",
+ "stage_groups": {
+  "execution": [
+   "S5",
+   "S6"
+  ],
+  "search": [
+   "S2",
+   "S3",
+   "S4"
+  ],
+  "tfg": [
+   "S7a",
+   "S7"
+  ]
+ },
+ "stages": {
+  "S0": "baseline: six v1.3 demonstration features, v1.3 Phase-A standardization, Euclidean",
+  "S1": "UNOBSERVED",
+  "S2": "multiset of skeletons of typed groups, Ruzicka",
+  "S3": "per typed event from order: selector induced with selector skeleton, or no selector, Ruzicka",
+  "S4": "slot_fit_failed by operator, slot_fit_ok by fitted action skeleton, Ruzicka",
+  "S5": "executed_not_exact and exact program skeletons, uncapped, Ruzicka",
+  "S6": "(program skeleton, mismatch class) per demonstration, Ruzicka",
+  "S7": "v1.3 42-field descriptor, v1.3 Phase-A standardization, Euclidean",
+  "S7a": "TFG graph: (outcome, term skeleton) and (term skeleton, value-signature class), Ruzicka"
+ },
+ "statistics": {
+  "alpha": 0.01,
+  "credit_scale": 60,
+  "exact_null_expected_credit": "1/2",
+  "multiplicity": "Holm over the 7 reasoning stages reported; qualification unadjusted",
+  "nearest_neighbour": "twin-excluded, 6 companions (3 same, 3 other target)",
+  "qualification": "strict rate > 1/2 AND exact binomial p < 0.01 AND exact within-twin randomization p < 0.01",
+  "randomization": "16 within-twin swap patterns per group, exact convolution across groups",
+  "sensitivity": "exact one-sided sign test of d(A,B) > d(A,A') over replicates, REACTS if p < 0.01; explanatory, qualifies the insensitive label",
+  "separation": "s = mean between-target minus mean within-target distance, across replicates; explanatory",
+  "tie_eps": 1e-12,
+  "ties": "shared credit; strict hit needs all tied nearest same-target"
+ },
+ "status": "FROZEN_NOT_RUN",
+ "twin_law": [
+  "same structural family",
+  "same block count",
+  "same MDL, tolerance 0",
+  "same partition and selects in every block",
+  "exactly one token differs: block-0 key feature",
+  "identical demonstration inputs",
+  "at least one differing demonstration output",
+  "identical replicate seed"
+ ],
+ "version": "1.4"
+}
