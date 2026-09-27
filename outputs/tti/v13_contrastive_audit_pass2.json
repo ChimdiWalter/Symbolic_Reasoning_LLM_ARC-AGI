@@ -1,0 +1,139 @@
+{
+ "protocol_sha256": "66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e",
+ "calibration_sha256": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02",
+ "exact_null": 0.42857142857142855,
+ "group_slots_attempted": 1200,
+ "admitted_groups": 21,
+ "admitted_episodes": 168,
+ "admissions_by_contrast_type": {
+  "FEATURE": 14,
+  "SELECT": 7
+ },
+ "train_by_contrast_type": {
+  "FEATURE": 14,
+  "SELECT": 7
+ },
+ "rejections": {
+  "TARGET_NOT_FITTABLE": 24689,
+  "NO_INFORMATIVE_TFG": 76,
+  "TARGET_EXECUTION_UNDEFINED": 3560,
+  "OTHER_FROZEN_CODE": 1127,
+  "BASELINE_SOLVED": 183,
+  "DEMO_NOT_MATCHED": 107
+ },
+ "splits": {
+  "train": 21,
+  "val": 0,
+  "holdout": 0
+ },
+ "nearest_neighbour": {
+  "ALL": {
+   "hits": 79,
+   "n": 168,
+   "rate": 0.47024,
+   "p_value": 0.1554582145741385
+  },
+  "PARTITION": {
+   "hits": 0,
+   "n": 0,
+   "rate": null,
+   "p_value": null
+  },
+  "FEATURE": {
+   "hits": 53,
+   "n": 112,
+   "rate": 0.47321,
+   "p_value": 0.1948181663793772
+  },
+  "SELECT": {
+   "hits": 26,
+   "n": 56,
+   "rate": 0.46429,
+   "p_value": 0.3409226998094105
+  },
+  "PF": {
+   "hits": 53,
+   "n": 112,
+   "rate": 0.47321,
+   "p_value": 0.1948181663793772
+  }
+ },
+ "separation": {
+  "n_groups": 21,
+  "fraction_positive": 0.52381,
+  "p_value": 0.5,
+  "mean": 0.18771,
+  "median": 0.02549,
+  "min": -0.86772,
+  "max": 2.20279,
+  "by_contrast_type": {
+   "FEATURE": 0.22978,
+   "SELECT": 0.10356
+  }
+ },
+ "d_demo": {
+  "mean": 0.2657,
+  "max": 0.46939
+ },
+ "leakage_violations": [],
+ "noninformative_episodes": 0,
+ "gates": {
+  "G1_primary_identifiability": {
+   "measured": 0.47024,
+   "p_value": 0.1554582145741385,
+   "threshold": "rate > 3/7 and p < 0.01",
+   "pass": false
+  },
+  "G2_contrast_type_robustness": {
+   "measured": 0.47321,
+   "p_value": 0.1948181663793772,
+   "threshold": "PARTITION+FEATURE rate > 3/7 and p < 0.01",
+   "pass": false
+  },
+  "G3_separation": {
+   "measured": 0.52381,
+   "p_value": 0.5,
+   "threshold": "fraction s>0 above 0.5 and p < 0.01",
+   "pass": false
+  },
+  "G4_separation_magnitude": {
+   "measured": 0.18771,
+   "threshold": "mean s >= 0.25",
+   "pass": false
+  },
+  "G5_scale": {
+   "measured": 21,
+   "threshold": ">= 60 train groups",
+   "pass": false
+  },
+  "G6_coverage": {
+   "measured": {
+    "FEATURE": 14,
+    "SELECT": 7
+   },
+   "threshold": ">= 3 train groups per contrast type",
+   "pass": false
+  },
+  "G7_distinct_targets": {
+   "measured": 41,
+   "threshold": ">= 100 distinct train digests",
+   "pass": false
+  },
+  "G8_splits": {
+   "measured": "disjoint",
+   "threshold": "group digests disjoint across splits",
+   "pass": true
+  },
+  "G9_leakage": {
+   "measured": 0,
+   "threshold": "zero violations",
+   "pass": true
+  },
+  "G10_evidence": {
+   "measured": 0,
+   "threshold": "every admitted episode informative",
+   "pass": true
+  }
+ },
+ "verdict": "V1.3 CONTRASTIVE CORPUS IDENTIFIABILITY GATE FAIL"
+}
