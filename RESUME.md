@@ -4,28 +4,42 @@ Last updated 2026-09-27. Read this first.
 
 ## State
 
-**v1.4 mechanistic frontier localization: PROTOCOL FROZEN at 50841e3, NOT
-RUN.** Protocol `docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md`
-sha256 `43e798fa...f4f84518`; manifest
+**v1.4 mechanistic frontier localization: FROZEN WITH ERRATUM 1 at
+adecfd2, NOT RUN.** Protocol
+`docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md` sha256
+`26e0c60b...88529077`; manifest
 `outputs/tti/mechanistic_frontier_v14_manifest.json` sha256
-`dd481b31...5af67c8a`; design record `records/ITEM2_V14_DESIGN_DECISION.md`;
-39 tests pass. No v1.4 experiment episode exists; no stage statistic has
-been computed on real data.
+`22dccf9a...dd3742e`; design record `records/ITEM2_V14_DESIGN_DECISION.md`;
+erratum `records/ITEM2_V14_ERRATUM_01.md`. First freeze 50841e3 (protocol
+43e798fa, manifest dd481b31) is superseded. 48 v1.4 tests pass. No v1.4
+experiment episode exists; no stage statistic has been computed on real
+data.
 
 Branch B, counterfactual twins: FEATURE contrasts only, both targets of a
 replicate see the same input grids, 4 replicates per group, target A also
 rerun on the same input as a timing-noise control, run order balanced over
-six permutations. Stagewise twin-excluded nearest neighbour against the
-exact null 1/2 (3/7 is not exact under shared inputs), qualification needs
-strict rate > 1/2 and exact binomial and randomization p < 0.01. Target 42
-groups, floor 14, caps 400 slots or 24 h; smoke projects about 2.4 h.
+six permutations, engine caches cleared before every run. Stagewise
+twin-excluded nearest neighbour against the exact null 1/2 (3/7 is not exact
+under shared inputs); hits break ties by a label-independent hash;
+qualification needs hit rate > 1/2 and exact binomial and randomization
+p < 0.01. Target 42 groups, floor 14, caps 400 slots or 24 h; the smoke
+projects about 2.4 h.
 
-Freeze checks cover the protocol, manifest, 11 implementation files and
-tree digests of cora_arc2026, geocat_arc and the three packages read from
-Reasoning_Project_tti. **Any edit to cora_arc2026 or geocat_arc before the
-run makes the generator refuse to start, by design.**
+The one pre-run adversarial review is DONE. It found one blocking defect
+(ties counted as misses meant coarse stages could never qualify, and an
+earlier unresolved stage did not stop a later localization), two major (S6,
+S7a and S7 re-score against each target's own outputs; 16 of the engine's 18
+`ARC_*` switches were unguarded) and several minor, all corrected before any
+episode existed, no threshold changed. No second review round.
 
-Repo suite: 103 passed, 1 failed, the pre-existing timing-dependent
+Freeze checks cover the protocol, manifest, 11 implementation files, two
+grammar-manifest files in Reasoning_Project_tti, runtime versions, and tree
+digests of cora_arc2026, geocat_arc and the three packages read from
+Reasoning_Project_tti; they are re-verified after every slot. **Any edit to
+cora_arc2026 or geocat_arc before or during the run makes the generator
+refuse to start or the audit block, by design.**
+
+Repo suite: 112 passed, 1 failed, the pre-existing timing-dependent
 `test_observer_state_cannot_leak_between_tasks` (see the design record).
 
 **v1.3 contrastive corpus: COMPLETE, audited, official verdict
@@ -100,8 +114,8 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT**, after
-the one adversarial review of the frozen protocol is resolved. Then STOP.
+**RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT.** Then
+STOP.
 
     cd Reasoning_Project_arc2026
     setsid nohup scripts/run_v14_chain.sh > logs/v14_chain_stdout.log 2>&1 < /dev/null &
