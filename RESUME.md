@@ -1,26 +1,30 @@
 # ARC-2026 delivery sprint: resume
 
-Last updated 2026-09-24. Read this first.
+Last updated 2026-09-27. Read this first.
 
 ## State
 
-**v1.3 contrastive corpus: Phase A calibration IN PROGRESS.** No group has
-been generated, no calibration constant is frozen, no pilot has run, and the
-audit has not run. Live state is in `logs/v13_generation_state.txt`, which is
-authoritative over this summary.
+**v1.3 contrastive corpus: COMPLETE, audited, official verdict
+V1.3 CONTRASTIVE CORPUS IDENTIFIABILITY GATE FAIL.** Full record:
+`records/ITEM2_V13_CORPUS_RESULT_20260926.md`, committed e200e5a with the
+audit reports and every corpus record.
 
-Protocol sha256 `66aa1c56...389d8f1e`, manifest sha256 `9492f392...ab56de14`.
-Implementation sealed before any outcome: core and generator at 0146e20, the
-nonlearned G1 to G10 auditor at 4a6efd8.
+Protocol sha256 `66aa1c56...389d8f1e`, manifest sha256 `9492f392...ab56de14`,
+calibration `ba82865e...51c7c02` (committed aaa2972 before Phase B), q = 0.025
+(committed e9ba44c before the full run), generator 0146e20, auditor 4a6efd8
+plus erratum-2 correction 94c159a. Three errata, all recorded.
 
-Two corrections made during setup, both recorded. The Phase A implementation
-slot ceiling was raised to 12000 at ca033a7, because per-attempt admission
-measures about 5 percent and the original ceiling could not reach the frozen
-200-episode target. And the chain watcher was replaced at e192636 because it
-would have launched the pilot on the mere existence of the calibration file;
-the frozen protocol requires that artifact to be COMMITTED first. The boundary
-was never crossed: at the time the defect was found Phase A was still running,
-no calibration file existed and zero pilot groups had been generated.
+Full run 1,200 of 1,200 slots, 21 groups admitted (FEATURE 14, SELECT 7,
+PARTITION 0), 168 episodes, 41 distinct targets. G1 hit rate 0.470 (79 of 168)
+against the exact null 3/7, p = 0.156; G2 0.473, p = 0.195; median
+separation 0.025. G1 to G7 FAIL, G8 to G10 PASS. The auditor was run twice and
+the reports are byte-identical. The one-sided 95 percent upper bound on the
+hit rate is 0.537, so the planned effect of 0.55 is excluded; a small effect
+is not.
+
+Interpretation, case B: identifiability is not established, and the failure
+is primarily identifiability, with scale failing in addition. Do not fit a
+scorer. The ConstructiveExtensionCompiler stays BLOCKED.
 
 Standing evidence, unchanged: v1.2 corpus PASSED all 11 gates. v1.2 scorer
 FAILURE_CONDITIONING_NOT_ESTABLISHED. Diagnosis
@@ -72,16 +76,14 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Complete the frozen v1.3 experiment in order: finish Phase A to exactly 200
-admitted episodes, verify them mechanically, write and hash the calibration
-artifact, COMMIT it, then run exactly 40 pilot group slots, freeze and commit
-q, then the full run of ceil(84/q) capped at 1200, then splits by ascending
-group digest at 60/12/12, then the sealed auditor, then STOP with PASS or FAIL.
+**PRESERVE THE v1.3 FAILURE AND PREREGISTER ONLY THE SMALLEST FOLLOW-UP
+NEEDED TO ADDRESS THE RECORDED FAILURE MODE.**
 
-Nothing is trained in that chain. No group is ever filtered on any property of
-its frontier. No threshold moves. The ConstructiveExtensionCompiler stays
-BLOCKED even on a PASS, which licenses only a separately preregistered scorer
-discrimination experiment.
+Not designed, not implemented. It is the user's decision. Whatever it is must
+address identifiability first, since scaling a corpus in which the effect is
+absent could at best find a small one. The scorer discrimination experiment is
+NOT licensed. Binding data order is in `records/DATA_USAGE_ORDER.md`: the
+1000-task run is still many gates away.
 
 ## How to re-run
 

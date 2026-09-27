@@ -109,3 +109,15 @@ remained a single writer.
   erratum 3 shows changes admission because two stages are deadline bound.
   The projection is NOT acted on: q stays frozen, the cap stays at 1200, and
   no gate moves. The measurement at the end governs.
+
+--- TERMINAL, recorded 2026-09-27 ---
+Full run complete: 1200 of 1200 slots, 29,763 attempts, 49,814 s.
+Admitted 21 groups (FEATURE 14, SELECT 7, PARTITION 0), 168 episodes,
+41 distinct targets. The 26-slot projection above (about 138) was wrong;
+nothing was changed in response to it.
+Sealed auditor run twice, reports byte-identical,
+sha256 263ec77436040499fe2362f844125b1e811c7cafd62270cab367743a91c7809c.
+OFFICIAL VERDICT: V1.3 CONTRASTIVE CORPUS IDENTIFIABILITY GATE FAIL.
+G1-G7 FAIL, G8-G10 PASS. G1 0.470 (79/168) p=0.156 vs null 3/7.
+Record: records/ITEM2_V13_CORPUS_RESULT_20260926.md (commit e200e5a).
+No process of this chain is running. STOPPED as directed.
