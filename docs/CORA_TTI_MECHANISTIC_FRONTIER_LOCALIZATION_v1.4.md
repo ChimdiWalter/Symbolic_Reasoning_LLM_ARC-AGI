@@ -151,14 +151,19 @@ The same real engine and the same observer as v1.3, called through
 no reasoning semantics:
 
 - a fresh engine directory `outputs/tti/v14_engine`, not the v1.3 one;
-- the generator refuses to run if `ARC_OVERLAY` or `ARC_DIHEDRAL_FRAMES` is
-  set, or if `library.json` or `learned_verbs.json` exists in the engine
-  directory, since those would make the reasoner differ between episodes
-  (checked from source: the near-solve log is reread only under
-  `ARC_OVERLAY`, and the fragment library changes only through
-  `promote_and_validate`, which extraction never calls);
+- the engine reads 18 `ARC_*` switches, several of which change behaviour
+  across episodes (`ARC_ANALOGY` loads persisted programs, `ARC_OVERLAY`
+  rereads the near-solve log, `ARC_GUIDE` keeps module caches). The generator
+  refuses to run if any `ARC_*` variable other than `ARC_META_BUDGET_S=8` is
+  set, if `PYTHONHASHSEED` is not 0, or if `library.json` or
+  `learned_verbs.json` exists in the engine directory. The environment and
+  the Python, numpy and scipy versions are recorded in every slot and must
+  equal the manifest's;
+- every engine memo cache is cleared before every engine run, so no run
+  starts warm from an earlier run on the same input;
 - the engine task label is an opaque hash with no target, twin or replicate
-  identity, and `PYTHONHASHSEED=0` is required.
+  identity. The grammar manifest the vocabulary loads from
+  Reasoning_Project_tti is hashed with the freeze.
 
 ### 4.7 Raw trajectory capture and noninterference
 
@@ -222,8 +227,9 @@ committed v1.3 calibration (sha256 `ba82865e...51c7c02`, erratum-1 divisor 1.0
 for constant fields). No constant is computed from v1.4 data.
 
 Known limitation of S3: if the search deadline expires inside selector
-induction, the last group reads as "no selector". S3 is interpreted with
-this stated.
+induction or action fitting, the last group reads as "no selector". S3 is
+interpreted with this stated. CPU time of every engine run is recorded, so
+truncation can be related to CPU share.
 
 ## 6. Statistics
 
@@ -251,25 +257,31 @@ without ties.
 ### 6.2 Ties
 
 Ties at the minimum distance share credit: a query's credit is the fraction
-of its tied nearest companions that share its target. A strict hit requires
-every tied nearest companion to share it. v1.3 broke ties by episode index,
-which favoured target 0 and so could only raise a hit rate; v1.3 failed
-regardless, so its verdict is unaffected.
+of its tied nearest companions that share its target. A **hit** breaks ties
+by a sha256 hash of (stage, group position, query, companion), which depends
+on no label, so its null probability is exactly 1/2 and its expectation
+equals the credit. A strict hit, reported descriptively, requires every tied
+nearest companion to share the target; strict hits undercount under ties,
+and on coarse descriptors can stay below 1/2 at any sample size even when
+the signal is strong. v1.3 broke ties by episode index, which is not neutral:
+it adds hits for target-0 queries and removes them for target-1 queries, so
+its net effect can have either sign. The number of tied queries in v1.3 was
+not measured.
 
 ### 6.3 Stage qualification (primary)
 
 For each stage, over all admitted groups:
 
-1. strict hits, total, strict rate, exact one-sided binomial p against 1/2,
-   and the exact two-sided 95 percent Clopper-Pearson interval;
+1. hits, total, hit rate, exact one-sided binomial p against 1/2, and the
+   exact two-sided 95 percent Clopper-Pearson interval;
 2. total credit, and its exact one-sided randomization p: the probability,
    under independent uniform within-twin label swaps in every group (16
    patterns per group), that total credit is at least the observed value,
    computed by exact convolution. This test is exact under within-group
    dependence; the binomial is not.
 
-A stage is **TARGET_IDENTIFYING** only if strict rate > 1/2, binomial
-p < 0.01 and randomization p < 0.01. The binomial alone is not valid under
+A stage is **TARGET_IDENTIFYING** only if hit rate > 1/2, binomial p < 0.01
+and randomization p < 0.01. The binomial alone is not valid under
 within-group dependence, and the randomization test alone would drop the
 directive's statistic, so both are required. Stricter than the directive,
 never looser. p < 0.05 is never used.
@@ -284,9 +296,19 @@ never looser. p < 0.05 is never used.
   twin distance d(A, B) is compared with the rerun distance d(A, A'). If the
   stage does not depend on the target, B and A' are exchangeable given A, so
   among untied replicates the twin is farther with probability 1/2; replicates
-  are independent. Exact one-sided sign test; the stage REACTS if p < 0.01.
-  Counts are also reported by time-gap stratum: twin closer in time to A,
-  rerun closer, equal gaps. This separates
+  are independent. Exact one-sided sign test, Holm-adjusted over S2 to S5;
+  the stage REACTS if the adjusted p < 0.01. Replicates whose rerun solved
+  the task are excluded and counted. Counts are also reported by time-gap
+  stratum: twin closer in time to A, rerun closer, equal gaps. The rerun is
+  not admission-gated while B is, which biases toward "rerun farther", that
+  is, against finding a reaction.
+- **Only S2 to S5 can establish a reaction.** S6, S7a and S7 also score each
+  target's candidates against that target's own outputs, so they differ
+  between twins even when the trajectory is identical. Their twin-versus-rerun
+  counts are reported but never enter the qualifier. For the same reason an
+  execution-stage classification means target information is present in the
+  candidate-to-mismatch evidence; it does not by itself show that the search
+  reacted. This separates
   "does not react to the semantic change" from "reacts, but not consistently
   across inputs", which the nearest-neighbour test cannot. S0 is excluded
   because the rerun has identical demonstrations.
@@ -310,6 +332,7 @@ stages S7a, S7. S0 never enters the ladder. First matching rule wins.
 |---|---|---|
 | admitted groups < 14 | MIXED_OR_INCONCLUSIVE | the smallest experiment resolving the unresolved stage |
 | S7 qualifies | CURRENT_TFG_IDENTIFYING_UNDER_TWINS | the current representation identifies targets once input variation is controlled; the v1.3 negative is then attributable to instance noise, and the next step is the smallest test of whether that signal survives realistic input variation |
+| a reasoning stage before the first qualifying stage has randomization p < 0.01 but fails the binomial | MIXED_OR_INCONCLUSIVE | resolve that earlier stage |
 | a search stage qualifies | RAW_TRAJECTORY_SIGNAL_TFG_LOSS, at the earliest qualifying stage | the smallest TFG-preservation repair for that stage |
 | an execution stage qualifies | LATE_EXECUTION_SIGNAL_ONLY | candidate-to-mismatch association preservation |
 | only S7a qualifies | TFG_AGGREGATION_LOSS | preserve the graph structure the 42-field aggregation loses |
@@ -318,7 +341,11 @@ stages S7a, S7. S0 never enters the ladder. First matching rule wins.
 | nothing qualifies and admitted groups < 42 | MIXED_OR_INCONCLUSIVE | underpowered negative |
 
 A qualifying stage is valid at any sample at or above the floor, since power
-affects only false negatives. REASONER_TRAJECTORY_INSENSITIVE applies to
+affects only false negatives. For RAW_TRAJECTORY_SIGNAL_TFG_LOSS and
+LATE_EXECUTION_SIGNAL_ONLY the loss point is reported: the 42-field
+aggregation if S7a qualifies, TFG construction otherwise. With seven stages
+at 0.01 each, the family-wise error of a positive label is at most about 7
+percent; whether the determining stage survives Holm is reported. REASONER_TRAJECTORY_INSENSITIVE applies to
 observed stages only: S1 is not observed.
 
 S0 is interpreted separately. S0 identifying while later stages do not:
@@ -369,7 +396,9 @@ hashes; every admitted group is FEATURE, has exactly the eight design cells,
 two distinct target digests consistent across episodes, one family and one
 MDL, identical twin inputs, at least one differing twin output, identical twin seeds
 and a complete self rerun with its run order on every target-0 episode; no
-view leaks; and no slot recorded an engine state problem. Any
+view leaks; slot records contiguous from 0, group digests unique, no more
+groups than the target, and every slot recording the frozen environment,
+the frozen runtime versions and a freeze re-verified at that slot; and no slot recorded an engine state problem. Any
 violation gives AUDIT_BLOCKED and no statistic.
 
 ## 11. Reproducibility
@@ -381,11 +410,13 @@ byte-identical.
 
 ## 12. Order after freeze
 
-1. One adversarial review of this frozen protocol and its implementation.
-   Any blocking defect is corrected by a recorded erratum before any
-   experiment episode exists.
-2. Run the generator in full mode: single writer, nice 19, detached, until
-   42 admitted groups, the slot cap or the wall-clock cap.
+1. One adversarial review of the frozen protocol and its implementation:
+   done before any experiment episode existed; its corrections are in this
+   version (section 16). No second review round.
+2. Run the generator in full mode: single writer enforced by a file lock,
+   nice 19, detached, until 42 admitted groups, the slot cap or the
+   wall-clock cap, which counts from the first start across any restart. The
+   freeze is re-verified after every slot.
 3. Run the sealed auditor twice; require byte-identical reports.
 4. Record the classification with every stage row. STOP.
 
@@ -417,6 +448,9 @@ distance, cap or classification rule changes after freeze.
    qualifies the negative label only and adds one engine run per replicate.
 8. Run order balanced over six permutations (section 4.7), to remove a
    run-position confound the directive's design would have carried.
+9. Hits break ties by a label-independent hash rather than counting ties as
+   misses (section 6.2): the null stays exactly 1/2, and coarse stages can
+   qualify at all.
 
 ## 14. Claim ceiling
 
@@ -464,3 +498,25 @@ groups, a negative is MIXED_OR_INCONCLUSIVE by the ladder, and a positive at
 14 groups or more stands.
 
 Static tests: `tests/test_v14_localization_feasibility.py`.
+
+## 16. Erratum 1: the pre-run adversarial review
+
+The protocol was first frozen at commit 50841e3 (protocol sha256
+43e798fa..., manifest dd481b31...). One adversarial review of that freeze,
+run before any experiment episode existed, confirmed the exact null, the
+exactness of the randomization test, the S3 and S7a derivations, seed
+disjointness, the abandonment rule, leakage and auditor determinism, and
+found the following. Every correction was made before any experiment
+episode exists; none relaxes a threshold.
+
+| finding | severity | correction |
+|---|---|---|
+| a stage with exact-test signal but failing the binomial, placed before the first qualifying stage, did not stop a later localization; with ties counted as misses, coarse stages such as S2 and S4 could never qualify | blocking | hits break ties by a label-independent hash (section 6.2), and the ladder returns MIXED_OR_INCONCLUSIVE when such an earlier stage exists (section 7) |
+| S6, S7a and S7 re-score candidates against each target's own outputs, so they differ between twins even with identical trajectories, making the reaction qualifier near-automatic | major | reaction qualifier from S2 to S5 only, Holm-adjusted; execution-stage labels documented as not showing a search reaction (section 6.4) |
+| only two of the engine's 18 `ARC_*` switches were refused, none recorded | major | all `ARC_*` refused except `ARC_META_BUDGET_S=8`; environment and runtime versions recorded per slot and checked by the auditor (section 4.6) |
+| only target A ever followed an identical-input run, and engine memo caches persist across runs | minor | every engine cache cleared before every run |
+| a solved rerun biases the sign test | minor | such replicates excluded and counted |
+| freeze checked only at start and audit; grammar manifest unhashed; wall clock reset on restart; no writer lock; slot contiguity and duplicate groups unchecked; run-end record not atomic | minor | per-slot freeze re-verification, grammar manifest hashed, persistent wall clock, file lock, auditor corpus checks, atomic write |
+| the S3 limitation also applies when the deadline expires during action fitting; CPU time not stored; the v1.3 tie-break statement was wrong | minor | text corrected, CPU time recorded |
+
+Record: `records/ITEM2_V14_ERRATUM_01.md`.

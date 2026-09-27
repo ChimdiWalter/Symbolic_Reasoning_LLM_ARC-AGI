@@ -1,6 +1,6 @@
 # Item-2 v1.4 mechanistic frontier localization: design decision
 
-**STATUS: FROZEN, NOT RUN.** Authoritative text:
+**STATUS: FROZEN WITH ERRATUM 1 APPLIED, NOT RUN.** Authoritative text:
 `docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md`. Identities in
 `outputs/tti/mechanistic_frontier_v14_manifest.json` and in section 8 below.
 No v1.4 experiment episode exists. No stagewise hit rate, distance or
@@ -45,13 +45,15 @@ and no hook is added. Target 42 groups; floor 14; nothing trained.
   three same-target and three other. Exact null expected credit 1/2 for any
   distance matrix. v1.3's 3/7 is not exact under shared inputs.
 - Ties share credit; a strict hit needs every tied nearest to agree.
-- A stage is TARGET_IDENTIFYING only if strict rate > 1/2, exact binomial
+- A stage is TARGET_IDENTIFYING only if hit rate > 1/2, exact binomial
   p < 0.01, and exact within-twin randomization p < 0.01 (the binomial is not
-  valid under within-group dependence).
+  valid under within-group dependence). A hit breaks ties by a
+  label-independent hash; strict hits are descriptive (erratum 1).
 - Sample size: p1 = 0.60 against 1/2, alpha 0.01, power 0.90, exact:
   336 instances = 42 groups, critical 190.
 - Explanatory only: separation s = B - W across replicates; tie fraction;
-  Holm-adjusted p-values; and the self-rerun sign test.
+  Holm-adjusted p-values; and the self-rerun sign test, which can establish
+  a reaction only from S2 to S5.
 
 ## 5. Two corrections made during this block, before freeze
 
@@ -76,6 +78,15 @@ or with a library or learned-verb file present, and uses a fresh engine
 directory. v1.3's nearest-neighbour tie break by episode index favoured
 target 0 and could only raise a hit rate, so the v1.3 FAIL stands.
 
+3. **Pre-run adversarial review (erratum 1).** One blocking, two major and
+   several minor findings, all corrected before any episode existed:
+   label-independent tie breaking for hits and a ladder guard against an
+   unresolved earlier stage; reactions only from engine-emitted stages;
+   every `ARC_*` switch refused except the budget, with environment and
+   versions recorded per slot; engine caches cleared before every run;
+   per-slot freeze re-verification, writer lock, persistent wall clock and
+   corpus checks. Record: `records/ITEM2_V14_ERRATUM_01.md`.
+
 ## 6. Deviations from the directive
 
 Null 1/2 instead of 3/7; randomization test added to the binomial; two
@@ -92,7 +103,8 @@ printed per-episode trajectory sizes and candidate counts for smoke episodes
 (seeds from 200,000,000, never audited); no distance or neighbour between
 any two episodes was computed.
 
-Test status at freeze: all 39 v1.4 tests pass. The full repository suite
+Test status at the first freeze: all 39 v1.4 tests passed; after erratum 1
+see RESUME.md for the current count. The full repository suite
 gives 103 passed and 1 failed, the pre-existing
 `test_engine_trace_repair.py::test_observer_state_cannot_leak_between_tasks`.
 Its last assertion expects a deadline-bound DEV task to emit more candidates
@@ -109,5 +121,5 @@ in `RESUME.md`.
 
 ## 9. Next action, exactly one
 
-RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT, after the
-one adversarial review of the frozen protocol. Then STOP.
+RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT. The one
+adversarial review is done and its corrections are frozen. Then STOP.

@@ -5,8 +5,8 @@
 # matches.
 set -u
 cd "$(dirname "$0")/.." || exit 1
+for v in $(compgen -e | grep '^ARC_'); do unset "$v"; done
 export PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 ARC_META_BUDGET_S=8
-unset ARC_OVERLAY ARC_DIHEDRAL_FRAMES
 PY=.venv_arc2026/bin/python
 LOG=logs/v14_chain.log
 OUT=outputs/tti

@@ -50,6 +50,9 @@ def verify_freeze():
     for name, root in sorted(L.dependency_roots(HERE).items()):
         if L.tree_digest(root) != man["dependency_tree_sha256"][name]:
             problems.append(f"dependency:{name}")
+    for path, digest in sorted(man["external_file_sha256"].items()):
+        if sha256(path) != digest:
+            problems.append(path)
     if sha256(CAL_FILE) != CAL_SHA256:
         problems.append("calibration")
     return man, problems
@@ -73,8 +76,12 @@ def main():
     for r in records:
         for code, n in r.get("rejections", {}).items():
             rejections[code] = rejections.get(code, 0) + n
-    integrity = {g["group_digest"]: L.integrity_problems(g) for g in groups}
+    integrity = {f"slot{r['slot']}": L.integrity_problems(r["group"])
+                 for r in records if r.get("admitted")}
     integrity = {k: v for k, v in integrity.items() if v}
+    corpus = L.corpus_problems(records, man["caps"]["target_groups"],
+                               man["environment"]["required_snapshot"],
+                               man["runtime_versions"])
     leaks = {}
     for g in groups:
         for e in g["episodes"]:
@@ -100,8 +107,9 @@ def main():
         "integrity_problems": integrity,
         "leaks": leaks,
         "engine_state_problems": engine_state,
+        "corpus_problems": corpus,
     }
-    blocked = freeze_problems or integrity or leaks or engine_state
+    blocked = freeze_problems or integrity or leaks or engine_state or corpus
     if blocked:
         report["verdict"] = "AUDIT_BLOCKED"
     elif not groups:
@@ -123,7 +131,8 @@ def main():
     print(f"slots {report['slots']}  groups {report['admitted_groups']}  "
           f"episodes {report['episodes']}  targets {report['distinct_targets']}")
     if blocked:
-        print("AUDIT BLOCKED", freeze_problems, integrity, leaks, engine_state)
+        print("AUDIT BLOCKED", freeze_problems, integrity, leaks, engine_state,
+              corpus)
         return
     if not groups:
         print("no admitted groups")
@@ -133,18 +142,19 @@ def main():
           f"{'med s':>8s}  identifying")
     for s in L.ALL_STAGES:
         r = report["stages"][s]
-        print(f"{s:6s} {r['strict_hits']:>4d}/{r['total']:<4d} "
-              f"{r['strict_rate']:7.4f} {r['p_binomial']:9.2e} "
+        print(f"{s:6s} {r['hits']:>4d}/{r['total']:<4d} "
+              f"{r['hit_rate']:7.4f} {r['p_binomial']:9.2e} "
               f"{r['credit_rate']:7.4f} {r['p_randomization']:9.2e} "
               f"{r['tie_fraction']:5.2f} {r['separation_mean']:8.4f} "
               f"{r['separation_median']:8.4f}  "
               f"{'YES' if r['target_identifying'] else 'no'}")
-    print("sensitivity: twin distance against the same-input rerun")
+    print("sensitivity: twin distance against the same-input rerun "
+          "(S6, S7a, S7 include output re-scoring, never qualify)")
     for s in L.CORA_STAGES:
         r = report["sensitivity"][s]
         print(f"{s:6s} twin farther {r['twin_farther']:4d}  rerun farther "
               f"{r['rerun_farther']:4d}  ties {r['ties']:4d}  p {r['p_sign']:9.2e}  "
-              f"{'REACTS' if r['reacts'] else 'no'}")
+              f"{'REACTS' if r['reacts'] else '-'}")
     c = report["classification"]
     print("CLASSIFICATION", c["classification"], "determining",
           c["determining_stage"], "reason", c["reason"])

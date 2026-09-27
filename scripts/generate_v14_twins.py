@@ -12,6 +12,7 @@ is trained, and no distance between episodes is computed here.
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import json
 import os
@@ -37,20 +38,33 @@ def sha256(path):
         return hashlib.sha256(handle.read()).hexdigest()
 
 
+def freeze_problems(man):
+    problems = []
+    if sha256(PROTOCOL) != man["protocol_doc_sha256"]:
+        problems.append("protocol")
+    with open(MANIFEST + ".sha256") as handle:
+        if handle.read().split()[0] != sha256(MANIFEST):
+            problems.append("manifest")
+    for rel, digest in man["implementation_sha256"].items():
+        if sha256(os.path.join(HERE, rel)) != digest:
+            problems.append(rel)
+    for name, root in L.dependency_roots(HERE).items():
+        if L.tree_digest(root) != man["dependency_tree_sha256"][name]:
+            problems.append(f"dependency:{name}")
+    for path, digest in man["external_file_sha256"].items():
+        if sha256(path) != digest:
+            problems.append(path)
+    if L.runtime_versions() != man["runtime_versions"]:
+        problems.append("runtime_versions")
+    return problems
+
+
 def frozen_manifest():
     with open(MANIFEST) as handle:
         man = json.load(handle)
-    if sha256(PROTOCOL) != man["protocol_doc_sha256"]:
-        raise SystemExit("protocol document does not match the manifest")
-    with open(MANIFEST + ".sha256") as handle:
-        if handle.read().split()[0] != sha256(MANIFEST):
-            raise SystemExit("manifest does not match its recorded sha256")
-    for rel, digest in man["implementation_sha256"].items():
-        if sha256(os.path.join(HERE, rel)) != digest:
-            raise SystemExit(f"implementation changed after freeze: {rel}")
-    for name, root in L.dependency_roots(HERE).items():
-        if L.tree_digest(root) != man["dependency_tree_sha256"][name]:
-            raise SystemExit(f"reasoner dependency changed after freeze: {name}")
+    problems = freeze_problems(man)
+    if problems:
+        raise SystemExit(f"freeze check failed: {problems}")
     return man
 
 
@@ -61,12 +75,12 @@ def settings(mode, args):
     if mode == "full":
         man = frozen_manifest()
         caps = man["caps"]
-        return dict(common, base=L.SEED_BASE, prefix="full",
+        return dict(common, base=L.SEED_BASE, prefix="full", manifest=man,
                     out=os.path.join(HERE, "outputs", "tti", "v14_twin_corpus"),
                     engine=os.path.join(HERE, "outputs", "tti", "v14_engine"),
                     target=caps["target_groups"], slots=caps["slot_cap"],
                     wall=caps["wall_clock_s"])
-    return dict(common, base=L.SMOKE_BASE, prefix="smoke",
+    return dict(common, base=L.SMOKE_BASE, prefix="smoke", manifest=None,
                 out=os.path.join(HERE, "logs", "v14_feasibility"),
                 engine=os.path.join(HERE, "logs", "v14_feasibility", "engine"),
                 target=args.target, slots=args.slots, wall=args.wall)
@@ -125,6 +139,13 @@ def run_slot(slot, fam, cfg):
     return record
 
 
+def write_atomic(path, obj, **kw):
+    tmp = path + ".tmp"
+    with open(tmp, "w") as handle:
+        json.dump(obj, handle, default=str, **kw)
+    os.replace(tmp, path)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=("smoke", "full"))
@@ -140,6 +161,21 @@ def main():
     problems = L.engine_state_problems(cfg["engine"])
     if problems:
         raise SystemExit(f"engine state is not clean: {problems}")
+    lock = open(os.path.join(cfg["out"], ".writer.lock"), "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        raise SystemExit("another writer holds the lock")
+    #  the wall clock counts from the FIRST start, across restarts
+    state_path = os.path.join(cfg["out"], f"{cfg['prefix']}_run_state.json")
+    if os.path.exists(state_path):
+        with open(state_path) as handle:
+            first = json.load(handle)["first_started_epoch"]
+    else:
+        first = time.time()
+        write_atomic(state_path, {"first_started_epoch": first,
+                                  "first_started_utc": time.strftime(
+                                      "%Y-%m-%dT%H:%M:%SZ", time.gmtime(first))})
 
     families = [G.parse_family(f) for f in FAMILIES]
     admitted, started, stop = 0, time.monotonic(), "slot_cap"
@@ -152,17 +188,18 @@ def main():
         if admitted >= cfg["target"]:
             stop = "target_groups"
             break
-        if time.monotonic() - started > cfg["wall"]:
+        if time.time() - first > cfg["wall"]:
             stop = "wall_clock"
             break
         slot_started = time.monotonic()
         record = run_slot(slot, families[slot % len(families)], cfg)
         record["elapsed_s"] = round(time.monotonic() - slot_started, 2)
         record["engine_state_problems"] = L.engine_state_problems(cfg["engine"])
-        tmp = path + ".tmp"
-        with open(tmp, "w") as handle:
-            json.dump(record, handle, default=str)
-        os.replace(tmp, path)
+        record["environment"] = L.environment_snapshot()
+        record["runtime_versions"] = L.runtime_versions()
+        record["freeze_ok"] = (not freeze_problems(cfg["manifest"])
+                               if cfg["manifest"] else None)
+        write_atomic(path, record)
         admitted += int(record["admitted"])
         print(f"  {cfg['prefix']}{slot:05d} {record['anchor_family']:8s} "
               f"admitted={record['admitted']} pairs={record['pair_attempts']} "
@@ -173,9 +210,10 @@ def main():
         stop = "target_groups" if admitted >= cfg["target"] else "slot_cap"
     summary = {"mode": args.mode, "admitted_groups": admitted,
                "stop_reason": stop,
-               "seconds": round(time.monotonic() - started, 1)}
-    with open(os.path.join(cfg["out"], f"{cfg['prefix']}_run_end.json"), "w") as handle:
-        json.dump(summary, handle, indent=1)
+               "seconds_this_start": round(time.monotonic() - started, 1),
+               "seconds_since_first_start": round(time.time() - first, 1)}
+    write_atomic(os.path.join(cfg["out"], f"{cfg['prefix']}_run_end.json"),
+                 summary, indent=1)
     print("RUN_END", json.dumps(summary), flush=True)
 
 

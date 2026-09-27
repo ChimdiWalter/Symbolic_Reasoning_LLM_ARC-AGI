@@ -1,5 +1,15 @@
 {
  "admission": "v1.3 law per target unchanged (evaluate_target_v2 R1-R8, occurrence-scoped fitter 2cc45152c430f8a2, unweakened baseline K, full-engine informative gate frontier_term_count >= 2) plus twin integrity; no frontier property examined",
+ "auditor_corpus_checks": [
+  "slots contiguous from 0",
+  "unique group digests",
+  "groups <= target",
+  "frozen environment every slot",
+  "frozen runtime versions every slot",
+  "freeze re-verified every slot",
+  "no engine state problem",
+  "integrity keyed by slot"
+ ],
  "branch": "B_COUNTERFACTUAL_TWIN",
  "branch_reason": "stored v1.3 artifacts hold only post-extraction evidence (<=12 re-sorted frontier terms, ordered candidate list discarded, selector failures never emitted); chosen from schema inventory before any stage outcome",
  "budgets": {
@@ -28,16 +38,17 @@
  "classification_ladder": [
   "admitted groups < 14: MIXED_OR_INCONCLUSIVE",
   "S7 qualifies: CURRENT_TFG_IDENTIFYING_UNDER_TWINS",
-  "a search stage (S2,S3,S4) qualifies: RAW_TRAJECTORY_SIGNAL_TFG_LOSS at the earliest",
-  "an execution stage (S5,S6) qualifies: LATE_EXECUTION_SIGNAL_ONLY at the earliest",
+  "a reasoning stage before the first qualifying stage has randomization p < 0.01 but fails the binomial: MIXED_OR_INCONCLUSIVE",
+  "a search stage (S2,S3,S4) qualifies: RAW_TRAJECTORY_SIGNAL_TFG_LOSS at the earliest, loss point reported",
+  "an execution stage (S5,S6) qualifies: LATE_EXECUTION_SIGNAL_ONLY at the earliest, loss point reported",
   "only S7a qualifies: TFG_AGGREGATION_LOSS",
   "a reasoning stage has randomization p < 0.01 but fails the binomial: MIXED_OR_INCONCLUSIVE",
-  "nothing qualifies, groups >= 42: REASONER_TRAJECTORY_INSENSITIVE, qualified REACTS_BUT_NOT_CONSISTENTLY or NO_REACTION_BEYOND_TIMING_NOISE",
+  "nothing qualifies, groups >= 42: REASONER_TRAJECTORY_INSENSITIVE, qualified REACTS_BUT_NOT_CONSISTENTLY (S2-S5 Holm) or NO_REACTION_BEYOND_TIMING_NOISE",
   "nothing qualifies, groups < 42: MIXED_OR_INCONCLUSIVE"
  ],
  "contrast_type": "FEATURE",
  "dependency_tree_sha256": {
-  "cora_arc2026": "652e870862b708082747e53ad19682db0db2b4725cc09a1239d779b41284ebb8",
+  "cora_arc2026": "ed81d8c6fe592ad7ebfdb6a154bfe75f654b68ba2e02db00cbe7bd982e317217",
   "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
   "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
   "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
@@ -46,11 +57,9 @@
  "engine": {
   "ARC_META_BUDGET_S": "8",
   "PYTHONHASHSEED": "0",
+  "caches": "every geocat_arc memo cache cleared before every engine run",
+  "cpu_time": "recorded per engine run",
   "dir": "outputs/tti/v14_engine",
-  "forbidden_env": [
-   "ARC_OVERLAY",
-   "ARC_DIHEDRAL_FRAMES"
-  ],
   "forbidden_state_files": [
    "library.json",
    "learned_verbs.json"
@@ -58,6 +67,28 @@
   "label": "opaque sha256 prefix, no target, twin or replicate identity",
   "run_order": "one of the six permutations of (A, B, A') per replicate, sha256('v14-order-<seed>') mod 6",
   "self_rerun": "target A observed twice per replicate on the same input, not admission-gated"
+ },
+ "environment": {
+  "required_snapshot": {
+   "ARC_META_BUDGET_S": "8",
+   "PYTHONHASHSEED": "0"
+  },
+  "rule": "every ARC_* variable refused except ARC_META_BUDGET_S=8; PYTHONHASHSEED=0; snapshot recorded per slot and checked by the auditor"
+ },
+ "erratum": {
+  "cause": "pre-run adversarial review: 1 blocking, 2 major, minor findings",
+  "number": 1,
+  "record": "records/ITEM2_V14_ERRATUM_01.md",
+  "supersedes": {
+   "commit": "50841e3",
+   "manifest_sha256": "dd481b31896ec2c8cda78a52412740dd99302e2ba64d32cab2ee26595af67c8a",
+   "protocol_doc_sha256": "43e798fa8beeee7c53b7398e6eafa6c870f35ad78def3c831f1ab972f4f84518"
+  },
+  "thresholds_changed": false
+ },
+ "external_file_sha256": {
+  "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest.json": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3",
+  "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest_hash.txt": "c9f7fe311a549adc0b5d572fee9c5023976940fc5a438105e6268d55d987fd00"
  },
  "feasibility_smoke": {
   "admitted_groups": 6,
@@ -75,6 +106,7 @@
   "rerun_path_checked_on_real_engine": 2,
   "slots": 11
  },
+ "generator": "single writer by file lock; wall clock from first start across restarts; freeze re-verified after every slot; atomic writes",
  "group_law": {
   "anchor_families_cycle": [
    "(0,0)",
@@ -96,15 +128,15 @@
  "implementation_sha256": {
   "cora_arc2026/engine_trace.py": "adda371babb8ebd784aa129f78ea2146601bcac75b6da2d989bafc6980dd5800",
   "cora_arc2026/v13_gen.py": "1d389abe6ddb70e2eebf7f7cd9433fb3b326dc6bcf07a6a02be62f9b5215dc08",
-  "cora_arc2026/v14_loc.py": "596e3dacdca164116e751820c80d158f1dac07da4a21d2b7f325b8f25e5f8c7d",
+  "cora_arc2026/v14_loc.py": "22ca3ee3df679738b48ae18b24bfa55c3167cc1240e67b708194af34fdb0ed4b",
   "cora_arc2026/vendor/tfg_extractor.py": "268149016febceefa7344950a5d70d37592db2d8a305d4b093b8caa67b886c81",
   "geocat_arc/object_reasoning/_trace_hook.py": "7c3d5a52e394c422ce6a8a53a0f40f4b54c619ddd9fc46d696c486a9da3f3524",
   "outputs/tti/constructive_protocol_v1.3_manifest.json": "9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14",
   "outputs/tti/v13_calibration/calibration.json": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02",
-  "scripts/audit_v14_localization.py": "bac8749cdfdb8151c1137202433e011d5bfdfbfbad719bef1767098cb70fa4ec",
-  "scripts/generate_v14_twins.py": "e357b8bc22dde9bf7ed4fe30f035ef1fff92ee6c6b00dcc0badce71eff5eacf1",
-  "scripts/run_v14_chain.sh": "2264de2a51422e408c4d3c7bf980da90a1e830e764ccb4fb50caf92a266dd195",
-  "tests/test_v14_localization_feasibility.py": "208defcbd88b991018557c60f1f8f39d2144174e830fe6251617ae33e12b7300"
+  "scripts/audit_v14_localization.py": "a08b2549c2109f41083764d8b79ea76dfbadf28c70035a8ceb47924a9c9eebf1",
+  "scripts/generate_v14_twins.py": "825d5f36d3fe9b6f53f4cda2a953f9f72feef3a3c336fe2a3997a675a2429f90",
+  "scripts/run_v14_chain.sh": "11820e45d621020b583cea06e6a1da67942e9990c860bb90d38128037294b364",
+  "tests/test_v14_localization_feasibility.py": "1ed12af255a680290eb5e0ee3acdee0a8d98bb84785d4accf4a1ab0e2135d1a9"
  },
  "not_authorized": [
   "scorer fitting",
@@ -135,8 +167,13 @@
  },
  "protocol": "CORA-TTI Item-2 v1.4 mechanistic frontier localization",
  "protocol_doc": "docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md",
- "protocol_doc_sha256": "43e798fa8beeee7c53b7398e6eafa6c870f35ad78def3c831f1ab972f4f84518",
+ "protocol_doc_sha256": "26e0c60bab43cda44f737c572efcf8ec69fb132d60306d921ac7ddeb88529077",
  "reproducibility": "generator not reproducible (deadline-bound, erratum 3 of v1.3); audit deterministic, run twice, byte-identical required",
+ "runtime_versions": {
+  "numpy": "2.4.3",
+  "python": "3.12.3",
+  "scipy": "1.16.3"
+ },
  "sample_size": {
   "alpha_one_sided": 0.01,
   "critical_strict_hits": 190,
@@ -182,14 +219,14 @@
   "exact_null_expected_credit": "1/2",
   "multiplicity": "Holm over the 7 reasoning stages reported; qualification unadjusted",
   "nearest_neighbour": "twin-excluded, 6 companions (3 same, 3 other target)",
-  "qualification": "strict rate > 1/2 AND exact binomial p < 0.01 AND exact within-twin randomization p < 0.01",
+  "qualification": "hit rate > 1/2 AND exact binomial p < 0.01 on hits AND exact within-twin randomization p < 0.01 on credits",
   "randomization": "16 within-twin swap patterns per group, exact convolution across groups",
-  "sensitivity": "exact one-sided sign test of d(A,B) > d(A,A') over replicates, REACTS if p < 0.01; explanatory, qualifies the insensitive label",
+  "sensitivity": "exact one-sided sign test of d(A,B) > d(A,A'), S2-S5 only, Holm over the four, solved reruns excluded; S6, S7a, S7 reported as re-scoring stages and never qualify",
   "separation": "s = mean between-target minus mean within-target distance, across replicates; explanatory",
   "tie_eps": 1e-12,
-  "ties": "shared credit; strict hit needs all tied nearest same-target"
+  "ties": "credit shared over tied nearest; a hit breaks ties by sha256(stage|group position|query|companion), label independent, null probability exactly 1/2; strict hits descriptive"
  },
- "status": "FROZEN_NOT_RUN",
+ "status": "FROZEN_ERRATUM_1_NOT_RUN",
  "twin_law": [
   "same structural family",
   "same block count",

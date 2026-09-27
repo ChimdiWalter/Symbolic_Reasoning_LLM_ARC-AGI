@@ -17,6 +17,7 @@ import hashlib
 import json
 import math
 import os
+import time
 from collections import Counter
 from fractions import Fraction
 from itertools import permutations, product
@@ -78,10 +79,18 @@ def run_order(seed):
 VIEW_KEYS = ("demo_features", "trajectory", "mismatch", "full_engine_tfg",
              "descriptor")
 
-#: engine switches and state files that would make the reasoner differ
-#: between episodes; the generator refuses to run while any is present
-ENGINE_ENV_FORBIDDEN = ("ARC_OVERLAY", "ARC_DIHEDRAL_FRAMES")
+#: the engine reads 18 ARC_* switches; some change behaviour across
+#: episodes (ARC_ANALOGY loads persisted programs, ARC_OVERLAY rereads the
+#: near-solve log, ARC_GUIDE keeps module caches). Every ARC_* variable is
+#: refused except the budget, which must be exactly 8.
+REQUIRED_ENV = {"ARC_META_BUDGET_S": "8", "PYTHONHASHSEED": "0"}
 ENGINE_STATE_FILES = ("library.json", "learned_verbs.json")
+#: files outside the digested package trees that the chain reads
+EXTERNAL_FILES = (
+    "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/"
+    "outputs/tti/constructive_protocol_manifest.json",
+    "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/"
+    "outputs/tti/constructive_protocol_manifest_hash.txt")
 
 TTI_ROOT = "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti"
 
@@ -144,15 +153,48 @@ def opaque_label(*parts) -> str:
         "|".join(str(p) for p in parts).encode()).hexdigest()[:16]
 
 
+def environment_snapshot() -> dict:
+    snap = {k: v for k, v in os.environ.items() if k.startswith("ARC_")}
+    snap["PYTHONHASHSEED"] = os.environ.get("PYTHONHASHSEED")
+    return dict(sorted(snap.items()))
+
+
+def runtime_versions() -> dict:
+    import platform
+    import numpy
+    import scipy
+    return {"python": platform.python_version(), "numpy": numpy.__version__,
+            "scipy": scipy.__version__}
+
+
 def engine_state_problems(engine_dir) -> list:
     problems = []
-    for name in ENGINE_ENV_FORBIDDEN:
-        if os.environ.get(name, "") not in ("", "0"):
-            problems.append(f"env:{name}")
+    snap = environment_snapshot()
+    for k, v in snap.items():
+        if REQUIRED_ENV.get(k) != v:
+            problems.append(f"env:{k}")
+    for k in REQUIRED_ENV:
+        if k not in snap:
+            problems.append(f"env:{k}")
     for name in ENGINE_STATE_FILES:
         if os.path.exists(os.path.join(engine_dir, name)):
             problems.append(f"file:{name}")
-    return problems
+    return sorted(set(problems))
+
+
+def clear_engine_caches() -> int:
+    """Reset every memo cache in the engine, so that no run starts warm
+    from an earlier run on the same input. Semantics are unchanged."""
+    import sys
+    cleared = 0
+    for name, mod in list(sys.modules.items()):
+        if name == "geocat_arc" or name.startswith("geocat_arc."):
+            for attr in list(vars(mod).values()):
+                fn = getattr(attr, "cache_clear", None)
+                if callable(fn) and hasattr(attr, "cache_info"):
+                    fn()
+                    cleared += 1
+    return cleared
 
 
 # --------------------------------------------------------------------------
@@ -292,9 +334,12 @@ def make_twin_replicate(anchor, contrast, seed, budgets, gate, label_parts,
     for which in order:
         ep = episodes[0 if which == "rerun" else which]
         pairs = [(d["input"], d["output"]) for d in ep["demonstrations"]]
+        clear_engine_caches()
+        cpu = time.process_time()
         got = ET.extract(opaque_label(*label_parts, which), pairs,
                          budget_s=budgets["full_engine_observation_s"],
                          out_dir=engine_dir)
+        got["cpu_s"] = round(time.process_time() - cpu, 3)
         if which != "rerun":
             if got["solved"]:
                 return G.R_NO_TFG, None
@@ -314,6 +359,7 @@ def make_twin_replicate(anchor, contrast, seed, budgets, gate, label_parts,
             "mismatch": evaluate_near_misses(got["observer"], np_pairs),
             "census": got["census"],
             "observation_s": round(got["seconds"], 3),
+            "cpu_s": got.get("cpu_s"),
         }
 
     out = {}
@@ -460,39 +506,47 @@ def stage_points(views, stage, cal):
 # within-group statistics
 # --------------------------------------------------------------------------
 
-def nn_credits(dist, idx, labels):
+def _tie_key(salt, i, j):
+    return hashlib.sha256(f"v14-tie|{salt}|{i}|{j}".encode()).digest()
+
+
+def nn_credits(dist, idx, labels, salt=""):
     """Twin-excluded nearest neighbour.
 
     For query (t, r) the companions are the six episodes of the OTHER three
     replicates: three of the same target, three of the other. The query's
     own twin shares its input and is excluded. Ties at the minimum share
-    credit. Returns (credits as Fractions, strict hits, tie flags).
+    credit. A hit breaks ties by a hash of (salt, query, companion), which
+    does not depend on any label, so its null probability is exactly 1/2.
+    Returns (credits as Fractions, hits, strict hits, tie flags).
     """
-    credits, strict, tied = [], [], []
+    credits, hits, strict, tied = [], [], [], []
     for i, (_, r) in enumerate(idx):
         comp = [j for j, (_, rj) in enumerate(idx) if rj != r]
         dmin = min(dist[i][j] for j in comp)
         near = [j for j in comp if dist[i][j] <= dmin + TIE_EPS]
         same = sum(1 for j in near if labels[j] == labels[i])
+        chosen = min(near, key=lambda j: _tie_key(salt, i, j))
         credits.append(Fraction(same, len(near)))
+        hits.append(int(labels[chosen] == labels[i]))
         strict.append(int(same == len(near)))
         tied.append(int(len(near) > 1))
-    return credits, strict, tied
+    return credits, hits, strict, tied
 
 
-def group_stats(eps, stage, cal):
+def group_stats(eps, stage, cal, salt=""):
     views = [model_view(e) for e in eps]
     pts, fn = stage_points(views, stage, cal)
     n = len(eps)
     dist = [[fn(pts[i], pts[j]) for j in range(n)] for i in range(n)]
     idx = [(e["target_index"], e["replicate_index"]) for e in eps]
     labels = [t for t, _ in idx]
-    credits, strict, tied = nn_credits(dist, idx, labels)
+    credits, hits, strict, tied = nn_credits(dist, idx, labels, salt)
     reps = sorted({r for _, r in idx})
     null_totals = []
     for sigma in product((0, 1), repeat=len(reps)):
         flip = dict(zip(reps, sigma))
-        c, _, _ = nn_credits(dist, idx, [t ^ flip[r] for t, r in idx])
+        c = nn_credits(dist, idx, [t ^ flip[r] for t, r in idx], salt)[0]
         null_totals.append(sum(c))
     within, between = [], []
     for i in range(n):
@@ -503,7 +557,7 @@ def group_stats(eps, stage, cal):
             (within if ti == tj else between).append(dist[i][j])
     s = (sum(between) / len(between) - sum(within) / len(within)) \
         if within and between else 0.0
-    return {"credits": credits, "strict": strict, "tied": tied,
+    return {"credits": credits, "hits": hits, "strict": strict, "tied": tied,
             "null_totals": null_totals, "separation": s}
 
 
@@ -555,21 +609,25 @@ def _frac(xs):
 
 
 def stage_result(groups, stage, cal) -> dict:
-    per = [group_stats(g["episodes"], stage, cal) for g in groups]
+    per = [group_stats(g["episodes"], stage, cal, f"{stage}|{gi}")
+           for gi, g in enumerate(groups)]
+    hits = sum(sum(p["hits"]) for p in per)
     strict = sum(sum(p["strict"]) for p in per)
-    total = sum(len(p["strict"]) for p in per)
+    total = sum(len(p["hits"]) for p in per)
     credit = sum((sum(p["credits"]) for p in per), Fraction(0))
-    p_binom = float(binom_sf(strict, total, NULL)) if total else 1.0
+    p_binom = float(binom_sf(hits, total, NULL)) if total else 1.0
     p_rand = float(randomization_p(credit, [p["null_totals"] for p in per])) \
         if total else 1.0
-    rate = strict / total if total else 0.0
+    rate = hits / total if total else 0.0
     seps = sorted(p["separation"] for p in per)
     return {
         "stage": stage,
-        "strict_hits": strict, "total": total, "strict_rate": round(rate, 5),
-        "ci95_strict_rate": [round(x, 5) for x in clopper_pearson(strict, total)]
+        "hits": hits, "total": total, "hit_rate": round(rate, 5),
+        "ci95_hit_rate": [round(x, 5) for x in clopper_pearson(hits, total)]
         if total else None,
         "p_binomial": p_binom,
+        "strict_hits": strict,
+        "strict_rate": round(strict / total, 5) if total else None,
         "credit": round(float(credit), 5),
         "credit_rate": round(float(credit) / total, 5) if total else None,
         "p_randomization": p_rand,
@@ -585,6 +643,13 @@ def stage_result(groups, stage, cal) -> dict:
     }
 
 
+#: stages built only from events the engine itself emitted. S6, S7a and S7
+#: also score each target's candidates against that target's own outputs,
+#: so they differ between twins even when the trajectory is identical; they
+#: are reported for sensitivity but never enter the reaction qualifier.
+REACTION_STAGES = ("S2", "S3", "S4", "S5")
+
+
 def sensitivity(groups, stage, cal) -> dict:
     """Does the stage react to the semantic change beyond timing noise?
 
@@ -593,7 +658,7 @@ def sensitivity(groups, stage, cal) -> dict:
     depend on the target, B and A' are exchangeable given A, so the twin is
     farther with probability 1/2 among untied replicates. Exact one-sided
     sign test. Replicates are independent (own input, own runs)."""
-    plus = minus = ties = 0
+    plus = minus = ties = solved = 0
     strata = {"twin_closer_in_time": [0, 0], "rerun_closer_in_time": [0, 0],
               "equal_time_gaps": [0, 0]}
     twin_d, self_d = [], []
@@ -602,6 +667,9 @@ def sensitivity(groups, stage, cal) -> dict:
         for r in range(REPLICATES):
             a, b = by[(0, r)], by[(1, r)]
             rerun = a["self_rerun"]
+            if rerun.get("solved"):
+                solved += 1
+                continue
             pts, fn = stage_points([model_view(a), model_view(b),
                                     model_view(rerun)], stage, cal)
             dt, ds = fn(pts[0], pts[1]), fn(pts[0], pts[2])
@@ -624,7 +692,8 @@ def sensitivity(groups, stage, cal) -> dict:
     n = plus + minus
     p = float(binom_sf(plus, n, NULL)) if n else 1.0
     return {"stage": stage, "twin_farther": plus, "rerun_farther": minus,
-            "ties": ties, "p_sign": p, "reacts": bool(n and p < ALPHA),
+            "ties": ties, "rerun_solved_excluded": solved, "p_sign": p,
+            "rescoring_stage": stage not in REACTION_STAGES,
             "median_twin_distance": round(_median(sorted(twin_d)), 5)
             if twin_d else None,
             "median_rerun_distance": round(_median(sorted(self_d)), 5)
@@ -658,6 +727,12 @@ def classify(results: dict, n_groups: int, reacting=None) -> dict:
         reason = f"admitted groups below the frozen floor of {FLOOR_GROUPS}"
     elif "S7" in q:
         label, det = "CURRENT_TFG_IDENTIFYING_UNDER_TWINS", "S7"
+    elif q and any(CORA_STAGES.index(s) < CORA_STAGES.index(q[0])
+                   for s in rand_only):
+        label = "MIXED_OR_INCONCLUSIVE"
+        reason = ("a stage before the first qualifying stage passes the exact "
+                  "randomization test but not the binomial, so the first "
+                  "stage carrying signal is unresolved")
     elif search:
         label, det = "RAW_TRAJECTORY_SIGNAL_TFG_LOSS", search[0]
     elif execution:
@@ -676,8 +751,15 @@ def classify(results: dict, n_groups: int, reacting=None) -> dict:
         label = "MIXED_OR_INCONCLUSIVE"
         reason = (f"no stage qualified and the sample is below the powered "
                   f"target of {TARGET_GROUPS} groups")
+    loss_point = None
+    if label in ("RAW_TRAJECTORY_SIGNAL_TFG_LOSS", "LATE_EXECUTION_SIGNAL_ONLY"):
+        loss_point = ("42-field aggregation" if "S7a" in q
+                      else "TFG construction")
+    elif label == "TFG_AGGREGATION_LOSS":
+        loss_point = "42-field aggregation"
     return {
         "classification": label, "determining_stage": det, "reason": reason,
+        "loss_point": loss_point,
         "qualifying_stages": q, "randomization_only_stages": rand_only,
         "tfg_graph_identifying": "S7a" in q,
         "reacting_stages": list(reacting or []),
@@ -691,7 +773,11 @@ def classify(results: dict, n_groups: int, reacting=None) -> dict:
 def audit_groups(groups, cal) -> dict:
     results = {s: stage_result(groups, s, cal) for s in ALL_STAGES}
     react = {s: sensitivity(groups, s, cal) for s in CORA_STAGES}
-    reacting = [s for s in CORA_STAGES if react[s]["reacts"]]
+    adjusted = holm({s: react[s]["p_sign"] for s in REACTION_STAGES})
+    for s in CORA_STAGES:
+        react[s]["p_sign_holm"] = adjusted.get(s)
+        react[s]["reacts"] = bool(s in adjusted and adjusted[s] < ALPHA)
+    reacting = [s for s in REACTION_STAGES if react[s]["reacts"]]
     return {"stages": results, "sensitivity": react,
             "classification": classify(results, len(groups), reacting)}
 
@@ -743,6 +829,32 @@ def integrity_problems(group) -> list:
                     or sorted(rerun.get("order", [])) != ["A", "B", "rerun"]:
                 p.append("self_rerun")
                 break
+    return p
+
+
+def corpus_problems(records, target_groups, expected_env, expected_versions,
+                    require_freeze_ok=True) -> list:
+    """Run-level integrity: contiguous slots, unique groups, one frozen
+    environment, no engine state problem, freeze re-verified every slot."""
+    p = []
+    slots = sorted(r.get("slot", -1) for r in records)
+    if slots != list(range(len(records))):
+        p.append("slots_not_contiguous")
+    digests = [r["group"]["group_digest"] for r in records if r.get("admitted")]
+    if len(set(digests)) != len(digests):
+        p.append("duplicate_group_digest")
+    if len(digests) > target_groups:
+        p.append("more_groups_than_target")
+    for r in records:
+        tag = f"slot{r.get('slot')}"
+        if r.get("environment") != expected_env:
+            p.append(f"{tag}:environment")
+        if r.get("runtime_versions") != expected_versions:
+            p.append(f"{tag}:runtime_versions")
+        if r.get("engine_state_problems"):
+            p.append(f"{tag}:engine_state")
+        if require_freeze_ok and r.get("freeze_ok") is not True:
+            p.append(f"{tag}:freeze_not_reverified")
     return p
 
 

@@ -59,6 +59,11 @@ def test_protocol_manifest_and_implementation_are_the_frozen_ones():
         assert _sha(os.path.join(HERE, rel)) == digest, rel
     for name, root in L.dependency_roots(HERE).items():
         assert L.tree_digest(root) == man["dependency_tree_sha256"][name], name
+    for path, digest in man["external_file_sha256"].items():
+        assert _sha(path) == digest, path
+    assert set(man["external_file_sha256"]) == set(L.EXTERNAL_FILES)
+    assert man["runtime_versions"] == L.runtime_versions()
+    assert man["environment"]["required_snapshot"] == L.REQUIRED_ENV
     caps = man["caps"]
     assert caps["target_groups"] == L.TARGET_GROUPS == 42
     assert caps["floor_groups"] == L.FLOOR_GROUPS == 14
@@ -175,7 +180,7 @@ def test_the_twin_is_never_a_companion():
         for j, (t2, r2) in enumerate(IDX):
             if r == r2 and i != j:
                 d[i][j] = 0.0          # the twin is closest of all
-    credits, strict, tied = L.nn_credits(d, IDX, [t for t, _ in IDX])
+    credits, hits, strict, tied = L.nn_credits(d, IDX, [t for t, _ in IDX])
     assert all(c == Fraction(1, 2) for c in credits)
     assert all(t == 1 for t in tied) and sum(strict) == 0
 
@@ -184,11 +189,11 @@ def test_ties_share_credit_and_a_strict_hit_needs_every_tie_to_agree():
     d = [[1.0] * 8 for _ in range(8)]
     q = IDX.index((0, 0))
     d[q][IDX.index((0, 1))] = d[q][IDX.index((1, 2))] = 0.1
-    credits, strict, _ = L.nn_credits(d, IDX, [t for t, _ in IDX])
+    credits, hits, strict, _ = L.nn_credits(d, IDX, [t for t, _ in IDX])
     assert credits[q] == Fraction(1, 2) and strict[q] == 0
     d[q][IDX.index((1, 2))] = 0.2
-    credits, strict, _ = L.nn_credits(d, IDX, [t for t, _ in IDX])
-    assert credits[q] == 1 and strict[q] == 1
+    credits, hits, strict, _ = L.nn_credits(d, IDX, [t for t, _ in IDX])
+    assert credits[q] == 1 and strict[q] == 1 and hits[q] == 1
 
 
 @pytest.mark.parametrize("ties", [False, True])
@@ -196,13 +201,15 @@ def test_the_null_expectation_is_exactly_one_half_for_any_distances(ties):
     rng = random.Random(7 + ties)
     for _ in range(25):
         d = _random_dist(rng, ties)
-        totals = []
+        totals, hit_totals = [], []
         for sigma in product((0, 1), repeat=4):
             labels = [t ^ sigma[r] for t, r in IDX]
-            c, strict, _ = L.nn_credits(d, IDX, labels)
+            c, hits, strict, _ = L.nn_credits(d, IDX, labels, salt="x")
             totals.append(sum(c))
-            assert all(s <= 1 for s in strict)
+            hit_totals.append(sum(hits))
+            assert all(s <= h for s, h in zip(strict, hits))
         assert sum(totals) / len(totals) == 4      # 8 queries x 1/2
+        assert Fraction(sum(hit_totals), len(hit_totals)) == 4
 
 
 def test_randomization_p_matches_brute_force():
@@ -274,10 +281,22 @@ def _results(identifying=(), rand_only=()):
     ((), ("S3",), 42, "MIXED_OR_INCONCLUSIVE"),
     ((), (), 41, "MIXED_OR_INCONCLUSIVE"),
     (("S2",), (), 13, "MIXED_OR_INCONCLUSIVE"),
+    (("S5",), ("S2",), 42, "MIXED_OR_INCONCLUSIVE"),
+    (("S7a",), ("S3",), 42, "MIXED_OR_INCONCLUSIVE"),
+    (("S2",), ("S5",), 42, "RAW_TRAJECTORY_SIGNAL_TFG_LOSS"),
+    (("S7",), ("S2",), 42, "CURRENT_TFG_IDENTIFYING_UNDER_TWINS"),
 ])
 def test_classification_ladder(identifying, rand_only, groups, expected):
     c = L.classify(_results(identifying, rand_only), groups)
     assert c["classification"] == expected
+
+
+def test_loss_point_distinguishes_graph_from_aggregation():
+    assert L.classify(_results(("S3",)), 42)["loss_point"] == "TFG construction"
+    assert L.classify(_results(("S3", "S7a")), 42)["loss_point"] == \
+        "42-field aggregation"
+    assert L.classify(_results(("S7a",)), 42)["loss_point"] == \
+        "42-field aggregation"
 
 
 def test_s0_never_enters_the_classification():
@@ -344,15 +363,64 @@ def test_the_instrument_localizes_a_planted_effect(plant, expected,
     assert c["classification"] == expected
     assert c["determining_stage"] == determining
     if determining:
-        assert out["stages"][plant]["strict_rate"] == 1.0
+        assert out["stages"][plant]["hit_rate"] == 1.0
         assert c["determining_stage_survives_holm"]
-        assert plant in c["reacting_stages"]
+        assert out["sensitivity"][plant]["twin_farther"] == 168
+        assert (plant in c["reacting_stages"]) == (plant in L.REACTION_STAGES)
     else:
         assert c["reason"] == reason
     if plant == "reacts":
         assert c["reacting_stages"] == ["S2", "S3"]
         assert out["sensitivity"]["S2"]["twin_farther"] == 168
     assert not out["stages"]["S0"]["target_identifying"]
+
+
+def test_a_tie_heavy_coarse_signal_can_still_qualify():
+    """The reviewer's case: coarse tokens tie across labels. Strict hits
+    stay below 1/2 at any sample size; hash-broken hits do not."""
+    rng = random.Random(5)
+    groups = []
+    for g in range(42):
+        eps = []
+        for r in range(4):
+            for t in (0, 1):
+                agree = rng.random() < 0.8
+                tok = "group:recolor" if (t == 0) == agree else "group:delete"
+                ep = _view(typed=[[tok, [{}]]])
+                ep.update(target_index=t, replicate_index=r)
+                if t == 0:
+                    ep["self_rerun"] = dict(json.loads(json.dumps(ep)),
+                                            order=["A", "B", "rerun"])
+                eps.append(ep)
+        groups.append({"episodes": eps})
+    res = L.stage_result(groups, "S2", _cal())
+    assert res["tie_fraction"] > 0.9
+    assert res["strict_rate"] < res["hit_rate"]
+    assert res["target_identifying"]
+
+
+def test_rescoring_alone_never_counts_as_a_reaction():
+    """Identical trajectories, mismatch classes differing only because each
+    target's outputs differ: S6 differs, but no reaction is recorded."""
+    groups = []
+    for g in range(42):
+        eps = []
+        for r in range(4):
+            typed = [["group:op%d" % ((g + r) % 5), [{}]]]
+            for t in (0, 1):
+                mm = [{"ast": json.dumps(["prog:x", [{}]]),
+                       "per_demo": ["cells_wrong", "palette_extra" if t else
+                                    "cells_wrong"]}]
+                ep = _view(typed=typed, mismatch=mm)
+                ep.update(target_index=t, replicate_index=r)
+                if t == 0:
+                    ep["self_rerun"] = dict(json.loads(json.dumps(ep)),
+                                            order=["A", "B", "rerun"])
+                eps.append(ep)
+        groups.append({"episodes": eps})
+    out = L.audit_groups(groups, _cal())
+    assert out["sensitivity"]["S6"]["twin_farther"] == 168
+    assert out["classification"]["reacting_stages"] == []
 
 
 def test_sign_test_counts_and_order_strata():
@@ -478,14 +546,41 @@ def test_twin_integrity_rejections(monkeypatch):
 
 
 def test_engine_state_guard(monkeypatch):
+    for k in [k for k in os.environ if k.startswith("ARC_")]:
+        monkeypatch.delenv(k)
+    monkeypatch.setenv("ARC_META_BUDGET_S", "8")
+    monkeypatch.setenv("PYTHONHASHSEED", "0")
     with tempfile.TemporaryDirectory() as d:
-        monkeypatch.delenv("ARC_OVERLAY", raising=False)
-        monkeypatch.delenv("ARC_DIHEDRAL_FRAMES", raising=False)
         assert L.engine_state_problems(d) == []
-        monkeypatch.setenv("ARC_OVERLAY", "1")
+        monkeypatch.setenv("ARC_ANALOGY", "1")
+        monkeypatch.setenv("ARC_OVERLAY", "0")
         open(os.path.join(d, "library.json"), "w").close()
-        assert L.engine_state_problems(d) == ["env:ARC_OVERLAY",
-                                              "file:library.json"]
+        assert L.engine_state_problems(d) == [
+            "env:ARC_ANALOGY", "env:ARC_OVERLAY", "file:library.json"]
+        monkeypatch.delenv("ARC_ANALOGY")
+        monkeypatch.delenv("ARC_OVERLAY")
+        monkeypatch.setenv("ARC_META_BUDGET_S", "4")
+        assert "env:ARC_META_BUDGET_S" in L.engine_state_problems(d)
+
+
+def test_corpus_problems_catch_gaps_duplicates_and_environment():
+    env, ver = dict(L.REQUIRED_ENV), {"python": "x"}
+    def rec(slot, digest=None):
+        return {"slot": slot, "admitted": digest is not None,
+                "group": {"group_digest": digest} if digest else None,
+                "environment": env, "runtime_versions": ver,
+                "engine_state_problems": [], "freeze_ok": True}
+    good = [rec(0, "a"), rec(1), rec(2, "b")]
+    assert L.corpus_problems(good, 42, env, ver) == []
+    assert "slots_not_contiguous" in L.corpus_problems(
+        [rec(0), rec(2)], 42, env, ver)
+    assert "duplicate_group_digest" in L.corpus_problems(
+        [rec(0, "a"), rec(1, "a")], 42, env, ver)
+    bad = rec(1)
+    bad["environment"] = dict(env, ARC_GUIDE="1")
+    bad["freeze_ok"] = False
+    found = L.corpus_problems([rec(0), bad], 42, env, ver)
+    assert "slot1:environment" in found and "slot1:freeze_not_reverified" in found
 
 
 def test_integrity_and_leak_checks_catch_broken_groups():
@@ -523,6 +618,19 @@ def test_integrity_and_leak_checks_catch_broken_groups():
 
 
 # -- noninterference on the real engine --------------------------------------
+
+def test_engine_caches_are_cleared_before_each_run():
+    import test_engine_trace_repair as TR
+    from geocat_arc.object_reasoning import features as F
+    cached = [v for v in vars(F).values() if hasattr(v, "cache_info")]
+    assert len(cached) >= 2
+    with tempfile.TemporaryDirectory() as engine_dir:
+        L.ET.extract("fixture_recolour", TR.RECOLOUR, budget_s=8.0,
+                     out_dir=engine_dir)
+    assert sum(f.cache_info().currsize for f in cached) > 0
+    assert L.clear_engine_caches() >= 2
+    assert sum(f.cache_info().currsize for f in cached) == 0
+
 
 def test_capture_is_the_observers_own_list_and_leaves_the_result_unchanged():
     import test_engine_trace_repair as TR
