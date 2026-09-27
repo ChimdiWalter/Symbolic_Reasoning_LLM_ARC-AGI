@@ -4,8 +4,12 @@ Last updated 2026-09-27. Read this first.
 
 ## State
 
+**v1.4 RUN LAUNCHED 2026-09-27T20:47:49Z**: chain PID 1376598, generator
+PID 1376604, state in `logs/v14_run_state.txt` (authoritative). Result when
+`logs/V14_AUDIT_DONE` exists.
+
 **v1.4 mechanistic frontier localization: FROZEN WITH ERRATUM 1 at
-adecfd2, NOT RUN.** Protocol
+adecfd2.** Protocol
 `docs/CORA_TTI_MECHANISTIC_FRONTIER_LOCALIZATION_v1.4.md` sha256
 `26e0c60b...88529077`; manifest
 `outputs/tti/mechanistic_frontier_v14_manifest.json` sha256

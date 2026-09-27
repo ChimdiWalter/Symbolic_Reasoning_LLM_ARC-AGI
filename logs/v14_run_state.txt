@@ -1,0 +1,15 @@
+Item-2 v1.4 frozen localization run: LAUNCHED 2026-09-27T20:47:49Z
+Frozen commit adecfd2 (protocol 26e0c60b..., manifest 22dccf9a...), HEAD 0536c69.
+Chain PID 1376598 (bash scripts/run_v14_chain.sh), launched via setsid nohup.
+Generator PID 1376604 (.venv_arc2026/bin/python scripts/generate_v14_twins.py full),
+single writer, nice 19, file lock outputs/tti/v14_twin_corpus/.writer.lock.
+Stops at 42 groups, 400 slots or 86,400 s from the first start. Smoke projection
+about 2.4 h (about 5 h at the low end of the admission interval).
+After generation the chain runs the sealed auditor twice, requires byte-identical
+reports, writes outputs/tti/v14_localization_audit.json and touches logs/V14_AUDIT_DONE.
+
+Check:   pgrep -af "run_v14_chain|generate_v14_twins.py full"; tail logs/v14_generation.log
+Stop:    kill 1376604 1376598   (exact PIDs only, never pkill -f)
+Resume:  rerunning scripts/run_v14_chain.sh resumes at the first missing slot; the
+         wall clock keeps counting from the first start.
+Do not read partial statistics. Nothing is interpreted before V14_AUDIT_DONE.
