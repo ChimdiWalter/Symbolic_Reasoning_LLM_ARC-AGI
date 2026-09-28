@@ -11,6 +11,12 @@ review's blocking ladder defect and four major findings. No threshold,
 effect size or group count changed. 56 tests pass. No selector has been
 fitted on real data and no test group exists.
 
+> Note (2026-09-28): sections 3 to 8 below describe the first freeze
+> (89ac728). Where they differ from the protocol and erratum 1 (exclusion
+> counts, fold rule, shuffle, ladder, gate H, claim wording), the protocol
+> and `records/ITEM2_V15_ERRATUM_01.md` govern. See
+> `records/ITEM2_V15_DELIVERY_ADDENDUM.md`.
+
 ## 1. Parent result, preserved
 
 v1.4 (commit 134e36c, erratum-2 freeze 5ffa56f):

@@ -6,20 +6,22 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
-**v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION: FROZEN WITH ERRATUM 1,
-NOT RUN.** Protocol `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md`
-sha256 `e3209c1f...b2e1e42a`; manifest
-`outputs/tti/failure_conditioned_selection_v15_manifest.json` sha256
-`0cc4b900...77054a89c`; records `records/ITEM2_V15_SELECTION_DESIGN_DECISION.md`
-and `records/ITEM2_V15_ERRATUM_01.md`; 56 tests. First freeze 89ac728 is
-superseded. Question: does associated failure evidence (S7) improve
-selection between two one-key-feature candidates beyond the D_RICH
-demonstration summary, on new target pairs with independently rendered
-inputs? Train = 42 v1.4 twin groups; test = 288 new independent-input groups
-(power 0.909 for gate B); gates A to H all required; negatives need a
-decisive failure; caps 9,000 slots or 120 h (pilot: 8.8 percent admission,
-about 77 h expected). No selector has been fitted on real data and no test
-group exists.
+**v1.5 GENERATION RUNNING** since 2026-09-28T20:15Z under the gated execution
+directive of 2026-09-28 (stages v1.5 through the 120-task local evaluation,
+conditionally authorized; see `records/STAGE_LEDGER.json`). Generator PID
+2819761, chain 2819666, state `logs/v15_run_state.txt`; first start
+20:16:44Z; caps 288 groups, 9,000 slots, or 2026-10-03T20:16:44Z. No score
+is read before the marker `logs/V15_GENERATION_DONE`, then the integrity
+gate. Delivery-readiness addendum frozen before any score:
+`records/ITEM2_V15_DELIVERY_ADDENDUM.md` (dependence-aware gate C procedure,
+gate H wording, three-valued verification recomputation, claim and capacity
+wording); hashes in `outputs/tti/v15_delivery_addendum.json`.
+
+**v1.5 frozen with erratum 1** at 216f2c4: protocol
+`docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md` sha256 `e3209c1f...`,
+manifest sha256 `0cc4b900...`, 56 tests; records
+`records/ITEM2_V15_SELECTION_DESIGN_DECISION.md` (sections 3 to 8 stale, see
+addendum) and `records/ITEM2_V15_ERRATUM_01.md`.
 
 **v1.4 COMPLETE: CURRENT_TFG_IDENTIFYING_UNDER_TWINS** (determining stage
 S7, confirmatory at 42 unique groups, sealed audit byte-identical, sha256
@@ -161,15 +163,14 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-The one pre-run review is done (erratum 1). **RUN THE FROZEN v1.5
-CONDITIONAL FAILURE-CONDITIONED SELECTION EXPERIMENT**:
-
-    setsid nohup scripts/run_v15_generation.sh > logs/v15_generation_stdout.log 2>&1 < /dev/null &
-    ps -eo pid,args | grep "[g]enerate_v15_pairs.py full"    # the REAL pid
-
-then `scripts/evaluate_v15_selection.py --integrity-only` (read it), then
-`scripts/run_v15_evaluation.sh`, record, STOP. Binding data order:
-`records/DATA_USAGE_ORDER.md`.
+Wait for `logs/V15_GENERATION_DONE` (the generator is live; never relaunch
+it). Then, in order: `scripts/evaluate_v15_selection.py --integrity-only`
+(read it), `scripts/v15_supp_verification.py`, `scripts/run_v15_evaluation.sh`,
+`scripts/v15_supp_dependence.py`; record official and supplementary verdicts
+separately; then follow the directive's continuation rules (compiler on
+FAILURE_CONDITIONED_SELECTION_GENERALIZES, otherwise at most one bounded
+repair). Never edit `cora_arc2026/`, `geocat_arc/` or any manifest-listed
+file while the generator runs: its per-slot freeze check would stop it.
 
 ## How to re-run
 
