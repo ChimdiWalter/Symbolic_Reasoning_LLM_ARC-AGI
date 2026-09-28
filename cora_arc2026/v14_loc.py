@@ -832,19 +832,82 @@ def integrity_problems(group) -> list:
     return p
 
 
+R_DUPLICATE_GROUP = "DUPLICATE_GROUP_DIGEST"
+
+
+def first_admissions(records):
+    """Erratum 2. The first admitted occurrence of a group digest in
+    ascending slot order is the scientific occurrence; any later admission
+    of the same digest is an excluded duplicate, kept in the corpus and
+    counted but never audited. Uses only the digest and the slot number.
+    Returns (included records in slot order, excluded duplicates)."""
+    included, excluded, first_slot = [], [], {}
+    for r in sorted((r for r in records if r.get("admitted")),
+                    key=lambda r: r["slot"]):
+        d = r["group"]["group_digest"]
+        if d in first_slot:
+            excluded.append({"group_digest": d, "first_slot": first_slot[d],
+                             "excluded_slot": r["slot"]})
+        else:
+            first_slot[d] = r["slot"]
+            included.append(r)
+    return included, excluded
+
+
+def _sha_file(path) -> str:
+    with open(path, "rb") as handle:
+        return hashlib.sha256(handle.read()).hexdigest()
+
+
+def preserved_problems(hash_list, hash_list_sha256, corpus_dir,
+                       archived=()) -> list:
+    """Erratum 2. Every file named in the committed corpus hash list is
+    byte-identical to its listed digest, and every archived copy, given as
+    (copy path, listed original name), matches the listed original."""
+    if not os.path.exists(hash_list) or _sha_file(hash_list) != hash_list_sha256:
+        return ["hash_list"]
+    listed = {}
+    with open(hash_list) as handle:
+        for line in handle:
+            digest, name = line.split()
+            listed[name] = digest
+    p = []
+    for name, digest in sorted(listed.items()):
+        path = os.path.join(corpus_dir, name)
+        if not os.path.exists(path) or _sha_file(path) != digest:
+            p.append(f"preserved:{name}")
+    for copy_path, original in archived:
+        if not os.path.exists(copy_path) or \
+                _sha_file(copy_path) != listed.get(original):
+            p.append(f"archived:{os.path.basename(copy_path)}")
+    return p
+
+
 def corpus_problems(records, target_groups, expected_env, expected_versions,
-                    require_freeze_ok=True) -> list:
-    """Run-level integrity: contiguous slots, unique groups, one frozen
-    environment, no engine state problem, freeze re-verified every slot."""
+                    require_freeze_ok=True, dedupe_from_slot=None) -> list:
+    """Run-level integrity: contiguous slots, at most the target of groups,
+    one frozen environment, no engine state problem, freeze re-verified
+    every slot. Without dedupe_from_slot this is the pre-erratum-2 rule: any
+    duplicate group digest blocks. With it (erratum 2), a later admission of
+    an already-included digest is excluded by first_admissions and only the
+    included groups count toward the target; from dedupe_from_slot on the
+    generator skips such pairs, so an excluded admission there blocks."""
     p = []
     slots = sorted(r.get("slot", -1) for r in records)
     if slots != list(range(len(records))):
         p.append("slots_not_contiguous")
-    digests = [r["group"]["group_digest"] for r in records if r.get("admitted")]
-    if len(set(digests)) != len(digests):
-        p.append("duplicate_group_digest")
-    if len(digests) > target_groups:
-        p.append("more_groups_than_target")
+    included, excluded = first_admissions(records)
+    raw = sum(1 for r in records if r.get("admitted"))
+    if dedupe_from_slot is None:
+        if excluded:
+            p.append("duplicate_group_digest")
+        if raw > target_groups:
+            p.append("more_groups_than_target")
+    else:
+        if any(x["excluded_slot"] >= dedupe_from_slot for x in excluded):
+            p.append("duplicate_after_erratum2_resume")
+        if len(included) > target_groups:
+            p.append("more_groups_than_target")
     for r in records:
         tag = f"slot{r.get('slot')}"
         if r.get("environment") != expected_env:

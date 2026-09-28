@@ -130,7 +130,10 @@ r in {0, 1, 2, 3}. For attempt a of slot s, `pair_seed = SEED_BASE + 10000 s +
 The pair is admitted when four twin replicates are admitted and abandoned as
 soon as four becomes unreachable. Up to 25 pairs per slot. Slot s uses anchor
 family `["(0,0)", "(1,0)", "(0,1)", "(1,1)", "(0,0,0)"][s mod 5]`. Replicate
-seeds are trusted generation metadata and never model inputs.
+seeds are trusted generation metadata and never model inputs. Erratum 2: a
+pair whose group digest is already included is skipped before any engine
+run, recorded as DUPLICATE_GROUP_DIGEST, and the next attempt follows; the
+target counts unique groups (section 17).
 
 ### 4.5 Admission
 
@@ -396,8 +399,12 @@ hashes; every admitted group is FEATURE, has exactly the eight design cells,
 two distinct target digests consistent across episodes, one family and one
 MDL, identical twin inputs, at least one differing twin output, identical twin seeds
 and a complete self rerun with its run order on every target-0 episode; no
-view leaks; slot records contiguous from 0, group digests unique, no more
-groups than the target, and every slot recording the frozen environment,
+view leaks; slot records contiguous from 0, each group digest counted once by
+the slot-order rule of section 17 (a later admission is excluded and never
+audited, and blocks only if it arises after the erratum-2 resume), no more
+included groups than the target, the first run's records and blocked
+reports byte-identical to their committed hashes, and every slot recording
+the frozen environment,
 the frozen runtime versions and a freeze re-verified at that slot; and no slot recorded an engine state problem. Any
 violation gives AUDIT_BLOCKED and no statistic.
 
@@ -419,6 +426,10 @@ byte-identical.
    freeze is re-verified after every slot.
 3. Run the sealed auditor twice; require byte-identical reports.
 4. Record the classification with every stage row. STOP.
+
+Erratum 2 (section 17) adds, after a blocked first run: resume the same run
+to 42 unique groups, pass the integrity gate, then steps 3 and 4 on new
+versioned outputs.
 
 Not authorized at any point in v1.4: scorer fitting, MLP, GNN, contrastive
 or embedding training, target classifiers, TFG repairs, search changes,
@@ -489,8 +500,8 @@ the real engine for two replicates of an admitted smoke pair: both admitted
 in about 30 s for three engine runs, with the run order recorded and no
 leaks. No distance or neighbour between any two episodes was computed.
 
-**Caps, frozen.** Stop at the first of: 42 admitted groups; 400 slots; 86,400
-s wall clock. At the smoke rate, 42 groups need about 77 slots, about 2.4
+**Caps, frozen.** Stop at the first of: 42 admitted groups (unique group
+digests, erratum 2); 400 slots; 86,400 s wall clock from the first start. At the smoke rate, 42 groups need about 77 slots, about 2.4
 hours including the reruns; at the lower end of the interval, about 180
 slots and 5 hours. 400 slots keep every full-run pair seed below
 104,000,000, under the smoke base. If a cap is reached with fewer than 42
@@ -520,3 +531,71 @@ episode exists; none relaxes a threshold.
 | the S3 limitation also applies when the deadline expires during action fitting; CPU time not stored; the v1.3 tie-break statement was wrong | minor | text corrected, CPU time recorded |
 
 Record: `records/ITEM2_V14_ERRATUM_01.md`.
+
+
+## 17. Erratum 2: slot-order duplicate-group handling
+
+The first run (record `records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md`,
+commit fc51275) stopped at 42 admissions after 136 slots, but one group
+digest, `b4edae2fce55...`, was admitted twice: at slot 57 (pair seed
+100571900, attempt 19) and at slot 117 (pair seed 101170100, attempt 1),
+family (0,1), with disjoint replicate seeds and input grids. Section 10 made
+a duplicate blocking, and the sealed audit returned AUDIT_BLOCKED before any
+statistic: its report has no stage, sensitivity or classification section.
+The v1.4 scientific outcome is therefore not yet measured. Cause: erratum 1
+added uniqueness to the auditor without the matching rule in the generator.
+
+**Rule.** Admissions are ordered by slot. The first admitted occurrence of a
+group digest is the scientific occurrence. Any later admission of the same
+digest is a DUPLICATE_GROUP_DIGEST: it stays in the corpus and in
+provenance, is counted and reported with its first and excluded slots, is
+never audited, and never counts toward the target. The rule uses the group
+digest and the slot number only, never a stage value, trajectory, frontier,
+distance or admission difficulty. For the first run: slot 57 is included,
+slot 117 is excluded.
+
+**Generator.** On resume the included digests are rebuilt from the existing
+records in slot order. A candidate pair whose group digest is already
+included is skipped before any engine run, recorded with its slot, attempt,
+pair seed and target digests, and the next attempt follows the unchanged
+attempt law. The target counts unique groups. Each new slot record also
+stores its start time since the first start and the manifest sha256.
+
+**Continuation.** The same run resumes at slot 136 with 41 included groups,
+so exactly one more unique group is needed, and stops at the first of: 42
+unique groups, slot 399 completed, or 86,400 s from the first start. The
+recorded first start is 2026-09-27T20:47:54.95Z; the chain started 5 s
+earlier, and that earlier time plus 24 h, 2026-09-28T20:47:49Z, is the
+binding launch deadline. If it has passed, the continuation does not launch
+and ERRATUM2_ORIGINAL_CAP_EXPIRED is recorded. Nothing resets the clock.
+
+**Preservation.** The 136 first-run records and the run-state and run-end
+files must match the committed hash list (sha256 601ab7c2...). The first
+run-end is archived byte-identically as `full_run_end_blocked_20260928.json`.
+The three blocked reports (sha256 9749e6f4...) stay in place, and a fourth
+identical copy is named `v14_localization_audit_BLOCKED_PRE_ERRATUM2.json`.
+The continuation writes `full_run_end_erratum2.json` and the audit writes
+`v14_localization_audit_erratum2*.json`; neither writes any first-run file.
+
+**Order.** (1) `scripts/check_v14_integrity.py pre` passes: freeze,
+preservation, 136 contiguous readable records, no partial file, 41 included
+and exactly the one excluded duplicate, the original first start, a live
+cap, no writer alive. (2) `scripts/run_v14_erratum2_generation.sh`,
+detached, single writer. (3) `scripts/check_v14_integrity.py post`, the
+pre-audit gate: 42 included groups, the one excluded duplicate and no new
+one, preservation, freeze, environment, versions, the cap, and for every
+admitted group the grammar re-derivation, twin law, one-token difference,
+seed law, run-order law, group integrity and leakage; no stage value is
+computed. (4) `scripts/run_v14_erratum2_audit.sh`, which repeats the gate and
+runs the sealed auditor twice, requiring byte-identical reports. (5) Record
+the classification. STOP.
+
+**Unchanged.** Target generator, FEATURE twin law, seeds of existing slots,
+stage descriptors S0 to S7, distances, tie law, null, binomial and
+randomization tests, reaction test, Holm, classification ladder, target of 42
+groups, floor, slot cap, wall-clock cap, engine, observer, baseline K,
+fitter and admission law. Every top-level definition of
+`cora_arc2026/v14_loc.py` except `corpus_problems` is byte-identical to the
+pre-erratum freeze adecfd2, and the engine-side files and dependency trees
+are unchanged; both are tested. No second review round. Record:
+`records/ITEM2_V14_ERRATUM_02.md`.

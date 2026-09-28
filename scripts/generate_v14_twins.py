@@ -8,6 +8,13 @@
 
 One writer, resumable: an existing slot record is never recomputed. Nothing
 is trained, and no distance between episodes is computed here.
+
+Erratum 2: the target counts UNIQUE group digests. On resume the included
+digests are rebuilt from the existing records in ascending slot order (the
+first admission of a digest counts), and a candidate pair whose group digest
+is already included is skipped before any engine run and recorded as
+DUPLICATE_GROUP_DIGEST with its provenance. The rule uses the digest and the
+slot order only.
 """
 from __future__ import annotations
 
@@ -79,14 +86,16 @@ def settings(mode, args):
                     out=os.path.join(HERE, "outputs", "tti", "v14_twin_corpus"),
                     engine=os.path.join(HERE, "outputs", "tti", "v14_engine"),
                     target=caps["target_groups"], slots=caps["slot_cap"],
-                    wall=caps["wall_clock_s"])
+                    wall=caps["wall_clock_s"],
+                    run_end="full_run_end_erratum2.json")
     return dict(common, base=L.SMOKE_BASE, prefix="smoke", manifest=None,
                 out=os.path.join(HERE, "logs", "v14_feasibility"),
                 engine=os.path.join(HERE, "logs", "v14_feasibility", "engine"),
-                target=args.target, slots=args.slots, wall=args.wall)
+                target=args.target, slots=args.slots, wall=args.wall,
+                run_end="smoke_run_end.json")
 
 
-def run_slot(slot, fam, cfg):
+def run_slot(slot, fam, cfg, seen=frozenset()):
     record = {"slot": slot, "anchor_family": CV.family_text(fam),
               "contrast_type": "FEATURE", "admitted": False, "group": None,
               "pair_attempts": 0, "replicate_attempts": 0, "rejections": {}}
@@ -102,6 +111,16 @@ def run_slot(slot, fam, cfg):
         ok, why = L.twin_law(anchor, contrast)
         if not ok:
             reject(f"{L.R_TWIN_LAW}:{why}")
+            continue
+        #  erratum 2: an already-included group is skipped before any engine
+        #  run; the decision uses the pair's digest only
+        da0, db0 = CV.digest(anchor), CV.digest(contrast)
+        digest = G.group_digest(da0, db0)
+        if digest in seen:
+            reject(L.R_DUPLICATE_GROUP)
+            record.setdefault("duplicate_skips", []).append(
+                {"slot": slot, "attempt": attempt, "pair_seed": pair_seed,
+                 "target_digests": [da0, db0], "group_digest": digest})
             continue
         reps = []
         for k in range(L.SEEDS_PER_PAIR):
@@ -146,6 +165,59 @@ def write_atomic(path, obj, **kw):
     os.replace(tmp, path)
 
 
+def continue_run(cfg, families, first, run_slot_fn=None, clock=time.time):
+    """Fill slots in ascending order. An existing record is read, never
+    rewritten, and its admission is counted by the erratum-2 rule: the first
+    admission of a group digest in slot order is included. Stops at the first
+    of: the target of unique groups, the slot cap, or the wall clock counted
+    from the first start."""
+    run_slot_fn = run_slot_fn or run_slot
+    seen, raw = set(), 0
+    started, stop = time.monotonic(), "slot_cap"
+    for slot in range(cfg["slots"]):
+        path = os.path.join(cfg["out"], f"{cfg['prefix']}{slot:05d}.json")
+        if os.path.exists(path):
+            with open(path) as handle:
+                existing = json.load(handle)
+            if existing["admitted"]:
+                raw += 1
+                seen.add(existing["group"]["group_digest"])
+            continue
+        if len(seen) >= cfg["target"]:
+            stop = "target_groups"
+            break
+        if clock() - first > cfg["wall"]:
+            stop = "wall_clock"
+            break
+        slot_started = time.monotonic()
+        started_since_first = round(clock() - first, 1)
+        record = run_slot_fn(slot, families[slot % len(families)], cfg,
+                             frozenset(seen))
+        record["started_since_first_start_s"] = started_since_first
+        record["elapsed_s"] = round(time.monotonic() - slot_started, 2)
+        record["engine_state_problems"] = L.engine_state_problems(cfg["engine"])
+        record["environment"] = L.environment_snapshot()
+        record["runtime_versions"] = L.runtime_versions()
+        record["freeze_ok"] = (not freeze_problems(cfg["manifest"])
+                               if cfg["manifest"] else None)
+        record["manifest_sha256"] = sha256(MANIFEST) if cfg["manifest"] else None
+        write_atomic(path, record)
+        if record["admitted"]:
+            raw += 1
+            seen.add(record["group"]["group_digest"])
+        print(f"  {cfg['prefix']}{slot:05d} {record['anchor_family']:8s} "
+              f"admitted={record['admitted']} pairs={record['pair_attempts']} "
+              f"replicates={record['replicate_attempts']} {record['elapsed_s']}s "
+              f"unique_groups={len(seen)} total={round(time.monotonic() - started)}s",
+              flush=True)
+    else:
+        stop = "target_groups" if len(seen) >= cfg["target"] else "slot_cap"
+    return {"admitted_groups": len(seen), "admitted_records": raw,
+            "stop_reason": stop,
+            "seconds_this_start": round(time.monotonic() - started, 1),
+            "seconds_since_first_start": round(clock() - first, 1)}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=("smoke", "full"))
@@ -178,42 +250,8 @@ def main():
                                       "%Y-%m-%dT%H:%M:%SZ", time.gmtime(first))})
 
     families = [G.parse_family(f) for f in FAMILIES]
-    admitted, started, stop = 0, time.monotonic(), "slot_cap"
-    for slot in range(cfg["slots"]):
-        path = os.path.join(cfg["out"], f"{cfg['prefix']}{slot:05d}.json")
-        if os.path.exists(path):
-            with open(path) as handle:
-                admitted += int(json.load(handle)["admitted"])
-            continue
-        if admitted >= cfg["target"]:
-            stop = "target_groups"
-            break
-        if time.time() - first > cfg["wall"]:
-            stop = "wall_clock"
-            break
-        slot_started = time.monotonic()
-        record = run_slot(slot, families[slot % len(families)], cfg)
-        record["elapsed_s"] = round(time.monotonic() - slot_started, 2)
-        record["engine_state_problems"] = L.engine_state_problems(cfg["engine"])
-        record["environment"] = L.environment_snapshot()
-        record["runtime_versions"] = L.runtime_versions()
-        record["freeze_ok"] = (not freeze_problems(cfg["manifest"])
-                               if cfg["manifest"] else None)
-        write_atomic(path, record)
-        admitted += int(record["admitted"])
-        print(f"  {cfg['prefix']}{slot:05d} {record['anchor_family']:8s} "
-              f"admitted={record['admitted']} pairs={record['pair_attempts']} "
-              f"replicates={record['replicate_attempts']} {record['elapsed_s']}s "
-              f"groups={admitted} total={round(time.monotonic() - started)}s",
-              flush=True)
-    else:
-        stop = "target_groups" if admitted >= cfg["target"] else "slot_cap"
-    summary = {"mode": args.mode, "admitted_groups": admitted,
-               "stop_reason": stop,
-               "seconds_this_start": round(time.monotonic() - started, 1),
-               "seconds_since_first_start": round(time.time() - first, 1)}
-    write_atomic(os.path.join(cfg["out"], f"{cfg['prefix']}_run_end.json"),
-                 summary, indent=1)
+    summary = dict({"mode": args.mode}, **continue_run(cfg, families, first))
+    write_atomic(os.path.join(cfg["out"], cfg["run_end"]), summary, indent=1)
     print("RUN_END", json.dumps(summary), flush=True)
 
 

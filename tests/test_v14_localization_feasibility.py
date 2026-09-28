@@ -64,6 +64,9 @@ def test_protocol_manifest_and_implementation_are_the_frozen_ones():
     assert set(man["external_file_sha256"]) == set(L.EXTERNAL_FILES)
     assert man["runtime_versions"] == L.runtime_versions()
     assert man["environment"]["required_snapshot"] == L.REQUIRED_ENV
+    e2 = man["erratum_2"]
+    assert e2["resume_slot"] == 136 and e2["included_at_resume"] == 41
+    assert e2["thresholds_changed"] is False
     caps = man["caps"]
     assert caps["target_groups"] == L.TARGET_GROUPS == 42
     assert caps["floor_groups"] == L.FLOOR_GROUPS == 14
@@ -647,3 +650,281 @@ def test_capture_is_the_observers_own_list_and_leaves_the_result_unchanged():
     plain = TR._solve_plain("fixture_recolour", TR.RECOLOUR)
     assert TR._result_fingerprint(plain) == \
         TR._result_fingerprint(got["result"])
+
+
+
+# -- erratum 2: slot-order duplicate-group handling --------------------------
+
+import ast                                                       # noqa: E402
+import importlib.util                                            # noqa: E402
+import subprocess                                                # noqa: E402
+
+
+def _gen():
+    spec = importlib.util.spec_from_file_location(
+        "gen14", os.path.join(HERE, "scripts", "generate_v14_twins.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _manifest():
+    with open(MANIFEST) as handle:
+        return json.load(handle)
+
+
+def _rec(slot, digest=None):
+    env = dict(L.REQUIRED_ENV)
+    return {"slot": slot, "admitted": digest is not None,
+            "group": {"group_digest": digest} if digest else None,
+            "environment": env, "runtime_versions": {"python": "x"},
+            "engine_state_problems": [], "freeze_ok": True}
+
+
+def test_A_first_admission_in_slot_order_is_included():
+    records = [_rec(0, "A"), _rec(1, "B"), _rec(2, "A"), _rec(3), _rec(4, "C")]
+    for order in (records, list(reversed(records))):
+        included, excluded = L.first_admissions(order)
+        assert [r["slot"] for r in included] == [0, 1, 4]
+        assert [r["group"]["group_digest"] for r in included] == ["A", "B", "C"]
+        assert excluded == [{"group_digest": "A", "first_slot": 0,
+                             "excluded_slot": 2}]
+
+
+def test_B_a_later_duplicate_never_counts_toward_the_target():
+    env, ver = dict(L.REQUIRED_ENV), {"python": "x"}
+    recs = [_rec(0, "A"), _rec(1, "B"), _rec(2, "A")]
+    assert L.corpus_problems(recs, 2, env, ver, dedupe_from_slot=3) == []
+    assert "duplicate_after_erratum2_resume" in L.corpus_problems(
+        recs, 2, env, ver, dedupe_from_slot=2)
+    assert "more_groups_than_target" in L.corpus_problems(
+        recs + [_rec(3, "C")], 2, env, ver, dedupe_from_slot=3)
+    #  the pre-erratum rule is kept for provenance: any duplicate blocks
+    assert "duplicate_group_digest" in L.corpus_problems(recs, 42, env, ver)
+
+
+def _cfg(out, target=3, slots=10, wall=1e9):
+    return {"out": out, "prefix": "full", "target": target, "slots": slots,
+            "wall": wall, "engine": out, "manifest": None}
+
+
+def _write(out, slot, digest=None):
+    with open(os.path.join(out, f"full{slot:05d}.json"), "w") as handle:
+        json.dump(_rec(slot, digest), handle)
+
+
+class _Stub:
+    """run_slot stand-in: admits the queued digests in order."""
+
+    def __init__(self, digests):
+        self.digests, self.calls = list(digests), []
+
+    def __call__(self, slot, fam, cfg, seen):
+        self.calls.append((slot, set(seen)))
+        d = self.digests.pop(0) if self.digests else None
+        return {"slot": slot, "anchor_family": "(0,0)", "admitted": d is not None,
+                "group": {"group_digest": d} if d else None,
+                "pair_attempts": 1, "replicate_attempts": 0, "rejections": {}}
+
+
+def test_B_H_duplicate_admission_is_not_counted_and_target_stops_the_run():
+    GEN = _gen()
+    with tempfile.TemporaryDirectory() as out:
+        for slot, d in ((0, "A"), (1, "B"), (2, "A")):
+            _write(out, slot, d)
+        stub = _Stub(["A", "C", "D"])
+        end = GEN.continue_run(_cfg(out), [None] * 5, first=0.0,
+                               run_slot_fn=stub, clock=lambda: 10.0)
+        assert [c[0] for c in stub.calls] == [3, 4]
+        assert stub.calls[1][1] == {"A", "B"}
+        assert end["admitted_groups"] == 3 and end["admitted_records"] == 5
+        assert end["stop_reason"] == "target_groups"
+
+
+def test_C_the_generator_skips_an_already_included_pair(monkeypatch):
+    GEN = _gen()
+    calls = []
+
+    def fake(anchor, contrast, seed, *rest):
+        calls.append(seed)
+        return L.R_TWIN_SAME, None
+
+    monkeypatch.setattr(L, "make_twin_replicate", fake)
+    fam = G.parse_family("(0,1)")
+    pair_seed = L.SEED_BASE + 117 * L.SLOT_STRIDE + 1 * L.ATTEMPT_STRIDE
+    anchor = L.CD.sample_target(pair_seed, fam)
+    contrast = G.contrast_target(anchor, "FEATURE", rotation=1)
+    dup = G.group_digest(L.CV.digest(anchor), L.CV.digest(contrast))
+    assert dup == _manifest()["erratum_2"]["excluded_at_resume"][0]["group_digest"]
+    cfg = {"base": L.SEED_BASE, "budgets": {}, "gate": {}, "prefix": "t",
+           "engine": "/nonexistent"}
+    record = GEN.run_slot(117, fam, cfg, frozenset({dup}))
+    assert record["rejections"][L.R_DUPLICATE_GROUP] >= 1
+    assert not any(pair_seed <= s < pair_seed + L.SEEDS_PER_PAIR for s in calls)
+    skip = next(x for x in record["duplicate_skips"] if x["attempt"] == 1)
+    assert skip == {"slot": 117, "attempt": 1, "pair_seed": pair_seed,
+                    "target_digests": [L.CV.digest(anchor), L.CV.digest(contrast)],
+                    "group_digest": dup}
+    calls.clear()
+    GEN.run_slot(117, fam, cfg, frozenset())
+    assert any(pair_seed <= s < pair_seed + L.SEEDS_PER_PAIR for s in calls)
+
+
+def test_D_resume_rebuilds_the_included_set_from_existing_records():
+    GEN = _gen()
+    with tempfile.TemporaryDirectory() as out:
+        for slot, d in ((0, "A"), (1, None), (2, "B"), (3, "A")):
+            _write(out, slot, d)
+        stub = _Stub([None])
+        GEN.continue_run(_cfg(out, target=5, slots=5), [None] * 5, first=0.0,
+                         run_slot_fn=stub, clock=lambda: 10.0)
+        assert stub.calls == [(4, {"A", "B"})]
+    #  the real first run, restricted to the preserved slots
+    e2 = _manifest()["erratum_2"]
+    names = sorted(n for n in os.listdir(os.path.join(HERE, "outputs", "tti",
+                                                      "v14_twin_corpus"))
+                   if re.fullmatch(r"full\d{5}\.json", n))[:e2["resume_slot"]]
+    recs = [json.load(open(os.path.join(HERE, "outputs", "tti",
+                                        "v14_twin_corpus", n))) for n in names]
+    included, excluded = L.first_admissions(recs)
+    assert len(included) == e2["included_at_resume"] == 41
+    assert excluded == e2["excluded_at_resume"]
+    assert excluded[0]["first_slot"] == 57 and excluded[0]["excluded_slot"] == 117
+
+
+def test_E_F_existing_slots_are_never_rewritten_and_resume_starts_at_the_gap():
+    GEN = _gen()
+    with tempfile.TemporaryDirectory() as out:
+        for slot, d in ((0, "A"), (1, None), (2, "B")):
+            _write(out, slot, d)
+        before = {n: _sha(os.path.join(out, n)) for n in os.listdir(out)}
+        stub = _Stub(["C"])
+        GEN.continue_run(_cfg(out), [None] * 5, first=0.0, run_slot_fn=stub,
+                         clock=lambda: 10.0)
+        assert stub.calls[0][0] == 3
+        after = {n: _sha(os.path.join(out, n)) for n in before}
+        assert after == before
+        assert os.path.exists(os.path.join(out, "full00003.json"))
+
+
+def test_G_the_wall_clock_counts_from_the_original_first_start():
+    GEN = _gen()
+    with tempfile.TemporaryDirectory() as out:
+        _write(out, 0, "A")
+        stub = _Stub(["B"])
+        end = GEN.continue_run(_cfg(out, wall=86400.0), [None] * 5,
+                               first=1000.0, run_slot_fn=stub,
+                               clock=lambda: 1000.0 + 86400.5)
+        assert stub.calls == [] and end["stop_reason"] == "wall_clock"
+        stub = _Stub(["B"])
+        GEN.continue_run(_cfg(out, wall=86400.0), [None] * 5, first=1000.0,
+                         run_slot_fn=stub, clock=lambda: 1000.0 + 86399.0)
+        rec = json.load(open(os.path.join(out, "full00001.json")))
+        assert rec["started_since_first_start_s"] == 86399.0
+    e2 = _manifest()["erratum_2"]
+    state = json.load(open(os.path.join(HERE, "outputs", "tti", "v14_twin_corpus",
+                                        "full_run_state.json")))
+    assert state["first_started_epoch"] == e2["first_started_epoch"]
+
+
+def test_H_an_existing_target_stops_before_any_new_slot():
+    GEN = _gen()
+    with tempfile.TemporaryDirectory() as out:
+        for slot, d in ((0, "A"), (1, "B"), (2, "A")):
+            _write(out, slot, d)
+        stub = _Stub(["C"])
+        end = GEN.continue_run(_cfg(out, target=2), [None] * 5, first=0.0,
+                               run_slot_fn=stub, clock=lambda: 10.0)
+        assert stub.calls == [] and end["stop_reason"] == "target_groups"
+        assert end["admitted_groups"] == 2
+
+
+def test_I_the_blocked_first_run_is_preserved_and_never_a_write_target():
+    e2 = _manifest()["erratum_2"]
+    cor = os.path.join(HERE, "outputs", "tti", "v14_twin_corpus")
+    assert L.preserved_problems(
+        os.path.join(HERE, e2["preserved_hash_list"]["path"]),
+        e2["preserved_hash_list"]["sha256"], cor,
+        archived=[(os.path.join(HERE, e2["archived_run_end"]),
+                   "full_run_end.json")]) == []
+    assert len(e2["blocked_audit_paths"]) == 4
+    for rel in e2["blocked_audit_paths"]:
+        assert _sha(os.path.join(HERE, rel)) == e2["blocked_audit_sha256"]
+    audit_sh = open(os.path.join(HERE, "scripts", "run_v14_erratum2_audit.sh")).read()
+    for old in ("v14_localization_audit.json", "v14_localization_audit_pass1",
+                "v14_localization_audit_pass2", "V14_AUDIT_DONE"):
+        assert old not in audit_sh
+    spec = importlib.util.spec_from_file_location(
+        "aud14", os.path.join(HERE, "scripts", "audit_v14_localization.py"))
+    AUD = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(AUD)
+    assert AUD.OUT_DEFAULT.endswith("v14_localization_audit_erratum2.json")
+    gen_sh = open(os.path.join(HERE, "scripts", "run_v14_erratum2_generation.sh")).read()
+    assert "V14_AUDIT_DONE" not in gen_sh and "run_end.json" not in gen_sh
+    with tempfile.TemporaryDirectory() as d:
+        a, b = os.path.join(d, "full00000.json"), os.path.join(d, "copy.json")
+        open(a, "w").write("{}")
+        open(b, "w").write("{}")
+        lst = os.path.join(d, "list.txt")
+        open(lst, "w").write(f"{_sha(a)}  full00000.json\n")
+        assert L.preserved_problems(lst, _sha(lst), d, [(b, "full00000.json")]) == []
+        open(a, "w").write("{ }")
+        assert L.preserved_problems(lst, _sha(lst), d, [(b, "full00000.json")]) == \
+            ["preserved:full00000.json"]
+
+
+def _definitions(text):
+    tree = ast.parse(text)
+    out = {}
+    for node in tree.body:
+        if isinstance(node, (ast.FunctionDef, ast.ClassDef)):
+            key = node.name
+        elif isinstance(node, ast.Assign):
+            t = node.targets[0]
+            key = t.id if isinstance(t, ast.Name) else ",".join(
+                e.id for e in t.elts)
+        elif isinstance(node, ast.AnnAssign):
+            key = node.target.id
+        elif isinstance(node, (ast.Import, ast.ImportFrom)):
+            key = "import:" + ast.get_source_segment(text, node)
+        elif isinstance(node, ast.Expr):
+            key = "docstring"
+        else:
+            key = type(node).__name__
+        out[key] = hashlib.sha256(
+            ast.get_source_segment(text, node).encode()).hexdigest()
+    return out
+
+
+def test_J_statistic_code_is_byte_identical_to_the_pre_erratum_freeze():
+    e2 = _manifest()["erratum_2"]
+    frozen = e2["v14_loc_adecfd2_definition_sha256"]
+    current = _definitions(open(os.path.join(HERE, "cora_arc2026", "v14_loc.py")).read())
+    changed = sorted(k for k in frozen if current.get(k) != frozen[k])
+    added = sorted(set(current) - set(frozen))
+    assert changed == e2["v14_loc_changed_definitions"] == ["corpus_problems"]
+    assert added == sorted(e2["v14_loc_added_definitions"])
+    for name in ("nn_credits", "group_stats", "randomization_p", "binom_sf",
+                 "stage_result", "sensitivity", "classify", "audit_groups",
+                 "stage_multiset", "stage_points", "ruzicka", "make_twin_replicate",
+                 "NULL", "ALPHA", "TIE_EPS", "CREDIT_SCALE", "TARGET_GROUPS",
+                 "FLOOR_GROUPS", "REACTION_STAGES"):
+        assert current[name] == frozen[name], name
+    try:
+        old = subprocess.run(["git", "show", "adecfd2:cora_arc2026/v14_loc.py"],
+                             cwd=HERE, capture_output=True, text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return
+    assert _definitions(old) == frozen
+    #  and nothing the reasoner runs changed
+    prev = e2["previous"]
+    now = _manifest()
+    for rel in ("cora_arc2026/v13_gen.py", "cora_arc2026/engine_trace.py",
+                "cora_arc2026/vendor/tfg_extractor.py",
+                "geocat_arc/object_reasoning/_trace_hook.py",
+                "outputs/tti/v13_calibration/calibration.json",
+                "scripts/run_v14_chain.sh"):
+        assert now["implementation_sha256"][rel] == prev["implementation_sha256"][rel]
+    for name in ("geocat_arc", "cora_tti", "cora_parent", "level4_blind_runtime"):
+        assert now["dependency_tree_sha256"][name] == \
+            prev["dependency_tree_sha256"][name]

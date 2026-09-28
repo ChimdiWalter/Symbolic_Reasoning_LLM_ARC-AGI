@@ -6,7 +6,17 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
-**v1.4 RUN COMPLETE; SEALED AUDIT = AUDIT_BLOCKED (`duplicate_group_digest`);
+**v1.4 ERRATUM 2 FROZEN 2026-09-28; the continuation to 42 unique groups
+launches from this freeze.** Record `records/ITEM2_V14_ERRATUM_02.md`;
+protocol sha256 `05e3d96b...8723a8eb`, manifest sha256 `1c2202b6...4dbf2aa1`;
+58 v1.4 tests pass. Rule: the first admission of a group digest in slot
+order is included, later ones are kept but excluded (slot 57 included, slot
+117 excluded); the generator skips included pairs before any engine run and
+counts unique groups. Resume at slot 136 with 41 included; original caps;
+launch deadline 2026-09-28T20:47:49Z. The v1.4 scientific outcome is not
+yet measured.
+
+**v1.4 FIRST RUN COMPLETE; SEALED AUDIT = AUDIT_BLOCKED (`duplicate_group_digest`);
 NO CLASSIFICATION.** Record: `records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md`.
 Generation stopped at 42 admitted groups after 136 slots and 11,791 s with
 full freeze, environment, leakage and twin-law integrity, but one target pair
@@ -126,14 +136,16 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**Preserve the blocked run and issue erratum 2, a slot-order duplicate-group
-rule, before any statistic is computed; then complete the same run to 42
-unique groups under the original caps and re-run the sealed audit twice.**
-User decision; not implemented. The frozen 24 h cap counts from the first
-start and expires at **2026-09-28T20:47:49Z**; after that the erratum must
-also address the cap. Details in the run record. Scorer discrimination stays
-unlicensed and the ConstructiveExtensionCompiler stays blocked. Binding data
-order: `records/DATA_USAGE_ORDER.md`.
+**Complete the frozen v1.4 run under erratum 2, then audit and stop.** In
+order: `scripts/check_v14_integrity.py pre`; `setsid nohup
+scripts/run_v14_erratum2_generation.sh > logs/v14_erratum2_stdout.log 2>&1
+< /dev/null &` and record the REAL python PID (`pgrep -af
+"generate_v14_twins.py full"`); on `logs/V14_ERRATUM2_GENERATION_DONE` run
+`scripts/check_v14_integrity.py post`; then `scripts/run_v14_erratum2_audit.sh`
+(gate again, sealed auditor twice, byte-identical, new versioned outputs);
+record the classification; STOP. Scorer discrimination stays unlicensed and
+the ConstructiveExtensionCompiler stays blocked. Binding data order:
+`records/DATA_USAGE_ORDER.md`.
 
 ## How to re-run
 

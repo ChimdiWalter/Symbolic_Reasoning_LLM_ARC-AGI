@@ -5,6 +5,12 @@ every group's integrity and leakage, then computes the frozen stage
 descriptors from the allowlisted model view and applies the frozen
 statistics and classification ladder. Nothing is trained. Deterministic: two
 runs on the same corpus must produce byte-identical reports.
+
+Erratum 2: the scientific groups are the first admissions of each group
+digest in ascending slot order; later admissions are kept in the corpus,
+reported as excluded duplicates and never audited. The records preserved
+from the blocked first run, and its blocked audit reports, must still match
+their committed hashes.
 """
 from __future__ import annotations
 
@@ -28,6 +34,8 @@ PROTOCOL = os.path.join(HERE, "docs",
 MANIFEST = os.path.join(HERE, "outputs", "tti",
                         "mechanistic_frontier_v14_manifest.json")
 FULL_RECORD = re.compile(r"^full\d{5}\.json$")
+OUT_DEFAULT = os.path.join(HERE, "outputs", "tti",
+                           "v14_localization_audit_erratum2.json")
 
 
 def sha256(path):
@@ -58,6 +66,21 @@ def verify_freeze():
     return man, problems
 
 
+def preservation_problems(man):
+    """Erratum 2: the first run's records and blocked reports are intact."""
+    e2 = man["erratum_2"]
+    problems = L.preserved_problems(
+        os.path.join(HERE, e2["preserved_hash_list"]["path"]),
+        e2["preserved_hash_list"]["sha256"], COR_DIR,
+        archived=[(os.path.join(HERE, e2["archived_run_end"]),
+                   "full_run_end.json")])
+    for rel in e2["blocked_audit_paths"]:
+        path = os.path.join(HERE, rel)
+        if not os.path.exists(path) or sha256(path) != e2["blocked_audit_sha256"]:
+            problems.append(f"blocked_audit:{rel}")
+    return problems
+
+
 def load_records(cor_dir=COR_DIR):
     records = []
     for name in sorted(os.listdir(cor_dir)):
@@ -69,8 +92,11 @@ def load_records(cor_dir=COR_DIR):
 
 def main():
     man, freeze_problems = verify_freeze()
+    preservation = preservation_problems(man)
     records = load_records()
-    groups = sorted((r["group"] for r in records if r.get("admitted")),
+    admitted = [r for r in records if r.get("admitted")]
+    included, excluded = L.first_admissions(records)
+    groups = sorted((r["group"] for r in included),
                     key=lambda g: g["group_digest"])
     rejections = {}
     for r in records:
@@ -81,9 +107,10 @@ def main():
     integrity = {k: v for k, v in integrity.items() if v}
     corpus = L.corpus_problems(records, man["caps"]["target_groups"],
                                man["environment"]["required_snapshot"],
-                               man["runtime_versions"])
+                               man["runtime_versions"],
+                               dedupe_from_slot=man["erratum_2"]["resume_slot"])
     leaks = {}
-    for g in groups:
+    for g in (r["group"] for r in admitted):
         for e in g["episodes"]:
             found = L.view_leaks(e, g)
             if found:
@@ -95,8 +122,13 @@ def main():
     report = {
         "protocol_doc_sha256": man["protocol_doc_sha256"],
         "calibration_sha256": CAL_SHA256,
+        "erratum": 2,
         "slots": len(records),
+        "admitted_records": len(admitted),
         "admitted_groups": len(groups),
+        "excluded_duplicates": excluded,
+        "distinct_targets_all_admissions": len(
+            {d for r in admitted for d in r["group"]["target_digests"]}),
         "episodes": sum(len(g["episodes"]) for g in groups),
         "distinct_targets": len(digests),
         "groups_by_anchor_family": {
@@ -108,8 +140,10 @@ def main():
         "leaks": leaks,
         "engine_state_problems": engine_state,
         "corpus_problems": corpus,
+        "preservation_problems": preservation,
     }
-    blocked = freeze_problems or integrity or leaks or engine_state or corpus
+    blocked = (freeze_problems or integrity or leaks or engine_state or corpus
+               or preservation)
     if blocked:
         report["verdict"] = "AUDIT_BLOCKED"
     elif not groups:
@@ -123,16 +157,17 @@ def main():
         report["classification"] = out["classification"]
         report["verdict"] = out["classification"]["classification"]
     text = json.dumps(report, sort_keys=True, indent=1)
-    target = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
-        HERE, "outputs", "tti", "v14_localization_audit.json")
+    target = sys.argv[1] if len(sys.argv) > 1 else OUT_DEFAULT
     with open(target, "w") as handle:
         handle.write(text + "\n")
 
-    print(f"slots {report['slots']}  groups {report['admitted_groups']}  "
+    print(f"slots {report['slots']}  admissions {report['admitted_records']}  "
+          f"included groups {report['admitted_groups']}  "
+          f"excluded duplicates {[(x['first_slot'], x['excluded_slot']) for x in excluded]}  "
           f"episodes {report['episodes']}  targets {report['distinct_targets']}")
     if blocked:
         print("AUDIT BLOCKED", freeze_problems, integrity, leaks, engine_state,
-              corpus)
+              corpus, preservation)
         return
     if not groups:
         print("no admitted groups")
