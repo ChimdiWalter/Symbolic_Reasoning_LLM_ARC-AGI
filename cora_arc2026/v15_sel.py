@@ -489,9 +489,11 @@ def matched_shuffle(queries, block="F_S7") -> list:
     keep = sd > 1e-12
     Z = (X[:, keep] - mu[keep]) / sd[keep]
     grp = [q["group"] for q in queries]
-    dist = ((Z[:, None, :] - Z[None, :, :]) ** 2).sum(axis=2)
+    garr = np.array(grp)
+    sq = (Z * Z).sum(axis=1)
+    dist = np.maximum(sq[:, None] + sq[None, :] - 2.0 * (Z @ Z.T), 0.0)
     iu, ju = np.triu_indices(n, k=1)
-    ok = np.array([grp[i] != grp[j] for i, j in zip(iu, ju)], dtype=bool)
+    ok = garr[iu] != garr[ju]
     iu, ju, dd = iu[ok], ju[ok], dist[iu[ok], ju[ok]]
     order = np.lexsort((ju, iu, dd))
     pi, matched = [None] * n, []

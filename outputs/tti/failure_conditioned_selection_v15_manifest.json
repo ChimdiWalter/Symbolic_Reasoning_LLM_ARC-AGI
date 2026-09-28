@@ -1,0 +1,508 @@
+{
+ "candidate_order": "sort by sha256('v15-cand|' + sha256(demonstrations) + '|' + token); ties give no choice and half credit",
+ "caps": {
+  "floor_groups": 72,
+  "slot_cap": 9000,
+  "test_groups": 288,
+  "wall_clock_s": 432000
+ },
+ "claim_ceiling": "FAILURE-CONDITIONED SELECTION WITH INCREMENTAL VALUE BEYOND DEMONSTRATIONS ON UNSEEN INDEPENDENT-INPUT TARGET PAIRS",
+ "classification_ladder": [
+  "integrity, leakage, order or overlap failure: MIXED_OR_INCONCLUSIVE (no statistic)",
+  "test groups < 72: MIXED_OR_INCONCLUSIVE",
+  "A, B, C, D pass: FAILURE_CONDITIONED_SELECTION_GENERALIZES",
+  "twin control passes A, B, C, D: TWIN_ONLY_SELECTION_SIGNAL",
+  "test groups < 288: MIXED_OR_INCONCLUSIVE",
+  "C fails: FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION",
+  "B or D fails: DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION (FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED)",
+  "otherwise: MIXED_OR_INCONCLUSIVE"
+ ],
+ "conditions": {
+  "D": [
+   "D_RICH",
+   null,
+   null
+  ],
+  "D+F_ASSOC": [
+   "D_RICH",
+   "F_S7",
+   "assoc"
+  ],
+  "D+F_NOVSIG": [
+   "D_RICH",
+   "F_NOVSIG",
+   "assoc"
+  ],
+  "D+F_NOVSIG_SHUFFLED": [
+   "D_RICH",
+   "F_NOVSIG",
+   "shuffled"
+  ],
+  "D+F_SEARCH": [
+   "D_RICH",
+   "F_SEARCH",
+   "assoc"
+  ],
+  "D+F_SEARCH_SHUFFLED": [
+   "D_RICH",
+   "F_SEARCH",
+   "shuffled"
+  ],
+  "D+F_SHUFFLED": [
+   "D_RICH",
+   "F_S7",
+   "shuffled"
+  ],
+  "D_AGG": [
+   "D_AGG",
+   null,
+   null
+  ],
+  "D_AGG+F_ASSOC": [
+   "D_AGG",
+   "F_S7",
+   "assoc"
+  ],
+  "F_ASSOC": [
+   null,
+   "F_S7",
+   "assoc"
+  ]
+ },
+ "dependency_tree_sha256": {
+  "cora_arc2026": "ffecab2358443e1dd1e3355a95aaf94009dcfbdf9af668ae169bec88ad723166",
+  "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
+  "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
+  "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
+  "level4_blind_runtime": "cad36fd5458b97ba5053c7be5cdb637e14d316c5bb000f3aba7dff7dc2c4adc8"
+ },
+ "environment": {
+  "required_snapshot": {
+   "ARC_META_BUDGET_S": "8",
+   "PYTHONHASHSEED": "0"
+  },
+  "rule": "every ARC_* refused except ARC_META_BUDGET_S=8; PYTHONHASHSEED=0; single-threaded BLAS in evaluation"
+ },
+ "exclusion": {
+  "group_digests": 69,
+  "path": "outputs/tti/v15_exclusion_digests.json",
+  "sha256": "50349bcf4a0bcd78d7e134ab6cafe3833a01e58f30e2bd532c9a691e67f35219",
+  "sources": {
+   "v1.2 corpus": {
+    "files": 450,
+    "group_digests": 0,
+    "target_digests": 215
+   },
+   "v1.3 calibration": {
+    "files": 201,
+    "group_digests": 0,
+    "target_digests": 187
+   },
+   "v1.3 corpus": {
+    "files": 1241,
+    "group_digests": 21,
+    "target_digests": 41
+   },
+   "v1.4 corpus": {
+    "files": 145,
+    "group_digests": 42,
+    "target_digests": 83
+   },
+   "v1.4 feasibility smoke": {
+    "files": 11,
+    "group_digests": 6,
+    "target_digests": 12
+   }
+  },
+  "target_digests": 471
+ },
+ "external_file_sha256": {
+  "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest.json": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3",
+  "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest_hash.txt": "c9f7fe311a549adc0b5d572fee9c5023976940fc5a438105e6268d55d987fd00"
+ },
+ "gates": {
+  "A": "D+F_ASSOC accuracy > 0.5, sign-flip p < 0.01",
+  "B": "Delta_demo > 0, p < 0.01",
+  "C": "Delta_shuffle > 0, p < 0.01",
+  "D": "mean Delta_demo >= 1/20",
+  "E": "zero leakage",
+  "F": "order-invariant choice for every query and condition",
+  "G": "no digest shared between train and test or repeated within test"
+ },
+ "implementation_sha256": {
+  "cora_arc2026/engine_trace.py": "adda371babb8ebd784aa129f78ea2146601bcac75b6da2d989bafc6980dd5800",
+  "cora_arc2026/scorer_fit.py": "9123894b7fa9d4d32ca8ed724f11f74ac3d00bed4e4f7fcf526ab3a429bf9432",
+  "cora_arc2026/v13_gen.py": "1d389abe6ddb70e2eebf7f7cd9433fb3b326dc6bcf07a6a02be62f9b5215dc08",
+  "cora_arc2026/v14_loc.py": "010fe720c6f7c4f105e4f3340a3d3c6db4c57487a7a122cb2de89418a67e70c7",
+  "cora_arc2026/v15_sel.py": "098d7d33483e7f8a08322f44392a9f65d09907533ec8478253040e5770db8e3b",
+  "cora_arc2026/vendor/tfg_extractor.py": "268149016febceefa7344950a5d70d37592db2d8a305d4b093b8caa67b886c81",
+  "geocat_arc/object_reasoning/_trace_hook.py": "7c3d5a52e394c422ce6a8a53a0f40f4b54c619ddd9fc46d696c486a9da3f3524",
+  "outputs/tti/constructive_protocol_v1.3_manifest.json": "9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14",
+  "outputs/tti/v13_calibration/calibration.json": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02",
+  "outputs/tti/v14_twin_corpus_sha256_erratum2.txt": "792a7beb7d67089c99f4fab6c23dab31221bea7292422dbeeab1fe399f3c4fd4",
+  "outputs/tti/v15_exclusion_digests.json": "50349bcf4a0bcd78d7e134ab6cafe3833a01e58f30e2bd532c9a691e67f35219",
+  "scripts/evaluate_v15_selection.py": "101b9a9b60162809673d8e014a67e076d4258bbfa0458a381a57a47bd0e9ac0c",
+  "scripts/generate_v15_pairs.py": "5fac0d80e3786a14b787dba88d5441f85128c2c6b03421994c79734191837ddf",
+  "scripts/run_v15_evaluation.sh": "6891cd8c3115990dd5c9eaaf3304773eef0b7a36abf51c33a09bfd6de50a4e4b",
+  "scripts/run_v15_generation.sh": "ff05153ef7e5a3dbdb1130ec5e359d3f4a7f69a10b421e19b82df29ad5998459",
+  "scripts/v15_power.py": "5993d414b8dba1140ddd3dc6da272d6cd369afa404df84767a1a398c664f4a23",
+  "tests/test_v15_selection_feasibility.py": "2a20269a627c36dfe9341b0d496c37ba9825c25c51edbeefd3c0e37f92ea3d4e"
+ },
+ "licenses_on_pass_only": "the next preregistered block: generic ConstructiveExtensionCompiler + end-to-end K + {e}; never 1000 tasks, evaluation DEV or HOLDOUT",
+ "model": {
+  "adapters": [
+   "FieldStandardizer: the v1.2 standardizer rule on an explicit field list",
+   "fit_pairs: pairwise conditional log-likelihood over the two candidate tokens at the differing GrammarState"
+  ],
+  "blas_threads": 1,
+  "input": "[1] + standardized active evidence + 5 grammar-state inputs",
+  "lambda": 0.01,
+  "objective": "-(1/n) sum log sigma((w_true - w_false).x) + lambda ||W||^2 over all key-feature rows",
+  "optimizer": "Newton to max step < 1e-12, at most 100 iterations; unique optimum; equal to the v1.2 gradient-ascent fixed point (tested)",
+  "reused": "cora_arc2026/scorer_fit.py LogLinearScorer (weight rows per terminal, logit w_t . x) and the Standardizer rule",
+  "tie_eps": 1e-12
+ },
+ "order_after_freeze": [
+  "one adversarial review; blocking findings corrected by recorded erratum before any test group",
+  "scripts/run_v15_generation.sh detached",
+  "evaluate_v15_selection.py --integrity-only, read",
+  "scripts/run_v15_evaluation.sh (gate, evaluator twice, byte-identical)",
+  "record; STOP"
+ ],
+ "parent": {
+  "classification": "CURRENT_TFG_IDENTIFYING_UNDER_TWINS",
+  "determining_stage": "S7",
+  "erratum_2_freeze": "5ffa56f",
+  "result_commit": "134e36c",
+  "v14_audit_sha256": "1c05140162cb7a0707a34e14e368892683fbadda94f6bfb83ace1f00830ce944",
+  "v14_manifest_sha256": "1c2202b6dfa2ac94a3e61112705dbbbf379d60a5548753aa79eb3c7e4dbf2aa1",
+  "v14_protocol_sha256": "05e3d96b9f95f288752b8d558b0341e349d53f149d4fcb748efa72b48723a8eb"
+ },
+ "pilot": {
+  "admission_ci95": [
+   0.0186,
+   0.2368
+  ],
+  "admission_rate_per_slot": 0.0882,
+  "admissions_by_family": {
+   "(0,0)": [
+    0,
+    7
+   ],
+   "(0,0,0)": [
+    0,
+    6
+   ],
+   "(0,1)": [
+    1,
+    7
+   ],
+   "(1,0)": [
+    2,
+    7
+   ],
+   "(1,1)": [
+    0,
+    7
+   ]
+  },
+  "admitted_groups": 3,
+  "mean_seconds_per_slot": 84.7,
+  "novelty_skips": {
+   "EXCLUDED_GROUP_DIGEST": 1,
+   "EXCLUDED_TARGET_DIGEST": 27
+  },
+  "pair_attempts": 789,
+  "projected_hours_for_288_groups": 76.8,
+  "rejections": {
+   "BASELINE_SOLVED": 44,
+   "EXCLUDED_GROUP_DIGEST": 1,
+   "EXCLUDED_TARGET_DIGEST": 27,
+   "NO_INFORMATIVE_TFG": 7,
+   "OTHER_FROZEN_CODE": 224,
+   "PAIR_REPLICATES_SHORT": 758,
+   "TARGET_EXECUTION_UNDEFINED": 1041,
+   "TARGET_NOT_FITTABLE": 6129
+  },
+  "replicate_attempts": 7667,
+  "scored": false,
+  "seconds_per_admitted_group": 959.6,
+  "seed_base": 400000000,
+  "slots": 34,
+  "stop_reason": "wall_clock",
+  "wall_s": 2887.4
+ },
+ "primary": [
+  "D",
+  "D+F_ASSOC",
+  "D+F_SHUFFLED"
+ ],
+ "protocol": "CORA-TTI Item-2 v1.5 conditional failure-conditioned selection under input variation",
+ "protocol_doc": "docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md",
+ "protocol_doc_sha256": "dc02e1ae9e38076968491cec28d7e142c51228c54ae9ccee17039825efd9c88b",
+ "question": "does associated failure evidence improve selection of the correct candidate of a one-key-feature pair beyond demonstration evidence alone, and does the increment survive on unseen target pairs under independently rendered inputs",
+ "runtime_versions": {
+  "numpy": "2.4.3",
+  "python": "3.12.3",
+  "scipy": "1.16.3"
+ },
+ "sample_size": {
+  "alpha": 0.01,
+  "delta_min": 0.05,
+  "discordance_used": 0.414,
+  "floor_groups": 72,
+  "joint_B_and_D_at_1_5_delta_min": "about 0.96",
+  "joint_B_and_D_at_delta_min": "about 0.5",
+  "normal_approximation_n": 272,
+  "proxy": {
+   "discordance": 0.4137,
+   "group_mean_sd": 0.2286,
+   "groups": 42,
+   "s0_rate": 0.6637,
+   "s7_rate": 0.5655,
+   "within_group_correlation": 0.0049
+  },
+  "seed": 20260928,
+  "sims": 1000,
+  "simulated_power_68_at_0_10": 0.883,
+  "simulated_power_at_256": 0.868,
+  "simulated_power_at_272": 0.895,
+  "simulated_power_at_288": 0.909,
+  "test_groups": 288
+ },
+ "shuffle": "within each pool: pool-standardized D_RICH; squared distances between queries of different groups; lexsort (distance, i, j); greedy 2-cycles swapping F; leftovers join a 3-cycle with the nearest pair from two other groups; D never moves",
+ "statistics": {
+  "alpha": 0.01,
+  "delta_min": "1/20",
+  "inference": "exact one-sided sign-flip over groups by integer convolution; exact sign test reported",
+  "primary_metric": "0-1 selection accuracy, half credit for ties, units of 1/16 per group",
+  "reported_not_gated": [
+   "negative log-likelihood",
+   "margin",
+   "tie rate",
+   "secondary and explanatory conditions",
+   "verification diagnostic",
+   "twin swap"
+  ]
+ },
+ "status": "FROZEN_NOT_RUN",
+ "test_law": {
+  "admission": "v1.3 law unchanged + v1.4 observation (caches cleared, informative gate, trajectory capture)",
+  "attempt_stride": 100,
+  "attempts_per_slot": 25,
+  "episode_seed": "pair_seed + 10 t + k, k < 8",
+  "families": [
+   "(0,0)",
+   "(1,0)",
+   "(0,1)",
+   "(1,1)",
+   "(0,0,0)"
+  ],
+  "novelty": "skip before any engine run if the group or either target digest is excluded or already in the test",
+  "pilot_seed_base": 400000000,
+  "replicates_per_target": 4,
+  "seed_base": 300000000,
+  "slot_stride": 10000
+ },
+ "training_resource": {
+  "groups": 42,
+  "hash_list": "outputs/tti/v14_twin_corpus_sha256_erratum2.txt",
+  "hash_list_sha256": "792a7beb7d67089c99f4fab6c23dab31221bea7292422dbeeab1fe399f3c4fd4",
+  "queries": 336,
+  "source": "42 included v1.4 twin groups (first admissions), rerun controls and slot 117 unused"
+ },
+ "twin_control": {
+  "folds": 7,
+  "rule": "components of shared target digests, ordered by smallest group digest, round-robin"
+ },
+ "version": "1.5",
+ "views": {
+  "D_AGG": [
+   "n_demonstrations",
+   "mean_cells_changed",
+   "mean_fraction_changed",
+   "same_shape_all",
+   "palette_introduced_mean",
+   "palette_removed_mean"
+  ],
+  "D_RICH": [
+   "n_demonstrations",
+   "mean_cells_changed",
+   "mean_fraction_changed",
+   "same_shape_all",
+   "palette_introduced_mean",
+   "palette_removed_mean",
+   "same_shape_fraction",
+   "shrinks_fraction",
+   "grows_fraction",
+   "introduced_min",
+   "introduced_max",
+   "removed_min",
+   "removed_max",
+   "n_in_mean",
+   "n_in_min",
+   "n_in_max",
+   "n_out_mean",
+   "n_out_min",
+   "n_out_max",
+   "cells_changed_min",
+   "cells_changed_max",
+   "fraction_changed_min",
+   "fraction_changed_max"
+  ],
+  "F_NOVSIG": [
+   "distinct_ops",
+   "exec_generated",
+   "exec_max_depth",
+   "exec_rejected",
+   "exec_semantic_classes",
+   "exec_typed",
+   "op_bucket_0",
+   "op_bucket_1",
+   "op_bucket_10",
+   "op_bucket_11",
+   "op_bucket_12",
+   "op_bucket_13",
+   "op_bucket_14",
+   "op_bucket_15",
+   "op_bucket_2",
+   "op_bucket_3",
+   "op_bucket_4",
+   "op_bucket_5",
+   "op_bucket_6",
+   "op_bucket_7",
+   "op_bucket_8",
+   "op_bucket_9",
+   "outcome_exact",
+   "outcome_executed_not_exact",
+   "outcome_slot_fit_failed",
+   "outcome_slot_fit_ok",
+   "outcome_typecheck_failed",
+   "outcome_typed",
+   "surface_max",
+   "surface_mean",
+   "surface_min"
+  ],
+  "F_S7": [
+   "cells_wrong_max",
+   "cells_wrong_mean",
+   "cells_wrong_min",
+   "defined_signatures",
+   "distinct_ops",
+   "exec_generated",
+   "exec_max_depth",
+   "exec_rejected",
+   "exec_semantic_classes",
+   "exec_typed",
+   "fraction_wrong_max",
+   "fraction_wrong_mean",
+   "fraction_wrong_min",
+   "op_bucket_0",
+   "op_bucket_1",
+   "op_bucket_10",
+   "op_bucket_11",
+   "op_bucket_12",
+   "op_bucket_13",
+   "op_bucket_14",
+   "op_bucket_15",
+   "op_bucket_2",
+   "op_bucket_3",
+   "op_bucket_4",
+   "op_bucket_5",
+   "op_bucket_6",
+   "op_bucket_7",
+   "op_bucket_8",
+   "op_bucket_9",
+   "outcome_exact",
+   "outcome_executed_not_exact",
+   "outcome_slot_fit_failed",
+   "outcome_slot_fit_ok",
+   "outcome_typecheck_failed",
+   "outcome_typed",
+   "palette_extra_max",
+   "palette_extra_mean",
+   "palette_extra_min",
+   "shape_mismatch",
+   "surface_max",
+   "surface_mean",
+   "surface_min"
+  ],
+  "F_SEARCH": [
+   "n_typed",
+   "n_selector_induced",
+   "n_no_selector",
+   "n_slot_fit_ok",
+   "n_slot_fit_failed",
+   "selector_literals_mean",
+   "typed_delta_composite",
+   "typed_delta_connect",
+   "typed_delta_copy",
+   "typed_delta_copy_part",
+   "typed_delta_crop_to",
+   "typed_delta_delete",
+   "typed_delta_extract_part",
+   "typed_delta_fill_line",
+   "typed_delta_grow",
+   "typed_delta_keep",
+   "typed_delta_move_to",
+   "typed_delta_move_until_adjacent",
+   "typed_delta_paint",
+   "typed_delta_recolor",
+   "typed_delta_reflect",
+   "typed_delta_rotate",
+   "typed_delta_scale",
+   "typed_delta_synth_copy",
+   "typed_delta_translate",
+   "fit_ok_delta_composite",
+   "fit_ok_delta_connect",
+   "fit_ok_delta_copy",
+   "fit_ok_delta_copy_part",
+   "fit_ok_delta_crop_to",
+   "fit_ok_delta_delete",
+   "fit_ok_delta_extract_part",
+   "fit_ok_delta_fill_line",
+   "fit_ok_delta_grow",
+   "fit_ok_delta_keep",
+   "fit_ok_delta_move_to",
+   "fit_ok_delta_move_until_adjacent",
+   "fit_ok_delta_paint",
+   "fit_ok_delta_recolor",
+   "fit_ok_delta_reflect",
+   "fit_ok_delta_rotate",
+   "fit_ok_delta_scale",
+   "fit_ok_delta_synth_copy",
+   "fit_ok_delta_translate",
+   "selector_bucket_0",
+   "selector_bucket_1",
+   "selector_bucket_2",
+   "selector_bucket_3",
+   "selector_bucket_4",
+   "selector_bucket_5",
+   "selector_bucket_6",
+   "selector_bucket_7",
+   "selector_bucket_8",
+   "selector_bucket_9",
+   "selector_bucket_10",
+   "selector_bucket_11",
+   "selector_bucket_12",
+   "selector_bucket_13",
+   "selector_bucket_14",
+   "selector_bucket_15"
+  ],
+  "capacity": "one standardizer and one input width per F block; inactive blocks exactly zero",
+  "value_signature_fields": [
+   "cells_wrong_max",
+   "cells_wrong_mean",
+   "cells_wrong_min",
+   "defined_signatures",
+   "fraction_wrong_max",
+   "fraction_wrong_mean",
+   "fraction_wrong_min",
+   "palette_extra_max",
+   "palette_extra_mean",
+   "palette_extra_min",
+   "shape_mismatch"
+  ],
+  "verification_diagnostic": "other_candidate_fits, descriptive only, never in a view"
+ }
+}

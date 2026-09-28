@@ -6,17 +6,20 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
-**v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION: DESIGN IN PROGRESS, NOT
-FROZEN** (saved mid-block). Draft record
-`records/ITEM2_V15_SELECTION_DESIGN_DECISION.md` holds every decision so far
-and the remaining steps. Draft code `cora_arc2026/v15_sel.py`,
-`scripts/generate_v15_pairs.py`, exclusion set
-`outputs/tti/v15_exclusion_digests.json` (sha256 `50349bcf...`). No selector
-has been fitted and no test group exists. Admission-rate pilot RUNNING on
-disjoint pilot seeds: PID 2448150, `logs/v15_pilot_run.log`, 45 min cap from
-15:12Z; it measures admission and runtime only. Frozen so far in the draft:
-288 test groups (exact-test power 0.909 at +5 accuracy points), floor 72,
-λ = 0.01, α = 0.01.
+**v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION: FROZEN, NOT RUN.**
+Protocol `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md` sha256
+`dc02e1ae...efd9c88b`; manifest
+`outputs/tti/failure_conditioned_selection_v15_manifest.json` sha256
+`16dc3ef7...0e09e2b2`; record `records/ITEM2_V15_SELECTION_DESIGN_DECISION.md`;
+43 tests. Question: does associated failure evidence (S7) improve selection
+between two one-key-feature candidates beyond demonstration evidence
+(D_RICH), on new target pairs with independently rendered inputs? Reused
+`scorer_fit.LogLinearScorer`, pairwise fit by Newton with lambda 0.01; train
+= 42 v1.4 twin groups; twin control = grouped 7-fold CV; test = 288 new
+independent-input groups (exact-test power 0.909 at +5 points), floor 72;
+gates A to G all required; caps 9,000 slots or 120 h (pilot: 8.8 percent
+admission, about 77 h expected). No selector has been fitted on real data
+and no test group exists.
 
 **v1.4 COMPLETE: CURRENT_TFG_IDENTIFYING_UNDER_TWINS** (determining stage
 S7, confirmatory at 42 unique groups, sealed audit byte-identical, sha256
@@ -158,20 +161,17 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**PREREGISTER THE NEXT FAILURE-CONDITIONED SELECTION EXPERIMENT USING THE
-TWIN-VALIDATED SIGNAL.** Framing set by the user on 2026-09-28: an
-incremental test under realistic input variation. Does associated failure
-evidence improve candidate selection beyond demonstrations alone, on unseen
-targets and new scenes? Not designed or implemented. Note for the design:
-v1.3 is the one measurement under independent inputs, and there the same
-42-field descriptor did not identify the target with a nonlearned neighbour
-test (FEATURE-only 0.473 against 3/7, 112 instances), so the comparison must
-condition on the demonstrations. Two
-measured facts bind its design: demonstration statistics (S0) identify the
-target more strongly than any reasoning stage, and the signal is established
-only under shared inputs. Scorer training, the ConstructiveExtensionCompiler,
-the 1000 ARC tasks, evaluation DEV and protected HOLDOUT stay blocked.
-Binding data order: `records/DATA_USAGE_ORDER.md`.
+One adversarial review of the frozen v1.5 protocol and implementation
+(protocol section 17); blocking findings go into a recorded erratum before
+any test group exists. Then **RUN THE FROZEN v1.5 CONDITIONAL
+FAILURE-CONDITIONED SELECTION EXPERIMENT**:
+
+    setsid nohup scripts/run_v15_generation.sh > logs/v15_generation_stdout.log 2>&1 < /dev/null &
+    ps -eo pid,args | grep "[g]enerate_v15_pairs.py full"    # the REAL pid
+
+then `scripts/evaluate_v15_selection.py --integrity-only` (read it), then
+`scripts/run_v15_evaluation.sh`, record, STOP. Binding data order:
+`records/DATA_USAGE_ORDER.md`.
 
 ## How to re-run
 

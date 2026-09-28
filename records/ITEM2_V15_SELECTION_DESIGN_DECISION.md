@@ -1,9 +1,12 @@
 # Item-2 v1.5 conditional failure-conditioned selection: design decision
 
-**STATUS: DRAFT, IN PROGRESS, NOT FROZEN.** Saved 2026-09-28 mid-block at the
-user's request. No protocol or manifest hash exists yet. No selector has
-been fitted on any data, and no v1.5 test group exists. An admission-rate
-pilot is running on disjoint pilot seeds (see section 9).
+**STATUS: FROZEN, NOT RUN.** Authoritative text:
+`docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md` (sha256
+`dc02e1ae9e38076968491cec28d7e142c51228c54ae9ccee17039825efd9c88b`); manifest
+`outputs/tti/failure_conditioned_selection_v15_manifest.json` (sha256
+`16dc3ef778e9cbeed3e5c906607ccce21023fae4c82b88d0c0eff2d30e09e2b2`). No selector
+has been fitted on any real data and no test group exists. The freeze commit
+is in `RESUME.md`.
 
 ## 1. Parent result, preserved
 
@@ -154,45 +157,54 @@ survive on unseen target pairs under independently rendered inputs?
      (FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED).
   8. Otherwise: MIXED_OR_INCONCLUSIVE.
 
-## 9. Admission-rate pilot, running
+## 9. Admission pilot (complete) and caps
 
-`scripts/generate_v15_pairs.py pilot --slots 60 --wall 2700`, launched
-2026-09-28T15:12Z, PID 2448150, output `logs/v15_pilot/` and
-`logs/v15_pilot_run.log`. It measures admission rate, runtime and rejection
-profile only; no selector exists. Early lines: slot 0 not admitted (4
-exclusion skips), slot 1 admitted in 126 s. The frozen slot and wall-clock
-caps will be set from its result.
+The pilot ran 34 slots and admitted 3 groups in 2,887 s.
+- Per-slot admission: 0.088, exact 95 percent interval 0.019 to 0.237.
+- Time: 84.7 s per slot, 960 s per admitted group.
+- By family (admitted / slots): (0,0) 0/7, (1,0) 2/7, (0,1) 1/7, (1,1) 0/7,
+  (0,0,0) 0/6.
+- Novelty skips: 27 excluded targets and 1 excluded group.
 
-## 10. Written so far (unfrozen)
+Admission is well below v1.4's twin rate. The likely reason is that the
+earlier corpora already used the most easily admitted targets. The pilot
+measured admission and runtime only; the verification diagnostic was
+deliberately not computed on pilot pairs.
 
-- `cora_arc2026/v15_sel.py`: generation side (exclusion set,
-  independent-input episodes, slot and pair laws) and evaluation side (views,
-  queries, order law, matched shuffle, FieldStandardizer, Newton pairwise fit
-  on LogLinearScorer weights, scoring, exact tests, twin folds, leak scan,
-  gates, ladder).
-- `scripts/generate_v15_pairs.py`: pilot and full modes; resumable, writer
-  lock, persistent wall clock, per-slot freeze re-verification.
-- `outputs/tti/v15_exclusion_digests.json`.
+Frozen caps: 288 unique groups, 9,000 slots or 120 h, whichever comes first.
+Expected time is about 77 h at the point estimate, 29 h at the upper end of
+the interval, and about 95 groups by the cap at the lower end. A positive
+stands at 72 groups or more; a negative below 288 is MIXED_OR_INCONCLUSIVE.
 
-## 11. Remaining, in order
+## 10. Implementation (frozen)
 
-1. Read the pilot; set the slot cap and wall-clock cap.
-2. `scripts/evaluate_v15_selection.py`: freeze checks, training-resource hash
-   check, test-corpus integrity, all conditions, the twin CV, the
-   verification diagnostic, gates and the ladder; run twice, byte-identical.
-3. `scripts/check_v15_integrity.py` plus the run scripts, with
-   single-threaded BLAS.
-4. `tests/test_v15_selection_feasibility.py`:
-   - controls: planted signals, order invariance, the shuffle's properties,
-     label permutation, intercept only, a duplicated candidate;
-   - the leak scanner with injected leaks;
-   - exclusion and seed disjointness;
-   - the power reproduction;
-   - ladder cases;
-   - Newton against gradient ascent;
-   - neutral blocks staying inert.
-5. Protocol `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md`, manifest,
-   hashes, FREEZE commit; then one reviewer, per the project rule.
+- `cora_arc2026/v15_sel.py` (core)
+- `scripts/generate_v15_pairs.py` (pilot and full)
+- `scripts/evaluate_v15_selection.py` (sealed; `--integrity-only`)
+- `scripts/v15_power.py` (proxy and power, reproduced exactly)
+- `scripts/run_v15_generation.sh`, `scripts/run_v15_evaluation.sh`
+- `tests/test_v15_selection_feasibility.py`, 43 tests. Beyond the unit
+  tests, they include:
+  - every control on synthetic fixtures;
+  - a full synthetic end-to-end evaluator run, byte-identical twice;
+  - the exact rebuild of the exclusion set;
+  - the exact reproduction of the power values.
 
-Next action after freeze: RUN THE FROZEN v1.5 CONDITIONAL FAILURE-CONDITIONED
-SELECTION EXPERIMENT.
+Reused and hashed unchanged: `scorer_fit.py`, `v14_loc.py`, `v13_gen.py`,
+the engine trace, the extractor, the trace hook, the calibration and the
+v1.4 training hash list.
+
+Faults found during the block, all fixed before freeze:
+- my first power simulation's convolution shifted by 2v (caught by a
+  brute-force check);
+- the shuffle's first distance computation would have needed about 1 GB
+  (replaced by Gram distances);
+- two fixture tests unpacked the conditions in the wrong order (a test bug;
+  the module was right).
+
+## 11. Next action, exactly one
+
+One adversarial review of the frozen protocol and implementation, per
+protocol section 17. Blocking findings are corrected by a recorded erratum
+before any test group exists. Then: RUN THE FROZEN v1.5 CONDITIONAL
+FAILURE-CONDITIONED SELECTION EXPERIMENT.
