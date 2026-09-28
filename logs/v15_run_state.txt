@@ -12,3 +12,12 @@ nice 10, another session at nice 15). NFS slow at launch (D-state during imports
 Marker: logs/V15_GENERATION_DONE. Then: evaluate_v15_selection.py --integrity-only
 (read), then scripts/run_v15_evaluation.sh. No score is read before that.
 Stop if ever needed: kill 2819761 2819666 (exact PIDs only).
+
+2026-09-28T21:31:58Z POST-GENERATION RUNNER LAUNCHED (commit ff751e3):
+setsid nohup bash scripts/run_v15_post_generation.sh 2819666 > logs/v15_postgen/runner.out 2>&1 < /dev/null &
+Runner PID 2938902 (own session). It waits for chain 2819666, then runs:
+integrity only -> verification (PYTHONPATH = tti root, addendum erratum 1)
+-> run_v15_evaluation.sh (twice, byte-compared) -> dependence.
+It stops at the first failure. Status is in logs/v15_postgen/STATUS.txt;
+markers are logs/V15_POSTGEN_DONE or logs/V15_POSTGEN_BLOCKED.
+It records no verdict. Stop if ever needed: kill 2938902 (exact PID only).
