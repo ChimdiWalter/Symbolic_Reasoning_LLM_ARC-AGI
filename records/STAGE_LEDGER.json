@@ -1,0 +1,75 @@
+{
+ "schema": "stage ledger v1: one entry per stage, append-only in spirit; update status fields only",
+ "stages": [
+  {
+   "id": "v1.3",
+   "status": "COMPLETE",
+   "verdict": "V1.3 CONTRASTIVE CORPUS IDENTIFIABILITY GATE FAIL",
+   "protocol_sha256": "66aa1c561ac4fd2a619459f15919282776a5898ab3ae6f36ae6944a5389d8f1e",
+   "record": "records/ITEM2_V13_CORPUS_RESULT_20260926.md",
+   "commit": "e200e5a"
+  },
+  {
+   "id": "v1.4",
+   "status": "COMPLETE",
+   "verdict": "CURRENT_TFG_IDENTIFYING_UNDER_TWINS",
+   "protocol_sha256": "05e3d96b9f95f288752b8d558b0341e349d53f149d4fcb748efa72b48723a8eb",
+   "manifest_sha256": "1c2202b6dfa2ac94a3e61112705dbbbf379d60a5548753aa79eb3c7e4dbf2aa1",
+   "record": "records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md",
+   "commit": "134e36c"
+  },
+  {
+   "id": "v1.5",
+   "status": "GENERATION_RUNNING",
+   "freeze_commit": "216f2c4",
+   "protocol_sha256": "e3209c1f0ce3ab9d7c925f546dd9a25111b0b22cb0b8300dfbe53b5fb2e1e42a",
+   "manifest_sha256": "0cc4b900d22c11cce444051e7374af33d4e2261bb75547df9c9f6fe77054a89c",
+   "data_permissions": "train: 42 v1.4 twin groups; test: new independent-input groups generated under the frozen law; no ARC task data",
+   "command": "scripts/run_v15_generation.sh then evaluate_v15_selection.py --integrity-only then scripts/run_v15_evaluation.sh",
+   "stop_condition": "288 unique groups, 9000 slots or 432000 s from 2026-09-28T20:16:44Z; first failed freeze check",
+   "process": {
+    "generator_pid": 2819761,
+    "chain_pid": 2819666,
+    "launched_utc": "2026-09-28T20:15:01Z"
+   },
+   "outputs": [
+    "outputs/tti/v15_test_corpus/",
+    "outputs/tti/v15_selection_report.json"
+   ],
+   "verdict": null,
+   "allowed_successor": "on FAILURE_CONDITIONED_SELECTION_GENERALIZES: generic compiler (directive 2026-09-28 section 6); otherwise one bounded repair (section 5)"
+  },
+  {
+   "id": "compiler",
+   "status": "BLOCKED_UNTIL_v1.5_PASS"
+  },
+  {
+   "id": "no_oracle_proposal",
+   "status": "BLOCKED"
+  },
+  {
+   "id": "closed_loop",
+   "status": "BLOCKED"
+  },
+  {
+   "id": "real_arc_causal_pilot",
+   "status": "BLOCKED"
+  },
+  {
+   "id": "bounded_development",
+   "status": "BLOCKED"
+  },
+  {
+   "id": "characterization_1000",
+   "status": "BLOCKED"
+  },
+  {
+   "id": "eval_dev_60",
+   "status": "BLOCKED"
+  },
+  {
+   "id": "holdout_60",
+   "status": "BLOCKED"
+  }
+ ]
+}

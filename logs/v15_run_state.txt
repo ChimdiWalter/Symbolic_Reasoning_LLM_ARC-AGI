@@ -1,0 +1,14 @@
+Item-2 v1.5 frozen selection experiment: GENERATION LAUNCHED 2026-09-28T20:15:01Z
+Freeze 216f2c4 (protocol e3209c1f..., manifest 0cc4b900...), HEAD 216f2c4.
+Command: setsid nohup scripts/run_v15_generation.sh > logs/v15_generation_stdout.log 2>&1 < /dev/null &
+Chain shell PID 2819666; generator (real python) PID 2819761, nice 19, sole FLOCK
+WRITE holder on outputs/tti/v15_test_corpus/.writer.lock; environment
+ARC_META_BUDGET_S=8, PYTHONHASHSEED=0, OPENBLAS/OMP threads 1, no other ARC_*.
+First start 2026-09-28T20:16:44Z (epoch 1790626604.34); caps: 288 unique groups,
+9,000 slots, 432,000 s -> wall cap expires 2026-10-03T20:16:44Z.
+Pre-launch CPU probe: a nice-19 process got 0.935 of a core (v1.4 training
+episodes ran at CPU/wall 0.975); host load about 66 (Step B 20 workers, O1 at
+nice 10, another session at nice 15). NFS slow at launch (D-state during imports).
+Marker: logs/V15_GENERATION_DONE. Then: evaluate_v15_selection.py --integrity-only
+(read), then scripts/run_v15_evaluation.sh. No score is read before that.
+Stop if ever needed: kill 2819761 2819666 (exact PIDs only).
