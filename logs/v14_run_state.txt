@@ -50,3 +50,12 @@ Stops at 42 unique groups, slot 399, or the original 24 h cap.
 Next: on logs/V14_ERRATUM2_GENERATION_DONE run check_v14_integrity.py post,
 then scripts/run_v14_erratum2_audit.sh. No stage value is read before then.
 Stop if needed: kill 2388124 2388118 (exact PIDs only).
+
+--- ERRATUM 2 CONTINUATION AND AUDIT COMPLETE 2026-09-28 ---
+Generator exit 0 at 14:29:00Z: slots 136-140, 42nd unique group at slot 140
+(a6f6d1bb..., (0,0), pair seed 101402200), 43 admissions / 42 included / 1
+excluded (117), stop target_groups at 63,665.5 s from the first start.
+Post gate PASS 14:29:20Z (manual) and 14:29:35Z (inside the audit script).
+Sealed audit twice, byte-identical, sha256 1c051401...:
+CURRENT_TFG_IDENTIFYING_UNDER_TWINS, determining S7, confirmatory.
+Record: records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md. Nothing is running.

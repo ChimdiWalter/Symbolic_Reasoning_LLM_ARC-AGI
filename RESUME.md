@@ -6,10 +6,16 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
-**v1.4 ERRATUM 2 CONTINUATION LAUNCHED 2026-09-28T14:21:37Z** from freeze
-5ffa56f: generator PID 2388124 (chain 2388118); state in
-`logs/v14_run_state.txt`. Next on `logs/V14_ERRATUM2_GENERATION_DONE`: the
-post gate, then the audit script.
+**v1.4 COMPLETE: CURRENT_TFG_IDENTIFYING_UNDER_TWINS** (determining stage
+S7, confirmatory at 42 unique groups, sealed audit byte-identical, sha256
+`1c051401...`). Record: `records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md`.
+S7 (42-field descriptor) 190/336 = 0.565 against the exact null 1/2,
+binomial p 0.0094, randomization p 0.0017 (Holm 0.0052); S2 0.574, S3 0.592,
+S4 0.571 also qualify; S5, S6 do not (90 percent ties); S7a randomization
+only; S2 to S5 react far beyond same-input rerun noise; S0 (demonstrations)
+0.664 is stronger than every reasoning stage. The erratum-2 continuation
+ran slots 136 to 140 (14:21:37Z to 14:29:00Z, PID 2388124), no duplicate
+after resume, 42nd group at slot 140. Nothing is running.
 
 **v1.4 ERRATUM 2 FROZEN 2026-09-28 at 5ffa56f.** Record `records/ITEM2_V14_ERRATUM_02.md`;
 protocol sha256 `05e3d96b...8723a8eb`, manifest sha256 `1c2202b6...4dbf2aa1`;
@@ -140,16 +146,13 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**Complete the frozen v1.4 run under erratum 2, then audit and stop.** In
-order: `scripts/check_v14_integrity.py pre`; `setsid nohup
-scripts/run_v14_erratum2_generation.sh > logs/v14_erratum2_stdout.log 2>&1
-< /dev/null &` and record the REAL python PID (`pgrep -af
-"generate_v14_twins.py full"`); on `logs/V14_ERRATUM2_GENERATION_DONE` run
-`scripts/check_v14_integrity.py post`; then `scripts/run_v14_erratum2_audit.sh`
-(gate again, sealed auditor twice, byte-identical, new versioned outputs);
-record the classification; STOP. Scorer discrimination stays unlicensed and
-the ConstructiveExtensionCompiler stays blocked. Binding data order:
-`records/DATA_USAGE_ORDER.md`.
+**PREREGISTER THE NEXT FAILURE-CONDITIONED SELECTION EXPERIMENT USING THE
+TWIN-VALIDATED SIGNAL.** User decision; not designed or implemented. Two
+measured facts bind its design: demonstration statistics (S0) identify the
+target more strongly than any reasoning stage, and the signal is established
+only under shared inputs. Scorer training, the ConstructiveExtensionCompiler,
+the 1000 ARC tasks, evaluation DEV and protected HOLDOUT stay blocked.
+Binding data order: `records/DATA_USAGE_ORDER.md`.
 
 ## How to re-run
 

@@ -769,28 +769,49 @@ and a minimal change in the second does not move the first systematically.
 Under the programme's own ordering, no scorer is fitted to such a corpus and
 no compiler is built on it.
 
-## 8.9 Prospective: where does target information disappear?
+## 8.9 Where target information lives: a counterfactual-twin localization
 
 v1.3 failed to establish target identifiability, including on the cleaner
-non-SELECT contrasts. The next preregistered experiment, v1.4, asks where the
-signal is lost, not whether a model can recover it. Either the deployed
-reasoner's internal trajectory does react to the minimal semantic change and
-the failure graph discards that information, or the trajectory itself is
-insufficiently sensitive, in which case no encoder or scorer could recover
-it. The two call for different repairs.
+non-SELECT contrasts. That left two explanations with different repairs:
+either the reasoner's trajectory reacts to the semantic difference and the
+failure graph loses it, or the trajectory itself does not react, in which
+case no encoder or scorer could recover it.
 
-The design removes the instance variation v1.3 could not control. Each pair
-of minimally different targets is shown the same input grids, so the two
-demonstration sets differ only through the target transformation. The
-reasoner's own ordered candidate trajectory, which the failure graph
-previously summarized and discarded, is kept, and each stage from candidate
-formation through fitting, execution and mismatch to the final graph is
-tested for target identification with a nonlearned within-group
-nearest-neighbour statistic against its exact null. Because every unsolved
-run exhausts the fixed search budget, target A is also observed a second
-time on the same input, so a reaction to the semantic change can be
-separated from timing noise. Nothing is trained, and no result is claimed
-here.
+v1.4 separates them without training anything. Pairs of feature contrasts
+are shown the same input grids, so the two demonstration sets differ only
+through the target transformation, with four such twin replicates per group.
+The reasoner's ordered candidate trajectory is kept, and each stage, from
+candidate formation through selector induction, parameter fitting,
+executable candidates and mismatch to the failure graph and its 42-field
+summary, is tested with a nonlearned nearest-neighbour statistic. Because
+each query's own twin shares its input, it is excluded, and the exact chance
+level becomes one half. Target A is also run a second time on the same
+input, to separate a reaction to the semantic change from timing noise in a
+deadline-bound search.
+
+The frozen run produced 42 unique groups, 336 episodes and 168 reruns. A
+first audit was blocked by a preregistered integrity rule after one target
+pair was admitted twice; the fix and the continuation were frozen before any
+statistic existed.
+
+The existing 42-field summary identifies which of the two targets produced a
+failure at 0.565 against 0.5 (190 of 336, binomial p = 0.0094, exact
+randomization p = 0.0017). The reasoner's own candidate formation, selector
+induction and parameter fitting identify the target at 0.57 to 0.59, and at
+these stages the twin's trajectory differs from the original far more often
+than a same-input rerun does. The executable-candidate and mismatch stages
+carry little information either way, because within the fixed budget the
+engine forms few executable candidates.
+
+So the v1.3 negative was at least partly instance noise: once scene
+variation is balanced, the current failure summary does carry target
+information, and the search does react to the semantic change. Two limits
+come with that. The demonstrations alone identify the target more strongly
+(0.664) than any reasoning stage, and the signal is established only under
+shared inputs, not under the input variation a real selector would face.
+Both bind the next experiment, a preregistered failure-conditioned selection
+test that must beat a demonstration-only baseline. Nothing about selection,
+construction or score is claimed here.
 
 ## 9. Ablations and Failure Analysis
 
