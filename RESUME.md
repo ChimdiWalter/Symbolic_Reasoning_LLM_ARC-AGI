@@ -1,6 +1,6 @@
 # ARC-2026 delivery sprint: resume
 
-Last updated 2026-09-27. Read this first.
+Last updated 2026-09-28. Read this first.
 
 ## State
 
@@ -163,14 +163,39 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Wait for `logs/V15_GENERATION_DONE` (the generator is live; never relaunch
-it). Then, in order: `scripts/evaluate_v15_selection.py --integrity-only`
-(read it), `scripts/v15_supp_verification.py`, `scripts/run_v15_evaluation.sh`,
-`scripts/v15_supp_dependence.py`; record official and supplementary verdicts
-separately; then follow the directive's continuation rules (compiler on
-FAILURE_CONDITIONED_SELECTION_GENERALIZES, otherwise at most one bounded
-repair). Never edit `cora_arc2026/`, `geocat_arc/` or any manifest-listed
-file while the generator runs: its per-slot freeze check would stop it.
+Finish v1.5 exactly as frozen; build nothing new before its verdict. The
+detached post-generation runner (PID 2938902, `scripts/run_v15_post_generation.sh`,
+commit ff751e3) waits for the generation chain 2819666 to end, then runs, in
+the order set on 2026-09-28:
+1. `evaluate_v15_selection.py --integrity-only`;
+2. `v15_supp_verification.py`, launched with PYTHONPATH set to the tti root
+   (`records/ITEM2_V15_DELIVERY_ADDENDUM_ERRATUM_01.md`: as frozen it cannot
+   import `cora_tti`);
+3. `run_v15_evaluation.sh` (the sealed evaluator twice, byte-compared);
+4. `v15_supp_dependence.py`.
+
+It stops at the first failure. Read `logs/v15_postgen/STATUS.txt`:
+- `logs/V15_POSTGEN_DONE` means all four steps ran;
+- `logs/V15_POSTGEN_BLOCKED` names the failing step. Repair only that step,
+  then run the remaining steps by hand in the same order.
+
+Never relaunch the generator. After a reboot the chain and the runner are
+both gone: check the corpus state first.
+
+Then record the official verdict separately from the supplementary checks
+(result record, ledger, RESUME, commit), and continue:
+- FAILURE_CONDITIONED_SELECTION_GENERALIZES: build the generic
+  ConstructiveExtensionCompiler.
+- Otherwise: one bounded repair keyed to the classification, then one clean
+  prospective rerun, then preserve the result if it also fails.
+  - TWIN_ONLY: robustness to ordinary input variation.
+  - DEMONSTRATIONS_SUFFICIENT: no incremental value over the demonstration
+    summary.
+  - NOT_CAUSAL: find the failure channel tied to the decision.
+  - MIXED: resolve only the exact ambiguity.
+
+Never edit `cora_arc2026/`, `geocat_arc/` or any manifest-listed file while
+the generator runs: its per-slot freeze check would stop it.
 
 ## How to re-run
 
