@@ -76,5 +76,31 @@
    "id": "holdout_60",
    "status": "BLOCKED"
   }
- ]
+ ],
+ "recovered_definitions": {
+  "witness_BPULTA": {
+   "source": "docs/PAPER_SKELETON.md section 2.3",
+   "B": "the baseline language fails",
+   "P": "the extension is produced",
+   "U": "the winning program uses it",
+   "L": "full adaptive leave-one-out passes",
+   "T": "the final output is exactly correct",
+   "A": "removing the extension destroys the gain"
+  },
+  "construction_spec": "docs/EXPERIMENT_SPEC_CONSTRUCTION.md (additive install proof, routing classes, four outcome levels, matched BASE / construction / matched expanded search / ablation)",
+  "compiler_spec": "ConstructiveExtensionCompiler is SPECIFIED_ONLY in Reasoning_Project_tti docs/CORA_TTI_CONSTRUCTIVE_PROPOSER_PROTOCOL.md; no code anywhere (records/IMPLEMENTATION_MATRIX_CORRECTED_20260923.md)",
+  "data_order": "records/DATA_USAGE_ORDER.md"
+ },
+ "data_facts_2026_09_28": {
+  "repo_data_arc": {
+   "dev60_challenges.json": "sha256 6f36965059bca79a...",
+   "arc-agi_evaluation_challenges.json": "byte-identical to dev60_challenges.json (same sha256): only the 60 DEV challenges are in this repo",
+   "arc-agi_evaluation_solutions.json": "3-byte placeholder; no protected answers here"
+  },
+  "asset_table": "records/ASSET_TABLE.md: dev60 extracted by a filtered reader; the 60 protected members and the holdout key never decoded",
+  "open_for_later_stages": [
+   "locate the 1000-task training set through the project's data manifest (not in this repo); verify version, 1000 unique IDs, checksums, exposure",
+   "locate the protected 60 and the 120-task manifest and 60/60 split record without opening protected answers"
+  ]
+ }
 }
