@@ -6,15 +6,16 @@
   "test_groups": 288,
   "wall_clock_s": 432000
  },
- "claim_ceiling": "FAILURE-CONDITIONED SELECTION WITH INCREMENTAL VALUE BEYOND DEMONSTRATIONS ON UNSEEN INDEPENDENT-INPUT TARGET PAIRS",
+ "claim_ceiling": "FAILURE-CONDITIONED SELECTION WITH INCREMENTAL VALUE BEYOND THE D_RICH DEMONSTRATION SUMMARY ON UNSEEN INDEPENDENT-INPUT TARGET PAIRS; negatives conditional on this selector and training resource",
  "classification_ladder": [
-  "integrity, leakage, order or overlap failure: MIXED_OR_INCONCLUSIVE (no statistic)",
-  "test groups < 72: MIXED_OR_INCONCLUSIVE",
-  "A, B, C, D pass: FAILURE_CONDITIONED_SELECTION_GENERALIZES",
-  "twin control passes A, B, C, D: TWIN_ONLY_SELECTION_SIGNAL",
+  "freeze, integrity, leakage, order, overlap or fit-convergence failure: MIXED_OR_INCONCLUSIVE",
+  "test groups < 72: MIXED_OR_INCONCLUSIVE (no statistic computed)",
+  "A, B, C, D, H pass: FAILURE_CONDITIONED_SELECTION_GENERALIZES",
+  "A, B, C, D pass, H fails: MIXED_OR_INCONCLUSIVE",
   "test groups < 288: MIXED_OR_INCONCLUSIVE",
-  "C fails: FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION",
-  "B or D fails: DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION (FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED)",
+  "twin control passes A-D and the test fails B or C decisively: TWIN_ONLY_SELECTION_SIGNAL",
+  "C fails decisively: FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION",
+  "B fails decisively and D selects above chance: DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION (FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED)",
   "otherwise: MIXED_OR_INCONCLUSIVE"
  ],
  "conditions": {
@@ -69,8 +70,9 @@
    "assoc"
   ]
  },
+ "decisive_failure": "not significant at 0.01 AND one-sided 95 percent upper bound below delta_min",
  "dependency_tree_sha256": {
-  "cora_arc2026": "ffecab2358443e1dd1e3355a95aaf94009dcfbdf9af668ae169bec88ad723166",
+  "cora_arc2026": "12df1ce59a53dd83cbb97f377f7a99831b688a8890b6d1e1d3217dc4ae5bf56e",
   "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
   "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
   "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
@@ -83,10 +85,20 @@
   },
   "rule": "every ARC_* refused except ARC_META_BUDGET_S=8; PYTHONHASHSEED=0; single-threaded BLAS in evaluation"
  },
+ "erratum_1": {
+  "cause": "pre-run adversarial review: 1 blocking (ladder negatives), 4 major, minor findings",
+  "record": "records/ITEM2_V15_ERRATUM_01.md",
+  "supersedes": {
+   "commit": "89ac728",
+   "manifest_sha256": "16dc3ef778e9cbeed3e5c906607ccce21023fae4c82b88d0c0eff2d30e09e2b2",
+   "protocol_doc_sha256": "dc02e1ae9e38076968491cec28d7e142c51228c54ae9ccee17039825efd9c88b"
+  },
+  "thresholds_changed": false
+ },
  "exclusion": {
-  "group_digests": 69,
+  "group_digests": 72,
   "path": "outputs/tti/v15_exclusion_digests.json",
-  "sha256": "50349bcf4a0bcd78d7e134ab6cafe3833a01e58f30e2bd532c9a691e67f35219",
+  "sha256": "6a5761d6fbe896e35fce647eeeca0b4eb162aa3cb6be7ae84f0b0ee2164b1ad5",
   "sources": {
    "v1.2 corpus": {
     "files": 450,
@@ -112,9 +124,14 @@
     "files": 11,
     "group_digests": 6,
     "target_digests": 12
+   },
+   "v1.5 admission pilot": {
+    "files": 34,
+    "group_digests": 3,
+    "target_digests": 6
    }
   },
-  "target_digests": 471
+  "target_digests": 477
  },
  "external_file_sha256": {
   "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest.json": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3",
@@ -127,26 +144,27 @@
   "D": "mean Delta_demo >= 1/20",
   "E": "zero leakage",
   "F": "order-invariant choice for every query and condition",
-  "G": "no digest shared between train and test or repeated within test"
+  "G": "no digest shared between train and test or repeated within test",
+  "H": "on verification-ambiguous queries, summed paired accuracy difference D+F_ASSOC minus D >= 0 over >= 30 groups"
  },
  "implementation_sha256": {
   "cora_arc2026/engine_trace.py": "adda371babb8ebd784aa129f78ea2146601bcac75b6da2d989bafc6980dd5800",
   "cora_arc2026/scorer_fit.py": "9123894b7fa9d4d32ca8ed724f11f74ac3d00bed4e4f7fcf526ab3a429bf9432",
   "cora_arc2026/v13_gen.py": "1d389abe6ddb70e2eebf7f7cd9433fb3b326dc6bcf07a6a02be62f9b5215dc08",
   "cora_arc2026/v14_loc.py": "010fe720c6f7c4f105e4f3340a3d3c6db4c57487a7a122cb2de89418a67e70c7",
-  "cora_arc2026/v15_sel.py": "098d7d33483e7f8a08322f44392a9f65d09907533ec8478253040e5770db8e3b",
+  "cora_arc2026/v15_sel.py": "810dc0a70b33583bb0469c5ddcf7e36c8b061c4e82c5d2db2bf73e848ccea501",
   "cora_arc2026/vendor/tfg_extractor.py": "268149016febceefa7344950a5d70d37592db2d8a305d4b093b8caa67b886c81",
   "geocat_arc/object_reasoning/_trace_hook.py": "7c3d5a52e394c422ce6a8a53a0f40f4b54c619ddd9fc46d696c486a9da3f3524",
   "outputs/tti/constructive_protocol_v1.3_manifest.json": "9492f392d13e95b033b3f6a77d6dd75d27cbb11b6d0ac7dad104901fab56de14",
   "outputs/tti/v13_calibration/calibration.json": "ba82865e52cd9e025442ea73ee7ad83ee894b5ad8610a7753ce37a44051c7c02",
   "outputs/tti/v14_twin_corpus_sha256_erratum2.txt": "792a7beb7d67089c99f4fab6c23dab31221bea7292422dbeeab1fe399f3c4fd4",
-  "outputs/tti/v15_exclusion_digests.json": "50349bcf4a0bcd78d7e134ab6cafe3833a01e58f30e2bd532c9a691e67f35219",
-  "scripts/evaluate_v15_selection.py": "101b9a9b60162809673d8e014a67e076d4258bbfa0458a381a57a47bd0e9ac0c",
-  "scripts/generate_v15_pairs.py": "5fac0d80e3786a14b787dba88d5441f85128c2c6b03421994c79734191837ddf",
+  "outputs/tti/v15_exclusion_digests.json": "6a5761d6fbe896e35fce647eeeca0b4eb162aa3cb6be7ae84f0b0ee2164b1ad5",
+  "scripts/evaluate_v15_selection.py": "63a771ef7698d50d4d1e46b426a02149a861b708dd55b4657bed898a13f23e8a",
+  "scripts/generate_v15_pairs.py": "54e24d5bc3c743b95bbdbdfbd86c3c8d37b4d1d89c5ebb1231587e8bbb61111e",
   "scripts/run_v15_evaluation.sh": "6891cd8c3115990dd5c9eaaf3304773eef0b7a36abf51c33a09bfd6de50a4e4b",
   "scripts/run_v15_generation.sh": "ff05153ef7e5a3dbdb1130ec5e359d3f4a7f69a10b421e19b82df29ad5998459",
   "scripts/v15_power.py": "5993d414b8dba1140ddd3dc6da272d6cd369afa404df84767a1a398c664f4a23",
-  "tests/test_v15_selection_feasibility.py": "2a20269a627c36dfe9341b0d496c37ba9825c25c51edbeefd3c0e37f92ea3d4e"
+  "tests/test_v15_selection_feasibility.py": "eeec402829e167edb4af0553a3371d8154895354b6f819184bbc02d2f0034fce"
  },
  "licenses_on_pass_only": "the next preregistered block: generic ConstructiveExtensionCompiler + end-to-end K + {e}; never 1000 tasks, evaluation DEV or HOLDOUT",
  "model": {
@@ -239,7 +257,7 @@
  ],
  "protocol": "CORA-TTI Item-2 v1.5 conditional failure-conditioned selection under input variation",
  "protocol_doc": "docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md",
- "protocol_doc_sha256": "dc02e1ae9e38076968491cec28d7e142c51228c54ae9ccee17039825efd9c88b",
+ "protocol_doc_sha256": "e3209c1f0ce3ab9d7c925f546dd9a25111b0b22cb0b8300dfbe53b5fb2e1e42a",
  "question": "does associated failure evidence improve selection of the correct candidate of a one-key-feature pair beyond demonstration evidence alone, and does the increment survive on unseen target pairs under independently rendered inputs",
  "runtime_versions": {
   "numpy": "2.4.3",
@@ -270,7 +288,7 @@
   "simulated_power_at_288": 0.909,
   "test_groups": 288
  },
- "shuffle": "within each pool: pool-standardized D_RICH; squared distances between queries of different groups; lexsort (distance, i, j); greedy 2-cycles swapping F; leftovers join a 3-cycle with the nearest pair from two other groups; D never moves",
+ "shuffle": "within each pool: pool-standardized D_RICH; squared distances between queries of different groups; lexsort (distance, i, j); greedy 2-cycles swapping F, first within the family stratum, then across; leftovers join a 3-cycle with the nearest pair from two other groups, own family preferred; D never moves; fidelity reported",
  "statistics": {
   "alpha": 0.01,
   "delta_min": "1/20",
@@ -285,7 +303,7 @@
    "twin swap"
   ]
  },
- "status": "FROZEN_NOT_RUN",
+ "status": "FROZEN_ERRATUM_1_NOT_RUN",
  "test_law": {
   "admission": "v1.3 law unchanged + v1.4 observation (caches cleared, informative gate, trajectory capture)",
   "attempt_stride": 100,
@@ -313,7 +331,7 @@
  },
  "twin_control": {
   "folds": 7,
-  "rule": "components of shared target digests, ordered by smallest group digest, round-robin"
+  "rule": "components of shared target digests or shared candidate token pairs, ordered by smallest group digest, round-robin"
  },
  "version": "1.5",
  "views": {

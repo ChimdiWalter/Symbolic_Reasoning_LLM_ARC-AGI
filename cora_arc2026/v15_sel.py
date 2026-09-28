@@ -65,6 +65,9 @@ EXCLUSION_SOURCES = {
     "v1.4 corpus": "outputs/tti/v14_twin_corpus/*.json",
     "v1.4 feasibility smoke": "logs/v14_feasibility/*.json",
 }
+#: erratum 1: the v1.5 admission pilot's generated groups. Only admitted
+#: groups count; a skipped pair's digests in skip provenance were never run.
+ADMITTED_ONLY_SOURCES = {"v1.5 admission pilot": "logs/v15_pilot/pilot0*.json"}
 DIGEST_KEYS = ("target_digest", "target_digests", "group_digest",
                "phase_a_target_digests", "pair_digest")
 _HEX64 = re.compile(r"^[0-9a-f]{64}$")
@@ -94,6 +97,18 @@ def build_exclusion(root=HERE) -> dict:
         for path in paths:
             with open(path) as handle:
                 _collect(json.load(handle), None, found)
+        sources[name] = {"files": len(paths), "target_digests": len(found["target"]),
+                         "group_digests": len(found["group"])}
+        targets |= found["target"]
+        groups |= found["group"]
+    for name, pattern in sorted(ADMITTED_ONLY_SOURCES.items()):
+        found = {"target": set(), "group": set()}
+        paths = sorted(glob.glob(os.path.join(root, pattern)))
+        for path in paths:
+            with open(path) as handle:
+                rec = json.load(handle)
+            if rec.get("admitted"):
+                _collect(rec["group"], None, found)
         sources[name] = {"files": len(paths), "target_digests": len(found["target"]),
                          "group_digests": len(found["group"])}
         targets |= found["target"]
@@ -278,6 +293,7 @@ NEWTON_TOL = 1e-12
 NEWTON_MAX_ITER = 100
 TIE_EPS = 1e-12
 TWIN_FOLDS = 7
+AMBIGUOUS_MIN_GROUPS = 30             # erratum 1, gate H
 UNITS_PER_GROUP = 2 * 2 * REPLICATES  # accuracy in units of 1/16 per group
 
 
@@ -463,6 +479,8 @@ def build_queries(groups) -> list:
                                                       x["replicate_index"])):
             key = query_key(e)
             out.append({"group": gi, "group_digest": g["group_digest"],
+                        "family": g.get("anchor_family"),
+                        "pair_key": json.dumps(sorted([list(ca), list(cb)])),
                         "t": e["target_index"], "r": e["replicate_index"],
                         "state": svec, "cands": presentation(key, (ca, cb)),
                         "truth": ca if e["target_index"] == 0 else cb,
@@ -477,10 +495,12 @@ def build_queries(groups) -> list:
 
 def matched_shuffle(queries, block="F_S7") -> list:
     """F of every query replaced by F of a demonstration-similar query from a
-    DIFFERENT group. Greedy global matching on the standardized D_RICH view
-    (pool statistics, no label), ties by index, then 2-cycles; any query left
-    unmatched joins a 3-cycle with the nearest matched pair from two other
-    groups. Returns the permutation pi, F_shuffled(q) = F(pi[q])."""
+    DIFFERENT group. Greedy matching on the standardized D_RICH view (pool
+    statistics, no label), ties by index, 2-cycles; erratum 1: first within
+    the query's family stratum (the pair's structural family, which also
+    fixes the grammar state), then across strata; any query still unmatched
+    joins a 3-cycle with the nearest matched pair from two other groups,
+    preferring its own stratum. Returns pi, F_shuffled(q) = F(pi[q])."""
     import numpy as np
     n = len(queries)
     X = np.array([[q["views"]["D_RICH"][k] for k in D_RICH_FIELDS]
@@ -489,32 +509,54 @@ def matched_shuffle(queries, block="F_S7") -> list:
     keep = sd > 1e-12
     Z = (X[:, keep] - mu[keep]) / sd[keep]
     grp = [q["group"] for q in queries]
-    garr = np.array(grp)
+    fam = [str(q.get("family")) for q in queries]
+    garr, farr = np.array(grp), np.array(fam)
     sq = (Z * Z).sum(axis=1)
     dist = np.maximum(sq[:, None] + sq[None, :] - 2.0 * (Z @ Z.T), 0.0)
     iu, ju = np.triu_indices(n, k=1)
     ok = garr[iu] != garr[ju]
-    iu, ju, dd = iu[ok], ju[ok], dist[iu[ok], ju[ok]]
-    order = np.lexsort((ju, iu, dd))
+    iu, ju = iu[ok], ju[ok]
+    dd, same = dist[iu, ju], farr[iu] == farr[ju]
     pi, matched = [None] * n, []
-    for idx in order:
-        i, j = int(iu[idx]), int(ju[idx])
-        if pi[i] is None and pi[j] is None:
-            pi[i], pi[j] = j, i
-            matched.append((i, j))
+    for within in (True, False):
+        sel = same if within else ~same
+        I, J, D = iu[sel], ju[sel], dd[sel]
+        for idx in np.lexsort((J, I, D)):
+            i, j = int(I[idx]), int(J[idx])
+            if pi[i] is None and pi[j] is None:
+                pi[i], pi[j] = j, i
+                matched.append((i, j))
     for e in [i for i in range(n) if pi[i] is None]:
         best = None
         for (u, v) in matched:
             if grp[u] == grp[e] or grp[v] == grp[e] or pi[u] != v:
                 continue
-            d = min(dist[e, u], dist[e, v])
-            if best is None or d < best[0] - 1e-12:
-                best = (d, u, v)
+            key = (0 if fam[u] == fam[e] == fam[v] else 1, min(dist[e, u], dist[e, v]))
+            if best is None or key < best[0]:
+                best = (key, u, v)
         if best is None:
             raise ValueError("no valid 3-cycle for an unmatched query")
         _, u, v = best
         pi[e], pi[u], pi[v] = u, v, e
     return pi
+
+
+def shuffle_fidelity(queries, pi) -> dict:
+    """How closely each donor's D_RICH matches its recipient's: the mean,
+    over fields that vary, of the correlation between the two; and the share
+    of donors from the same family. Descriptive."""
+    import numpy as np
+    X = np.array([[q["views"]["D_RICH"][k] for k in D_RICH_FIELDS]
+                  for q in queries], dtype=float)
+    Y = X[pi]
+    cors = []
+    for j in range(X.shape[1]):
+        if X[:, j].std() > 1e-12 and Y[:, j].std() > 1e-12:
+            cors.append(float(np.corrcoef(X[:, j], Y[:, j])[0, 1]))
+    same = sum(1 for i, q in enumerate(queries) if q.get("family") == queries[pi[i]].get("family"))
+    return {"mean_field_correlation": round(sum(cors) / len(cors), 6) if cors else None,
+            "min_field_correlation": round(min(cors), 6) if cors else None,
+            "same_family_share": round(same / len(queries), 6)}
 
 
 # --------------------------------------------------------------------------
@@ -635,7 +677,9 @@ def fit_pairs(rows, queries, lam=LAMBDA):
         weights[SFIT.TERMINAL_INDEX[t]] = [float(x) for x in W[i]]
     model = SFIT.LogLinearScorer.__new__(SFIT.LogLinearScorer)
     model.weights, model.dim, model.standardizer = weights, dim, None
-    return model, {"iterations": it + 1, "final_step": float(np.max(np.abs(step)))}
+    final = float(np.max(np.abs(step)))
+    return model, {"iterations": it + 1, "final_step": final,
+                   "converged": bool(final < NEWTON_TOL)}
 
 
 def choose(model, x, first, second):
@@ -726,9 +770,18 @@ def summary(values, scale):
 # twin positive-control folds
 # --------------------------------------------------------------------------
 
+def _pair_key(g):
+    if "episodes" not in g:
+        return None
+    by = {(e["target_index"], e["replicate_index"]): e for e in g["episodes"]}
+    _, ca, cb = differing_step(by[(0, 0)]["target_tokens"], by[(1, 0)]["target_tokens"])
+    return "pair:" + json.dumps(sorted([list(ca), list(cb)]))
+
+
 def twin_folds(groups, k=TWIN_FOLDS) -> list:
-    """Groups sharing any target digest are kept in one fold; components are
-    ordered by their smallest group digest and dealt round-robin."""
+    """Groups sharing any target digest, or (erratum 1) the same candidate
+    token pair, are kept in one fold, so every held-out pair is unseen in its
+    fit; components are ordered by smallest group digest, dealt round-robin."""
     parent = list(range(len(groups)))
 
     def find(i):
@@ -738,7 +791,11 @@ def twin_folds(groups, k=TWIN_FOLDS) -> list:
         return i
     owner = {}
     for i, g in enumerate(groups):
-        for d in g["target_digests"]:
+        keys = list(g["target_digests"])
+        pk = _pair_key(g)
+        if pk is not None:
+            keys.append(pk)
+        for d in keys:
             if d in owner:
                 parent[find(i)] = find(owner[d])
             else:
@@ -790,27 +847,54 @@ def scan_view(view, meta) -> list:
 # --------------------------------------------------------------------------
 
 def gates(test, twin=None) -> dict:
-    """test/twin: dict with 'acc' (units per group for D+F_ASSOC),
-    'd_demo' and 'd_shuffle' (paired unit differences per group)."""
+    """Blocks hold per-group integer units: 'acc' (D+F_ASSOC), 'acc_demo' (D),
+    'd_demo' and 'd_shuffle' (paired differences) and, for the test only,
+    'ambiguous': (paired D+F_ASSOC minus D difference, number of
+    verification-ambiguous queries) for every group with at least one."""
     def g(block):
-        a = signflip_p([u - UNITS_PER_GROUP // 2 for u in block["acc"]])
+        n = len(block["acc"])
+        half = UNITS_PER_GROUP // 2
+        a = signflip_p([u - half for u in block["acc"]])
+        a_demo = signflip_p([u - half for u in block["acc_demo"]])
         b = signflip_p(block["d_demo"])
         c = signflip_p(block["d_shuffle"])
-        mean_demo = Fraction(sum(block["d_demo"]), UNITS_PER_GROUP * len(block["d_demo"]))
-        return {"A_above_chance": bool(sum(block["acc"]) * 2 > UNITS_PER_GROUP * len(block["acc"])
-                                       and a < ALPHA),
-                "B_beats_demo": bool(sum(block["d_demo"]) > 0 and b < ALPHA),
-                "C_beats_shuffle": bool(sum(block["d_shuffle"]) > 0 and c < ALPHA),
-                "D_min_effect": bool(mean_demo >= DELTA_MIN),
-                "p": {"A": float(a), "B": float(b), "C": float(c)},
-                "mean_increment_over_demo": float(mean_demo)}
+        s_demo = summary(block["d_demo"], UNITS_PER_GROUP)
+        s_shuf = summary(block["d_shuffle"], UNITS_PER_GROUP)
+        mean_demo = Fraction(sum(block["d_demo"]), UNITS_PER_GROUP * n)
+        B = bool(sum(block["d_demo"]) > 0 and b < ALPHA)
+        C = bool(sum(block["d_shuffle"]) > 0 and c < ALPHA)
+        out = {"A_above_chance": bool(sum(block["acc"]) * 2 > UNITS_PER_GROUP * n and a < ALPHA),
+               "B_beats_demo": B, "C_beats_shuffle": C,
+               "D_min_effect": bool(mean_demo >= DELTA_MIN),
+               "demo_selects": bool(sum(block["acc_demo"]) * 2 > UNITS_PER_GROUP * n
+                                    and a_demo < ALPHA),
+               "B_fails_decisively": bool(not B and s_demo["upper95_one_sided"] < float(DELTA_MIN)),
+               "C_fails_decisively": bool(not C and s_shuf["upper95_one_sided"] < float(DELTA_MIN)),
+               "p": {"A": float(a), "A_demo": float(a_demo), "B": float(b), "C": float(c)},
+               "upper95_one_sided": {"demo": s_demo["upper95_one_sided"],
+                                     "shuffle": s_shuf["upper95_one_sided"]},
+               "mean_increment_over_demo": float(mean_demo)}
+        amb = block.get("ambiguous")
+        if amb is not None:
+            d = [x for x, _ in amb]
+            q = sum(y for _, y in amb)
+            out["H_ambiguous_nonnegative"] = bool(len(amb) >= AMBIGUOUS_MIN_GROUPS
+                                                  and sum(d) >= 0)
+            out["ambiguous"] = {"groups": len(amb), "queries": q,
+                                "mean_increment_per_query": round(sum(d) / (2 * q), 6) if q else None,
+                                "p_signflip": float(signflip_p(d)) if d else None}
+        return out
     out = {"test": g(test)}
     if twin is not None:
         out["twin"] = g(twin)
     return out
 
 
-def classify(gate_out, n_test, integrity_ok, order_ok, leak_ok, overlap_ok) -> dict:
+def classify(gate_out, n_test, integrity_ok, order_ok, leak_ok, overlap_ok,
+             fits_ok=True) -> dict:
+    """Erratum 1: a negative label needs a DECISIVE failure (the comparison
+    not significant and its one-sided 95 percent upper bound below
+    delta_min) on a powered test; PASS also needs gate H."""
     t = gate_out["test"]
     tw = gate_out.get("twin")
     primary = t["A_above_chance"] and t["B_beats_demo"] and t["C_beats_shuffle"] \
@@ -818,23 +902,26 @@ def classify(gate_out, n_test, integrity_ok, order_ok, leak_ok, overlap_ok) -> d
     twin_pass = bool(tw and tw["A_above_chance"] and tw["B_beats_demo"]
                      and tw["C_beats_shuffle"] and tw["D_min_effect"])
     label, reason = None, None
-    if not (integrity_ok and order_ok and leak_ok and overlap_ok):
+    if not (integrity_ok and order_ok and leak_ok and overlap_ok and fits_ok):
         label, reason = "MIXED_OR_INCONCLUSIVE", "integrity"
     elif n_test < FLOOR_GROUPS:
         label, reason = "MIXED_OR_INCONCLUSIVE", "below the floor"
-    elif primary:
+    elif primary and t.get("H_ambiguous_nonnegative"):
         label = "FAILURE_CONDITIONED_SELECTION_GENERALIZES"
-    elif twin_pass:
-        label = "TWIN_ONLY_SELECTION_SIGNAL"
+    elif primary:
+        label, reason = "MIXED_OR_INCONCLUSIVE", \
+            "increment not shown on verification-ambiguous pairs (gate H)"
     elif n_test < TEST_GROUPS:
         label, reason = "MIXED_OR_INCONCLUSIVE", "negative below the powered size"
-    elif not t["C_beats_shuffle"]:
+    elif twin_pass and (t["B_fails_decisively"] or t["C_fails_decisively"]):
+        label = "TWIN_ONLY_SELECTION_SIGNAL"
+    elif t["C_fails_decisively"]:
         label = "FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION"
-    elif not (t["B_beats_demo"] and t["D_min_effect"]):
+    elif t["B_fails_decisively"] and t["demo_selects"]:
         label, reason = "DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION", \
             "FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED"
     else:
-        label, reason = "MIXED_OR_INCONCLUSIVE", "conflicting primary gates"
+        label, reason = "MIXED_OR_INCONCLUSIVE", "no decisive outcome"
     return {"classification": label, "reason": reason,
             "primary_gates_pass": primary, "twin_control_pass": twin_pass,
             "test_groups": n_test, "powered": n_test >= TEST_GROUPS}

@@ -133,9 +133,13 @@ One deterministic rule, frozen before any fit. Within each evaluation pool
 separately (the training set, the test set, each cross-validation part):
 standardize D_RICH with the pool's own mean and standard deviation (no
 label); compute all squared distances between queries of DIFFERENT groups;
-sort by distance, then index; greedily match unmatched pairs, which swap F.
-Any leftover query joins a 3-cycle with the nearest matched pair whose two
-members come from other groups. D never moves; F is a permutation of the
+sort by distance, then index; greedily match unmatched pairs, which swap F,
+first among queries of the same family (the pair's structural family, which
+also fixes the grammar state; erratum 1), then across families. Any leftover
+query joins a 3-cycle with the nearest matched pair whose two members come
+from other groups, preferring its own family. The report gives the shuffle's
+fidelity: the mean correlation of recipient and donor D_RICH fields, and the
+share of same-family donors. D never moves; F is a permutation of the
 pool's own F values; no query receives F from its own group, since that
 could copy same-pair evidence. The rule uses D_RICH, group membership and
 indices only: no target token, digest, label, outcome or TFG distance
@@ -158,8 +162,10 @@ listed by `outputs/tti/v14_twin_corpus_sha256_erratum2.txt` (sha256
 excluded duplicate (slot 117) are not used. Fixed; no new training data.
 
 **Twin positive control:** grouped 7-fold cross-validation over those 42
-groups. Groups sharing a target digest are placed in one fold (components
-ordered by their smallest group digest, dealt round-robin). Each fold is
+groups. Groups sharing a target digest or (erratum 1) the same candidate
+token pair are placed in one fold (components ordered by their smallest
+group digest, dealt round-robin), so every held-out pair is unseen by its
+fit, as test pairs can be. Each fold is
 scored by models fitted on the other six. Also reported, descriptively: the
 D+F_ASSOC model scored with each query's twin's F (same inputs, other
 target).
@@ -183,8 +189,9 @@ target).
 - Novelty: a pair is skipped before any engine run if its group digest or
   either target digest is in the frozen exclusion set (every target and
   group digest in the v1.2, v1.3 and v1.4 corpora and the v1.4 smoke
-  records: 471 targets and 69 groups, `outputs/tti/v15_exclusion_digests.json`,
-  sha256 `50349bcf...`, rebuilt exactly by a test), or if either target
+  records, and, erratum 1, the admitted groups of the v1.5 admission pilot:
+  477 targets and 72 groups, `outputs/tti/v15_exclusion_digests.json`,
+  sha256 `6a5761d6...`, rebuilt exactly by a test), or if either target
   already appears in an earlier test group. Every test target therefore
   appears in exactly one group of one split, and no pair appears twice in
   either order (the group digest sorts its two targets).
@@ -222,11 +229,13 @@ means associated failure evidence helps.
 
 **delta_min = +0.05 accuracy (5 points) on the pairwise scale**, about 0.026
 nats per query for a calibrated selector moving from 0.60 to 0.65. Derived
-from pre-v1.5 evidence only: chance is 0.50; the failure summary's whole
-standalone twin signal was +6.5 points (S7 0.565) and the strongest search
-stage's +9.2 (S3 0.592), and an increment beyond demonstrations cannot
-exceed the standalone signal; below about 5 points, a pairwise gain moves the
-true key feature by under half a rank position among ten, too little to
+from pre-v1.5 evidence and utility: chance is 0.50; for scale, the failure
+summary's standalone twin identification was +6.5 points above chance (S7
+0.565) and the strongest search stage's +9.2 (S3 0.592), a different metric
+that neither bounds nor predicts a conditional selection gain (the earlier
+wording, that an increment cannot exceed the standalone signal, was wrong
+and is withdrawn in erratum 1); below about 5 points, a pairwise gain moves
+the true key feature by under half a rank position among ten, too little to
 build the compiler on. The threshold was set before the compute check below
 and is not adjusted to it.
 
@@ -241,7 +250,9 @@ nested D against D+F pair, so the proxy is conservative.
 20260928 over 1000 draws: 256 groups 0.868; 272 groups 0.895; **288 groups
 0.909**; 68 groups at +0.10: 0.883. A first version of this simulation had a
 convolution defect (shift 2v for v) that reported power near 0.1; it was
-found by a brute-force check before any number was used.
+found by a brute-force check before any number was used. The 0.909 is the
+power of gate B alone; the joint probability of gates A to D at a true
+increment of exactly delta_min is about 0.45.
 
 Frozen: **288 test groups** (the smallest simulated value with power at
 least 0.90), **floor 72 groups**. Gate D is a point estimate, so at a true
@@ -262,32 +273,50 @@ fixed by moving a threshold.
   presentation orders for every query and condition.
 - **G.** No target or group digest shared between the training resource and
   the test, and none repeated within the test.
+- **H (erratum 1).** On the verification-ambiguous queries (the other
+  candidate also reproduces the demonstrations, so running the two
+  candidates cannot decide), the summed paired accuracy difference of
+  D+F_ASSOC over D is at least zero, over at least 30 groups with such
+  queries. A pass may not come only from pairs that verification settles.
 
-No partial pass. Associated beating shuffled alone is never success.
+No partial pass. Associated beating shuffled alone is never success. Gate F
+holds by construction (presentation order never enters an input or the fit)
+and is checked anyway.
 
 ## 11. Classification ladder, frozen, first rule wins
 
+A negative label needs a DECISIVE failure (erratum 1): the comparison is not
+significant AND its one-sided 95 percent upper bound is below delta_min.
+
 | rule | classification |
 |---|---|
-| any freeze, integrity, leakage (E), order (F) or overlap (G) failure | MIXED_OR_INCONCLUSIVE (integrity; no statistic is computed) |
-| test groups below 72 | MIXED_OR_INCONCLUSIVE |
-| A, B, C and D all pass on the test | **FAILURE_CONDITIONED_SELECTION_GENERALIZES** |
-| the twin positive control passes A, B, C and D | **TWIN_ONLY_SELECTION_SIGNAL** |
+| any freeze, integrity, leakage (E), order (F), overlap (G) or fit-convergence failure | MIXED_OR_INCONCLUSIVE (integrity) |
+| test groups below 72 | MIXED_OR_INCONCLUSIVE (no statistic is computed) |
+| A, B, C, D and H all pass on the test | **FAILURE_CONDITIONED_SELECTION_GENERALIZES** |
+| A, B, C and D pass but H fails | MIXED_OR_INCONCLUSIVE (increment not shown where verification cannot decide) |
 | test groups below 288 | MIXED_OR_INCONCLUSIVE (a negative below the powered size) |
-| C fails | **FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION** |
-| B or D fails | **DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION** (gate statement FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED) |
-| otherwise | MIXED_OR_INCONCLUSIVE |
+| the twin positive control passes A, B, C and D, and the test fails B or C decisively | **TWIN_ONLY_SELECTION_SIGNAL** |
+| the test fails C decisively | **FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION** |
+| the test fails B decisively and D itself selects above chance (p < 0.01) | **DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION** (gate statement FAILURE_CONDITIONING_INCREMENT_NOT_ESTABLISHED) |
+| otherwise, including a significant increment below delta_min | MIXED_OR_INCONCLUSIVE |
 
 Association is checked before sufficiency because if associated evidence is
 no better than matched shuffled evidence, the failure evidence carries no
-pair-specific selection information at all, and "demonstrations suffice" is
-not the right explanation. The twin control uses the same gates on 42 groups
-and so has low power; it can only confirm a large twin effect.
+pair-specific selection information at all. The twin control uses the same
+gates on 42 groups and so has low power; it can only confirm a large twin
+effect. Every negative is conditional on this selector (the frozen
+log-linear pairwise scorer) and this training resource (42 twin groups
+covering 19 of the 45 key-feature pairs); it is not a statement about every
+possible selector. The test report breaks the comparisons down by token
+pairs seen and unseen in training and by family (descriptive).
 
 ## 12. Leakage boundary
 
 A selector input holds only: the four frozen numeric view blocks, the grammar
-state (5 numbers) and the two candidate tokens being scored. The scanner
+state (5 numbers) and the two candidate tokens being scored. Leak safety
+rests first on construction: the views read only four evidence keys
+(tested with an episode that raises on any other key); the scanner is a
+second guard for exact echoes. The scanner
 rejects any other block, any missing or reordered field, any non-numeric
 value, and any value equal to a target or group digest prefix or to a
 generation seed (injected leaks are caught by tests). Target digest, group
@@ -307,8 +336,11 @@ grammar and seed law, obeys the twin law, differs in one legal key-feature
 token, has the eight design cells, follows the per-target seed law with
 distinct seeds and no shared input grid, and uses digests absent from the
 exclusion set and unique in the test; the training and test sets share no
-digest; and no view leaks. `--integrity-only` runs exactly these checks and
-exits; it is run and read before the scored evaluation.
+digest; the recorded target tokens equal the re-derived programs' tokens
+(erratum 1); and no view leaks. `--integrity-only` runs exactly these checks
+and exits; it is run and read before the scored evaluation. Below 72 test
+groups no statistic is computed. Every Newton fit must converge. The
+generator stops at the first failed freeze check (erratum 1).
 
 ## 14. Adversarial questions, answered before freeze
 
@@ -349,13 +381,15 @@ Leftover shuffle queries: a valid 3-cycle.
 
 Generation is deadline-bound and not reproducible (v1.3 erratum 3). The
 evaluation is deterministic: pure functions, fixed orders, single-threaded
-linear algebra; it is run twice and the reports must be byte-identical.
+linear algebra (enforced inside the evaluator before numpy loads, erratum
+1); it is run twice and the reports must be byte-identical. numpy and scipy
+load from the shared environment; their versions are recorded and checked.
 
 ## 17. Order after freeze
 
-1. One adversarial review of this frozen protocol and implementation;
-   blocking findings are corrected by a recorded erratum before any test
-   group exists.
+1. One adversarial review of the frozen protocol and implementation: done
+   before any test group existed; its corrections are in this version
+   (section 21). No second review round.
 2. `scripts/run_v15_generation.sh`, detached, one writer, until 288 unique
    groups or a cap.
 3. `scripts/evaluate_v15_selection.py --integrity-only`, read before scoring.
@@ -373,8 +407,12 @@ Lockbox. No threshold, view, condition, law or rule changes after freeze.
 ## 18. Claim ceiling and what an outcome licenses
 
 Even a full pass earns at most: **FAILURE-CONDITIONED SELECTION WITH
-INCREMENTAL VALUE BEYOND DEMONSTRATIONS ON UNSEEN INDEPENDENT-INPUT TARGET
-PAIRS.** Not autonomous construction, capability extension, constructive
+INCREMENTAL VALUE BEYOND THE D_RICH DEMONSTRATION SUMMARY ON UNSEEN
+INDEPENDENT-INPUT TARGET PAIRS.** The failure evidence is itself computed by
+the reasoner from the same demonstrations, so an increment is demonstration
+information that the reasoner's failure processing exposes and the existing
+demonstration summary, used linearly by this selector, does not; it is not
+information beyond the demonstrations themselves (erratum 1). Not autonomous construction, capability extension, constructive
 reach, L3 semantic extension, invention, transfer or ARC-AGI-2 score.
 
 Only FAILURE_CONDITIONED_SELECTION_GENERALIZES licenses the next
@@ -408,8 +446,9 @@ preserved.
 
 Admission pilot, 2026-09-28, `scripts/generate_v15_pairs.py pilot` on seeds
 from 400,000,000, output `logs/v15_pilot/`, never scored: it measured only
-admission, runtime and the rejection profile; no selector existed, and the
-verification diagnostic was deliberately not computed on pilot pairs.
+admission, runtime and the rejection profile; no selector existed. The
+generator recorded `other_candidate_fits` for admitted pilot episodes, as it
+does everywhere, but no pilot value of it was read or summarized.
 
 | quantity | value |
 |---|---|
@@ -435,3 +474,34 @@ a negative below 288 is MIXED_OR_INCONCLUSIVE. The effect threshold and the
 target group count are not changed to fit compute.
 
 Static tests: `tests/test_v15_selection_feasibility.py`.
+
+## 21. Erratum 1: the pre-run adversarial review
+
+The protocol was first frozen at commit 89ac728 (protocol sha256
+dc02e1ae..., manifest 16dc3ef7...). One adversarial review of that freeze,
+run before any test group existed, verified that `signflip_p` is exact and
+valid for fixed models on held-out groups, that PASS was impossible without
+gate B, that design columns and inactive blocks behave, that the Newton fit,
+ties, units, group ordering, twin folds and twin swap are correct, that the
+shuffle uses no label and never draws from the same group, that the seed
+ranges are disjoint, that the integrity checks match real record formats,
+and that no imported project module lies outside the hashed trees. Its tool
+calls were scanned afterwards: read-only on the repository, and on real
+records only label-free calls (queries, views, standardizer, shuffle,
+folds); no fit or score on real data. It found the following; every
+correction was made before any test group exists, and no threshold, effect
+size or group count changed.
+
+| finding | severity | correction |
+|---|---|---|
+| the ladder issued negatives the data contradict: a significant increment below delta_min called DEMONSTRATIONS_SUFFICIENT; DEMONSTRATIONS_SUFFICIENT when nothing selects; TWIN_ONLY on an underpowered test | blocking | negatives need a decisive failure (not significant and upper bound below delta_min); DEMONSTRATIONS_SUFFICIENT also needs D to select above chance; TWIN_ONLY placed below the powered-size rule (section 11) |
+| failure evidence is computed from the demonstrations, so gate C cannot show information beyond the demonstrations, and the shuffle matches D only approximately | major | claim narrowed to "beyond the D_RICH demonstration summary" (section 18); shuffle matched within family first; shuffle fidelity reported (section 5) |
+| verification was reported but never gated, so a pass could come only from pairs verification settles | major | gate H on verification-ambiguous queries (section 10) |
+| thin training (19 of 45 pairs) confounds TWIN_ONLY and negatives with unseen pairs | major | twin folds keep token pairs together; test breakdown by seen and unseen pairs and by family; negatives stated as conditional on this selector and training resource (sections 7, 11) |
+| the generator recorded a failed freeze check but kept running | major | generation stops at the first failed check |
+| pilot digests outside the exclusion set; target tokens not checked against re-derived programs; statistics before the floor (a crash below it); no convergence check; single-threaded BLAS only in the shell script; a second clock read at the cap; the delta_min wording; joint power undisclosed; the pilot text on `other_candidate_fits` | minor | pilot's admitted groups excluded (477 targets, 72 groups); token check added; floor before any statistic; convergence required; BLAS set in the evaluator; one clock read; wording corrected; joint power about 0.45 disclosed; pilot text corrected |
+
+Noted and accepted: the matched shuffle couples pairs of test groups, which
+makes the sign-flip test for gate C mildly anti-conservative; gate F cannot
+fail by construction. No second review round, per the one-reviewer rule.
+Record: `records/ITEM2_V15_ERRATUM_01.md`.

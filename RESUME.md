@@ -6,20 +6,20 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
-**v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION: FROZEN, NOT RUN.**
-Protocol `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md` sha256
-`dc02e1ae...efd9c88b`; manifest
+**v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION: FROZEN WITH ERRATUM 1,
+NOT RUN.** Protocol `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md`
+sha256 `e3209c1f...b2e1e42a`; manifest
 `outputs/tti/failure_conditioned_selection_v15_manifest.json` sha256
-`16dc3ef7...0e09e2b2`; record `records/ITEM2_V15_SELECTION_DESIGN_DECISION.md`;
-43 tests. Question: does associated failure evidence (S7) improve selection
-between two one-key-feature candidates beyond demonstration evidence
-(D_RICH), on new target pairs with independently rendered inputs? Reused
-`scorer_fit.LogLinearScorer`, pairwise fit by Newton with lambda 0.01; train
-= 42 v1.4 twin groups; twin control = grouped 7-fold CV; test = 288 new
-independent-input groups (exact-test power 0.909 at +5 points), floor 72;
-gates A to G all required; caps 9,000 slots or 120 h (pilot: 8.8 percent
-admission, about 77 h expected). No selector has been fitted on real data
-and no test group exists.
+`0cc4b900...77054a89c`; records `records/ITEM2_V15_SELECTION_DESIGN_DECISION.md`
+and `records/ITEM2_V15_ERRATUM_01.md`; 56 tests. First freeze 89ac728 is
+superseded. Question: does associated failure evidence (S7) improve
+selection between two one-key-feature candidates beyond the D_RICH
+demonstration summary, on new target pairs with independently rendered
+inputs? Train = 42 v1.4 twin groups; test = 288 new independent-input groups
+(power 0.909 for gate B); gates A to H all required; negatives need a
+decisive failure; caps 9,000 slots or 120 h (pilot: 8.8 percent admission,
+about 77 h expected). No selector has been fitted on real data and no test
+group exists.
 
 **v1.4 COMPLETE: CURRENT_TFG_IDENTIFYING_UNDER_TWINS** (determining stage
 S7, confirmatory at 42 unique groups, sealed audit byte-identical, sha256
@@ -161,10 +161,8 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-One adversarial review of the frozen v1.5 protocol and implementation
-(protocol section 17); blocking findings go into a recorded erratum before
-any test group exists. Then **RUN THE FROZEN v1.5 CONDITIONAL
-FAILURE-CONDITIONED SELECTION EXPERIMENT**:
+The one pre-run review is done (erratum 1). **RUN THE FROZEN v1.5
+CONDITIONAL FAILURE-CONDITIONED SELECTION EXPERIMENT**:
 
     setsid nohup scripts/run_v15_generation.sh > logs/v15_generation_stdout.log 2>&1 < /dev/null &
     ps -eo pid,args | grep "[g]enerate_v15_pairs.py full"    # the REAL pid

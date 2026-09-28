@@ -10,11 +10,16 @@ must be byte-identical.
 """
 from __future__ import annotations
 
-import hashlib
-import json
 import os
-import re
-import sys
+
+#  erratum 1: single-threaded linear algebra enforced here, before numpy loads
+for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_v] = "1"
+
+import hashlib                                                    # noqa: E402
+import json                                                       # noqa: E402
+import re                                                         # noqa: E402
+import sys                                                        # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
@@ -117,6 +122,11 @@ def test_integrity(records, man, exclusion) -> list:
         contrast = G.contrast_target(anchor, "FEATURE", rotation=attempt)
         if [CV.digest(anchor), CV.digest(contrast)] != g["target_digests"]:
             p.append(f"{tag}:derivation")
+        want = {0: [list(t) for t in CV.tokens_from_ast(anchor)],
+                1: [list(t) for t in CV.tokens_from_ast(contrast)]}
+        if any(e.get("target_tokens") != want.get(e.get("target_index"))
+               for e in g["episodes"]):
+            p.append(f"{tag}:target_tokens")
         if not L.twin_law(anchor, contrast)[0]:
             p.append(f"{tag}:twin_law")
         if G.group_digest(*g["target_digests"]) != g["group_digest"]:
@@ -223,6 +233,13 @@ def main():
                                                   "train_test_overlap", "leaks")}, indent=1))
         print("INTEGRITY", "PASS" if ok else "FAIL")
         sys.exit(0 if ok else 1)
+    if not (freeze or integrity or overlap or leaks) and len(test_groups) < S.FLOOR_GROUPS:
+        report["verdict"] = "MIXED_OR_INCONCLUSIVE"
+        report["classification"] = {"classification": "MIXED_OR_INCONCLUSIVE",
+                                    "reason": "below the floor; no statistic computed"}
+        write(report)
+        print("BELOW FLOOR", len(test_groups))
+        return
     if freeze or integrity or overlap or leaks:
         report["verdict"] = "AUDIT_BLOCKED"
         report["classification"] = {"classification": "MIXED_OR_INCONCLUSIVE",
@@ -248,6 +265,7 @@ def main():
     # twin positive control: grouped cross-validation on the training resource
     folds = S.twin_folds(train_groups)
     twin = {c: [None] * len(train_groups) for c in S.PRIMARY + ("D+F_TWINSWAP",)}
+    twin_converged = True
     for k in range(S.TWIN_FOLDS):
         fit_g = [g for i, g in enumerate(train_groups) if folds[i] != k]
         held_i = [i for i in range(len(train_groups)) if folds[i] == k]
@@ -261,7 +279,8 @@ def main():
                      and o["r"] == q["r"] and o["t"] != q["t"]) for q in qh]
         models = {}
         for cond in S.PRIMARY:
-            models[cond], _, scored = run_condition(cond, qf, qh, std, pf, ph)
+            models[cond], info, scored = run_condition(cond, qf, qh, std, pf, ph)
+            twin_converged = twin_converged and info["converged"]
             acc, _, _ = S.group_units(scored, qh)
             for local, gi in enumerate(held_i):
                 twin[cond][gi] = acc[local]
@@ -271,15 +290,46 @@ def main():
         for local, gi in enumerate(held_i):
             twin["D+F_TWINSWAP"][gi] = acc[local]
 
+    # gate H: the increment over D on verification-ambiguous queries
+    amb_by_group = {}
+    for i, q in enumerate(qtest):
+        if q["other_fits"] is True:
+            d = results["D+F_ASSOC"]["_scored"][i]["units"] - results["D"]["_scored"][i]["units"]
+            got = amb_by_group.get(q["group"], (0, 0))
+            amb_by_group[q["group"]] = (got[0] + d, got[1] + 1)
     test_block = {"acc": results["D+F_ASSOC"]["acc_units"],
+                  "acc_demo": results["D"]["acc_units"],
                   "d_demo": paired(results["D+F_ASSOC"]["acc_units"], results["D"]["acc_units"]),
                   "d_shuffle": paired(results["D+F_ASSOC"]["acc_units"],
-                                      results["D+F_SHUFFLED"]["acc_units"])}
-    twin_block = {"acc": twin["D+F_ASSOC"],
+                                      results["D+F_SHUFFLED"]["acc_units"]),
+                  "ambiguous": [amb_by_group[g] for g in sorted(amb_by_group)]}
+    twin_block = {"acc": twin["D+F_ASSOC"], "acc_demo": twin["D"],
                   "d_demo": paired(twin["D+F_ASSOC"], twin["D"]),
                   "d_shuffle": paired(twin["D+F_ASSOC"], twin["D+F_SHUFFLED"])}
     gate_out = S.gates(test_block, twin_block)
-    cls = S.classify(gate_out, len(test_groups), True, order_ok, True, True)
+    fits_ok = all(f["converged"] for f in fits.values()) and twin_converged
+    cls = S.classify(gate_out, len(test_groups), True, order_ok, True, True, fits_ok)
+
+    # descriptive: seen and unseen token pairs, and families
+    seen_pairs = {q["pair_key"] for q in qtrain}
+    breakdown = {}
+    by_group_pair = {q["group"]: q["pair_key"] for q in qtest}
+    by_group_family = {q["group"]: q["family"] for q in qtest}
+    gidx = sorted(by_group_pair)
+    subsets = {"seen_pair": [g for g in gidx if by_group_pair[g] in seen_pairs],
+               "unseen_pair": [g for g in gidx if by_group_pair[g] not in seen_pairs]}
+    for fam in sorted({str(f) for f in by_group_family.values()}):
+        subsets[f"family_{fam}"] = [g for g in gidx if str(by_group_family[g]) == fam]
+    dd, ds = test_block["d_demo"], test_block["d_shuffle"]
+    for name, members in subsets.items():
+        breakdown[name] = {
+            "groups": len(members),
+            "accuracy_D+F_ASSOC": round(sum(test_block["acc"][g] for g in members)
+                                        / (S.UNITS_PER_GROUP * len(members)), 6) if members else None,
+            "accuracy_D": round(sum(test_block["acc_demo"][g] for g in members)
+                                / (S.UNITS_PER_GROUP * len(members)), 6) if members else None,
+            "D+F_ASSOC_vs_D": S.summary([dd[g] for g in members], S.UNITS_PER_GROUP) if len(members) > 1 else None,
+            "D+F_ASSOC_vs_D+F_SHUFFLED": S.summary([ds[g] for g in members], S.UNITS_PER_GROUP) if len(members) > 1 else None}
 
     # descriptive: would plain verification decide the pair?
     decided = [q["other_fits"] is False for q in qtest]
@@ -295,6 +345,10 @@ def main():
     scale = S.UNITS_PER_GROUP
     report.update({
         "leaks": [],
+        "fits_converged": fits_ok,
+        "shuffle_fidelity": {"train": S.shuffle_fidelity(qtrain, pi_train),
+                             "test": S.shuffle_fidelity(qtest, pi_test)},
+        "test_breakdown": breakdown,
         "order_invariant": order_ok,
         "conditions": {c: {k: v for k, v in m.items() if k not in ("_scored", "acc_units", "group_nll")}
                        for c, m in sorted(results.items())},

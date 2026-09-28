@@ -1,12 +1,15 @@
 # Item-2 v1.5 conditional failure-conditioned selection: design decision
 
-**STATUS: FROZEN, NOT RUN.** Authoritative text:
+**STATUS: FROZEN WITH ERRATUM 1, NOT RUN.** Authoritative text:
 `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md` (sha256
-`dc02e1ae9e38076968491cec28d7e142c51228c54ae9ccee17039825efd9c88b`); manifest
+`e3209c1f0ce3ab9d7c925f546dd9a25111b0b22cb0b8300dfbe53b5fb2e1e42a`); manifest
 `outputs/tti/failure_conditioned_selection_v15_manifest.json` (sha256
-`16dc3ef778e9cbeed3e5c906607ccce21023fae4c82b88d0c0eff2d30e09e2b2`). No selector
-has been fitted on any real data and no test group exists. The freeze commit
-is in `RESUME.md`.
+`0cc4b900d22c11cce444051e7374af33d4e2261bb75547df9c9f6fe77054a89c`). First
+freeze 89ac728 (dc02e1ae / 16dc3ef7) is superseded by erratum 1
+(`records/ITEM2_V15_ERRATUM_01.md`), which corrects the one pre-run
+review's blocking ladder defect and four major findings. No threshold,
+effect size or group count changed. 56 tests pass. No selector has been
+fitted on real data and no test group exists.
 
 ## 1. Parent result, preserved
 
@@ -204,7 +207,6 @@ Faults found during the block, all fixed before freeze:
 
 ## 11. Next action, exactly one
 
-One adversarial review of the frozen protocol and implementation, per
-protocol section 17. Blocking findings are corrected by a recorded erratum
-before any test group exists. Then: RUN THE FROZEN v1.5 CONDITIONAL
-FAILURE-CONDITIONED SELECTION EXPERIMENT.
+RUN THE FROZEN v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION EXPERIMENT.
+The one adversarial review is done and its corrections are frozen (erratum
+1). No second review round.

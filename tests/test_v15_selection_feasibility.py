@@ -123,7 +123,7 @@ def test_exclusion_set_is_rebuilt_exactly_from_the_earlier_corpora():
         frozen = json.load(handle)
     rebuilt = S.build_exclusion()
     assert rebuilt == frozen
-    assert len(frozen["target_digests"]) == 471 and len(frozen["group_digests"]) == 69
+    assert len(frozen["target_digests"]) == 477 and len(frozen["group_digests"]) == 72
 
 
 def test_seed_ranges_are_disjoint_from_every_earlier_range():
@@ -382,7 +382,7 @@ def test_newton_reaches_the_gradient_ascent_fixed_point_of_the_v12_rule():
     std = S.standardizer_for(q, "F_S7")
     rows = S.design(q, "D+F_ASSOC", std)
     model, info = S.fit_pairs(rows, q)
-    assert info["final_step"] < 1e-10
+    assert info["final_step"] < 1e-10 and info["converged"]
     tix = {t: i for i, t in enumerate(TOKENS)}
     W = np.zeros((len(TOKENS), len(rows[0])))
     X = np.array(rows)
@@ -428,7 +428,7 @@ def test_neutral_blocks_are_inert():
 def test_planted_failure_signal_beyond_demonstrations_passes_every_gate():
     fit, ev = synthetic_queries(60, 13, f_signal=2.5), synthetic_queries(120, 14, f_signal=2.5)
     ud, ua, us = (units(c, fit, ev) for c in S.PRIMARY)
-    out = S.gates({"acc": ua, "d_demo": [a - b for a, b in zip(ua, ud)],
+    out = S.gates({"acc": ua, "acc_demo": ud, "d_demo": [a - b for a, b in zip(ua, ud)],
                    "d_shuffle": [a - b for a, b in zip(ua, us)]})
     assert all(out["test"][k] for k in ("A_above_chance", "B_beats_demo",
                                           "C_beats_shuffle", "D_min_effect"))
@@ -437,7 +437,7 @@ def test_planted_failure_signal_beyond_demonstrations_passes_every_gate():
 def test_pure_noise_failure_evidence_fails_the_shuffle_gate():
     fit, ev = synthetic_queries(60, 15, d_signal=2.0), synthetic_queries(120, 16, d_signal=2.0)
     ud, ua, us = (units(c, fit, ev) for c in S.PRIMARY)
-    out = S.gates({"acc": ua, "d_demo": [a - b for a, b in zip(ua, ud)],
+    out = S.gates({"acc": ua, "acc_demo": ud, "d_demo": [a - b for a, b in zip(ua, ud)],
                    "d_shuffle": [a - b for a, b in zip(ua, us)]})
     assert out["test"]["A_above_chance"]
     assert not out["test"]["B_beats_demo"] and not out["test"]["C_beats_shuffle"]
@@ -447,7 +447,7 @@ def test_failure_evidence_redundant_with_demonstrations_gives_no_increment():
     fit = synthetic_queries(60, 17, d_signal=2.0, f_redundant=True)
     ev = synthetic_queries(120, 18, d_signal=2.0, f_redundant=True)
     ua, ud = units("D+F_ASSOC", fit, ev), units("D", fit, ev)
-    out = S.gates({"acc": ua, "d_demo": [a - b for a, b in zip(ua, ud)],
+    out = S.gates({"acc": ua, "acc_demo": ud, "d_demo": [a - b for a, b in zip(ua, ud)],
                    "d_shuffle": [0] * len(ua)})
     assert not (out["test"]["B_beats_demo"] and out["test"]["D_min_effect"])
 
@@ -458,7 +458,7 @@ def test_permuted_training_labels_learn_nothing():
     perm = [dict(x, truth=rng.choice(x["cands"])) for x in fit]
     ev = synthetic_queries(120, 20, f_signal=2.5)
     ua = units("D+F_ASSOC", perm, ev)
-    out = S.gates({"acc": ua, "d_demo": [0] * len(ua), "d_shuffle": [0] * len(ua)})
+    out = S.gates({"acc": ua, "acc_demo": ua, "d_demo": [0] * len(ua), "d_shuffle": [0] * len(ua)})
     assert not out["test"]["A_above_chance"]
 
 
@@ -501,35 +501,70 @@ def test_the_frozen_power_calculation_reproduces():
     assert POW.power(272, 0.05) < 0.90
 
 
-def _gate_dict(A=True, B=True, C=True, D=True):
-    return {"A_above_chance": A, "B_beats_demo": B, "C_beats_shuffle": C, "D_min_effect": D}
+def _gate_dict(A=True, B=True, C=True, D=True, demo=True, Bdec=False, Cdec=False, H=True):
+    return {"A_above_chance": A, "B_beats_demo": B, "C_beats_shuffle": C, "D_min_effect": D,
+            "demo_selects": demo, "B_fails_decisively": Bdec, "C_fails_decisively": Cdec,
+            "H_ambiguous_nonnegative": H}
 
 
-@pytest.mark.parametrize("test,twin,n,ok,expected", [
-    (_gate_dict(), None, 288, True, "FAILURE_CONDITIONED_SELECTION_GENERALIZES"),
-    (_gate_dict(), None, 100, True, "FAILURE_CONDITIONED_SELECTION_GENERALIZES"),
-    (_gate_dict(), None, 71, True, "MIXED_OR_INCONCLUSIVE"),
-    (_gate_dict(), None, 288, False, "MIXED_OR_INCONCLUSIVE"),
-    (_gate_dict(B=False), _gate_dict(), 288, True, "TWIN_ONLY_SELECTION_SIGNAL"),
-    (_gate_dict(B=False), _gate_dict(C=False), 288, True, "DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION"),
-    (_gate_dict(D=False), None, 288, True, "DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION"),
-    (_gate_dict(C=False), None, 288, True, "FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION"),
-    (_gate_dict(B=False, C=False), None, 288, True, "FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION"),
-    (_gate_dict(B=False), None, 200, True, "MIXED_OR_INCONCLUSIVE"),
-    (_gate_dict(A=False), None, 288, True, "MIXED_OR_INCONCLUSIVE"),
+G_ = _gate_dict
+
+
+@pytest.mark.parametrize("test,twin,n,ok,fits,expected", [
+    (G_(), None, 288, True, True, "FAILURE_CONDITIONED_SELECTION_GENERALIZES"),
+    (G_(), None, 100, True, True, "FAILURE_CONDITIONED_SELECTION_GENERALIZES"),
+    (G_(), None, 71, True, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(), None, 288, False, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(), None, 288, True, False, "MIXED_OR_INCONCLUSIVE"),
+    (G_(H=False), None, 288, True, True, "MIXED_OR_INCONCLUSIVE"),
+    # the reviewer's blocking cases
+    (G_(D=False), None, 288, True, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(A=False, B=False, D=False, demo=False, Bdec=True), None, 288, True, True,
+     "MIXED_OR_INCONCLUSIVE"),
+    (G_(B=False, Bdec=True), G_(), 100, True, True, "MIXED_OR_INCONCLUSIVE"),
+    # decisive negatives on a powered test
+    (G_(B=False, Bdec=True), G_(), 288, True, True, "TWIN_ONLY_SELECTION_SIGNAL"),
+    (G_(B=False), G_(), 288, True, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(C=False, Cdec=True), None, 288, True, True, "FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION"),
+    (G_(B=False, C=False, Cdec=True, Bdec=True), None, 288, True, True,
+     "FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION"),
+    (G_(C=False), None, 288, True, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(B=False, Bdec=True), None, 288, True, True, "DEMONSTRATIONS_SUFFICIENT_FOR_SELECTION"),
+    (G_(B=False, Bdec=True, demo=False), None, 288, True, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(B=False, Bdec=True), None, 200, True, True, "MIXED_OR_INCONCLUSIVE"),
+    (G_(A=False), None, 288, True, True, "MIXED_OR_INCONCLUSIVE"),
 ])
-def test_the_classification_ladder(test, twin, n, ok, expected):
+def test_the_classification_ladder(test, twin, n, ok, fits, expected):
     gate_out = {"test": test}
     if twin is not None:
         gate_out["twin"] = twin
-    out = S.classify(gate_out, n, ok, True, True, True)
+    out = S.classify(gate_out, n, ok, True, True, True, fits)
     assert out["classification"] == expected
 
 
 def test_pass_is_impossible_without_beating_the_demonstration_baseline():
-    for A, C, D in product((True, False), repeat=3):
-        out = S.classify({"test": _gate_dict(A=A, B=False, C=C, D=D)}, 288, True, True, True, True)
+    for A, C, D, H in product((True, False), repeat=4):
+        out = S.classify({"test": _gate_dict(A=A, B=False, C=C, D=D, H=H)}, 288,
+                         True, True, True, True)
         assert out["classification"] != "FAILURE_CONDITIONED_SELECTION_GENERALIZES"
+
+
+def test_decisive_flags_follow_the_upper_bound():
+    n = 288
+    flat = [0] * n
+    small = [1 if i % 4 == 0 else -1 if i % 4 == 2 else 0 for i in range(n)]
+    out = S.gates({"acc": [8] * n, "acc_demo": [10] * n, "d_demo": small, "d_shuffle": flat})["test"]
+    assert out["B_fails_decisively"] and out["C_fails_decisively"] and out["demo_selects"]
+    big = [2] * n
+    out = S.gates({"acc": [10] * n, "acc_demo": [8] * n, "d_demo": big, "d_shuffle": big})["test"]
+    assert out["B_beats_demo"] and not out["B_fails_decisively"]
+
+
+def test_gate_h_needs_enough_ambiguous_groups_and_a_nonnegative_increment():
+    base = {"acc": [10] * 100, "acc_demo": [8] * 100, "d_demo": [2] * 100, "d_shuffle": [2] * 100}
+    assert S.gates(dict(base, ambiguous=[(1, 3)] * 30))["test"]["H_ambiguous_nonnegative"]
+    assert not S.gates(dict(base, ambiguous=[(1, 3)] * 29))["test"]["H_ambiguous_nonnegative"]
+    assert not S.gates(dict(base, ambiguous=[(-1, 3)] * 40))["test"]["H_ambiguous_nonnegative"]
 
 
 def test_twin_folds_keep_shared_targets_together_and_are_deterministic():
@@ -584,6 +619,10 @@ def test_the_evaluator_blocks_on_shared_inputs_seed_law_and_excluded_digests(mon
     bad["episodes"][2]["seed"] = pair_seed + 55
     assert "slot3:seed_law" in EV.test_integrity(records[:3] + [rec(3, bad)], man,
                                                    (frozenset(), frozenset()))
+    bad = copy.deepcopy(group)
+    bad["episodes"][5]["target_tokens"] = bad["episodes"][0]["target_tokens"]
+    assert "slot3:target_tokens" in EV.test_integrity(records[:3] + [rec(3, bad)], man,
+                                                        (frozenset(), frozenset()))
 
 
 # -- end to end on a synthetic corpus ----------------------------------------------
@@ -638,8 +677,11 @@ def _synthetic_pairs(n, exclusion, used, base, stride_slot):
     return out
 
 
-def test_the_evaluator_runs_end_to_end_on_a_synthetic_corpus(monkeypatch):
-    EV = _module("ev15e2e", "scripts/evaluate_v15_selection.py")
+def _e2e_corpus(monkeypatch, n_test, name):
+    """A synthetic training resource (42 twin-shaped groups) and test corpus
+    (genuine grammar pairs at genuine test seeds, independent inputs) with a
+    planted failure signal; returns the evaluator module and a report path."""
+    EV = _module(name, "scripts/evaluate_v15_selection.py")
     rng = random.Random(31)
     ex_t, _ = S.load_exclusion()
     used = set()
@@ -674,7 +716,7 @@ def test_the_evaluator_runs_end_to_end_on_a_synthetic_corpus(monkeypatch):
         g = build_group(pair, 3.0, False) if pair[1] is not None else None
         json.dump({"slot": i, "admitted": g is not None, "group": g},
                   open(os.path.join(train_dir, f"full{i:05d}.json"), "w"))
-    for pair in _synthetic_pairs(80, ex_t, used, S.TEST_BASE, S.SLOT_STRIDE):
+    for pair in _synthetic_pairs(n_test, ex_t, used, S.TEST_BASE, S.SLOT_STRIDE):
         slot = pair[0]
         g = build_group(pair, 3.0, True) if pair[1] is not None else None
         rec = {"slot": slot, "admitted": g is not None, "group": g,
@@ -688,10 +730,19 @@ def test_the_evaluator_runs_end_to_end_on_a_synthetic_corpus(monkeypatch):
     monkeypatch.setattr(EV, "verify_freeze", lambda m: [])
     real_sha = EV.sha256
     monkeypatch.setattr(EV, "sha256", lambda p: "m" if p == man_path else real_sha(p))
+    return EV, tmp
+
+
+def test_the_evaluator_runs_end_to_end_on_a_synthetic_corpus(monkeypatch):
+    EV, tmp = _e2e_corpus(monkeypatch, 80, "ev15e2e")
     out = os.path.join(tmp, "report.json")
     monkeypatch.setattr(sys, "argv", ["evaluate", out])
     EV.main()
     rep = json.load(open(out))
+    assert rep["fits_converged"] is True
+    assert rep["gates"]["test"]["H_ambiguous_nonnegative"] is True
+    assert set(rep["shuffle_fidelity"]) == {"train", "test"}
+    assert "unseen_pair" in rep["test_breakdown"]
     assert rep["integrity_problems"] == [] and rep["leaks"] == []
     assert rep["train_groups"] == 42 and rep["test_groups"] == 80
     assert rep["order_invariant"] is True
@@ -705,3 +756,55 @@ def test_the_evaluator_runs_end_to_end_on_a_synthetic_corpus(monkeypatch):
     monkeypatch.setattr(sys, "argv", ["evaluate", out2])
     EV.main()
     assert open(out).read() == open(out2).read()
+
+
+def _tok_group(i, tok_a, tok_b):
+    ta = [["P", "colour_components"], ["M", tok_a], ["PAINT"], ["EOS"]]
+    tb = [["P", "colour_components"], ["M", tok_b], ["PAINT"], ["EOS"]]
+    eps = [{"target_index": t, "replicate_index": 0, "target_tokens": [ta, tb][t]} for t in (0, 1)]
+    return {"group_digest": f"{i:064x}", "target_digests": [f"a{i}", f"b{i}"], "episodes": eps}
+
+
+def test_twin_folds_keep_token_pairs_together(monkeypatch):
+    monkeypatch.setattr(S, "differing_step", lambda a, b: (None, tuple(a[1]), tuple(b[1])))
+    groups = [_tok_group(i, "area", "shape") if i in (0, 13) else
+              _tok_group(i, f"f{i}", f"g{i}") for i in range(42)]
+    folds = S.twin_folds(groups)
+    assert folds[0] == folds[13]
+    groups[13] = _tok_group(13, "shape", "area")
+    assert S.twin_folds(groups)[0] == S.twin_folds(groups)[13]
+
+
+def test_the_shuffle_prefers_donors_of_the_same_family():
+    q = synthetic_queries(30, 41)
+    for x in q:
+        x["family"] = "(0,0)" if x["group"] % 2 else "(1,0)"
+    pi = S.matched_shuffle(q)
+    assert all(q[pi[i]]["group"] != q[i]["group"] for i in range(len(q)))
+    fid = S.shuffle_fidelity(q, pi)
+    assert fid["same_family_share"] == 1.0
+
+
+def test_generation_stops_at_the_first_failed_freeze_check(monkeypatch):
+    GEN = _gen()
+    monkeypatch.setattr(GEN, "freeze_problems", lambda man: ["implementation"])
+    with tempfile.TemporaryDirectory() as out:
+        cfg = {"out": out, "prefix": "full", "target": 10, "slots": 10, "wall": 1e9,
+               "engine": out, "manifest": {"frozen": True}}
+        stub = _Stub([("A", ("a1", "a2")), ("B", ("b1", "b2"))])
+        end = GEN.continue_run(cfg, [None] * 5, first=0.0, run_slot_fn=stub, clock=lambda: 5.0)
+        assert end["stop_reason"] == "freeze_failed" and len(stub.calls) == 1
+        rec = json.load(open(os.path.join(out, "full00000.json")))
+        assert rec["freeze_ok"] is False
+
+
+def test_below_the_floor_the_evaluator_computes_no_statistic(monkeypatch):
+    EV, tmp = _e2e_corpus(monkeypatch, 10, "ev15floor")
+    out = os.path.join(tmp, "report.json")
+    monkeypatch.setattr(sys, "argv", ["evaluate", out])
+    EV.main()
+    rep = json.load(open(out))
+    assert rep["classification"]["classification"] == "MIXED_OR_INCONCLUSIVE"
+    assert "floor" in rep["classification"]["reason"]
+    assert "conditions" not in rep and "gates" not in rep
+

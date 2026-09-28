@@ -115,11 +115,12 @@ def continue_run(cfg, families, first, run_slot_fn=None, clock=time.time):
         if len(seen_groups) >= cfg["target"]:
             stop = "target_groups"
             break
-        if clock() - first > cfg["wall"]:
+        now = clock()
+        if now - first > cfg["wall"]:
             stop = "wall_clock"
             break
         slot_started = time.monotonic()
-        started_since_first = round(clock() - first, 1)
+        started_since_first = round(now - first, 1)
         record = run_slot_fn(slot, families[slot % len(families)], cfg,
                              frozenset(seen_groups), frozenset(seen_targets))
         record["started_since_first_start_s"] = started_since_first
@@ -142,6 +143,11 @@ def continue_run(cfg, families, first, run_slot_fn=None, clock=time.time):
               f"replicates={record['replicate_attempts']} skips={len(record['skips'])} "
               f"{record['elapsed_s']}s groups={len(seen_groups)} "
               f"total={round(time.monotonic() - started)}s", flush=True)
+        #  erratum 1: a failed freeze check ends the run at once; the record
+        #  that shows it is kept, and the evaluator will block
+        if cfg["manifest"] and record["freeze_ok"] is not True:
+            stop = "freeze_failed"
+            break
     else:
         stop = "target_groups" if len(seen_groups) >= cfg["target"] else "slot_cap"
     return {"admitted_groups": len(seen_groups), "admitted_records": raw,
