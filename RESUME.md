@@ -4,9 +4,17 @@ Last updated 2026-09-27. Read this first.
 
 ## State
 
-**v1.4 RUN LAUNCHED 2026-09-27T20:47:49Z**: chain PID 1376598, generator
-PID 1376604, state in `logs/v14_run_state.txt` (authoritative). Result when
-`logs/V14_AUDIT_DONE` exists.
+Last updated 2026-09-28.
+
+**v1.4 RUN COMPLETE; SEALED AUDIT = AUDIT_BLOCKED (`duplicate_group_digest`);
+NO CLASSIFICATION.** Record: `records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md`.
+Generation stopped at 42 admitted groups after 136 slots and 11,791 s with
+full freeze, environment, leakage and twin-law integrity, but one target pair
+was admitted twice (slots 57 and 117), leaving 41 unique groups, and the
+frozen corpus check makes duplicates blocking. The report holds no stage,
+sensitivity or classification section: **no v1.4 statistic has been computed
+by anyone.** Cause: my erratum-1 defect, a uniqueness check added to the
+auditor without the matching skip rule in the generator. Nothing is running.
 
 **v1.4 mechanistic frontier localization: FROZEN WITH ERRATUM 1 at
 adecfd2.** Protocol
@@ -118,18 +126,14 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**RUN THE FROZEN v1.4 MECHANISTIC FRONTIER LOCALIZATION EXPERIMENT.** Then
-STOP.
-
-    cd Reasoning_Project_arc2026
-    setsid nohup scripts/run_v14_chain.sh > logs/v14_chain_stdout.log 2>&1 < /dev/null &
-    pgrep -af "generate_v14_twins.py full"     # the REAL pid; $! is setsid's wrapper
-
-The chain generates until 42 groups or a cap, runs the sealed auditor twice,
-requires byte-identical reports and touches `logs/V14_AUDIT_DONE`. Do not
-read partial corpus statistics while it runs. Scorer discrimination stays
-unlicensed and the ConstructiveExtensionCompiler stays blocked whatever the
-outcome. Binding data order: `records/DATA_USAGE_ORDER.md`.
+**Preserve the blocked run and issue erratum 2, a slot-order duplicate-group
+rule, before any statistic is computed; then complete the same run to 42
+unique groups under the original caps and re-run the sealed audit twice.**
+User decision; not implemented. The frozen 24 h cap counts from the first
+start and expires at **2026-09-28T20:47:49Z**; after that the erratum must
+also address the cap. Details in the run record. Scorer discrimination stays
+unlicensed and the ConstructiveExtensionCompiler stays blocked. Binding data
+order: `records/DATA_USAGE_ORDER.md`.
 
 ## How to re-run
 
