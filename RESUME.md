@@ -147,7 +147,14 @@ hidden answer may be read to supply one.
 ## Next action, exactly one
 
 **PREREGISTER THE NEXT FAILURE-CONDITIONED SELECTION EXPERIMENT USING THE
-TWIN-VALIDATED SIGNAL.** User decision; not designed or implemented. Two
+TWIN-VALIDATED SIGNAL.** Framing set by the user on 2026-09-28: an
+incremental test under realistic input variation. Does associated failure
+evidence improve candidate selection beyond demonstrations alone, on unseen
+targets and new scenes? Not designed or implemented. Note for the design:
+v1.3 is the one measurement under independent inputs, and there the same
+42-field descriptor did not identify the target with a nonlearned neighbour
+test (FEATURE-only 0.473 against 3/7, 112 instances), so the comparison must
+condition on the demonstrations. Two
 measured facts bind its design: demonstration statistics (S0) identify the
 target more strongly than any reasoning stage, and the signal is established
 only under shared inputs. Scorer training, the ConstructiveExtensionCompiler,
