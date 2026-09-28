@@ -6,6 +6,18 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
+**v1.5 CONDITIONAL FAILURE-CONDITIONED SELECTION: DESIGN IN PROGRESS, NOT
+FROZEN** (saved mid-block). Draft record
+`records/ITEM2_V15_SELECTION_DESIGN_DECISION.md` holds every decision so far
+and the remaining steps. Draft code `cora_arc2026/v15_sel.py`,
+`scripts/generate_v15_pairs.py`, exclusion set
+`outputs/tti/v15_exclusion_digests.json` (sha256 `50349bcf...`). No selector
+has been fitted and no test group exists. Admission-rate pilot RUNNING on
+disjoint pilot seeds: PID 2448150, `logs/v15_pilot_run.log`, 45 min cap from
+15:12Z; it measures admission and runtime only. Frozen so far in the draft:
+288 test groups (exact-test power 0.909 at +5 accuracy points), floor 72,
+λ = 0.01, α = 0.01.
+
 **v1.4 COMPLETE: CURRENT_TFG_IDENTIFYING_UNDER_TWINS** (determining stage
 S7, confirmatory at 42 unique groups, sealed audit byte-identical, sha256
 `1c051401...`). Record: `records/ITEM2_V14_LOCALIZATION_RESULT_20260928.md`.
