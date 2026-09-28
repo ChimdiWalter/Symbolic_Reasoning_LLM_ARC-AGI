@@ -6,8 +6,12 @@ Last updated 2026-09-27. Read this first.
 
 Last updated 2026-09-28.
 
-**v1.4 ERRATUM 2 FROZEN 2026-09-28; the continuation to 42 unique groups
-launches from this freeze.** Record `records/ITEM2_V14_ERRATUM_02.md`;
+**v1.4 ERRATUM 2 CONTINUATION LAUNCHED 2026-09-28T14:21:37Z** from freeze
+5ffa56f: generator PID 2388124 (chain 2388118); state in
+`logs/v14_run_state.txt`. Next on `logs/V14_ERRATUM2_GENERATION_DONE`: the
+post gate, then the audit script.
+
+**v1.4 ERRATUM 2 FROZEN 2026-09-28 at 5ffa56f.** Record `records/ITEM2_V14_ERRATUM_02.md`;
 protocol sha256 `05e3d96b...8723a8eb`, manifest sha256 `1c2202b6...4dbf2aa1`;
 58 v1.4 tests pass. Rule: the first admission of a group digest in slot
 order is included, later ones are kept but excluded (slot 57 included, slot

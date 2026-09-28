@@ -38,3 +38,15 @@ Nothing is running.
 Protocol 05e3d96b..., manifest 1c2202b6.... First run preserved: hash list
 601ab7c2..., run-end archived as full_run_end_blocked_20260928.json, blocked
 reports 9749e6f4... kept in place plus v14_localization_audit_BLOCKED_PRE_ERRATUM2.json.
+
+--- ERRATUM 2 CONTINUATION LAUNCHED 2026-09-28T14:21:37Z from freeze 5ffa56f ---
+Pre gate PASS at 14:21:26Z (logs/v14_erratum2_integrity_pre.log): freeze OK,
+first run preserved, 136 records, 41 included, excluded (b4edae2fce55, 57, 117),
+first start unchanged, cap live (6.44 h left), no writer alive.
+Command: setsid nohup scripts/run_v14_erratum2_generation.sh > logs/v14_erratum2_stdout.log 2>&1 < /dev/null &
+Chain shell PID 2388118; generator (real python) PID 2388124, nice 19, sole
+FLOCK WRITE holder; environment ARC_META_BUDGET_S=8, PYTHONHASHSEED=0 only.
+Stops at 42 unique groups, slot 399, or the original 24 h cap.
+Next: on logs/V14_ERRATUM2_GENERATION_DONE run check_v14_integrity.py post,
+then scripts/run_v14_erratum2_audit.sh. No stage value is read before then.
+Stop if needed: kill 2388124 2388118 (exact PIDs only).
