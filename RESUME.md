@@ -8,8 +8,9 @@ Last updated 2026-09-28.
 
 **v1.5 GENERATION RUNNING** since 2026-09-28T20:15Z under the gated execution
 directive of 2026-09-28 (stages v1.5 through the 120-task local evaluation,
-conditionally authorized; see `records/STAGE_LEDGER.json`). Generator PID
-2819761, chain 2819666, state `logs/v15_run_state.txt`; first start
+conditionally authorized; see `records/STAGE_LEDGER.json`). Athe rebooted 2026-09-30 (about 14:05Z) at slot 2045 with 221 groups; resumed
+23:41Z. Generator PID 75518, chain 75512 (before the reboot: 2819761 and 2819666),
+state `logs/v15_run_state.txt`; first start
 20:16:44Z; caps 288 groups, 9,000 slots, or 2026-10-03T20:16:44Z. No score
 is read before the marker `logs/V15_GENERATION_DONE`, then the integrity
 gate. Delivery-readiness addendum frozen before any score:
@@ -164,8 +165,8 @@ hidden answer may be read to supply one.
 ## Next action, exactly one
 
 Finish v1.5 exactly as frozen; build nothing new before its verdict. The
-detached post-generation runner (PID 2938902, `scripts/run_v15_post_generation.sh`,
-commit ff751e3) waits for the generation chain 2819666 to end, then runs, in
+detached post-generation runner (PID 77307 since the 2026-09-30 reboot resume,
+`scripts/run_v15_post_generation.sh`, commit ff751e3) waits for the generation chain 75512 to end, then runs, in
 the order set on 2026-09-28:
 1. `evaluate_v15_selection.py --integrity-only`;
 2. `v15_supp_verification.py`, launched with PYTHONPATH set to the tti root

@@ -21,3 +21,15 @@ integrity only -> verification (PYTHONPATH = tti root, addendum erratum 1)
 It stops at the first failure. Status is in logs/v15_postgen/STATUS.txt;
 markers are logs/V15_POSTGEN_DONE or logs/V15_POSTGEN_BLOCKED.
 It records no verdict. Stop if ever needed: kill 2938902 (exact PID only).
+
+2026-09-30 ATHE REBOOT (about 14:05Z, kernel 7.0.0-34) stopped the chain, the generator and the runner
+at slot 2045 (2,046 records, 221 groups; the chain log has no exit line).
+2026-09-30T23:41Z RESUMED with the unchanged frozen script, after checks: all 2,046 records parse
+and cover slots 0..2045 contiguously, freeze_ok true on the recent records, no .tmp files, and
+no engine state files.
+setsid nohup scripts/run_v15_generation.sh >> logs/v15_generation_stdout.log 2>&1 < /dev/null &
+New chain PID 75512, generator PID 75518 (nice 19). The startup freeze check passed; it resumed at
+slot 2046 and rebuilt the count of 221 groups. The wall cap is unchanged (from the first start):
+2026-10-03T20:16:44Z. About 9.6 h were lost to downtime; about 68.6 h remain at resume.
+Runner relaunched: setsid nohup bash scripts/run_v15_post_generation.sh 75512 >> logs/v15_postgen/runner.out ...
+Runner PID 77307. Stop if ever needed: kill 75518 75512 77307 (exact PIDs only).
