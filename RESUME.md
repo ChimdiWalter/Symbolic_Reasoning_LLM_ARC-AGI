@@ -167,26 +167,23 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.6 bounded repair: DEVELOPMENT BLOCK IN PROGRESS (2026-10-02).** Plan
-and amendment: `records/ITEM2_V16_DEVELOPMENT_PLAN.md` (3bcb8e7, 788cfc3),
-both fixed before any response was read.
-- Implementation so far: `cora_arc2026/v16_cfr.py` (probe, queries, R0-R2,
-  shuffle, conditional logit; its D-only fit reproduces v1.5 `fit_pairs`
-  exactly), `scripts/v16_responses.py`, `scripts/v16_dev_evaluate.py`,
-  `scripts/v16_build_exclusion.py` (exclusion written: 2,094 targets,
-  2,430 groups, sha256 e936bc6f...), `scripts/generate_v16_pairs.py`
-  (v1.5 generator with v1.6 paths, seed base 500,000,000).
-- Running: `scripts/v16_responses.py dev` (detached, log
-  `logs/v16/dev_responses.log`) writes `outputs/tti/v16_dev_responses.json`.
-- Then, in order: add P0/P1/P2 arms and controls to the dev evaluator; run
-  it (DEVELOPMENT ONLY, v1.5 test corpus); record the development result;
-  write the v1.6 protocol, manifest, evaluator, tests, power calculation,
-  restart tooling; hash and freeze; ONE adversarial review; errata; STOP
-  before generating prospective data.
-- Paper track (parallel, safe): `docs/RELATED_WORK_NOVELTY_MATRIX.md`,
-  claim ladder and method section in `docs/PAPER_SKELETON.md`.
-- Deadlines corrected per the user: Kaggle entry 26 Oct, competition 2 Nov,
-  paper 8 Nov 2026.
+**v1.6 bounded repair: DEVELOPMENT DONE, FREEZE IN PROGRESS (2026-10-02 18:50Z).**
+- Development result (DEVELOPMENT ONLY, v1.5 corpus):
+  `records/ITEM2_V16_DEVELOPMENT_RESULT.md`. P0 abstains on 84 percent of
+  ambiguous queries (right 85 percent when it decides); P0 then D +0.045
+  over D (p < 0.001, both CVs); P1 R0 +0.020; P2 = D.
+- Decisions (plan amendment 2, 533c189): P0 primary unchanged; P0_then_D
+  second gated arm (hybrid headline); P1 R0; floor 0.05 retained; named
+  sub-floor class; caps `outputs/tti/v16_caps.json` (440 groups, 280
+  ambiguous target, 72 floor, 6,000 slots, 120 h).
+- Protocol filled: `docs/CORA_TTI_CANDIDATE_FAILURE_RESPONSE_v1.6.md`.
+- Running: `scripts/v16_power.py` (background) -> `outputs/tti/v16_power.json`.
+- Then: `scripts/freeze_v16.py outputs/tti/v16_caps.json` (writes the
+  manifest + .sha256), full test suite, generator settings() freeze check,
+  ONE adversarial review (read-only), errata, re-freeze, STOP before
+  `scripts/run_v16_generation.sh`.
+- Prospective run order after the user's go: run_v16_generation.sh
+  (detached, resumable), then run_v16_post_generation.sh CHAIN_PID.
 
 ## How to re-run
 
