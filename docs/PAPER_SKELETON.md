@@ -865,6 +865,62 @@ pass, so it is not built on this result. One bounded, preregistered repair
 remains, aimed at locating whichever failure channel, if any, carries the
 constructive decision.
 
+## 8.11 Failure as an intervention target: candidate-conditioned failure response
+
+[METHOD WRITTEN 2026-10-02; RESULT CELLS EMPTY UNTIL THE SEALED REPORT]
+
+v1.5 described the failure and asked whether the description helps. The
+bounded repair changes the question. It exposes each candidate extension to
+the failed reasoner, temporarily, and measures what happens to the failure.
+
+The reasoner is the constructive domain's frozen base search K. On every
+admitted episode K fails by construction. For a candidate e, the probe runs
+K + {e}: K's results are shared and unchanged, e is the only added
+production, and it is fitted by the same fitter the gate uses. The probe
+then performs the smallest legal internal counterfactual: it removes one
+demonstration, re-derives e from the rest, and renders the removed input.
+Both candidates see the identical probes. The comparison value is the
+demonstration-visible held-out output; these episodes contain no hidden
+output at all. State is hashed before and after every probe and must be
+identical.
+
+Each candidate's response is four numbers: the share of held-out
+demonstrations it reproduces after re-derivation, its held-out residual, the
+share of re-derivations with no consistent fit, and the size of its induced
+table. A pair is represented by the difference of the two responses.
+
+Three arms are compared on the queries that plain verification cannot
+settle (both candidates fit every demonstration):
+- P0, pure reasoning: a fixed lexicographic rule over the response keys, in
+  an order fixed before any response was read, with no fitted number;
+- P1, hybrid: the demonstration summary plus the response, through the same
+  small conditional logit as v1.5;
+- P2, passive: the demonstration summary plus the v1.5 failure descriptor,
+  fitted on the same training resource.
+
+Two controls separate a candidate's interaction with this failure from
+everything else: the response of a matched donor episode (the failure
+replaced), and the two candidates' responses exchanged (the identity
+destroyed). Transfer is read on candidate pairs held out of training by a
+fixed hash rule. Gates, thresholds, the ladder and the sample size are
+frozen before the prospective corpus exists; the v1.5 test corpus served as
+development data and is excluded from the new corpus by digest.
+
+Results: [SEALED REPORT PENDING]
+- ambiguous population: [n queries, n groups];
+- P0 against D: [increment, interval, p]; against the replaced failure:
+  [increment, p]; on unseen pairs: [increment];
+- P1 against D: [ ]; P2 against D: [ ];
+- classification: [ ].
+
+Claim ceiling if P0 passes: a candidate-conditioned measurement of how
+proposed executable extensions affect the reasoner's own failure state
+improves constructive extension selection beyond demonstrations alone, on
+prospectively generated, disjoint tasks, with no fitted parameter in the
+decision. If only P1 passes, the same sentence holds for a hybrid selector
+and says so. Neither claims self-improving reasoning; that needs the
+B/P/U/L/T/A witness of section 2.3.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
