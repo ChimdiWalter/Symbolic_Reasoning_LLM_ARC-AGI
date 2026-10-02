@@ -68,9 +68,37 @@
   },
   {
    "id": "v1.5_bounded_repair",
-   "status": "AUTHORIZED_NOT_DESIGNED",
+   "status": "DEVELOPMENT_IN_PROGRESS (v1.6 CFR)",
    "rule": "directive 2026-09-28 section 5 and user message 2026-09-28: ONE bounded repair keyed to FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION (determine which failure channel, if any, is associated with the constructive decision), then ONE clean prospective test on new data; if it fails, preserve and stop with the exact blocker",
-   "data_permissions": "the v1.5 test corpus may be used as development data for the design only, never as the repair's test"
+   "data_permissions": "the v1.5 test corpus may be used as development data for the design only, never as the repair's test",
+   "plan": "records/ITEM2_V16_DEVELOPMENT_PLAN.md (3bcb8e7 + amendment 788cfc3, fixed before any response was read)",
+   "arms": {
+    "P0": "PURE_CFR deterministic lexicographic rule, primary",
+    "P1": "HYBRID_CFR, secondary",
+    "P2": "PASSIVE_V15 control"
+   },
+   "implementation": [
+    "cora_arc2026/v16_cfr.py",
+    "scripts/v16_responses.py",
+    "scripts/v16_dev_evaluate.py",
+    "scripts/evaluate_v16_cfr.py",
+    "scripts/generate_v16_pairs.py",
+    "scripts/v16_supp_dependence.py",
+    "scripts/v16_power.py",
+    "scripts/freeze_v16.py",
+    "scripts/run_v16_generation.sh",
+    "scripts/run_v16_post_generation.sh",
+    "tests/test_v16_cfr.py",
+    "tests/test_v16_prospective.py"
+   ],
+   "exclusion": {
+    "path": "outputs/tti/v16_exclusion_digests.json",
+    "sha256_prefix": "e936bc6f",
+    "targets": 2094,
+    "groups": 2430
+   },
+   "prospective_seed_base": 500000000,
+   "claim_ceiling": "LEVEL 1 of the frozen ladder"
   },
   {
    "id": "compiler",
