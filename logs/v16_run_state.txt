@@ -1,0 +1,25 @@
+Item-2 v1.6 frozen prospective bounded-repair experiment: GENERATION LAUNCHED 2026-10-02T23:22:39Z
+Freeze: erratum 1 (first freeze 4f9c77b superseded); HEAD at launch 6033371; protocol sha256
+d5b9358766a92f020f782a53d7517becfc97ce74ec753d1b4ab7699150c052aa; manifest sha256 d1890a46ad786d950cf351198749e37565a6169be42ff05e30f3eacf8fd36f93.
+Pre-launch: git clean; manifest hash file verified; freeze_problems [] (generator) and
+verify_freeze [] (evaluator); 20 v1.6 tests passed at the frozen implementation (3ab96f3,
+unchanged through 6033371); no prior writer; no v16_test_corpus or v16_engine directory.
+Command: setsid nohup scripts/run_v16_generation.sh >> logs/v16_generation_stdout.log 2>&1 < /dev/null &
+Chain shell PID 1178785 (pgid 1178785, sid 1178785); generator PID 1178792 (pgid 1178785,
+sid 1178785, nice 19, start ticks 20627372); boot id 5c543236-c905-416e-9e7f-af441c8fc4b5;
+FLOCK on outputs/tti/v16_test_corpus/.writer.lock (inode 121500864844) held by the generator: True.
+First start 2026-10-02T23:22:39Z (epoch 1790983359.6282127); caps 480 unique groups, 6,000 slots,
+432,000 s -> wall cap expires 2026-10-07T23:22:39Z. Seed base 500,000,000; output outputs/tti/v16_test_corpus/;
+engine outputs/tti/v16_engine/. Environment: ARC_META_BUDGET_S=8, PYTHONHASHSEED=0, BLAS threads 1,
+no other ARC_*, PYTHONPATH unset. Host load about 28 at launch.
+Post-generation runner launched 2026-10-02T23:24:19Z: setsid nohup bash
+scripts/run_v16_post_generation.sh 1178785 >> logs/v16_postgen/runner.out 2>&1 < /dev/null &
+Runner PID 1199668 (pgid 1199668, sid 1199668). It waits on the chain, then: test responses ->
+integrity only -> sealed evaluator twice (byte-compared) -> dependence; markers
+logs/V16_POSTGEN_DONE or logs/V16_POSTGEN_BLOCKED; status logs/v16_postgen/STATUS.txt. It records no verdict.
+Monitoring during generation is administrative only (slots, groups, PIDs, lock, freeze_ok, load,
+errors, markers); no score, margin, gate or subset is read before V16_POSTGEN_DONE.
+Stop if ever needed: kill 1178792 1178785 1199668 (exact PIDs only). Never a second writer.
+After a reboot: audit the corpus (contiguous slots, parseable, no .tmp, freeze_ok, clean engine,
+no writer), rerun scripts/run_v16_generation.sh (resumes at the first missing slot; the cap counts
+from the first start above), then the runner with the NEW chain PID.

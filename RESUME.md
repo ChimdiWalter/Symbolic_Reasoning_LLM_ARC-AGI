@@ -167,29 +167,29 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.6 FROZEN WITH ERRATUM 1 at 97d7164 (2026-10-02 19:45Z), NOT RUN.**
-Protocol sha256 `d5b9358766a92f02...`, manifest sha256
-`d1890a46ad786d95...` (first freeze 4f9c77b superseded). Generator and evaluator
-freeze checks pass; 20 v1.6 tests pass; the full suite's only failures are
-the v1.4 and v1.5 freeze-equality tests (expected after the package grew).
-Review: 0 blocking, 5 major, minors; all fixed or recorded in
-`records/ITEM2_V16_ERRATUM_01.md`.
+**v1.6 PROSPECTIVE GENERATION RUNNING** since 2026-10-02T23:22:39Z (user's go
+given; both frozen decisions confirmed: floor 0.05, P0_then_D second and
+hybrid). Chain PID 1178785, generator PID 1178792 (nice 19, sole FLOCK holder),
+runner PID 1199668; first start 2026-10-02T23:22:39Z; wall cap
+2026-10-07T23:22:39Z; state `logs/v16_run_state.txt`. Expected about 4,600 slots,
+83 to 110 h (result about 6 to 7 October).
 
-RUN THE ONE FROZEN PROSPECTIVE BOUNDED-REPAIR EXPERIMENT ON NEW DATA, after
-the user's go (two flagged decisions: the 0.05 floor is retained though the
-development point estimate is 0.045; P0_then_D is the second gated arm with
-a hybrid headline):
+Wait. Administrative monitoring only (slots, groups, PIDs, lock, freeze_ok,
+load, errors, markers). No score, margin, gate or subset is read before
+`logs/V16_POSTGEN_DONE`. Never edit `cora_arc2026/`, `geocat_arc/` or any
+manifest-listed file while the writer is active. Never start a second
+writer. After a reboot: audit the corpus, rerun `scripts/run_v16_generation.sh`,
+then the runner with the NEW chain PID.
 
-    setsid nohup scripts/run_v16_generation.sh >> logs/v16_generation_stdout.log 2>&1 < /dev/null &
-    ps -eo pid,args | grep "[r]un_v16_generation.sh"        # chain PID
-    setsid nohup bash scripts/run_v16_post_generation.sh CHAIN_PID >> logs/v16_postgen/runner.out 2>&1 < /dev/null &
-
-Expected: about 4,600 slots, 83 to 110 h, cap 120 h from the first start;
-then responses, integrity, the evaluator twice, dependence; markers
-logs/V16_POSTGEN_DONE or logs/V16_POSTGEN_BLOCKED. Never edit
-`cora_arc2026/`, `geocat_arc/` or any manifest-listed file while it runs.
-After a reboot: check the corpus, rerun the generation script (resumes at
-the first missing slot), then the runner with the NEW chain PID.
+On `V16_POSTGEN_DONE`: verify artifacts and hashes first (freeze, leakage,
+overlap, response binding, order invariance, gated-arm convergence, two
+byte-identical reports, transfer minimum, independent recomputation of the
+arm and gate arithmetic), then read the scientific values, report the
+literal ladder class, and record the official and supplementary results
+separately. GENERALIZES classes license the compiler (next stage, not this
+session); anything else stops the failure-conditioned constructive rollout
+with its exact blocker. On `V16_POSTGEN_BLOCKED`: the named step blocks; do
+not skip it.
 
 ## How to re-run
 

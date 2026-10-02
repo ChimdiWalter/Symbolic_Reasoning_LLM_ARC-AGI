@@ -68,7 +68,7 @@
   },
   {
    "id": "v1.6_bounded_repair",
-   "status": "FROZEN_ERRATUM_1_NOT_RUN",
+   "status": "GENERATION_RUNNING",
    "rule": "directive 2026-09-28 section 5 and user message 2026-09-28: ONE bounded repair keyed to FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION (determine which failure channel, if any, is associated with the constructive decision), then ONE clean prospective test on new data; if it fails, preserve and stop with the exact blocker",
    "data_permissions": "train: 167 v1.5 test groups not on held-out pairs; test: new groups at seed base 500,000,000 under the frozen law; no ARC task data",
    "plan": "records/ITEM2_V16_DEVELOPMENT_PLAN.md (3bcb8e7 + amendment 788cfc3, fixed before any response was read)",
@@ -124,7 +124,18 @@
    },
    "command": "scripts/run_v16_generation.sh, then scripts/run_v16_post_generation.sh CHAIN_PID",
    "allowed_successor": "PURE_CFR_SELECTION_GENERALIZES, PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES or HYBRID_CFR_SELECTION_GENERALIZES license the generic compiler (headline by arm); anything else stops the constructive rollout with its exact blocker; no repair v2",
-   "verdict": null
+   "verdict": null,
+   "process": {
+    "chain_pid": 1178785,
+    "generator_pid": 1178792,
+    "runner_pid": 1199668,
+    "launched_utc": "2026-10-02T23:22:39Z",
+    "first_start_utc": "2026-10-02T23:22:39Z",
+    "wall_cap_expires_utc": "2026-10-07T23:22:39Z",
+    "boot_id": "5c543236-c905-416e-9e7f-af441c8fc4b5",
+    "head_at_launch": "6033371"
+   },
+   "run_state": "logs/v16_run_state.txt"
   },
   {
    "id": "compiler",
