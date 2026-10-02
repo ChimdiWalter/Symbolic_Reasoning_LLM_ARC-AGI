@@ -619,3 +619,64 @@ def above_chance_values(queries, units, select=None) -> list:
 
 def fraction(x) -> str:
     return str(Fraction(x).limit_denominator())
+
+
+# --------------------------------------------------------------------------
+# P0 PURE_CFR: the deterministic lexicographic rule (plan section 13)
+# --------------------------------------------------------------------------
+
+#: key order and direction, fixed before any response was read:
+#: +1 means the larger value wins, -1 the smaller
+P0_KEYS = ("loo_exact", "loo_cell_error", "loo_fit_fail", "table_entries")
+P0_SIGNS = (1, -1, -1, -1)
+P0_TOL = 1e-9
+
+
+def p0_choice(delta, keys=P0_KEYS):
+    """+1 chooses the first candidate, -1 the second, 0 no choice. Reads only
+    the sign of Delta = r(first) - r(second) key by key, so it is exactly
+    antisymmetric: p0_choice(-delta) == -p0_choice(delta)."""
+    idx = {k: i for i, k in enumerate(RESPONSE_FIELDS)}
+    for key, sign in zip(P0_KEYS, P0_SIGNS):
+        if key not in keys:
+            continue
+        v = delta[idx[key]] * sign
+        if v > P0_TOL:
+            return 1
+        if v < -P0_TOL:
+            return -1
+    return 0
+
+
+def p0_units(q, delta, keys=P0_KEYS, fallback_units=None) -> int:
+    """Half-credit units of the P0 decision on a query; a tie takes the
+    fallback units when given (P0_then_D), else 1."""
+    c = p0_choice(delta, keys)
+    if c == 0:
+        return 1 if fallback_units is None else fallback_units
+    chosen = q["cands"][0] if c > 0 else q["cands"][1]
+    return 2 if chosen == q["truth"] else 0
+
+
+def p0_key_diagnostics(queries, deltas, select=None) -> dict:
+    """Per key: how often it is the deciding key on ambiguous queries, and how
+    often its fixed direction points at the truth when it decides."""
+    idx = {k: i for i, k in enumerate(RESPONSE_FIELDS)}
+    out = {}
+    for key, sign in zip(P0_KEYS, P0_SIGNS):
+        decides = right = 0
+        for q, d in zip(queries, deltas):
+            if not q["ambiguous"] or (select is not None and not select(q)):
+                continue
+            earlier = [k2 for k2 in P0_KEYS[:P0_KEYS.index(key)]]
+            if any(abs(d[idx[k2]]) > P0_TOL for k2 in earlier):
+                continue
+            v = d[idx[key]] * sign
+            if abs(v) <= P0_TOL:
+                continue
+            decides += 1
+            chosen = q["cands"][0] if v > 0 else q["cands"][1]
+            right += int(chosen == q["truth"])
+        out[key] = {"decides": decides, "direction_right": right,
+                    "direction_right_share": round(right / decides, 6) if decides else None}
+    return out
