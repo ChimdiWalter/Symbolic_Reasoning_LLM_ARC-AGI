@@ -167,23 +167,33 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.6 bounded repair: DEVELOPMENT DONE, FREEZE IN PROGRESS (2026-10-02 18:50Z).**
-- Development result (DEVELOPMENT ONLY, v1.5 corpus):
-  `records/ITEM2_V16_DEVELOPMENT_RESULT.md`. P0 abstains on 84 percent of
-  ambiguous queries (right 85 percent when it decides); P0 then D +0.045
-  over D (p < 0.001, both CVs); P1 R0 +0.020; P2 = D.
-- Decisions (plan amendment 2, 533c189): P0 primary unchanged; P0_then_D
-  second gated arm (hybrid headline); P1 R0; floor 0.05 retained; named
-  sub-floor class; caps `outputs/tti/v16_caps.json` (440 groups, 280
-  ambiguous target, 72 floor, 6,000 slots, 120 h).
-- Protocol filled: `docs/CORA_TTI_CANDIDATE_FAILURE_RESPONSE_v1.6.md`.
-- Running: `scripts/v16_power.py` (background) -> `outputs/tti/v16_power.json`.
-- Then: `scripts/freeze_v16.py outputs/tti/v16_caps.json` (writes the
-  manifest + .sha256), full test suite, generator settings() freeze check,
-  ONE adversarial review (read-only), errata, re-freeze, STOP before
-  `scripts/run_v16_generation.sh`.
-- Prospective run order after the user's go: run_v16_generation.sh
-  (detached, resumable), then run_v16_post_generation.sh CHAIN_PID.
+**v1.6 FROZEN at 4f9c77b (2026-10-02 18:55Z), NOT RUN.** Protocol sha256
+`be1b1e54c4cff2df...`, manifest sha256 `724630194b2709e6...`;
+generator and evaluator freeze checks pass with zero problems. Test suite:
+202 pass; the 2 failures are the v1.4 and v1.5 freeze-equality tests, which
+cannot stay green once a later stage adds a module to `cora_arc2026/` (v1.4's
+has been failing since v15_sel.py was added on 2026-09-28; both freezes are
+verifiable at their recorded commits).
+
+NEXT: the ONE adversarial review of the frozen block
+(`records/ITEM2_V16_REVIEW_REQUEST.md`), read-only, synthetic tests only;
+scan its tool calls; fix only real defects by erratum; re-hash and re-freeze;
+then STOP and return to the user before any prospective data.
+
+After the user's go: `setsid nohup scripts/run_v16_generation.sh >>
+logs/v16_generation_stdout.log 2>&1 < /dev/null &`, record the chain PID
+(`ps -eo pid,args | grep "[r]un_v16_generation.sh"`), then `setsid nohup bash
+scripts/run_v16_post_generation.sh CHAIN_PID >> logs/v16_postgen/runner.out
+2>&1 < /dev/null &`. Never edit `cora_arc2026/`, `geocat_arc/` or any
+manifest-listed file while the generator runs. After a reboot: check the
+corpus (records contiguous, no .tmp, engine clean), rerun the generation
+script (it resumes at the first missing slot; the cap counts from the first
+start), then the runner with the NEW chain PID.
+
+Decision points flagged for the user before the run: (1) the 0.05 floor is
+retained though development puts the best arm at 0.045; a principled
+amendment is possible before the run; (2) P0_then_D is the second gated arm
+with a hybrid headline.
 
 ## How to re-run
 
