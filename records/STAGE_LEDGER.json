@@ -67,10 +67,10 @@
    "commit": "the commit titled \"Adding the v1.5 result record\" (git log)"
   },
   {
-   "id": "v1.5_bounded_repair",
-   "status": "DEVELOPMENT_IN_PROGRESS (v1.6 CFR)",
+   "id": "v1.6_bounded_repair",
+   "status": "FROZEN_ERRATUM_1_NOT_RUN",
    "rule": "directive 2026-09-28 section 5 and user message 2026-09-28: ONE bounded repair keyed to FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION (determine which failure channel, if any, is associated with the constructive decision), then ONE clean prospective test on new data; if it fails, preserve and stop with the exact blocker",
-   "data_permissions": "the v1.5 test corpus may be used as development data for the design only, never as the repair's test",
+   "data_permissions": "train: 167 v1.5 test groups not on held-out pairs; test: new groups at seed base 500,000,000 under the frozen law; no ARC task data",
    "plan": "records/ITEM2_V16_DEVELOPMENT_PLAN.md (3bcb8e7 + amendment 788cfc3, fixed before any response was read)",
    "arms": {
     "P0": "PURE_CFR deterministic lexicographic rule, primary",
@@ -98,7 +98,33 @@
     "groups": 2430
    },
    "prospective_seed_base": 500000000,
-   "claim_ceiling": "LEVEL 1 of the frozen ladder"
+   "claim_ceiling": "LEVEL 1 of the frozen ladder",
+   "freeze_commit": "97d7164",
+   "first_freeze_commit": "4f9c77b",
+   "protocol": "docs/CORA_TTI_CANDIDATE_FAILURE_RESPONSE_v1.6.md",
+   "protocol_sha256": "d5b9358766a92f020f782a53d7517becfc97ce74ec753d1b4ab7699150c052aa",
+   "manifest_sha256": "d1890a46ad786d950cf351198749e37565a6169be42ff05e30f3eacf8fd36f93",
+   "development_record": "records/ITEM2_V16_DEVELOPMENT_RESULT.md",
+   "review": {
+    "request": "records/ITEM2_V16_REVIEW_REQUEST.md",
+    "verdict": "0 blocking, 5 major, minor",
+    "erratum": "records/ITEM2_V16_ERRATUM_01.md"
+   },
+   "caps": {
+    "floor_ambiguous_groups": 72,
+    "slot_cap": 6000,
+    "target_ambiguous_groups": 280,
+    "test_groups": 480,
+    "wall_clock_s": 432000
+   },
+   "transfer_gate": {
+    "alpha_above_chance": 0.05,
+    "min_unseen_groups": 30,
+    "unseen": "token pair held out by the frozen hash rule or absent from the training resource"
+   },
+   "command": "scripts/run_v16_generation.sh, then scripts/run_v16_post_generation.sh CHAIN_PID",
+   "allowed_successor": "PURE_CFR_SELECTION_GENERALIZES, PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES or HYBRID_CFR_SELECTION_GENERALIZES license the generic compiler (headline by arm); anything else stops the constructive rollout with its exact blocker; no repair v2",
+   "verdict": null
   },
   {
    "id": "compiler",
