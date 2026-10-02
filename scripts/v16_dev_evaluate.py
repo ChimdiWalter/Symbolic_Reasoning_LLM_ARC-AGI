@@ -262,6 +262,18 @@ def main():
                            m["P1_vs_P1_SHUFFLED"].get("mean_increment"), m["P2_vs_D"].get("mean_increment")])
         rep_out["eligibility"] = eligibility(rep_out, leaks or integrity)
         report["representations"][rep] = rep_out
+    #  inputs of the prospective power calculation (plan section 9; v16_power.py)
+    sizes = {}
+    for q in amb:
+        sizes[q["group"]] = sizes.get(q["group"], 0) + 1
+    report["ambiguous_group_sizes"] = sorted(sizes.values())
+    units_a, _ = run_cv(queries, folds_a, "R0")
+    def discordance(a, b):
+        pairs = [(x, y) for q, x, y in zip(queries, units_a[a], units_a[b]) if q["ambiguous"]]
+        return round(sum(1 for x, y in pairs if x != y) / max(1, len(pairs)), 6)
+    report["P0_discordance_with_D"] = discordance("P0", "D")
+    report["P0_discordance_with_P0_SHUFFLED"] = discordance("P0", "P0_SHUFFLED")
+    report["P1_discordance_with_D"] = discordance("P1", "D")
     elig = [r for r in C.REPRESENTATIONS if report["representations"][r]["eligibility"]["eligible"]]
     if elig:
         act = {r: report["representations"][r]["CV-A"]["checks"]["active_fields"] for r in elig}
