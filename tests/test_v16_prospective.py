@@ -183,3 +183,33 @@ def test_integrity_only_exits_nonzero_on_a_tampered_record(monkeypatch):
     with pytest.raises(SystemExit) as exc:
         EV.main()
     assert exc.value.code == 1
+
+
+def _gate(full=False, primary=False, abc=False, bdec=False, cdec=False, d=False):
+    return {"full_pass": full, "primary_pass": primary, "A_above_chance": abc, "B_beats_demo": abc,
+            "C_beats_shuffle": abc, "D_min_effect": d, "B_fails_decisively": bdec,
+            "C_fails_decisively": cdec}
+
+
+def test_classification_ladder_order_and_names():
+    EV = T._module("ev16ladder", "scripts/evaluate_v16_cfr.py")
+    man = {"caps": {"floor_ambiguous_groups": 10, "target_ambiguous_groups": 100}}
+    none = {a: _gate() for a in EV.GATED_ARMS}
+    assert EV.classify(none, 200, man, True, True)[0] == "MIXED_OR_INCONCLUSIVE"
+    assert EV.classify(none, 5, man, False, True)[0] == "MIXED_OR_INCONCLUSIVE"
+    g = dict(none, P0_then_D=_gate(full=True, primary=True, abc=True, d=True))
+    assert EV.classify(g, 200, man, False, True)[0] == "PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES"
+    g = dict(none, P0=_gate(full=True, primary=True, abc=True, d=True),
+             P1=_gate(full=True, primary=True, abc=True, d=True))
+    assert EV.classify(g, 200, man, False, True)[0] == "PURE_CFR_SELECTION_GENERALIZES"
+    g = dict(none, P1=_gate(primary=True, abc=True, d=True))
+    assert EV.classify(g, 200, man, False, True)[0] == "HYBRID_CFR_FAMILIAR_PAIRS_ONLY"
+    g = dict(none, P0_then_D=_gate(abc=True))
+    assert EV.classify(g, 200, man, False, True)[0] == "CFR_INCREMENT_SIGNIFICANT_BELOW_FLOOR"
+    assert EV.classify(none, 50, man, False, True)[0] == "MIXED_OR_INCONCLUSIVE"
+    g = {a: _gate(cdec=True) for a in EV.GATED_ARMS}
+    assert EV.classify(g, 200, man, False, True)[0] == "CANDIDATE_RESPONSE_NOT_EPISODE_SPECIFIC"
+    g = {a: _gate(bdec=True) for a in EV.GATED_ARMS}
+    assert EV.classify(g, 200, man, False, True)[0] == "CANDIDATE_INTERVENTION_NO_INCREMENT_OVER_DEMONSTRATIONS"
+    g = dict(none, P0=_gate(bdec=True))
+    assert EV.classify(g, 200, man, False, True)[0] == "MIXED_OR_INCONCLUSIVE"
