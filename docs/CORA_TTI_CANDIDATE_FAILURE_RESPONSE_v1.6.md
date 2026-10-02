@@ -82,7 +82,7 @@ repair v2 follows.
 | arm | rule | fitted weights |
 |---|---|---|
 | **P0 PURE_CFR** (primary) | lexicographic over the response keys, in order with fixed directions: `loo_exact` higher, `loo_cell_error` lower, `loo_fit_fail` lower, `table_entries` lower; the first key that differs decides; otherwise no choice (half credit). Keys [DEV: any constant key dropped in development]. | none |
-| P0_then_D | P0; a P0 tie falls to D | D part only |
+| P0_then_D (second gated arm) | P0; a P0 tie falls to D; headline hybrid | D part only |
 | **P1 HYBRID_CFR** (secondary) | the v1.5 conditional logit over [1, standardized D_RICH, grammar state] plus shared weights on the RMS-scaled Delta of representation [DEV: R0, R1 or R2]; L2 0.01; Newton to 1e-12; convergence required | yes |
 | **P2 PASSIVE_V15** (control) | D + F_S7 through the v1.5 scorer, fitted on the same training resource | yes |
 | D | demonstrations alone | yes |
@@ -176,27 +176,38 @@ was read; development could only drop a constant key.
 
 ## 9. Classification ladder (first rule wins)
 
+Gated arms, in order: P0, P0_then_D, P1.
 0. freeze, integrity, leakage, order, overlap or convergence failure:
    MIXED_OR_INCONCLUSIVE (AUDIT_BLOCKED);
 1. ambiguous groups < floor: MIXED_OR_INCONCLUSIVE, no statistic computed;
 2. P0 passes A, B, C, D, H, T: **PURE_CFR_SELECTION_GENERALIZES**;
-3. P0 passes A, B, C, D, H, not T: PURE_CFR_FAMILIAR_PAIRS_ONLY (does not
-   license the compiler);
+3. P0_then_D passes A, B, C, D, H, T:
+   **PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (hybrid headline);
 4. P1 passes A, B, C, D, H, T: **HYBRID_CFR_SELECTION_GENERALIZES**;
-5. P1 passes A, B, C, D, H, not T: HYBRID_CFR_FAMILIAR_PAIRS_ONLY (does not
-   license the compiler);
-6. ambiguous groups < target: MIXED_OR_INCONCLUSIVE (underpowered negative);
-7. P0 and P1 both fail C decisively:
+5. the first gated arm passing A, B, C, D, H but not T: that arm's
+   FAMILIAR_PAIRS_ONLY class (does not license the compiler);
+6. the first gated arm passing A, B, C at alpha but not D:
+   CFR_INCREMENT_SIGNIFICANT_BELOW_FLOOR (does not license the compiler; the
+   floor is not lowered);
+7. ambiguous groups < target: MIXED_OR_INCONCLUSIVE (underpowered negative);
+8. every gated arm fails C decisively:
    CANDIDATE_RESPONSE_NOT_EPISODE_SPECIFIC;
-8. P0 and P1 both fail B decisively:
+9. every gated arm fails B decisively:
    CANDIDATE_INTERVENTION_NO_INCREMENT_OVER_DEMONSTRATIONS;
-9. otherwise MIXED_OR_INCONCLUSIVE.
+10. otherwise MIXED_OR_INCONCLUSIVE.
 
-Only rules 2 and 4 license the next block (the generic
+Only rules 2, 3 and 4 license the next block (the generic
 ConstructiveExtensionCompiler and the end-to-end K + {e} loop). The headline
-follows the arm: rule 2 is pure symbolic reasoning; rule 4 is hybrid
-failure-conditioned selection and says so. Nothing licenses the 1,000-task
-run, DEV or HOLDOUT.
+follows the arm: rule 2 is pure symbolic reasoning; rule 3 is a pure
+intervention rule with a learned demonstration fallback, and is called
+hybrid; rule 4 is hybrid failure-conditioned selection. Nothing licenses the
+1,000-task run, DEV or HOLDOUT.
+
+Reported, not gated: P0's coverage (share of ambiguous queries on which the
+rule decides) and precision (its accuracy on those queries, against D and the
+replaced-failure control on the same queries, with the exact above-chance
+test); every arm's end-to-end accuracy; P0 and P1 against P2; the swapped
+controls; per-family and seen/unseen breakdowns; failure-class transitions.
 
 ## 10. Claim ceiling
 

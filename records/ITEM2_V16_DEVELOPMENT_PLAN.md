@@ -287,3 +287,37 @@ of a lower one.
 If P0 passes the prospective gates, the headline is pure symbolic reasoning.
 If only P1 passes, the headline is hybrid failure-conditioned selection, and
 it says so. P1 never replaces P0 in the narrative after results are seen.
+
+## 14. Amendment 2 of 2026-10-02, after the development evaluation (development data only)
+
+Recorded at 18:40 UTC from `outputs/tti/v16_dev_report.json` (3d8408e).
+These are development facts, never a result:
+- P0 as fixed in section 13 decides on 16.3 percent of ambiguous queries
+  (`loo_exact` decides 102, `table_entries` 65; the two error keys never
+  decide because they tie whenever `loo_exact` ties) and is right on 85
+  percent of those; on the rest it makes no choice. With half-credit ties
+  it does not beat D (0.557 against 0.563).
+- Its replaced-failure control falls to 0.52 (increment +0.038, p < 0.001),
+  so the response is specific to the episode.
+- P0 then D (the rule first, D on a P0 tie) reaches 0.608 against D 0.563
+  (+0.045, interval 0.025 to 0.065, p < 0.001) in both cross-validations.
+- P1 (R0 chosen by the law; R1 was also eligible) gives +0.020 (p 0.12) on
+  pair-disjoint folds; P2 equals D.
+
+Decisions, before the freeze and before any prospective data:
+1. P0 stays the primary arm exactly as fixed; no key is dropped (none is
+   constant), none is reordered or flipped. Development says it will most
+   likely fail gate B prospectively because it abstains; that is recorded.
+2. P0_then_D becomes the second gated arm, ahead of P1. Its headline is
+   hybrid: a pure intervention rule with a learned demonstration fallback.
+   It gets its own replaced-failure and swapped controls.
+3. A significant increment below the floor gets its own class,
+   CFR_INCREMENT_SIGNIFICANT_BELOW_FLOOR (A, B, C pass at alpha, D fails). It
+   does not license the compiler. The floor stays 0.05; it is not lowered.
+4. P0's coverage and precision (decided share, accuracy on decided queries,
+   D on the same queries) are reported, not gated.
+5. Ladder: 0 blocked; 1 floor; 2 P0 full pass; 3 P0_then_D full pass; 4 P1
+   full pass; 5 the first arm with A to D and H but not T, named by arm; 6
+   the first arm with A, B, C but not D: SIGNIFICANT_BELOW_FLOOR; 7 below
+   the target: MIXED; 8 every gated arm fails C decisively; 9 every gated
+   arm fails B decisively; 10 otherwise MIXED.
