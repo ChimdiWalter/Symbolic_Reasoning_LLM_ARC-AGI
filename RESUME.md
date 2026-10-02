@@ -4,19 +4,22 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-09-28.
+Last updated 2026-10-02.
 
-**v1.5 GENERATION RUNNING** since 2026-09-28T20:15Z under the gated execution
-directive of 2026-09-28 (stages v1.5 through the 120-task local evaluation,
-conditionally authorized; see `records/STAGE_LEDGER.json`). Athe rebooted 2026-09-30 (about 14:05Z) at slot 2045 with 221 groups; resumed
-23:41Z. Generator PID 75518, chain 75512 (before the reboot: 2819761 and 2819666),
-state `logs/v15_run_state.txt`; first start
-20:16:44Z; caps 288 groups, 9,000 slots, or 2026-10-03T20:16:44Z. No score
-is read before the marker `logs/V15_GENERATION_DONE`, then the integrity
-gate. Delivery-readiness addendum frozen before any score:
-`records/ITEM2_V15_DELIVERY_ADDENDUM.md` (dependence-aware gate C procedure,
-gate H wording, three-valued verification recomputation, claim and capacity
-wording); hashes in `outputs/tti/v15_delivery_addendum.json`.
+**v1.5 COMPLETE: FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION** (ladder rule 6;
+the rule 7 condition also holds), at the full 288 groups.
+- Integrity passed; the two sealed evaluator passes are byte-identical; every
+  fit converged; no leak, overlap or order dependence.
+- D alone 0.591; D+F_ASSOC 0.585 (increment -0.006, 95% CI -0.026 to
+  +0.014); against the matched shuffle +0.005 (upper bound 0.025). B and C
+  both fail decisively.
+- Supplementary: verification UNQUALIFIED (0 errors, 0 mismatches); gate C
+  dependence check NOT_SUPPORTED (tier 2 governs).
+- Record: `records/ITEM2_V15_SELECTION_RESULT_20261001.md`. Paper sections
+  8.10 and 9.3. Ledger: compiler BLOCKED; `v1.5_bounded_repair`
+  AUTHORIZED_NOT_DESIGNED.
+- Generation: 2,739 slots, ended 2026-10-01T11:57:44Z. Athe rebooted on
+  2026-09-30 at slot 2045; the run resumed from its saved records.
 
 **v1.5 frozen with erratum 1** at 216f2c4: protocol
 `docs/CORA_TTI_FAILURE_CONDITIONED_SELECTION_v1.5.md` sha256 `e3209c1f...`,
@@ -164,39 +167,21 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Finish v1.5 exactly as frozen; build nothing new before its verdict. The
-detached post-generation runner (PID 77307 since the 2026-09-30 reboot resume,
-`scripts/run_v15_post_generation.sh`, commit ff751e3) waits for the generation chain 75512 to end, then runs, in
-the order set on 2026-09-28:
-1. `evaluate_v15_selection.py --integrity-only`;
-2. `v15_supp_verification.py`, launched with PYTHONPATH set to the tti root
-   (`records/ITEM2_V15_DELIVERY_ADDENDUM_ERRATUM_01.md`: as frozen it cannot
-   import `cora_tti`);
-3. `run_v15_evaluation.sh` (the sealed evaluator twice, byte-compared);
-4. `v15_supp_dependence.py`.
+Design, preregister, hash and freeze the ONE bounded repair keyed to
+FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION:
+- determine which failure channel, if any, is actually associated with the
+  constructive decision;
+- then run one clean prospective test on newly generated data, with new seeds
+  and disjoint digests, under the same gates;
+- one adversarial review after the freeze.
 
-It stops at the first failure. Read `logs/v15_postgen/STATUS.txt`:
-- `logs/V15_POSTGEN_DONE` means all four steps ran;
-- `logs/V15_POSTGEN_BLOCKED` names the failing step. Repair only that step,
-  then run the remaining steps by hand in the same order.
-
-Never relaunch the generator. After a reboot the chain and the runner are
-both gone: check the corpus state first.
-
-Then record the official verdict separately from the supplementary checks
-(result record, ledger, RESUME, commit), and continue:
-- FAILURE_CONDITIONED_SELECTION_GENERALIZES: build the generic
-  ConstructiveExtensionCompiler.
-- Otherwise: one bounded repair keyed to the classification, then one clean
-  prospective rerun, then preserve the result if it also fails.
-  - TWIN_ONLY: robustness to ordinary input variation.
-  - DEMONSTRATIONS_SUFFICIENT: no incremental value over the demonstration
-    summary.
-  - NOT_CAUSAL: find the failure channel tied to the decision.
-  - MIXED: resolve only the exact ambiguity.
-
-Never edit `cora_arc2026/`, `geocat_arc/` or any manifest-listed file while
-the generator runs: its per-slot freeze check would stop it.
+Rules:
+- The v1.5 test set may be used as development data for the design only,
+  never as the test.
+- If the prospective test fails, preserve the result and stop the
+  constructive rollout with its exact blocker. Do not iterate.
+- The compiler and every later stage stay blocked unless that test passes
+  the v1.5 gates.
 
 ## How to re-run
 

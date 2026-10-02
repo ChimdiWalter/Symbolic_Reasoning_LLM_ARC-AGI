@@ -20,7 +20,7 @@
   },
   {
    "id": "v1.5",
-   "status": "GENERATION_RUNNING",
+   "status": "COMPLETE",
    "freeze_commit": "216f2c4",
    "protocol_sha256": "e3209c1f0ce3ab9d7c925f546dd9a25111b0b22cb0b8300dfbe53b5fb2e1e42a",
    "manifest_sha256": "0cc4b900d22c11cce444051e7374af33d4e2261bb75547df9c9f6fe77054a89c",
@@ -30,23 +30,51 @@
    "process": {
     "generator_pid": 2819761,
     "chain_pid": 2819666,
-    "launched_utc": "2026-09-28T20:15:01Z"
+    "launched_utc": "2026-09-28T20:15:01Z",
+    "resumed_after_reboot": {
+     "reboot_utc": "2026-09-30 about 14:05Z",
+     "resumed_utc": "2026-09-30T23:41:13Z",
+     "chain_pid": 75512,
+     "generator_pid": 75518,
+     "runner_pid": 77307
+    }
    },
    "outputs": [
     "outputs/tti/v15_test_corpus/",
     "outputs/tti/v15_selection_report.json"
    ],
-   "verdict": null,
+   "verdict": "FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION",
    "allowed_successor": "on FAILURE_CONDITIONED_SELECTION_GENERALIZES: generic compiler (directive 2026-09-28 section 6); otherwise one bounded repair (section 5)",
    "supplementary_addendum": {
     "record": "records/ITEM2_V15_DELIVERY_ADDENDUM.md",
     "hashes": "outputs/tti/v15_delivery_addendum.json",
     "frozen_before_any_score": true
-   }
+   },
+   "generation_end": {
+    "utc": "2026-10-01T11:57:44Z",
+    "stop_reason": "target_groups",
+    "slots": 2739,
+    "groups": 288,
+    "seconds_since_first_start": 229260.5
+   },
+   "official_report_sha256": "01528ce7152d7d8bff7ec4a1529c21b51a8de2b81ecea1905c413d72d7621dae",
+   "test_corpus_hash_list": "outputs/tti/v15_test_corpus_sha256.txt",
+   "supplementary_results": {
+    "verification": "UNQUALIFIED (2304 episodes, 0 ERROR, 0 mismatches)",
+    "dependence_aware_gate_C": "NOT_SUPPORTED (tier 2 governs; tier 1 unresolved at 5 units)"
+   },
+   "record": "records/ITEM2_V15_SELECTION_RESULT_20261001.md",
+   "commit": "the commit titled \"Adding the v1.5 result record\" (git log)"
+  },
+  {
+   "id": "v1.5_bounded_repair",
+   "status": "AUTHORIZED_NOT_DESIGNED",
+   "rule": "directive 2026-09-28 section 5 and user message 2026-09-28: ONE bounded repair keyed to FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION (determine which failure channel, if any, is associated with the constructive decision), then ONE clean prospective test on new data; if it fails, preserve and stop with the exact blocker",
+   "data_permissions": "the v1.5 test corpus may be used as development data for the design only, never as the repair's test"
   },
   {
    "id": "compiler",
-   "status": "BLOCKED_UNTIL_v1.5_PASS"
+   "status": "BLOCKED: v1.5 did not pass (FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION)"
   },
   {
    "id": "no_oracle_proposal",

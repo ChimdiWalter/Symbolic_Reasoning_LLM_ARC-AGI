@@ -813,6 +813,58 @@ Both bind the next experiment, a preregistered failure-conditioned selection
 test that must beat a demonstration-only baseline. Nothing about selection,
 construction or score is claimed here.
 
+## 8.10 Failure-conditioned selection under input variation, and its negative result
+
+v1.5 asks the question the constructive loop depends on. Given two legal
+candidate rules that differ in one key feature, does the failure evidence of
+the query improve the choice of the correct one beyond what a summary of the
+demonstrations already gives, on new target pairs with ordinary, independently
+rendered inputs?
+
+The selector is the existing log-linear scorer, unchanged: it compares the
+logits of the two candidate tokens at the state where they differ. It is
+fitted once on the 42 v1.4 twin groups and tested on 288 new groups, the size
+fixed in advance for 90.9 percent power. Three conditions are compared:
+- demonstrations alone (D);
+- demonstrations plus the query's own failure evidence (D+F);
+- demonstrations plus the failure evidence of a matched donor query
+  (D+F shuffled).
+
+Every threshold, the decision ladder and a supplementary dependence analysis
+were frozen before any score. A machine reboot interrupted the generator
+once; it resumed from its saved records.
+
+Results on the 288 test groups:
+- Demonstrations alone choose correctly at 0.591.
+- Adding the failure evidence gives 0.585. The increment is -0.006, with a
+  95 percent interval of -0.026 to +0.014.
+- Against the matched shuffle the increment is +0.005, with a 95 percent
+  upper bound of 0.025.
+- Both comparisons fail decisively: they are not significant, and their upper
+  bounds lie below the preregistered minimum useful increment of 0.05.
+
+The frozen classification is that the failure association is not causal for
+selection. The same holds within the twin training groups under
+cross-validation, and for the two explanatory channels: the search-trajectory
+counts, and the summary without its value signatures.
+
+The failure evidence is not empty. On its own it chooses correctly at 0.556,
+and the evidence each query actually received fits better in likelihood than
+a donor's. But it is largely predictable from the demonstrations (the field
+correlation with a matched donor is 0.87). Adding it makes the scorer more
+confident without making it more accurate, and it hurts on candidate pairs
+absent from training.
+
+On 56 percent of the test queries the wrong candidate does not reproduce the
+demonstrations, so plain verification already decides them. On the remaining
+44 percent every condition is near 0.54.
+
+These negatives are conditional on this selector and this training resource.
+The compiler that would install a constructed rule was licensed only by a
+pass, so it is not built on this result. One bounded, preregistered repair
+remains, aimed at locating whichever failure channel, if any, carries the
+constructive decision.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
@@ -862,6 +914,10 @@ is a perception and correspondence limit rather than a language limit.
   leave-one-out or matching stages. Relational parameter fitting was
   provisionally selected after that diagnostic and is no longer the primary
   treatment; it may return later as an inner fitter.
+- The failure-conditioned selector (section 8.10) added nothing beyond the
+  demonstration summary on 288 independent-input test groups. It also did
+  not beat a matched shuffle of the failure evidence. Both comparisons failed
+  decisively at full preregistered power.
 
 ### 9.4 Reproducibility
 
