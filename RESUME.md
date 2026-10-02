@@ -178,8 +178,11 @@ Wait. Administrative monitoring only (slots, groups, PIDs, lock, freeze_ok,
 load, errors, markers). No score, margin, gate or subset is read before
 `logs/V16_POSTGEN_DONE`. Never edit `cora_arc2026/`, `geocat_arc/` or any
 manifest-listed file while the writer is active. Never start a second
-writer. After a reboot: audit the corpus, rerun `scripts/run_v16_generation.sh`,
-then the runner with the NEW chain PID.
+writer. After a reboot the crontab @reboot hook runs `scripts/v16_autoresume.sh`
+(audit, then the same generator with the recorded first start, then the runner
+on the NEW chain PID; it refuses in every other case and logs to
+`logs/v16_autoresume/`); check that log after any reboot, and if it refused,
+follow its reason by hand. Step B is not auto-restarted.
 
 On `V16_POSTGEN_DONE`: verify artifacts and hashes first (freeze, leakage,
 overlap, response binding, order invariance, gated-arm convergence, two

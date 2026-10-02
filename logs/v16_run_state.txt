@@ -23,3 +23,14 @@ Stop if ever needed: kill 1178792 1178785 1199668 (exact PIDs only). Never a sec
 After a reboot: audit the corpus (contiguous slots, parseable, no .tmp, freeze_ok, clean engine,
 no writer), rerun scripts/run_v16_generation.sh (resumes at the first missing slot; the cap counts
 from the first start above), then the runner with the NEW chain PID.
+
+2026-10-02T23:40Z REBOOT CONTINUITY INSTALLED: crontab @reboot (after 180 s) runs
+/home/cnptp/athe_guard/v16_autoresume_launcher.sh, which waits for /deltos (up to 60 min) and runs
+scripts/v16_autoresume.sh. That script refuses if a writer or runner is alive or if V16_POSTGEN_DONE
+or V16_POSTGEN_BLOCKED exists; audits the saved corpus (contiguous slots, parseable, freeze_ok on
+every record, no stale partial files, no engine state files); then relaunches the SAME frozen
+generation script (first start preserved in full_run_state.json; cap unchanged) and the runner on
+the NEW chain PID. Logs: logs/v16_autoresume/autoresume.log and
+/home/cnptp/athe_guard/logs/v16_autoresume_launcher.log. `scripts/v16_autoresume.sh --check`
+audits without launching. Step B is NOT auto-restarted (protected run; restart by hand with
+Reasoning_Project/scripts/restart_stepB_after_reboot.sh, which replays its journal).
