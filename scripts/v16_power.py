@@ -69,18 +69,22 @@ def main():
     with open(sys.argv[1]) as handle:
         rep = json.load(handle)
     sizes = group_sizes_from(rep)
-    disc = rep.get("P0_discordance_with_D", 0.5)
+    arms = {"P0_then_D_vs_D": rep["P0_then_D_discordance_with_D"],
+            "P0_then_D_vs_SHUFFLED": rep["P0_then_D_discordance_with_SHUFFLED"],
+            "P1_vs_D": rep["P1_discordance_with_D"],
+            "P1_vs_SHUFFLED": rep["P1_discordance_with_SHUFFLED"]}
     out = {"seed": SEED, "sims": SIMS, "alpha": ALPHA, "delta_min": DELTA_MIN,
-           "group_sizes_source": "development report", "discordance": disc, "table": []}
-    for effect in (0.05, 0.075, 0.10, 0.125, 0.15):
-        for n in (60, 90, 120, 150, 180, 240):
-            try:
-                pw, jt = power(sizes, disc, effect, n)
-            except ValueError:
-                continue
-            out["table"].append({"effect": effect, "ambiguous_groups": n,
-                                 "power_B": pw, "power_B_and_D": jt})
-            print(f"effect {effect:.3f} groups {n:4d} power_B {pw:.3f} joint_B_D {jt:.3f}")
+           "group_sizes_source": "development report", "discordance": arms, "table": []}
+    for comp, disc in arms.items():
+        for effect in (0.02, 0.025, 0.03, 0.04, 0.045, 0.05, 0.06):
+            for n in (120, 160, 200, 240, 280, 320):
+                try:
+                    pw, jt = power(sizes, disc, effect, n)
+                except ValueError:
+                    continue
+                out["table"].append({"comparison": comp, "effect": effect, "ambiguous_groups": n,
+                                     "power_B": pw, "power_B_and_D": jt})
+                print(f"{comp:24s} effect {effect:.3f} groups {n:4d} power {pw:.3f} joint_with_floor {jt:.3f}")
     if len(sys.argv) > 2:
         with open(sys.argv[2], "w") as handle:
             handle.write(json.dumps(out, indent=1) + "\n")

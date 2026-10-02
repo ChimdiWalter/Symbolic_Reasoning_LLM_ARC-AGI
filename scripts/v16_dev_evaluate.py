@@ -32,7 +32,8 @@ CSV_OUT = os.path.join(HERE, "outputs", "tti", "v16_dev_table.csv")
 #: conditions that depend on the representation
 REP_CONDS = ("P1", "P1_SHUFFLED", "P1_SWAPPED", "R")
 #: conditions shared by every representation
-BASE_CONDS = ("D", "P0", "P0_SHUFFLED", "P0_SWAPPED", "P0_then_D", "P2", "F_S7")
+BASE_CONDS = ("D", "P0", "P0_SHUFFLED", "P0_SWAPPED", "P0_then_D", "P0_then_D_SHUFFLED",
+              "P0_then_D_SWAPPED", "P2", "F_S7")
 CONDS = BASE_CONDS + REP_CONDS
 
 
@@ -127,6 +128,8 @@ def run_cv(queries, folds, rep):
             units["P0_SHUFFLED"][i] = C.p0_units(q, dsh)
             units["P0_SWAPPED"][i] = C.p0_units(q, dsw)
             units["P0_then_D"][i] = C.p0_units(q, d, fallback_units=units["D"][i])
+            units["P0_then_D_SHUFFLED"][i] = C.p0_units(q, dsh, fallback_units=units["D"][i])
+            units["P0_then_D_SWAPPED"][i] = C.p0_units(q, dsw, fallback_units=units["D"][i])
     return units, {"converged": all(conv), "order_invariant": order_ok,
                    "folds_disjoint": valid, "active_fields": max(active),
                    "shuffle_fidelity_validation_mean": {
@@ -151,6 +154,8 @@ def metrics(queries, units, select=None):
             "end_to_end": {c: C.end_to_end_accuracy(queries, units[c]) for c in CONDS},
             "P0_vs_D": inc("P0", "D"), "P0_vs_P0_SHUFFLED": inc("P0", "P0_SHUFFLED"),
             "P0_vs_P2": inc("P0", "P2"), "P0_then_D_vs_D": inc("P0_then_D", "D"),
+            "P0_then_D_vs_SHUFFLED": inc("P0_then_D", "P0_then_D_SHUFFLED"),
+            "P0_then_D_vs_SWAPPED": inc("P0_then_D", "P0_then_D_SWAPPED"),
             "P1_vs_D": inc("P1", "D"), "P1_vs_P1_SHUFFLED": inc("P1", "P1_SHUFFLED"),
             "P1_vs_P2": inc("P1", "P2"), "P2_vs_D": inc("P2", "D"),
             "P0_decided_share": round(sum(1 for q, u, d in zip(queries, units["P0"], units["D"])
@@ -274,6 +279,9 @@ def main():
     report["P0_discordance_with_D"] = discordance("P0", "D")
     report["P0_discordance_with_P0_SHUFFLED"] = discordance("P0", "P0_SHUFFLED")
     report["P1_discordance_with_D"] = discordance("P1", "D")
+    report["P0_then_D_discordance_with_D"] = discordance("P0_then_D", "D")
+    report["P0_then_D_discordance_with_SHUFFLED"] = discordance("P0_then_D", "P0_then_D_SHUFFLED")
+    report["P1_discordance_with_SHUFFLED"] = discordance("P1", "P1_SHUFFLED")
     elig = [r for r in C.REPRESENTATIONS if report["representations"][r]["eligibility"]["eligible"]]
     if elig:
         act = {r: report["representations"][r]["CV-A"]["checks"]["active_fields"] for r in elig}

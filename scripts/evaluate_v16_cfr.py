@@ -38,8 +38,8 @@ RECORD = re.compile(r"^full(\d{5})\.json$")
 OUT_DEFAULT = os.path.join(HERE, "outputs", "tti", "v16_cfr_report.json")
 INTEGRITY_ONLY = "--integrity-only" in sys.argv[1:]
 TEST_BASE = 500_000_000
-ARMS = ("D", "P0", "P0_SHUFFLED", "P0_SWAPPED", "P0_then_D", "P1", "P1_SHUFFLED",
-        "P1_SWAPPED", "R", "P2", "F_S7")
+ARMS = ("D", "P0", "P0_SHUFFLED", "P0_SWAPPED", "P0_then_D", "P0_then_D_SHUFFLED",
+        "P0_then_D_SWAPPED", "P1", "P1_SHUFFLED", "P1_SWAPPED", "R", "P2", "F_S7")
 
 
 def sha256(path):
@@ -257,6 +257,10 @@ def score_arms(fits, qte, p0_keys):
     units["P0_SWAPPED"] = [C.p0_units(q, d, p0_keys) for q, d in zip(qte, raw_sw)]
     units["P0_then_D"] = [C.p0_units(q, d, p0_keys, fallback_units=u)
                           for q, d, u in zip(qte, raw, units["D"])]
+    units["P0_then_D_SHUFFLED"] = [C.p0_units(q, d, p0_keys, fallback_units=u)
+                                   for q, d, u in zip(qte, raw_sh, units["D"])]
+    units["P0_then_D_SWAPPED"] = [C.p0_units(q, d, p0_keys, fallback_units=u)
+                                  for q, d, u in zip(qte, raw_sw, units["D"])]
     return units, order_ok, pi, {"ties_P1": sum(1 for s in sc["P1"] if s["tie"]),
                                  "nll": {k: round(sum(s["nll"] for s in v) / len(v), 6)
                                          for k, v in sc.items()},
@@ -299,28 +303,56 @@ def arm_gates(qte, units, arm, man, unseen):
     return g
 
 
-def classify(p0, p1, n_amb_groups, man, blocked, converged):
+PASS_NAMES = {"P0": ("PURE_CFR_SELECTION_GENERALIZES", "PURE_CFR_FAMILIAR_PAIRS_ONLY"),
+              "P0_then_D": ("PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES",
+                            "PURE_RULE_WITH_DEMONSTRATION_FALLBACK_FAMILIAR_PAIRS_ONLY"),
+              "P1": ("HYBRID_CFR_SELECTION_GENERALIZES", "HYBRID_CFR_FAMILIAR_PAIRS_ONLY")}
+GATED_ARMS = ("P0", "P0_then_D", "P1")
+
+
+def classify(gates, n_amb_groups, man, blocked, converged):
+    """First rule wins. Only the *_GENERALIZES classes license the compiler;
+    the headline follows the arm (P0 pure; P0_then_D a pure rule with a
+    learned fallback, so hybrid; P1 hybrid)."""
     caps, floor = man["caps"], man["caps"]["floor_ambiguous_groups"]
     if blocked or not converged:
         return "MIXED_OR_INCONCLUSIVE", "audit, leakage, order, overlap or convergence failure"
     if n_amb_groups < floor:
         return "MIXED_OR_INCONCLUSIVE", "below the ambiguous-group floor; no statistic interpreted"
-    if p0["full_pass"]:
-        return "PURE_CFR_SELECTION_GENERALIZES", "P0 passes A to D, H and T"
-    if p0["primary_pass"]:
-        return "PURE_CFR_FAMILIAR_PAIRS_ONLY", "P0 passes A to D and H but not the transfer gate"
-    if p1["full_pass"]:
-        return "HYBRID_CFR_SELECTION_GENERALIZES", "P1 passes A to D, H and T; P0 does not"
-    if p1["primary_pass"]:
-        return "HYBRID_CFR_FAMILIAR_PAIRS_ONLY", "P1 passes A to D and H but not the transfer gate"
+    for arm in GATED_ARMS:
+        if gates[arm]["full_pass"]:
+            return PASS_NAMES[arm][0], f"{arm} passes A to D, H and T"
+    for arm in GATED_ARMS:
+        if gates[arm]["primary_pass"]:
+            return PASS_NAMES[arm][1], f"{arm} passes A to D and H but not the transfer gate"
+    for arm in GATED_ARMS:
+        g = gates[arm]
+        if g["A_above_chance"] and g["B_beats_demo"] and g["C_beats_shuffle"] and not g["D_min_effect"]:
+            return "CFR_INCREMENT_SIGNIFICANT_BELOW_FLOOR", f"{arm} passes A, B, C at alpha but its increment is below delta_min; does not license the compiler"
     if n_amb_groups < caps["target_ambiguous_groups"]:
         return "MIXED_OR_INCONCLUSIVE", "negative below the powered ambiguous-group count"
-    if p0["C_fails_decisively"] and p1["C_fails_decisively"]:
-        return "CANDIDATE_RESPONSE_NOT_EPISODE_SPECIFIC", "P0 and P1 both fail C decisively"
-    if (p0["B_fails_decisively"] or not p0["D_min_effect"]) and (p1["B_fails_decisively"] or not p1["D_min_effect"]):
-        if p0["B_fails_decisively"] and p1["B_fails_decisively"]:
-            return "CANDIDATE_INTERVENTION_NO_INCREMENT_OVER_DEMONSTRATIONS", "P0 and P1 both fail B decisively"
+    if all(gates[a]["C_fails_decisively"] for a in GATED_ARMS):
+        return "CANDIDATE_RESPONSE_NOT_EPISODE_SPECIFIC", "every gated arm fails C decisively"
+    if all(gates[a]["B_fails_decisively"] for a in GATED_ARMS):
+        return "CANDIDATE_INTERVENTION_NO_INCREMENT_OVER_DEMONSTRATIONS", "every gated arm fails B decisively"
     return "MIXED_OR_INCONCLUSIVE", "no rule applies"
+
+
+def p0_selective(qte, units, p0_keys):
+    """Reported, not gated: P0's coverage (share of ambiguous queries on which
+    it decides) and its precision on those queries, against D on the same
+    queries, with the exact above-chance test over group sums."""
+    dec = lambda q: C.p0_choice(q["delta"], p0_keys) != 0
+    n_amb = sum(1 for q in qte if q["ambiguous"])
+    n_dec = sum(1 for q in qte if q["ambiguous"] and dec(q))
+    above = C.above_chance_values(qte, units["P0"], dec)
+    return {"coverage": round(n_dec / n_amb, 6) if n_amb else None, "decided_queries": n_dec,
+            "decided_groups": len(above),
+            "precision_P0": C.ambiguous_accuracy(qte, units["P0"], dec),
+            "accuracy_D_same_queries": C.ambiguous_accuracy(qte, units["D"], dec),
+            "accuracy_P0_SHUFFLED_same_queries": C.ambiguous_accuracy(qte, units["P0_SHUFFLED"], dec),
+            "p_above_chance": float(S.signflip_p(above)) if above else None,
+            "P0_vs_D_on_decided": C.increment_summary(qte, units["P0"], units["D"], dec)}
 
 
 def write(report):
@@ -418,8 +450,9 @@ def main():
                    "shuffle_fidelity": {"train": fits["shuffle_fidelity_train"],
                                         "test": extra["shuffle_fidelity_test"]},
                    "nll": extra["nll"]})
-    gates = {arm: arm_gates(qte, units, arm, man, unseen) for arm in ("P0", "P1", "P0_then_D", "P2")}
+    gates = {arm: arm_gates(qte, units, arm, man, unseen) for arm in ("P0", "P0_then_D", "P1", "P2")}
     report["gates"] = gates
+    report["P0_selective"] = p0_selective(qte, units, tuple(man["P0_keys"]))
     report["arms"] = {arm: {"accuracy_ambiguous": C.ambiguous_accuracy(qte, units[arm]),
                             "accuracy_ambiguous_unseen": C.ambiguous_accuracy(qte, units[arm], unseen),
                             "end_to_end": C.end_to_end_accuracy(qte, units[arm])} for arm in ARMS}
@@ -428,6 +461,7 @@ def main():
         "P1_vs_P2": C.increment_summary(qte, units["P1"], units["P2"]),
         "P2_vs_D": C.increment_summary(qte, units["P2"], units["D"]),
         "P0_vs_P0_SWAPPED": C.increment_summary(qte, units["P0"], units["P0_SWAPPED"]),
+        "P0_then_D_vs_SWAPPED": C.increment_summary(qte, units["P0_then_D"], units["P0_then_D_SWAPPED"]),
         "P1_vs_P1_SWAPPED": C.increment_summary(qte, units["P1"], units["P1_SWAPPED"]),
         "R_vs_chance_groups": C.above_chance_values(qte, units["R"]),
         "P0_decided_share": round(sum(1 for q in qte if q["ambiguous"] and C.p0_choice(q["delta"], tuple(man["P0_keys"])) != 0)
@@ -438,7 +472,7 @@ def main():
     report["P0_key_diagnostics"] = C.p0_key_diagnostics(qte, [q["delta"] for q in qte])
     report["transitions"] = sorted({q["transition"] for q in qte if q["ambiguous"]})
     report["donor_permutation_sha256"] = hashlib.sha256(json.dumps(pi).encode()).hexdigest()
-    cls, why = classify(gates["P0"], gates["P1"], amb_groups, man, not order_ok, converged)
+    cls, why = classify(gates, amb_groups, man, not order_ok, converged)
     report["classification"] = {"classification": cls, "reason": why,
                                 "ambiguous_groups": amb_groups,
                                 "powered": amb_groups >= man["caps"]["target_ambiguous_groups"]}
