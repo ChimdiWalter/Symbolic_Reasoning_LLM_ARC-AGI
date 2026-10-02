@@ -204,3 +204,86 @@ Seen and unseen are reported for:
 - structural pairs (anchor family + token pair);
 - failure-class transitions (K's baseline class, the first candidate's
   leave-one-out class, the second's).
+
+## 13. Amendment of 2026-10-02 (user's novelty and pure-reasoning addendum), fixed before any response was read
+
+Recorded at 17:52 UTC while the development responses were still being
+computed. No development evaluation had run.
+
+### Arms
+
+| arm | decision rule | fitted weights |
+|---|---|---|
+| **P0 PURE_CFR** (primary) | deterministic lexicographic rule over each candidate's response, below | none |
+| P0_then_D | P0; a P0 tie falls to the D selector | D part only |
+| **P1 HYBRID_CFR** (secondary) | D + response through the v1.5 scorer (sections 6 and 7); representation chosen by the selection law of section 10 | yes |
+| **P2 PASSIVE_V15** (control) | D + F_S7, the v1.5 selector, fitted on the same training resource | yes |
+| D | demonstrations alone | yes |
+| F_S7 alone | passive failure alone | yes |
+
+P0 uses only: the demonstrations, the frozen K, exact execution, the
+candidate's semantics, its leave-one-out re-derivation, and the fitted
+candidate's complexity. No model, no fitted weight, no development-trained
+number enters it.
+
+### P0 rule (order and directions fixed now, by mechanism)
+
+Compare the two candidates key by key; the first key that differs decides;
+if none differs, P0 makes no choice (half credit):
+1. `loo_exact` higher: the candidate re-derived from N-1 demonstrations
+   reproduces the held-out one more often (the immutable gate's own
+   criterion);
+2. `loo_cell_error` lower: smaller held-out residual;
+3. `loo_fit_fail` lower: fewer re-derivations with no consistent fit;
+4. `table_entries` lower: the simpler fitted candidate (the schema MDL is
+   equal within a pair by construction, so complexity lives in the induced
+   table).
+
+Keys that the addendum lists but that are inactive in this domain, and why:
+- type disconnection, frontier depth, typed continuations: K is a flat
+  single-block search with no typed frontier;
+- failure-class transition: recorded (`transition`) and audited, but it is
+  a coarsening of keys 1 to 3, so it is not a separate key.
+
+Development data may DROP a key only if it is constant on the development
+set. Development never reorders keys, flips a direction, or adds a key.
+If P0 does not separate the candidates on development data, that is a
+development negative for P0 and is reported as such.
+
+### Controls (complete response units)
+
+- **frontier replaced:** the matched donor's response (section 8);
+- **identity destroyed:** the two candidates' responses exchanged, so
+  Delta becomes -Delta (under P0 this inverts every decision; under P1 it
+  tests whether the response must be attached to the right candidate);
+- **structurally unseen pairs:** the held-out pair subset (section 11).
+
+### DiscriminativeFailureProbe in this domain
+
+The smallest legal internal probe is the held-out demonstration: refit the
+candidate on N-1 demonstrations and render the held-out input. Both
+candidates see the identical probe, the comparison value is the
+demonstration-visible held-out output, no hidden output exists in these
+episodes, and state is restored exactly (checked by hash). That family of N
+probes per episode is the probe; its summary is the response vector.
+
+Considered and deferred: metamorphic transformations of the demonstrations.
+Deciding which transformations preserve a candidate's semantics needs
+per-feature equivariance knowledge, which would put hand-written semantics
+into the probe. It is not built in this repair.
+
+### Claim ladder (frozen terms)
+
+LEVEL 0 failure representation contains target information (v1.4);
+LEVEL 1 candidate-conditioned intervention predicts the better extension
+prospectively (this repair's ceiling); LEVEL 2 a novel extension is
+constructed and certified; LEVEL 3 a real ARC task is causally rescued
+(B/P/U/L/T/A); LEVEL 4 an extension transfers or is reused; LEVEL 5
+extensions accumulate at controlled cost. No level is claimed from evidence
+of a lower one.
+
+### Headline rule
+
+If P0 passes the prospective gates, the headline is pure symbolic reasoning.
+If only P1 passes, the headline is hybrid failure-conditioned selection, and
+it says so. P1 never replaces P0 in the narrative after results are seen.
