@@ -167,21 +167,26 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-Design, preregister, hash and freeze the ONE bounded repair keyed to
-FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION:
-- determine which failure channel, if any, is actually associated with the
-  constructive decision;
-- then run one clean prospective test on newly generated data, with new seeds
-  and disjoint digests, under the same gates;
-- one adversarial review after the freeze.
-
-Rules:
-- The v1.5 test set may be used as development data for the design only,
-  never as the test.
-- If the prospective test fails, preserve the result and stop the
-  constructive rollout with its exact blocker. Do not iterate.
-- The compiler and every later stage stay blocked unless that test passes
-  the v1.5 gates.
+**v1.6 bounded repair: DEVELOPMENT BLOCK IN PROGRESS (2026-10-02).** Plan
+and amendment: `records/ITEM2_V16_DEVELOPMENT_PLAN.md` (3bcb8e7, 788cfc3),
+both fixed before any response was read.
+- Implementation so far: `cora_arc2026/v16_cfr.py` (probe, queries, R0-R2,
+  shuffle, conditional logit; its D-only fit reproduces v1.5 `fit_pairs`
+  exactly), `scripts/v16_responses.py`, `scripts/v16_dev_evaluate.py`,
+  `scripts/v16_build_exclusion.py` (exclusion written: 2,094 targets,
+  2,430 groups, sha256 e936bc6f...), `scripts/generate_v16_pairs.py`
+  (v1.5 generator with v1.6 paths, seed base 500,000,000).
+- Running: `scripts/v16_responses.py dev` (detached, log
+  `logs/v16/dev_responses.log`) writes `outputs/tti/v16_dev_responses.json`.
+- Then, in order: add P0/P1/P2 arms and controls to the dev evaluator; run
+  it (DEVELOPMENT ONLY, v1.5 test corpus); record the development result;
+  write the v1.6 protocol, manifest, evaluator, tests, power calculation,
+  restart tooling; hash and freeze; ONE adversarial review; errata; STOP
+  before generating prospective data.
+- Paper track (parallel, safe): `docs/RELATED_WORK_NOVELTY_MATRIX.md`,
+  claim ladder and method section in `docs/PAPER_SKELETON.md`.
+- Deadlines corrected per the user: Kaggle entry 26 Oct, competition 2 Nov,
+  paper 8 Nov 2026.
 
 ## How to re-run
 
