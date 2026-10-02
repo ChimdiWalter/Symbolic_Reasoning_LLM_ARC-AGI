@@ -1,6 +1,8 @@
 # CORA-TTI Item-2 v1.6: candidate-conditioned failure response (the one bounded repair)
 
-Status: FROZEN 2026-10-02 (manifest `outputs/tti/candidate_failure_response_v16_manifest.json`).
+Status: FROZEN WITH ERRATUM 1, 2026-10-02 (manifest
+`outputs/tti/candidate_failure_response_v16_manifest.json`; first freeze
+4f9c77b superseded by `records/ITEM2_V16_ERRATUM_01.md`).
 Written after the v1.5 result (eb5efa5), the development block fixed by
 `records/ITEM2_V16_DEVELOPMENT_PLAN.md` (3bcb8e7; amendment 1 788cfc3 before
 any response was read; amendment 2 533c189 after the development evaluation
@@ -47,8 +49,11 @@ repair v2 follows.
      the demonstration-visible output i (these episodes hold no hidden
      output);
   4. a hash of the fitter's and the meta language's module state and of K's
-     schema list is taken before and after every probe and must be equal;
-     probing A then B must equal probing B then A byte for byte.
+     schema list is taken before and after every episode's two probes and
+     must be equal; on the episodes whose group digest starts with hex 0
+     (one sixteenth), both candidates are probed a second time in the
+     opposite order and the responses must be byte-identical (erratum 1:
+     the first freeze said "every probe" while the run checked per group).
 - **Response fields** per candidate: `loo_exact` (share of held-out
   demonstrations reproduced exactly), `loo_fit_fail` (share of
   re-derivations with no consistent fit), `loo_cell_error` (mean fraction of
@@ -139,8 +144,10 @@ was read; development could only drop a constant key.
   total).
 - **Test responses:** computed after generation by `scripts/v16_responses.py
   test`; a pure function of (candidate schema, demonstrations); the probe
-  identity, the fitter identity and the state-restoration flag are recorded
-  and checked.
+  identity, the fitter identity, the state-restoration flag, the order-check
+  flag and a binding hash over the admitted records are recorded, and the
+  evaluator refuses responses that are not bound to the exact corpus
+  (erratum 1).
 
 ## 7. Statistics
 
@@ -164,8 +171,23 @@ was read; development could only drop a constant key.
   0.92 at the lower plausible effect 0.025 and 1.00 at 0.045 with 280
   ambiguous groups. Caps: 440 unique groups (about 284 ambiguous at the
   development share of 0.646), 6,000 slots, 432,000 s from the first start.
-  A positive stands at 72 ambiguous groups or more; a negative below 280 is
+  Erratum 1: 480 unique groups (about 310 ambiguous, P(fewer than 280)
+  about 0.002; the first freeze's 440 left that probability near 0.32). A
+  positive stands at 72 ambiguous groups or more; a negative below 280 is
   MIXED_OR_INCONCLUSIVE.
+- **Power is an upper bound.** The simulation draws queries independently
+  within a group; the eight episodes of a group share one candidate pair.
+  With the disagreement direction shared within half the groups (rho 0.5)
+  or all groups (rho 1), gate B power at 280 ambiguous groups and effect
+  0.025 falls to about 0.85 and 0.78 (reviewer's figures; the frozen power
+  record reports rho 0, 0.5 and 1).
+- **Multiplicity.** Three gated arms are tested in a fixed order, first pass
+  wins, each at alpha 0.01. The family-wise alpha for a pass of some arm is
+  therefore at most 0.03; the arms are strongly dependent (P0_then_D contains
+  P0; P1 uses the same response), so it is well below that bound. P0 alone
+  keeps 0.01 exactly. This is recorded and not corrected; the gated-arm set
+  was fixed after the development evaluation and before any prospective
+  data (plan amendment 2).
 - **Dependence (supplementary):** `scripts/v16_supp_dependence.py`, tier 1
   donor-graph components, tier 2 fixed within-family blocks, at least 30
   units, whole-unit sign flips; never changes the official result.
@@ -190,8 +212,10 @@ was read; development could only drop a constant key.
 ## 9. Classification ladder (first rule wins)
 
 Gated arms, in order: P0, P0_then_D, P1.
-0. freeze, integrity, leakage, order, overlap or convergence failure:
-   MIXED_OR_INCONCLUSIVE (AUDIT_BLOCKED);
+0. freeze, integrity, leakage, order, overlap or convergence failure of a
+   gated-arm fit (D, P1, P1 shuffled): MIXED_OR_INCONCLUSIVE (AUDIT_BLOCKED);
+   the reporting-only arms (R, P2, F_S7) are recorded but cannot void the
+   verdict (erratum 1);
 1. ambiguous groups < floor: MIXED_OR_INCONCLUSIVE, no statistic computed;
 2. P0 passes A, B, C, D, H, T: **PURE_CFR_SELECTION_GENERALIZES**;
 3. P0_then_D passes A, B, C, D, H, T:

@@ -145,7 +145,7 @@ def main():
     pi_sub = [remap[pi_block[i]] for i in idx_ok]
     sh_raw = C.donor_deltas(sub, pi_sub, [raw[i] for i in idx_ok])
     sh_s = C.donor_deltas(sub, pi_sub, [dte_s[i] for i in idx_ok])
-    for arm in ("P0", "P1"):
+    for arm in ("P0", "P0_then_D", "P1"):
         own = units[arm]
         t1 = {}
         diff = {}
@@ -156,6 +156,9 @@ def main():
         t1["component_sizes"] = sorted((len(c) for c in comps), reverse=True)[:20]
         if arm == "P0":
             blk_units = [C.p0_units(q, d, p0_keys) for q, d in zip(sub, sh_raw)]
+        elif arm == "P0_then_D":
+            blk_units = [C.p0_units(q, d, p0_keys, fallback_units=units["D"][i])
+                         for q, d, i in zip(sub, sh_raw, idx_ok)]
         else:
             blk_units = [s["units"] for s in C.score(fits["P1_SHUFFLED"], sub, [rva[i] for i in idx_ok], sh_s)]
         bdiff = {}

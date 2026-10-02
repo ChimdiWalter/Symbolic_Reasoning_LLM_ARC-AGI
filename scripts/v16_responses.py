@@ -51,18 +51,31 @@ def admitted_records(dirname):
     return out
 
 
+def _order_checked(g, e):
+    """Erratum 1: episodes whose group digest starts with hex 0 are probed a
+    second time in the opposite candidate order; the two must agree."""
+    return g["group_digest"][0] == "0"
+
+
 def _group_job(args):
     rec, base = args
     g = rec["group"]
     a, b = C.group_candidates(rec, base)
-    before = C.state_snapshot()
-    rows = []
+    rows, restored, order_ok, order_checked = [], True, True, 0
     for e in sorted(g["episodes"], key=lambda x: (x["target_index"], x["replicate_index"])):
+        before = C.state_snapshot()
         er = C.episode_responses(a, b, e)
+        restored = restored and C.state_snapshot() == before
+        if _order_checked(g, e):
+            pairs = C.episode_pairs(e)
+            pb, pa = C.probe(b, pairs), C.probe(a, pairs)
+            order_ok = order_ok and (json.dumps(pa, sort_keys=True) == json.dumps(er["anchor"], sort_keys=True)
+                                     and json.dumps(pb, sort_keys=True) == json.dumps(er["contrast"], sort_keys=True))
+            restored = restored and C.state_snapshot() == before
+            order_checked += 1
         rows.append({"group_digest": g["group_digest"], "t": e["target_index"],
                      "r": e["replicate_index"], "responses": er})
-    after = C.state_snapshot()
-    return g["group_digest"], rows, before == after
+    return g["group_digest"], rows, restored, order_ok, order_checked
 
 
 def compute(which):
@@ -71,10 +84,12 @@ def compute(which):
     jobs = [(r, cfg["base"]) for r in recs]
     with Pool(WORKERS) as pool:
         results = pool.map(_group_job, jobs, chunksize=1)
-    rows, restored = [], True
-    for _, rs, ok in sorted(results, key=lambda x: x[0]):
+    rows, restored, order_ok, checked = [], True, True, 0
+    for _, rs, ok, oo, n_checked in sorted(results, key=lambda x: x[0]):
         rows.extend(rs)
         restored = restored and ok
+        order_ok = order_ok and oo
+        checked += n_checked
     corpus_hashes = hashlib.sha256("".join(
         sha256(os.path.join(cfg["dir"], f"full{r['slot']:05d}.json"))
         for r in sorted(recs, key=lambda r: r["slot"])).encode()).hexdigest()
@@ -82,6 +97,8 @@ def compute(which):
             "fitter_identity": C._sf().fitter_identity(),
             "admitted_records_sha256": corpus_hashes, "groups": len(recs),
             "episodes": len(rows), "state_restored_every_group": restored,
+            "state_restored_every_episode": restored,
+            "order_check_episodes": checked, "order_check_passed": order_ok,
             "fields": list(C.RESPONSE_FIELDS), "rows": rows}
 
 
@@ -94,7 +111,8 @@ def main():
         handle.write(json.dumps(out, sort_keys=True) + "\n")
     os.replace(tmp, path)
     print(json.dumps({k: out[k] for k in ("which", "groups", "episodes",
-                                          "state_restored_every_group")}))
+                                          "state_restored_every_episode",
+                                          "order_check_episodes", "order_check_passed")}))
 
 
 if __name__ == "__main__":

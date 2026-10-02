@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import os
 import re
 import sys
@@ -83,8 +84,11 @@ def load(dirname):
     names = sorted(n for n in os.listdir(dirname) if RECORD.match(n))
     out = []
     for n in names:
-        with open(os.path.join(dirname, n)) as handle:
-            out.append(json.load(handle))
+        path = os.path.join(dirname, n)
+        with open(path) as handle:
+            rec = json.load(handle)
+        rec["_sha256"] = sha256(path)
+        out.append(rec)
     return out
 
 
@@ -160,14 +164,26 @@ def test_integrity(records, man, exclusion) -> list:
     return p
 
 
-def response_integrity(groups, resp, man, which) -> list:
+def corpus_binding(records) -> str:
+    """sha256 over the admitted records' file hashes in slot order; the same
+    computation as v16_responses.compute, so a response file is bound to the
+    exact corpus it was computed from."""
+    recs = sorted((r for r in records if r.get("admitted")), key=lambda r: r["slot"])
+    return hashlib.sha256("".join(r["_sha256"] for r in recs).encode()).hexdigest()
+
+
+def response_integrity(groups, resp, man, which, binding=None) -> list:
     p = []
+    if binding is not None and resp.get("admitted_records_sha256") != binding:
+        p.append(f"{which}:responses_not_bound_to_corpus")
     if resp["probe_identity"] != man["probe_identity"] or resp["probe_identity"] != C.probe_identity():
         p.append(f"{which}:probe_identity")
     if resp["fitter_identity"] != man["fitter_identity"]:
         p.append(f"{which}:fitter_identity")
     if not resp["state_restored_every_group"]:
         p.append(f"{which}:state_not_restored")
+    if resp.get("order_check_passed") is False:
+        p.append(f"{which}:order_check_failed")
     have = {(r["group_digest"], r["t"], r["r"]) for r in resp["rows"]}
     want = {(g["group_digest"], e["target_index"], e["replicate_index"])
             for g in groups for e in g["episodes"]}
@@ -367,7 +383,8 @@ def main():
         man = json.load(handle)
     freeze = verify_freeze(man)
     exclusion = S.load_exclusion(EXCLUSION)
-    train_inc, train_exc = L.first_admissions(load(TRAIN_DIR))
+    train_recs = load(TRAIN_DIR)
+    train_inc, train_exc = L.first_admissions(train_recs)
     dev_groups = sorted((r["group"] for r in train_inc), key=lambda g: g["group_digest"])
     test_recs = load(TEST_DIR)
     test_inc, test_exc = L.first_admissions(test_recs)
@@ -383,10 +400,12 @@ def main():
     if os.path.exists(TEST_RESP):
         with open(TEST_RESP) as handle:
             test_resp = json.load(handle)
-        integrity += response_integrity(test_groups, test_resp, man, "test")
+        integrity += response_integrity(test_groups, test_resp, man, "test",
+                                        corpus_binding(test_recs))
     else:
         integrity.append("test_responses_missing")
-    integrity += response_integrity(dev_groups, train_resp, man, "train")
+    integrity += response_integrity(dev_groups, train_resp, man, "train",
+                                    corpus_binding(train_recs))
     tr_t = {d for g in dev_groups for d in g["target_digests"]}
     tr_g = {g["group_digest"] for g in dev_groups}
     te_t = {d for g in test_groups for d in g["target_digests"]}
@@ -407,7 +426,8 @@ def main():
                  for q in qdev + qte if q["integrity"]]
         for q in qdev + qte:
             if len(q["delta"]) != len(C.RESPONSE_FIELDS) or any(
-                    isinstance(v, bool) or not isinstance(v, float) for v in q["delta"]):
+                    isinstance(v, bool) or not isinstance(v, float) or not math.isfinite(v)
+                    for v in q["delta"]):
                 leaks.append([q["group_digest"][:12], "delta_shape"])
     report["leaks"] = leaks[:50]
     blocked = blocked or bool(leaks)
@@ -439,9 +459,13 @@ def main():
     train_pairs = {q["pair_key"] for q in qtr}
     unseen = lambda q: q["pair_key"] not in train_pairs
     fits = fit_arms(qtr, man["P1_representation"])
-    converged = all(i["converged"] for i in fits["info"].values())
+    #  rule 0 reads the arms the classification depends on; the reporting-only
+    #  arms (R, P2, F_S7) are recorded but cannot void the verdict (erratum 1)
+    converged = all(fits["info"][a]["converged"] for a in ("D", "P1", "P1_SHUFFLED"))
+    converged_all = all(i["converged"] for i in fits["info"].values())
     units, order_ok, pi, extra = score_arms(fits, qte, tuple(man["P0_keys"]))
-    report.update({"fits": fits["info"], "fits_converged": converged, "order_invariant": order_ok,
+    report.update({"fits": fits["info"], "fits_converged": converged, "fits_converged_all_arms": converged_all,
+                   "order_invariant": order_ok,
                    "P1_representation": man["P1_representation"], "P0_keys": man["P0_keys"],
                    "active_response_fields": C.active_fields(fits["scale"]),
                    "training_groups": len(keep), "training_queries": len(qtr),

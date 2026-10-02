@@ -40,7 +40,11 @@ def group_sizes_from(report):
     return list(range(1, 9))
 
 
-def power(sizes, discordance, effect, n_groups, sims=SIMS, alpha=ALPHA, seed=SEED):
+def power(sizes, discordance, effect, n_groups, sims=SIMS, alpha=ALPHA, seed=SEED, rho=0.0):
+    """rho is the share of groups whose disagreeing queries all take one
+    shared sign (drawn once per group with P(+) = p_plus / discordance); the
+    rest draw each query independently. The mean per query is effect either
+    way; rho 0 is the independent upper bound (erratum 1)."""
     rng = random.Random(seed)
     p_plus = (discordance + effect) / 2.0          # mean per query = 2*(p+ - p-) /2 = effect
     p_minus = discordance - p_plus
@@ -52,9 +56,14 @@ def power(sizes, discordance, effect, n_groups, sims=SIMS, alpha=ALPHA, seed=SEE
         for _ in range(n_groups):
             m = rng.choice(sizes)
             s = 0
+            shared = rng.random() < rho
+            sign = 2 if rng.random() < p_plus / discordance else -2
             for _ in range(m):
                 u = rng.random()
-                s += 2 if u < p_plus else (-2 if u < discordance else 0)
+                if shared:
+                    s += sign if u < discordance else 0
+                else:
+                    s += 2 if u < p_plus else (-2 if u < discordance else 0)
             vals.append(s)
             total_q += m
             total_sum += s
@@ -76,15 +85,16 @@ def main():
     out = {"seed": SEED, "sims": SIMS, "alpha": ALPHA, "delta_min": DELTA_MIN,
            "group_sizes_source": "development report", "discordance": arms, "table": []}
     for comp, disc in arms.items():
-        for effect in (0.02, 0.025, 0.03, 0.04, 0.045, 0.05, 0.06):
-            for n in (120, 160, 200, 240, 280, 320):
-                try:
-                    pw, jt = power(sizes, disc, effect, n)
-                except ValueError:
-                    continue
-                out["table"].append({"comparison": comp, "effect": effect, "ambiguous_groups": n,
-                                     "power_B": pw, "power_B_and_D": jt})
-                print(f"{comp:24s} effect {effect:.3f} groups {n:4d} power {pw:.3f} joint_with_floor {jt:.3f}")
+        for rho in (0.0, 0.5, 1.0):
+            for effect in (0.025, 0.035, 0.045, 0.05):
+                for n in (240, 280, 300, 320):
+                    try:
+                        pw, jt = power(sizes, disc, effect, n, rho=rho)
+                    except ValueError:
+                        continue
+                    out["table"].append({"comparison": comp, "rho": rho, "effect": effect,
+                                         "ambiguous_groups": n, "power_B": pw, "power_B_and_D": jt})
+                    print(f"{comp:24s} rho {rho:.1f} effect {effect:.3f} groups {n:4d} power {pw:.3f} joint_with_floor {jt:.3f}")
     if len(sys.argv) > 2:
         with open(sys.argv[2], "w") as handle:
             handle.write(json.dumps(out, indent=1) + "\n")

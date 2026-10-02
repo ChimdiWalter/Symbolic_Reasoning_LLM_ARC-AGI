@@ -95,10 +95,20 @@ def _corpus(monkeypatch, n_dev, n_test, name, p_truth, p_false, amb_share=0.6):
                "started_since_first_start_s": 1.0}
         json.dump(rec, open(os.path.join(test_dir, f"full{slot:05d}.json"), "w"))
     fitter = "f" * 64
-    for path, rows in ((os.path.join(tmp, "dev_resp.json"), dev_rows),
-                       (os.path.join(tmp, "test_resp.json"), test_rows)):
+
+    def binding(dirname):
+        import hashlib
+        names = sorted(n for n in os.listdir(dirname) if n.startswith("full") and n.endswith(".json"))
+        parts = []
+        for n in names:
+            if json.load(open(os.path.join(dirname, n))).get("admitted"):
+                parts.append(hashlib.sha256(open(os.path.join(dirname, n), "rb").read()).hexdigest())
+        return hashlib.sha256("".join(parts).encode()).hexdigest()
+    for path, rows, d in ((os.path.join(tmp, "dev_resp.json"), dev_rows, dev_dir),
+                          (os.path.join(tmp, "test_resp.json"), test_rows, test_dir)):
         json.dump({"probe_identity": C.probe_identity(), "fitter_identity": fitter,
-                   "state_restored_every_group": True, "rows": rows}, open(path, "w"))
+                   "state_restored_every_group": True, "order_check_passed": True,
+                   "admitted_records_sha256": binding(d), "rows": rows}, open(path, "w"))
     qdev = C.build_queries(sorted(dev_groups, key=lambda g: g["group_digest"]),
                            {(r["group_digest"], r["t"], r["r"]): r["responses"] for r in dev_rows})
     pk = {}
@@ -170,6 +180,21 @@ def test_missing_test_responses_block_the_audit(monkeypatch):
     os.remove(os.path.join(tmp, "test_resp.json"))
     r, _ = _run(EV, tmp, monkeypatch, "r.json")
     assert r["verdict"] == "AUDIT_BLOCKED" and "test_responses_missing" in r["integrity_problems"]
+
+
+def test_responses_not_bound_to_the_corpus_block_the_audit(monkeypatch):
+    EV, tmp = _corpus(monkeypatch, 60, 40, "ev16bind", p_truth=0.9, p_false=0.2)
+    path = os.path.join(tmp, "test_resp.json")
+    resp = json.load(open(path))
+    resp["admitted_records_sha256"] = "0" * 64
+    json.dump(resp, open(path, "w"))
+    r, _ = _run(EV, tmp, monkeypatch, "r.json")
+    assert r["verdict"] == "AUDIT_BLOCKED" and "test:responses_not_bound_to_corpus" in r["integrity_problems"]
+    resp["admitted_records_sha256"] = EV.corpus_binding(EV.load(EV.TEST_DIR))
+    resp["order_check_passed"] = False
+    json.dump(resp, open(path, "w"))
+    r, _ = _run(EV, tmp, monkeypatch, "r2.json")
+    assert r["verdict"] == "AUDIT_BLOCKED" and "test:order_check_failed" in r["integrity_problems"]
 
 
 def test_integrity_only_exits_nonzero_on_a_tampered_record(monkeypatch):
