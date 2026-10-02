@@ -22,6 +22,8 @@
   "P0_SHUFFLED",
   "P0_SWAPPED",
   "P0_then_D",
+  "P0_then_D_SHUFFLED",
+  "P0_then_D_SWAPPED",
   "P1",
   "P1_SHUFFLED",
   "P1_SWAPPED",
@@ -33,20 +35,21 @@
   "floor_ambiguous_groups": 72,
   "slot_cap": 6000,
   "target_ambiguous_groups": 280,
-  "test_groups": 440,
+  "test_groups": 480,
   "wall_clock_s": 432000
  },
  "classification_ladder": [
-  "0 freeze, integrity, leakage, order, overlap or convergence failure: MIXED_OR_INCONCLUSIVE",
-  "1 ambiguous groups < floor: MIXED_OR_INCONCLUSIVE",
+  "0 freeze, integrity, leakage, order, overlap or gated-arm convergence failure: MIXED_OR_INCONCLUSIVE (AUDIT_BLOCKED)",
+  "1 ambiguous groups < floor: MIXED_OR_INCONCLUSIVE, no statistic computed",
   "2 P0 passes A, B, C, D, H, T: PURE_CFR_SELECTION_GENERALIZES",
-  "3 P0 passes A, B, C, D, H, not T: PURE_CFR_FAMILIAR_PAIRS_ONLY (does not license the compiler)",
+  "3 P0_then_D passes A, B, C, D, H, T: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES (hybrid headline)",
   "4 P1 passes A, B, C, D, H, T: HYBRID_CFR_SELECTION_GENERALIZES",
-  "5 P1 passes A, B, C, D, H, not T: HYBRID_CFR_FAMILIAR_PAIRS_ONLY (does not license the compiler)",
-  "6 ambiguous groups < target: MIXED_OR_INCONCLUSIVE",
-  "7 P0 and P1 both fail C decisively: CANDIDATE_RESPONSE_NOT_EPISODE_SPECIFIC",
-  "8 P0 and P1 both fail B decisively: CANDIDATE_INTERVENTION_NO_INCREMENT_OVER_DEMONSTRATIONS",
-  "9 otherwise: MIXED_OR_INCONCLUSIVE"
+  "5 the first gated arm passing A, B, C, D, H but not T: that arm's FAMILIAR_PAIRS_ONLY class (does not license the compiler)",
+  "6 the first gated arm passing A, B, C at alpha but not D: CFR_INCREMENT_SIGNIFICANT_BELOW_FLOOR (does not license the compiler; the floor is not lowered)",
+  "7 ambiguous groups < target: MIXED_OR_INCONCLUSIVE (underpowered negative)",
+  "8 every gated arm fails C decisively: CANDIDATE_RESPONSE_NOT_EPISODE_SPECIFIC",
+  "9 every gated arm fails B decisively: CANDIDATE_INTERVENTION_NO_INCREMENT_OVER_DEMONSTRATIONS",
+  "10 otherwise: MIXED_OR_INCONCLUSIVE"
  ],
  "decisive_failure": "not significant at alpha AND one-sided 95 percent upper bound below delta_min",
  "dependency_tree_sha256": {
@@ -68,6 +71,16 @@
   },
   "rule": "every ARC_* refused except ARC_META_BUDGET_S=8; PYTHONHASHSEED=0; single-threaded BLAS"
  },
+ "erratum_1": {
+  "cause": "pre-run adversarial review: 0 blocking, 5 major, minor findings",
+  "record": "records/ITEM2_V16_ERRATUM_01.md",
+  "supersedes": {
+   "commit": "4f9c77b",
+   "manifest_sha256": "724630194b2709e69c00ba213cff83be3bb738a9555c354d388f0c213ea5d148",
+   "protocol_doc_sha256": "be1b1e54c4cff2dfe0f158979c74096963fa9e887086b8215608ae260a59d25d"
+  },
+  "thresholds_changed": false
+ },
  "exclusion": {
   "path": "outputs/tti/v16_exclusion_digests.json",
   "sha256": "e936bc6fe364fba1d1c26ba5c2615744b60c6edfd552b59d4daf2f46c8c208ea"
@@ -77,6 +90,11 @@
   "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest_hash.txt": "c9f7fe311a549adc0b5d572fee9c5023976940fc5a438105e6268d55d987fd00"
  },
  "fitter_identity": "2cc45152c430f8a2f9cfbcfd8c0bd6ad02ca6793819c6fcf16ede2060e6fc9d7",
+ "gated_arms_in_order": [
+  "P0",
+  "P0_then_D",
+  "P1"
+ ],
  "gates": {
   "A": "arm above 1/2 on ambiguous queries, exact group sign-flip p < alpha",
   "B": "arm beats D on ambiguous queries, p < alpha",
@@ -106,21 +124,22 @@
   "outputs/tti/v15_test_corpus_sha256.txt": "d0620fa4f8dd228b804ec279bba797daa8c95ec42cc55be9bd8ffa9d12fa6abc",
   "outputs/tti/v16_dev_report.json": "d00eca85cc9f7ca381b59fa79c27515cc9e74f680b48b3636759008879f4a220",
   "outputs/tti/v16_exclusion_digests.json": "e936bc6fe364fba1d1c26ba5c2615744b60c6edfd552b59d4daf2f46c8c208ea",
-  "outputs/tti/v16_power.json": "7872637eb5156c432cd78d1c17aae8dcd33f3d7f37334004f369a5d89bc681e4",
+  "outputs/tti/v16_power.json": "6de099dbffddc1035c6fc1ee4892f2a5c486b8225c013c9ee1d8d870073197de",
   "records/ITEM2_V16_DEVELOPMENT_PLAN.md": "5af9d9ce2228ece138124a2fb199a9f1e6956d7ae9fac395d8cc86c2c367946b",
-  "scripts/evaluate_v16_cfr.py": "e8245e90743e11570fe1e1e8ac1d259b34839aee956a215ec9efbc19088a922b",
+  "scripts/evaluate_v16_cfr.py": "90f85bdae5a113fa76146eb42dac81e49bf0194d3da79af490ec81e9ffdd947c",
   "scripts/generate_v16_pairs.py": "c02ade756c04691c146db9bd84eb36ae02c42f346c1628ef203edfabb2d0a986",
   "scripts/run_v16_generation.sh": "9a916c0b8fdc102e4c2a561f7a58c9e15e53126b6e4ca67dd3e919f951d483f4",
   "scripts/run_v16_post_generation.sh": "1de323b06364ad070efbc7adf0f8ac021d9ff12c3a91f2efdbda1f9548338278",
   "scripts/v16_build_exclusion.py": "0c5617afefd99e15e5084682ef5505ec899986edff6a5109820e22caa8f21b19",
   "scripts/v16_dev_evaluate.py": "77329951adcbe7a17e77eb84654f681f22d173861bdcbe8726ef7c7e0e07150e",
-  "scripts/v16_power.py": "22843bf5a2e93624cfd24a5feb28342e1c5e43b5b24248fe0db17943af8e1edb",
-  "scripts/v16_responses.py": "9ae9aa97631b96891d37c32153beaa2997dca5c615edc3bb2a37fb8fc6f74626",
-  "scripts/v16_supp_dependence.py": "13dd814d35dde6f50fc1a753a29fc3b23de87aef1ef3fffc8e8839c258a398b6",
+  "scripts/v16_power.py": "5d9e4ca52ea3544a1dd893d05e9af4e08df556839509ce645f375926117930dd",
+  "scripts/v16_responses.py": "fc02eec4626e2bc836bdf647f5991f107682b3e2bd6859886d9aea912f58f47c",
+  "scripts/v16_supp_dependence.py": "ca621b08dbfa01af7f5484856f4d6bef78ba9550e08ab174a9a6f918b79f8034",
   "tests/test_v16_cfr.py": "d0c7d7e0fc94f2fb89a191f58d0a5d34dfa714e7a3f1a737bec24b95da8b0b48",
-  "tests/test_v16_prospective.py": "7b202655dde538a5117ced585309397fa1166ceb53328f206f2633d95d2d3e03"
+  "tests/test_v16_prospective.py": "99394e46856b8b38c18352d3f9e17b9ea17180a5410a1cf15e3ede9171099c1a"
  },
- "licenses_on_pass_only": "PURE_CFR_SELECTION_GENERALIZES or HYBRID_CFR_SELECTION_GENERALIZES license the generic ConstructiveExtensionCompiler block; the headline follows the arm; nothing else is licensed",
+ "licenses_on_pass_only": "PURE_CFR_SELECTION_GENERALIZES, PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES or HYBRID_CFR_SELECTION_GENERALIZES license the generic ConstructiveExtensionCompiler block; the headline follows the arm (pure; pure rule with learned fallback, hybrid; hybrid); nothing else is licensed",
+ "multiplicity": "three gated arms, first pass wins, each at alpha 0.01; the family-wise alpha for a pass of some arm is at most 0.03 (the arms are strongly dependent, so it is well below that); P0 alone keeps 0.01 exactly; recorded, not corrected (erratum 1)",
  "order_after_freeze": [
   "one adversarial review",
   "errata before any prospective data",
@@ -142,1185 +161,1546 @@
    "P1_vs_D": 0.230469,
    "P1_vs_SHUFFLED": 0.225586
   },
+  "note": "the rho 0 rows assume independent queries within a group and are an upper bound; rho 0.5 and 1 rows share the disagreement direction within a group (erratum 1)",
   "record": "outputs/tti/v16_power.json",
   "seed": 20261002,
   "sims": 1000,
   "table": [
    {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.02,
-    "power_B": 0.304,
-    "power_B_and_D": 0.001
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.02,
-    "power_B": 0.429,
-    "power_B_and_D": 0.001
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.02,
-    "power_B": 0.554,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.02,
-    "power_B": 0.636,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.02,
-    "power_B": 0.728,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.02,
-    "power_B": 0.791,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.025,
-    "power_B": 0.492,
-    "power_B_and_D": 0.01
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.025,
-    "power_B": 0.662,
-    "power_B_and_D": 0.002
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.025,
-    "power_B": 0.794,
-    "power_B_and_D": 0.0
-   },
-   {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.025,
-    "power_B": 0.869,
-    "power_B_and_D": 0.0
+    "power_B": 0.876,
+    "power_B_and_D": 0.0,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.025,
-    "power_B": 0.921,
-    "power_B_and_D": 0.0
+    "power_B": 0.924,
+    "power_B_and_D": 0.0,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.025,
+    "power_B": 0.947,
+    "power_B_and_D": 0.0,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.025,
     "power_B": 0.953,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.03,
-    "power_B": 0.703,
-    "power_B_and_D": 0.023
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.03,
-    "power_B": 0.852,
-    "power_B_and_D": 0.007
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.03,
-    "power_B": 0.928,
-    "power_B_and_D": 0.007
+    "power_B_and_D": 0.0,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_D",
-    "effect": 0.03,
-    "power_B": 0.974,
-    "power_B_and_D": 0.003
+    "effect": 0.035,
+    "power_B": 0.997,
+    "power_B_and_D": 0.017,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_D",
-    "effect": 0.03,
-    "power_B": 0.991,
-    "power_B_and_D": 0.002
+    "effect": 0.035,
+    "power_B": 0.998,
+    "power_B_and_D": 0.018,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.999,
+    "power_B_and_D": 0.01,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_D",
-    "effect": 0.03,
+    "effect": 0.035,
+    "power_B": 1.0,
+    "power_B_and_D": 0.01,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.237,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.229,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.221,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.217,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.496,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.495,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.507,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.507,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.025,
+    "power_B": 0.784,
+    "power_B_and_D": 0.001,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.025,
+    "power_B": 0.843,
+    "power_B_and_D": 0.0,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.025,
+    "power_B": 0.887,
+    "power_B_and_D": 0.0,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.025,
+    "power_B": 0.896,
+    "power_B_and_D": 0.0,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.986,
+    "power_B_and_D": 0.022,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.997,
+    "power_B_and_D": 0.023,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
     "power_B": 0.996,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.04,
-    "power_B": 0.948,
-    "power_B_and_D": 0.16
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.04,
-    "power_B": 0.996,
-    "power_B_and_D": 0.123
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.04,
-    "power_B": 1.0,
-    "power_B_and_D": 0.105
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.04,
-    "power_B": 1.0,
-    "power_B_and_D": 0.085
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.04,
-    "power_B": 1.0,
-    "power_B_and_D": 0.066
+    "power_B_and_D": 0.015,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_D",
-    "effect": 0.04,
-    "power_B": 1.0,
-    "power_B_and_D": 0.039
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.045,
-    "power_B": 0.99,
-    "power_B_and_D": 0.311
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.045,
-    "power_B": 1.0,
-    "power_B_and_D": 0.273
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.045,
-    "power_B": 1.0,
-    "power_B_and_D": 0.255
+    "effect": 0.035,
+    "power_B": 0.998,
+    "power_B_and_D": 0.013,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.045,
     "power_B": 1.0,
-    "power_B_and_D": 0.224
+    "power_B_and_D": 0.249,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.045,
     "power_B": 1.0,
-    "power_B_and_D": 0.242
+    "power_B_and_D": 0.246,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.219,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.045,
     "power_B": 1.0,
-    "power_B_and_D": 0.21
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.05,
-    "power_B": 1.0,
-    "power_B_and_D": 0.495
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.05,
-    "power_B": 1.0,
-    "power_B_and_D": 0.509
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.05,
-    "power_B": 1.0,
-    "power_B_and_D": 0.498
+    "power_B_and_D": 0.216,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.05,
     "power_B": 1.0,
-    "power_B_and_D": 0.485
+    "power_B_and_D": 0.492,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.05,
     "power_B": 1.0,
-    "power_B_and_D": 0.494
+    "power_B_and_D": 0.485,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.482,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_D",
     "effect": 0.05,
     "power_B": 1.0,
-    "power_B_and_D": 0.506
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.844
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.866
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.905
+    "power_B_and_D": 0.485,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_D",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.918
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.933
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P0_then_D_vs_D",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.953
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.262,
-    "power_B_and_D": 0.004
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.373,
-    "power_B_and_D": 0.001
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.475,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.572,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.641,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.74,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.025,
-    "power_B": 0.442,
-    "power_B_and_D": 0.011
+    "power_B": 0.693,
+    "power_B_and_D": 0.003,
+    "rho": 1.0
    },
    {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_SHUFFLED",
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
     "effect": 0.025,
-    "power_B": 0.585,
-    "power_B_and_D": 0.002
+    "power_B": 0.793,
+    "power_B_and_D": 0.0,
+    "rho": 1.0
    },
    {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_SHUFFLED",
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
     "effect": 0.025,
-    "power_B": 0.717,
-    "power_B_and_D": 0.002
+    "power_B": 0.814,
+    "power_B_and_D": 0.0,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.025,
+    "power_B": 0.846,
+    "power_B_and_D": 0.001,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.961,
+    "power_B_and_D": 0.044,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.986,
+    "power_B_and_D": 0.024,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.993,
+    "power_B_and_D": 0.02,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.035,
+    "power_B": 0.994,
+    "power_B_and_D": 0.022,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.245,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.255,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.221,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.222,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.497,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.49,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.475,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_D",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.485,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.025,
-    "power_B": 0.82,
-    "power_B_and_D": 0.0
+    "power_B": 0.821,
+    "power_B_and_D": 0.0,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.025,
     "power_B": 0.883,
-    "power_B_and_D": 0.001
+    "power_B_and_D": 0.0,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.907,
+    "power_B_and_D": 0.0,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.025,
-    "power_B": 0.926,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.619,
-    "power_B_and_D": 0.033
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.763,
-    "power_B_and_D": 0.013
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.875,
-    "power_B_and_D": 0.007
+    "power_B": 0.928,
+    "power_B_and_D": 0.0,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.945,
-    "power_B_and_D": 0.004
+    "effect": 0.035,
+    "power_B": 0.991,
+    "power_B_and_D": 0.023,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.971,
-    "power_B_and_D": 0.001
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.988,
-    "power_B_and_D": 0.0
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.893,
-    "power_B_and_D": 0.169
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.969,
-    "power_B_and_D": 0.135
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.989,
-    "power_B_and_D": 0.107
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.999,
-    "power_B_and_D": 0.097
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.999,
-    "power_B_and_D": 0.077
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.999,
-    "power_B_and_D": 0.055
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.964,
-    "power_B_and_D": 0.305
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.045,
+    "effect": 0.035,
     "power_B": 0.996,
-    "power_B_and_D": 0.282
+    "power_B_and_D": 0.019,
+    "rho": 0.0
    },
    {
-    "ambiguous_groups": 200,
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.997,
+    "power_B_and_D": 0.017,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.999,
+    "power_B_and_D": 0.015,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.232,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.244,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.218,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.224,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.5,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.488,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.497,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.497,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.704,
+    "power_B_and_D": 0.001,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.778,
+    "power_B_and_D": 0.001,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.824,
+    "power_B_and_D": 0.001,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.84,
+    "power_B_and_D": 0.0,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.963,
+    "power_B_and_D": 0.025,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.985,
+    "power_B_and_D": 0.022,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.991,
+    "power_B_and_D": 0.012,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.996,
+    "power_B_and_D": 0.013,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.045,
     "power_B": 0.999,
-    "power_B_and_D": 0.247
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.999,
-    "power_B_and_D": 0.254
+    "power_B_and_D": 0.273,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.045,
     "power_B": 1.0,
-    "power_B_and_D": 0.24
+    "power_B_and_D": 0.263,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.232,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.045,
     "power_B": 1.0,
-    "power_B_and_D": 0.231
+    "power_B_and_D": 0.224,
+    "rho": 0.5
    },
    {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.989,
-    "power_B_and_D": 0.49
-   },
-   {
-    "ambiguous_groups": 160,
+    "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.05,
     "power_B": 0.999,
-    "power_B_and_D": 0.475
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 1.0,
-    "power_B_and_D": 0.488
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 1.0,
-    "power_B_and_D": 0.469
+    "power_B_and_D": 0.485,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.05,
     "power_B": 1.0,
-    "power_B_and_D": 0.482
+    "power_B_and_D": 0.487,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.485,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_SHUFFLED",
     "effect": 0.05,
     "power_B": 1.0,
-    "power_B_and_D": 0.481
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.811
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.85
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.89
+    "power_B_and_D": 0.494,
+    "rho": 0.5
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.899
+    "effect": 0.025,
+    "power_B": 0.604,
+    "power_B_and_D": 0.002,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.923
+    "effect": 0.025,
+    "power_B": 0.709,
+    "power_B_and_D": 0.002,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.739,
+    "power_B_and_D": 0.0,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P0_then_D_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 1.0,
-    "power_B_and_D": 0.941
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.02,
-    "power_B": 0.076,
-    "power_B_and_D": 0.043
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.02,
-    "power_B": 0.102,
-    "power_B_and_D": 0.028
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.02,
-    "power_B": 0.15,
-    "power_B_and_D": 0.021
+    "effect": 0.025,
+    "power_B": 0.755,
+    "power_B_and_D": 0.001,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 240,
-    "comparison": "P1_vs_D",
-    "effect": 0.02,
-    "power_B": 0.187,
-    "power_B_and_D": 0.014
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.927,
+    "power_B_and_D": 0.05,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 280,
-    "comparison": "P1_vs_D",
-    "effect": 0.02,
-    "power_B": 0.207,
-    "power_B_and_D": 0.006
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.967,
+    "power_B_and_D": 0.036,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.969,
+    "power_B_and_D": 0.029,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 320,
-    "comparison": "P1_vs_D",
-    "effect": 0.02,
-    "power_B": 0.255,
-    "power_B_and_D": 0.004
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.979,
+    "power_B_and_D": 0.034,
+    "rho": 1.0
    },
    {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.025,
-    "power_B": 0.134,
-    "power_B_and_D": 0.085
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.994,
+    "power_B_and_D": 0.27,
+    "rho": 1.0
    },
    {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.025,
-    "power_B": 0.166,
-    "power_B_and_D": 0.047
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.262,
+    "rho": 1.0
    },
    {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.025,
-    "power_B": 0.234,
-    "power_B_and_D": 0.047
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 1.0,
+    "power_B_and_D": 0.266,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.999,
+    "power_B_and_D": 0.255,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.999,
+    "power_B_and_D": 0.475,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.483,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.481,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P0_then_D_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 1.0,
+    "power_B_and_D": 0.49,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P1_vs_D",
     "effect": 0.025,
-    "power_B": 0.31,
-    "power_B_and_D": 0.023
+    "power_B": 0.28,
+    "power_B_and_D": 0.027,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P1_vs_D",
     "effect": 0.025,
-    "power_B": 0.357,
-    "power_B_and_D": 0.017
+    "power_B": 0.358,
+    "power_B_and_D": 0.015,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.369,
+    "power_B_and_D": 0.013,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P1_vs_D",
     "effect": 0.025,
     "power_B": 0.404,
-    "power_B_and_D": 0.016
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.03,
-    "power_B": 0.191,
-    "power_B_and_D": 0.139
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.03,
-    "power_B": 0.255,
-    "power_B_and_D": 0.094
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.03,
-    "power_B": 0.357,
-    "power_B_and_D": 0.087
+    "power_B_and_D": 0.013,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P1_vs_D",
-    "effect": 0.03,
-    "power_B": 0.439,
-    "power_B_and_D": 0.056
+    "effect": 0.035,
+    "power_B": 0.603,
+    "power_B_and_D": 0.108,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P1_vs_D",
-    "effect": 0.03,
-    "power_B": 0.527,
-    "power_B_and_D": 0.052
+    "effect": 0.035,
+    "power_B": 0.68,
+    "power_B_and_D": 0.086,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.731,
+    "power_B_and_D": 0.071,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P1_vs_D",
-    "effect": 0.03,
-    "power_B": 0.591,
-    "power_B_and_D": 0.037
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.04,
-    "power_B": 0.368,
-    "power_B_and_D": 0.275
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.04,
-    "power_B": 0.502,
-    "power_B_and_D": 0.228
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.04,
-    "power_B": 0.626,
-    "power_B_and_D": 0.23
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_D",
-    "effect": 0.04,
-    "power_B": 0.734,
-    "power_B_and_D": 0.23
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_D",
-    "effect": 0.04,
-    "power_B": 0.806,
-    "power_B_and_D": 0.214
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_D",
-    "effect": 0.04,
-    "power_B": 0.869,
-    "power_B_and_D": 0.18
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.045,
-    "power_B": 0.476,
-    "power_B_and_D": 0.368
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.045,
-    "power_B": 0.625,
-    "power_B_and_D": 0.344
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.045,
-    "power_B": 0.742,
-    "power_B_and_D": 0.334
+    "effect": 0.035,
+    "power_B": 0.753,
+    "power_B_and_D": 0.086,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P1_vs_D",
     "effect": 0.045,
-    "power_B": 0.847,
-    "power_B_and_D": 0.347
+    "power_B": 0.848,
+    "power_B_and_D": 0.327,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P1_vs_D",
     "effect": 0.045,
-    "power_B": 0.898,
-    "power_B_and_D": 0.325
+    "power_B": 0.907,
+    "power_B_and_D": 0.323,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.928,
+    "power_B_and_D": 0.323,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P1_vs_D",
     "effect": 0.045,
-    "power_B": 0.931,
-    "power_B_and_D": 0.32
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.05,
-    "power_B": 0.595,
-    "power_B_and_D": 0.483
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.05,
-    "power_B": 0.744,
-    "power_B_and_D": 0.479
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.05,
-    "power_B": 0.842,
-    "power_B_and_D": 0.483
+    "power_B": 0.954,
+    "power_B_and_D": 0.311,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P1_vs_D",
     "effect": 0.05,
-    "power_B": 0.925,
-    "power_B_and_D": 0.486
+    "power_B": 0.923,
+    "power_B_and_D": 0.499,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P1_vs_D",
     "effect": 0.05,
-    "power_B": 0.946,
-    "power_B_and_D": 0.496
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_D",
-    "effect": 0.05,
-    "power_B": 0.974,
-    "power_B_and_D": 0.483
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_D",
-    "effect": 0.06,
-    "power_B": 0.778,
-    "power_B_and_D": 0.695
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_D",
-    "effect": 0.06,
-    "power_B": 0.905,
-    "power_B_and_D": 0.727
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_D",
-    "effect": 0.06,
-    "power_B": 0.96,
-    "power_B_and_D": 0.742
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_D",
-    "effect": 0.06,
-    "power_B": 0.98,
-    "power_B_and_D": 0.78
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_D",
-    "effect": 0.06,
-    "power_B": 0.996,
-    "power_B_and_D": 0.798
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_D",
-    "effect": 0.06,
-    "power_B": 0.997,
-    "power_B_and_D": 0.817
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.075,
-    "power_B_and_D": 0.044
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.1,
-    "power_B_and_D": 0.026
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.141,
-    "power_B_and_D": 0.02
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.189,
-    "power_B_and_D": 0.013
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.208,
-    "power_B_and_D": 0.003
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.02,
-    "power_B": 0.265,
-    "power_B_and_D": 0.002
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.025,
-    "power_B": 0.128,
-    "power_B_and_D": 0.08
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.025,
-    "power_B": 0.163,
-    "power_B_and_D": 0.048
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.025,
-    "power_B": 0.232,
-    "power_B_and_D": 0.047
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.025,
-    "power_B": 0.32,
-    "power_B_and_D": 0.022
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.025,
-    "power_B": 0.373,
-    "power_B_and_D": 0.015
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.025,
-    "power_B": 0.42,
-    "power_B_and_D": 0.016
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.185,
-    "power_B_and_D": 0.134
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.273,
-    "power_B_and_D": 0.09
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.364,
-    "power_B_and_D": 0.085
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.451,
-    "power_B_and_D": 0.056
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.524,
-    "power_B_and_D": 0.049
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.03,
-    "power_B": 0.592,
-    "power_B_and_D": 0.032
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.357,
-    "power_B_and_D": 0.274
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.502,
-    "power_B_and_D": 0.24
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.63,
-    "power_B_and_D": 0.224
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.727,
-    "power_B_and_D": 0.226
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.812,
-    "power_B_and_D": 0.204
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.04,
-    "power_B": 0.882,
-    "power_B_and_D": 0.182
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.478,
-    "power_B_and_D": 0.372
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.654,
-    "power_B_and_D": 0.34
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.757,
-    "power_B_and_D": 0.354
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.855,
-    "power_B_and_D": 0.363
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.913,
-    "power_B_and_D": 0.325
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.045,
-    "power_B": 0.944,
-    "power_B_and_D": 0.323
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.591,
-    "power_B_and_D": 0.472
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.749,
-    "power_B_and_D": 0.459
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.841,
-    "power_B_and_D": 0.487
-   },
-   {
-    "ambiguous_groups": 240,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.922,
-    "power_B_and_D": 0.49
-   },
-   {
-    "ambiguous_groups": 280,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.956,
-    "power_B_and_D": 0.493
-   },
-   {
-    "ambiguous_groups": 320,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.05,
-    "power_B": 0.983,
-    "power_B_and_D": 0.481
-   },
-   {
-    "ambiguous_groups": 120,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 0.782,
-    "power_B_and_D": 0.688
-   },
-   {
-    "ambiguous_groups": 160,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 0.904,
-    "power_B_and_D": 0.723
-   },
-   {
-    "ambiguous_groups": 200,
-    "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.06,
     "power_B": 0.962,
-    "power_B_and_D": 0.751
+    "power_B_and_D": 0.504,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.972,
+    "power_B_and_D": 0.496,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.985,
+    "power_B_and_D": 0.472,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.192,
+    "power_B_and_D": 0.082,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.212,
+    "power_B_and_D": 0.057,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.223,
+    "power_B_and_D": 0.062,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.237,
+    "power_B_and_D": 0.045,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.369,
+    "power_B_and_D": 0.198,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.425,
+    "power_B_and_D": 0.172,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.456,
+    "power_B_and_D": 0.16,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.494,
+    "power_B_and_D": 0.155,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.604,
+    "power_B_and_D": 0.386,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.687,
+    "power_B_and_D": 0.369,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.716,
+    "power_B_and_D": 0.371,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.747,
+    "power_B_and_D": 0.377,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.707,
+    "power_B_and_D": 0.495,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.795,
+    "power_B_and_D": 0.497,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.802,
+    "power_B_and_D": 0.49,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.849,
+    "power_B_and_D": 0.476,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.132,
+    "power_B_and_D": 0.11,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.139,
+    "power_B_and_D": 0.076,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.15,
+    "power_B_and_D": 0.08,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.025,
+    "power_B": 0.168,
+    "power_B_and_D": 0.068,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.263,
+    "power_B_and_D": 0.225,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.302,
+    "power_B_and_D": 0.208,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.327,
+    "power_B_and_D": 0.193,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.035,
+    "power_B": 0.345,
+    "power_B_and_D": 0.184,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.431,
+    "power_B_and_D": 0.39,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.519,
+    "power_B_and_D": 0.399,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.544,
+    "power_B_and_D": 0.376,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.045,
+    "power_B": 0.577,
+    "power_B_and_D": 0.38,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.538,
+    "power_B_and_D": 0.493,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.622,
+    "power_B_and_D": 0.512,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.656,
+    "power_B_and_D": 0.472,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_D",
+    "effect": 0.05,
+    "power_B": 0.668,
+    "power_B_and_D": 0.486,
+    "rho": 1.0
    },
    {
     "ambiguous_groups": 240,
     "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 0.983,
-    "power_B_and_D": 0.775
+    "effect": 0.025,
+    "power_B": 0.285,
+    "power_B_and_D": 0.026,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 280,
     "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 0.997,
-    "power_B_and_D": 0.786
+    "effect": 0.025,
+    "power_B": 0.352,
+    "power_B_and_D": 0.013,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.382,
+    "power_B_and_D": 0.012,
+    "rho": 0.0
    },
    {
     "ambiguous_groups": 320,
     "comparison": "P1_vs_SHUFFLED",
-    "effect": 0.06,
-    "power_B": 0.997,
-    "power_B_and_D": 0.816
+    "effect": 0.025,
+    "power_B": 0.404,
+    "power_B_and_D": 0.014,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.626,
+    "power_B_and_D": 0.096,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.692,
+    "power_B_and_D": 0.088,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.737,
+    "power_B_and_D": 0.07,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.768,
+    "power_B_and_D": 0.085,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.865,
+    "power_B_and_D": 0.326,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.914,
+    "power_B_and_D": 0.319,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.95,
+    "power_B_and_D": 0.322,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.954,
+    "power_B_and_D": 0.301,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.931,
+    "power_B_and_D": 0.511,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.966,
+    "power_B_and_D": 0.5,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.975,
+    "power_B_and_D": 0.499,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.987,
+    "power_B_and_D": 0.486,
+    "rho": 0.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.193,
+    "power_B_and_D": 0.078,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.211,
+    "power_B_and_D": 0.052,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.233,
+    "power_B_and_D": 0.054,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.251,
+    "power_B_and_D": 0.039,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.382,
+    "power_B_and_D": 0.191,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.436,
+    "power_B_and_D": 0.164,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.482,
+    "power_B_and_D": 0.151,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.498,
+    "power_B_and_D": 0.159,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.617,
+    "power_B_and_D": 0.385,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.7,
+    "power_B_and_D": 0.37,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.729,
+    "power_B_and_D": 0.361,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.764,
+    "power_B_and_D": 0.371,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.709,
+    "power_B_and_D": 0.507,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.805,
+    "power_B_and_D": 0.497,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.818,
+    "power_B_and_D": 0.492,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.857,
+    "power_B_and_D": 0.483,
+    "rho": 0.5
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.132,
+    "power_B_and_D": 0.106,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.149,
+    "power_B_and_D": 0.07,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.149,
+    "power_B_and_D": 0.076,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.025,
+    "power_B": 0.173,
+    "power_B_and_D": 0.066,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.28,
+    "power_B_and_D": 0.228,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.308,
+    "power_B_and_D": 0.202,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.342,
+    "power_B_and_D": 0.179,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.035,
+    "power_B": 0.36,
+    "power_B_and_D": 0.185,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.45,
+    "power_B_and_D": 0.385,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.53,
+    "power_B_and_D": 0.394,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.565,
+    "power_B_and_D": 0.379,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.045,
+    "power_B": 0.582,
+    "power_B_and_D": 0.376,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 240,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.566,
+    "power_B_and_D": 0.487,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 280,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.655,
+    "power_B_and_D": 0.502,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 300,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.68,
+    "power_B_and_D": 0.482,
+    "rho": 1.0
+   },
+   {
+    "ambiguous_groups": 320,
+    "comparison": "P1_vs_SHUFFLED",
+    "effect": 0.05,
+    "power_B": 0.683,
+    "power_B_and_D": 0.484,
+    "rho": 1.0
    }
   ]
  },
@@ -1329,7 +1709,7 @@
  "probe_identity": "e7d72f673b89cdb52195569efc7c923ca98dc42f69c76a9cf4776def0b7765c6",
  "protocol": "CORA-TTI Item-2 v1.6 candidate-conditioned failure response (bounded repair)",
  "protocol_doc": "docs/CORA_TTI_CANDIDATE_FAILURE_RESPONSE_v1.6.md",
- "protocol_doc_sha256": "be1b1e54c4cff2dfe0f158979c74096963fa9e887086b8215608ae260a59d25d",
+ "protocol_doc_sha256": "d5b9358766a92f020f782a53d7517becfc97ce74ec753d1b4ab7699150c052aa",
  "question": "on verification-ambiguous candidate pairs, does a candidate-conditioned measurement of how each proposed extension changes the reasoner's failure state identify the true extension better than the demonstration summary, prospectively, on independent-input pairs disjoint from every earlier corpus",
  "reasoner": "constructive-domain frozen base search K: baseline single-block schemas with the occurrence-scoped fitter",
  "response_fields": [
@@ -1343,14 +1723,15 @@
   "python": "3.12.3",
   "scipy": "1.16.3"
  },
- "secondary_arm": "P1",
+ "second_gated_arm": "P0_then_D (hybrid headline)",
  "statistics": {
   "alpha": 0.01,
   "delta_min": 0.05,
   "inference": "exact one-sided sign-flip over integer group sums on ambiguous queries; group-clustered intervals reported",
   "unit": "half-credit units; a P0 tie is 1"
  },
- "status": "FROZEN_NOT_RUN",
+ "status": "FROZEN_ERRATUM_1_NOT_RUN",
+ "stop_rule_note": "the generator stops at test_groups unique groups; ambiguous groups are about 0.646 of groups in development, so test_groups was set so that P(ambiguous < target) is small (erratum 1)",
  "test_law": {
   "admission": "v1.5 law unchanged",
   "attempt_stride": 100,
@@ -1367,6 +1748,7 @@
   "seed_base": 500000000,
   "slot_stride": 10000
  },
+ "third_gated_arm": "P1",
  "training_resource": {
   "groups": 167,
   "hash_list": "outputs/tti/v15_test_corpus_sha256.txt",
