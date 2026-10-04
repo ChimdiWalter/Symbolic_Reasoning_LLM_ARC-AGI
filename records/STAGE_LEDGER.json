@@ -135,7 +135,18 @@
     "boot_id": "5c543236-c905-416e-9e7f-af441c8fc4b5",
     "head_at_launch": "6033371"
    },
-   "run_state": "logs/v16_run_state.txt"
+   "run_state": "logs/v16_run_state.txt",
+   "terminal_verification": {
+    "script": "scripts/v16_terminal_verify.py",
+    "chain": "scripts/v16_terminal_chain.sh",
+    "markers": [
+     "logs/V16_TERMINAL_VERIFIED",
+     "logs/V16_TERMINAL_DISCREPANCY",
+     "logs/V16_TERMINAL_BLOCKED_SEEN"
+    ],
+    "written_before_outcomes": "2026-10-04"
+   },
+   "reboot_continuity": "crontab @reboot: athe_guard/v16_autoresume_launcher.sh (resume + terminal chain) and athe_guard/stepb_autoresume_launcher.sh"
   },
   {
    "id": "compiler",

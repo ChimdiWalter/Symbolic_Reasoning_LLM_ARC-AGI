@@ -182,7 +182,13 @@ writer. After a reboot the crontab @reboot hook runs `scripts/v16_autoresume.sh`
 (audit, then the same generator with the recorded first start, then the runner
 on the NEW chain PID; it refuses in every other case and logs to
 `logs/v16_autoresume/`); check that log after any reboot, and if it refused,
-follow its reason by hand. Step B is not auto-restarted.
+follow its reason by hand. A detached terminal chain
+(`scripts/v16_terminal_chain.sh`, also restarted at boot) runs
+`scripts/v16_terminal_verify.py` when the runner finishes and writes
+`logs/V16_TERMINAL_VERIFIED` or `logs/V16_TERMINAL_DISCREPANCY`; read that
+first, then `outputs/tti/v16_terminal_verification.json`. Step B is restarted
+at boot by `/home/cnptp/athe_guard/stepb_autoresume_launcher.sh` (its own
+restart script only; counts-only watcher).
 
 On `V16_POSTGEN_DONE`: verify artifacts and hashes first (freeze, leakage,
 overlap, response binding, order invariance, gated-arm convergence, two

@@ -43,3 +43,18 @@ the larger v1.6 exclusion set skips more pairs). The 6,000-slot cap therefore bi
 that is about 150 ambiguous groups: above the 72 floor, below the 280 target. Under the frozen
 ladder a pass still stands; any negative will be MIXED_OR_INCONCLUSIVE (underpowered), not decisive.
 Caps are frozen and are not changed (user directive: do not change caps because progress is slow).
+
+2026-10-04T00:26Z TERMINAL VERIFICATION DETACHED (user: save all progress and run everything detached):
+scripts/v16_terminal_verify.py (sha256 f7188717cd17441d..., committed before any outcome; 4 synthetic tests pass;
+its freeze checks pass on the real frozen repo) runs from the detached chain scripts/v16_terminal_chain.sh,
+PID 3445904, which waits for logs/V16_POSTGEN_DONE (then verifies: freeze, three byte-identical reports,
+response binding, corpus audit, independent recomputation of P0 and P0_then_D incl. its own D fit,
+sign-flip tests and ladder; P1 arithmetic only) or logs/V16_POSTGEN_BLOCKED (records it). Markers:
+logs/V16_TERMINAL_VERIFIED or logs/V16_TERMINAL_DISCREPANCY (or V16_TERMINAL_BLOCKED_SEEN); outputs
+outputs/tti/v16_terminal_verification.json, v16_result_table.csv, v16_result_figure_data.json. It records
+no verdict; the result record, ledger, RESUME and paper are written in a session.
+Reboot: the @reboot v1.6 launcher now also restarts this chain when no terminal marker exists.
+Step B: a second @reboot line runs /home/cnptp/athe_guard/stepb_autoresume_launcher.sh, which runs only
+Step B's own restart script (journal replay, manifest pins re-verified, refuses if running or finished)
+and restarts the counts-only watcher on the new PID; guard tested live (it found PID 77419 running and
+did nothing).
