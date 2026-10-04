@@ -34,3 +34,12 @@ the NEW chain PID. Logs: logs/v16_autoresume/autoresume.log and
 /home/cnptp/athe_guard/logs/v16_autoresume_launcher.log. `scripts/v16_autoresume.sh --check`
 audits without launching. Step B is NOT auto-restarted (protected run; restart by hand with
 Reasoning_Project/scripts/restart_stepB_after_reboot.sh, which replays its journal).
+
+2026-10-04T00:05Z ADMINISTRATIVE PROJECTION (counts only; no score read): 2,267 slots, 93 groups in
+24.7 h; 38 s per slot; admission 3.7 to 4.1 percent of slots (the caps assumed v1.5's 10.5 percent;
+the larger v1.6 exclusion set skips more pairs). The 6,000-slot cap therefore binds first: about
+40 h more, so generation ends near 2026-10-05T16:00Z with about 230 groups (wall cap would be
+2026-10-07T23:22Z; 480 groups would need about 111 h). At the development ambiguous share (0.65)
+that is about 150 ambiguous groups: above the 72 floor, below the 280 target. Under the frozen
+ladder a pass still stands; any negative will be MIXED_OR_INCONCLUSIVE (underpowered), not decisive.
+Caps are frozen and are not changed (user directive: do not change caps because progress is slow).
