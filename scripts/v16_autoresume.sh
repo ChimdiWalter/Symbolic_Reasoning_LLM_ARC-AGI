@@ -80,9 +80,14 @@ echo "$audit" | grep -q '"first_start": "MISSING"' && { say "AUDIT: run state mi
 [ "$CHECK" = 1 ] && stop "check only; the run could be resumed from here"
 
 #  --- relaunch ---------------------------------------------------------------
-say "relaunching the frozen generator (resumes at the first missing slot; cap from the recorded first start)"
+#  if generation had already finished before the reboot (the runner died in its
+#  own steps), the relaunched generator finds no slot to run and exits within
+#  seconds, and the frozen runner refuses to start without a live chain; so in
+#  that case the runner is attached after one second instead of twenty
+gen_done_before=0; [ -f logs/V16_GENERATION_DONE ] && gen_done_before=1
+say "relaunching the frozen generator (resumes at the first missing slot; cap from the recorded first start; generation done before reboot: $gen_done_before)"
 setsid nohup scripts/run_v16_generation.sh >> logs/v16_generation_stdout.log 2>&1 < /dev/null &
-sleep 20
+if [ "$gen_done_before" = 1 ]; then sleep 1; else sleep 20; fi
 chain=$(ps -eo pid,args | awk '$2=="bash" && $3=="scripts/run_v16_generation.sh" {print $1}')
 writer=$(ps -eo pid,args | awk '$2 ~ /python$/ && $3=="scripts/generate_v16_pairs.py" && $4=="full" {print $1}')
 if [ -z "$chain" ]; then
@@ -90,7 +95,7 @@ if [ -z "$chain" ]; then
   if [ -f logs/V16_GENERATION_DONE ]; then
     say "generator exited at once with the DONE marker (target reached or cap expired); starting the runner on a short chain"
     setsid nohup scripts/run_v16_generation.sh >> logs/v16_generation_stdout.log 2>&1 < /dev/null &
-    sleep 2
+    sleep 1
     chain=$(ps -eo pid,args | awk '$2=="bash" && $3=="scripts/run_v16_generation.sh" {print $1}')
   fi
   [ -z "$chain" ] && stop "no chain after relaunch; see logs/v16_chain.log and logs/v16_generation_stdout.log" 2
