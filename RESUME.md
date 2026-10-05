@@ -179,17 +179,41 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-NEXT: BUILD THE GENERIC CONSTRUCTIVE EXTENSION COMPILER, in a fresh
-session, under the same discipline (preregistered design, tests, freeze,
-one review).
-- Requirements: generic, typed, no task IDs, no ARC-family branches, no
-  answer-key dependence, reversible installation, exact serialization,
-  deterministic compilation, tests and metamorphic controls.
-- Then remove the oracle candidate pair, then autonomous proposal, then the
-  same-reasoner closed loop, then the first real ARC B/P/U/L/T/A witness.
-- The v1.6 claim is LEVEL 1 and hybrid only.
-- Open before the 1,000-task stage: trace the 1,000 training tasks and the
-  protected 60 through the authorized data manifest.
+**v1.7 GENERIC CONSTRUCTIVE EXTENSION COMPILER: DESIGN DONE, IMPLEMENTATION
+NEXT** (2026-10-05). Design record: `records/ITEM2_V17_COMPILER_DESIGN.md`
+(fc0e37e).
+
+Findings from the engine source:
+- the engine's concept route is dormant (the inducer passes no concepts);
+- its slot learner fits single-block, single-Select schemas only;
+- its expression phase is starved: zero hypotheses on tasks where the
+  object search uses the whole budget.
+
+K* (both arms) = the unchanged engine plus:
+- K*-1: expression phase gets its declared 8 s slice. This changes the
+  baseline relative to v23.
+- K*-2: occurrence-scoped fitting for non-engine shapes (inert for K).
+- K*-3: context-scoped overlay of installed productions (inert when empty).
+
+Feasibility on fixtures (seeds 810000100 and 810004800; prototype
+`logs/v17/feas4.py`): K* alone fails; K* + extension is accepted by the
+unchanged gate, the winner carries the extension, and the held-out
+demonstration is exact.
+
+Remaining in this block:
+1. `cora_arc2026/v17_compiler.py` (closed input schema, typing law,
+   canonical serialization, `kstar()` and `install()` overlays with state
+   snapshots, `uses_extension`, `run_reasoner`, `paired_ablation`,
+   `adaptive_loo`, `witness_separation`);
+2. `tests/test_v17_compiler.py` (the 15 required properties plus
+   metamorphic tests and real-engine integration on the fixtures);
+3. protocol `docs/CORA_TTI_CONSTRUCTIVE_EXTENSION_COMPILER_v1.7.md`;
+4. manifest and freeze;
+5. ONE adversarial review, errata, re-freeze;
+6. then return with: NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION
+   PROPOSER.
+
+Do not begin the proposer in this block.
 
 ## How to re-run
 
