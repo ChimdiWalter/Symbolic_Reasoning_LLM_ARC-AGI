@@ -3,7 +3,7 @@
   "conditions": {
    "S1": "all compile; deterministic bytes; identical reload; fresh-process identical (first task)",
    "S2": "no restoration failure; final snapshot equals initial",
-   "S3": "zero residue (no K*-arm winner carries e's name) and zero direct-execution disagreements for winners attributed to e",
+   "S3": "zero residue (e's name anywhere in a K*-arm or 3x-arm winner), zero direct-execution disagreements for winners attributed to e, zero label anomalies (a top-level computed pattern carrying e's name that fails the structure test)",
    "S4": ">= 5 of 6 EXTENSION_NECESSARY_AND_USED with held-out exact",
    "S5": ">= 5 of 6 adaptive leave-one-out passed",
    "S6": "every task SEPARATED under the bounded witness test"
@@ -14,17 +14,26 @@
    "COMPILER_ACCEPTED",
    "COMPILER_INTEGRATION_INCOMPLETE",
    "COMPILER_DEFECTIVE",
-   "NO_VERDICT_FIXTURE_SHORTFALL"
+   "NO_VERDICT_FIXTURE_SHORTFALL",
+   "NO_VERDICT_RUN_ERROR"
   ],
+  "recorded": "start record (environment, load, cpus), one row per finished task with per-arm seconds, events, programs and load",
+  "run_once": "the launcher refuses if its pid record or the marker exists; the script refuses if its report, rows, start record or marker exist",
+  "s5_caveat": "with the oracle proposer every fold recompiles the same schema and the filter already checked each fold's held-out pair with the scoped fitter, so S5 tests the L-leg machinery, not out-of-sample prediction; only S4's held-out pair is out of sample",
   "script": "scripts/v17_acceptance.py",
   "seed_base": 830000000,
+  "supplementary_not_gating": {
+   "baseline_3x": "K* alone at 24 s budget per task: accepted, held-out exact, seconds",
+   "k_programs_fitted": "witness comparison-set size per task",
+   "nested_uses": "e inside a wrapper other than a frame (not credited)"
+  },
   "tasks": 6
  },
  "claim_ceiling": "engineering capability only; not LEVEL 2 until an extension produced without the oracle pair is compiled and certified",
- "compiler_sha256": "999a0b9d4c58454b8cfcf6a90608c9dde6eea8535e1783b9cccbee6be49a0bae",
+ "compiler_sha256": "04c6b3a19b9645cdfd983e2733e377b8b342e11a4c09b209f3dddb5868515152",
  "compiler_version": "1.7.0",
  "dependency_tree_sha256": {
-  "cora_arc2026": "327699457da617ccf9c481ea6fe8a6ef46af3fa21e053aad6494b8e6fd1aef3a",
+  "cora_arc2026": "d0e0060527f8cc91dddb2e60282f8d0c353305f2507860d8f9c692a65dcfb724",
   "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
   "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
   "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
@@ -36,6 +45,30 @@
    810000100,
    810004800
   ]
+ },
+ "environment": {
+  "enforced_by": [
+   "kstar()",
+   "scripts/v17_acceptance.py",
+   "scripts/run_v17_acceptance.sh"
+  ],
+  "kstar_env": {
+   "ARC_META_BUDGET_S": "8",
+   "ARC_META_INDUCTION": "1"
+  },
+  "rule": "PYTHONHASHSEED=0 with hash randomization off; no ARC_* variable except the K* pair, which kstar() sets itself; single-threaded BLAS set by the acceptance script; one process at default CPU priority, load recorded"
+ },
+ "erratum": {
+  "previous": {
+   "frozen_commit": "d5b5e1b",
+   "manifest_sha256": "418ee5c2f0e1ae30e43cdcf48de2c9faf1f55a5dfaaa566443f0b7437531bbb3",
+   "review_result_commit": "9195641"
+  },
+  "record": "records/ITEM2_V17_ERRATUM_01.md"
+ },
+ "external_file_sha256": {
+  "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest.json": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3",
+  "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest_hash.txt": "c9f7fe311a549adc0b5d572fee9c5023976940fc5a438105e6268d55d987fd00"
  },
  "failure_classes": [
   "MALFORMED_INPUT",
@@ -52,21 +85,28 @@
   "TAMPERED_PRODUCTION",
   "OVERLAY_CONFLICT",
   "RESTORATION_FAILURE",
-  "KSTAR_NOT_ACTIVE"
+  "KSTAR_NOT_ACTIVE",
+  "KSTAR_ENVIRONMENT"
  ],
  "implementation_sha256": {
   "cora_arc2026/v13_gen.py": "1d389abe6ddb70e2eebf7f7cd9433fb3b326dc6bcf07a6a02be62f9b5215dc08",
   "cora_arc2026/v14_loc.py": "010fe720c6f7c4f105e4f3340a3d3c6db4c57487a7a122cb2de89418a67e70c7",
   "cora_arc2026/v15_sel.py": "810dc0a70b33583bb0469c5ddcf7e36c8b061c4e82c5d2db2bf73e848ccea501",
-  "cora_arc2026/v17_compiler.py": "999a0b9d4c58454b8cfcf6a90608c9dde6eea8535e1783b9cccbee6be49a0bae",
+  "cora_arc2026/v17_compiler.py": "04c6b3a19b9645cdfd983e2733e377b8b342e11a4c09b209f3dddb5868515152",
+  "logs/v17/dryrun_dev.py": "fce8f1d577cf9ebbfe4b7fbf275fc4091d25acb1483fcbfbabdd73e4dd541b00",
   "logs/v17/feas4.py": "aba58f0b881d222a170cc6c7d67aa02bed824d7d31f58a99b50ca25db6020a0b",
   "logs/v17/findfix.py": "218c555662b62d641252f2259036da5859d5f3e1075ab772901e0bdfd54adb20",
   "logs/v17/fixtures.json": "fbebc474c7c21266d50e0ce6fa0d32bed4cd14e6b454f65582241ffbe1977424",
+  "logs/v17/main_mock_test.py": "fffb38d943258e7f7a00bdce62d66d4e7bf4b815ba4a6feec93ed16bdf079170",
   "records/ITEM2_V17_COMPILER_DESIGN.md": "dcc5d571cdde5962248089d0be8ad0c465ff1a7a662325e02599a68bf380ff64",
-  "scripts/freeze_v17.py": "4bb9d4a8fe9b3597489f50cf224da4e78840ebe766708ea1c8dce7482c853b5a",
-  "scripts/v17_acceptance.py": "7f9ac2c9c9af569820417b362a00ed297612bd49486647233d0a2ce04209fc5e",
+  "records/ITEM2_V17_ERRATUM_01.md": "6c50278494d973fc883b0c85342e7a36a7f786c3ef44e16f78a387dc6755cdd7",
+  "records/ITEM2_V17_REVIEW_REQUEST.md": "2304ea789616e6d7e23dd6df246ebdef37ba1cd2537cecf3f2e872435dd2a994",
+  "records/ITEM2_V17_REVIEW_RESULT.md": "063010900a2693259ccd72b06e88d5875561c9831de14ca949af368e6eb699a3",
+  "scripts/freeze_v17.py": "9143129b2463d6155e875a0f50c4e293d1a776c4d7d9acaa840a88ad7448c10e",
+  "scripts/run_v17_acceptance.sh": "5d7924b67651f5592eca1ccfb15a86139137613168a83cdea67e2716f3121ac4",
+  "scripts/v17_acceptance.py": "0779cb8d691161cd7e9834223ce3cd9751b4e485c01d0b1c489e6a595a16de33",
   "tests/conftest.py": "2deb6c8e8151c3d487a26651ed2a4354c6eb9afdfda9b6711d5c9e1cd72d50eb",
-  "tests/test_v17_compiler.py": "0a8d195f67d23e79db7eddd01e73ab887ac4fdacf439262dd7acf65b397b4c2d"
+  "tests/test_v17_compiler.py": "ee0432e0c818deadf0342ffa42f11a1986b0ed3508d91d327ff6794e1a68d1b5"
  },
  "input_keys": [
   "compiler_version",
@@ -77,7 +117,7 @@
   "schema",
   "source_sha256"
  ],
- "k_identity": "2fe279a12d21ba3c650d6d8459382496e5d2954408605dd40c569a50213e8bfb",
+ "k_identity": "b009a9fb13402348a73c3e1ef187a82c2d42fb5175e5fed806e8d33d6b73e729",
  "kstar_env": {
   "ARC_META_BUDGET_S": "8",
   "ARC_META_INDUCTION": "1"
@@ -85,7 +125,8 @@
  "kstar_rules": [
   "K*-1 expression slice: induce_computed_candidates is called with deadline=None, so the CORA expression phase receives its declared ARC_META_BUDGET_S slice per call",
   "K*-2 fitting law: the Map[FeatureValue,Colour] learner delegates one-block one-Select ASTs to the engine's own learner and every other shape to the frozen occurrence-scoped fitter",
-  "K*-3 overlay: installed productions are appended to the expression phase's concept list"
+  "K*-3 overlay: installed productions are appended to the expression phase's concept list",
+  "K* environment: kstar() refuses unless PYTHONHASHSEED=0 and no ARC_* variable is set other than the K* pair"
  ],
  "limits": {
   "max_blocks": 4,
@@ -94,9 +135,9 @@
   "max_serialized_bytes": 65536
  },
  "order_after_freeze": [
-  "one adversarial review",
-  "errata before the acceptance test",
-  "scripts/v17_acceptance.py once",
+  "one adversarial review (done, records/ITEM2_V17_REVIEW_RESULT.md)",
+  "erratum 01 before the acceptance test (done)",
+  "scripts/run_v17_acceptance.sh once",
   "record the outcome",
   "next stage: no-oracle extension proposer (not in this block)"
  ],
@@ -107,7 +148,7 @@
  },
  "protocol": "CORA-TTI Item-2 v1.7 generic ConstructiveExtensionCompiler",
  "protocol_doc": "docs/CORA_TTI_CONSTRUCTIVE_EXTENSION_COMPILER_v1.7.md",
- "protocol_doc_sha256": "bcecb81e70dfb4ac9bf9e9fdf9182b435ca57c89d56ed5598b1e5712a80ce8d7",
+ "protocol_doc_sha256": "e9bb1acc1f3547e692f3586e96b5969e9e2782a8db97dfe5f4589cce1b886d32",
  "provenance_keys": [
   "evidence_sha256",
   "producer_sha256"
@@ -117,10 +158,10 @@
   "python": "3.12.3",
   "scipy": "1.16.3"
  },
- "status": "FROZEN_NOT_ACCEPTANCE_TESTED",
+ "status": "FROZEN_AFTER_ERRATUM_01_NOT_ACCEPTANCE_TESTED",
  "test_results_at_freeze": {
-  "engine": "4 passed in 181.90s (pytest -m engine, 2026-10-05, compiler 1a7de00, tests edd25e1)",
-  "fast": "33 passed, 4 deselected (pytest -m 'not engine', 2026-10-05, commit c4d779a)"
+  "engine": "5 passed in 203.51s (pytest -m engine, 2026-10-05, erratum 01 code, logs/v17/engine_tests_erratum01.log)",
+  "fast": "36 passed, 5 deselected (pytest -m 'not engine', 2026-10-05, commit 6fc3a4d)"
  },
  "version": "1.7"
 }
