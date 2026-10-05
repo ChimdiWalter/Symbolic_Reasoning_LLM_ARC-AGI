@@ -954,6 +954,69 @@ The limits are part of the result:
 This is LEVEL 1 of the claim ladder. It does not claim self-improving
 reasoning or invention; those need the B/P/U/L/T/A witness of section 2.3.
 
+## 8.12 Compiling a selected extension into the same reasoner
+
+[METHOD WRITTEN 2026-10-05; RESULT SEALED 2026-10-05]
+
+Section 8.11 licensed a compiler: a generic mechanism that takes one legal
+extension from the constructive grammar and makes it an executable
+production of the same reasoner, the real ARC engine, without task-specific
+code. The extension is still chosen by the oracle pair; this section asks
+only whether the engine can use it once it exists.
+
+Reading the engine source showed why it could not before:
+- its concept route existed but was never called;
+- its slot learner fits only one-block, one-Select schemas;
+- its expression phase received no time on exactly the tasks where an
+  extension is needed.
+
+The compiler therefore runs the unchanged engine as K*, under three rules
+applied identically in every arm:
+- the expression phase receives its declared slice;
+- shapes the engine does not produce are fitted by the frozen
+  occurrence-scoped fitter;
+- installed productions are appended to the concept list.
+
+K* changes the baseline: the v23 count is K's, not K*'s. A test shows K*
+without an extension never calls the slot learner.
+
+The compiler's contract:
+- a closed input schema with no field for a task, label, output or family;
+- a typing law from the frozen signatures;
+- a canonical serialization whose reload rebuilds the production from its
+  body and requires identical bytes;
+- a context-scoped installation verified by a state snapshot;
+- attribution by name and structure;
+- a paired ablation and an adaptive leave-one-out.
+
+One adversarial review found two blocking defects before any acceptance
+data existed: the environment the fixtures depend on was not enforced, and
+reload could be forged. Both were fixed by erratum and re-frozen.
+
+The acceptance test ran once, on six new synthetic two-block tasks:
+**COMPILER_ACCEPTED**.
+- In all six, K* + {e} was accepted by the engine's unchanged gate, the
+  winner was the compiled production, and the held-out demonstration was
+  exact; K* alone was not accepted, and neither was K* at three times the
+  budget.
+- Attribution had no residue, no disagreement under direct execution and
+  no label anomaly.
+- Adaptive leave-one-out passed on five of six tasks. On the sixth the
+  engine accepted nothing on four of seven six-pair folds.
+
+What this does not show:
+- it is an engineering result, not a reasoning claim: the extension came
+  from the oracle;
+- the leave-one-out folds recompile the same oracle schema, so only one
+  held-out pair per task is out of sample;
+- necessity holds under K*, not K;
+- the witness comparison sets were all empty, so separation from K is shown
+  only at the level of the frozen fitter;
+- the tasks are synthetic and two-block.
+
+The claim stays LEVEL 1. LEVEL 2 needs an extension produced without the
+oracle pair, then compiled and certified through this path.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

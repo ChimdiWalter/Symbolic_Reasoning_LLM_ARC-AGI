@@ -179,6 +179,28 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
+**NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER** (fresh
+session; not begun). Licensed by the v1.7 result below. The claim stays
+LEVEL 1 until a produced extension is compiled and certified.
+
+**v1.7 COMPILER: COMPILER_ACCEPTED** (2026-10-05, run once, 882.9 s;
+record `records/ITEM2_V17_COMPILER_RESULT_20261005.md`; paper section
+8.12).
+- S1 to S6 all hold. S4: 6 of 6 tasks EXTENSION_NECESSARY_AND_USED with
+  the held-out pair exact. S5: 5 of 6 (seed 830000600: the engine accepted
+  nothing on 4 of 7 six-pair folds; no misattribution). S6: 6 of 6 but
+  every comparison set empty, so weak.
+- K* at 3x budget accepted none of the six. Residue, direct-execution
+  disagreements, label anomalies, nested uses: all 0.
+- Report sha256 4b356a8d, rows 8d9323fb. Independent verification
+  `logs/v17/verify_acceptance.log`: 11 of 11 checks, including the fixture
+  set re-derived identically under PYTHONHASHSEED=0.
+- Proposer stage notes: the L leg becomes out-of-sample only when the
+  proposer chooses inside each fold; record fold events; keep the K*
+  environment law; S6 needs non-empty comparison sets to mean more.
+
+History of the block, superseded by the result above:
+
 **v1.7 GENERIC CONSTRUCTIVE EXTENSION COMPILER: REVIEW DONE, ERRATUM 01
 APPLIED, RE-FREEZE THEN ACCEPTANCE ONCE** (2026-10-05).
 - Review: `records/ITEM2_V17_REVIEW_RESULT.md` (9195641). 2 BLOCKING, 4

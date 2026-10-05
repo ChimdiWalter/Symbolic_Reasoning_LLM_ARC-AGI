@@ -1,0 +1,5480 @@
+{
+ "conditions": {
+  "S1": true,
+  "S2": true,
+  "S3": true,
+  "S4": true,
+  "S5": true,
+  "S6": true
+ },
+ "conditions_at_end": {
+  "cpus": 24,
+  "environment": {
+   "PYTHONHASHSEED": "0"
+  },
+  "hash_randomization": 0,
+  "loadavg": [
+   42.4,
+   42.27,
+   41.98
+  ],
+  "threads": {
+   "MKL_NUM_THREADS": "1",
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1"
+  }
+ },
+ "k_identity": "b009a9fb13402348a73c3e1ef187a82c2d42fb5175e5fed806e8d33d6b73e729",
+ "manifest_sha256": "a66e149cf7d971ae4166033c95cfe2567a9be5ea160c792b9abecca9d08b1f29",
+ "n_fixtures": 6,
+ "outcome": "COMPILER_ACCEPTED",
+ "seconds": 882.9,
+ "seed_base": 830000000,
+ "supplementary": {
+  "k_programs_fitted": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "necessary_at_3x_baseline": 6,
+  "nested_uses": 0
+ },
+ "tasks": [
+  {
+   "S1_compiles_deterministic_reload": true,
+   "ablation": {
+    "audit": {
+     "direct_agrees": true,
+     "label_anomaly": false,
+     "nested_use": false
+    },
+    "verdict": "EXTENSION_NECESSARY_AND_USED",
+    "with": {
+     "accepted": true,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "META_COMPUTED_CANDIDATE_FOUND",
+      "HYPOTHESIS_PROPOSED",
+      "HYPOTHESIS_ACCEPTED",
+      "REASONING_CERTIFICATE_CREATED",
+      "TASK_PROMOTED_TO_SOLVED",
+      "FINAL_PREDICTION_EMITTED"
+     ],
+     "heldout_exact": true,
+     "program": {
+      "ast": {
+       "args": [
+        {
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ],
+         "op": "Select"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"col_band\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[0, 4], [3, 3], [6, 2]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        }
+       ],
+       "op": "Compose"
+      },
+      "concept": "cx_6afceb1193358f34d502d61c",
+      "grammar_concepts_used": [
+       "cx_6afceb1193358f34d502d61c",
+       "Compose",
+       "Partition:colour_components",
+       "Select:all",
+       "Map",
+       "Key:col_band",
+       "Lookup",
+       "Paint",
+       "Partition:background_components",
+       "Map",
+       "Key:touches_border",
+       "Lookup",
+       "Paint"
+      ],
+      "program_class": "computed_pattern",
+      "provenance": []
+     },
+     "seconds": 15.58
+    },
+    "with_uses": true,
+    "without": {
+     "accepted": false,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "HYPOTHESIS_REJECTED",
+      "NEAR_SOLVED_STORED"
+     ],
+     "heldout_exact": false,
+     "program": null,
+     "seconds": 9.37
+    }
+   },
+   "adaptive_loo": {
+    "folds": [
+     {
+      "accepted": false,
+      "audit": {
+       "direct_agrees": null,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 0,
+      "heldout_exact": false,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": null,
+      "seconds": 14.09,
+      "status": "RUN",
+      "uses_extension": false
+     },
+     {
+      "accepted": false,
+      "audit": {
+       "direct_agrees": null,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 1,
+      "heldout_exact": false,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": null,
+      "seconds": 14.84,
+      "status": "RUN",
+      "uses_extension": false
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 2,
+      "heldout_exact": true,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"all\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"col_band\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4], [3, 3], [6, 2]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6afceb1193358f34d502d61c",
+       "grammar_concepts_used": [
+        "cx_6afceb1193358f34d502d61c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:all",
+        "Map",
+        "Key:col_band",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.41,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": false,
+      "audit": {
+       "direct_agrees": null,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 3,
+      "heldout_exact": false,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": null,
+      "seconds": 14.66,
+      "status": "RUN",
+      "uses_extension": false
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 4,
+      "heldout_exact": true,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"all\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"col_band\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4], [3, 3], [6, 2]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6afceb1193358f34d502d61c",
+       "grammar_concepts_used": [
+        "cx_6afceb1193358f34d502d61c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:all",
+        "Map",
+        "Key:col_band",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.45,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 5,
+      "heldout_exact": true,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"all\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"col_band\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4], [3, 3], [6, 2]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6afceb1193358f34d502d61c",
+       "grammar_concepts_used": [
+        "cx_6afceb1193358f34d502d61c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:all",
+        "Map",
+        "Key:col_band",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.87,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": false,
+      "audit": {
+       "direct_agrees": null,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 6,
+      "heldout_exact": false,
+      "production": "cx_6afceb1193358f34d502d61c",
+      "program": null,
+      "seconds": 14.55,
+      "status": "RUN",
+      "uses_extension": false
+     }
+    ],
+    "passed": false
+   },
+   "attribution": {
+    "direct_disagreements": 0,
+    "label_anomalies": 0,
+    "nested_uses": 0,
+    "residue": 0
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "budget_s": 24.0,
+    "engine_dir_removed": true,
+    "heldout_exact": false,
+    "program": null,
+    "seconds": 24.12
+   },
+   "blocks": 2,
+   "family": "(1,0)",
+   "fresh_process_identical": true,
+   "loadavg": {
+    "end": [
+     40.99,
+     41.1,
+     41.55
+    ],
+    "start": [
+     40.27,
+     40.94,
+     41.58
+    ]
+   },
+   "name": "cx_6afceb1193358f34d502d61c",
+   "seed": 830000600,
+   "witness": {
+    "equivalent_k_programs": 0,
+    "k_exact": 0,
+    "k_fingerprint_errors": 0,
+    "k_programs_fitted": 0,
+    "status": "SEPARATED"
+   }
+  },
+  {
+   "S1_compiles_deterministic_reload": true,
+   "ablation": {
+    "audit": {
+     "direct_agrees": true,
+     "label_anomaly": false,
+     "nested_use": false
+    },
+    "verdict": "EXTENSION_NECESSARY_AND_USED",
+    "with": {
+     "accepted": true,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "META_COMPUTED_CANDIDATE_FOUND",
+      "HYPOTHESIS_PROPOSED",
+      "HYPOTHESIS_ACCEPTED",
+      "REASONING_CERTIFICATE_CREATED",
+      "TASK_PROMOTED_TO_SOLVED",
+      "FINAL_PREDICTION_EMITTED"
+     ],
+     "heldout_exact": true,
+     "program": {
+      "ast": {
+       "args": [
+        {
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"rectangular\""
+          }
+         ],
+         "op": "Select"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"sole_neighbour_colour\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[0, 4]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"background_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"not_rectangular\""
+          }
+         ],
+         "op": "Select"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[true, 8]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        }
+       ],
+       "op": "Compose"
+      },
+      "concept": "cx_840628315ef1953939e7af7c",
+      "grammar_concepts_used": [
+       "cx_840628315ef1953939e7af7c",
+       "Compose",
+       "Partition:colour_components",
+       "Select:rectangular",
+       "Map",
+       "Key:sole_neighbour_colour",
+       "Lookup",
+       "Paint",
+       "Partition:background_components",
+       "Select:not_rectangular",
+       "Map",
+       "Key:touches_border",
+       "Lookup",
+       "Paint"
+      ],
+      "program_class": "computed_pattern",
+      "provenance": []
+     },
+     "seconds": 15.57
+    },
+    "with_uses": true,
+    "without": {
+     "accepted": false,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "HYPOTHESIS_REJECTED"
+     ],
+     "heldout_exact": false,
+     "program": null,
+     "seconds": 8.11
+    }
+   },
+   "adaptive_loo": {
+    "folds": [
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 0,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.67,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 1,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.46,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 2,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.43,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 3,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.48,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 4,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.48,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 5,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.5,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 6,
+      "heldout_exact": true,
+      "production": "cx_840628315ef1953939e7af7c",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"background_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_840628315ef1953939e7af7c",
+       "grammar_concepts_used": [
+        "cx_840628315ef1953939e7af7c",
+        "Compose",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:background_components",
+        "Select:not_rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.44,
+      "status": "RUN",
+      "uses_extension": true
+     }
+    ],
+    "passed": true
+   },
+   "attribution": {
+    "direct_disagreements": 0,
+    "label_anomalies": 0,
+    "nested_uses": 0,
+    "residue": 0
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "budget_s": 24.0,
+    "engine_dir_removed": true,
+    "heldout_exact": false,
+    "program": null,
+    "seconds": 24.11
+   },
+   "blocks": 2,
+   "family": "(1,1)",
+   "loadavg": {
+    "end": [
+     41.44,
+     41.36,
+     41.59
+    ],
+    "start": [
+     40.99,
+     41.1,
+     41.55
+    ]
+   },
+   "name": "cx_840628315ef1953939e7af7c",
+   "seed": 830001800,
+   "witness": {
+    "equivalent_k_programs": 0,
+    "k_exact": 0,
+    "k_fingerprint_errors": 0,
+    "k_programs_fitted": 0,
+    "status": "SEPARATED"
+   }
+  },
+  {
+   "S1_compiles_deterministic_reload": true,
+   "ablation": {
+    "audit": {
+     "direct_agrees": true,
+     "label_anomaly": false,
+     "nested_use": false
+    },
+    "verdict": "EXTENSION_NECESSARY_AND_USED",
+    "with": {
+     "accepted": true,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "META_COMPUTED_CANDIDATE_FOUND",
+      "HYPOTHESIS_PROPOSED",
+      "HYPOTHESIS_ACCEPTED",
+      "REASONING_CERTIFICATE_CREATED",
+      "TASK_PROMOTED_TO_SOLVED",
+      "FINAL_PREDICTION_EMITTED"
+     ],
+     "heldout_exact": true,
+     "program": {
+      "ast": {
+       "args": [
+        {
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"touching_border\""
+          }
+         ],
+         "op": "Select"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"enclosed_regions\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"shape\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[[[0, 0]], 4]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        }
+       ],
+       "op": "Compose"
+      },
+      "concept": "cx_6ebb27d344e67cb538409403",
+      "grammar_concepts_used": [
+       "cx_6ebb27d344e67cb538409403",
+       "Compose",
+       "Partition:colour_components",
+       "Select:touching_border",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:enclosed_regions",
+       "Map",
+       "Key:shape",
+       "Lookup",
+       "Paint"
+      ],
+      "program_class": "computed_pattern",
+      "provenance": []
+     },
+     "seconds": 15.55
+    },
+    "with_uses": true,
+    "without": {
+     "accepted": false,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "HYPOTHESIS_REJECTED"
+     ],
+     "heldout_exact": false,
+     "program": null,
+     "seconds": 8.11
+    }
+   },
+   "adaptive_loo": {
+    "folds": [
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 0,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.54,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 1,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.53,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 2,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.53,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 3,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.41,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 4,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.48,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 5,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.38,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 6,
+      "heldout_exact": true,
+      "production": "cx_6ebb27d344e67cb538409403",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"shape\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[[[0, 0]], 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6ebb27d344e67cb538409403",
+       "grammar_concepts_used": [
+        "cx_6ebb27d344e67cb538409403",
+        "Compose",
+        "Partition:colour_components",
+        "Select:touching_border",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:shape",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.52,
+      "status": "RUN",
+      "uses_extension": true
+     }
+    ],
+    "passed": true
+   },
+   "attribution": {
+    "direct_disagreements": 0,
+    "label_anomalies": 0,
+    "nested_uses": 0,
+    "residue": 0
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "budget_s": 24.0,
+    "engine_dir_removed": true,
+    "heldout_exact": false,
+    "program": null,
+    "seconds": 24.12
+   },
+   "blocks": 2,
+   "family": "(1,0)",
+   "loadavg": {
+    "end": [
+     42.75,
+     41.83,
+     41.72
+    ],
+    "start": [
+     41.44,
+     41.36,
+     41.59
+    ]
+   },
+   "name": "cx_6ebb27d344e67cb538409403",
+   "seed": 830002600,
+   "witness": {
+    "equivalent_k_programs": 0,
+    "k_exact": 0,
+    "k_fingerprint_errors": 0,
+    "k_programs_fitted": 0,
+    "status": "SEPARATED"
+   }
+  },
+  {
+   "S1_compiles_deterministic_reload": true,
+   "ablation": {
+    "audit": {
+     "direct_agrees": true,
+     "label_anomaly": false,
+     "nested_use": false
+    },
+    "verdict": "EXTENSION_NECESSARY_AND_USED",
+    "with": {
+     "accepted": true,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "META_COMPUTED_CANDIDATE_FOUND",
+      "HYPOTHESIS_PROPOSED",
+      "HYPOTHESIS_ACCEPTED",
+      "REASONING_CERTIFICATE_CREATED",
+      "TASK_PROMOTED_TO_SOLVED",
+      "FINAL_PREDICTION_EMITTED"
+     ],
+     "heldout_exact": true,
+     "program": {
+      "ast": {
+       "args": [
+        {
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"is_rect\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"enclosed_regions\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[false, 3]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        }
+       ],
+       "op": "Compose"
+      },
+      "concept": "cx_4e858234d47941db8f9870fc",
+      "grammar_concepts_used": [
+       "cx_4e858234d47941db8f9870fc",
+       "Compose",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_rect",
+       "Lookup",
+       "Paint",
+       "Partition:enclosed_regions",
+       "Map",
+       "Key:touches_border",
+       "Lookup",
+       "Paint"
+      ],
+      "program_class": "computed_pattern",
+      "provenance": []
+     },
+     "seconds": 15.52
+    },
+    "with_uses": true,
+    "without": {
+     "accepted": false,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "HYPOTHESIS_REJECTED"
+     ],
+     "heldout_exact": false,
+     "program": null,
+     "seconds": 8.1
+    }
+   },
+   "adaptive_loo": {
+    "folds": [
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 0,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.44,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 1,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.4,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 2,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.44,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 3,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.5,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 4,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.37,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 5,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.41,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 6,
+      "heldout_exact": true,
+      "production": "cx_4e858234d47941db8f9870fc",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_rect\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9], [true, 5]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_4e858234d47941db8f9870fc",
+       "grammar_concepts_used": [
+        "cx_4e858234d47941db8f9870fc",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:is_rect",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.5,
+      "status": "RUN",
+      "uses_extension": true
+     }
+    ],
+    "passed": true
+   },
+   "attribution": {
+    "direct_disagreements": 0,
+    "label_anomalies": 0,
+    "nested_uses": 0,
+    "residue": 0
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "budget_s": 24.0,
+    "engine_dir_removed": true,
+    "heldout_exact": false,
+    "program": null,
+    "seconds": 24.1
+   },
+   "blocks": 2,
+   "family": "(0,0)",
+   "loadavg": {
+    "end": [
+     42.11,
+     41.9,
+     41.76
+    ],
+    "start": [
+     42.75,
+     41.83,
+     41.72
+    ]
+   },
+   "name": "cx_4e858234d47941db8f9870fc",
+   "seed": 830008000,
+   "witness": {
+    "equivalent_k_programs": 0,
+    "k_exact": 0,
+    "k_fingerprint_errors": 0,
+    "k_programs_fitted": 0,
+    "status": "SEPARATED"
+   }
+  },
+  {
+   "S1_compiles_deterministic_reload": true,
+   "ablation": {
+    "audit": {
+     "direct_agrees": true,
+     "label_anomaly": false,
+     "nested_use": false
+    },
+    "verdict": "EXTENSION_NECESSARY_AND_USED",
+    "with": {
+     "accepted": true,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "META_COMPUTED_CANDIDATE_FOUND",
+      "HYPOTHESIS_PROPOSED",
+      "HYPOTHESIS_ACCEPTED",
+      "REASONING_CERTIFICATE_CREATED",
+      "TASK_PROMOTED_TO_SOLVED",
+      "FINAL_PREDICTION_EMITTED"
+     ],
+     "heldout_exact": true,
+     "program": {
+      "ast": {
+       "args": [
+        {
+         "args": [
+          {
+           "lit": "\"enclosed_regions\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"not_touching_border\""
+          }
+         ],
+         "op": "Select"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[false, 9]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"rectangular\""
+          }
+         ],
+         "op": "Select"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"touches_border\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        }
+       ],
+       "op": "Compose"
+      },
+      "concept": "cx_6913e6eb291665bcead9421a",
+      "grammar_concepts_used": [
+       "cx_6913e6eb291665bcead9421a",
+       "Compose",
+       "Partition:enclosed_regions",
+       "Select:not_touching_border",
+       "Map",
+       "Key:touches_border",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Select:rectangular",
+       "Map",
+       "Key:touches_border",
+       "Lookup",
+       "Paint"
+      ],
+      "program_class": "computed_pattern",
+      "provenance": []
+     },
+     "seconds": 14.42
+    },
+    "with_uses": true,
+    "without": {
+     "accepted": false,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "HYPOTHESIS_REJECTED",
+      "NEAR_SOLVED_STORED"
+     ],
+     "heldout_exact": false,
+     "program": null,
+     "seconds": 8.04
+    }
+   },
+   "adaptive_loo": {
+    "folds": [
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 0,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.32,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 1,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.38,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 2,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.46,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 3,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.58,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 4,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.4,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 5,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.36,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 6,
+      "heldout_exact": true,
+      "production": "cx_6913e6eb291665bcead9421a",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"not_touching_border\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 9]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"rectangular\""
+           }
+          ],
+          "op": "Select"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"touches_border\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[false, 3], [true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_6913e6eb291665bcead9421a",
+       "grammar_concepts_used": [
+        "cx_6913e6eb291665bcead9421a",
+        "Compose",
+        "Partition:enclosed_regions",
+        "Select:not_touching_border",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint",
+        "Partition:colour_components",
+        "Select:rectangular",
+        "Map",
+        "Key:touches_border",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 13.36,
+      "status": "RUN",
+      "uses_extension": true
+     }
+    ],
+    "passed": true
+   },
+   "attribution": {
+    "direct_disagreements": 0,
+    "label_anomalies": 0,
+    "nested_uses": 0,
+    "residue": 0
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "budget_s": 24.0,
+    "engine_dir_removed": true,
+    "heldout_exact": false,
+    "program": null,
+    "seconds": 9.56
+   },
+   "blocks": 2,
+   "family": "(1,1)",
+   "loadavg": {
+    "end": [
+     42.67,
+     42.26,
+     41.92
+    ],
+    "start": [
+     42.11,
+     41.9,
+     41.76
+    ]
+   },
+   "name": "cx_6913e6eb291665bcead9421a",
+   "seed": 830008300,
+   "witness": {
+    "equivalent_k_programs": 0,
+    "k_exact": 0,
+    "k_fingerprint_errors": 0,
+    "k_programs_fitted": 0,
+    "status": "SEPARATED"
+   }
+  },
+  {
+   "S1_compiles_deterministic_reload": true,
+   "ablation": {
+    "audit": {
+     "direct_agrees": true,
+     "label_anomaly": false,
+     "nested_use": false
+    },
+    "verdict": "EXTENSION_NECESSARY_AND_USED",
+    "with": {
+     "accepted": true,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "META_COMPUTED_CANDIDATE_FOUND",
+      "HYPOTHESIS_PROPOSED",
+      "HYPOTHESIS_ACCEPTED",
+      "REASONING_CERTIFICATE_CREATED",
+      "TASK_PROMOTED_TO_SOLVED",
+      "FINAL_PREDICTION_EMITTED"
+     ],
+     "heldout_exact": true,
+     "program": {
+      "ast": {
+       "args": [
+        {
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"sole_neighbour_colour\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[0, 4]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        },
+        {
+         "args": [
+          {
+           "lit": "\"enclosed_regions\""
+          }
+         ],
+         "op": "Partition"
+        },
+        {
+         "args": [
+          {
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ],
+           "op": "Key"
+          },
+          {
+           "args": [
+            {
+             "lit": "[[true, 8]]"
+            }
+           ],
+           "op": "Lookup"
+          }
+         ],
+         "op": "Map"
+        },
+        {
+         "args": [],
+         "op": "Paint"
+        }
+       ],
+       "op": "Compose"
+      },
+      "concept": "cx_42ba35905d61f8f89e7a49c5",
+      "grammar_concepts_used": [
+       "cx_42ba35905d61f8f89e7a49c5",
+       "Compose",
+       "Partition:colour_components",
+       "Map",
+       "Key:sole_neighbour_colour",
+       "Lookup",
+       "Paint",
+       "Partition:enclosed_regions",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "program_class": "computed_pattern",
+      "provenance": []
+     },
+     "seconds": 15.5
+    },
+    "with_uses": true,
+    "without": {
+     "accepted": false,
+     "engine_dir_removed": true,
+     "events": [
+      "TASK_OBSERVED",
+      "HYPOTHESIS_REJECTED",
+      "NEAR_SOLVED_STORED"
+     ],
+     "heldout_exact": false,
+     "program": null,
+     "seconds": 8.11
+    }
+   },
+   "adaptive_loo": {
+    "folds": [
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 0,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.38,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 1,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.45,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 2,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.42,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 3,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.38,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 4,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.38,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 5,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.39,
+      "status": "RUN",
+      "uses_extension": true
+     },
+     {
+      "accepted": true,
+      "audit": {
+       "direct_agrees": true,
+       "label_anomaly": false,
+       "nested_use": false
+      },
+      "fold": 6,
+      "heldout_exact": true,
+      "production": "cx_42ba35905d61f8f89e7a49c5",
+      "program": {
+       "ast": {
+        "args": [
+         {
+          "args": [
+           {
+            "lit": "\"colour_components\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"sole_neighbour_colour\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[0, 4]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         },
+         {
+          "args": [
+           {
+            "lit": "\"enclosed_regions\""
+           }
+          ],
+          "op": "Partition"
+         },
+         {
+          "args": [
+           {
+            "args": [
+             {
+              "lit": "\"is_square\""
+             }
+            ],
+            "op": "Key"
+           },
+           {
+            "args": [
+             {
+              "lit": "[[true, 8]]"
+             }
+            ],
+            "op": "Lookup"
+           }
+          ],
+          "op": "Map"
+         },
+         {
+          "args": [],
+          "op": "Paint"
+         }
+        ],
+        "op": "Compose"
+       },
+       "concept": "cx_42ba35905d61f8f89e7a49c5",
+       "grammar_concepts_used": [
+        "cx_42ba35905d61f8f89e7a49c5",
+        "Compose",
+        "Partition:colour_components",
+        "Map",
+        "Key:sole_neighbour_colour",
+        "Lookup",
+        "Paint",
+        "Partition:enclosed_regions",
+        "Map",
+        "Key:is_square",
+        "Lookup",
+        "Paint"
+       ],
+       "program_class": "computed_pattern",
+       "provenance": []
+      },
+      "seconds": 14.41,
+      "status": "RUN",
+      "uses_extension": true
+     }
+    ],
+    "passed": true
+   },
+   "attribution": {
+    "direct_disagreements": 0,
+    "label_anomalies": 0,
+    "nested_uses": 0,
+    "residue": 0
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "budget_s": 24.0,
+    "engine_dir_removed": true,
+    "heldout_exact": false,
+    "program": null,
+    "seconds": 24.12
+   },
+   "blocks": 2,
+   "family": "(0,0)",
+   "loadavg": {
+    "end": [
+     42.4,
+     42.27,
+     41.98
+    ],
+    "start": [
+     42.67,
+     42.26,
+     41.92
+    ]
+   },
+   "name": "cx_42ba35905d61f8f89e7a49c5",
+   "seed": 830009500,
+   "witness": {
+    "equivalent_k_programs": 0,
+    "k_exact": 0,
+    "k_fingerprint_errors": 0,
+    "k_programs_fitted": 0,
+    "status": "SEPARATED"
+   }
+  }
+ ],
+ "unexpected": []
+}
