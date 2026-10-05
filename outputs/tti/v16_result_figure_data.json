@@ -1,0 +1,369 @@
+{
+ "P0_selective": {
+  "P0_vs_D_on_decided": {
+   "ci95": [
+    0.155702,
+    0.445801
+   ],
+   "groups": 57,
+   "groups_negative": 3,
+   "groups_positive": 27,
+   "lower95_one_sided": 0.179022,
+   "mean_increment": 0.300752,
+   "p_signflip": 3.7699006497859955e-05,
+   "queries": 133,
+   "upper95_one_sided": 0.422481
+  },
+  "accuracy_D_same_queries": 0.56391,
+  "accuracy_P0_SHUFFLED_same_queries": 0.665414,
+  "coverage": 0.202435,
+  "decided_groups": 57,
+  "decided_queries": 133,
+  "p_above_chance": 1.94085858495896e-11,
+  "precision_P0": 0.864662
+ },
+ "arms": [
+  {
+   "accuracy_ambiguous": 0.579909,
+   "accuracy_ambiguous_unseen": 0.584192,
+   "arm": "D",
+   "end_to_end": 0.828358,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.52968,
+   "accuracy_ambiguous_unseen": 0.515464,
+   "arm": "F_S7",
+   "end_to_end": 0.807836,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.57382,
+   "accuracy_ambiguous_unseen": 0.594502,
+   "arm": "P0",
+   "end_to_end": 0.825871,
+   "gates": {
+    "A_above_chance": true,
+    "B_beats_demo": false,
+    "C_beats_shuffle": true,
+    "D_min_effect": false,
+    "H_nonnegative_on_ambiguous": false,
+    "T_transfer": true
+   },
+   "increment_ci95": [
+    -0.057521,
+    0.045345
+   ],
+   "increment_over_D": -0.006088,
+   "increment_over_control": 0.038052,
+   "p_over_D": 0.6022114646268495,
+   "p_over_control": 0.00034879636053027156
+  },
+  {
+   "accuracy_ambiguous": 0.535769,
+   "accuracy_ambiguous_unseen": 0.539519,
+   "arm": "P0_SHUFFLED",
+   "end_to_end": 0.810323,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.42618,
+   "accuracy_ambiguous_unseen": 0.405498,
+   "arm": "P0_SWAPPED",
+   "end_to_end": 0.765547,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.640791,
+   "accuracy_ambiguous_unseen": 0.666667,
+   "arm": "P0_then_D",
+   "end_to_end": 0.853234,
+   "gates": {
+    "A_above_chance": true,
+    "B_beats_demo": true,
+    "C_beats_shuffle": true,
+    "D_min_effect": true,
+    "H_nonnegative_on_ambiguous": true,
+    "T_transfer": true
+   },
+   "increment_ci95": [
+    0.028694,
+    0.093071
+   ],
+   "increment_over_D": 0.060883,
+   "increment_over_control": 0.03653,
+   "p_over_D": 3.7699006497859955e-05,
+   "p_over_control": 0.0069303327438206
+  },
+  {
+   "accuracy_ambiguous": 0.604262,
+   "accuracy_ambiguous_unseen": 0.611684,
+   "arm": "P0_then_D_SHUFFLED",
+   "end_to_end": 0.838308,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.493151,
+   "accuracy_ambiguous_unseen": 0.477663,
+   "arm": "P0_then_D_SWAPPED",
+   "end_to_end": 0.79291,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.596651,
+   "accuracy_ambiguous_unseen": 0.591065,
+   "arm": "P1",
+   "end_to_end": 0.835199,
+   "gates": {
+    "A_above_chance": true,
+    "B_beats_demo": false,
+    "C_beats_shuffle": false,
+    "D_min_effect": false,
+    "H_nonnegative_on_ambiguous": true,
+    "T_transfer": true
+   },
+   "increment_ci95": [
+    -0.026002,
+    0.059487
+   ],
+   "increment_over_D": 0.016743,
+   "increment_over_control": 0.016743,
+   "p_over_D": 0.24174371871368158,
+   "p_over_control": 0.242853399781129
+  },
+  {
+   "accuracy_ambiguous": 0.579909,
+   "accuracy_ambiguous_unseen": 0.584192,
+   "arm": "P1_SHUFFLED",
+   "end_to_end": 0.828358,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.537291,
+   "accuracy_ambiguous_unseen": 0.549828,
+   "arm": "P1_SWAPPED",
+   "end_to_end": 0.810945,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.578387,
+   "accuracy_ambiguous_unseen": 0.570447,
+   "arm": "P2",
+   "end_to_end": 0.827736,
+   "gates": {
+    "A_above_chance": true,
+    "B_beats_demo": false,
+    "C_beats_shuffle": false,
+    "D_min_effect": false,
+    "H_nonnegative_on_ambiguous": false,
+    "T_transfer": false
+   },
+   "increment_ci95": [
+    -0.0388,
+    0.035756
+   ],
+   "increment_over_D": -0.001522,
+   "increment_over_control": null,
+   "p_over_D": 0.5633676065099151,
+   "p_over_control": null
+  },
+  {
+   "accuracy_ambiguous": 0.505327,
+   "accuracy_ambiguous_unseen": 0.491409,
+   "arm": "R",
+   "end_to_end": 0.797886,
+   "gates": null,
+   "increment_ci95": null,
+   "increment_over_D": null,
+   "increment_over_control": null,
+   "p_over_D": null,
+   "p_over_control": null
+  }
+ ],
+ "by_family": {
+  "(0,0)": {
+   "P0": {
+    "groups": 0,
+    "queries": 0
+   },
+   "P1": {
+    "groups": 0,
+    "queries": 0
+   }
+  },
+  "(0,0,0)": {
+   "P0": {
+    "ci95": [
+     -0.012613,
+     0.397229
+    ],
+    "groups": 19,
+    "groups_negative": 4,
+    "groups_positive": 12,
+    "lower95_one_sided": 0.020333,
+    "mean_increment": 0.192308,
+    "p_signflip": 0.0435943603515625,
+    "queries": 65,
+    "upper95_one_sided": 0.364283
+   },
+   "P1": {
+    "ci95": [
+     -0.122296,
+     0.214604
+    ],
+    "groups": 19,
+    "groups_negative": 2,
+    "groups_positive": 6,
+    "lower95_one_sided": -0.095214,
+    "mean_increment": 0.046154,
+    "p_signflip": 0.375,
+    "queries": 65,
+    "upper95_one_sided": 0.187522
+   }
+  },
+  "(0,1)": {
+   "P0": {
+    "ci95": [
+     -0.233982,
+     0.060069
+    ],
+    "groups": 15,
+    "groups_negative": 7,
+    "groups_positive": 4,
+    "lower95_one_sided": -0.210344,
+    "mean_increment": -0.086957,
+    "p_signflip": 0.853515625,
+    "queries": 69,
+    "upper95_one_sided": 0.036431
+   },
+   "P1": {
+    "ci95": [
+     -0.161043,
+     0.161043
+    ],
+    "groups": 15,
+    "groups_negative": 4,
+    "groups_positive": 5,
+    "lower95_one_sided": -0.135151,
+    "mean_increment": 0.0,
+    "p_signflip": 0.5625,
+    "queries": 69,
+    "upper95_one_sided": 0.135151
+   }
+  },
+  "(1,0)": {
+   "P0": {
+    "ci95": [
+     -0.064294,
+     0.212943
+    ],
+    "groups": 21,
+    "groups_negative": 6,
+    "groups_positive": 9,
+    "lower95_one_sided": -0.042008,
+    "mean_increment": 0.074324,
+    "p_signflip": 0.166259765625,
+    "queries": 74,
+    "upper95_one_sided": 0.190657
+   },
+   "P1": {
+    "ci95": [
+     -0.065516,
+     0.173624
+    ],
+    "groups": 21,
+    "groups_negative": 3,
+    "groups_positive": 5,
+    "lower95_one_sided": -0.046292,
+    "mean_increment": 0.054054,
+    "p_signflip": 0.2578125,
+    "queries": 74,
+    "upper95_one_sided": 0.1544
+   }
+  },
+  "(1,1)": {
+   "P0": {
+    "ci95": [
+     -0.094368,
+     0.023099
+    ],
+    "groups": 81,
+    "groups_negative": 31,
+    "groups_positive": 24,
+    "lower95_one_sided": -0.084926,
+    "mean_increment": -0.035635,
+    "p_signflip": 0.8815724535051211,
+    "queries": 449,
+    "upper95_one_sided": 0.013656
+   },
+   "P1": {
+    "ci95": [
+     -0.039815,
+     0.057632
+    ],
+    "groups": 81,
+    "groups_negative": 21,
+    "groups_positive": 23,
+    "lower95_one_sided": -0.031981,
+    "mean_increment": 0.008909,
+    "p_signflip": 0.3941366667263537,
+    "queries": 449,
+    "upper95_one_sided": 0.049799
+   }
+  }
+ },
+ "classification": {
+  "ambiguous_groups": 136,
+  "classification": "PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES",
+  "powered": false,
+  "reason": "P0_then_D passes A to D, H and T"
+ },
+ "population": {
+  "ambiguous_test_groups": 136,
+  "ambiguous_test_queries": 657,
+  "test_groups": 201,
+  "test_slots": 6000,
+  "training_groups": 167,
+  "unseen_pair_ambiguous_groups": 65
+ }
+}

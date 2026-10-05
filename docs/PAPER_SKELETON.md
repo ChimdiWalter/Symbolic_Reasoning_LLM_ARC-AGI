@@ -867,7 +867,7 @@ constructive decision.
 
 ## 8.11 Failure as an intervention target: candidate-conditioned failure response
 
-[METHOD WRITTEN 2026-10-02; RESULT CELLS EMPTY UNTIL THE SEALED REPORT]
+[METHOD WRITTEN 2026-10-02; RESULT SEALED 2026-10-05]
 
 v1.5 described the failure and asked whether the description helps. The
 bounded repair changes the question. It exposes each candidate extension to
@@ -898,6 +898,12 @@ settle (both candidates fit every demonstration):
 - P2, passive: the demonstration summary plus the v1.5 failure descriptor,
   fitted on the same training resource.
 
+A second gated arm, P0 then D, applies the rule first and hands the rule's
+ties to the demonstration selector. It was added after the development
+evaluation showed that the rule abstains on most pairs, and before any
+prospective data existed; because it uses a fitted selector on ties, a pass
+by this arm is reported as hybrid.
+
 Two controls separate a candidate's interaction with this failure from
 everything else: the response of a matched donor episode (the failure
 replaced), and the two candidates' responses exchanged (the identity
@@ -906,20 +912,47 @@ fixed hash rule. Gates, thresholds, the ladder and the sample size are
 frozen before the prospective corpus exists; the v1.5 test corpus served as
 development data and is excluded from the new corpus by digest.
 
-Results: [SEALED REPORT PENDING]
-- ambiguous population: [n queries, n groups];
-- P0 against D: [increment, interval, p]; against the replaced failure:
-  [increment, p]; on unseen pairs: [increment];
-- P1 against D: [ ]; P2 against D: [ ];
-- classification: [ ].
+The prospective corpus has 201 groups and 1,608 queries. Plain
+verification decides 951 of them. The remaining 657, in 136 groups, are the
+test population, of which 65 groups use candidate pairs absent from the
+training resource. Admission ran at a third of the planned rate, so the
+test stopped at its slot cap below the 280-group target. The frozen rules
+let a pass stand at 72 groups or more.
 
-Claim ceiling if P0 passes: a candidate-conditioned measurement of how
-proposed executable extensions affect the reasoner's own failure state
-improves constructive extension selection beyond demonstrations alone, on
-prospectively generated, disjoint tasks, with no fitted parameter in the
-decision. If only P1 passes, the same sentence holds for a hybrid selector
-and says so. Neither claims self-improving reasoning; that needs the
-B/P/U/L/T/A witness of section 2.3.
+On the ambiguous queries the demonstration summary chooses correctly at
+0.580. The pure rule P0 decides only one ambiguous pair in five, and is
+right on 86.5 percent of those (the demonstration summary manages 56.4
+percent on the same pairs). With half credit for its abstentions it reaches
+0.574, so on its own it does not beat the demonstrations. P0 then D reaches
+0.641:
+- an increment of 6.1 points over the demonstrations (95 percent interval
+  2.9 to 9.3, exact p 3.8e-5);
+- 8.2 points on unseen candidate pairs (p 6.1e-5);
+- 3.7 points over the same rule fed a matched donor episode's failure
+  response (p 0.0069).
+
+Exchanging the two candidates' responses drops it to 0.493. The hybrid
+logit P1 (0.597) and the passive v1.5 channel P2 (0.578) do not beat the
+demonstrations; the v1.5 negative replicates on new data.
+
+The frozen classification is PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES,
+which licenses the compiler. An independent recomputation written before
+the outcome reproduces every gate and the class. Its headline is hybrid: a
+deterministic intervention rule whose ties fall to the learned
+demonstration selector.
+
+The limits are part of the result:
+- the test is below its powered size, and the 0.05 floor is met by the
+  point estimate, not by the interval;
+- the matched-control gate passes at 0.0069 against 0.01, would not survive
+  a correction across the three gated arms, and its dependence-aware
+  version could not be resolved;
+- one structural family supplies most of the ambiguous groups;
+- the domain is the synthetic constructive grammar with its single-block
+  base search.
+
+This is LEVEL 1 of the claim ladder. It does not claim self-improving
+reasoning or invention; those need the B/P/U/L/T/A witness of section 2.3.
 
 ## 9. Ablations and Failure Analysis
 
@@ -974,6 +1007,10 @@ is a perception and correspondence limit rather than a language limit.
   demonstration summary on 288 independent-input test groups. It also did
   not beat a matched shuffle of the failure evidence. Both comparisons failed
   decisively at full preregistered power.
+- In the bounded repair (section 8.11) the passive channel again added
+  nothing on new data (P2 0.578 against 0.580). The pure intervention rule
+  alone did not beat the demonstrations, because it abstains on four
+  ambiguous pairs in five. The hybrid logit did not pass either.
 
 ### 9.4 Reproducibility
 

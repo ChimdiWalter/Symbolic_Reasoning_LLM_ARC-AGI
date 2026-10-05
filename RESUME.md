@@ -4,7 +4,19 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-02.
+Last updated 2026-10-05.
+
+**v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
+rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
+- 201 groups (slot cap), 657 verification-ambiguous queries in 136 groups
+  (below the 280 target; a pass stands at the 72 floor), 65 unseen-pair
+  ambiguous groups.
+- P0_then_D 0.641 against D 0.580: +0.061 (95% CI 0.029 to 0.093, p 3.8e-5);
+  over its replaced-failure control +0.037 (p 0.0069); unseen pairs +0.082.
+  P0 alone 0.574 (abstains 80 percent; 86.5 percent right when it decides);
+  P1 0.597 and P2 0.578 do not pass.
+- Terminal verification 71/71; reports byte-identical; dependence-aware C
+  UNRESOLVED (supplementary). Compiler LICENSED, not started.
 
 **v1.5 COMPLETE: FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION** (ladder rule 6;
 the rule 7 condition also holds), at the full 288 groups.
@@ -167,38 +179,17 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.6 PROSPECTIVE GENERATION RUNNING** since 2026-10-02T23:22:39Z (user's go
-given; both frozen decisions confirmed: floor 0.05, P0_then_D second and
-hybrid). Chain PID 1178785, generator PID 1178792 (nice 19, sole FLOCK holder),
-runner PID 1199668; first start 2026-10-02T23:22:39Z; wall cap
-2026-10-07T23:22:39Z; state `logs/v16_run_state.txt`. Expected about 4,600 slots,
-83 to 110 h (result about 6 to 7 October).
-
-Wait. Administrative monitoring only (slots, groups, PIDs, lock, freeze_ok,
-load, errors, markers). No score, margin, gate or subset is read before
-`logs/V16_POSTGEN_DONE`. Never edit `cora_arc2026/`, `geocat_arc/` or any
-manifest-listed file while the writer is active. Never start a second
-writer. After a reboot the crontab @reboot hook runs `scripts/v16_autoresume.sh`
-(audit, then the same generator with the recorded first start, then the runner
-on the NEW chain PID; it refuses in every other case and logs to
-`logs/v16_autoresume/`); check that log after any reboot, and if it refused,
-follow its reason by hand. A detached terminal chain
-(`scripts/v16_terminal_chain.sh`, also restarted at boot) runs
-`scripts/v16_terminal_verify.py` when the runner finishes and writes
-`logs/V16_TERMINAL_VERIFIED` or `logs/V16_TERMINAL_DISCREPANCY`; read that
-first, then `outputs/tti/v16_terminal_verification.json`. Step B is restarted
-at boot by `/home/cnptp/athe_guard/stepb_autoresume_launcher.sh` (its own
-restart script only; counts-only watcher).
-
-On `V16_POSTGEN_DONE`: verify artifacts and hashes first (freeze, leakage,
-overlap, response binding, order invariance, gated-arm convergence, two
-byte-identical reports, transfer minimum, independent recomputation of the
-arm and gate arithmetic), then read the scientific values, report the
-literal ladder class, and record the official and supplementary results
-separately. GENERALIZES classes license the compiler (next stage, not this
-session); anything else stops the failure-conditioned constructive rollout
-with its exact blocker. On `V16_POSTGEN_BLOCKED`: the named step blocks; do
-not skip it.
+NEXT: BUILD THE GENERIC CONSTRUCTIVE EXTENSION COMPILER, in a fresh
+session, under the same discipline (preregistered design, tests, freeze,
+one review).
+- Requirements: generic, typed, no task IDs, no ARC-family branches, no
+  answer-key dependence, reversible installation, exact serialization,
+  deterministic compilation, tests and metamorphic controls.
+- Then remove the oracle candidate pair, then autonomous proposal, then the
+  same-reasoner closed loop, then the first real ARC B/P/U/L/T/A witness.
+- The v1.6 claim is LEVEL 1 and hybrid only.
+- Open before the 1,000-task stage: trace the 1,000 training tasks and the
+  protected 60 through the authorized data manifest.
 
 ## How to re-run
 

@@ -68,7 +68,7 @@
   },
   {
    "id": "v1.6_bounded_repair",
-   "status": "GENERATION_RUNNING",
+   "status": "COMPLETE",
    "rule": "directive 2026-09-28 section 5 and user message 2026-09-28: ONE bounded repair keyed to FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION (determine which failure channel, if any, is associated with the constructive decision), then ONE clean prospective test on new data; if it fails, preserve and stop with the exact blocker",
    "data_permissions": "train: 167 v1.5 test groups not on held-out pairs; test: new groups at seed base 500,000,000 under the frozen law; no ARC task data",
    "plan": "records/ITEM2_V16_DEVELOPMENT_PLAN.md (3bcb8e7 + amendment 788cfc3, fixed before any response was read)",
@@ -124,7 +124,7 @@
    },
    "command": "scripts/run_v16_generation.sh, then scripts/run_v16_post_generation.sh CHAIN_PID",
    "allowed_successor": "PURE_CFR_SELECTION_GENERALIZES, PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES or HYBRID_CFR_SELECTION_GENERALIZES license the generic compiler (headline by arm); anything else stops the constructive rollout with its exact blocker; no repair v2",
-   "verdict": null,
+   "verdict": "PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES",
    "process": {
     "chain_pid": 1178785,
     "generator_pid": 1178792,
@@ -144,13 +144,38 @@
      "logs/V16_TERMINAL_DISCREPANCY",
      "logs/V16_TERMINAL_BLOCKED_SEEN"
     ],
-    "written_before_outcomes": "2026-10-04"
+    "written_before_outcomes": "2026-10-04",
+    "result": "71/71 checks pass; independent recomputation reproduces every P0 and P0_then_D gate and the class"
    },
-   "reboot_continuity": "crontab @reboot: athe_guard/v16_autoresume_launcher.sh (resume + terminal chain) and athe_guard/stepb_autoresume_launcher.sh"
+   "reboot_continuity": "crontab @reboot: athe_guard/v16_autoresume_launcher.sh (resume + terminal chain) and athe_guard/stepb_autoresume_launcher.sh",
+   "headline": "hybrid: deterministic intervention rule with a learned demonstration fallback on ties; P0 alone did not pass",
+   "generation_end": {
+    "utc": "2026-10-05T14:40:40Z",
+    "stop_reason": "slot_cap",
+    "slots": 6000,
+    "groups": 201,
+    "seconds_since_first_start": 227880.6,
+    "reboots": 0
+   },
+   "population": {
+    "queries": 1608,
+    "verification_decided": 951,
+    "ambiguous_queries": 657,
+    "ambiguous_groups": 136,
+    "unseen_ambiguous_groups": 65,
+    "powered_target": 280,
+    "floor": 72
+   },
+   "official_report_sha256": "6f795c42eea5902b9e11894cd2ee6d3dba4aa8af0acd006cd85647cf922f5204",
+   "supplementary_results": {
+    "dependence_aware_gate_C": "UNRESOLVED for P0, P0_then_D, P1 (9 and 12 units < 30)"
+   },
+   "record": "records/ITEM2_V16_CFR_RESULT_20261005.md",
+   "commit": "the commit titled \"Adding the v1.6 prospective result record\" (git log)"
   },
   {
    "id": "compiler",
-   "status": "BLOCKED: v1.5 did not pass (FAILURE_ASSOCIATION_NOT_CAUSAL_FOR_SELECTION)"
+   "status": "LICENSED_NOT_STARTED: v1.6 PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES (hybrid headline); next stage, not begun in the result session"
   },
   {
    "id": "no_oracle_proposal",
