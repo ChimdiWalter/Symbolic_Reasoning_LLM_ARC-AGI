@@ -179,9 +179,24 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.7 GENERIC CONSTRUCTIVE EXTENSION COMPILER: DESIGN DONE, IMPLEMENTATION
-NEXT** (2026-10-05). Design record: `records/ITEM2_V17_COMPILER_DESIGN.md`
-(fc0e37e).
+**v1.7 GENERIC CONSTRUCTIVE EXTENSION COMPILER: FROZEN, ONE REVIEW NEXT**
+(2026-10-05). Frozen at d5b5e1b:
+- manifest `outputs/tti/constructive_extension_compiler_v17_manifest.json`,
+  sha256 418ee5c2f0e1ae30e43cdcf48de2c9faf1f55a5dfaaa566443f0b7437531bbb3;
+- protocol bcecb81e70dfb4ac9bf9e9fdf9182b435ca57c89d56ed5598b1e5712a80ce8d7;
+- compiler 999a0b9d; K* identity 2fe279a1;
+- tests at freeze: fast 33 passed; engine 4 passed (181.9 s);
+- dry run of the acceptance path on development fixture 0
+  (`logs/v17/acceptance_dryrun_dev.log`): every path passed in 126 s; the
+  witness comparison set was empty (protocol section 12 says what that
+  means).
+
+Steps 1 to 4 below are DONE. Now: step 5 (ONE adversarial review, request
+`records/ITEM2_V17_REVIEW_REQUEST.md`), errata before the acceptance test,
+then `scripts/v17_acceptance.py` once (seed range 830,000,000, never used
+before), then the result record.
+
+Design record: `records/ITEM2_V17_COMPILER_DESIGN.md` (fc0e37e).
 
 Findings from the engine source:
 - the engine's concept route is dormant (the inducer passes no concepts);
