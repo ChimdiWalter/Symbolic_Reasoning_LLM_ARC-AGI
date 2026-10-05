@@ -179,9 +179,22 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER** (fresh
-session; not begun). Licensed by the v1.7 result below. The claim stays
-LEVEL 1 until a produced extension is compiled and certified.
+**v1.8 NO-ORACLE EXTENSION PROPOSER: DESIGN DONE (d531141), IMPLEMENTATION
+NEXT** (2026-10-05; directive: design, implement, development audit,
+freeze, ONE review, errata; do NOT run the closed-loop ARC pilot).
+- Design record `records/ITEM2_V18_PROPOSER_DESIGN.md`: residual peeling
+  over K's own blocks (PARTIAL K blocks are top layers; a lower K block
+  covers the residual consistently; depth 2, then 3), frozen bounds,
+  selection = verification, P0, D (refit from v1.6's training resource),
+  MDL guess; real S5 with proposal inside every fold; S6 levels A/B/C with
+  a non-empty comparison set.
+- Development seeds 840,000,000 + 100k (40 tasks, 8 through the engine);
+  prospective seeds 860,000,000 + 100k reserved.
+- Next: `cora_arc2026/v18_proposer.py`, frozen D artifact, tests,
+  development audit, protocol, freeze, one review.
+
+Earlier: NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER (now
+in progress above).
 
 **v1.7 COMPILER: COMPILER_ACCEPTED** (2026-10-05, run once, 882.9 s;
 record `records/ITEM2_V17_COMPILER_RESULT_20261005.md`; paper section
