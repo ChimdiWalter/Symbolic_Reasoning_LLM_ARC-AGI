@@ -189,8 +189,17 @@ APPLIED, RE-FREEZE THEN ACCEPTANCE ONCE** (2026-10-05).
   external files pinned; run-once guard, start record, rows,
   NO_VERDICT_RUN_ERROR; per-arm seconds and load; supplementary 3x K* arm;
   S5 caveat; whole-tree residue and label anomalies in S3.
-- Then: re-freeze with `scripts/freeze_v17.py`, launch
-  `scripts/run_v17_acceptance.sh` ONCE, record the result.
+- RE-FROZEN at 4a9f7fa: manifest
+  a66e149cf7d971ae4166033c95cfe2567a9be5ea160c792b9abecca9d08b1f29,
+  protocol e9bb1acc, compiler 04c6b3a1, K* identity b009a9fb. Fast 36
+  passed; engine 5 passed (203.5 s); amended dev dry run passed every path
+  (142 s); `main()` mock test passed every outcome path.
+- NEXT: launch `scripts/run_v17_acceptance.sh` ONCE (detached; about 20 to
+  30 minutes; writes logs/v17/acceptance.pid, logs/v17/acceptance_start.json,
+  outputs/tti/v17_acceptance_rows.jsonl, then the report and
+  logs/V17_ACCEPTANCE_DONE). If interrupted before the marker: do NOT
+  relaunch silently; the guard refuses; record what happened and decide by
+  erratum.
 
 First freeze (superseded by the re-freeze) at d5b5e1b:
 - manifest `outputs/tti/constructive_extension_compiler_v17_manifest.json`,
