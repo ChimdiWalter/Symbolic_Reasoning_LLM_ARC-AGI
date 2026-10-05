@@ -1,0 +1,126 @@
+{
+ "acceptance": {
+  "conditions": {
+   "S1": "all compile; deterministic bytes; identical reload; fresh-process identical (first task)",
+   "S2": "no restoration failure; final snapshot equals initial",
+   "S3": "zero residue (no K*-arm winner carries e's name) and zero direct-execution disagreements for winners attributed to e",
+   "S4": ">= 5 of 6 EXTENSION_NECESSARY_AND_USED with held-out exact",
+   "S5": ">= 5 of 6 adaptive leave-one-out passed",
+   "S6": "every task SEPARATED under the bounded witness test"
+  },
+  "filter_reads": "the schema and the 7 training pairs only; never the held-out pair or the engine",
+  "max_seeds_searched": 2000,
+  "outcomes": [
+   "COMPILER_ACCEPTED",
+   "COMPILER_INTEGRATION_INCOMPLETE",
+   "COMPILER_DEFECTIVE",
+   "NO_VERDICT_FIXTURE_SHORTFALL"
+  ],
+  "script": "scripts/v17_acceptance.py",
+  "seed_base": 830000000,
+  "tasks": 6
+ },
+ "claim_ceiling": "engineering capability only; not LEVEL 2 until an extension produced without the oracle pair is compiled and certified",
+ "compiler_sha256": "999a0b9d4c58454b8cfcf6a90608c9dde6eea8535e1783b9cccbee6be49a0bae",
+ "compiler_version": "1.7.0",
+ "dependency_tree_sha256": {
+  "cora_arc2026": "327699457da617ccf9c481ea6fe8a6ef46af3fa21e053aad6494b8e6fd1aef3a",
+  "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
+  "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
+  "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
+  "level4_blind_runtime": "cad36fd5458b97ba5053c7be5cdb637e14d316c5bb000f3aba7dff7dc2c4adc8"
+ },
+ "development_fixtures": {
+  "seed_base": 810000000,
+  "seeds": [
+   810000100,
+   810004800
+  ]
+ },
+ "failure_classes": [
+  "MALFORMED_INPUT",
+  "VERSION_MISMATCH",
+  "K_IDENTITY_MISMATCH",
+  "SOURCE_HASH_MISMATCH",
+  "DECLARED_TYPE_MISMATCH",
+  "UNPARSABLE_SCHEMA",
+  "UNTYPEABLE",
+  "UNKNOWN_TERMINAL",
+  "LITERAL_INDUCED_SLOT",
+  "DUPLICATE_SLOT",
+  "LIMIT_EXCEEDED",
+  "TAMPERED_PRODUCTION",
+  "OVERLAY_CONFLICT",
+  "RESTORATION_FAILURE",
+  "KSTAR_NOT_ACTIVE"
+ ],
+ "implementation_sha256": {
+  "cora_arc2026/v13_gen.py": "1d389abe6ddb70e2eebf7f7cd9433fb3b326dc6bcf07a6a02be62f9b5215dc08",
+  "cora_arc2026/v14_loc.py": "010fe720c6f7c4f105e4f3340a3d3c6db4c57487a7a122cb2de89418a67e70c7",
+  "cora_arc2026/v15_sel.py": "810dc0a70b33583bb0469c5ddcf7e36c8b061c4e82c5d2db2bf73e848ccea501",
+  "cora_arc2026/v17_compiler.py": "999a0b9d4c58454b8cfcf6a90608c9dde6eea8535e1783b9cccbee6be49a0bae",
+  "logs/v17/feas4.py": "aba58f0b881d222a170cc6c7d67aa02bed824d7d31f58a99b50ca25db6020a0b",
+  "logs/v17/findfix.py": "218c555662b62d641252f2259036da5859d5f3e1075ab772901e0bdfd54adb20",
+  "logs/v17/fixtures.json": "fbebc474c7c21266d50e0ce6fa0d32bed4cd14e6b454f65582241ffbe1977424",
+  "records/ITEM2_V17_COMPILER_DESIGN.md": "dcc5d571cdde5962248089d0be8ad0c465ff1a7a662325e02599a68bf380ff64",
+  "scripts/freeze_v17.py": "4bb9d4a8fe9b3597489f50cf224da4e78840ebe766708ea1c8dce7482c853b5a",
+  "scripts/v17_acceptance.py": "7f9ac2c9c9af569820417b362a00ed297612bd49486647233d0a2ce04209fc5e",
+  "tests/conftest.py": "2deb6c8e8151c3d487a26651ed2a4354c6eb9afdfda9b6711d5c9e1cd72d50eb",
+  "tests/test_v17_compiler.py": "0a8d195f67d23e79db7eddd01e73ab887ac4fdacf439262dd7acf65b397b4c2d"
+ },
+ "input_keys": [
+  "compiler_version",
+  "declared_types",
+  "format",
+  "k_identity",
+  "provenance",
+  "schema",
+  "source_sha256"
+ ],
+ "k_identity": "2fe279a12d21ba3c650d6d8459382496e5d2954408605dd40c569a50213e8bfb",
+ "kstar_env": {
+  "ARC_META_BUDGET_S": "8",
+  "ARC_META_INDUCTION": "1"
+ },
+ "kstar_rules": [
+  "K*-1 expression slice: induce_computed_candidates is called with deadline=None, so the CORA expression phase receives its declared ARC_META_BUDGET_S slice per call",
+  "K*-2 fitting law: the Map[FeatureValue,Colour] learner delegates one-block one-Select ASTs to the engine's own learner and every other shape to the frozen occurrence-scoped fitter",
+  "K*-3 overlay: installed productions are appended to the expression phase's concept list"
+ ],
+ "limits": {
+  "max_blocks": 4,
+  "max_nodes": 64,
+  "max_selects_per_block": 3,
+  "max_serialized_bytes": 65536
+ },
+ "order_after_freeze": [
+  "one adversarial review",
+  "errata before the acceptance test",
+  "scripts/v17_acceptance.py once",
+  "record the outcome",
+  "next stage: no-oracle extension proposer (not in this block)"
+ ],
+ "parent": {
+  "v16_claim": "LEVEL 1, hybrid",
+  "v16_classification": "PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES",
+  "v16_result_commit": "27078d1"
+ },
+ "protocol": "CORA-TTI Item-2 v1.7 generic ConstructiveExtensionCompiler",
+ "protocol_doc": "docs/CORA_TTI_CONSTRUCTIVE_EXTENSION_COMPILER_v1.7.md",
+ "protocol_doc_sha256": "bcecb81e70dfb4ac9bf9e9fdf9182b435ca57c89d56ed5598b1e5712a80ce8d7",
+ "provenance_keys": [
+  "evidence_sha256",
+  "producer_sha256"
+ ],
+ "runtime_versions": {
+  "numpy": "2.4.3",
+  "python": "3.12.3",
+  "scipy": "1.16.3"
+ },
+ "status": "FROZEN_NOT_ACCEPTANCE_TESTED",
+ "test_results_at_freeze": {
+  "engine": "4 passed in 181.90s (pytest -m engine, 2026-10-05, compiler 1a7de00, tests edd25e1)",
+  "fast": "33 passed, 4 deselected (pytest -m 'not engine', 2026-10-05, commit c4d779a)"
+ },
+ "version": "1.7"
+}
