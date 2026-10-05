@@ -179,8 +179,20 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.7 GENERIC CONSTRUCTIVE EXTENSION COMPILER: FROZEN, ONE REVIEW NEXT**
-(2026-10-05). Frozen at d5b5e1b:
+**v1.7 GENERIC CONSTRUCTIVE EXTENSION COMPILER: REVIEW DONE, ERRATUM 01
+APPLIED, RE-FREEZE THEN ACCEPTANCE ONCE** (2026-10-05).
+- Review: `records/ITEM2_V17_REVIEW_RESULT.md` (9195641). 2 BLOCKING, 4
+  MAJOR, 12 MINOR. Access audit clean; tracked hashes identical before and
+  after.
+- Erratum: `records/ITEM2_V17_ERRATUM_01.md`. kstar() enforces the K*
+  environment; load() rebuilds from the body and requires identical bytes;
+  external files pinned; run-once guard, start record, rows,
+  NO_VERDICT_RUN_ERROR; per-arm seconds and load; supplementary 3x K* arm;
+  S5 caveat; whole-tree residue and label anomalies in S3.
+- Then: re-freeze with `scripts/freeze_v17.py`, launch
+  `scripts/run_v17_acceptance.sh` ONCE, record the result.
+
+First freeze (superseded by the re-freeze) at d5b5e1b:
 - manifest `outputs/tti/constructive_extension_compiler_v17_manifest.json`,
   sha256 418ee5c2f0e1ae30e43cdcf48de2c9faf1f55a5dfaaa566443f0b7437531bbb3;
 - protocol bcecb81e70dfb4ac9bf9e9fdf9182b435ca57c89d56ed5598b1e5712a80ce8d7;
@@ -232,11 +244,28 @@ Do not begin the proposer in this block.
 
 ## How to re-run
 
-    export PYTHONDONTWRITEBYTECODE=1 ARC_META_BUDGET_S=8
+v1.7 compiler. Every engine run and the synthetic fixtures need the K*
+environment: PYTHONHASHSEED=0 and no ARC_* variable (`kstar()` sets its own
+pair and refuses otherwise; the fixture colour tables use Python's salted
+string hash).
+
+    export PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1
+    export PYTHONPATH=/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti
+    .venv_arc2026/bin/python -m pytest tests/test_v17_compiler.py -q -p no:cacheprovider -m "not engine"
+    .venv_arc2026/bin/python -m pytest tests/test_v17_compiler.py -q -p no:cacheprovider -m engine
+    scripts/run_v17_acceptance.sh      # once only; refuses a second start
+
+The engine is deadline-bound, so engine runs are a single process at
+default priority (not `nice -n 19`, which would starve the K* arm and bias
+the ablation toward EXTENSION_NECESSARY_AND_USED); load is recorded.
+
+Older blocks:
+
+    export PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 ARC_META_BUDGET_S=8
     .venv_arc2026/bin/python scripts/audit_failure_frontier_v2.py
     .venv_arc2026/bin/python -m pytest tests/ -q
 
-Single process, `nice -n 19`, so it cannot compete with Step B's 20 workers.
+Those were single-process `nice -n 19` runs beside Step B's 20 workers.
 
 `.venv_arc2026` is this sprint's own interpreter prefix. It reads packages
 from the shared environment through a path file and can never install into

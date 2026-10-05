@@ -162,6 +162,65 @@ def test_unparsable_schema_and_tampered_production():
         assert exc.value.code == "TAMPERED_PRODUCTION"
 
 
+def _forge(p, body):
+    """A production whose name and source hash are recomputed from a
+    modified body, as a forger would do (review finding B2)."""
+    bb = X.canonical_json(body)
+    return dict(p, body=body, source_sha256=X._sha(bb),
+                name="cx_" + X._sha(b"cora-cx|" + bb + b"|" + X.canonical_json(p["signature"]))[:24])
+
+
+# 5. (erratum 01) load rebuilds the production from its own body and
+#    requires the compiler's own bytes; install goes through load
+def test_load_rejects_every_tampered_field_and_every_forged_body():
+    p = prod_of(two_block())
+    body = json.loads(json.dumps(p["body"]))
+    body["args"][0]["args"][0]["lit"] = '"\\u0063olour_components"'
+    cases = [(dict(p, induced_slots=p["induced_slots"][:1]), "TAMPERED_PRODUCTION"),
+             (dict(p, enumerable_slots=["?s0"]), "TAMPERED_PRODUCTION"),
+             (dict(p, blocks=2.0), "TAMPERED_PRODUCTION"),
+             (dict(p, compiler_version="1.7.1"), "VERSION_MISMATCH"),
+             (dict(p, compiler_sha256="0" * 64), "VERSION_MISMATCH"),
+             (dict(p, k_identity="0" * 64), "K_IDENTITY_MISMATCH"),
+             (_forge(p, dict(p["body"], task_id="task-0042")), "TAMPERED_PRODUCTION"),
+             (_forge(p, {"op": "Compose"}), "TAMPERED_PRODUCTION"),
+             (_forge(p, body), "TAMPERED_PRODUCTION")]
+    for bad, code in cases:
+        with pytest.raises(X.CompileError) as exc:
+            X.load(X.serialize(bad))
+        assert exc.value.code == code, (code, exc.value.code)
+    assert X.load(X.serialize(p)) == p
+    with X.kstar():
+        with pytest.raises(X.CompileError) as exc:
+            with X.install(cases[6][0]):
+                pass
+        assert exc.value.code == "TAMPERED_PRODUCTION" and X._STATE["overlay"] == ()
+
+
+# (erratum 01) the K* environment is enforced by kstar()
+def test_kstar_refuses_a_foreign_arc_variable_or_another_hash_seed(monkeypatch):
+    monkeypatch.setenv("ARC_DIHEDRAL_FRAMES", "1")
+    with pytest.raises(X.CompileError) as exc:
+        with X.kstar():
+            pass
+    assert exc.value.code == "KSTAR_ENVIRONMENT" and not X._STATE["active"]
+    monkeypatch.delenv("ARC_DIHEDRAL_FRAMES")
+    monkeypatch.setenv("PYTHONHASHSEED", "1")
+    with pytest.raises(X.CompileError) as exc:
+        with X.kstar():
+            pass
+    assert exc.value.code == "KSTAR_ENVIRONMENT" and not X._STATE["active"]
+
+
+# (erratum 01) terminals must be vocabulary strings; no raw TypeError
+def test_non_string_terminals_are_unknown_terminals():
+    for kw in ({"partition": {"x": 1}}, {"partition": ["colour_components"]},
+               {"predicate": {"x": 1}}, {"feature": 3}):
+        with pytest.raises(X.CompileError) as exc:
+            X.type_check(single_block(**kw))
+        assert exc.value.code == "UNKNOWN_TERMINAL", kw
+
+
 # 6. temporary install and exact restoration
 def test_install_and_restoration_leave_no_residue():
     before = X.state_snapshot()
@@ -316,7 +375,10 @@ def test_witness_separation():
     assert X.witness_separation(prod_of(k_schema), pairs)["status"] == "EQUIVALENT_TO_K"
 
 
-# metamorphic: K* is inert on every shape K itself produces
+# metamorphic, weak (review MINOR 6): on these 200 single-block schemas
+# the two fitters agree for fixture 0, but every schema takes the delegation
+# branch and most fit neither way. The inertness argument is
+# test_engine_kstar_without_overlay_never_calls_the_learner.
 def test_kstar_fitting_law_is_inert_on_k_shapes():
     _, train0, _ = fixture(0)
     schemas = SF.baseline_single_block_schemas()
@@ -340,7 +402,32 @@ def test_engine_paired_ablation(i):
     assert ab["verdict"] == "EXTENSION_NECESSARY_AND_USED", ab["verdict"]
     assert ab["with"]["heldout_exact"] and not ab["without"]["accepted"]
     assert "HYPOTHESIS_ACCEPTED" in ab["with"]["events"]
+    assert ab["with"]["engine_dir_removed"] and ab["without"]["engine_dir_removed"]
     assert X.state_snapshot() == before
+
+
+# (erratum 01) K*-2 is inert for K because K never reaches the learner:
+# without an overlay the concept route is dormant
+@pytest.mark.engine
+def test_engine_kstar_without_overlay_never_calls_the_learner(monkeypatch):
+    schema, train, _ = fixture(0)
+    p = prod_of(schema)
+    shape = X._shape_ops(M.ast_from_json(p["body"]))
+    calls = []
+    factory = X.kstar_learner_factory
+
+    def spying_factory(orig):
+        learner = factory(orig)
+
+        def spy(ast, pairs, slot):
+            calls.append(X._shape_ops(ast))
+            return learner(ast, pairs, slot)
+        return spy
+    monkeypatch.setattr(X, "kstar_learner_factory", spying_factory)
+    X.run_reasoner(train, ())
+    assert calls == []
+    X.run_reasoner(train, (p,))
+    assert calls and all(c == shape for c in calls)
 
 
 @pytest.mark.engine

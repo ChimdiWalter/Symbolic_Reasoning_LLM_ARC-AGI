@@ -45,6 +45,8 @@ KSTAR_RULES = (
     "K*-2 fitting law: the Map[FeatureValue,Colour] learner delegates one-block one-Select "
     "ASTs to the engine's own learner and every other shape to the frozen occurrence-scoped fitter",
     "K*-3 overlay: installed productions are appended to the expression phase's concept list",
+    "K* environment: kstar() refuses unless PYTHONHASHSEED=0 and no ARC_* variable is set "
+    "other than the K* pair",
 )
 KSTAR_ENV = {"ARC_META_INDUCTION": "1", "ARC_META_BUDGET_S": "8"}
 
@@ -52,7 +54,7 @@ FAILURE_CLASSES = (
     "MALFORMED_INPUT", "VERSION_MISMATCH", "K_IDENTITY_MISMATCH", "SOURCE_HASH_MISMATCH",
     "DECLARED_TYPE_MISMATCH", "UNPARSABLE_SCHEMA", "UNTYPEABLE", "UNKNOWN_TERMINAL",
     "LITERAL_INDUCED_SLOT", "DUPLICATE_SLOT", "LIMIT_EXCEEDED", "TAMPERED_PRODUCTION",
-    "OVERLAY_CONFLICT", "RESTORATION_FAILURE", "KSTAR_NOT_ACTIVE",
+    "OVERLAY_CONFLICT", "RESTORATION_FAILURE", "KSTAR_NOT_ACTIVE", "KSTAR_ENVIRONMENT",
 )
 
 
@@ -98,15 +100,30 @@ _K_IDENTITY = None
 
 def k_identity() -> str:
     """Identity of the frozen reasoner K*: the engine source tree, the
-    occurrence-scoped fitter, the K* rules and the K* environment."""
+    occurrence-scoped fitter, the K* rules, the K* environment and this
+    file, which implements K*."""
     global _K_IDENTITY
     if _K_IDENTITY is None:
         here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         _K_IDENTITY = _sha(canonical_json({
             "geocat_arc_tree": L.tree_digest(os.path.join(here, "geocat_arc")),
             "fitter": _sf().fitter_identity(),
-            "kstar_rules": list(KSTAR_RULES), "kstar_env": KSTAR_ENV}))
+            "kstar_rules": list(KSTAR_RULES), "kstar_env": KSTAR_ENV,
+            "kstar_implementation": compiler_sha256()}))
     return _K_IDENTITY
+
+
+def kstar_environment_problems() -> list:
+    """K*'s environment: PYTHONHASHSEED=0 (hash randomization off) and no
+    ARC_* variable other than the K* pair, which kstar() sets itself."""
+    import sys
+    problems = []
+    if os.environ.get("PYTHONHASHSEED") != "0" or sys.flags.hash_randomization != 0:
+        problems.append("PYTHONHASHSEED is not 0")
+    for k in sorted(os.environ):
+        if k.startswith("ARC_") and k not in KSTAR_ENV:
+            problems.append(f"foreign {k}")
+    return problems
 
 
 # --------------------------------------------------------------------------
@@ -159,10 +176,10 @@ def parse_blocks(ast):
             raise CompileError("LITERAL_INDUCED_SLOT", "a Lookup is bound to a literal table")
         for value, vocab, kind in ((partition, M.PARTITIONS, "partition"),
                                    (feature, M.KEY_FEATURES, "feature")):
-            if not _is_slot(value) and value not in vocab:
+            if not _is_slot(value) and not (isinstance(value, str) and value in vocab):
                 raise CompileError("UNKNOWN_TERMINAL", f"{kind} {value!r}")
         for q in preds:
-            if not _is_slot(q) and q not in M.PREDICATES:
+            if not _is_slot(q) and not (isinstance(q, str) and q in M.PREDICATES):
                 raise CompileError("UNKNOWN_TERMINAL", f"predicate {q!r}")
         if len(preds) > LIMITS["max_selects_per_block"]:
             raise CompileError("LIMIT_EXCEEDED", "too many Select stages in a block")
@@ -272,14 +289,16 @@ def validate_input(inp) -> None:
         raise CompileError("SOURCE_HASH_MISMATCH", "schema does not match its declared hash")
 
 
-def compile_extension(inp) -> dict:
-    """Input dict -> canonical production dict, or CompileError."""
+PRODUCTION_KEYS = frozenset({"format", "name", "signature", "body", "induced_slots",
+                             "enumerable_slots", "blocks", "source_sha256", "compiler_version",
+                             "compiler_sha256", "k_identity"})
+
+
+def _build(ast) -> dict:
+    """The one path from a meta-AST to a production: typing law,
+    canonicalization and every content-derived field. Used by both
+    compile_extension and load."""
     M, _ = _meta()
-    validate_input(inp)
-    try:
-        ast = M.ast_from_json(inp["schema"])
-    except Exception as exc:                                   # noqa: BLE001
-        raise CompileError("UNPARSABLE_SCHEMA", type(exc).__name__)
     types = type_check(ast)
     canon, mapping = canonicalize(ast)
     ctypes = {mapping[s]: t for s, t in types.items()}
@@ -294,10 +313,21 @@ def compile_extension(inp) -> dict:
             "enumerable_slots": [s for s in order if ctypes[s] != INDUCED_TYPE],
             "blocks": len(parse_blocks(canon)), "source_sha256": _sha(body_bytes),
             "compiler_version": COMPILER_VERSION, "compiler_sha256": compiler_sha256(),
-            "k_identity": inp["k_identity"]}
+            "k_identity": k_identity()}
     if len(serialize(prod)) > LIMITS["max_serialized_bytes"]:
         raise CompileError("LIMIT_EXCEEDED", "serialized production too large")
     return prod
+
+
+def compile_extension(inp) -> dict:
+    """Input dict -> canonical production dict, or CompileError."""
+    M, _ = _meta()
+    validate_input(inp)
+    try:
+        ast = M.ast_from_json(inp["schema"])
+    except Exception as exc:                                   # noqa: BLE001
+        raise CompileError("UNPARSABLE_SCHEMA", type(exc).__name__)
+    return _build(ast)
 
 
 def serialize(prod) -> bytes:
@@ -305,32 +335,32 @@ def serialize(prod) -> bytes:
 
 
 def load(data: bytes) -> dict:
-    """Reload a serialized production, recomputing every content-derived
-    field; any disagreement is TAMPERED_PRODUCTION."""
+    """Reload a serialized production. The production is rebuilt from its
+    own body by the compiler's single path, and the bytes must be identical:
+    every field, its type and its encoding. Another compiler build or K* is
+    VERSION_MISMATCH or K_IDENTITY_MISMATCH; any other difference, or any
+    failure to parse or type the body, is TAMPERED_PRODUCTION."""
     M, _ = _meta()
     try:
         prod = json.loads(data)
     except Exception as exc:                                   # noqa: BLE001
         raise CompileError("TAMPERED_PRODUCTION", type(exc).__name__)
-    keys = {"format", "name", "signature", "body", "induced_slots", "enumerable_slots",
-            "blocks", "source_sha256", "compiler_version", "compiler_sha256", "k_identity"}
-    if not isinstance(prod, dict) or set(prod) != keys or prod["format"] != FORMAT_PRODUCTION:
+    if not isinstance(prod, dict) or set(prod) != PRODUCTION_KEYS \
+            or prod["format"] != FORMAT_PRODUCTION:
         raise CompileError("TAMPERED_PRODUCTION", "fields")
-    ast = M.ast_from_json(prod["body"])
-    types = type_check(ast)
-    canon, _ = canonicalize(ast)
-    if canon != ast:
-        raise CompileError("TAMPERED_PRODUCTION", "body is not canonical")
-    body_bytes = canonical_json(prod["body"])
-    order = [f"?s{i}" for i in range(len(types))]
-    signature = {"input": "Grid", "result": "Grid", "args": [[s, types[s]] for s in order]}
-    name = "cx_" + _sha(b"cora-cx|" + body_bytes + b"|" + canonical_json(signature))[:24]
-    if prod["signature"] != signature or prod["name"] != name or \
-            prod["source_sha256"] != _sha(body_bytes) or prod["blocks"] != len(parse_blocks(ast)):
-        raise CompileError("TAMPERED_PRODUCTION", "content-derived field mismatch")
-    if serialize(prod) != data:
-        raise CompileError("TAMPERED_PRODUCTION", "not the canonical serialization")
-    return prod
+    if prod["compiler_version"] != COMPILER_VERSION or prod["compiler_sha256"] != compiler_sha256():
+        raise CompileError("VERSION_MISMATCH", "production from another compiler build")
+    if prod["k_identity"] != k_identity():
+        raise CompileError("K_IDENTITY_MISMATCH", "production compiled for another K*")
+    try:
+        rebuilt = _build(M.ast_from_json(prod["body"]))
+    except CompileError as exc:
+        raise CompileError("TAMPERED_PRODUCTION", f"body fails the typing law: {exc.code}")
+    except Exception as exc:                                   # noqa: BLE001
+        raise CompileError("TAMPERED_PRODUCTION", f"body does not parse: {type(exc).__name__}")
+    if serialize(rebuilt) != data:
+        raise CompileError("TAMPERED_PRODUCTION", "not the compiler's own bytes for this body")
+    return rebuilt
 
 
 def elaborate(prod, bindings: dict):
@@ -384,10 +414,19 @@ def kstar_learner_factory(orig):
 
 
 def state_snapshot() -> str:
-    """Hash of everything an installation could leave behind: the expression
-    phase entry point, the slot-learner registry, the meta vocabulary and
-    signatures, every non-callable module value of the meta modules and of
-    the fitter, the ARC_* environment and this module's overlay state."""
+    """Hash of the in-process state an installation or a K* run could
+    change: the expression-phase entry point, the slot-learner registry,
+    every module value of meta_ast, meta_induction and the fitter (callables
+    by module, qualified name and bytecode; other values by repr), the ARC_*
+    environment and this module's overlay state.
+
+    Not covered here, and handled by run hygiene instead: memo caches inside
+    geocat_arc (cleared at the start of every run, so they carry nothing
+    into a later run), engine directories (fresh per run and removed after
+    it), and the flag-gated engine caches (unreachable, because kstar()
+    refuses foreign ARC_* variables). sys.modules and non-ARC environment
+    variables are not covered: lazy imports inside a first run would change
+    them without carrying an extension."""
     M, MI = _meta()
     SF = _sf()
 
@@ -399,13 +438,14 @@ def state_snapshot() -> str:
              ["learners", sorted([k, fn_id(v)] for k, v in MI.SLOT_LEARNERS.items())],
              ["env", sorted((k, v) for k, v in os.environ.items() if k.startswith("ARC_"))],
              ["overlay", [c.name for c in _STATE["overlay"]]],
+             ["installed", list(_STATE["installed"])],
              ["active", _STATE["active"]]]
     for mod in (M, MI, SF):
         for k in sorted(vars(mod)):
             v = vars(mod)[k]
-            if callable(v) or type(v).__name__ == "module" or k.startswith("__") or k == "SLOT_LEARNERS":
+            if type(v).__name__ == "module" or k.startswith("__") or k == "SLOT_LEARNERS":
                 continue
-            items.append([mod.__name__, k, repr(v)])
+            items.append([mod.__name__, k, fn_id(v) if callable(v) else repr(v)])
     return _sha(json.dumps(items, default=str).encode())
 
 
@@ -416,6 +456,9 @@ def kstar():
     M, MI = _meta()
     if _STATE["active"]:
         raise CompileError("OVERLAY_CONFLICT", "K* is already active")
+    problems = kstar_environment_problems()
+    if problems:
+        raise CompileError("KSTAR_ENVIRONMENT", "; ".join(problems))
     before = state_snapshot()
     orig_icc = MI.induce_computed_candidates
     orig_learner = MI.SLOT_LEARNERS[INDUCED_TYPE]
@@ -451,9 +494,9 @@ def kstar():
 
 @contextlib.contextmanager
 def install(*productions):
-    """K* -> K* + {e,...} for the duration of the context, then exactly K*.
-    Productions are reloaded from their canonical bytes first, so a mutated
-    or forged object cannot be installed."""
+    """K* -> K* + {e,...} for the duration of the context, then K* again
+    (verified by snapshot). Each production is reloaded through load(), so
+    only the compiler's own bytes for a body can be installed."""
     if not _STATE["active"]:
         raise CompileError("KSTAR_NOT_ACTIVE", "install() needs an active kstar()")
     if _STATE["overlay"]:
@@ -516,8 +559,10 @@ def structurally_instantiates(program, prod) -> bool:
 
 
 def uses_extension(program, prod) -> bool:
-    """Exact audit: the winning program is a computed pattern carrying the
-    production's name AND its AST instantiates the production's body."""
+    """Audit: the winning program, unwrapped from dihedral frames only, is a
+    computed pattern carrying the production's name AND its AST instantiates
+    the production's body. Conservative: e used as a stage inside a
+    composed, overlay or other wrapper is not credited."""
     d = program if isinstance(program, dict) else program.to_dict()
     while d.get("program_class") == "framed":
         d = d["inner"]
@@ -531,26 +576,36 @@ def uses_extension(program, prod) -> bool:
 
 def run_reasoner(train_pairs, productions=(), budget_s=8.0, workdir=None, task_id="task") -> dict:
     """One solve by the real engine under K* (+ the given productions), with
-    a fresh engine directory and cleared memo caches."""
+    a fresh engine directory and cleared memo caches. The directory is
+    removed after the run; the solution's apply_fn is rebuilt by the engine
+    from the serialized program and reads nothing from it."""
+    import shutil
+    import time
     import numpy as np
     from geocat_arc.object_reasoning.engine import ObjectReasoningEngine
     from geocat_arc.object_reasoning.inducer import InductionConfig
     L.clear_engine_caches()
     d = tempfile.mkdtemp(prefix="v17run_", dir=workdir)
     pairs = [(np.asarray(a), np.asarray(b)) for a, b in train_pairs]
-    with kstar():
-        if productions:
-            with install(*productions):
+    started = time.time()
+    try:
+        with kstar():
+            if productions:
+                with install(*productions):
+                    eng = ObjectReasoningEngine(d, use_library=True,
+                                                config=InductionConfig(budget_s=float(budget_s)))
+                    res = eng.solve(task_id, pairs)
+            else:
                 eng = ObjectReasoningEngine(d, use_library=True,
                                             config=InductionConfig(budget_s=float(budget_s)))
                 res = eng.solve(task_id, pairs)
-        else:
-            eng = ObjectReasoningEngine(d, use_library=True,
-                                        config=InductionConfig(budget_s=float(budget_s)))
-            res = eng.solve(task_id, pairs)
+    finally:
+        seconds = round(time.time() - started, 2)
+        shutil.rmtree(d, ignore_errors=True)
     sol = res.solution
     return {"accepted": sol is not None, "program": sol.program_json if sol else None,
-            "apply_fn": sol.apply_fn if sol else None, "engine_dir": d,
+            "apply_fn": sol.apply_fn if sol else None, "seconds": seconds,
+            "engine_dir_removed": not os.path.exists(d),
             "events": list(res.induction.events) if res.induction else []}
 
 
@@ -578,8 +633,9 @@ def paired_ablation(train_pairs, prod, heldout=None, budget_s=8.0, workdir=None,
         verdict = "SOLVED_WITHOUT_USING_EXTENSION"
     else:
         verdict = "NOT_SOLVED_WITH_EXTENSION"
-    out = {"verdict": verdict, "with": {k: a[k] for k in ("accepted", "program", "events")},
-           "without": {k: b[k] for k in ("accepted", "program", "events")},
+    keep = ("accepted", "program", "events", "seconds", "engine_dir_removed")
+    out = {"verdict": verdict, "with": {k: a[k] for k in keep},
+           "without": {k: b[k] for k in keep},
            "with_uses_extension": used}
     if heldout is not None:
         out["with"]["heldout_exact"] = predict_exact(a, *heldout)
@@ -628,13 +684,15 @@ def witness_separation(prod, pairs) -> dict:
     evaluate = (lambda ast, grid: M.evaluate(ast, np.asarray(grid), MI.descriptors))
     fp = CP.fingerprint(fitted, evaluate)
     base = SF.base_search_with_scoped_fitter(pairs)
-    equal = 0
+    equal = errors = 0
     for _schema, fitted_b in base["fitted_pairs"]:
         try:
             if CP.fingerprint(fitted_b, evaluate) == fp:
                 equal += 1
         except Exception:                                      # noqa: BLE001
-            continue
+            #  the frozen probe convention: an erroring program is rejected,
+            #  never treated as undefined; counted so it is visible
+            errors += 1
     return {"status": "SEPARATED" if equal == 0 else "EQUIVALENT_TO_K",
             "equivalent_k_programs": equal, "k_programs_fitted": len(base["fitted_pairs"]),
-            "k_exact": base["exact"]}
+            "k_fingerprint_errors": errors, "k_exact": base["exact"]}

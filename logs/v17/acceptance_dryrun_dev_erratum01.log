@@ -1,0 +1,976 @@
+{
+ "row": {
+  "seed": 810000100,
+  "family": "(1,0)",
+  "blocks": 2,
+  "name": "cx_c950d1b8990e3f36254b8f23",
+  "fresh_process_identical": true,
+  "S1_compiles_deterministic_reload": true,
+  "witness": {
+   "status": "SEPARATED",
+   "equivalent_k_programs": 0,
+   "k_programs_fitted": 0,
+   "k_fingerprint_errors": 0,
+   "k_exact": 0
+  },
+  "ablation": {
+   "verdict": "EXTENSION_NECESSARY_AND_USED",
+   "with_uses": true,
+   "with": {
+    "accepted": true,
+    "program": {
+     "program_class": "computed_pattern",
+     "ast": {
+      "op": "Compose",
+      "args": [
+       {
+        "op": "Partition",
+        "args": [
+         {
+          "lit": "\"separator_panels\""
+         }
+        ]
+       },
+       {
+        "op": "Select",
+        "args": [
+         {
+          "lit": "\"all\""
+         }
+        ]
+       },
+       {
+        "op": "Map",
+        "args": [
+         {
+          "op": "Key",
+          "args": [
+           {
+            "lit": "\"is_square\""
+           }
+          ]
+         },
+         {
+          "op": "Lookup",
+          "args": [
+           {
+            "lit": "[[false, 9], [true, 5]]"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "op": "Paint",
+        "args": []
+       },
+       {
+        "op": "Partition",
+        "args": [
+         {
+          "lit": "\"colour_components\""
+         }
+        ]
+       },
+       {
+        "op": "Map",
+        "args": [
+         {
+          "op": "Key",
+          "args": [
+           {
+            "lit": "\"is_square\""
+           }
+          ]
+         },
+         {
+          "op": "Lookup",
+          "args": [
+           {
+            "lit": "[[false, 3], [true, 8]]"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "op": "Paint",
+        "args": []
+       }
+      ]
+     },
+     "grammar_concepts_used": [
+      "cx_c950d1b8990e3f36254b8f23",
+      "Compose",
+      "Partition:separator_panels",
+      "Select:all",
+      "Map",
+      "Key:is_square",
+      "Lookup",
+      "Paint",
+      "Partition:colour_components",
+      "Map",
+      "Key:is_square",
+      "Lookup",
+      "Paint"
+     ],
+     "concept": "cx_c950d1b8990e3f36254b8f23",
+     "provenance": []
+    },
+    "events": [
+     "TASK_OBSERVED",
+     "META_COMPUTED_CANDIDATE_FOUND",
+     "HYPOTHESIS_PROPOSED",
+     "HYPOTHESIS_ACCEPTED",
+     "REASONING_CERTIFICATE_CREATED",
+     "TASK_PROMOTED_TO_SOLVED",
+     "FINAL_PREDICTION_EMITTED"
+    ],
+    "seconds": 15.42,
+    "engine_dir_removed": true,
+    "heldout_exact": true
+   },
+   "without": {
+    "accepted": false,
+    "program": null,
+    "events": [
+     "TASK_OBSERVED",
+     "HYPOTHESIS_REJECTED"
+    ],
+    "seconds": 8.1,
+    "engine_dir_removed": true,
+    "heldout_exact": false
+   },
+   "audit": {
+    "direct_agrees": true,
+    "label_anomaly": false,
+    "nested_use": false
+   }
+  },
+  "baseline_3x": {
+   "budget_s": 24.0,
+   "accepted": false,
+   "heldout_exact": false,
+   "seconds": 17.09,
+   "program": null,
+   "engine_dir_removed": true
+  },
+  "adaptive_loo": {
+   "passed": true,
+   "folds": [
+    {
+     "fold": 0,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.33,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    },
+    {
+     "fold": 1,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.35,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    },
+    {
+     "fold": 2,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.39,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    },
+    {
+     "fold": 3,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.32,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    },
+    {
+     "fold": 4,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.3,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    },
+    {
+     "fold": 5,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.32,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    },
+    {
+     "fold": 6,
+     "status": "RUN",
+     "production": "cx_c950d1b8990e3f36254b8f23",
+     "accepted": true,
+     "uses_extension": true,
+     "heldout_exact": true,
+     "audit": {
+      "direct_agrees": true,
+      "label_anomaly": false,
+      "nested_use": false
+     },
+     "seconds": 14.4,
+     "program": {
+      "program_class": "computed_pattern",
+      "ast": {
+       "op": "Compose",
+       "args": [
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"separator_panels\""
+          }
+         ]
+        },
+        {
+         "op": "Select",
+         "args": [
+          {
+           "lit": "\"all\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 9], [true, 5]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        },
+        {
+         "op": "Partition",
+         "args": [
+          {
+           "lit": "\"colour_components\""
+          }
+         ]
+        },
+        {
+         "op": "Map",
+         "args": [
+          {
+           "op": "Key",
+           "args": [
+            {
+             "lit": "\"is_square\""
+            }
+           ]
+          },
+          {
+           "op": "Lookup",
+           "args": [
+            {
+             "lit": "[[false, 3], [true, 8]]"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "op": "Paint",
+         "args": []
+        }
+       ]
+      },
+      "grammar_concepts_used": [
+       "cx_c950d1b8990e3f36254b8f23",
+       "Compose",
+       "Partition:separator_panels",
+       "Select:all",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint",
+       "Partition:colour_components",
+       "Map",
+       "Key:is_square",
+       "Lookup",
+       "Paint"
+      ],
+      "concept": "cx_c950d1b8990e3f36254b8f23",
+      "provenance": []
+     }
+    }
+   ]
+  },
+  "attribution": {
+   "residue": 0,
+   "direct_disagreements": 0,
+   "label_anomalies": 0,
+   "nested_uses": 0
+  },
+  "loadavg": {
+   "start": [
+    41.4,
+    41.38,
+    41.88
+   ],
+   "end": [
+    41.43,
+    41.39,
+    41.8
+   ]
+  }
+ },
+ "snapshot_equal": true,
+ "seconds": 142.1
+}
+dryrun exit 0

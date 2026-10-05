@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_arc2026/.venv_arc2026/bin/python
+rootdir: /deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_arc2026
+plugins: hydra-core-1.3.2, anyio-4.13.0, zarr-3.1.6, typeguard-4.5.1, fast-array-utils-1.4.1
+collecting ... collected 41 items / 36 deselected / 5 selected
+
+tests/test_v17_compiler.py::test_engine_paired_ablation[0] PASSED        [ 20%]
+tests/test_v17_compiler.py::test_engine_paired_ablation[1] PASSED        [ 40%]
+tests/test_v17_compiler.py::test_engine_kstar_without_overlay_never_calls_the_learner PASSED [ 60%]
+tests/test_v17_compiler.py::test_engine_task_id_invariance PASSED        [ 80%]
+tests/test_v17_compiler.py::test_engine_adaptive_loo_with_recompilation_in_every_fold PASSED [100%]
+
+================= 5 passed, 36 deselected in 203.51s (0:03:23) =================
+engine exit 0
