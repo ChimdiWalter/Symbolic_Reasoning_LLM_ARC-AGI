@@ -179,33 +179,36 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.9 ENGINE ACCEPTANCE STABILITY AUDIT: DEVELOPMENT DIAGNOSIS RUNNING**
-(user directive 2026-10-06 "v1.9 ENGINE ACCEPTANCE STABILITY + REAL-ARC
-READINESS PROGRAM"; diagnosis first, then ONE generic repair, tests,
-freeze, ONE review, errata; STOP before the v1.9 prospective test).
-- Protocol `docs/CORA_TTI_ENGINE_STABILITY_AUDIT_v1.9.md` (sections 1-13
-  pre-frozen at 81065a3, manifest `outputs/tti/v19_audit_prefreeze_manifest.json`
-  sha256 de7bca3d). Tracer `cora_arc2026/v19_trace.py` (observation only,
-  engine/fitter/compiler/proposer untouched, K* b009a9fb unchanged), audit
-  `cora_arc2026/v19_audit.py`, driver `scripts/v19_audit_dev.py`, analysis
-  `scripts/v19_audit_analyze.py`, tests `tests/test_v19_audit.py` (9 fast +
-  1 engine pass; traced == untraced decisions).
-- Engine path read from source: rejection = train-perfect but the engine's
-  OWN leave-one-out by re-induction failed (each N-1 subset re-runs the
-  whole search; its top-ranked program must reproduce the held-out pair).
-  Candidate mechanisms: K*-2 fitter refusal on N-1 (MIN_KEY_WITNESSES=2,
-  hidden keys), a competitor outranking e (smoke test: a pixel-rule
-  reduction, parameter class RELATIONAL, outranked e INDUCED_MAP), time.
-- Development range 870,000,000 + 100k; prospective range 880,000,000 +
-  100k RESERVED (never generated). E_dev = 3,817 + 30 v1.8 prospective.
-- RUNNING: pipeline pid 1410140 (own session), 3 workers, launch record
-  `logs/v19/audit_launch.json`, log `logs/v19/audit_pipeline.log`; marker
-  `logs/v19/AUDIT_DONE`; report `outputs/tti/v19_audit_report.json`.
-  Restart if it dies before the marker: `setsid nohup bash logs/v19/run_audit.sh`.
-- Do NOT edit any pinned file (the workers refuse) until AUDIT_DONE; then
-  write the repair sections (14+) of the protocol, implement ONE generic
-  repair as a new K* rule outside geocat_arc, dev ablations A-E,
-  regression suite, freeze, ONE review, errata, re-freeze, STOP.
+**v1.9 ENGINE ACCEPTANCE STABILITY: DIAGNOSIS DONE, REPAIR BUILT, DEV ABLATION RUNNING**
+(user directive 2026-10-06; diagnosis -> ONE generic repair -> tests ->
+freeze -> ONE review -> errata; STOP before the v1.9 prospective test).
+- DIAGNOSIS (d9b4479, `records/ITEM2_V19_AUDIT_DIAGNOSIS.md`): success
+  condition PASS (145/145 events mechanistic and reproducing in process and
+  in a fresh process; traced == untraced 12/12). Dominant mechanism H1
+  re-induction instability 145/145: SLOT_FIT_FAILED:witness 86 (K*-2
+  fitter's MIN_KEY_WITNESSES=2 re-applied inside the engine's five-pair
+  refits), RANKED_BELOW_COMPETITOR 59 (pixel-rule reductions labelled
+  RELATIONAL with unpriced tables outrank e). Load and budget eliminated
+  (CPU1 and CPU10: 0/18 decisions changed each); H4 0/30.
+- REPAIR K*-4 installed-extension re-induction (`cora_arc2026/v19_repair.py`,
+  protocol sections 14-15, 1e5937e): while an extension is installed, the
+  installed concept is fitted with every consistent witness and ranks first
+  in every ranking; gate unchanged; inert with nothing installed. Tests
+  `tests/test_v19_repair.py` 6 fast + 3 engine pass.
+- RUNNING: dev ablation pipeline pid 1546874 (own session, 4 workers),
+  launch record `logs/v19/repair_dev_launch.json`, marker
+  `logs/v19/REPAIR_DEV_DONE`, report `outputs/tti/v19_repair_dev_report.json`.
+  Restart if it dies: `setsid nohup bash logs/v19/run_repair_dev.sh`.
+- AFTER the marker, in order: (1) MOVE the three v1.9 modules from
+  cora_arc2026/ to a new package cora_v19/ (adding them broke v1.8's pinned
+  cora_arc2026 tree digest; without them it matches 9032ec17 exactly), fix
+  imports, rerun tests; (2) run `scripts/v19_falseaccept_dev.py` (more
+  wrong-extension trials) and decide whether the prospective control uses
+  it; (3) `scripts/v19_feasibility.py` -> thresholds into
+  `scripts/v19_prospective.py`; (4) records ITEM2_V19_REPAIR_DEVELOPMENT.md
+  and ITEM2_V19_FEASIBILITY.md; (5) `scripts/freeze_v19.py`; (6) ONE review;
+  errata; re-freeze; STOP. Drafts committed c2584a2 (not frozen).
+- Development range 870M + 100k; prospective 880M + 100k RESERVED.
 
 **STOPPED: v1.8 PROSPECTIVE = FAILURE_SPECIFIC_BUT_NOT_END_TO_END** (run once
 2026-10-06, 5,911.6 s; record `records/ITEM2_V18_PROSPECTIVE_RESULT_20261006.md`;
