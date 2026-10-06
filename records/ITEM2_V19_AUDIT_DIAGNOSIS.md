@@ -127,3 +127,20 @@ effect is in its own development ablation, not in this projection.
   (measured next, on development data, then prospectively on new data).
 - Nothing here touches real ARC data, Step B, the protected holdout, VDCG,
   E_transfer or the lockbox. v1.8 is untouched.
+
+## Addendum (2026-10-06, after the false-acceptance measurements)
+
+- The H1/H2 split of the 86 fitting events depends on the identification
+  standard frozen in protocol section 6 (one consistent witness suffices).
+  Under the scoped fitter's own two-witness standard, a key seen once among
+  the five pairs of a re-induction is not identified, and those 86 events
+  would be H2. The 59 ranking events are H1 under either standard (the
+  extension fits under the fitter's own rules; a pixel rule outranks it).
+- Supplementary development measurements (protocol section 15a): with seven
+  demonstrations no wrong verified extension exists on these 30 tasks; with
+  four, the engine's own leave-one-out gate does not discriminate right
+  from wrong installed extensions in any logic (K* accepts 8 of 24 right and
+  6 of 19 wrong; K*' 24 of 24 and 19 of 19; each clause alone raises both).
+  The old rejections diagnosed here were therefore indiscriminate: they cost
+  recall and bought no measured safety against wrong extensions. They are
+  still the rejections that blocked v1.8.
