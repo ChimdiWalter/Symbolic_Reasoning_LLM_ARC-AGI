@@ -195,19 +195,44 @@ freeze -> ONE review -> errata; STOP before the v1.9 prospective test).
   installed concept is fitted with every consistent witness and ranks first
   in every ranking; gate unchanged; inert with nothing installed. Tests
   `tests/test_v19_repair.py` 6 fast + 3 engine pass.
-- RUNNING: dev ablation pipeline pid 1546874 (own session, 4 workers),
-  launch record `logs/v19/repair_dev_launch.json`, marker
-  `logs/v19/REPAIR_DEV_DONE`, report `outputs/tti/v19_repair_dev_report.json`.
-  Restart if it dies: `setsid nohup bash logs/v19/run_repair_dev.sh`.
-- AFTER the marker, in order: (1) MOVE the three v1.9 modules from
-  cora_arc2026/ to a new package cora_v19/ (adding them broke v1.8's pinned
-  cora_arc2026 tree digest; without them it matches 9032ec17 exactly), fix
-  imports, rerun tests; (2) run `scripts/v19_falseaccept_dev.py` (more
-  wrong-extension trials) and decide whether the prospective control uses
-  it; (3) `scripts/v19_feasibility.py` -> thresholds into
-  `scripts/v19_prospective.py`; (4) records ITEM2_V19_REPAIR_DEVELOPMENT.md
-  and ITEM2_V19_FEASIBILITY.md; (5) `scripts/freeze_v19.py`; (6) ONE review;
-  errata; re-freeze; STOP. Drafts committed c2584a2 (not frozen).
+- RUNNING (detached, survive session restarts; rows written per task):
+  (a) dev ablation pipeline pid 1546874 (4 workers), marker
+  `logs/v19/REPAIR_DEV_DONE`, report `outputs/tti/v19_repair_dev_report.json`,
+  restart `setsid nohup bash logs/v19/run_repair_dev.sh`;
+  (b) reduced-demonstration false-acceptance measurement pid 1599196
+  (3 workers, script committed 8c668f8 before it ran), marker
+  `logs/v19/FALSEACCEPT_REDUCED_DEV_DONE`, report
+  `outputs/tti/v19_falseaccept_reduced_dev_report.json`, restart
+  `setsid nohup bash logs/v19/run_falseaccept_reduced_dev.sh`;
+  (c) WATCHER `logs/v19/v19_watch.sh` pid 1603534 (lock
+  `logs/v19/v19_watch.lock`, log `logs/v19/v19_watch.log`): relaunches (a)
+  or (b) if gone before its marker (3 restarts max each), writes
+  `logs/v19/V19_DEV_ALL_DONE` when both markers exist, then removes its
+  `@reboot` crontab hook (installed 2026-10-06, `sleep 300`; crontab backup
+  in the session scratchpad `crontab_before_v19.txt`, 22 lines). No git
+  operations in the watcher.
+- FALSE-ACCEPTANCE FINDING (dev, 8c668f8): the section-15 single e_wrong
+  rule and the wider pool + transplant + BLIND rule found 0 wrong
+  extensions in 30 tasks (seven pairs pin down every verified candidate),
+  so the control is vacuous there. Measuring the reduced-demonstration
+  control (train on pairs 0-3, evaluate on 4-6 + held-out, wrong
+  candidates exist by ambiguity) before the freeze; if informative it
+  becomes the prospective control (update protocol section 16 + script).
+- Early ablation rows (dev): 57/57 old-accepted runs keep the identical
+  program under K*'; 0 residual K*' rejections; category-A adaptive LOO
+  3/7 and 2/7 -> 7/7.
+- AFTER both markers, in order: (1) commit all v1.9 dev outputs (force-add
+  outputs/ and logs/); (2) MOVE cora_arc2026/v19_{trace,audit,repair}.py to
+  a new package cora_v19/ (they broke v1.8's pinned cora_arc2026 tree
+  digest; without them it matches 9032ec17 exactly), fix imports in
+  cora_v19/v19_audit.py, scripts/v19_audit_dev.py, scripts/v19_repair_dev.py,
+  tests/test_v19_audit.py, tests/test_v19_repair.py; rerun all v1.9 tests;
+  (3) decide the prospective false-acceptance control from (b); (4)
+  `scripts/v19_feasibility.py` -> N/W/DELTA into `scripts/v19_prospective.py`;
+  (5) records ITEM2_V19_REPAIR_DEVELOPMENT.md + ITEM2_V19_FEASIBILITY.md;
+  (6) `scripts/freeze_v19.py`; commit; (7) ONE adversarial review (request
+  record, tracked-hash snapshot, scan its tool inputs); errata; re-freeze;
+  STOP before the prospective test.
 - Development range 870M + 100k; prospective 880M + 100k RESERVED.
 
 **STOPPED: v1.8 PROSPECTIVE = FAILURE_SPECIFIC_BUT_NOT_END_TO_END** (run once
