@@ -247,3 +247,111 @@ branch, no generator schema in any engine input, no prospective tuning.
 The distribution of codes and mechanisms is reported. A mechanism is
 dominant when it accounts for at least half of the rejection events; if
 none does, the record says so.
+
+## 14. The repair: K*-4, installed-extension re-induction
+
+Written 2026-10-06 after the development diagnosis
+(`records/ITEM2_V19_AUDIT_DIAGNOSIS.md`: 145 of 145 rejection events H1;
+86 single-witness refits, 59 pixel-rule rankings; load, budget and
+selection quality eliminated). Implementation `cora_arc2026/v19_repair.py`.
+
+Rule (one rule, one principle): while an extension is installed (K*-3
+overlay non-empty), every re-induction of the run re-derives the installed
+extension ITSELF from that re-induction's demonstrations, and the engine's
+unchanged gate decides:
+- fitting: the installed concept's induced tables are fitted by the frozen
+  scoped fitter with every consistent witness (MIN_KEY_WITNESSES = 1 for
+  the duration of the installed-concept search). Identification is left to
+  the leave-one-out, which re-fits the concept without the held-out pair
+  and requires that pair exactly, so a key must still appear in at least
+  two demonstrations: the witness rule's own stated standard ("a key
+  witnessed by a single demonstration cannot be re-derived by the fold that
+  holds that demonstration out"), enforced once by the gate instead of
+  again inside every re-induction, where it demanded a third witness;
+- ranking: in every ranking of the run (`inducer.rank_candidates`,
+  `inducer.rank_by_score`) the installed concept's candidates come first
+  in the native order among themselves, then the native candidates in the
+  native order. A native candidate still wins every re-induction whose
+  demonstrations the installed concept does not verify. The native lattice
+  is unchanged; it simply no longer adjudicates between the task-time
+  hypothesis under test and native candidates it does not price (pixel-rule
+  tables labelled RELATIONAL with no value-bound literal).
+
+Why it attacks the measured mechanism: both diagnosed failure kinds are
+re-induction-time heuristics designed for native hypotheses displacing an
+extension whose fold-fitted semantics reproduce the held-out pair
+(permissive fit predicts in 145 of 145). The development projection: 12
+of 30 tasks fully stable today, 21 with the fitting clause alone, 19 with
+the ranking clause alone, 30 with both; the clauses are not separable
+repairs of separate mechanisms.
+
+Unchanged: geocat_arc; the acceptance gate (train-perfect, leave-one-out by
+re-induction, every fold exact); the fitter's other admission rules
+(coverage, region rules, functional tables, hidden keys, exact replay);
+the native search; K*-1 to K*-3; the v1.7 compiler; the v1.8 proposer. The
+patches are applied outside `kstar()` and restored on exit; with nothing
+installed every patched function returns the native value, so K* alone is
+identical (tested). A one-block production keeps the engine's own learner
+and its witness rule (K*-2); the v1.8 proposer only produces two- and
+three-block compositions.
+
+Identity: K*' = K* + K*-4, `v19_repair.repair_identity()` (K* identity,
+rule text, implementation hash). Productions compiled by the v1.7 compiler
+for K* install unchanged.
+
+Not a repair of this kind, and not done: task, family or seed branches;
+special-casing one extension; memorized outputs; larger budgets; a lower
+acceptance threshold. The gate still requires every held-out pair exactly.
+
+## 15. Development ablation (DEVELOPMENT ONLY, the 30 audited tasks)
+
+Script `scripts/v19_repair_dev.py`, written before it runs. Same tasks and
+the same byte-identical e as the diagnosis.
+
+Arms (directive section 12):
+- A: K* alone, 8 s (the diagnosis BASE run);
+- B: K* + e under the old logic (the diagnosis FULL run and same-e folds);
+- C: K*' + e (FULL and the seven same-e folds);
+- D: K*' alone, 8 s (extension removed);
+- E: K*' alone at 3x budget, 24 s (matched compute, no extension);
+- supplementary: C with the fitting clause only and with the ranking
+  clause only, on FULL and the same-e folds of category A and R tasks.
+
+Adaptive leave-one-out (the L leg): the frozen v1.8 `real_loo` (proposer,
+compiler, installation and reasoner from scratch inside every fold) run
+under K* (old) and under K*' (repaired).
+
+Witness under K*': B (A not accepted), P (selected), U (C's winner uses e),
+L (K*' adaptive leave-one-out, every fold SUCCESS), T (C reproduces the
+held-out pair), A (E does not reproduce the held-out output). The same
+legs under the old logic are computed from B and the K* adaptive
+leave-one-out.
+
+A rescue counts only if: A is not accepted; the old witness is incomplete
+(B not accepted, or the K* adaptive leave-one-out has a failed fold); C is
+accepted, its winner uses e and the held-out pair is exact; D is not
+accepted; E does not reproduce the held-out output; the K*' adaptive
+leave-one-out passes.
+
+False-acceptance control: per task, e_wrong is the first candidate, in the
+proposer's MDL order over its verified and deduplicated pool on the seven
+pairs, whose fitter-level prediction of the held-out pair is wrong (tasks
+without one are skipped). K* + e_wrong and K*' + e_wrong run on the seven
+pairs; a false acceptance is an accepted run whose prediction of the
+held-out pair is wrong.
+
+Safety gates on development (directive section 13), each required:
+1. inertness: D equals A on every task (acceptance, program, events);
+2. no regression: every run accepted under the old logic (FULL and same-e
+   folds) is accepted under K*' with the identical program;
+3. no demonstration violation: every program K*' accepts reproduces every
+   training pair of its run;
+4. attribution: every accepted K*' + e run's winner uses e, and its
+   direct execution equals the engine's prediction on the held-out pair;
+5. no residue: K*'s restoration snapshot holds after every run and no
+   K*-4 patch survives a run;
+6. no protected-data access (the script reads only the development
+   corpus, its rows and the frozen package);
+7. fresh-process reproduction: C and the K*' same-e folds re-run in a
+   fresh process with identical decisions;
+8. false acceptances of e_wrong under K*' do not exceed those under K*.
