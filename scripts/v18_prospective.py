@@ -34,8 +34,8 @@ from cora_arc2026 import v17_compiler as X                        # noqa: E402
 from cora_arc2026 import v18_proposer as P                        # noqa: E402
 import v18_corpus as CORPUS                                       # noqa: E402
 
-N_TASKS = None          # set from the development feasibility record before the freeze
-W_MIN = None            # minimum complete synthetic witnesses, same source
+N_TASKS = 30            # records/ITEM2_V18_FEASIBILITY.md: fixed before any prospective data
+W_MIN = 15              # half the tasks must give a complete synthetic witness (same record)
 ALPHA = 0.05
 MANIFEST = os.path.join(HERE, "outputs", "tti", "no_oracle_proposer_v18_manifest.json")
 EXCLUSION = os.path.join(HERE, "outputs", "tti", "v18_prospective_exclusion.json")

@@ -241,11 +241,87 @@ Tests run with `PYTHONHASHSEED=0` and use the v1.7 development fixtures
 
 ## 13. Development audit (DEVELOPMENT ONLY)
 
-DEVELOPMENT_RESULTS_PLACEHOLDER
+Record: `records/ITEM2_V18_DEVELOPMENT_RESULT.md`. Data:
+`outputs/tti/v18_dev_audit.json`, `outputs/tti/v18_dev_rows.jsonl`.
+Corpus: the first 40 tasks at seed base 840,000,000 (families (0,0) 18,
+(1,1) 8, (1,0) 7, (0,1) 5, (0,0,0) 2; 37 distinct target structures).
+
+| arm | outcome | selection predicts the held-out pair |
+|---|---|---|
+| FAILURE_CONDITIONED | 40 SELECTED | 40 |
+| NO_RESPONSE | 40 SELECTED | 40 |
+| PURE | 10 SELECTED, 30 abstained | 10 |
+| SHUFFLED_FRONTIER | 40 NO_PROPOSAL | 0 |
+| DEMO_ONLY | 40 PROPOSAL_LIMIT | 0 |
+
+- An extension behaviourally equivalent to the generator's was verified on
+  every task; the selection was that extension on 19 of 40.
+- Deciding level: verification unique 9, P0 1, D 5, MDL guess 25. The
+  candidate failure response rarely separates verified compositions here;
+  the NO_RESPONSE arm matched the main arm.
+- Of 161 distinct verified candidates, 145 predict the held-out pair; one
+  held-out demonstration does not test the lower selection levels.
+- Engine subset, 8 tasks: 8 of 8 EXTENSION_NECESSARY_AND_USED with the
+  held-out pair exact; real leave-one-out 7 of 7 on 6 tasks, 5 of 7 and
+  1 of 7 on two (the engine's re-induction gate rejected the proposed
+  extension on sparse six-pair folds; recorded fold events); complete
+  synthetic witnesses 6 of 8; S6 level C SEPARATED 8 of 8 with comparison
+  sets of 18 to 69 programs.
+- Median 3.4 s per proposer call, maximum 20.9 s. Depth 3 ran on the two
+  three-block tasks only.
+
+These are engineering numbers on development data. They fixed nothing
+except the prospective thresholds of section 14 (through the feasibility
+record) and the witness-set correction of section 9.
 
 ## 14. Prospective test (frozen here, run once in the next stage)
 
-PROSPECTIVE_PLACEHOLDER
+Script: `scripts/v18_prospective.py`, run ONCE in the next stage after the
+review and any errata. Feasibility: `records/ITEM2_V18_FEASIBILITY.md`.
+
+**Corpus.** Seed base 860,000,000 + 100k, the v1.7 filter unchanged, the
+first N = 30 qualifying tasks within 2,000 seeds, skipping every target
+digest in `outputs/tti/v18_prospective_exclusion.json` (3,817 digests). The
+seed range was never used before. The generator's schema is read only after
+the proposer has run, for the seen/unseen structural audit (seen means the
+normalized target text occurs among the 40 development structures) and the
+equivalence diagnostics.
+
+**Per task.** Every arm at the proposer level, each with the fitter-level
+held-out check of its selection ("useful"); for FAILURE_CONDITIONED the
+engine stage (paired ablation with the held-out pair), real leave-one-out
+with the proposal rebuilt in every fold, and the S6 law. The SHUFFLED
+donor is a fixed derangement that never shares the task's target digest.
+Rows are appended as tasks finish; the script refuses a second start, any
+freeze problem and any environment problem.
+
+**Synthetic witness** for a task: B the K* arm not accepted; P the proposer
+selected an extension; U the K* + {e} winner uses e; L every fold succeeds;
+T the held-out pair exact under K* + {e}; A the K* arm neither accepted nor
+held-out exact.
+
+**Gates.**
+- G1, failure specificity: one-sided exact sign test on tasks discordant in
+  usefulness, FAILURE_CONDITIONED against SHUFFLED_FRONTIER and against
+  DEMO_ONLY, alpha 0.05 each; both must pass.
+- G2, end to end: at least W = 15 of 30 tasks give a complete witness.
+
+**Outcomes.**
+
+| outcome | condition |
+|---|---|
+| NO_ORACLE_PROPOSER_ACCEPTED | G1 and G2 |
+| PROPOSER_WORKS_BUT_NOT_FAILURE_SPECIFIC | G2 only |
+| FAILURE_SPECIFIC_BUT_NOT_END_TO_END | G1 only |
+| NO_ORACLE_PROPOSER_NOT_ESTABLISHED | neither |
+| PROPOSER_LEAKAGE | any arm reports LEAKAGE_FAILURE (overrides) |
+| NO_VERDICT_FIXTURE_SHORTFALL | fewer than 30 tasks within 2,000 seeds |
+| NO_VERDICT_RUN_ERROR | an exception outside the failure classes |
+
+**Supplementary, not gating:** PURE against hybrid and NO_RESPONSE against
+the main arm (sign tests), the deciding levels, witness parts B to A,
+S6 counts, witnesses by seen and unseen structure and by family, and
+infrastructure failures listed apart from scientific negatives.
 
 ## 15. Claim ceiling
 

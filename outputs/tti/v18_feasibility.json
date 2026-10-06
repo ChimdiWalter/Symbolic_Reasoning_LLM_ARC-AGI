@@ -1,0 +1,36 @@
+{
+ "G1_sign_test": {
+  "dev_discordance_fc_vs_shuffled": [
+   40,
+   0
+  ],
+  "min_discordant_for_alpha": 5,
+  "p_if_all_N_discordant_one_way": 9.313225746154785e-10,
+  "rule": "one-sided exact sign test on tasks discordant in fitter-level usefulness, alpha 0.05"
+ },
+ "G2_witnesses": {
+  "power_at_dev_rate": 0.9991810108553227,
+  "power_at_rate_0.60": 0.902943156179251,
+  "power_at_rate_0.75": 0.9991810108553227,
+  "rule": "at least 15 of 30 tasks give a complete synthetic B/P/U/L/T/A witness",
+  "size_under_null_rate_0.25": 0.0027495341641403867,
+  "size_under_null_rate_0.33": 0.04348227572791942
+ },
+ "N_TASKS": 30,
+ "W_MIN": 15,
+ "development": {
+  "complete_witness_rate_dev": 0.75,
+  "demo_only_useful": 0,
+  "engine_success": 8,
+  "engine_tasks": 8,
+  "fc_useful": 40,
+  "real_loo_passed": 6,
+  "shuffled_useful": 0,
+  "tasks": 40
+ },
+ "runtime_estimate_minutes": {
+  "N_tasks_minutes": 81.6,
+  "note": "development machine load about 40 on 24 CPUs",
+  "per_task_dev_engine_mean_s": 163.1
+ }
+}

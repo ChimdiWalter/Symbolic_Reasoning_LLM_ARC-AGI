@@ -29,10 +29,14 @@ IMPLEMENTATION = (
     "cora_arc2026/scorer_fit.py", "cora_arc2026/vendor/tfg_extractor.py",
     "tests/test_v18_proposer.py", "tests/test_v17_compiler.py", "tests/conftest.py",
     "scripts/v18_corpus.py", "scripts/v18_dev_audit.py", "scripts/v18_build_exclusion.py",
-    "scripts/v18_prospective.py", "scripts/v18_freeze_d.py", "scripts/freeze_v18.py",
+    "scripts/v18_prospective.py", "scripts/v18_freeze_d.py", "scripts/v18_feasibility.py",
+    "scripts/freeze_v18.py",
     "records/ITEM2_V18_PROPOSER_DESIGN.md", "records/ITEM2_V18_DEVELOPMENT_RESULT.md",
+    "records/ITEM2_V18_FEASIBILITY.md",
     "outputs/tti/v18_frozen_d.json", "outputs/tti/v18_prospective_exclusion.json",
     "outputs/tti/v18_dev_audit.json", "outputs/tti/v18_dev_rows.jsonl",
+    "outputs/tti/v18_feasibility.json", "logs/v18/dedup_heldout_check.py",
+    "logs/v18/dedup_heldout_check.json",
 )
 
 
