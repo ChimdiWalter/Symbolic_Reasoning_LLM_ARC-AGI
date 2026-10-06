@@ -183,11 +183,15 @@ hidden answer may be read to supply one.
 writer pid 1089796, own session; launch record `logs/v18/prospective_launch.json`,
 fa3163a; load about 80 on 24 CPUs at launch). Administrative monitoring only
 (liveness, row count, marker, traceback); do NOT read partial rows.
-- If the writer is gone with `logs/v18/prospective_start.json` present and
-  neither `outputs/tti/v18_prospective_report.json` nor
-  `logs/V18_PROSPECTIVE_DONE`: relaunch ONCE with `--resume` (same
-  environment: PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<tti>,
-  setsid nohup) and record it.
+- DETACHED WATCHER `logs/v18/prospective_watch.sh` (pid 1096787, own
+  session, lock `logs/v18/prospective_watch.lock`, log
+  `logs/v18/prospective_watch.log`): resumes the writer ONCE with `--resume`
+  if it dies without report or marker (flag `logs/v18/prospective_resumed_once`),
+  runs `logs/v18/verify_prospective.py` when the marker appears (output
+  `logs/v18/verify_prospective.json`, done flag
+  `logs/v18/PROSPECTIVE_WATCH_DONE`), then removes its own `@reboot` crontab
+  hook (installed 2026-10-06, `sleep 300` then relaunch the watcher).
+- Do not start a second writer or a second watcher by hand.
 - After the marker: terminal verification (freeze unchanged, 30 distinct
   tasks outside the exclusion set, no duplicate or missing rows, no leakage,
   no run error), then independent recomputation of every gate from the rows,
