@@ -1,14 +1,16 @@
 {
  "arms": [
   "FAILURE_CONDITIONED",
-  "DEMO_ONLY",
   "SHUFFLED_FRONTIER",
+  "BLIND",
+  "SHUFFLED_COORDINATES",
+  "DEMO_ONLY",
   "NO_RESPONSE",
   "PURE"
  ],
  "claim_ceiling": "before the prospective test: engineering evidence on development data only; a prospective acceptance would be LEVEL 2 for the synthetic domain, never a real ARC result; LEVEL 3 needs a real ARC B/P/U/L/T/A witness",
  "dependency_tree_sha256": {
-  "cora_arc2026": "b3a81f3148d070b669f780bdcdb7e7188d03aad1b12554b6e701c2b41b242d40",
+  "cora_arc2026": "9032ec179e81bc16f47960f935db25f4b9ff1a6536b206442b5f83a8e6b16760",
   "cora_parent": "b64b49cf7ec5a678f9578a828df21c49214cc005f01a41fcc5d5b9b0bc2ad957",
   "cora_tti": "fbc73a101c0d74cd7c552d064cde2d92df6c71b8013e32184b0491e8837ce35f",
   "geocat_arc": "4cee35c0048c15528d46b4f3309841e8542301156e2614443b790bd3ea780ceb",
@@ -27,6 +29,14 @@
    "scripts/v18_prospective.py"
   ],
   "rule": "PYTHONHASHSEED=0 with hash randomization off; no ARC_* variable except the K* pair, which kstar() sets; single-threaded BLAS set by the scripts"
+ },
+ "erratum": {
+  "previous": {
+   "frozen_commit": "e7afc0f",
+   "manifest_sha256": "bd657faa12225d775e028a07e6208345c37b518f6c4c0f07ce518bdc9c8e8f7a"
+  },
+  "record": "records/ITEM2_V18_ERRATUM_01.md",
+  "review": "records/ITEM2_V18_REVIEW_RESULT.md"
  },
  "external_file_sha256": {
   "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti/outputs/tti/constructive_protocol_manifest.json": "66780880697d5557a8c79aa100c30cd4a653dd2d62ddc13559d90eb5ac78acd3",
@@ -72,28 +82,33 @@
   "cora_arc2026/v15_sel.py": "810dc0a70b33583bb0469c5ddcf7e36c8b061c4e82c5d2db2bf73e848ccea501",
   "cora_arc2026/v16_cfr.py": "e7d72f673b89cdb52195569efc7c923ca98dc42f69c76a9cf4776def0b7765c6",
   "cora_arc2026/v17_compiler.py": "04c6b3a19b9645cdfd983e2733e377b8b342e11a4c09b209f3dddb5868515152",
-  "cora_arc2026/v18_proposer.py": "0b3cb0a6a4f6eb69b671d7b3e68d61e1d9eed0c034c0df829cd56bcebb203b0a",
+  "cora_arc2026/v18_proposer.py": "8fbb08018814f31bb584b9fb1bf9eff03465bfab1f72bfbcb3a517ef046cdf07",
   "cora_arc2026/vendor/tfg_extractor.py": "268149016febceefa7344950a5d70d37592db2d8a305d4b093b8caa67b886c81",
   "logs/v18/dedup_heldout_check.json": "5d79d45fe1203f46725ea119e52d56f9745e2bcb4ca8607b885fbc4923f78c59",
   "logs/v18/dedup_heldout_check.py": "5af766fbb53bc7a47404491550a5bc692684778c84edd0327c1d06b023b79c75",
   "outputs/tti/v18_dev_audit.json": "ee0f8c5a2c968f598839caa2b8f9055a93a9dcb466c8949bd16faf94bc4033ed",
+  "outputs/tti/v18_dev_controls.json": "ea77c565059b2bbf9747ee8a822cd442f276c71df424d302b811ca1b77b6365a",
   "outputs/tti/v18_dev_rows.jsonl": "11ec0c1092bc547a2b63215144e06aa188be41ee867066370ea26d000f7a68fe",
-  "outputs/tti/v18_feasibility.json": "801085288884dbe06eee23bad160603470dad70a5a6c2c763977a99a2a42371b",
+  "outputs/tti/v18_feasibility.json": "c5b0625e1c798044b692bb454050b81d5e8b469950f745e5992e44484570b0f2",
   "outputs/tti/v18_frozen_d.json": "b0ae3eca87e18116b3a4cbbc693b1a540c474e35bec82ca7e2b6c37e3f576e39",
   "outputs/tti/v18_prospective_exclusion.json": "9fa6a892e3a4be7a8426b8e545cd2ec4246cecaeb072b5d4b15b7cf21fda9194",
-  "records/ITEM2_V18_DEVELOPMENT_RESULT.md": "df24570271e35231f1f04216b3d9884d258d16cfb96cbe86e12d959a957b3390",
-  "records/ITEM2_V18_FEASIBILITY.md": "668a5ddb23e2a1b46938735ad7b6b1a043d0a1e143193db86f77f0c119ef8794",
-  "records/ITEM2_V18_PROPOSER_DESIGN.md": "df771bac7a7abc2be0e2f45e7679b023e74123f27676bcb063283ea7871ee65b",
-  "scripts/freeze_v18.py": "cd81f618645a4065217da71dbc215c19d3f78534b64e9b7f06547a733fc6c8d8",
+  "records/ITEM2_V18_DEVELOPMENT_RESULT.md": "d3df3090949b17795ff9a3c69e5e5709f043ef14e692c661c96bc702858f205e",
+  "records/ITEM2_V18_ERRATUM_01.md": "152414a9e6128194cd1c5529bce1bdc2987a2e9ad7303e117fdcd8def2ef42ee",
+  "records/ITEM2_V18_FEASIBILITY.md": "5324aceee28c5814e533c96f028870aa977d9ebac92cee809107a31f189bf1d0",
+  "records/ITEM2_V18_PROPOSER_DESIGN.md": "2f3ecb9aa748961a4b383db0ea0c9bc018c82c210a6efc5e2f22dd3a3f44a3cc",
+  "records/ITEM2_V18_REVIEW_REQUEST.md": "499f598d600635e4072f6bb83d25cdccd0309cb0c998b5ab54f7b45eebf6c692",
+  "records/ITEM2_V18_REVIEW_RESULT.md": "08c3ad173bf26979e4dabaa878291cef209bda8749fd7ea0cd773c3e9a42462f",
+  "scripts/freeze_v18.py": "68a95eb6ae56d4f9ad6fe925c2c870f662a22029700336a055e7e5f753bda7be",
   "scripts/v18_build_exclusion.py": "68c96bf65e2f8de5d0f2202eac7399ec9aa5f4c74583b7d160d7e54a28fc3d2e",
-  "scripts/v18_corpus.py": "34b7b3ddbec4e9494a38c8c43de3e28d9f6a2404af795953a49c914b3a498aa5",
+  "scripts/v18_corpus.py": "0fbd945eb2983b1ea7bcc4fd02f99b1523454bd9cd1d943887315b92d61c2e8f",
   "scripts/v18_dev_audit.py": "19793e06408d90ba02295390b19c4f70bab2368fc43a129df6e84cbd91d8d771",
-  "scripts/v18_feasibility.py": "2a27c621d9eb9d8c1c5d66f30b165aab45515e1c82c5e4f8796dd9d54bdd25d6",
+  "scripts/v18_dev_controls.py": "50355f3bf7a335b7141879867f6a66d71ee425c653e0f0d7925223aaefb687fc",
+  "scripts/v18_feasibility.py": "ff31cdf8d286ad5315cf59bdbb544a17be0f6cc483a46ada2b91f25dfcec279a",
   "scripts/v18_freeze_d.py": "8fb0b450446c8322a7de405decaa6228f58fcf7b4f8a189a8cf828d3b58fdd43",
-  "scripts/v18_prospective.py": "6da09e0762675fc562881b4807c24dc53987f7e72f49b9b0fbe1b7ad2ef9d82d",
+  "scripts/v18_prospective.py": "827cbdaf03e0edf84d06771ae5de6f46d209f261c8d99b4eaaa2a82a142f2188",
   "tests/conftest.py": "2deb6c8e8151c3d487a26651ed2a4354c6eb9afdfda9b6711d5c9e1cd72d50eb",
   "tests/test_v17_compiler.py": "ee0432e0c818deadf0342ffa42f11a1986b0ed3508d91d327ff6794e1a68d1b5",
-  "tests/test_v18_proposer.py": "d1c2e04eed086ba1d1ee7a43c8c00a1a51c6087b9fbd805917f4ff4336eee02f"
+  "tests/test_v18_proposer.py": "d8ebc8dd7c496f8a9563e92056086ce5994362b598ade00f191f69105c16c815"
  },
  "infrastructure_classes": [
   "COMPILE_FAILURE",
@@ -134,10 +149,11 @@
   "v17_outcome": "COMPILER_ACCEPTED",
   "v17_result_commit": "2299c95"
  },
- "proposer_sha256": "0b3cb0a6a4f6eb69b671d7b3e68d61e1d9eed0c034c0df829cd56bcebb203b0a",
+ "proposer_sha256": "8fbb08018814f31bb584b9fb1bf9eff03465bfab1f72bfbcb3a517ef046cdf07",
  "proposer_version": "1.8.0",
  "prospective": {
   "alpha": 0.05,
+  "blind_order_sha256": "c04ff56e66c71f1747bab035e52ffb360abbcaa67dd26991920c1df01ae4c07a",
   "exclusion": {
    "file": "outputs/tti/v18_prospective_exclusion.json",
    "sources": {
@@ -149,6 +165,10 @@
    },
    "target_digests": 3817
   },
+  "g1_controls": [
+   "SHUFFLED_FRONTIER",
+   "BLIND"
+  ],
   "outcomes": [
    "NO_ORACLE_PROPOSER_ACCEPTED",
    "PROPOSER_WORKS_BUT_NOT_FAILURE_SPECIFIC",
@@ -158,14 +178,19 @@
    "NO_VERDICT_FIXTURE_SHORTFALL",
    "NO_VERDICT_RUN_ERROR"
   ],
+  "sanity_arms": [
+   "SHUFFLED_COORDINATES",
+   "DEMO_ONLY"
+  ],
   "script": "scripts/v18_prospective.py",
   "seed_base": 860000000,
   "tasks": 30,
+  "witness_A": "K* alone at 24.0 s does not reproduce the held-out output",
   "witnesses_required": 15
  },
  "protocol": "CORA-TTI Item-2 v1.8 no-oracle extension proposer",
  "protocol_doc": "docs/CORA_TTI_NO_ORACLE_PROPOSER_v1.8.md",
- "protocol_doc_sha256": "32395af9647f2b03f51215b8a79fd0a5e01ee27e05af3a6d9ca4abf5991a80aa",
+ "protocol_doc_sha256": "59e0889f65b0d2ed743697d0920b48ed121d0d5d031b3d0b8154eb1e36fbeb0f",
  "runtime_versions": {
   "numpy": "2.4.3",
   "python": "3.12.3",
@@ -178,10 +203,10 @@
   "MDL",
   "ABSTAINED"
  ],
- "status": "FROZEN_NOT_PROSPECTIVELY_TESTED",
+ "status": "FROZEN_AFTER_ERRATUM_01_NOT_PROSPECTIVELY_TESTED",
  "test_results_at_freeze": {
-  "engine": "1 passed (pytest -m engine, 2026-10-05 19:22 local on the final proposer code 3f356d0, 132.5 s, logs/v18/engine_tests.log)",
-  "fast": "21 passed, 1 deselected (pytest -m 'not engine', 2026-10-06, commit 020d031; proposer and tests unchanged since)"
+  "engine": "1 passed (pytest -m engine, 2026-10-06 01:41 local on the erratum proposer code c7c8892, 131.4 s, logs/v18/engine_tests_erratum01.log)",
+  "fast": "21 passed, 1 deselected (pytest -m 'not engine', 2026-10-06, after erratum 01, commit f4d6fab)"
  },
  "v17_compiler_sha256": "04c6b3a19b9645cdfd983e2733e377b8b342e11a4c09b209f3dddb5868515152",
  "version": "1.8"
