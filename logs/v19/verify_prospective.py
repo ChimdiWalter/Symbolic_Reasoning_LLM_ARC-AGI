@@ -130,7 +130,15 @@ s["false_acceptance_control"] = sum(1 for w in wrong if w["new"]["accepted"] and
     sum(1 for w in wrong if w["old"]["accepted"] and not w["old"]["heldout_exact"])
 s["false_acceptance_selected"] = sum(1 for r in eng if r["new_with"]["accepted"] and not r["new_with"]["heldout_exact"]) <= \
     sum(1 for r in eng if r["old"]["with"]["accepted"] and not r["old"]["with"]["heldout_exact"])
+s["false_acceptance_folds"] = sum(1 for r in eng for f in r["loo_new"]["folds"] if f.get("accepted") and not f.get("heldout_exact")) <= \
+    sum(1 for r in eng for f in r["loo_old"]["folds"] if f.get("accepted") and not f.get("heldout_exact"))
 recomputed["G4"] = s
+tr = [t for r in ok for t in r.get("reduced", {}).get("trials", [])]
+recomputed["reduced"] = {side: {"true_accept": sum(1 for t in tr if t["kind"] == "RIGHT" and t[side]["accepted"] and t[side]["right_on_E"]),
+                                "false_accept": sum(1 for t in tr if t["kind"] == "WRONG" and t[side]["accepted"] and not t[side]["right_on_E"])}
+                         for side in ("old", "new")}
+checks["reduced_equal"] = all(report["supplementary"]["reduced_control"][side][k] == recomputed["reduced"][side][k]
+                              for side in ("old", "new") for k in ("true_accept", "false_accept"))
 G1 = all(v["pass"] for v in g1.values())
 G2 = complete_new >= PR.W_MIN
 G3 = g3["pass"]

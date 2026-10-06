@@ -29,8 +29,10 @@ def _row(i, fc=True, sf=False, bl=False, wn=True, wo=False, ln=True, lo=False, *
                                "program_sha": None}},
            "new_with": run, "new_alone": {"accepted": False, "events": ["b"], "program_sha": None},
            "baseline_3x": {"accepted": False, "heldout_exact": False},
-           "loo_new": {"passed": ln, "folds": [{"class": "SUCCESS" if ln else "LOO_FAILURE"}] * 7},
-           "loo_old": {"passed": lo, "folds": [{"class": "SUCCESS" if lo else "LOO_FAILURE"}] * 7},
+           "loo_new": {"passed": ln, "folds": [{"class": "SUCCESS" if ln else "LOO_FAILURE",
+                                                "accepted": ln, "heldout_exact": ln}] * 7},
+           "loo_old": {"passed": lo, "folds": [{"class": "SUCCESS" if lo else "LOO_FAILURE",
+                                                "accepted": lo, "heldout_exact": lo}] * 7},
            "restored": safe.get("restored", True), "wrong_trials": safe.get("wrong_trials", []),
            "witness_new": {"complete": wn}, "witness_old": {"complete": wo}}
     return row
@@ -101,3 +103,24 @@ def test_refuses_while_thresholds_unset_or_unfrozen():
     if PR.N_TASKS is None:
         problems, _ = PR.freeze_problems()
         assert problems
+
+
+def test_fold_level_false_acceptance_is_gated(thresholds):
+    rows = [_row(i) for i in range(30)]
+    rows[7]["loo_new"]["folds"] = [{"class": "LOO_FAILURE", "accepted": True, "heldout_exact": False}] + \
+        [{"class": "SUCCESS", "accepted": True, "heldout_exact": True}] * 6
+    rows[7]["loo_new"]["passed"] = False
+    out, gates = PR.outcome(rows, [], 30, 0)
+    assert out == "REPAIR_UNSAFE" and gates["G4_safety"]["checks"]["false_acceptance_folds"] is False
+
+
+def test_reduced_control_is_reported_not_gated(thresholds):
+    rows = [_row(i) for i in range(30)]
+    for r in rows:
+        r["reduced"] = {"trials": [{"kind": "WRONG", "old": {"accepted": False, "right_on_E": None},
+                                    "new": {"accepted": True, "right_on_E": False}}]}
+    out, _ = PR.outcome(rows, [], 30, 0)
+    assert out == "ENGINE_STABILITY_REPAIR_ACCEPTED"
+    s = PR.reduced_summary(rows)
+    assert s["new"]["false_accept"] == 30 and s["old"]["false_accept"] == 0
+

@@ -49,6 +49,7 @@ from cora_v19 import v19_repair as R                              # noqa: E402
 import v18_corpus as CORPUS                                       # noqa: E402
 import v18_prospective as PR18                                    # noqa: E402
 import v19_repair_dev as RD                                       # noqa: E402
+import v19_falseaccept_reduced_dev as FR                          # noqa: E402
 
 SEED_BASE = 880_000_000
 N_TASKS = None          # set by records/ITEM2_V19_FEASIBILITY.md before any prospective data
@@ -246,6 +247,18 @@ def run_task(t, donor):
         row["wrong_trials"].append({"source": source, "mdl_rank": rank, "production": pw["name"],
                                     "old": RD.summarize(X.run_reasoner(train, (pw,)), held, pw),
                                     "new": RD.summarize(R.run_reasoner(train, (pw,)), held, pw)})
+    #  reduced-demonstration control (protocol sections 15a and 16): reported only
+    S, E = train[:FR.K], train[FR.K:] + [held]
+    tl, pool, cls = FR.trials(S, E)
+    row["reduced"] = {"pool": pool, "selection_class": cls, "trials": []}
+    for kind, source, pw in tl:
+        o = X.run_reasoner(S, (pw,))
+        nw = R.run_reasoner(S, (pw,))
+        row["reduced"]["trials"].append({
+            "kind": kind, "source": source, "production": pw["name"],
+            "old": {"accepted": o["accepted"], "right_on_E": FR.engine_on(o, E) if o["accepted"] else None},
+            "new": {"accepted": nw["accepted"], "right_on_E": FR.engine_on(nw, E) if nw["accepted"] else None}})
+    row["restored"] = row["restored"] and R.restored()
     row["load_end"] = [round(x, 2) for x in os.getloadavg()]
     a_leg = not (base3["accepted"] and row["baseline_3x"]["heldout_exact"])
     o = row["old"]
@@ -296,10 +309,29 @@ def safety(rows):
     fa_new = sum(1 for w in wrong if w["new"]["accepted"] and not w["new"]["heldout_exact"])
     full_fa_old = sum(1 for r in eng if r["old"]["with"]["accepted"] and not r["old"]["with"]["heldout_exact"])
     full_fa_new = sum(1 for r in eng if r["new_with"]["accepted"] and not r["new_with"]["heldout_exact"])
+    fold_fa_old = sum(1 for r in eng for f in r["loo_old"]["folds"] if f.get("accepted") and not f.get("heldout_exact"))
+    fold_fa_new = sum(1 for r in eng for f in r["loo_new"]["folds"] if f.get("accepted") and not f.get("heldout_exact"))
     checks["false_acceptance_control"] = fa_new <= fa_old
     checks["false_acceptance_selected"] = full_fa_new <= full_fa_old
+    checks["false_acceptance_folds"] = fold_fa_new <= fold_fa_old
     return {"checks": checks, "control_trials": len(wrong), "control_fa_old": fa_old, "control_fa_new": fa_new,
-            "selected_fa_old": full_fa_old, "selected_fa_new": full_fa_new, "pass": all(checks.values())}
+            "selected_fa_old": full_fa_old, "selected_fa_new": full_fa_new,
+            "fold_fa_old": fold_fa_old, "fold_fa_new": fold_fa_new, "pass": all(checks.values())}
+
+
+def reduced_summary(rows):
+    """Section 15a control, reported only: acceptances and discrimination."""
+    tr = [t for r in rows for t in r.get("reduced", {}).get("trials", [])]
+    out = {"trials": len(tr)}
+    for side in ("old", "new"):
+        right = [t for t in tr if t["kind"] == "RIGHT"]
+        wrong = [t for t in tr if t["kind"] == "WRONG"]
+        ta = sum(1 for t in right if t[side]["accepted"] and t[side]["right_on_E"])
+        fa = sum(1 for t in wrong if t[side]["accepted"] and not t[side]["right_on_E"])
+        out[side] = {"right_trials": len(right), "true_accept": ta, "wrong_trials": len(wrong),
+                     "false_accept": fa,
+                     "discrimination": (ta / len(right) if right else 0.0) - (fa / len(wrong) if wrong else 0.0)}
+    return out
 
 
 def outcome(rows, unexpected, n_tasks, leakage):
@@ -452,6 +484,7 @@ def main():
                                                   if f["class"] == c)
                                            for c in sorted({f["class"] for r in ok
                                                             for f in r.get("loo_new", {}).get("folds", [])})},
+                  "reduced_control": reduced_summary(ok),
                   "loo_fold_classes_old": {c: sum(1 for r in ok for f in r.get("loo_old", {}).get("folds", [])
                                                   if f["class"] == c)
                                            for c in sorted({f["class"] for r in ok

@@ -356,6 +356,51 @@ Safety gates on development (directive section 13), each required:
    fresh process with identical decisions;
 8. false acceptances of e_wrong under K*' do not exceed those under K*.
 
+## 15a. False-acceptance development measurements (after section 15, before the freeze)
+
+Written 2026-10-06 after three supplementary development measurements,
+each committed before it ran, on the 30 audited development tasks.
+
+1. Section 15's single e_wrong per task and a wider rule (up to three
+   wrong pool candidates plus the transplant and BLIND selections when not
+   useful; `scripts/v19_falseaccept_dev.py`, 8c668f8) found 0 wrong
+   extensions in 30 tasks: with seven demonstrations every verified
+   candidate reproduces the held-out pair. Section 15's gate 8 is therefore
+   vacuous on development data (0 against 0).
+2. Reduced demonstrations (`scripts/v19_falseaccept_reduced_dev.py`,
+   K = 4: train on pairs 0-3, evaluate on pairs 4-6 and the held-out pair):
+   43 trials, 24 RIGHT (the proposer's selection on the four pairs, right on
+   every evaluation pair in all 24 tasks where it selected) and 19 WRONG
+   (pool candidates). K* accepted 8 of 24 right and 6 of 19 wrong; K*'
+   accepted 24 of 24 right and 19 of 19 wrong.
+3. Clause by clause (`scripts/v19_clause_safety_dev.py`): fitting clause
+   alone 13 of 24 right and 9 of 19 wrong; ranking clause alone 17 of 24
+   and 10 of 19.
+
+Reading. Under four demonstrations the engine's own leave-one-out gate
+does not discriminate right from wrong installed extensions in any variant:
+K* accepts about a third of each (0.33 and 0.32); each K*-4 clause raises
+both rates together; K*' accepts every verified, leave-one-out-stable
+installed extension. The old gate's rejections of installed extensions
+were therefore indiscriminate: they cost recall without buying safety. It
+follows that no repair that raises acceptance can pass a rule "false
+acceptances of deliberately installed wrong extensions must not increase"
+under scarce demonstrations, and that under K*' the correctness of an
+accepted installed extension rests on the proposer's selection and on the
+held-out and adaptive leave-one-out checks, not on the engine's internal
+gate. Narrowing the repair to one clause does not change this (both clauses
+alone also raise wrong acceptance), so the repair stays as in section 14.
+
+Design consequence (fixed here, before the freeze): the prospective safety
+gate counts wrong certified outputs of the system at three levels (section
+16, G4); the reduced-demonstration control is run prospectively and
+reported with its pre-registered expectation (K*' accepts at least as many
+wrong extensions as K*, and neither logic discriminates), and it does not
+gate. The diagnosis's H1 classification of the 86 fitting events also
+depends on the one-witness identification standard of section 6; under the
+fitter's two-witness standard they would be H2. The diagnosis record says
+so.
+
 ## 16. Prospective synthetic test (frozen here, run ONCE in the next session)
 
 Script `scripts/v19_prospective.py`; independent terminal verifier
@@ -384,10 +429,11 @@ Per task:
   order whose fitter prediction of the held-out pair is wrong, then the
   SHUFFLED_FRONTIER and BLIND selections when selected and not useful
   (verified on the seven pairs, wrong on the held-out pair); each is
-  installed into K* and into K*' on the seven pairs. (Section 15's single
-  e_wrong per task found no such candidate on most development tasks; the
-  wider rule was measured on development data in
-  `scripts/v19_falseaccept_dev.py` before this freeze.)
+  installed into K* and into K*' on the seven pairs (section 15a: none
+  existed on the development tasks, so this control may be empty);
+- the reduced-demonstration control of section 15a (K = 4, the frozen
+  `scripts/v19_falseaccept_reduced_dev.py` trial rule) under K* and K*',
+  reported only.
 
 Witness legs under K*' (primary): B (K*' alone not accepted), P (selected),
 U (K*' + e winner uses e), L (K*' adaptive leave-one-out, every fold
@@ -412,10 +458,18 @@ Gates:
   leave-one-out fold that succeeds under K* succeeds under K*'; every
   program K*' accepts replays its training pairs; every accepted K*' + e
   winner that uses e executes directly to the engine's prediction; no
-  K*-4 patch survives a run; over all wrong-extension trials, false
-  acceptances (accepted, held-out wrong) under K*' do not exceed those
-  under K*; accepted K*' + e runs with a wrong held-out prediction do not
-  exceed those of K* + e.
+  K*-4 patch survives a run; and wrong certified outputs do not increase
+  at any of three levels: accepted K*' + e runs with a wrong held-out
+  prediction do not exceed those of K* + e; adaptive leave-one-out folds
+  accepted with a wrong held-out prediction under K*' do not exceed those
+  under K*; over all seven-pair wrong-extension trials, false acceptances
+  (accepted, held-out wrong) under K*' do not exceed those under K*.
+
+Reported, not gating (section 15a): the reduced-demonstration control's
+true and false acceptances under K* and K*' and each logic's
+discrimination (acceptance rate of right minus acceptance rate of wrong
+extensions). Pre-registered expectation: K*' accepts at least as many wrong
+extensions as K*, and neither logic discriminates.
 
 Outcomes (first match):
 
@@ -450,6 +504,13 @@ dropped, and every resume is recorded. Nothing else may be rerun.
   ladder for the synthetic domain.
 - K*-4 is an engine-side rule for installed extensions; it adds no
   vocabulary, and the extension remains a composition of K's own blocks.
+- Under K*' the engine accepts every verified, leave-one-out-stable
+  installed extension; with scarce demonstrations it accepts a wrong one as
+  readily as a right one (section 15a), as the old logic, at a third of the
+  rate, also did. Correctness of an accepted extension rests on the
+  proposer's selection and on the held-out and adaptive leave-one-out
+  checks. This is the central caveat for real ARC tasks (two to five
+  demonstrations) and must shape the real ARC pilot's protocol.
   Completeness by construction (v1.8 protocol section 15) still applies:
   the corpus law places a verifying composition in the search space.
 - Not a real ARC result. LEVEL 3 needs a real ARC B/P/U/L/T/A witness from
