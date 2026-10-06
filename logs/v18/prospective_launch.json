@@ -1,0 +1,47 @@
+{
+ "boot_id": "5c543236-c905-416e-9e7f-af441c8fc4b5",
+ "command": "setsid nohup .venv_arc2026/bin/python scripts/v18_prospective.py > logs/v18/prospective.log 2>&1",
+ "cpu_state_before_launch": "93.5 us, 4.0 ni, 0.6 id, 0.0 wa; 26 runnable (load about twice the development runs)",
+ "environment": {
+  "ARC_*": "none",
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "PYTHONHASHSEED": "0",
+  "PYTHONPATH": "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti"
+ },
+ "frozen_commit": "b69b770",
+ "head": "9ece482e6583219b3e31d6a5960240ef114d9334",
+ "launched_utc": "2026-10-06T19:08:11Z",
+ "launcher_pid": 1089794,
+ "loadavg_at_launch": [
+  "80.69",
+  "79.79",
+  "75.37"
+ ],
+ "manifest_sha256": "d64732cf54f91f70ce6f7be041956850d6cc85ca3986e4e08199401278db8731",
+ "outputs": {
+  "log": "logs/v18/prospective.log",
+  "marker": "logs/V18_PROSPECTIVE_DONE",
+  "report": "outputs/tti/v18_prospective_report.json",
+  "rows": "outputs/tti/v18_prospective_rows.jsonl",
+  "start": "logs/v18/prospective_start.json"
+ },
+ "pgid": 1089796,
+ "resume_rule": "only if the writer is gone with the start record present and no report and no marker: relaunch once with --resume and record it",
+ "sid": 1089796,
+ "start_record": {
+  "cpus": 24,
+  "environment": {
+   "PYTHONHASHSEED": "0"
+  },
+  "loadavg": [
+   82.873046875,
+   80.10302734375,
+   75.37158203125
+  ],
+  "manifest_sha256": "d64732cf54f91f70ce6f7be041956850d6cc85ca3986e4e08199401278db8731",
+  "pid": 1089796,
+  "started_utc": "2026-10-06T19:08:14Z"
+ },
+ "what": "v1.8 prospective no-oracle proposer test, launched once",
+ "writer_pid": 1089796
+}
