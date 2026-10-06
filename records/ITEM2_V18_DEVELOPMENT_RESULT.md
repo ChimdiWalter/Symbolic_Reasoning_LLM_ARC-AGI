@@ -140,3 +140,19 @@ again against `outputs/tti/v18_dev_rows.jsonl` and
 sections above were added. The earlier instance's draft prospective
 thresholds (30 tasks, 9 witnesses) were replaced before the freeze; see
 `records/ITEM2_V18_FEASIBILITY.md`.
+
+## Why the literal generator composition was sometimes not proposed
+
+On the 16 development tasks where the generator's own normalized text was
+not among the proposals (checked 2026-10-06 with the frozen code):
+- 14 two-block tasks: the generator's top layer is a PARTIAL K block on
+  every one, and its lower layer passes the proposer's lower-layer check on
+  every one. The literal composition was cut by the frozen caps: the lower
+  layer ranked 17th to 25th (cap 16) on 8, the top layer ranked 33rd to
+  48th (cap 32) on 5, and the 256-proposal cap on 1.
+- 2 three-block tasks: cut by the depth-3 caps (8 tops, 8 middles).
+- On all 16 a behaviourally equivalent composition was inside the caps and
+  verified.
+
+No proposer rule rejected a composition the fitter accepts. This is the
+basis of the completeness-by-construction statement in protocol section 15.

@@ -338,6 +338,21 @@ infrastructure failures listed apart from scientific negatives.
   needs a complete real witness.
 - The mechanism composes K's existing productions; the extension is new to
   K's search, not new vocabulary.
+- **Completeness by construction.** The corpus law admits a task only if
+  the generator's schema fits exactly with the frozen fitter. Under the
+  layer semantics that makes the generator's top layer one of K's PARTIAL
+  blocks and its lower layer pass the proposer's lower-layer check (on
+  development, 14 of 14 such cases checked; no proposer rule is stricter
+  than the fitter). So on this corpus a verifying extension is in the
+  search space by construction, up to the frozen caps; the literal
+  generator composition fell outside the caps on 16 of 40 development
+  tasks, where a behaviourally equivalent one was inside. Finding a
+  verifying extension is therefore not evidence by itself. The evidence is
+  in the selection among verified candidates, in generalization (the
+  held-out pair, the engine stage, leave-one-out with the proposal rebuilt
+  in every fold) and in failure specificity against the controls under the
+  same caps (G1). Tasks whose extension is not a composition of K blocks
+  are outside this protocol.
 
 ## 16. Order after the freeze
 
