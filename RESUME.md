@@ -179,31 +179,36 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.8 NO-ORACLE EXTENSION PROPOSER: FROZEN (e7afc0f), ONE REVIEW NEXT**
-(2026-10-06; directive: design, implement, development audit, freeze, ONE
-review, errata; do NOT run the prospective test or the ARC pilot here).
-- Frozen: manifest `outputs/tti/no_oracle_proposer_v18_manifest.json`
-  sha256 bd657faa12225d775e028a07e6208345c37b518f6c4c0f07ce518bdc9c8e8f7a;
-  protocol `docs/CORA_TTI_NO_ORACLE_PROPOSER_v1.8.md` 32395af9; proposer
-  0b3cb0a6; K* b009a9fb (v1.7 compiler unchanged, 04c6b3a1); frozen D
-  b0ae3eca; 28 pinned files; exclusion 3,817 digests.
-- Mechanism: residual peeling over K's own blocks (design record, with the
-  section 11 witness-grid addendum). Selection: verification, P0, D, MDL.
-- Development (DEVELOPMENT ONLY, `records/ITEM2_V18_DEVELOPMENT_RESULT.md`):
-  40 tasks; FAILURE_CONDITIONED 40/40 selected and held-out exact;
-  SHUFFLED_FRONTIER 0/40 (no proposal); DEMO_ONLY 0/40 (no verified); PURE
-  10/40; selection = generator's behaviour 19/40 (MDL guess decided 25);
-  engine subset 8/8 necessary and held-out exact, real LOO all folds 6/8,
-  complete synthetic witnesses 6/8; S6 C separated 8/8 (sets 18-69).
-- Completeness by construction (protocol section 15): the corpus law makes
-  a verifying composition reachable up to the caps; evidence is selection,
-  generalization and failure specificity.
-- Prospective test (frozen, NOT run): `scripts/v18_prospective.py`, seeds
-  860M, N=30, W=15 (`records/ITEM2_V18_FEASIBILITY.md`), gates G1 (sign
-  tests vs SHUFFLED and DEMO_ONLY) and G2 (15/30 complete witnesses).
-- Tests: fast 21 passed; engine 1 passed (132.5 s).
-- NOW: write `records/ITEM2_V18_REVIEW_REQUEST.md`, run ONE adversarial
-  review, scan its tool inputs, compare tracked hashes, errata, re-freeze.
+**NEXT: RUN THE SAME-REASONER CLOSED-LOOP CAUSAL PILOT FOR THE FIRST REAL ARC
+B/P/U/L/T/A WITNESS** (next stage, fresh session; its first frozen step is
+the v1.8 prospective test `scripts/v18_prospective.py`, run ONCE; then the
+real ARC witness search under its own protocol). Not started.
+
+**v1.8 NO-ORACLE EXTENSION PROPOSER: DONE (design, implementation,
+development audit, freeze, ONE review, erratum 01, re-freeze)** (2026-10-06).
+- RE-FROZEN at b69b770: manifest `outputs/tti/no_oracle_proposer_v18_manifest.json`
+  sha256 d64732cf54f91f70ce6f7be041956850d6cc85ca3986e4e08199401278db8731;
+  protocol 59e0889f; proposer 8fbb0801; K* b009a9fb; v1.7 compiler unchanged
+  (04c6b3a1); frozen D b0ae3eca; 33 pinned files. First freeze e7afc0f
+  (bd657faa) superseded.
+- Review `records/ITEM2_V18_REVIEW_RESULT.md` (b98bd24): 1 BLOCKING (both
+  G1 controls could not propose), 2 MAJOR (undisclosed leave-one-out
+  conditioning; S6 unfailable), 18 MINOR; access clean except a name-only
+  `find` in geocat_arc diagnostics (disclosed). Erratum
+  `records/ITEM2_V18_ERRATUM_01.md`: transplant and BLIND controls that keep
+  the mechanism; witness leg A = K* at 3x budget; leakage overrides; resume
+  policy; disclosures. The erratum itself was not re-reviewed (one review).
+- Development (DEVELOPMENT ONLY): useful FC 40/40, transplant 26/40, BLIND
+  30/40, NO_RESPONSE 40/40, PURE 10/40, old sanity arms 0/40; engine subset
+  8/8 necessary and held-out exact, real LOO all folds 6/8, witnesses 6/8
+  (3x K* accepted 0/8); selection = generator's behaviour 19/40.
+- Prospective test frozen, NOT run: seeds 860M, N=30, W=15, G1 sign tests
+  vs transplant and BLIND (power 0.99 and 0.90 at development rates, 0.48
+  if the advantage shrinks to 15 percent; size 0.016), G2 15/30 witnesses.
+- Claim ceiling: engineering evidence only until the prospective test; a
+  prospective acceptance is LEVEL 2 for the synthetic domain, never a real
+  ARC result; completeness by construction, corpus leave-one-out
+  conditioning and S6-descriptive-only are disclosed.
 
 Earlier: NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER (now
 in progress above).
