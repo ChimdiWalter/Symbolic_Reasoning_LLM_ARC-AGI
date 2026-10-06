@@ -160,6 +160,46 @@ def _loo(loo):
                                              "uses", "heldout_exact", "production")} for f in loo["folds"]]}
 
 
+WRONG_FROM_POOL = 3
+
+
+def wrong_extensions(train, held, selected_name, recs):
+    """False-acceptance control (protocol section 16): wrong extensions,
+    distinct by production name and never the selected e: up to
+    WRONG_FROM_POOL candidates of the FAILURE_CONDITIONED proposer's
+    verified, deduplicated pool in MDL order whose fitter prediction of the
+    held-out pair is wrong, then the SHUFFLED_FRONTIER and BLIND selections
+    when selected and not useful."""
+    import numpy as np
+    out, names = [], {selected_name}
+    sem = P.Semantics(train)
+    inp = P.build_input(train, sem)
+    deadline = time.time() + P.LIMITS["wall_s"]
+    verified = []
+    for depth in P.LIMITS["depths"]:
+        gen = P.propose(inp, depth, sem, deadline)
+        verified = P.verify(gen["proposals"], sem, deadline)
+        if verified:
+            break
+    for rank, c in enumerate(P.dedupe(verified, deadline)):
+        if len(out) >= WRONG_FROM_POOL:
+            break
+        pred = P._evaluate(c["fitted"], held[0])
+        if pred is None or not np.array_equal(pred, held[1]):
+            pw = X.compile_extension(X.make_input(c["schema"]))
+            if pw["name"] not in names:
+                names.add(pw["name"])
+                out.append(("POOL", rank, pw))
+    for arm in ("SHUFFLED_FRONTIER", "BLIND"):
+        rec = recs[arm]
+        if rec["class"] == "SELECTED" and not PR18.heldout_exact(rec, held):
+            pw = P.compile_selected(rec)
+            if pw["name"] not in names:
+                names.add(pw["name"])
+                out.append((arm, None, pw))
+    return out
+
+
 def run_task(t, donor):
     train = [ungrid(p) for p in t["train"]]
     held = ungrid(t["held"])
@@ -201,14 +241,11 @@ def run_task(t, donor):
     with R.repaired():
         row["loo_new"] = _loo(P.real_loo(train))
     row["restored"] = row["restored"] and R.restored()
-    rank, cw = RD.wrong_extension(train, held)
-    if cw is None:
-        row["wrong"] = None
-    else:
-        pw = X.compile_extension(X.make_input(cw["schema"]))
-        row["wrong"] = {"mdl_rank": rank, "is_selected_e": pw["name"] == prod["name"],
-                        "old": RD.summarize(X.run_reasoner(train, (pw,)), held, pw),
-                        "new": RD.summarize(R.run_reasoner(train, (pw,)), held, pw)}
+    row["wrong_trials"] = []
+    for source, rank, pw in wrong_extensions(train, held, prod["name"], recs):
+        row["wrong_trials"].append({"source": source, "mdl_rank": rank, "production": pw["name"],
+                                    "old": RD.summarize(X.run_reasoner(train, (pw,)), held, pw),
+                                    "new": RD.summarize(R.run_reasoner(train, (pw,)), held, pw)})
     row["load_end"] = [round(x, 2) for x in os.getloadavg()]
     a_leg = not (base3["accepted"] and row["baseline_3x"]["heldout_exact"])
     o = row["old"]
@@ -254,14 +291,14 @@ def safety(rows):
                            for r in eng if r["new_with"]["accepted"] and r["new_with"].get("uses")),
         "restored": all(r.get("restored") for r in eng),
     }
-    wrong = [r["wrong"] for r in eng if r.get("wrong")]
+    wrong = [w for r in eng for w in r.get("wrong_trials", [])]
     fa_old = sum(1 for w in wrong if w["old"]["accepted"] and not w["old"]["heldout_exact"])
     fa_new = sum(1 for w in wrong if w["new"]["accepted"] and not w["new"]["heldout_exact"])
     full_fa_old = sum(1 for r in eng if r["old"]["with"]["accepted"] and not r["old"]["with"]["heldout_exact"])
     full_fa_new = sum(1 for r in eng if r["new_with"]["accepted"] and not r["new_with"]["heldout_exact"])
     checks["false_acceptance_control"] = fa_new <= fa_old
     checks["false_acceptance_selected"] = full_fa_new <= full_fa_old
-    return {"checks": checks, "control_tasks": len(wrong), "control_fa_old": fa_old, "control_fa_new": fa_new,
+    return {"checks": checks, "control_trials": len(wrong), "control_fa_old": fa_old, "control_fa_new": fa_new,
             "selected_fa_old": full_fa_old, "selected_fa_new": full_fa_new, "pass": all(checks.values())}
 
 

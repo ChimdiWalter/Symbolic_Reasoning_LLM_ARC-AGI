@@ -378,7 +378,16 @@ Per task:
   against K*) and under K*' (K*' + e against K*' alone); K* alone at 3x
   budget (24 s); the v1.8 adaptive leave-one-out (proposer, compiler,
   installation and reasoner from scratch in every fold) under K* and under
-  K*'; the false-acceptance control of section 15 under K* and K*'.
+  K*'; the false-acceptance control: wrong extensions, distinct by
+  production name and never the selected e, are up to three candidates of
+  the FAILURE_CONDITIONED proposer's verified, deduplicated pool in MDL
+  order whose fitter prediction of the held-out pair is wrong, then the
+  SHUFFLED_FRONTIER and BLIND selections when selected and not useful
+  (verified on the seven pairs, wrong on the held-out pair); each is
+  installed into K* and into K*' on the seven pairs. (Section 15's single
+  e_wrong per task found no such candidate on most development tasks; the
+  wider rule was measured on development data in
+  `scripts/v19_falseaccept_dev.py` before this freeze.)
 
 Witness legs under K*' (primary): B (K*' alone not accepted), P (selected),
 U (K*' + e winner uses e), L (K*' adaptive leave-one-out, every fold
@@ -403,9 +412,10 @@ Gates:
   leave-one-out fold that succeeds under K* succeeds under K*'; every
   program K*' accepts replays its training pairs; every accepted K*' + e
   winner that uses e executes directly to the engine's prediction; no
-  K*-4 patch survives a run; false acceptances of e_wrong under K*' do not
-  exceed those under K*; accepted K*' + e runs with a wrong held-out
-  prediction do not exceed those of K* + e.
+  K*-4 patch survives a run; over all wrong-extension trials, false
+  acceptances (accepted, held-out wrong) under K*' do not exceed those
+  under K*; accepted K*' + e runs with a wrong held-out prediction do not
+  exceed those of K* + e.
 
 Outcomes (first match):
 

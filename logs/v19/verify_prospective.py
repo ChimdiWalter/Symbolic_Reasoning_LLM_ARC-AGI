@@ -125,7 +125,7 @@ s = {
     "attribution": all(r["new_with"].get("direct_equals_engine") is True
                        for r in eng if r["new_with"]["accepted"] and r["new_with"].get("uses")),
     "restored": all(r.get("restored") for r in eng)}
-wrong = [r["wrong"] for r in eng if r.get("wrong")]
+wrong = [w for r in eng for w in r.get("wrong_trials", [])]
 s["false_acceptance_control"] = sum(1 for w in wrong if w["new"]["accepted"] and not w["new"]["heldout_exact"]) <= \
     sum(1 for w in wrong if w["old"]["accepted"] and not w["old"]["heldout_exact"])
 s["false_acceptance_selected"] = sum(1 for r in eng if r["new_with"]["accepted"] and not r["new_with"]["heldout_exact"]) <= \

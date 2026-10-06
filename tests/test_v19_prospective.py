@@ -31,7 +31,7 @@ def _row(i, fc=True, sf=False, bl=False, wn=True, wo=False, ln=True, lo=False, *
            "baseline_3x": {"accepted": False, "heldout_exact": False},
            "loo_new": {"passed": ln, "folds": [{"class": "SUCCESS" if ln else "LOO_FAILURE"}] * 7},
            "loo_old": {"passed": lo, "folds": [{"class": "SUCCESS" if lo else "LOO_FAILURE"}] * 7},
-           "restored": safe.get("restored", True), "wrong": safe.get("wrong"),
+           "restored": safe.get("restored", True), "wrong_trials": safe.get("wrong_trials", []),
            "witness_new": {"complete": wn}, "witness_old": {"complete": wo}}
     return row
 
@@ -65,8 +65,8 @@ def test_unsafe_overrides_acceptance(thresholds):
     rows[4]["new_alone"]["accepted"] = True                     # not inert
     assert PR.outcome(rows, [], 30, 0)[0] == "REPAIR_UNSAFE"
     rows = [_row(i) for i in range(30)]
-    rows[5]["wrong"] = {"old": {"accepted": False, "heldout_exact": False},
-                        "new": {"accepted": True, "heldout_exact": False}}
+    rows[5]["wrong_trials"] = [{"old": {"accepted": False, "heldout_exact": False},
+                                "new": {"accepted": True, "heldout_exact": False}}]
     assert PR.outcome(rows, [], 30, 0)[0] == "REPAIR_UNSAFE"     # a false acceptance the old logic avoided
     rows = [_row(i, lo=True) for i in range(30)]
     rows[6]["loo_new"] = {"passed": False, "folds": [{"class": "LOO_FAILURE"}] + [{"class": "SUCCESS"}] * 6}
