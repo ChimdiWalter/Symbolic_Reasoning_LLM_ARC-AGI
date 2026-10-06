@@ -615,7 +615,7 @@ def select(verified, sem, mode="HYBRID", deadline=None) -> dict:
     NO_RESPONSE skips the probe."""
     reps = dedupe(verified, deadline)
     rec = {"verified": len(verified), "deduped": len(reps), "probed": 0, "tie": 0,
-           "level": None, "selected": None}
+           "level": None, "selected": None, "fingerprints": [c["fingerprint"] for c in reps]}
     if not reps:
         return rec
     if len(reps) == 1:
@@ -650,9 +650,11 @@ def select(verified, sem, mode="HYBRID", deadline=None) -> dict:
 # the proposer-level pipeline
 # --------------------------------------------------------------------------
 
-def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None) -> dict:
+def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None, keep=False) -> dict:
     """failure evidence -> proposals -> verification and probe -> selection,
-    for one arm. Returns a record; nothing is compiled or installed here."""
+    for one arm. Returns a record; nothing is compiled or installed here.
+    keep=True also returns the proposal texts and the verified fingerprints
+    for post-hoc diagnostics; it changes no decision."""
     t0 = time.time()
     deadline = t0 + (LIMITS["wall_s"] if wall_s is None else wall_s)
     rec = {"arm": arm, "class": None, "proposals": {}, "capped": {}, "selection": None,
@@ -680,6 +682,9 @@ def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None) -> 
                 gen = propose(inp, depth, sem, deadline)
             rec["proposals"][str(depth)] = len(gen["proposals"])
             rec["capped"][str(depth)] = gen["capped"]
+            if keep:
+                rec.setdefault("diag", {}).setdefault("proposals", []).extend(
+                    p["canonical"] for p in gen["proposals"])
             last_capped = gen["capped"]
             for p in gen["proposals"]:
                 try:
@@ -700,6 +705,8 @@ def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None) -> 
         mode = {"NO_RESPONSE": "NO_RESPONSE", "PURE": "PURE"}.get(arm, "HYBRID")
         sel = select(verified, sem, mode, deadline)
         rec["selection"] = {k: sel[k] for k in ("verified", "deduped", "probed", "tie", "level")}
+        if keep:
+            rec.setdefault("diag", {})["verified_fingerprints"] = sel["fingerprints"]
         if sel["selected"] is None:
             rec["class"] = "SELECTION_ABSTAINED"
             return rec
