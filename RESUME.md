@@ -199,11 +199,8 @@ freeze -> ONE review -> errata; STOP before the v1.9 prospective test).
   (a) dev ablation pipeline pid 1546874 (4 workers), marker
   `logs/v19/REPAIR_DEV_DONE`, report `outputs/tti/v19_repair_dev_report.json`,
   restart `setsid nohup bash logs/v19/run_repair_dev.sh`;
-  (b) reduced-demonstration false-acceptance measurement pid 1599196
-  (3 workers, script committed 8c668f8 before it ran), marker
-  `logs/v19/FALSEACCEPT_REDUCED_DEV_DONE`, report
-  `outputs/tti/v19_falseaccept_reduced_dev_report.json`, restart
-  `setsid nohup bash logs/v19/run_falseaccept_reduced_dev.sh`;
+  (b) reduced-demonstration false-acceptance measurement: DONE (dc9da93);
+  clause-level follow-up DONE (6d77189);
   (c) WATCHER `logs/v19/v19_watch.sh` pid 1603534 (lock
   `logs/v19/v19_watch.lock`, log `logs/v19/v19_watch.log`): relaunches (a)
   or (b) if gone before its marker (3 restarts max each), writes
@@ -211,13 +208,22 @@ freeze -> ONE review -> errata; STOP before the v1.9 prospective test).
   `@reboot` crontab hook (installed 2026-10-06, `sleep 300`; crontab backup
   in the session scratchpad `crontab_before_v19.txt`, 22 lines). No git
   operations in the watcher.
-- FALSE-ACCEPTANCE FINDING (dev, 8c668f8): the section-15 single e_wrong
-  rule and the wider pool + transplant + BLIND rule found 0 wrong
-  extensions in 30 tasks (seven pairs pin down every verified candidate),
-  so the control is vacuous there. Measuring the reduced-demonstration
-  control (train on pairs 0-3, evaluate on 4-6 + held-out, wrong
-  candidates exist by ambiguity) before the freeze; if informative it
-  becomes the prospective control (update protocol section 16 + script).
+- FALSE-ACCEPTANCE FINDING (dev; dc9da93, 6d77189; protocol section 15a,
+  4af2bd1): with seven demonstrations no wrong verified extension exists
+  (0/30 tasks, both rules). With four demonstrations (train 0-3, evaluate
+  4-6 + held-out): K* accepts 8/24 right and 6/19 wrong installed
+  extensions, K*' 24/24 and 19/19; fit-only 13/24 and 9/19; rank-only
+  17/24 and 10/19. The engine's internal gate does NOT discriminate right
+  from wrong installed extensions under scarce demonstrations in any
+  variant; old rejections were indiscriminate. Decision: keep K*-4 (both
+  clauses); prospective G4 gates wrong certified outputs at three system
+  levels (selected FULL, adaptive-LOO folds, seven-pair wrong trials,
+  strict K*' <= K*); the four-demonstration control is run and REPORTED
+  with a pre-registered expectation, not gated; claim ceiling carries the
+  real-ARC caveat (correctness rests on the proposer's selection and the
+  held-out / adaptive-LOO checks). The 86 fitting events are H1 only under
+  the one-witness standard (H2 under the fitter's two-witness standard):
+  state this in the diagnosis record.
 - Early ablation rows (dev): 57/57 old-accepted runs keep the identical
   program under K*'; 0 residual K*' rejections; category-A adaptive LOO
   3/7 and 2/7 -> 7/7.
