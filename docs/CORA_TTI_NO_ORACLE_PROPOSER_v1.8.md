@@ -90,7 +90,7 @@ correct candidate, the held-out pair and the task identity have no field.
 | wall time per proposer call | 180 s (RESOURCE_EXHAUSTED) |
 | order of tops | covered cells descending, table entries ascending, K index |
 | order of lower layers | table entries ascending, K index; middles: covered descending, entries, K index |
-| duplicate law | no block composed with itself; equal canonical text once; verified candidates with one probe fingerprint collapse to the first in MDL order |
+| duplicate law | no block composed with itself; equal canonical text once; verified candidates with one behaviour on the witness grids (section 9) collapse to the first in MDL order |
 | MDL order | total table entries, AST nodes, canonical text |
 
 ## 5. Output contract
@@ -109,7 +109,8 @@ The proposer installs nothing.
 
 1. Verification: exact fit of the proposal on every training demonstration
    by the frozen fitter.
-2. Duplicates: one probe fingerprint, one representative (MDL first).
+2. Duplicates: one behaviour on the witness grids, one representative
+   (MDL first).
 3. P0, unchanged from v1.6: each representative's CandidateFailureResponse
    (v1.6 `probe`: K + {e}, leave-one-out re-derivation; LOO exact, cell
    error, fit failures, table entries); the unique P0-maximal candidate is
@@ -150,20 +151,33 @@ For each training demonstration i:
 
 Each fold records its proposer input hash, proposals, selection, engine
 events, acceptance, attribution and held-out exactness. No object, table,
-input or selection from the full-data run enters a fold; the only state
-between calls is the content-addressed read of the frozen D file.
+input or selection from the full-data run enters a fold. The only state
+kept between calls is pure: the content-addressed read of the frozen D
+file and the fixed witness grids.
 
-## 9. S6 separation law
+## 9. S6 separation law and the witness set
+
+**Witness set.** 64 grids from the frozen task grid process
+(`constructive_dataset.generate_grid`) at seeds 9,000,000,000,000 + i, far
+from every task's grid seeds. A program's behaviour is the sha256 of its
+renderings on these grids.
+
+Why not the frozen constructive probes: on development task 0 the
+extension's lower layer painted on 15 of the 16 probes, yet the full
+program rendered identically to its top layer alone on all 16, and 30
+partial K programs had only 3 distinct probe fingerprints. On the witness
+grids the same extension differed from its top layer on 30 of 64. The
+probes are kept as a secondary witness (design record section 11).
 
 | level | meaning |
 |---|---|
 | A, syntactic | the extension is not one of K's 200 programs |
 | B, bounded search | K's search has no exact fit on the demonstrations |
-| C, behavioural | on the frozen probe grids the fitted extension differs from every relevant existing K program: each PARTIAL block fitted on its own consistent regions, and any loosely fitting K program |
+| C, behavioural | on the witness grids the fitted extension behaves differently from every relevant existing K program: each PARTIAL block fitted on its own consistent regions, and any loosely fitting K program. `C_probes` reports the same test on the frozen probes |
 
 - The comparison set must be non-empty. If it is empty, C is
   C_UNTESTABLE and the claim is downgraded.
-- If the fingerprint equals a member's, C is DUPLICATE_EXISTING_SEMANTICS.
+- If the behaviour equals a member's, C is DUPLICATE_EXISTING_SEMANTICS.
 - A "new semantic capability" needs A, B and C SEPARATED with a non-empty
   set. An empty set is never called novel.
 
@@ -219,6 +233,7 @@ Precedence: the first failing stage names the outcome.
 | no Step-B dependency | `test_no_step_b_dependency` |
 | failure classes reachable | `test_proposer_failure_classes_are_reachable`, `test_k_already_solves_on_a_single_layer_task`, `test_compile_failure_is_classified`, `test_s6_separation_law_and_its_downgrades` |
 | D domain and v1.6 equivalence | `test_d_applies_only_to_key_feature_ties_and_matches_v16_on_one_position` |
+| witness set fixed, separates layers the probes miss | `test_witness_grids_are_fixed_and_separate_layers_the_probes_miss` |
 | engine integration | `test_engine_stage_and_real_loo_on_a_fixture` (marked `engine`) |
 
 Tests run with `PYTHONHASHSEED=0` and use the v1.7 development fixtures
