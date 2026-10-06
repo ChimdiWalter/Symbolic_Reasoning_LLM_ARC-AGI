@@ -195,8 +195,19 @@ freeze, ONE review, errata; do NOT run the closed-loop ARC pilot).
   `cora_arc2026/v18_proposer.py` + `tests/test_v18_proposer.py` (bab4b75).
   Smoke on v1.7 fixtures: fixture 0 10 PARTIAL tops, 2 proposals, selected
   = target behaviourally; fixture 1 18 verified, 2 distinct, D decided.
-- Next: fast + engine tests green, development audit (840M seeds,
-  `scripts/v18_dev_audit.py`), protocol, freeze, one review.
+- Instrument correction (3f356d0, design record section 11): the frozen
+  probes were blind to layered programs (task 0: full == top alone on all
+  16 probes; 30 partial programs, 3 probe fingerprints), so the duplicate
+  law and S6 level C now use 64 task-distribution witness grids (seeds
+  9e12 + i); probes stay as secondary C_probes. First 2 audit rows set
+  aside as superseded.
+- RUNNING (detached, pid 703781, logs/v18/run_dev.pid): engine test, then
+  the full development audit (40 tasks, 8 through the engine) with the
+  final code. Outputs outputs/tti/v18_dev_rows.jsonl (resumable) and
+  outputs/tti/v18_dev_audit.json.
+- Then: development record, feasibility record (set N_TASKS and W_MIN in
+  scripts/v18_prospective.py), exclusion set (scripts/v18_build_exclusion.py),
+  protocol sections 13-14, freeze (scripts/freeze_v18.py), ONE review.
 
 Earlier: NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER (now
 in progress above).
