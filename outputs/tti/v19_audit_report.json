@@ -1,0 +1,8413 @@
+{
+ "stop_prefix": 30,
+ "statuses": {
+  "AUDITED": 30
+ },
+ "audited": 30,
+ "categories": {
+  "A": 15,
+  "B": 12,
+  "R": 3
+ },
+ "runs": {
+  "total": 240,
+  "rejected": 79
+ },
+ "success": {
+  "rejection_events": 145,
+  "mechanistic_and_reproducing": 145,
+  "share": 1.0,
+  "threshold": 0.9,
+  "pass": true,
+  "identity_all_same": true,
+  "other_explicit": 0,
+  "not_reproducing": 0
+ },
+ "codes": {
+  "SLOT_FIT_FAILED:witness": 86,
+  "RANKED_BELOW_COMPETITOR": 59
+ },
+ "mechanisms": {
+  "H1:fitting": 86,
+  "H1:ranking": 59
+ },
+ "mechanisms_major": {
+  "H1": 145
+ },
+ "dominant_mechanism": "H1",
+ "competitors": {
+  "{\"mode\": \"neighbor_count\", \"parameter_class\": \"RELATIONAL\", \"program_class\": \"reduction\", \"split\": \"pixel_rule\"}": 31,
+  "{\"mode\": \"neighbor_pattern\", \"parameter_class\": \"RELATIONAL\", \"program_class\": \"reduction\", \"split\": \"pixel_rule\"}": 28
+ },
+ "reproduce_runs": {
+  "repeated_A": 106,
+  "A_false": 0,
+  "repeated_B": 106,
+  "B_false": 0
+ },
+ "rejected_runs": [
+  {
+   "index": 0,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_2",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_6",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_2",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_4",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 6,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,0,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 6,
+   "run": "FOLD_4",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,0,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 6,
+   "run": "FOLD_5",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,0,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 7,
+   "run": "FOLD_2",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 7,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 7,
+   "run": "FOLD_5",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FULL",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_1",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_2",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_3",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_4",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_5",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 9,
+   "run": "FOLD_6",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 10,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 10,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 10,
+   "run": "FOLD_4",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 11,
+   "run": "FOLD_0",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 11,
+   "run": "FOLD_6",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 12,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 12,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 12,
+   "run": "FOLD_2",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 12,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 12,
+   "run": "FOLD_4",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 12,
+   "run": "FOLD_6",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(0,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FULL",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_0",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_1",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_2",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_3",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_5",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 14,
+   "run": "FOLD_1",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 14,
+   "run": "FOLD_4",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 14,
+   "run": "FOLD_5",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 16,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 16,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 16,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 17,
+   "run": "FOLD_2",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 17,
+   "run": "FOLD_4",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 17,
+   "run": "FOLD_5",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 18,
+   "run": "FOLD_0",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 18,
+   "run": "FOLD_2",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 18,
+   "run": "FOLD_6",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_2",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_3",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_4",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_5",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 19,
+   "run": "FOLD_6",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 20,
+   "run": "FOLD_0",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 20,
+   "run": "FOLD_1",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 20,
+   "run": "FOLD_5",
+   "codes": [
+    "SLOT_FIT_FAILED:witness"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 23,
+   "run": "FOLD_1",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 23,
+   "run": "FOLD_4",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 23,
+   "run": "FOLD_6",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FULL",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_0",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_1",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_2",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_3",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_4",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_5",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 24,
+   "run": "FOLD_6",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "R",
+   "family": "(1,1)",
+   "level": "MDL",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 26,
+   "run": "FOLD_0",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "D",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 26,
+   "run": "FOLD_1",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "D",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 26,
+   "run": "FOLD_3",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "D",
+   "repeat_A": true,
+   "repeat_B": true
+  },
+  {
+   "index": 26,
+   "run": "FOLD_5",
+   "codes": [
+    "RANKED_BELOW_COMPETITOR"
+   ],
+   "category": "A",
+   "family": "(1,0)",
+   "level": "D",
+   "repeat_A": true,
+   "repeat_B": true
+  }
+ ],
+ "seven_versus_six": [
+  {
+   "index": 0,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.8
+   }
+  },
+  {
+   "index": 0,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 3,
+     "failed": [
+      0,
+      1,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.69
+   }
+  },
+  {
+   "index": 0,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 3,
+     "failed": [
+      0,
+      1,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.8
+   }
+  },
+  {
+   "index": 0,
+   "fold": 6,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      1,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.67
+   }
+  },
+  {
+   "index": 3,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.94
+   }
+  },
+  {
+   "index": 3,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.8
+   }
+  },
+  {
+   "index": 3,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.59
+   }
+  },
+  {
+   "index": 3,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.79
+   }
+  },
+  {
+   "index": 3,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.67
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.63
+   }
+  },
+  {
+   "index": 6,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.0
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      3,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 5.82
+   }
+  },
+  {
+   "index": 6,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.0
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      3,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 13.99
+   }
+  },
+  {
+   "index": 6,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.0
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      3,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 10.24
+   }
+  },
+  {
+   "index": 7,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.59
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.73
+   }
+  },
+  {
+   "index": 7,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.59
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.6
+   }
+  },
+  {
+   "index": 7,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.59
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.55
+   }
+  },
+  {
+   "index": 10,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.62
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.72
+   }
+  },
+  {
+   "index": 10,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.62
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      1,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.76
+   }
+  },
+  {
+   "index": 10,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.62
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      1,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.7
+   }
+  },
+  {
+   "index": 11,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.59
+   }
+  },
+  {
+   "index": 11,
+   "fold": 6,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      0
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.74
+   }
+  },
+  {
+   "index": 12,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 13.91
+   }
+  },
+  {
+   "index": 12,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.74
+   }
+  },
+  {
+   "index": 12,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.78
+   }
+  },
+  {
+   "index": 12,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 8.09
+   }
+  },
+  {
+   "index": 12,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.75
+   }
+  },
+  {
+   "index": 12,
+   "fold": 6,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.84
+   }
+  },
+  {
+   "index": 14,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 14.56
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.64
+   }
+  },
+  {
+   "index": 14,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 14.56
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      1,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.67
+   }
+  },
+  {
+   "index": 14,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 14.56
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.88
+   }
+  },
+  {
+   "index": 16,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.56
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.67
+   }
+  },
+  {
+   "index": 16,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.56
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.83
+   }
+  },
+  {
+   "index": 16,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.56
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.66
+   }
+  },
+  {
+   "index": 17,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.55
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      3,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.83
+   }
+  },
+  {
+   "index": 17,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.55
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.75
+   }
+  },
+  {
+   "index": 17,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.55
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.71
+   }
+  },
+  {
+   "index": 18,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.71
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.65
+   }
+  },
+  {
+   "index": 18,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.71
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.6
+   }
+  },
+  {
+   "index": 18,
+   "fold": 6,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.71
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.65
+   }
+  },
+  {
+   "index": 19,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.76
+   }
+  },
+  {
+   "index": 19,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.77
+   }
+  },
+  {
+   "index": 19,
+   "fold": 2,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 3,
+     "failed": [
+      3,
+      4,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.78
+   }
+  },
+  {
+   "index": 19,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.8
+   }
+  },
+  {
+   "index": 19,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.69
+   }
+  },
+  {
+   "index": 19,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 3,
+     "failed": [
+      2,
+      4,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.73
+   }
+  },
+  {
+   "index": 19,
+   "fold": 6,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      2,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.73
+   }
+  },
+  {
+   "index": 20,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.8
+   }
+  },
+  {
+   "index": 20,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.78
+   }
+  },
+  {
+   "index": 20,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.68
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "SLOT_FIT_FAILED:witness"
+    ],
+    "seconds": 14.76
+   }
+  },
+  {
+   "index": 23,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.65
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      3,
+      5
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.61
+   }
+  },
+  {
+   "index": 23,
+   "fold": 4,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.65
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.67
+   }
+  },
+  {
+   "index": 23,
+   "fold": 6,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.65
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      1
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.82
+   }
+  },
+  {
+   "index": 26,
+   "fold": 0,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.78
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.74
+   }
+  },
+  {
+   "index": 26,
+   "fold": 1,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.78
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 5,
+     "failed": [
+      2
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.6
+   }
+  },
+  {
+   "index": 26,
+   "fold": 3,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.78
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      1,
+      4
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.55
+   }
+  },
+  {
+   "index": 26,
+   "fold": 5,
+   "bytes_identical": true,
+   "full": {
+    "loo": {
+     "folds": 7,
+     "passed": 7,
+     "failed": []
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 7,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "seconds": 15.78
+   },
+   "fold_run": {
+    "loo": {
+     "folds": 6,
+     "passed": 4,
+     "failed": [
+      0,
+      3
+     ]
+    },
+    "top_candidates": 1,
+    "overlay_rank": 0,
+    "fits": [
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     },
+     {
+      "n": 6,
+      "ok": true,
+      "failure": null
+     }
+    ],
+    "phases": [
+     "_fold_inducer"
+    ],
+    "codes": [
+     "RANKED_BELOW_COMPETITOR"
+    ],
+    "seconds": 14.6
+   }
+  }
+ ],
+ "by_level": {
+  "MDL": {
+   "tasks": 26,
+   "folds": 182,
+   "folds_rejected": 69,
+   "full_rejected": 3
+  },
+  "D": {
+   "tasks": 2,
+   "folds": 14,
+   "folds_rejected": 4,
+   "full_rejected": 0
+  },
+  "VERIFICATION_UNIQUE": {
+   "tasks": 2,
+   "folds": 14,
+   "folds_rejected": 3,
+   "full_rejected": 0
+  }
+ },
+ "by_family": {
+  "(0,1)": {
+   "tasks": 6,
+   "folds": 42,
+   "folds_rejected": 10,
+   "full_rejected": 0
+  },
+  "(1,1)": {
+   "tasks": 13,
+   "folds": 91,
+   "folds_rejected": 39,
+   "full_rejected": 2
+  },
+  "(1,0)": {
+   "tasks": 10,
+   "folds": 70,
+   "folds_rejected": 24,
+   "full_rejected": 1
+  },
+  "(0,0,0)": {
+   "tasks": 1,
+   "folds": 7,
+   "folds_rejected": 3,
+   "full_rejected": 0
+  }
+ },
+ "by_seen": {
+  "unseen": {
+   "tasks": 30,
+   "folds": 210,
+   "folds_rejected": 76,
+   "full_rejected": 3
+  }
+ },
+ "load": {
+  "summary": {
+   "CPU1": {
+    "runs": 18,
+    "decision_changed": 0,
+    "codes_changed": 0
+   },
+   "CPU10": {
+    "runs": 18,
+    "decision_changed": 0,
+    "codes_changed": 0
+   }
+  },
+  "runs": [
+   {
+    "index": 0,
+    "run": "FOLD_0",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 16.63,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 135.77,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FOLD_1",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.61,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 135.75,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FOLD_2",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.66,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 136.83,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FOLD_3",
+    "WALL": {
+     "accepted": true,
+     "codes": []
+    },
+    "CPU1": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 16.04,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 132.48,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FOLD_4",
+    "WALL": {
+     "accepted": true,
+     "codes": []
+    },
+    "CPU1": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 14.56,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 132.42,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FOLD_5",
+    "WALL": {
+     "accepted": true,
+     "codes": []
+    },
+    "CPU1": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 14.73,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 134.38,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FOLD_6",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.85,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 137.96,
+     "error": null
+    }
+   },
+   {
+    "index": 0,
+    "run": "FULL",
+    "WALL": {
+     "accepted": true,
+     "codes": []
+    },
+    "CPU1": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 16.19,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 142.59,
+     "error": null
+    }
+   },
+   {
+    "index": 1,
+    "run": "FOLD_0",
+    "WALL": {
+     "accepted": true,
+     "codes": []
+    },
+    "CPU1": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.37,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 102.73,
+     "error": null
+    }
+   },
+   {
+    "index": 1,
+    "run": "FULL",
+    "WALL": {
+     "accepted": true,
+     "codes": []
+    },
+    "CPU1": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.94,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": true,
+     "codes": [],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 113.96,
+     "error": null
+    }
+   },
+   {
+    "index": 3,
+    "run": "FOLD_0",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.3,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 135.91,
+     "error": null
+    }
+   },
+   {
+    "index": 3,
+    "run": "FOLD_1",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.52,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 145.57,
+     "error": null
+    }
+   },
+   {
+    "index": 3,
+    "run": "FOLD_2",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "RANKED_BELOW_COMPETITOR"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "RANKED_BELOW_COMPETITOR"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.24,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "RANKED_BELOW_COMPETITOR"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 145.78,
+     "error": null
+    }
+   },
+   {
+    "index": 3,
+    "run": "FOLD_3",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.48,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 147.27,
+     "error": null
+    }
+   },
+   {
+    "index": 3,
+    "run": "FOLD_4",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "RANKED_BELOW_COMPETITOR"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "RANKED_BELOW_COMPETITOR"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 15.22,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "RANKED_BELOW_COMPETITOR"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 144.71,
+     "error": null
+    }
+   },
+   {
+    "index": 6,
+    "run": "FOLD_3",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 6.02,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 10.7,
+     "error": null
+    }
+   },
+   {
+    "index": 6,
+    "run": "FOLD_4",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 14.7,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 46.09,
+     "error": null
+    }
+   },
+   {
+    "index": 6,
+    "run": "FOLD_5",
+    "WALL": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ]
+    },
+    "CPU1": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 10.09,
+     "error": null
+    },
+    "CPU10": {
+     "accepted": false,
+     "codes": [
+      "SLOT_FIT_FAILED:witness"
+     ],
+     "same_decision": true,
+     "same_codes": true,
+     "seconds": 66.11,
+     "error": null
+    }
+   }
+  ]
+ },
+ "identity": [
+  {
+   "index": 0,
+   "run": "FOLD_0",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_1",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_2",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_3",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_4",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_5",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FOLD_6",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 0,
+   "run": "FULL",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 1,
+   "run": "FOLD_0",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 1,
+   "run": "FULL",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_0",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  },
+  {
+   "index": 3,
+   "run": "FOLD_1",
+   "same_accepted": true,
+   "same_program": true,
+   "same_events": true,
+   "same_heldout": true
+  }
+ ],
+ "selection_quality": {
+  "tasks": 30,
+  "H4": 0,
+  "selected_fails_proxy": 11,
+  "errors": 0,
+  "H4_in_category": {}
+ },
+ "events": [
+  {
+   "index": 0,
+   "run": "FOLD_0",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_0",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_1",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_1",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_1",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_2",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_2",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_2",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_6",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 0,
+   "run": "FOLD_6",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_0",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_0",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_1",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_1",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_2",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_75f2648c4a707a1d9bc8afa6",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 6,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 19
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_3",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_3",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 3,
+   "run": "FOLD_4",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_75f2648c4a707a1d9bc8afa6",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 6,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 19
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 6,
+   "run": "FOLD_3",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key False witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,0,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 6,
+   "run": "FOLD_3",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key False witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,0,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 6,
+   "run": "FOLD_4",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key False witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,0,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 6,
+   "run": "FOLD_4",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key False witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,0,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 6,
+   "run": "FOLD_5",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key False witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,0,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 6,
+   "run": "FOLD_5",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key False witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,0,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 7,
+   "run": "FOLD_2",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 3 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 7,
+   "run": "FOLD_2",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 3 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 7,
+   "run": "FOLD_3",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 3 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 7,
+   "run": "FOLD_3",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 3 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 7,
+   "run": "FOLD_5",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 3 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 7,
+   "run": "FOLD_5",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 3 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FULL",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_567d43e3b9af0e997cbd655d",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_0",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 5 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_0",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 5 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_1",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_567d43e3b9af0e997cbd655d",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_2",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 5 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_2",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 5 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_3",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_567d43e3b9af0e997cbd655d",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_4",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_567d43e3b9af0e997cbd655d",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_5",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 5 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_5",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 5 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 9,
+   "run": "FOLD_6",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_567d43e3b9af0e997cbd655d",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 10,
+   "run": "FOLD_1",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 10,
+   "run": "FOLD_1",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 10,
+   "run": "FOLD_3",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 10,
+   "run": "FOLD_3",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 10,
+   "run": "FOLD_4",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 10,
+   "run": "FOLD_4",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 11 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 11,
+   "run": "FOLD_0",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_9e764c5b01276454c759d849",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 11,
+   "run": "FOLD_6",
+   "hold": 0,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_9e764c5b01276454c759d849",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_0",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_0",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_1",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_1",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_2",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_2",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_3",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_3",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_4",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_4",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_6",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 12,
+   "run": "FOLD_6",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(0,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FULL",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FULL",
+   "hold": 6,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_0",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_0",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_1",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_1",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_2",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_2",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_3",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_3",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "hold": 0,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_4",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_5",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_5",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "hold": 0,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 13,
+   "run": "FOLD_6",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 14,
+   "run": "FOLD_1",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_ae68e153ef326086a587aa09",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 14,
+   "run": "FOLD_4",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_ae68e153ef326086a587aa09",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 14,
+   "run": "FOLD_4",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_ae68e153ef326086a587aa09",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 14,
+   "run": "FOLD_5",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_ae68e153ef326086a587aa09",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 16,
+   "run": "FOLD_0",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 16,
+   "run": "FOLD_0",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 16,
+   "run": "FOLD_1",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 16,
+   "run": "FOLD_1",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 16,
+   "run": "FOLD_3",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 16,
+   "run": "FOLD_3",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 7 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 17,
+   "run": "FOLD_2",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 17,
+   "run": "FOLD_2",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 17,
+   "run": "FOLD_4",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 17,
+   "run": "FOLD_4",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 17,
+   "run": "FOLD_5",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 17,
+   "run": "FOLD_5",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 18,
+   "run": "FOLD_0",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_8b08f0b6d8dc322041bb1943",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE"
+  },
+  {
+   "index": 18,
+   "run": "FOLD_2",
+   "hold": 0,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_8b08f0b6d8dc322041bb1943",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE"
+  },
+  {
+   "index": 18,
+   "run": "FOLD_2",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_8b08f0b6d8dc322041bb1943",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE"
+  },
+  {
+   "index": 18,
+   "run": "FOLD_6",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_8b08f0b6d8dc322041bb1943",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "VERIFICATION_UNIQUE"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_0",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (3,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_0",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (3,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_1",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (3,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_1",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (3,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_2",
+   "hold": 3,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_2",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (6,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_2",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (6,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_3",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (3,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_3",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (3,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_4",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_4",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_5",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (6,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_5",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 1 key 6 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_5",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (6,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_6",
+   "hold": 2,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (6,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 19,
+   "run": "FOLD_6",
+   "hold": 5,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key (6,) witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 20,
+   "run": "FOLD_0",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 20,
+   "run": "FOLD_0",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 20,
+   "run": "FOLD_1",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 20,
+   "run": "FOLD_1",
+   "hold": 4,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 20,
+   "run": "FOLD_5",
+   "hold": 0,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 20,
+   "run": "FOLD_5",
+   "hold": 1,
+   "code": "SLOT_FIT_FAILED:witness",
+   "mechanism": "H1",
+   "h1_kind": "fitting",
+   "permissive_predicts": true,
+   "competitor": null,
+   "overlay": null,
+   "fit_detail": "block 0 key 8 witnessed by 1 < 2 demonstrations",
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "MDL"
+  },
+  {
+   "index": 23,
+   "run": "FOLD_1",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 23,
+   "run": "FOLD_1",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 23,
+   "run": "FOLD_4",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 23,
+   "run": "FOLD_6",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_a23dc164f38cd52ceb415a75",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FULL",
+   "hold": 6,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_0",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_1",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_2",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_3",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_4",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_5",
+   "hold": 5,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 24,
+   "run": "FOLD_6",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_28decdfbc9ebc95ae698c111",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 2,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 15
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,1)",
+   "level": "MDL"
+  },
+  {
+   "index": 26,
+   "run": "FOLD_0",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_5623616fc3a5c426e62ab722",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "D"
+  },
+  {
+   "index": 26,
+   "run": "FOLD_1",
+   "hold": 2,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_5623616fc3a5c426e62ab722",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "D"
+  },
+  {
+   "index": 26,
+   "run": "FOLD_3",
+   "hold": 1,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_count",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_5623616fc3a5c426e62ab722",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "D"
+  },
+  {
+   "index": 26,
+   "run": "FOLD_3",
+   "hold": 4,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_5623616fc3a5c426e62ab722",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "D"
+  },
+  {
+   "index": 26,
+   "run": "FOLD_5",
+   "hold": 0,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_5623616fc3a5c426e62ab722",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "D"
+  },
+  {
+   "index": 26,
+   "run": "FOLD_5",
+   "hold": 3,
+   "code": "RANKED_BELOW_COMPETITOR",
+   "mechanism": "H1",
+   "h1_kind": "ranking",
+   "permissive_predicts": true,
+   "competitor": {
+    "type": "ReductionProgram",
+    "concept": null,
+    "program_class": "reduction",
+    "split": "pixel_rule",
+    "mode": "neighbor_pattern",
+    "parameter_class": "RELATIONAL",
+    "value_bound": 0,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 2
+   },
+   "overlay": {
+    "type": "ComputedPatternProgram",
+    "concept": "cx_5623616fc3a5c426e62ab722",
+    "program_class": "computed_pattern",
+    "parameter_class": "INDUCED_MAP",
+    "value_bound": 3,
+    "stages": 1,
+    "rules": 0,
+    "expression_size": 16
+   },
+   "fit_detail": null,
+   "reproduces": true,
+   "family": "(1,0)",
+   "level": "D"
+  }
+ ]
+}
