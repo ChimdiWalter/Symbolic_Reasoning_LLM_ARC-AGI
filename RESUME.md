@@ -190,8 +190,13 @@ freeze, ONE review, errata; do NOT run the closed-loop ARC pilot).
   a non-empty comparison set.
 - Development seeds 840,000,000 + 100k (40 tasks, 8 through the engine);
   prospective seeds 860,000,000 + 100k reserved.
-- Next: `cora_arc2026/v18_proposer.py`, frozen D artifact, tests,
-  development audit, protocol, freeze, one review.
+- DONE: frozen D `outputs/tti/v18_frozen_d.json` (b0ae3eca; refit by v1.6's
+  own path reproduces all five v1.6 D/P0_then_D numbers; defbd5c);
+  `cora_arc2026/v18_proposer.py` + `tests/test_v18_proposer.py` (bab4b75).
+  Smoke on v1.7 fixtures: fixture 0 10 PARTIAL tops, 2 proposals, selected
+  = target behaviourally; fixture 1 18 verified, 2 distinct, D decided.
+- Next: fast + engine tests green, development audit (840M seeds,
+  `scripts/v18_dev_audit.py`), protocol, freeze, one review.
 
 Earlier: NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER (now
 in progress above).
