@@ -201,8 +201,10 @@ freeze, ONE review, errata; do NOT run the closed-loop ARC pilot).
   law and S6 level C now use 64 task-distribution witness grids (seeds
   9e12 + i); probes stay as secondary C_probes. First 2 audit rows set
   aside as superseded.
-- RUNNING (detached, pid 703781, logs/v18/run_dev.pid): engine test, then
-  the full development audit (40 tasks, 8 through the engine) with the
+- RUNNING (detached, pid 703781, logs/v18/run_dev.pid): engine test DONE
+  (passed, 132.5 s, final code), then the full development audit (task 0
+  done at 00:29Z; rows resumable: a rerun of scripts/v18_dev_audit.py skips
+  finished seeds) (40 tasks, 8 through the engine) with the
   final code. Outputs outputs/tti/v18_dev_rows.jsonl (resumable) and
   outputs/tti/v18_dev_audit.json.
 - Then: development record, feasibility record (set N_TASKS and W_MIN in
