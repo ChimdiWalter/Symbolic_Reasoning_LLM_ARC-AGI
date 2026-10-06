@@ -179,10 +179,23 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**NEXT: RUN THE SAME-REASONER CLOSED-LOOP CAUSAL PILOT FOR THE FIRST REAL ARC
-B/P/U/L/T/A WITNESS** (next stage, fresh session; its first frozen step is
-the v1.8 prospective test `scripts/v18_prospective.py`, run ONCE; then the
-real ARC witness search under its own protocol). Not started.
+**v1.8 PROSPECTIVE TEST RUNNING** (launched once 2026-10-06T19:08:11Z,
+writer pid 1089796, own session; launch record `logs/v18/prospective_launch.json`,
+fa3163a; load about 80 on 24 CPUs at launch). Administrative monitoring only
+(liveness, row count, marker, traceback); do NOT read partial rows.
+- If the writer is gone with `logs/v18/prospective_start.json` present and
+  neither `outputs/tti/v18_prospective_report.json` nor
+  `logs/V18_PROSPECTIVE_DONE`: relaunch ONCE with `--resume` (same
+  environment: PYTHONHASHSEED=0 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<tti>,
+  setsid nohup) and record it.
+- After the marker: terminal verification (freeze unchanged, 30 distinct
+  tasks outside the exclusion set, no duplicate or missing rows, no leakage,
+  no run error), then independent recomputation of every gate from the rows,
+  then the result record. Pass: NEXT = design and freeze the real ARC pilot
+  (fresh session). Fail: record the exact blocker and stop.
+
+Then (only if it passes): NEXT: DESIGN AND FREEZE THE SAME-REASONER REAL ARC
+CAUSAL PILOT FOR THE FIRST B/P/U/L/T/A WITNESS (fresh session).
 
 **v1.8 NO-ORACLE EXTENSION PROPOSER: DONE (design, implementation,
 development audit, freeze, ONE review, erratum 01, re-freeze)** (2026-10-06).
