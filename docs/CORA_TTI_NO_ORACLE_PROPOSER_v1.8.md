@@ -8,6 +8,9 @@ Status: FROZEN at the commit named in
   before any development measurement.
 - Development record `records/ITEM2_V18_DEVELOPMENT_RESULT.md` (DEVELOPMENT
   ONLY).
+- One adversarial review: `records/ITEM2_V18_REVIEW_RESULT.md` (b98bd24).
+  Amended by erratum 01 (`records/ITEM2_V18_ERRATUM_01.md`) before any
+  prospective data; amended rules are marked "(erratum 01)".
 - Nothing changes after the freeze except by a recorded erratum made before
   the prospective test runs. This block runs no prospective test and no
   real ARC experiment.
@@ -25,8 +28,11 @@ determines, by composition of K's own blocks, a small set of candidate
 extensions. Among them the frozen selection hierarchy picks one which,
 compiled by the v1.7 compiler and installed in the same reasoner, makes K*
 solve the task, is necessary there, and survives leave-one-out with the
-proposal rebuilt inside every fold. Replacing the task's own failure
-frontier with another task's destroys this.
+proposal rebuilt inside every fold. Under the same mechanism, caps and
+selection, choosing the top layers from another task's failure frontier, or
+from a fixed task-independent order of K's blocks, makes useful proposals
+rarer (gate G1; erratum 01: the earlier controls could not propose at all,
+so they tested nothing).
 
 ## 2. Input boundary
 
@@ -126,6 +132,15 @@ The proposer installs nothing.
    Every selection records its deciding level (VERIFICATION_UNIQUE, P0, D,
    MDL).
 
+Disclosures (erratum 01):
+- The AST-node key of the MDL order is constant within a depth, so the MDL
+  guess is in effect: fewest table entries, then canonical text.
+- D's reproduction check covers its weights, not its feature path on new
+  inputs. Recomputing the features on 120 stored v1.5 episodes matched to
+  within 3.3e-4 (rounding) on 3 of them and exactly on the rest. D runs on
+  6 or 7 demonstrations here against a training mean of 4.96, a
+  distribution shift for a tie-breaker.
+
 The PURE arm stops after P0 and abstains on a tie. The NO_RESPONSE arm
 skips the probe (verification, duplicates, D, MDL).
 
@@ -150,7 +165,10 @@ For each training demonstration i:
 6. predict demonstration i.
 
 Each fold records its proposer input hash, proposals, selection, engine
-events, acceptance, attribution and held-out exactness. No object, table,
+events, acceptance, attribution and held-out exactness. A fold that ends in
+K_ALREADY_SOLVES (K's search alone fits the six demonstrations) or in an
+infrastructure failure counts as a failed fold for L: conservative, and the
+number of K_ALREADY_SOLVES folds is reported (erratum 01). No object, table,
 input or selection from the full-data run enters a fold. The only state
 kept between calls is pure: the content-addressed read of the frozen D
 file and the fixed witness grids.
@@ -181,6 +199,13 @@ probes are kept as a secondary witness (design record section 11).
 - A "new semantic capability" needs A, B and C SEPARATED with a non-empty
   set. An empty set is never called novel.
 
+**On this corpus S6 is descriptive only and carries no evidential weight
+(erratum 01, review M2).** A holds for every composition by the grammar, B
+holds by the corpus law, and C was SEPARATED for 161 of 161 distinct
+verified development candidates on the witness grids (127 of 161 on the
+probes). Changing the witness set is what made C unfailable. The counts are
+reported, but "new semantic capability" is not claimed from them.
+
 ## 10. Failure classes
 
 | class | stage | kind |
@@ -196,21 +221,35 @@ probes are kept as a secondary witness (design record section 11).
 | COMPILE_FAILURE | the compiler rejects the selection | infrastructure (defect) |
 | ENGINE_REJECTED | K* + {e} not accepted, e not used, K* also solves, or held-out wrong | scientific |
 | LOO_FAILURE | a fold fails | scientific |
-| DUPLICATE_EXISTING_SEMANTICS | S6 level C equals an existing K program | claim downgrade |
+| DUPLICATE_EXISTING_SEMANTICS | S6 level C equals an existing K program | S6 qualifier only, never a pipeline outcome |
 | SUCCESS | engine stage succeeded (and, for a fold, its held-out pair) | |
 
-Precedence: the first failing stage names the outcome.
+Precedence: the first failing stage names the outcome. PROPOSAL_LIMIT means
+the cap was reached at any depth and nothing verified (erratum 01).
+
+Reachability (erratum 01): for the main arm on this corpus every proposal
+verifies (every one of 38 of 38 two-block development tasks; the lower-layer
+rule anticipates the fitter), so PROPOSAL_LIMIT and NO_VERIFIABLE_PROPOSAL
+occur only in the control arms; verification is a formality for the main
+arm here.
 
 ## 11. Ablations
 
-| arm | change |
-|---|---|
-| no proposer, compiler ablated, extension removed | K* alone: the paired ablation's K* arm |
-| DEMO_ONLY | K blocks ranked by the share of changed cells their regions touch (no consistency, conflict or residual information), composed by rank sum, same caps and selection |
-| FAILURE_CONDITIONED | sections 3 to 6 |
-| SHUFFLED_FRONTIER | another task's whole `failure` object replaces the task's own (a fixed derangement, never the same target); demonstrations unchanged |
-| NO_RESPONSE | selection without the probe |
-| PURE | P0 without D or MDL |
+| arm | change | role |
+|---|---|---|
+| no proposer, compiler ablated, extension removed | K* alone: the paired ablation's K* arm, and K* at 3x budget | witness legs B and A |
+| FAILURE_CONDITIONED | sections 3 to 6 | main |
+| SHUFFLED_FRONTIER (erratum 01) | coordinate-free transplant: the donor task's PARTIAL and FULL blocks, in the donor's order, are the candidate tops; each residual is recomputed on this task's demonstrations; same lower-layer rule, caps and selection | G1 control |
+| BLIND (erratum 01) | the candidate tops are K's 200 blocks in one fixed task-independent order (`BLIND_ORDER`, numpy default_rng(20261006).permutation(200), the review's probe seed), the first 32 tried; residuals recomputed; same rule, caps and selection | G1 control |
+| SHUFFLED_COORDINATES | the original shuffled arm: the donor's frontier with its residual coordinates used as given; it cannot propose (residual cells lie on another task's grids) | sanity, not gating |
+| DEMO_ONLY | K blocks ranked by the share of changed cells their regions touch, composed by rank sum, same caps and selection; it mostly picks conflicting blocks | sanity, not gating |
+| NO_RESPONSE | selection without the probe | supplementary |
+| PURE | P0 without D or MDL | supplementary |
+
+The donor for both shuffled arms is a fixed derangement of the corpus that
+never shares the task's target digest. The two G1 controls keep the
+proposer's whole mechanism and remove only the task's failure frontier as
+the guide to which top layers to try.
 
 ## 12. Tests (`tests/test_v18_proposer.py`)
 
@@ -221,7 +260,7 @@ Precedence: the first failing stage names the outcome.
 | demonstration-order invariance | `test_demonstration_order_invariance` |
 | frontier perturbation acts only through declared semantics | `test_frontier_perturbation_acts_only_through_declared_semantics` |
 | target absent from the input | `test_target_absent_from_input_and_scanner_refuses_forbidden_content` |
-| hidden output inaccessible | `test_heldout_output_cannot_reach_the_proposer` |
+| hidden output inaccessible | `test_heldout_output_cannot_reach_the_proposer` (erratum 01: fold i's input is unchanged when demonstration i's output is replaced) |
 | no persistent state | `test_no_persistent_state` |
 | duplicate elimination | `test_duplicates_are_eliminated` |
 | compiler compatibility | `test_every_proposal_types_and_the_selection_compiles` |
@@ -229,8 +268,8 @@ Precedence: the first failing stage names the outcome.
 | fresh-process reproduction | `test_fresh_process_reproduces_the_selection` |
 | fold-level proposal isolation | `test_each_fold_proposes_from_its_own_demonstrations_only` |
 | full-data proposal cannot leak into folds | `test_full_data_proposal_cannot_leak_into_folds` |
-| shuffled failure destroys failure-specific proposals | `test_shuffled_frontier_destroys_failure_specific_proposals` |
-| no Step-B dependency | `test_no_step_b_dependency` |
+| controls keep the mechanism, differ only in the tops, are not zero by construction (erratum 01) | `test_controls_keep_the_mechanism_and_differ_only_in_the_tops` |
+| no Step-B dependency | `test_no_step_b_dependency` (also VDCG, E_transfer, Lockbox) |
 | failure classes reachable | `test_proposer_failure_classes_are_reachable`, `test_k_already_solves_on_a_single_layer_task`, `test_compile_failure_is_classified`, `test_s6_separation_law_and_its_downgrades` |
 | D domain and v1.6 equivalence | `test_d_applies_only_to_key_feature_ties_and_matches_v16_on_one_position` |
 | witness set fixed, separates layers the probes miss | `test_witness_grids_are_fixed_and_separate_layers_the_probes_miss` |
@@ -246,13 +285,7 @@ Record: `records/ITEM2_V18_DEVELOPMENT_RESULT.md`. Data:
 Corpus: the first 40 tasks at seed base 840,000,000 (families (0,0) 18,
 (1,1) 8, (1,0) 7, (0,1) 5, (0,0,0) 2; 37 distinct target structures).
 
-| arm | outcome | selection predicts the held-out pair |
-|---|---|---|
-| FAILURE_CONDITIONED | 40 SELECTED | 40 |
-| NO_RESPONSE | 40 SELECTED | 40 |
-| PURE | 10 SELECTED, 30 abstained | 10 |
-| SHUFFLED_FRONTIER | 40 NO_PROPOSAL | 0 |
-| DEMO_ONLY | 40 PROPOSAL_LIMIT | 0 |
+CONTROLS_DEV_PLACEHOLDER
 
 - An extension behaviourally equivalent to the generator's was verified on
   every task; the selection was that extension on 19 of 40.
@@ -268,7 +301,8 @@ Corpus: the first 40 tasks at seed base 840,000,000 (families (0,0) 18,
   synthetic witnesses 6 of 8; S6 level C SEPARATED 8 of 8 with comparison
   sets of 18 to 69 programs.
 - Median 3.4 s per proposer call, maximum 20.9 s. Depth 3 ran on the two
-  three-block tasks only.
+  three-block tasks only. The main arm reached the 256-proposal cap on 2 of
+  40 tasks (37 and 39) and still verified candidates there.
 
 These are engineering numbers on development data. They fixed nothing
 except the prospective thresholds of section 14 (through the feasibility
@@ -285,7 +319,17 @@ digest in `outputs/tti/v18_prospective_exclusion.json` (3,817 digests). The
 seed range was never used before. The generator's schema is read only after
 the proposer has run, for the seen/unseen structural audit (seen means the
 normalized target text occurs among the 40 development structures) and the
-equivalence diagnostics.
+equivalence diagnostics, computed after every arm has run (erratum 01). A
+task whose target digest already occurs earlier in the prospective corpus
+is skipped (erratum 01).
+
+**Corpus conditioning (erratum 01, review M1).** Besides the exact fit, the
+corpus law admits a task only if the generator's schema re-derives every
+training pair under fitter-level leave-one-out. Leg L and P0's first key
+are therefore measured on tasks pre-selected for leave-one-out
+re-derivability of an equivalent extension: L tests recovery by the
+proposer and acceptance by the engine on such tasks, not whether a task is
+identifiable.
 
 **Per task.** Every arm at the proposer level, each with the fitter-level
 held-out check of its selection ("useful"); for FAILURE_CONDITIONED the
@@ -297,13 +341,17 @@ freeze problem and any environment problem.
 
 **Synthetic witness** for a task: B the K* arm not accepted; P the proposer
 selected an extension; U the K* + {e} winner uses e; L every fold succeeds;
-T the held-out pair exact under K* + {e}; A the K* arm neither accepted nor
-held-out exact.
+T the held-out pair exact under K* + {e}; A K* alone at 3x budget (24 s)
+does not reproduce the held-out output (erratum 01: A was identical to B
+before; it now also guards against load starving the K* arm). Load averages
+are recorded around the engine stage.
 
 **Gates.**
-- G1, failure specificity: one-sided exact sign test on tasks discordant in
-  usefulness, FAILURE_CONDITIONED against SHUFFLED_FRONTIER and against
-  DEMO_ONLY, alpha 0.05 each; both must pass.
+- G1, failure specificity (erratum 01): one-sided exact sign test on tasks
+  discordant in usefulness, FAILURE_CONDITIONED against SHUFFLED_FRONTIER
+  (transplant) and against BLIND, alpha 0.05 each; both must pass.
+  SHUFFLED_COORDINATES and DEMO_ONLY are reported against the main arm as
+  sanity checks only.
 - G2, end to end: at least W = 15 of 30 tasks give a complete witness.
 
 **Outcomes.**
@@ -314,14 +362,21 @@ held-out exact.
 | PROPOSER_WORKS_BUT_NOT_FAILURE_SPECIFIC | G2 only |
 | FAILURE_SPECIFIC_BUT_NOT_END_TO_END | G1 only |
 | NO_ORACLE_PROPOSER_NOT_ESTABLISHED | neither |
-| PROPOSER_LEAKAGE | any arm reports LEAKAGE_FAILURE (overrides) |
+| PROPOSER_LEAKAGE | any arm, or any leave-one-out fold, reports LEAKAGE_FAILURE (overrides every other outcome, erratum 01) |
 | NO_VERDICT_FIXTURE_SHORTFALL | fewer than 30 tasks within 2,000 seeds |
 | NO_VERDICT_RUN_ERROR | an exception outside the failure classes |
 
 **Supplementary, not gating:** PURE against hybrid and NO_RESPONSE against
-the main arm (sign tests), the deciding levels, witness parts B to A,
-S6 counts, witnesses by seen and unseen structure and by family, and
-infrastructure failures listed apart from scientific negatives.
+the main arm (sign tests), the sanity controls, the deciding levels,
+witness parts B to A, S6 counts (descriptive), the number of
+K_ALREADY_SOLVES folds, witnesses by seen and unseen structure and by
+family, and infrastructure failures listed apart from scientific negatives.
+
+**Interruption (erratum 01).** If the run is interrupted (start record
+present, no report and no marker), it may be resumed once with
+`--resume`: the corpus is recomputed identically, finished tasks are kept
+and skipped, and every resume is recorded in the report. Nothing else may
+be rerun.
 
 ## 15. Claim ceiling
 
@@ -331,8 +386,10 @@ infrastructure failures listed apart from scientific negatives.
   constructive tasks only, that extensions built from K's own failure,
   without the target or a candidate pair, are compiled, necessary and
   certified in the same reasoner, with leave-one-out proposals inside every
-  fold, and that the task's own failure frontier causes the useful
-  proposals. That is LEVEL 2 on the claim ladder for the synthetic domain.
+  fold, and that choosing top layers by the task's own failure frontier
+  yields useful proposals more often than the transplant and BLIND controls
+  under the same mechanism and caps. That is LEVEL 2 on the claim ladder
+  for the synthetic domain.
 - It is not a real ARC result. LEVEL 3 needs a real ARC B/P/U/L/T/A
   witness from the closed-loop causal pilot. "CORA solved by invention"
   needs a complete real witness.
@@ -353,6 +410,10 @@ infrastructure failures listed apart from scientific negatives.
   in every fold) and in failure specificity against the controls under the
   same caps (G1). Tasks whose extension is not a composition of K blocks
   are outside this protocol.
+- The corpus is also pre-selected for leave-one-out re-derivability of an
+  equivalent extension (section 14), so L measures recovery and engine
+  acceptance on such tasks.
+- S6 is descriptive only on this corpus (section 9).
 
 ## 16. Order after the freeze
 

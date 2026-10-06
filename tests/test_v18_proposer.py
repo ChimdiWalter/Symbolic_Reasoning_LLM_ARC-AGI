@@ -109,18 +109,22 @@ def test_target_absent_from_input_and_scanner_refuses_forbidden_content():
 
 
 # 6. hidden output inaccessible: the held-out pair never reaches the proposer
-def test_heldout_output_cannot_reach_the_proposer():
+def test_heldout_output_cannot_reach_the_proposer(monkeypatch):
+    """(erratum 01, review minor 10) In real leave-one-out, fold i's proposer
+    input does not change when demonstration i's output is replaced."""
     import numpy as np
-    _, train, held = task(0)
-    r1 = P.solve(train)
-    changed = (held[0], np.where(held[1] == 0, 1, 0))
-    assert P.build_input(train) == P.build_input(train)
-    r2 = P.solve(train)
-    assert r1["input_sha256"] == r2["input_sha256"]
-    fold = train[1:]
-    a = P.solve(fold)["input_sha256"]
-    train_mut = [(train[0][0], changed[1])] + train[1:]
-    assert P.solve(train_mut[1:])["input_sha256"] == a
+    _, train, _ = task(0)
+    calls = []
+    _stub_engine(monkeypatch, calls)
+    base = P.real_loo(train)
+    for i in (0, 3):
+        mutated = list(train)
+        mutated[i] = (train[i][0], np.where(train[i][1] == 0, 1, 0))
+        loo = P.real_loo(mutated)
+        assert loo["folds"][i]["input_sha256"] == base["folds"][i]["input_sha256"]
+        assert loo["folds"][i]["selected"] == base["folds"][i]["selected"]
+        others = [f["input_sha256"] for k, f in enumerate(loo["folds"]) if k != i]
+        assert others != [f["input_sha256"] for k, f in enumerate(base["folds"]) if k != i]
 
 
 # 7. no persistent state
@@ -248,28 +252,40 @@ def test_full_data_proposal_cannot_leak_into_folds(monkeypatch):
 
 
 # 14. a replaced failure frontier destroys the failure-specific proposals
-def test_shuffled_frontier_destroys_failure_specific_proposals():
+def test_controls_keep_the_mechanism_and_differ_only_in_the_tops():
+    """(erratum 01, review B1) The G1 controls use the main arm's peeling rule,
+    caps and selection; only the choice of top layers differs. They are not
+    zero by construction."""
     _, train0, _ = task(0)
     _, train1, _ = task(1)
-    own = P.solve(train0)
-    donor = P.build_input(train1)["failure"]
-    shuffled = P.solve(train0, "SHUFFLED_FRONTIER", donor_failure=donor)
-    own_set = set(proposal_set(P.build_input(train0)))
-    sem = P.Semantics(train0)
-    inp = dict(P.build_input(train0, sem), failure=donor)
-    shuf_set = {p["canonical"] for p in P.propose(inp, 2, sem)["proposals"]}
-    assert own["class"] == "SELECTED"
-    assert shuf_set != own_set
-    assert shuffled["class"] != "SELECTED" or shuffled["selected"]["canonical"] != own["selected"]["canonical"]
+    sem = P.Semantics(train1)
+    inp = P.build_input(train1, sem)
+    own = [r["k"] for r in sorted((r for r in inp["failure"]["frontier"] if r["status"] == "PARTIAL"),
+                                  key=lambda r: (-sum(r["covered"]), r["entries"], r["k"]))]
+    for depth in (2, 3):
+        fc = [p["canonical"] for p in P.propose(inp, depth, sem)["proposals"]]
+        assert [p["canonical"] for p in P.propose(inp, depth, sem, tops=own)["proposals"]] == fc
+    donor = P.build_input(train0)["failure"]
+    trans = P.solve(train1, "SHUFFLED_FRONTIER", donor_failure=donor)
+    blind = P.solve(train1, "BLIND")
+    coords = P.solve(train1, "SHUFFLED_COORDINATES", donor_failure=donor)
+    assert trans["class"] in P.FAILURE_CLASSES + ("SELECTED",) and blind["class"] in P.FAILURE_CLASSES + ("SELECTED",)
+    assert sum(trans["proposals"].values()) + sum(blind["proposals"].values()) > 0
+    assert coords["input_sha256"] == trans["input_sha256"]
+    assert P.solve(train1, "BLIND")["selection"] == blind["selection"]
 
 
 # 15. no Step-B dependency
 def test_no_step_b_dependency():
-    step_b = os.path.join(os.path.dirname(HERE), "Reasoning_Project") + os.sep
+    parent = os.path.dirname(HERE)
+    forbidden = [os.path.join(parent, name) + os.sep for name in ("Reasoning_Project", "VDCG")]
     loaded = [m.__file__ for m in list(sys.modules.values()) if getattr(m, "__file__", None)]
-    assert not any(f.startswith(step_b) for f in loaded)
+    assert not any(f.startswith(root) for f in loaded for root in forbidden)
+    assert not any(w in f for f in loaded for w in ("E_transfer", "Lockbox", "lockbox"))
     with open(P.__file__) as handle:
-        assert "Reasoning_Project/" not in handle.read()
+        text = handle.read()
+    assert "Reasoning_Project/" not in text
+    assert not any(w in text for w in ("VDCG", "E_transfer", "Lockbox", "lockbox"))
 
 
 # failure classes: every proposer-level class is reachable

@@ -26,7 +26,9 @@ PROSPECTIVE_BASE = 860_000_000
 MAX_TRIES = 2000
 
 
-def tasks(seed_base, n, max_tries=MAX_TRIES, exclude_digests=frozenset()):
+def tasks(seed_base, n, max_tries=MAX_TRIES, exclude_digests=frozenset(), distinct=False):
+    """distinct=True (prospective only, erratum 01) also skips a task whose
+    target digest already occurs earlier in this corpus."""
     import numpy as np
     from cora_tti import constructive_dataset as CD
     from cora_tti import scoped_slot_fitting as SF
@@ -39,6 +41,8 @@ def tasks(seed_base, n, max_tries=MAX_TRIES, exclude_digests=frozenset()):
         if sum(1 for st in schema[1] if st[0] == "Paint") < 2:
             continue
         if S.CV.digest(schema) in exclude_digests:
+            continue
+        if distinct and any(t["digest"] == S.CV.digest(schema) for t in out):
             continue
         gs = [seed * 97 + i for i in range(30)]
         concrete = CD.instantiate_tables(schema, [CD.generate_grid(s) for s in gs[:6]])

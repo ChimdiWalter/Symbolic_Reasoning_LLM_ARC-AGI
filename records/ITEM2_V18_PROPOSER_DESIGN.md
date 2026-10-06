@@ -204,3 +204,40 @@ give the same 2 classes from 18 verified candidates.
 with the probe key are kept, superseded, in
 `logs/v18/dev_rows_superseded_probe_witness.jsonl`. The development audit
 reruns from the start with the final code.
+
+## 12. Erratum 01 (2026-10-06, after the one review, before any prospective data)
+
+**Correction to section 11's rationale.** Section 11 said the probe key
+"could merge behaviourally different verified candidates before P0 saw
+them". The review measured the opposite in aggregate: over the 40
+development tasks the witness-grid key gives 161 distinct verified
+candidates against 250 under the probe key, coarser on 23 tasks. Selection
+was identical under both keys on 38 of 40 tasks, and on the other two both
+picks predicted the held-out pair. The witness-grid key is kept for the
+duplicate law, because behaviour on task-distribution inputs is the
+equivalence that matters when choosing among candidates. Its real effect is
+on S6 level C, which it makes unfailable on this corpus; S6 is now declared
+descriptive only (protocol section 9).
+
+**Omission.** The depth-3 middle layers are ordered by covered cells
+descending, then table entries ascending, then K index. The code fixed this
+before any development task (bab4b75), but this record did not state it.
+
+**The G1 controls (review B1, blocking).** The original controls could not
+propose by construction:
+- SHUFFLED_FRONTIER applied another task's residual cell coordinates to
+  this task's grids;
+- DEMO_ONLY's ranking mostly selected conflicting blocks.
+
+Two controls now keep the whole mechanism and remove only the task's
+failure frontier as the guide to which top layers to try:
+- **SHUFFLED_FRONTIER (transplant).** The donor's PARTIAL and FULL blocks,
+  in the donor's order, are the candidate tops, with residuals recomputed
+  on this task's demonstrations.
+- **BLIND.** A fixed task-independent order of K's 200 blocks is used
+  (numpy default_rng(20261006).permutation(200), the seed of the review's
+  probe, written out as a literal).
+
+The original arms are kept as reported sanity checks (SHUFFLED_COORDINATES,
+DEMO_ONLY). The main arm's code path is unchanged; a regression check
+reproduced its stored development selections.

@@ -24,23 +24,28 @@ on new tasks before anything is claimed.
 | FAILURE_CONDITIONED | 40 SELECTED | 40 | 40 | 19 |
 | NO_RESPONSE | 40 SELECTED | 40 | 40 | 19 |
 | PURE | 10 SELECTED, 30 SELECTION_ABSTAINED | 40 | 10 | 10 |
-| SHUFFLED_FRONTIER | 40 NO_PROPOSAL | 0 | 0 | 0 |
+| SHUFFLED_FRONTIER as first frozen (now SHUFFLED_COORDINATES) | 40 NO_PROPOSAL | 0 | 0 | 0 |
 | DEMO_ONLY | 40 PROPOSAL_LIMIT (512 proposals, none verified) | 0 | 0 | 0 |
 
 - **Coverage.** An extension behaviourally equivalent to the generator's
   was proposed and verified on every task. The generator's own normalized
   text was among the proposals on 24 of 40 (the others reached an
   equivalent through different K blocks).
-- **Failure dependence.** With another task's failure frontier the
-  proposer produces nothing on any task. With a demonstration statistic
-  alone, 512 compositions per task produce no verified candidate. Every
-  verified candidate came from the task's own failure frontier.
+- **Failure dependence: not shown by these two zeros (erratum 01).** The
+  first-frozen shuffled arm applied another task's residual cell
+  coordinates to this task's grids, which no lower layer can cover, and
+  DEMO_ONLY's ranking mostly selects conflicting blocks; both are zero by
+  construction. The controls that keep the mechanism are reported in the
+  erratum section below.
 - **Depth.** Depth 3 ran on exactly the two three-block tasks (no
   two-layer proposal existed); both selections behave as the generator's
   three-layer program.
 - **Candidate counts.** Median 30 proposals and 30 verified candidates per
   task (maximum 256). After the duplicate law, 1 to 18 distinct behaviours,
-  median 5. The proposal cap was never reached by the main arm.
+  median 5. The main arm reached the 256-proposal cap on 2 of 40 tasks
+  (indices 37 and 39) and still verified candidates there (corrected by
+  erratum 01; an earlier version of this line said the cap was never
+  reached).
 - **Runtime.** Median 3.4 s per proposer call, maximum 20.9 s, against the
   180 s bound.
 

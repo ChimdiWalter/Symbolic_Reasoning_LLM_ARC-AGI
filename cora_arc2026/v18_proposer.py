@@ -48,7 +48,26 @@ FAILURE_CLASSES = (
     "RESOURCE_EXHAUSTED", "SUCCESS")
 INFRASTRUCTURE = frozenset({"RESOURCE_EXHAUSTED", "COMPILE_FAILURE", "UNTYPEABLE_PROPOSAL",
                             "LEAKAGE_FAILURE"})
-ARMS = ("FAILURE_CONDITIONED", "DEMO_ONLY", "SHUFFLED_FRONTIER", "NO_RESPONSE", "PURE")
+ARMS = ("FAILURE_CONDITIONED", "SHUFFLED_FRONTIER", "BLIND", "SHUFFLED_COORDINATES", "DEMO_ONLY",
+        "NO_RESPONSE", "PURE")
+#: BLIND arm (erratum 01): K's 200 blocks in one fixed, task-independent order,
+#: numpy default_rng(20261006).permutation(200) (the seed of the review's probe),
+#: written out so it cannot drift with numpy versions
+BLIND_ORDER = (
+    23, 180, 184, 128, 15, 130, 125, 176, 182, 55, 60, 154, 77, 76, 96, 149,
+    19, 148, 167, 38, 186, 126, 94, 69, 95, 107, 18, 98, 59, 86, 84, 22, 12,
+    65, 57, 81, 62, 189, 110, 67, 198, 0, 9, 44, 111, 47, 53, 49, 64, 192,
+    52, 54, 75, 82, 132, 187, 124, 112, 1, 127, 173, 40, 74, 136, 13, 29,
+    42, 71, 193, 119, 115, 16, 36, 11, 114, 113, 4, 89, 3, 171, 150, 158,
+    170, 85, 39, 10, 48, 144, 101, 135, 196, 105, 99, 195, 118, 92, 35, 134,
+    145, 166, 185, 138, 162, 104, 88, 139, 183, 25, 14, 163, 141, 109, 7,
+    33, 102, 5, 2, 175, 106, 147, 152, 100, 51, 78, 131, 90, 46, 153, 137,
+    8, 24, 73, 123, 43, 191, 155, 168, 26, 146, 117, 177, 41, 80, 178, 140,
+    172, 133, 143, 17, 160, 97, 68, 37, 72, 190, 6, 159, 31, 27, 129, 108,
+    91, 199, 142, 30, 61, 121, 164, 20, 161, 188, 87, 66, 122, 58, 116, 34,
+    93, 83, 70, 169, 79, 156, 181, 194, 32, 45, 50, 151, 197, 56, 103, 157,
+    179, 21, 165, 28, 120, 174, 63
+)
 SELECTION_LEVELS = ("VERIFICATION_UNIQUE", "P0", "D", "MDL", "ABSTAINED")
 STATUSES = ("FULL", "PARTIAL", "CONFLICT")
 K_CLASSES = ("K_EXACT", "K_CONSISTENT_INEXACT", "K_NO_CONSISTENT")
@@ -265,10 +284,12 @@ def _int(v) -> bool:
 
 
 def scan_input(inp) -> None:
-    """Refuse the input unless it is exactly the closed object build_input
-    makes: the allowed keys, demonstration grids of small integers, frontier
-    rows in K order with frozen statuses and codes, the frozen grammar and
-    limits, and the K* identity. Any key naming a target, seed, family,
+    """Refuse the input unless it has the form of the closed object
+    build_input makes: the allowed keys, demonstration grids of small
+    integers, frontier rows in K order with frozen statuses and codes, the
+    frozen grammar and limits, and the K* identity. It checks form and
+    vocabulary, not that the frontier was computed from these
+    demonstrations (the control arms rely on that). Any key naming a target, seed, family,
     task, label, truth, digest, answer, solution, held-out pair, test,
     oracle, schema, token or candidate, and any string outside the frozen
     vocabulary, is leakage."""
@@ -376,28 +397,35 @@ class _Emitter:
         return True
 
 
-def propose(inp, depth, sem=None, deadline=None) -> dict:
-    """FAILURE_CONDITIONED proposals of one depth from the closed input.
-    Top layers and residuals come from the input's frontier; lower layers
-    are K blocks checked on the demonstrations."""
+def propose(inp, depth, sem=None, deadline=None, tops=None) -> dict:
+    """Proposals of one depth from the closed input. FAILURE_CONDITIONED
+    (tops None): top layers and residuals come from the input's frontier.
+    Control arms (erratum 01) pass an explicit list of K indices as `tops`;
+    each top's residual is then the changed cells outside its regions on these
+    demonstrations. Lower layers are K blocks checked on the demonstrations
+    in both cases, under the same caps."""
     scan_input(inp)
     sem = sem or Semantics([(d["input"], d["output"]) for d in inp["demonstrations"]])
     blocks = k_blocks()
     n = len(sem.demos)
-    tops = sorted((r for r in inp["failure"]["frontier"] if r["status"] == "PARTIAL"),
-                  key=lambda r: (-sum(r["covered"]), r["entries"], r["k"]))
-    em = _Emitter(blocks)
 
     def residual_of(row):
         if len(row["residual"]) != n:
             return None
         return [frozenset((int(r), int(c)) for r, c in row["residual"][d]) for d in range(n)]
+    if tops is None:
+        rows = sorted((r for r in inp["failure"]["frontier"] if r["status"] == "PARTIAL"),
+                      key=lambda r: (-sum(r["covered"]), r["entries"], r["k"]))
+        plan = [(r["k"], (lambda r=r: residual_of(r))) for r in rows]
+    else:
+        plan = [(int(b), (lambda b=int(b): [frozenset(sem.changed[d] - sem.cells(blocks[b], d))
+                                             for d in range(n)])) for b in tops]
+    em = _Emitter(blocks)
 
     if depth == 2:
-        for top in tops[:LIMITS["max_top"]]:
+        for b, residual in plan[:LIMITS["max_top"]]:
             _deadline_check(deadline)
-            b = top["k"]
-            res = residual_of(top)
+            res = residual()
             if res is None:
                 continue
             owned = [sem.cells(blocks[b], d) for d in range(n)]
@@ -410,12 +438,11 @@ def propose(inp, depth, sem=None, deadline=None) -> dict:
                     lowers.append((info["entries"], a))
             for _e, a in sorted(lowers)[:LIMITS["max_lower"]]:
                 if not em.emit((a, b), "peel2"):
-                    return {"proposals": em.out, "capped": True, "tops": len(tops)}
+                    return {"proposals": em.out, "capped": True, "tops": len(plan)}
     elif depth == 3:
-        for top in tops[:LIMITS["max_top3"]]:
+        for b3, residual in plan[:LIMITS["max_top3"]]:
             _deadline_check(deadline)
-            b3 = top["k"]
-            res3 = residual_of(top)
+            res3 = residual()
             if res3 is None:
                 continue
             owned3 = [sem.cells(blocks[b3], d) for d in range(n)]
@@ -445,10 +472,10 @@ def propose(inp, depth, sem=None, deadline=None) -> dict:
                         bottoms.append((info["entries"], b1))
                 for _e, b1 in sorted(bottoms)[:LIMITS["max_bottom3"]]:
                     if not em.emit((b1, m, b3), "peel3"):
-                        return {"proposals": em.out, "capped": True, "tops": len(tops)}
+                        return {"proposals": em.out, "capped": True, "tops": len(plan)}
     else:
         raise ValueError("depth must be 2 or 3")
-    return {"proposals": em.out, "capped": em.capped, "tops": len(tops)}
+    return {"proposals": em.out, "capped": em.capped, "tops": len(plan)}
 
 
 def propose_demo_only(sem, depth, deadline=None) -> dict:
@@ -690,27 +717,36 @@ def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None, kee
         own_class = inp["failure"]["k_class"]
         rec["k_class"] = own_class
         rec["partial_tops"] = sum(1 for r in inp["failure"]["frontier"] if r["status"] == "PARTIAL")
-        if arm == "SHUFFLED_FRONTIER":
+        tops = None
+        if arm in ("SHUFFLED_FRONTIER", "SHUFFLED_COORDINATES"):
             if donor_failure is None:
-                raise ValueError("SHUFFLED_FRONTIER needs a donor failure")
+                raise ValueError(f"{arm} needs a donor failure")
             inp = dict(inp, failure=json.loads(json.dumps(donor_failure)))
+            if arm == "SHUFFLED_FRONTIER":
+                #  coordinate-free transplant (erratum 01): the donor's partial
+                #  blocks in the donor's order; residuals from these demonstrations
+                tops = [r["k"] for r in sorted(
+                    (r for r in inp["failure"]["frontier"] if r["status"] in ("PARTIAL", "FULL")),
+                    key=lambda r: (-sum(r["covered"]), r["entries"], r["k"]))]
+        elif arm == "BLIND":
+            tops = list(BLIND_ORDER)
         scan_input(inp)
         rec["input_sha256"] = hashlib.sha256(X.canonical_json(inp)).hexdigest()
         if own_class == "K_EXACT":
             rec["class"] = "K_ALREADY_SOLVES"
             return rec
-        verified, last_capped = [], False
+        verified, any_capped = [], False
         for depth in LIMITS["depths"]:
             if arm == "DEMO_ONLY":
                 gen = propose_demo_only(sem, depth, deadline)
             else:
-                gen = propose(inp, depth, sem, deadline)
+                gen = propose(inp, depth, sem, deadline, tops=tops)
             rec["proposals"][str(depth)] = len(gen["proposals"])
             rec["capped"][str(depth)] = gen["capped"]
             if keep:
                 rec.setdefault("diag", {}).setdefault("proposals", []).extend(
                     p["canonical"] for p in gen["proposals"])
-            last_capped = gen["capped"]
+            any_capped = any_capped or gen["capped"]
             for p in gen["proposals"]:
                 try:
                     X.type_check(p["schema"])
@@ -725,7 +761,7 @@ def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None, kee
         if not verified:
             total = sum(rec["proposals"].values())
             rec["class"] = ("NO_PROPOSAL" if total == 0 else
-                            "PROPOSAL_LIMIT" if last_capped else "NO_VERIFIABLE_PROPOSAL")
+                            "PROPOSAL_LIMIT" if any_capped else "NO_VERIFIABLE_PROPOSAL")
             return rec
         mode = {"NO_RESPONSE": "NO_RESPONSE", "PURE": "PURE"}.get(arm, "HYBRID")
         sel = select(verified, sem, mode, deadline)
