@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-06. Current: v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END, stopped (see "Next action").
+Last updated 2026-10-06. Current: v1.9 engine acceptance stability audit, development diagnosis running (see "Next action"); v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -178,6 +178,34 @@ Real ARC failures now give informative graphs but carry no target AST, and no
 hidden answer may be read to supply one.
 
 ## Next action, exactly one
+
+**v1.9 ENGINE ACCEPTANCE STABILITY AUDIT: DEVELOPMENT DIAGNOSIS RUNNING**
+(user directive 2026-10-06 "v1.9 ENGINE ACCEPTANCE STABILITY + REAL-ARC
+READINESS PROGRAM"; diagnosis first, then ONE generic repair, tests,
+freeze, ONE review, errata; STOP before the v1.9 prospective test).
+- Protocol `docs/CORA_TTI_ENGINE_STABILITY_AUDIT_v1.9.md` (sections 1-13
+  pre-frozen at 81065a3, manifest `outputs/tti/v19_audit_prefreeze_manifest.json`
+  sha256 de7bca3d). Tracer `cora_arc2026/v19_trace.py` (observation only,
+  engine/fitter/compiler/proposer untouched, K* b009a9fb unchanged), audit
+  `cora_arc2026/v19_audit.py`, driver `scripts/v19_audit_dev.py`, analysis
+  `scripts/v19_audit_analyze.py`, tests `tests/test_v19_audit.py` (9 fast +
+  1 engine pass; traced == untraced decisions).
+- Engine path read from source: rejection = train-perfect but the engine's
+  OWN leave-one-out by re-induction failed (each N-1 subset re-runs the
+  whole search; its top-ranked program must reproduce the held-out pair).
+  Candidate mechanisms: K*-2 fitter refusal on N-1 (MIN_KEY_WITNESSES=2,
+  hidden keys), a competitor outranking e (smoke test: a pixel-rule
+  reduction, parameter class RELATIONAL, outranked e INDUCED_MAP), time.
+- Development range 870,000,000 + 100k; prospective range 880,000,000 +
+  100k RESERVED (never generated). E_dev = 3,817 + 30 v1.8 prospective.
+- RUNNING: pipeline pid 1410140 (own session), 3 workers, launch record
+  `logs/v19/audit_launch.json`, log `logs/v19/audit_pipeline.log`; marker
+  `logs/v19/AUDIT_DONE`; report `outputs/tti/v19_audit_report.json`.
+  Restart if it dies before the marker: `setsid nohup bash logs/v19/run_audit.sh`.
+- Do NOT edit any pinned file (the workers refuse) until AUDIT_DONE; then
+  write the repair sections (14+) of the protocol, implement ONE generic
+  repair as a new K* rule outside geocat_arc, dev ablations A-E,
+  regression suite, freeze, ONE review, errata, re-freeze, STOP.
 
 **STOPPED: v1.8 PROSPECTIVE = FAILURE_SPECIFIC_BUT_NOT_END_TO_END** (run once
 2026-10-06, 5,911.6 s; record `records/ITEM2_V18_PROSPECTIVE_RESULT_20261006.md`;

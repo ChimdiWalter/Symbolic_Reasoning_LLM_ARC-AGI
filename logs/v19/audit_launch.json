@@ -1,0 +1,19 @@
+{
+ "what": "v1.9 engine acceptance stability audit, development diagnosis (seeds 870M), launched once",
+ "launched_utc": "2026-10-06T21:44:22Z",
+ "pipeline_pid": 1410140,
+ "pgid": 1410140,
+ "workers": 3,
+ "command": "setsid nohup bash logs/v19/run_audit.sh",
+ "head": "81065a37134363680ae79111eb51c18d457d29d5",
+ "prefreeze_manifest_sha256": "de7bca3d8b1404727f14f4cf252258e43caed0deb481205f0b0cd7717025c146",
+ "boot_id": "5c543236-c905-416e-9e7f-af441c8fc4b5",
+ "loadavg_at_launch": [
+  "58.43",
+  "57.09",
+  "58.07"
+ ],
+ "restart": "if the pipeline dies before logs/v19/AUDIT_DONE: setsid nohup bash logs/v19/run_audit.sh (claims of unfinished tasks are dropped; finished rows kept)",
+ "sid": 1410140,
+ "note": "pid corrected from the launcher shell's pgrep match (1410136, the wrapper shell) to the pipeline itself (exact args: bash logs/v19/run_audit.sh); load read 12 s after launch"
+}
