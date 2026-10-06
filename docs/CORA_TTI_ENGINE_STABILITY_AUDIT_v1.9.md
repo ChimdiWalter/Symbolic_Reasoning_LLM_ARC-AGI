@@ -355,3 +355,107 @@ Safety gates on development (directive section 13), each required:
 7. fresh-process reproduction: C and the K*' same-e folds re-run in a
    fresh process with identical decisions;
 8. false acceptances of e_wrong under K*' do not exceed those under K*.
+
+## 16. Prospective synthetic test (frozen here, run ONCE in the next session)
+
+Script `scripts/v19_prospective.py`; independent terminal verifier
+`logs/v19/verify_prospective.py` (written before any prospective data).
+Thresholds come from `records/ITEM2_V19_FEASIBILITY.md`, fixed before any
+prospective task is generated; the script refuses to run while they are
+unset or the freeze is broken.
+
+Corpus: seed base 880,000,000 + 100k (reserved in section 11, never
+generated before), the v1.8 corpus law unchanged, distinct target digests,
+the first N_TASKS qualifying tasks within 2,000 seeds, skipping every
+digest in `outputs/tti/v19_prospective_exclusion.json` (E_dev plus all 60
+digests of the v1.9 development corpus).
+
+Per task:
+- proposer arms FAILURE_CONDITIONED, SHUFFLED_FRONTIER (transplant, fixed
+  derangement, never the task's own digest) and BLIND, each with the
+  fitter-level held-out check ("useful");
+- for FAILURE_CONDITIONED: the paired ablation under K* (old logic: K* + e
+  against K*) and under K*' (K*' + e against K*' alone); K* alone at 3x
+  budget (24 s); the v1.8 adaptive leave-one-out (proposer, compiler,
+  installation and reasoner from scratch in every fold) under K* and under
+  K*'; the false-acceptance control of section 15 under K* and K*'.
+
+Witness legs under K*' (primary): B (K*' alone not accepted), P (selected),
+U (K*' + e winner uses e), L (K*' adaptive leave-one-out, every fold
+SUCCESS), T (K*' + e reproduces the held-out pair), A (K* alone at 3x
+budget does not reproduce the held-out output). The same legs under K* are
+reported.
+
+Gates:
+- G1 failure specificity: one-sided exact sign tests on tasks discordant in
+  usefulness, FAILURE_CONDITIONED against SHUFFLED_FRONTIER and against
+  BLIND, alpha 0.05 each, both must pass (as in v1.8).
+- G2 end to end: at least W_MIN of N_TASKS tasks give a complete K*'
+  witness.
+- G3 leave-one-out stability improves materially: with b tasks whose K*'
+  adaptive leave-one-out passes while K*'s does not, and c the reverse,
+  b - c >= DELTA_MIN and the one-sided exact sign test on (b, c) has
+  p < 0.05.
+- G4 no offsetting cost, every check required: K*' alone equals K* alone on
+  every task (acceptance, program, events); every task whose K* + e run is
+  accepted with the held-out pair exact is accepted by K*' + e with the
+  identical program and the held-out pair exact; every adaptive
+  leave-one-out fold that succeeds under K* succeeds under K*'; every
+  program K*' accepts replays its training pairs; every accepted K*' + e
+  winner that uses e executes directly to the engine's prediction; no
+  K*-4 patch survives a run; false acceptances of e_wrong under K*' do not
+  exceed those under K*; accepted K*' + e runs with a wrong held-out
+  prediction do not exceed those of K* + e.
+
+Outcomes (first match):
+
+| outcome | condition |
+|---|---|
+| PROPOSER_LEAKAGE | any arm or any adaptive leave-one-out fold reports LEAKAGE_FAILURE |
+| NO_VERDICT_RUN_ERROR | an exception outside the failure classes, or a missing row |
+| NO_VERDICT_FIXTURE_SHORTFALL | fewer than N_TASKS tasks within 2,000 seeds |
+| REPAIR_UNSAFE | G4 fails |
+| ENGINE_STABILITY_REPAIR_ACCEPTED | G1, G2, G3 |
+| FAILURE_SPECIFICITY_LOST | G2 and G3, not G1 |
+| REPAIR_STABILIZES_BELOW_WITNESS_THRESHOLD | G3, not G2 |
+| REPAIR_NOT_MATERIAL | not G3 |
+
+Run: one coordinator writes the start record, generates the corpus once
+into `outputs/tti/v19_prospective_tasks.json` and spawns WORKERS worker
+processes that take tasks by claim; rows are appended under a lock. The
+coordinator refuses a second start; `--resume` is allowed only after a
+genuine interruption (start record present, report and marker absent): the
+task file is reused, finished tasks are kept, unfinished claims are
+dropped, and every resume is recorded. Nothing else may be rerun.
+
+## 17. Claim ceiling
+
+- If ENGINE_STABILITY_REPAIR_ACCEPTED: on synthetic constructive tasks
+  only, extensions built from K's own failure, without the target or a
+  candidate pair, are compiled, necessary and certified in the same
+  reasoner K*' = K* + K*-4 with the leave-one-out proposal rebuilt inside
+  every fold, the selection stays failure-specific against the transplant
+  and blind controls, and the end-to-end witness rate clears the frozen
+  threshold without a measured safety cost. That is LEVEL 2 on the claim
+  ladder for the synthetic domain.
+- K*-4 is an engine-side rule for installed extensions; it adds no
+  vocabulary, and the extension remains a composition of K's own blocks.
+  Completeness by construction (v1.8 protocol section 15) still applies:
+  the corpus law places a verifying composition in the search space.
+- Not a real ARC result. LEVEL 3 needs a real ARC B/P/U/L/T/A witness from
+  the same-reasoner causal pilot, under its own frozen protocol.
+- The development diagnosis (section 13 and the diagnosis record) stands
+  on its own as a mechanistic result whatever the prospective outcome.
+
+## 18. Failure policy and order
+
+- One diagnosis, one repair, one prospective test (directive section 22).
+  If the repair does not materially improve end-to-end stability on new
+  data, this synthetic repair line stops; the paper claim moves to the
+  mechanistic result, and whether another independent architecture is
+  justified is decided with the user. No v1.10 synthetic repair loop, no
+  change of thresholds after data.
+- Order after this protocol: tests; freeze; ONE adversarial review; genuine
+  defects fixed by recorded erratum and re-frozen; STOP. The prospective
+  test runs once, in the next session. The real ARC pilot, the 1,000
+  training tasks and the protected 120 stay blocked.

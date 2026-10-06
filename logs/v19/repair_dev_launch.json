@@ -1,0 +1,24 @@
+{
+ "what": "v1.9 repair K*-4 development ablation (protocol section 15), launched once",
+ "launched_utc": "2026-10-06T22:53:57Z",
+ "pipeline_pid": 1546874,
+ "pgid": 1546874,
+ "sid": 1546874,
+ "workers": [
+  1546948,
+  1546949,
+  1546950,
+  1546951
+ ],
+ "command": "setsid nohup bash logs/v19/run_repair_dev.sh",
+ "head": "1e5937e6a1c773d83c9ce5fe0357d5e3ce6a4744",
+ "boot_id": "5c543236-c905-416e-9e7f-af441c8fc4b5",
+ "loadavg_at_launch": [
+  "29.42",
+  "29.95",
+  "34.41"
+ ],
+ "marker": "logs/v19/REPAIR_DEV_DONE",
+ "report": "outputs/tti/v19_repair_dev_report.json",
+ "restart": "if the pipeline dies before the marker: setsid nohup bash logs/v19/run_repair_dev.sh"
+}
