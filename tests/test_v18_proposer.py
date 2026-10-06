@@ -153,6 +153,19 @@ def test_duplicates_are_eliminated():
     verified = P.verify(props, sem)
     reps = P.dedupe(verified)
     assert len({c["fingerprint"] for c in reps}) == len(reps) <= len(verified)
+    assert {P.behaviour(c["fitted"]) for c in verified} == {c["fingerprint"] for c in reps}
+
+
+# the witness set: task-distribution grids on a reserved seed range
+def test_witness_grids_are_fixed_and_separate_layers_the_probes_miss():
+    import numpy as np
+    g1, g2 = P.witness_grids(), P.witness_grids()
+    assert len(g1) == P.WITNESS_GRIDS and all(np.array_equal(a, b) for a, b in zip(g1, g2))
+    _, train, _ = task(0)
+    rec = P.solve(train)
+    fitted = rec["selected_fitted"]
+    top = ("Compose", fitted[1][len(fitted[1]) // 2:])
+    assert P.behaviour(fitted) != P.behaviour(top)
 
 
 # 9. compiler compatibility
@@ -326,13 +339,15 @@ def test_s6_separation_law_and_its_downgrades(monkeypatch):
     sep = P.separation(rec, train)
     assert sep["A_syntactic_absent"] and sep["B_outside_bounded_search"]
     assert sep["comparison_set"] > 0 and sep["C"] == "SEPARATED" and sep["new_capability"]
+    assert sep["C_probes"] in ("SEPARATED", "DUPLICATE_EXISTING_SEMANTICS")
     sem = P.Semantics(train)
     row = next(r for r in P.frontier(sem) if r["status"] == "PARTIAL")
     ok, info = P.layer(sem, P.k_blocks()[row["k"]], [frozenset()] * len(train))
     table = tuple(sorted(info["constraints"].items(), key=lambda kv: repr(kv[0])))
-    dup = P.fingerprint(M.instantiate(P.compose([row["k"]]), {"?0": table}))
+    dup = P.behaviour(M.instantiate(P.compose([row["k"]]), {"?0": table}))
     forged = dict(rec, selected=dict(rec["selected"], fingerprint=dup))
-    assert P.separation(forged, train)["C"] == "DUPLICATE_EXISTING_SEMANTICS"
+    out = P.separation(forged, train)
+    assert out["C"] == "DUPLICATE_EXISTING_SEMANTICS" and not out["new_capability"]
     monkeypatch.setattr(P, "frontier", lambda sem: [{"k": k, "status": "CONFLICT", "code": "slot_nonfunctional"}
                                                     for k in range(200)])
     down = P.separation(rec, train)

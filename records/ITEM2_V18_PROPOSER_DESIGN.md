@@ -169,3 +169,38 @@ scientific negatives.
 - Reserved for the prospective test: seed 860,000,000 + 100k, excluded:
   every development task, the v1.7 fixtures and every digest in the v1.5
   and v1.6 exclusion sets.
+
+## 11. Addendum (2026-10-05, after two development tasks, before any prospective data)
+
+**What was found.** On development task 0 (seed 840001000) S6 level C
+came out DUPLICATE_EXISTING_SEMANTICS on the frozen constructive probes.
+The cause is the instrument, not the extension:
+- the extension's lower layer paints on 15 of the 16 probe grids, yet the
+  full extension renders identically to its top layer alone on all 16;
+- the 30 partial K programs of that task have only 3 distinct probe
+  fingerprints.
+
+On 64 grids from the task grid process itself the same extension differs
+from its top layer on 30 grids, and level C is SEPARATED against the same
+30-program comparison set.
+
+**What changed.** The probe fingerprint was also the duplicate law's key,
+so it could merge behaviourally different verified candidates before P0
+saw them. Two uses moved to a task-distribution witness set: 64 grids from
+`constructive_dataset.generate_grid` at seeds 9,000,000,000,000 + i, far
+from every task's grid seeds.
+- The duplicate law collapses verified candidates by their behaviour on
+  these grids.
+- S6 level C compares on these grids. The frozen probes stay as a reported
+  secondary witness (`C_probes`).
+
+**What did not change.** The proposal mechanism, every bound, the order
+and the selection hierarchy (verification, P0, D, MDL) are unchanged. The
+change was decided from the instrument's resolution alone. No selection
+accuracy was compared between the two keys. On v1.7 fixture 1 both keys
+give the same 2 classes from 18 verified candidates.
+
+**Disposition of earlier results.** The two development rows produced
+with the probe key are kept, superseded, in
+`logs/v18/dev_rows_superseded_probe_witness.jsonl`. The development audit
+reruns from the start with the final code.

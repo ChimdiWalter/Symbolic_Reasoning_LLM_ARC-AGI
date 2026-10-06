@@ -65,7 +65,7 @@ def slim(rec):
 def run_task(i, t, donor_failure):
     from cora_tti import scoped_slot_fitting as SF
     fitted, _ = SF.fit_induced_occurrences(t["schema"], t["train"])
-    target_fp = P.fingerprint(fitted)
+    target_fp = P.behaviour(fitted)
     target_canon = normalized_canonical(t["schema"])
     row = {"i": i, "seed": t["seed"], "family": t["family"], "digest": t["digest"],
            "blocks": len(P.S.CV.blocks_from_ast(t["schema"])), "target_normalized": target_canon,

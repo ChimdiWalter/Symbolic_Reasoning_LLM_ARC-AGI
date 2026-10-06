@@ -19,6 +19,7 @@ installed: the selected schema goes to the v1.7 compiler.
 """
 from __future__ import annotations
 
+import functools
 import hashlib
 import json
 import os
@@ -494,8 +495,31 @@ def _evaluate(ast, grid):
 
 
 def fingerprint(concrete) -> str:
+    """Fingerprint on the frozen constructive probe grids (secondary S6
+    witness only: on development data the probes were blind to layered
+    programs; design record section 11)."""
     from cora_tti import constructive_probes as CP
     return CP.fingerprint(concrete, _evaluate)
+
+
+#: the task-distribution witness set: grids from the frozen task grid process
+#: on a reserved seed range, far from every task's grid seeds (seed * 97 + i)
+WITNESS_SEED_BASE = 9_000_000_000_000
+WITNESS_GRIDS = 64
+
+
+@functools.lru_cache(maxsize=1)
+def witness_grids() -> tuple:
+    from cora_tti import constructive_dataset as CD
+    return tuple(CD.generate_grid(WITNESS_SEED_BASE + i) for i in range(WITNESS_GRIDS))
+
+
+def behaviour(concrete) -> str:
+    """Behaviour fingerprint: the renderings on the task-distribution
+    witness grids. Used by the duplicate law and by S6 level C."""
+    from cora_tti import constructive_probes as CP
+    parts = [CP._serialize_rendering(_evaluate(concrete, g)) for g in witness_grids()]
+    return hashlib.sha256(b"|".join(parts)).hexdigest()
 
 
 def _nodes(ast) -> int:
@@ -522,12 +546,13 @@ def verify(proposals, sem, deadline=None) -> list:
 
 
 def dedupe(verified, deadline=None) -> list:
-    """Verified candidates with the same probe fingerprint collapse to the
-    first in MDL order; representatives come back in MDL order."""
+    """Verified candidates with the same behaviour on the task-distribution
+    witness grids collapse to the first in MDL order; representatives come
+    back in MDL order."""
     best = {}
     for c in sorted(verified, key=lambda c: c["mdl"]):
         _deadline_check(deadline)
-        fp = fingerprint(c["fitted"])
+        fp = behaviour(c["fitted"])
         if fp not in best:
             best[fp] = dict(c, fingerprint=fp)
     return sorted(best.values(), key=lambda c: c["mdl"])
@@ -736,10 +761,11 @@ def solve(demos, arm="FAILURE_CONDITIONED", donor_failure=None, wall_s=None, kee
 
 def separation(rec, demos) -> dict:
     """A: not one of K's programs. B: K's bounded search has no exact fit.
-    C: on the frozen probes the fitted extension differs from every relevant
-    existing K program: K's PARTIAL blocks fitted on their own consistent
-    regions, and any loosely fitting K program. An empty comparison set
-    makes C untestable."""
+    C: on the task-distribution witness grids the fitted extension behaves
+    differently from every relevant existing K program: K's PARTIAL blocks
+    fitted on their own consistent regions, and any loosely fitting K
+    program. An empty comparison set makes C untestable. The same test on
+    the frozen probes is reported as C_probes."""
     M, _ = _meta()
     SF = _sf()
     sem = Semantics(demos)
@@ -756,18 +782,20 @@ def separation(rec, demos) -> dict:
         ok, info = layer(sem, blocks[row["k"]], none)
         table = tuple(sorted(info["constraints"].items(), key=lambda kv: repr(kv[0])))
         program = M.instantiate(compose([row["k"]], blocks), {"?0": table})
-        comparison.append(("partial", row["k"], fingerprint(program)))
+        comparison.append(("partial", row["k"], behaviour(program), fingerprint(program)))
     for schema, fitted in base["fitted_pairs"]:
-        comparison.append(("loose", canonical(schema), fingerprint(fitted)))
-    fp = rec["selected"]["fingerprint"]
-    if not comparison:
-        c = "C_UNTESTABLE"
-    elif any(f == fp for _kind, _id, f in comparison):
-        c = "DUPLICATE_EXISTING_SEMANTICS"
-    else:
-        c = "SEPARATED"
+        comparison.append(("loose", canonical(schema), behaviour(fitted), fingerprint(fitted)))
+
+    def level(fp, index):
+        if not comparison:
+            return "C_UNTESTABLE"
+        if any(row[index] == fp for row in comparison):
+            return "DUPLICATE_EXISTING_SEMANTICS"
+        return "SEPARATED"
+    c = level(rec["selected"]["fingerprint"], 2)
+    c_probes = level(fingerprint(rec["selected_fitted"]), 3)
     return {"A_syntactic_absent": a, "B_outside_bounded_search": b, "C": c,
-            "comparison_set": len(comparison),
+            "C_probes": c_probes, "comparison_set": len(comparison),
             "new_capability": bool(a and b and c == "SEPARATED")}
 
 
