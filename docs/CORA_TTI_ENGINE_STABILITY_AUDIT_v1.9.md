@@ -1,0 +1,249 @@
+# CORA-TTI Item-2 v1.9: K* engine acceptance stability audit
+
+Status: DIAGNOSIS PROTOCOL, written 2026-10-06 before any v1.9 measurement.
+Sections 1 to 13 are frozen by the diagnostic pre-freeze commit and are
+not changed after the development diagnosis runs. The repair sections
+(14 onward) are written after the diagnosis and frozen with the package.
+
+Licensed by: v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END (3ed21bf,
+verifier 31/31). Claim stays LEVEL 1. This block runs no real ARC task,
+does not rerun v1.8, does not change the v1.8 proposer and touches neither
+the 1000 tasks nor the protected 120.
+
+## 1. Question
+
+Frozen: WHY DOES THE SAME REASONER ACCEPT THE SAME COMPILED EXTENSION WITH
+ONE DEMONSTRATION SET AND REJECT IT WHEN ONE DEMONSTRATION IS REMOVED?
+
+When the proposer and compiler produce the same serialized extension e,
+which engine-internal state transition differs between seven
+demonstrations (accepted) and six (rejected)?
+
+## 2. What v1.8 contributes
+
+Only the failure class: same-program six-pair rejection (79 of 81 failed
+leave-one-out folds ended in engine rejection; 77 carried the same program
+as the full task; on 14 tasks the same program was accepted with seven
+pairs and rejected with six). No v1.8 prospective task, row or outcome is
+used to fit, tune, select or test anything in v1.9.
+
+## 3. The engine path, read from source
+
+`ObjectReasoningEngine.solve` calls `inducer.induce_program` once (the
+dihedral, overlay, generative, gen-compose and analogy routes are
+environment-gated and off under K*). `induce_program`:
+
+1. runs the composed search on the N training pairs; its CORA expression
+   phase (`meta_induction.induce_computed_candidates`) routes by
+   `trigger_fires` (same shape, additive, every pair changes), then searches
+   the installed concepts (K*-3 overlay) with `search_with_concepts`,
+   fitting the concept's induced tables by K*-2, the frozen scoped fitter
+   (`fit_induced_occurrences`), which refuses a table when a key is
+   witnessed by fewer than MIN_KEY_WITNESSES = 2 demonstrations or a
+   produced key is never visible;
+2. if a train-perfect candidate exists, runs the engine's own
+   leave-one-out by re-induction (`loo_validate`): for each pair, the WHOLE
+   search re-runs on the other N-1 pairs and its top-ranked program must
+   reproduce the held-out pair exactly (phase A);
+3. on failure, phase B (forced composition, only when the top program is
+   flat) and phase C (relational re-search, only when more than 5 s of the
+   budget remain) each re-run the search inside their own leave-one-out;
+4. otherwise appends HYPOTHESIS_REJECTED: train-perfect but
+   leave-one-out-failed.
+
+So a K* + {e} run on six pairs is accepted only if each of six re-inductions
+on five pairs reproduces its held-out pair. The audit measures which step
+fails inside those re-inductions.
+
+## 4. Instrumentation (observation only)
+
+`cora_arc2026/v19_trace.py` wraps, for the duration of one frozen-runner
+call (`v17_compiler.run_reasoner`, unchanged): `engine.induce_program`,
+`inducer.loo_validate` (per fold: held-out index, pairs, time, result),
+`inducer._induce_composed` (the ranked candidate pool per context),
+`meta_induction.trigger_fires`, `meta_induction.search_with_concepts` and
+the fitter's `fit_induced_occurrences` (with the fitter's own failure code
+and detail). Every wrapper calls the original with the same arguments and
+returns its value unchanged; all are removed on exit and are applied outside
+`kstar()`, so K*'s restoration snapshot sees one consistent set of
+functions. No engine, fitter, compiler or proposer file is edited; the K*
+identity (b009a9fb) and the v1.7 and v1.8 freezes are unchanged.
+
+Decision identity is tested, not assumed: a traced and an untraced run of
+the same input must agree on acceptance, program and events (section 11).
+
+## 5. Rejection taxonomy and rules
+
+Codes (directive section 3): EXTENSION_NOT_VISIBLE, EXTENSION_TYPE_REJECTED,
+SLOT_FIT_FAILED, SLOT_FIT_AMBIGUOUS, TRAINING_PAIR_MISMATCH,
+HYPOTHESIS_SCORE_BELOW_GATE, RANKED_BELOW_COMPETITOR,
+SEARCH_BUDGET_EXHAUSTED, EXPRESSION_BUDGET_EXHAUSTED,
+ROUTER_BUDGET_EXHAUSTED, TIME_BUDGET_EXHAUSTED, CERTIFICATE_FAILED,
+ATTRIBUTION_FAILED, FINAL_EXECUTION_MISMATCH, BASELINE_ALREADY_SOLVES,
+OTHER_EXPLICIT_REASON; a sub-reason follows a colon.
+
+Rules (`v19_audit.reason_codes`), applied to a rejected run:
+- no induction recorded: OTHER_EXPLICIT_REASON:no_induction;
+- top-level trigger false: EXTENSION_NOT_VISIBLE:trigger;
+- no top-level candidate: the concept-search code below;
+- otherwise one code per FAILED fold of phase A:
+  - the fold raised: OTHER_EXPLICIT_REASON:<exception>;
+  - the fold's trigger false: EXTENSION_NOT_VISIBLE:trigger;
+  - concept search absent: EXTENSION_NOT_VISIBLE:no_concept_search;
+  - search stopped before trying every binding with its deadline past:
+    EXPRESSION_BUDGET_EXHAUSTED;
+  - the fit refused the table: SLOT_FIT_FAILED:witness (fewer than two
+    witnesses for some key), SLOT_FIT_FAILED:hidden_key (a produced key never
+    visible) or SLOT_FIT_FAILED:<fitter failure code>;
+  - the fit succeeded but the concept was not admitted:
+    TRAINING_PAIR_MISMATCH:observational_signature;
+  - the concept fitted but the fold's top-ranked program is another
+    candidate: RANKED_BELOW_COMPETITOR (the competitor and the concept are
+    recorded with what the engine's canonical ranking reads: program class,
+    split and mode for reductions, worst parameter class, value-bound
+    literals, stages, rules, expression size, and the concept's rank);
+  - the concept was the fold's program and mispredicted the held-out pair:
+    SLOT_FIT_AMBIGUOUS:unseen_key when the held-out pair shows a key the
+    fold's pairs never witness, else FINAL_EXECUTION_MISMATCH.
+- a run's codes are the set of its failed folds' codes.
+
+BASELINE_ALREADY_SOLVES is recorded for the BASE run (K* alone accepted).
+A code is "mechanistic" unless it is OTHER_EXPLICIT_REASON.
+
+## 6. Mechanism classes
+
+Per failed fold (`v19_audit.mechanism`), with `permissive_predicts` = the
+extension, fitted from the fold's own pairs with every consistent witness
+(one witness suffices), reproduces the held-out pair exactly:
+- H1 re-induction instability: SLOT_FIT_FAILED, RANKED_BELOW_COMPETITOR or
+  TRAINING_PAIR_MISMATCH with permissive_predicts true (the semantics are
+  identified by the fold's pairs; the refit or the ranking refuses them).
+  Sub-kind "fitting" for SLOT_FIT_FAILED and TRAINING_PAIR_MISMATCH,
+  "ranking" for RANKED_BELOW_COMPETITOR. A ranking case also says the
+  fold's pairs admit a second train-perfect program that disagrees on the
+  held-out pair; it is H1 because the extension itself is identified and
+  correct, and the record keeps the competitor so the reader can see it;
+- H2 identifiability loss: the same codes with permissive_predicts false,
+  or SLOT_FIT_AMBIGUOUS/FINAL_EXECUTION_MISMATCH with an unwitnessed needed
+  key or permissive_predicts false;
+- H3 search or budget: EXPRESSION_BUDGET_EXHAUSTED, TIME_BUDGET_EXHAUSTED or
+  SEARCH_BUDGET_EXHAUSTED; and, in section 9, any decision that changes
+  with the clock;
+- H4 selection quality (per task, section 10);
+- UNRESOLVED otherwise.
+
+The census behind permissive_predicts mirrors the fitter's constraint
+collection (same helpers, same ownership law) without its admission rules;
+a test checks it against the fitter wherever the fitter succeeds.
+
+## 7. The paired 7-versus-6 audit
+
+For a task with seven training pairs, one held-out pair and the extension
+e that the frozen v1.8 FAILURE_CONDITIONED proposer selects and the v1.7
+compiler compiles from the seven pairs:
+- BASE: K* alone on the seven pairs;
+- FULL: K* + {e} on the seven pairs, predicting the held-out pair;
+- FOLD_i, i = 0..6: K* + {e} on the six pairs without pair i, predicting
+  pair i, with e BYTE-IDENTICAL (same serialized bytes, sha256 recorded per
+  run; nothing reselected or recompiled).
+
+Recorded per run: production bytes, name and signature; the concept's
+fitted tables at the top level and the fitter's evidence; the ranked
+candidate pool and the overlay's rank; the trigger; every leave-one-out
+phase with per-fold results, times and deadlines; acceptance, events,
+attribution (`uses_extension`) and the held-out prediction.
+
+## 8. Repeatability
+
+Every rejected run, and the FULL run of every task, is repeated in the same
+process (repeat A) and again in a fresh process from the saved production
+bytes and pairs (repeat B). A reason reproduces when acceptance, the run's
+codes and the per-fold (held-out index, code) list are identical.
+
+## 9. Load and budget diagnosis (development fixtures only)
+
+The engine's decisions depend on time only through its clock reads
+(deadlines, the expression slice, the phase C condition). The same runs
+are repeated with the clock replaced inside geocat_arc and the fitter:
+- WALL: the host's wall clock (ordinary permitted host conditions);
+- CPU1: process CPU time (the controlled low-contention condition: host
+  contention cannot move a deadline);
+- CPU10: process CPU time at one tenth rate (ten times the CPU budget).
+
+Scope: the first 12 rejected runs and the first 6 accepted runs, in corpus
+order, with the same task, extension, engine and environment. The quantity
+is whether the ACCEPT/REJECT decision (and the codes) change. Timing alone
+establishes nothing. If decisions are identical across WALL and CPU1, load
+is eliminated as the primary hypothesis; if identical across CPU1 and
+CPU10, budget is eliminated for those runs.
+
+## 10. Selection quality (H4) and the descriptive splits
+
+Per task, the frozen v1.8 proposer's verified and deduplicated pool on the
+seven pairs is recomputed with its own functions, and each candidate gets
+the fitter-level proxy of the engine's acceptance on each outer fold
+(`v19_audit.nested_proxy`: every five-pair refit by the frozen fitter
+reproduces its held-out pair). H4 holds for a task when the selected
+extension fails the proxy on some outer fold while another verified
+candidate passes it on every outer fold.
+
+Reported: fold failure rates by the selection level that chose e, by
+family, and by seen and unseen structure (descriptive only).
+
+## 11. Data boundary
+
+- Development diagnosis range: seeds 870,000,000 + 100k, k = 0..1999,
+  never used before (checked in this repository on 2026-10-06).
+- Future prospective range, RESERVED and untouched in this block: seeds
+  880,000,000 + 100k.
+- Corpus law: `scripts/v18_corpus.py` `tasks(870_000_000, n,
+  exclude_digests=E_dev, distinct=True)` with the v1.7 filter and the
+  erratum-01 conditioning unchanged.
+- E_dev: the 3,817 digests of `outputs/tti/v18_prospective_exclusion.json`
+  plus the 30 v1.8 prospective target digests.
+- The future prospective exclusion set: E_dev plus every target digest of
+  the v1.9 development corpus, written before any prospective task is
+  generated.
+- Not accessed: real ARC data, Step B outputs, the protected holdout,
+  VDCG, E_transfer, the lockbox. The generator's schema is used only for
+  the corpus law and the descriptive seen/unseen split.
+
+Harness disclosure: before this protocol was frozen, the harness was
+smoke-tested on four v1.8 development tasks (seeds 840001000, 840005000,
+840005600, 840008100). Three were accepted on every same-extension fold;
+on 840005000 two folds were rejected, each by one internal refit in which a
+pixel-rule reduction (worst parameter class RELATIONAL, a 21-entry
+neighbour-count table) outranked the fitted extension (INDUCED_MAP) and
+mispredicted. That observation shaped the competitor fields above. These
+are engineering checks, not measurements, are not part of any reported
+distribution, and the repair is not designed from them.
+
+## 12. Diagnostic corpus selection law
+
+Tasks are taken in corpus order. For each task the frozen v1.8
+FAILURE_CONDITIONED proposer runs on the seven pairs; a task enters the
+audit when it returns SELECTED and the selection compiles; other tasks are
+recorded with their class and skipped.
+
+Categories (recorded, never balanced):
+- A: FULL accepted, some FOLD rejected; B: FULL accepted, every FOLD
+  accepted; R: FULL rejected;
+- C, D, E: selection decided by VERIFICATION_UNIQUE, D or MDL (P0 apart);
+- F: family (1,1); G: families (1,0) and (0,1); other families apart.
+
+Stop rule: process at least 30 audited tasks, then continue in order until
+A has at least 12 tasks and B at least 6, or 60 audited tasks, whichever
+comes first.
+
+## 13. Diagnosis success condition
+
+The audit succeeds only if at least 90 percent of rejection events (failed
+phase-A folds of rejected runs) receive a mechanistic code (not
+OTHER_EXPLICIT_REASON) whose run reproduces in repeat A and repeat B, and
+the boundary holds: decision identity under tracing, no answer access
+beyond the held-out pairs of the synthetic corpus, no task, family or seed
+branch, no generator schema in any engine input, no prospective tuning.
+
+The distribution of codes and mechanisms is reported. A mechanism is
+dominant when it accounts for at least half of the rejection events; if
+none does, the record says so.
