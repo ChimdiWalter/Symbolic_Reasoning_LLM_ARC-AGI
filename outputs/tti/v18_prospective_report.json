@@ -1,0 +1,146 @@
+{
+ "environment_at_end": {
+  "PYTHONHASHSEED": "0"
+ },
+ "gates": {
+  "G1_vs_blind": {
+   "a_only": 7,
+   "b_only": 0,
+   "p_one_sided": 0.0078125,
+   "pass": true
+  },
+  "G1_vs_shuffled_frontier": {
+   "a_only": 13,
+   "b_only": 0,
+   "p_one_sided": 0.0001220703125,
+   "pass": true
+  },
+  "G2_witnesses": {
+   "complete": 11,
+   "pass": false,
+   "required": 15
+  }
+ },
+ "leakage": 0,
+ "loadavg_end": [
+  59.99365234375,
+  67.12646484375,
+  74.05859375
+ ],
+ "manifest_sha256": "d64732cf54f91f70ce6f7be041956850d6cc85ca3986e4e08199401278db8731",
+ "outcome": "FAILURE_SPECIFIC_BUT_NOT_END_TO_END",
+ "resumes": [],
+ "seconds": 5911.6,
+ "seed_base": 860000000,
+ "supplementary": {
+  "by_family": {
+   "(0,1)": {
+    "tasks": 8,
+    "witnesses": 5
+   },
+   "(1,0)": {
+    "tasks": 7,
+    "witnesses": 4
+   },
+   "(1,1)": {
+    "tasks": 15,
+    "witnesses": 2
+   }
+  },
+  "classes_by_arm": {
+   "BLIND": {
+    "NO_VERIFIABLE_PROPOSAL": 7,
+    "SELECTED": 23
+   },
+   "DEMO_ONLY": {
+    "PROPOSAL_LIMIT": 29,
+    "SELECTED": 1
+   },
+   "FAILURE_CONDITIONED": {
+    "SELECTED": 30
+   },
+   "NO_RESPONSE": {
+    "SELECTED": 30
+   },
+   "PURE": {
+    "SELECTED": 6,
+    "SELECTION_ABSTAINED": 24
+   },
+   "SHUFFLED_COORDINATES": {
+    "NO_PROPOSAL": 30
+   },
+   "SHUFFLED_FRONTIER": {
+    "NO_VERIFIABLE_PROPOSAL": 10,
+    "PROPOSAL_LIMIT": 3,
+    "SELECTED": 17
+   }
+  },
+  "folds_k_already_solves": 2,
+  "pure_vs_hybrid": {
+   "a_only": 24,
+   "b_only": 0,
+   "p_one_sided": 5.960464477539063e-08,
+   "pass": true
+  },
+  "response_vs_no_response": {
+   "a_only": 0,
+   "b_only": 0,
+   "p_one_sided": 1.0,
+   "pass": false
+  },
+  "s6_descriptive": {
+   "C_probes_separated": 23,
+   "new_capability_label": 30
+  },
+  "sanity_controls": {
+   "DEMO_ONLY": {
+    "a_only": 29,
+    "b_only": 0,
+    "p_one_sided": 1.862645149230957e-09,
+    "pass": true
+   },
+   "SHUFFLED_COORDINATES": {
+    "a_only": 30,
+    "b_only": 0,
+    "p_one_sided": 9.313225746154785e-10,
+    "pass": true
+   }
+  },
+  "seen_unseen": {
+   "seen": {
+    "tasks": 4,
+    "witnesses": 2
+   },
+   "unseen": {
+    "tasks": 26,
+    "witnesses": 9
+   }
+  },
+  "selection_levels": {
+   "ABSTAINED": 0,
+   "D": 6,
+   "MDL": 18,
+   "P0": 1,
+   "VERIFICATION_UNIQUE": 5
+  },
+  "useful_by_arm": {
+   "BLIND": 23,
+   "DEMO_ONLY": 1,
+   "FAILURE_CONDITIONED": 30,
+   "NO_RESPONSE": 30,
+   "PURE": 6,
+   "SHUFFLED_COORDINATES": 0,
+   "SHUFFLED_FRONTIER": 17
+  },
+  "witness_parts": {
+   "A": 30,
+   "B": 30,
+   "L": 11,
+   "P": 30,
+   "T": 25,
+   "U": 25
+  }
+ },
+ "tasks": 30,
+ "unexpected": []
+}

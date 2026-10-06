@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-05.
+Last updated 2026-10-06. Current: v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END, stopped (see "Next action").
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -179,27 +179,31 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.8 PROSPECTIVE TEST RUNNING** (launched once 2026-10-06T19:08:11Z,
-writer pid 1089796, own session; launch record `logs/v18/prospective_launch.json`,
-fa3163a; load about 80 on 24 CPUs at launch). Administrative monitoring only
-(liveness, row count, marker, traceback); do NOT read partial rows.
-- DETACHED WATCHER `logs/v18/prospective_watch.sh` (pid 1096787, own
-  session, lock `logs/v18/prospective_watch.lock`, log
-  `logs/v18/prospective_watch.log`): resumes the writer ONCE with `--resume`
-  if it dies without report or marker (flag `logs/v18/prospective_resumed_once`),
-  runs `logs/v18/verify_prospective.py` when the marker appears (output
-  `logs/v18/verify_prospective.json`, done flag
-  `logs/v18/PROSPECTIVE_WATCH_DONE`), then removes its own `@reboot` crontab
-  hook (installed 2026-10-06, `sleep 300` then relaunch the watcher).
-- Do not start a second writer or a second watcher by hand.
-- After the marker: terminal verification (freeze unchanged, 30 distinct
-  tasks outside the exclusion set, no duplicate or missing rows, no leakage,
-  no run error), then independent recomputation of every gate from the rows,
-  then the result record. Pass: NEXT = design and freeze the real ARC pilot
-  (fresh session). Fail: record the exact blocker and stop.
+**STOPPED: v1.8 PROSPECTIVE = FAILURE_SPECIFIC_BUT_NOT_END_TO_END** (run once
+2026-10-06, 5,911.6 s; record `records/ITEM2_V18_PROSPECTIVE_RESULT_20261006.md`;
+paper section 8.13). The exact blocker is recorded there. Nothing further runs
+until the user chooses the next block; the closed loop, the real ARC pilot,
+the 1000 tasks and the protected 120 stay BLOCKED.
+- Terminal verification `logs/v18/verify_prospective.json`: 31/31 checks,
+  every recomputed value equals the report; no leakage, no resume, one
+  writer; corpus law re-derived (30 distinct tasks, outside the 3,817
+  exclusion digests).
+- G1 PASS: main 30/30 useful; transplant 17/30 (13:0, p 1.22e-4); BLIND
+  23/30 (7:0, p 0.0078).
+- G2 FAIL: 11 of 30 complete witnesses (15 required). Legs B 30, P 30,
+  U 25, L 11, T 25, A 30 (3x K* accepted 0/30).
+- Blocker: leg L, then U/T on 5 tasks. The proposer selected in every task
+  and fold; the engine rejected the proposed hypothesis in 79 of 81 failed
+  folds; 77 of the 81 carried the same program as the full task, and on 14
+  tasks that program was accepted with seven pairs and rejected with six.
+  Losses concentrate on D/MDL-decided selections
+  and family (1,1). The engine-internal reason is not examined.
+- Claim stays LEVEL 1; LEVEL 2 not reached; real ARC pilot NOT licensed.
+- The watcher finished and removed its `@reboot` hook; the crontab equals the
+  pre-v1.8 backup. No process from this block is running.
 
-Then (only if it passes): NEXT: DESIGN AND FREEZE THE SAME-REASONER REAL ARC
-CAUSAL PILOT FOR THE FIRST B/P/U/L/T/A WITNESS (fresh session).
+NEXT: STOP AND RECORD THE EXACT v1.8 PROSPECTIVE BLOCKER (recorded
+2026-10-06).
 
 **v1.8 NO-ORACLE EXTENSION PROPOSER: DONE (design, implementation,
 development audit, freeze, ONE review, erratum 01, re-freeze)** (2026-10-06).

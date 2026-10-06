@@ -1,0 +1,173 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "freeze_problems_empty": true,
+  "manifest_sha": true,
+  "protocol_sha": true,
+  "proposer_sha": true,
+  "compiler_sha": true,
+  "k_identity": true,
+  "rows_30": true,
+  "indices_0_29": true,
+  "seeds_distinct": true,
+  "digests_distinct": true,
+  "outside_exclusion": true,
+  "seed_range": true,
+  "corpus_law_rederived": true,
+  "no_error_rows": true,
+  "no_unexpected": true,
+  "no_leakage": true,
+  "single_writer": true,
+  "no_resume": true,
+  "marker_equals_outcome": true,
+  "manifest_in_report": true,
+  "witness_rows_match": true,
+  "useful_equal": true,
+  "G1_equal": true,
+  "G2_equal": true,
+  "witness_parts_equal": true,
+  "seen_unseen_equal": true,
+  "family_equal": true,
+  "levels_equal": true,
+  "s6_equal": true,
+  "classes_equal": true,
+  "outcome_equal": true
+ },
+ "recomputed": {
+  "useful": {
+   "BLIND": 23,
+   "DEMO_ONLY": 1,
+   "FAILURE_CONDITIONED": 30,
+   "NO_RESPONSE": 30,
+   "PURE": 6,
+   "SHUFFLED_COORDINATES": 0,
+   "SHUFFLED_FRONTIER": 17
+  },
+  "G1": {
+   "SHUFFLED_FRONTIER": {
+    "a_only": 13,
+    "b_only": 0,
+    "p_one_sided": 0.0001220703125,
+    "pass": true
+   },
+   "BLIND": {
+    "a_only": 7,
+    "b_only": 0,
+    "p_one_sided": 0.0078125,
+    "pass": true
+   }
+  },
+  "witness_parts": {
+   "B": 30,
+   "P": 30,
+   "U": 25,
+   "L": 11,
+   "T": 25,
+   "A": 30
+  },
+  "complete_witnesses": 11,
+  "G2_pass": false,
+  "outcome": "FAILURE_SPECIFIC_BUT_NOT_END_TO_END",
+  "loo_folds_success": [
+   0,
+   1,
+   7,
+   4,
+   4,
+   7,
+   0,
+   3,
+   4,
+   6,
+   0,
+   6,
+   7,
+   7,
+   7,
+   0,
+   7,
+   7,
+   7,
+   3,
+   0,
+   4,
+   7,
+   7,
+   0,
+   3,
+   4,
+   4,
+   4,
+   7
+  ],
+  "baseline_3x": {
+   "accepted": 0,
+   "reproduces_heldout": 0,
+   "ran": 30
+  },
+  "seen_unseen": {
+   "seen": {
+    "tasks": 4,
+    "witnesses": 2
+   },
+   "unseen": {
+    "tasks": 26,
+    "witnesses": 9
+   }
+  },
+  "by_family": {
+   "(0,1)": {
+    "tasks": 8,
+    "witnesses": 5
+   },
+   "(1,0)": {
+    "tasks": 7,
+    "witnesses": 4
+   },
+   "(1,1)": {
+    "tasks": 15,
+    "witnesses": 2
+   }
+  },
+  "selection_levels": {
+   "MDL": 18,
+   "VERIFICATION_UNIQUE": 5,
+   "D": 6,
+   "P0": 1
+  },
+  "s6": {
+   "new_capability_label": 30,
+   "C_probes_separated": 23
+  },
+  "classes": {
+   "BLIND": {
+    "NO_VERIFIABLE_PROPOSAL": 7,
+    "SELECTED": 23
+   },
+   "DEMO_ONLY": {
+    "PROPOSAL_LIMIT": 29,
+    "SELECTED": 1
+   },
+   "FAILURE_CONDITIONED": {
+    "SELECTED": 30
+   },
+   "NO_RESPONSE": {
+    "SELECTED": 30
+   },
+   "PURE": {
+    "SELECTED": 6,
+    "SELECTION_ABSTAINED": 24
+   },
+   "SHUFFLED_COORDINATES": {
+    "NO_PROPOSAL": 30
+   },
+   "SHUFFLED_FRONTIER": {
+    "NO_VERIFIABLE_PROPOSAL": 10,
+    "PROPOSAL_LIMIT": 3,
+    "SELECTED": 17
+   }
+  }
+ },
+ "report_outcome": "FAILURE_SPECIFIC_BUT_NOT_END_TO_END",
+ "report_seconds": 5911.6
+}

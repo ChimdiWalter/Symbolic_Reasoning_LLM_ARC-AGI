@@ -176,13 +176,25 @@
   {
    "id": "compiler",
    "status": "COMPILER_ACCEPTED (licensed by v1.6 PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES)",
-   "result": {"outcome": "COMPILER_ACCEPTED", "conditions": "S1-S6 all hold; S4 6/6 EXTENSION_NECESSARY_AND_USED with held-out exact; S5 5/6; S6 6/6 with empty comparison sets (weak)", "supplementary": "K* at 3x budget accepted 0/6; nested uses 0", "record": "records/ITEM2_V17_COMPILER_RESULT_20261005.md", "report_sha256": "4b356a8d109c1227014db27e55a8040f34b7ca764964f53afb399f0f837ad39c", "rows_sha256": "8d9323fb7a42279c97bc3dac57da9ce13cb958532f7f2adaf2f8696b91dbf816", "independent_verification": "logs/v17/verify_acceptance.log, 11/11 checks", "claim": "engineering capability; claim stays LEVEL 1"},
+   "result": {
+    "outcome": "COMPILER_ACCEPTED",
+    "conditions": "S1-S6 all hold; S4 6/6 EXTENSION_NECESSARY_AND_USED with held-out exact; S5 5/6; S6 6/6 with empty comparison sets (weak)",
+    "supplementary": "K* at 3x budget accepted 0/6; nested uses 0",
+    "record": "records/ITEM2_V17_COMPILER_RESULT_20261005.md",
+    "report_sha256": "4b356a8d109c1227014db27e55a8040f34b7ca764964f53afb399f0f837ad39c",
+    "rows_sha256": "8d9323fb7a42279c97bc3dac57da9ce13cb958532f7f2adaf2f8696b91dbf816",
+    "independent_verification": "logs/v17/verify_acceptance.log, 11/11 checks",
+    "claim": "engineering capability; claim stays LEVEL 1"
+   },
    "design_record": "records/ITEM2_V17_COMPILER_DESIGN.md",
    "protocol": "docs/CORA_TTI_CONSTRUCTIVE_EXTENSION_COMPILER_v1.7.md",
    "manifest": "outputs/tti/constructive_extension_compiler_v17_manifest.json",
    "manifest_sha256": "a66e149cf7d971ae4166033c95cfe2567a9be5ea160c792b9abecca9d08b1f29",
    "frozen_commit": "the commit titled \"Updating the frozen v1.7 compiler manifest after erratum 01\" (git log)",
-   "first_freeze": {"commit": "d5b5e1b", "manifest_sha256": "418ee5c2f0e1ae30e43cdcf48de2c9faf1f55a5dfaaa566443f0b7437531bbb3"},
+   "first_freeze": {
+    "commit": "d5b5e1b",
+    "manifest_sha256": "418ee5c2f0e1ae30e43cdcf48de2c9faf1f55a5dfaaa566443f0b7437531bbb3"
+   },
    "review": "records/ITEM2_V17_REVIEW_RESULT.md (2 BLOCKING, 4 MAJOR, 12 MINOR; access audit clean)",
    "erratum": "records/ITEM2_V17_ERRATUM_01.md",
    "acceptance": "scripts/run_v17_acceptance.sh once; outcomes COMPILER_ACCEPTED, COMPILER_INTEGRATION_INCOMPLETE, COMPILER_DEFECTIVE, NO_VERDICT_FIXTURE_SHORTFALL, NO_VERDICT_RUN_ERROR",
@@ -203,21 +215,54 @@
   },
   {
    "id": "no_oracle_proposal",
-   "status": "PACKAGE_ACCEPTED_REFROZEN_AFTER_ERRATUM_01 (v1.8; prospective test frozen, not run)",
+   "status": "FAILURE_SPECIFIC_BUT_NOT_END_TO_END (v1.8 prospective, run once 2026-10-06; G1 pass, G2 fail; not accepted)",
    "protocol": "docs/CORA_TTI_NO_ORACLE_PROPOSER_v1.8.md",
    "manifest_sha256": "d64732cf54f91f70ce6f7be041956850d6cc85ca3986e4e08199401278db8731",
    "frozen_commit": "b69b770",
-   "first_freeze": {"commit": "e7afc0f", "manifest_sha256": "bd657faa12225d775e028a07e6208345c37b518f6c4c0f07ce518bdc9c8e8f7a"},
+   "first_freeze": {
+    "commit": "e7afc0f",
+    "manifest_sha256": "bd657faa12225d775e028a07e6208345c37b518f6c4c0f07ce518bdc9c8e8f7a"
+   },
    "review": "records/ITEM2_V18_REVIEW_RESULT.md (1 BLOCKING, 2 MAJOR, 18 MINOR; access clean)",
    "erratum": "records/ITEM2_V18_ERRATUM_01.md",
    "development_record": "records/ITEM2_V18_DEVELOPMENT_RESULT.md",
    "feasibility_record": "records/ITEM2_V18_FEASIBILITY.md",
-   "prospective": "scripts/v18_prospective.py (N 30, W 15, seeds 860000000, G1 vs transplant and BLIND; not run)",
-   "next": "same-reasoner closed-loop causal pilot; first frozen step = the v1.8 prospective test",
+   "prospective": "scripts/v18_prospective.py run once 2026-10-06 (N 30, W 15, seeds 860000000)",
+   "next": "STOP AND RECORD THE EXACT v1.8 PROSPECTIVE BLOCKER (recorded); the closed-loop and real ARC pilot stay BLOCKED; next block is the user's decision",
    "design_record": "records/ITEM2_V18_PROPOSER_DESIGN.md",
    "mechanism": "residual peeling over K's own blocks: PARTIAL K blocks are top layers; a lower K block must cover the residual consistently; depth 2 then 3",
    "development_seed_base": 840000000,
-   "prospective_seed_base": 860000000
+   "prospective_seed_base": 860000000,
+   "result": {
+    "outcome": "FAILURE_SPECIFIC_BUT_NOT_END_TO_END",
+    "G1": "pass: vs SHUFFLED_FRONTIER 13:0 p 1.22e-4; vs BLIND 7:0 p 0.0078",
+    "G2": "fail: 11 of 30 complete witnesses, 15 required",
+    "witness_parts": {
+     "B": 30,
+     "P": 30,
+     "U": 25,
+     "L": 11,
+     "T": 25,
+     "A": 30
+    },
+    "useful_by_arm": {
+     "FAILURE_CONDITIONED": 30,
+     "NO_RESPONSE": 30,
+     "BLIND": 23,
+     "SHUFFLED_FRONTIER": 17,
+     "PURE": 6,
+     "DEMO_ONLY": 1,
+     "SHUFFLED_COORDINATES": 0
+    },
+    "blocker": "leg L (real leave-one-out, 11/30) and U/T (25/30): the engine rejects the proposed hypothesis (79 of 81 failed folds rejected; 77 of 81 carried the same program as the full task); proposer selected in every fold",
+    "record": "records/ITEM2_V18_PROSPECTIVE_RESULT_20261006.md",
+    "report_sha256": "af068bcdc8d3c23c49d8dd2c37c8727f78801b39d1050730f2df9bd222fe77f6",
+    "rows_sha256": "ccbc7d5373ec730382dc0c98265fd0e9cd8af44e8bbdf43a21b3065e06dce385",
+    "independent_verification": "logs/v18/verify_prospective.json, 31/31 checks, recomputation equals report",
+    "seconds": 5911.6,
+    "claim": "LEVEL 2 not reached; claim stays LEVEL 1",
+    "real_arc_pilot_licensed": false
+   }
   },
   {
    "id": "closed_loop",

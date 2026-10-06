@@ -1017,6 +1017,61 @@ What this does not show:
 The claim stays LEVEL 1. LEVEL 2 needs an extension produced without the
 oracle pair, then compiled and certified through this path.
 
+## 8.13 Proposing the extension from the reasoner's own failure
+
+[METHOD WRITTEN 2026-10-06; RESULT SEALED 2026-10-06]
+
+Section 8.12 compiled an extension chosen by the oracle pair. This section
+removes the oracle: the proposer receives only the demonstrations and K's
+own failure, never the target schema, a candidate pair, the held-out output,
+a task identity or a family label.
+
+The mechanism follows from the frozen semantics. Every block reads the input
+grid and later layers overwrite earlier ones, so on a two-layer task every
+single K block fails the joint fit. A block that is consistent on its own
+cells but covers only part of the change is a partial near-miss; these
+near-misses are K's typed failure frontier. The proposer takes them as top
+layers, asks for a lower K block that covers the residual consistently
+outside the top's cells, verifies the composition on the demonstrations,
+removes behavioural duplicates, and selects by the v1.6 probe, then the
+frozen demonstration model D, then a declared minimum-description guess.
+
+Controls keep the mechanism and change only the failure evidence: a
+transplant of another task's frontier, and a fixed blind order of K's
+blocks. One adversarial review found that the first-frozen controls could
+not propose at all; an erratum replaced them before any prospective data
+existed.
+
+The prospective test ran once on 30 new synthetic tasks:
+**FAILURE_SPECIFIC_BUT_NOT_END_TO_END**.
+- Failure specificity passed. The failure-conditioned selection predicted
+  the held-out pair on 30 of 30 tasks, the transplant on 17 and the blind
+  order on 23; every discordant task favoured the failure-conditioned arm
+  (13 to 0, p 0.0001; 7 to 0, p 0.008).
+- The end-to-end gate failed: 11 of 30 tasks gave a complete witness, 15
+  were required. The engine accepted the produced extension, used it and
+  reproduced the held-out pair on 25 tasks, and K* at three times the
+  budget reproduced none. Leave-one-out with the proposal rebuilt in every
+  fold passed on only 11.
+- The proposer did not fail in any fold. In 77 of the 81 failed folds it
+  rebuilt the same program as on the full task; on 14 tasks the engine
+  accepted that program with seven pairs and rejected it on six-pair folds.
+  Failures concentrated where
+  several verified extensions remained and selection fell back to D or the
+  description-length guess.
+
+What this does not show:
+- the end-to-end path: too few produced extensions survive the same
+  reasoner's acceptance under leave-one-out;
+- anything about real ARC tasks;
+- that finding a verifying extension is hard: on this corpus one exists in
+  the search space by construction, so the evidence is in selection and
+  generalization only;
+- the engine-internal reason for the six-pair rejections, which was not
+  examined.
+
+The claim stays LEVEL 1. The real ARC pilot is not licensed.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
@@ -1074,6 +1129,9 @@ is a perception and correspondence limit rather than a language limit.
   nothing on new data (P2 0.578 against 0.580). The pure intervention rule
   alone did not beat the demonstrations, because it abstains on four
   ambiguous pairs in five. The hybrid logit did not pass either.
+- The no-oracle proposer (section 8.13) was failure-specific but not end to
+  end: 11 of 30 complete witnesses against 15 required, because the engine
+  rejected most produced extensions on six-pair leave-one-out folds.
 
 ### 9.4 Reproducibility
 
