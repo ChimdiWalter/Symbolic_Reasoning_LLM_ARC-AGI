@@ -285,7 +285,23 @@ Record: `records/ITEM2_V18_DEVELOPMENT_RESULT.md`. Data:
 Corpus: the first 40 tasks at seed base 840,000,000 (families (0,0) 18,
 (1,1) 8, (1,0) 7, (0,1) 5, (0,0,0) 2; 37 distinct target structures).
 
-CONTROLS_DEV_PLACEHOLDER
+| arm | outcome | selection predicts the held-out pair | role |
+|---|---|---|---|
+| FAILURE_CONDITIONED | 40 SELECTED | 40 | main |
+| SHUFFLED_FRONTIER (transplant) | 26 SELECTED, 8 NO_VERIFIABLE_PROPOSAL, 5 PROPOSAL_LIMIT, 1 NO_PROPOSAL | 26 | G1 control |
+| BLIND | 30 SELECTED, 10 NO_VERIFIABLE_PROPOSAL | 30 | G1 control |
+| NO_RESPONSE | 40 SELECTED | 40 | supplementary |
+| PURE | 10 SELECTED, 30 abstained | 10 | supplementary |
+| SHUFFLED_COORDINATES | 40 NO_PROPOSAL | 0 | sanity |
+| DEMO_ONLY | 40 PROPOSAL_LIMIT | 0 | sanity |
+
+Control numbers come from the erratum run (`outputs/tti/v18_dev_controls.json`,
+`scripts/v18_dev_controls.py`). There the main arm reproduced every stored
+development selection exactly (40 of 40). Against the main arm, the discordant tasks were
+14 to 0 for the transplant and 10 to 0 for BLIND. Every control selection
+that was not useful came from a task where the control proposed nothing
+that verified; where a control selected, its selection predicted the
+held-out pair.
 
 - An extension behaviourally equivalent to the generator's was verified on
   every task; the selection was that extension on 19 of 40.
@@ -298,15 +314,17 @@ CONTROLS_DEV_PLACEHOLDER
   held-out pair exact; real leave-one-out 7 of 7 on 6 tasks, 5 of 7 and
   1 of 7 on two (the engine's re-induction gate rejected the proposed
   extension on sparse six-pair folds; recorded fold events); complete
-  synthetic witnesses 6 of 8; S6 level C SEPARATED 8 of 8 with comparison
-  sets of 18 to 69 programs.
+  synthetic witnesses 6 of 8, unchanged under the erratum's leg A (K* alone
+  at 3x budget accepted none of the 8); S6 level C SEPARATED 8 of 8 with
+  comparison sets of 18 to 69 programs (descriptive only, section 9).
 - Median 3.4 s per proposer call, maximum 20.9 s. Depth 3 ran on the two
   three-block tasks only. The main arm reached the 256-proposal cap on 2 of
   40 tasks (37 and 39) and still verified candidates there.
 
 These are engineering numbers on development data. They fixed nothing
 except the prospective thresholds of section 14 (through the feasibility
-record) and the witness-set correction of section 9.
+record), the witness-set correction of section 9, and, after the review,
+the choice of G1 controls (erratum 01).
 
 ## 14. Prospective test (frozen here, run once in the next stage)
 

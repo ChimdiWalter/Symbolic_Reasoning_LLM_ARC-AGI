@@ -25,6 +25,42 @@ def sign_p(b, c):
     return sum(math.comb(n, k) for k in range(b, n + 1)) / 2 ** n if n else 1.0
 
 
+def g1_power(N, q, r, alpha=0.05):
+    """P(G1 passes) when each task is independently discordant in favour of
+    the main arm with probability q and of the control with probability r."""
+    tot = 0.0
+    for b in range(N + 1):
+        for c in range(N - b + 1):
+            pr = (math.factorial(N) / (math.factorial(b) * math.factorial(c) * math.factorial(N - b - c))
+                  * q ** b * r ** c * (1 - q - r) ** (N - b - c))
+            if b > c and sign_p(b, c) < alpha:
+                tot += pr
+    return tot
+
+
+def g1_section(N):
+    """Erratum 01: G1 against the transplant and BLIND controls, with the
+    development discordance from outputs/tti/v18_dev_controls.json."""
+    ctl = json.load(open(os.path.join(HERE, "outputs", "tti", "v18_dev_controls.json")))["summary"]
+    n = ctl["tasks"]
+    out = {"rule": "one-sided exact sign test on tasks discordant in fitter-level usefulness, "
+                   "FAILURE_CONDITIONED against SHUFFLED_FRONTIER (transplant) and against BLIND, "
+                   "alpha 0.05 each, both must pass",
+           "min_discordant_for_alpha": next(b for b in range(1, 40) if sign_p(b, 0) < 0.05),
+           "development": {a: {"fc_only": ctl["discordant_vs_FC"][a][0], "control_only": ctl["discordant_vs_FC"][a][1],
+                               "tasks": n, "control_useful": ctl["useful"][a]}
+                           for a in ("SHUFFLED_FRONTIER", "BLIND")},
+           "power_at_N": {}}
+    for a in ("SHUFFLED_FRONTIER", "BLIND"):
+        q = ctl["discordant_vs_FC"][a][0] / n
+        r = ctl["discordant_vs_FC"][a][1] / n
+        out["power_at_N"][f"{a}_at_development_rates"] = g1_power(N, q, r)
+    out["power_at_N"]["pessimistic_q0.15_r0"] = g1_power(N, 0.15, 0.0)
+    out["power_at_N"]["q0.25_r0.05"] = g1_power(N, 0.25, 0.05)
+    out["size_at_N_no_specificity_q0.10_r0.10"] = g1_power(N, 0.10, 0.10)
+    return out
+
+
 def main():
     dev = json.load(open(os.path.join(HERE, "outputs", "tti", "v18_dev_audit.json")))
     eng = dev["engine"]
@@ -44,12 +80,7 @@ def main():
                "power_at_rate_0.60": p_at_least(W, N, 0.60),
                "power_at_rate_0.75": p_at_least(W, N, 0.75),
                "power_at_dev_rate": p_at_least(W, N, witness_rate)},
-           "G1_sign_test": {
-               "rule": "one-sided exact sign test on tasks discordant in fitter-level usefulness, alpha 0.05",
-               "min_discordant_for_alpha": next(b for b in range(1, 40) if sign_p(b, 0) < 0.05),
-               "p_if_all_N_discordant_one_way": sign_p(N, 0),
-               "dev_discordance_fc_vs_shuffled": [dev["arms"]["FAILURE_CONDITIONED"]["selected_heldout_exact"]
-                                                  - 0, 0]},
+           "G1_sign_test": g1_section(N),
            "runtime_estimate_minutes": {"per_task_dev_engine_mean_s": None, "note": "filled from dev rows"}}
     rows = [json.loads(l) for l in open(os.path.join(HERE, "outputs", "tti", "v18_dev_rows.jsonl"))]
     eng_rows = [r for r in rows if "engine" in r]

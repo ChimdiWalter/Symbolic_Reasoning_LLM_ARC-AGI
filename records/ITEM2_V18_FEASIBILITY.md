@@ -9,18 +9,46 @@ prospective task was generated. Numbers from `scripts/v18_feasibility.py`
 | quantity | development value |
 |---|---|
 | proposer useful (selection predicts the held-out pair at fitter level), FAILURE_CONDITIONED | 40 of 40 |
-| same, SHUFFLED_FRONTIER | 0 of 40 |
+| same, SHUFFLED_FRONTIER (transplant, erratum 01) | 26 of 40 |
+| same, BLIND (erratum 01) | 30 of 40 |
+| same, SHUFFLED_COORDINATES (the first-frozen shuffled arm) | 0 of 40 |
 | same, DEMO_ONLY | 0 of 40 |
 | complete synthetic B/P/U/L/T/A witness, engine subset | 6 of 8 (0.75) |
 | mean wall time per task with the engine stage and real leave-one-out | 163 s at load about 40 on 24 CPUs |
 | corpus yield | 40 qualifying tasks within the first 799 seeds |
 
-## Gate G1: failure specificity
+## Gate G1: failure specificity (rewritten by erratum 01)
+
+The first version of this section used the first-frozen controls, which
+could not propose at all (review B1): development discordance 40 to 0
+against both, so G1 would have passed on any 5 useful tasks. G1 now uses
+the two controls that keep the mechanism.
 
 One-sided exact sign test on tasks discordant in fitter-level usefulness,
-FAILURE_CONDITIONED against SHUFFLED_FRONTIER and against DEMO_ONLY, alpha
-0.05 each. Five discordant tasks one way are enough (p = 1/32). Development
-discordance was 40 to 0 against both controls.
+FAILURE_CONDITIONED against SHUFFLED_FRONTIER (transplant) and against
+BLIND, alpha 0.05 each, both must pass. Development
+(`outputs/tti/v18_dev_controls.json`):
+
+| control | control useful | main only | control only |
+|---|---|---|---|
+| SHUFFLED_FRONTIER (transplant) | 26 of 40 | 14 | 0 |
+| BLIND | 30 of 40 | 10 | 0 |
+
+Probability that G1 passes at N = 30, each task independently discordant
+for the main arm with probability q and for the control with probability r:
+
+| scenario | q, r | P(pass) |
+|---|---|---|
+| transplant at development rates | 0.35, 0 | 0.993 |
+| BLIND at development rates | 0.25, 0 | 0.902 |
+| advantage shrinks | 0.15, 0 | 0.476 |
+| some reverse discordance | 0.25, 0.05 | 0.526 |
+| no specificity (size) | 0.10, 0.10 | 0.016 |
+
+G1 can now fail, and it controls false positives (size 0.016 under
+symmetric discordance). Its power is high at the development rates and
+drops to about one half if the advantage shrinks by 40 percent; that risk
+is accepted and stated rather than buying it back with a larger N.
 
 ## Gate G2: complete witnesses
 
@@ -55,4 +83,6 @@ existed; no prospective task has been generated.
 ## Runtime
 
 30 tasks at 163 s each is about 82 minutes under development load, as one
-process at default priority. The proposer's own bound is 180 s per call.
+process at default priority, plus about 24 s per task for the erratum's
+3x-budget K* run (witness leg A) and the two new control arms: about 100
+minutes in all. The proposer's own bound is 180 s per call.

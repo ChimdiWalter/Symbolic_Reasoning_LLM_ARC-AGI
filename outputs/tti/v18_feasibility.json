@@ -1,12 +1,28 @@
 {
  "G1_sign_test": {
-  "dev_discordance_fc_vs_shuffled": [
-   40,
-   0
-  ],
+  "development": {
+   "BLIND": {
+    "control_only": 0,
+    "control_useful": 30,
+    "fc_only": 10,
+    "tasks": 40
+   },
+   "SHUFFLED_FRONTIER": {
+    "control_only": 0,
+    "control_useful": 26,
+    "fc_only": 14,
+    "tasks": 40
+   }
+  },
   "min_discordant_for_alpha": 5,
-  "p_if_all_N_discordant_one_way": 9.313225746154785e-10,
-  "rule": "one-sided exact sign test on tasks discordant in fitter-level usefulness, alpha 0.05"
+  "power_at_N": {
+   "BLIND_at_development_rates": 0.902130400435344,
+   "SHUFFLED_FRONTIER_at_development_rates": 0.9924822854131868,
+   "pessimistic_q0.15_r0": 0.4755312536743951,
+   "q0.25_r0.05": 0.5258391025970477
+  },
+  "rule": "one-sided exact sign test on tasks discordant in fitter-level usefulness, FAILURE_CONDITIONED against SHUFFLED_FRONTIER (transplant) and against BLIND, alpha 0.05 each, both must pass",
+  "size_at_N_no_specificity_q0.10_r0.10": 0.01575371716677178
  },
  "G2_witnesses": {
   "power_at_dev_rate": 0.9991810108553227,

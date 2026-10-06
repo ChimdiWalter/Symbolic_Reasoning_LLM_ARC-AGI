@@ -161,3 +161,29 @@ not among the proposals (checked 2026-10-06 with the frozen code):
 
 No proposer rule rejected a composition the fitter accepts. This is the
 basis of the completeness-by-construction statement in protocol section 15.
+
+## Erratum 01: controls that keep the mechanism (2026-10-06)
+
+`scripts/v18_dev_controls.py` (output `outputs/tti/v18_dev_controls.json`,
+1,134 s) ran every arm with the erratum code on the same 40 tasks. The
+main arm reproduced the stored audit exactly on 40 of 40 tasks (proposals
+and selection).
+
+| arm | useful | discordant against the main arm (main only, arm only) |
+|---|---|---|
+| FAILURE_CONDITIONED | 40 | |
+| SHUFFLED_FRONTIER (transplant) | 26 | 14, 0 |
+| BLIND | 30 | 10, 0 |
+| NO_RESPONSE | 40 | 0, 0 |
+| PURE | 10 | 30, 0 |
+| SHUFFLED_COORDINATES (first-frozen shuffled arm) | 0 | 40, 0 |
+| DEMO_ONLY | 0 | 40, 0 |
+
+- The two G1 controls fail on tasks where their tops produce nothing that
+  verifies (transplant: 8 NO_VERIFIABLE_PROPOSAL, 5 PROPOSAL_LIMIT,
+  1 NO_PROPOSAL; BLIND: 10 NO_VERIFIABLE_PROPOSAL). Wherever a control
+  selected, its selection predicted the held-out pair.
+- K* alone at 3x budget (the new witness leg A) accepted none of the 8
+  engine-subset tasks (24 s budget: five runs ended at about 24 s, one at
+  32 s, two early at 4 and 5 s), so the development witness count stays
+  6 of 8.

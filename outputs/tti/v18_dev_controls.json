@@ -1,0 +1,4462 @@
+{
+ "rows": [
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 16
+     },
+     "seconds": 1.452,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.807,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 60
+     },
+     "seconds": 4.975,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 60
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 60
+     },
+     "seconds": 4.5,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 60
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 60
+     },
+     "seconds": 4.638,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 60
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.929,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 3.003,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 34
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     31.51,
+     31.13,
+     31.63
+    ],
+    "seconds": 24.13
+   },
+   "donor_seed": 840005000,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 0,
+   "seed": 840001000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 48
+     },
+     "seconds": 2.359,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 12
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.95,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 76
+     },
+     "seconds": 6.799,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 76
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 76
+     },
+     "seconds": 6.35,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 76
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 76
+     },
+     "seconds": 6.698,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 76
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.643,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 60
+     },
+     "seconds": 5.499,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 60
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     33.03,
+     31.6,
+     31.77
+    ],
+    "seconds": 24.09
+   },
+   "donor_seed": 840005600,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 1,
+   "seed": 840005000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 112
+     },
+     "seconds": 3.557,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"sole_neighbour_colour\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 28
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.975,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 92
+     },
+     "seconds": 5.823,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 92
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 92
+     },
+     "seconds": 5.886,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 92
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 92
+     },
+     "seconds": 5.344,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 92
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.125,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 182
+     },
+     "seconds": 4.382,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.35,
+     31.72,
+     31.8
+    ],
+    "seconds": 32.07
+   },
+   "donor_seed": 840008100,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 2,
+   "seed": 840005600
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 6,
+      "3": 99
+     },
+     "seconds": 1.897,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.336,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 1.82,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 1.188,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 1.755,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.977,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.245,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.21,
+     31.73,
+     31.8
+    ],
+    "seconds": 5.04
+   },
+   "donor_seed": 840009300,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 3,
+   "seed": 840008100
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 80
+     },
+     "seconds": 3.925,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 24
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.893,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 88
+     },
+     "seconds": 7.453,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 88
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 88
+     },
+     "seconds": 6.302,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 88
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 88
+     },
+     "seconds": 7.322,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 88
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.939,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 92
+     },
+     "seconds": 3.605,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 16
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.48,
+     31.94,
+     31.87
+    ],
+    "seconds": 24.11
+   },
+   "donor_seed": 840009700,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 4,
+   "seed": 840009300
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 35
+     },
+     "seconds": 1.661,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.428,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 12
+     },
+     "seconds": 1.855,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 12
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 12
+     },
+     "seconds": 1.586,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 12
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 12
+     },
+     "seconds": 1.882,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 12
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.268,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 16
+     },
+     "seconds": 1.479,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.34,
+     31.94,
+     31.87
+    ],
+    "seconds": 24.04
+   },
+   "donor_seed": 840011000,
+   "family": "(0,1)",
+   "fc_regression_equal": true,
+   "i": 5,
+   "seed": 840009700
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 1.611,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.456,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 26
+     },
+     "seconds": 3.346,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 26
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 26
+     },
+     "seconds": 2.545,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 26
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 26
+     },
+     "seconds": 3.556,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 26
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.098,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 29
+     },
+     "seconds": 3.85,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 29
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.05,
+     31.95,
+     31.88
+    ],
+    "seconds": 24.14
+   },
+   "donor_seed": 840016500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 6,
+   "seed": 840011000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 2,
+      "3": 18
+     },
+     "seconds": 1.301,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.551,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 2
+     },
+     "seconds": 0.835,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 2
+     },
+     "seconds": 1.099,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 2
+     },
+     "seconds": 0.867,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.892,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.195,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "baseline_3x": {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     31.95,
+     31.94,
+     31.88
+    ],
+    "seconds": 3.93
+   },
+   "donor_seed": 840019100,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 7,
+   "seed": 840016500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 95
+     },
+     "seconds": 2.346,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.512,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 30
+     },
+     "seconds": 3.113,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 30
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 30
+     },
+     "seconds": 2.299,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 30
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 30
+     },
+     "seconds": 2.949,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 30
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.864,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 60,
+      "3": 256
+     },
+     "seconds": 1.819,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840019500,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 8,
+   "seed": 840019100
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 1.65,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.4,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 33
+     },
+     "seconds": 3.727,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 33
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 33
+     },
+     "seconds": 3.143,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 33
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 33
+     },
+     "seconds": 3.691,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 33
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.895,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 16
+     },
+     "seconds": 2.853,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 16
+     }
+    }
+   },
+   "donor_seed": 840020100,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 9,
+   "seed": 840019500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 71
+     },
+     "seconds": 1.935,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.409,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.917,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.58,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.922,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.936,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 2,
+      "3": 160
+     },
+     "seconds": 4.895,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840021500,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 10,
+   "seed": 840020100
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 17,
+      "3": 86
+     },
+     "seconds": 2.233,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 3.573,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.192,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.011,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.344,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.84,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 9,
+      "3": 256
+     },
+     "seconds": 2.511,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840022500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 11,
+   "seed": 840021500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 4,
+      "3": 96
+     },
+     "seconds": 1.852,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.944,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.566,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.13,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.363,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.849,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 6,
+      "3": 256
+     },
+     "seconds": 2.538,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840023500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 12,
+   "seed": 840022500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 0.941,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"hw\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.223,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 0.999,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 0.825,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 0.997,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.604,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 17,
+      "3": 256
+     },
+     "seconds": 1.865,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840026500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 13,
+   "seed": 840023500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 2.753,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.033,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 43
+     },
+     "seconds": 4.263,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 43
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 43
+     },
+     "seconds": 3.809,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 43
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 43
+     },
+     "seconds": 4.174,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 43
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.008,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 70
+     },
+     "seconds": 2.882,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 21
+     }
+    }
+   },
+   "donor_seed": 840029700,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 14,
+   "seed": 840026500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 6
+     },
+     "seconds": 1.58,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"hw\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 4.015,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 3.332,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 2.76,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 3.286,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.934,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 50,
+      "3": 8
+     },
+     "seconds": 1.811,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840029800,
+   "family": "(0,1)",
+   "fc_regression_equal": true,
+   "i": 15,
+   "seed": 840029700
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 87
+     },
+     "seconds": 1.802,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.726,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 47
+     },
+     "seconds": 4.462,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 47
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 47
+     },
+     "seconds": 4.203,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 47
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 47
+     },
+     "seconds": 4.421,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 47
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.008,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 54
+     },
+     "seconds": 3.62,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 22
+     }
+    }
+   },
+   "donor_seed": 840032000,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 16,
+   "seed": 840029800
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 1.317,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.259,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 38
+     },
+     "seconds": 3.916,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 38
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 38
+     },
+     "seconds": 3.555,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 38
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 38
+     },
+     "seconds": 4.172,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 38
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.796,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 3.273,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 28
+     }
+    }
+   },
+   "donor_seed": 840032200,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 17,
+   "seed": 840032000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 1.522,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.44,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.41,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 3.975,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.258,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.863,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 60
+     },
+     "seconds": 2.354,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 12
+     }
+    }
+   },
+   "donor_seed": 840035000,
+   "family": "(0,1)",
+   "fc_regression_equal": true,
+   "i": 18,
+   "seed": 840032200
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 64
+     },
+     "seconds": 3.104,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 32
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.858,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 96
+     },
+     "seconds": 7.2,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 96
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 96
+     },
+     "seconds": 7.172,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 96
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 96
+     },
+     "seconds": 7.428,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 96
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.656,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 239
+     },
+     "seconds": 12.022,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 176
+     }
+    }
+   },
+   "donor_seed": 840035500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 19,
+   "seed": 840035000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 3.497,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 22
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.128,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.886,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 3.695,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.898,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.697,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 3.513,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 27
+     }
+    }
+   },
+   "donor_seed": 840038500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 20,
+   "seed": 840035500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 1.654,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.683,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.616,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.016,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 44
+     },
+     "seconds": 4.692,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 44
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.786,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 65
+     },
+     "seconds": 3.175,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 17
+     }
+    }
+   },
+   "donor_seed": 840039000,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 21,
+   "seed": 840038500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 56
+     },
+     "seconds": 3.92,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"hw\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 34
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.599,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 99
+     },
+     "seconds": 8.998,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 99
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 99
+     },
+     "seconds": 7.944,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 99
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 99
+     },
+     "seconds": 8.415,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 99
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.801,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 52
+     },
+     "seconds": 4.099,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 36
+     }
+    }
+   },
+   "donor_seed": 840040200,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 22,
+   "seed": 840039000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 55
+     },
+     "seconds": 1.64,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.06,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 28
+     },
+     "seconds": 3.436,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 28
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 28
+     },
+     "seconds": 2.803,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 28
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 28
+     },
+     "seconds": 3.477,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 28
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.72,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 0.976,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"row_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    }
+   },
+   "donor_seed": 840040800,
+   "family": "(0,1)",
+   "fc_regression_equal": true,
+   "i": 23,
+   "seed": 840040200
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 31
+     },
+     "seconds": 1.104,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.794,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 2.143,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 1.954,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 20
+     },
+     "seconds": 2.193,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 20
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.72,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 9
+     },
+     "seconds": 0.869,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    }
+   },
+   "donor_seed": 840042800,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 24,
+   "seed": 840040800
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 87
+     },
+     "seconds": 1.949,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 6
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.268,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 47
+     },
+     "seconds": 4.501,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 47
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 47
+     },
+     "seconds": 3.765,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 47
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 47
+     },
+     "seconds": 4.685,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 47
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.765,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 83
+     },
+     "seconds": 3.061,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 19
+     }
+    }
+   },
+   "donor_seed": 840047000,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 25,
+   "seed": 840042800
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 48
+     },
+     "seconds": 1.822,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.623,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 70
+     },
+     "seconds": 6.088,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 70
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 70
+     },
+     "seconds": 5.939,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 70
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 70
+     },
+     "seconds": 6.152,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 70
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.755,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 32
+     },
+     "seconds": 3.335,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 32
+     }
+    }
+   },
+   "donor_seed": 840047500,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 26,
+   "seed": 840047000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 8,
+      "3": 56
+     },
+     "seconds": 1.256,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.356,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.327,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.127,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.157,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.961,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 20,
+      "3": 192
+     },
+     "seconds": 3.579,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840047800,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 27,
+   "seed": 840047500
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 79
+     },
+     "seconds": 5.329,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 40
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.46,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 72
+     },
+     "seconds": 8.543,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 72
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 72
+     },
+     "seconds": 6.085,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 72
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 72
+     },
+     "seconds": 8.298,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 72
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.677,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 16,
+      "3": 256
+     },
+     "seconds": 24.232,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 208
+     }
+    }
+   },
+   "donor_seed": 840048600,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 28,
+   "seed": 840047800
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 19,
+      "3": 25
+     },
+     "seconds": 1.315,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.021,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 2
+     },
+     "seconds": 0.986,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 2
+     },
+     "seconds": 0.737,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 2
+     },
+     "seconds": 0.764,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 2
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.747,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 30
+     },
+     "seconds": 0.811,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840051300,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 29,
+   "seed": 840048600
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 37
+     },
+     "seconds": 1.017,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 1
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 3.381,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.245,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"sole_neighbour_colour\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 5
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.141,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"sole_neighbour_colour\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 5
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.357,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 5
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.675,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 40
+     },
+     "seconds": 1.598,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840057100,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 30,
+   "seed": 840051300
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 60,
+      "3": 40
+     },
+     "seconds": 2.028,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.453,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.833,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 5
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.237,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"col_band\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 5
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 5
+     },
+     "seconds": 1.999,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 5
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.043,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 5,
+      "3": 163
+     },
+     "seconds": 2.639,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840059900,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 31,
+   "seed": 840057100
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "P0",
+     "proposals": {
+      "2": 15,
+      "3": 56
+     },
+     "seconds": 3.537,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 20
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.699,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 0,
+      "3": 80
+     },
+     "seconds": 9.292,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 80
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 0,
+      "3": 80
+     },
+     "seconds": 8.285,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 80
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 0,
+      "3": 80
+     },
+     "seconds": 9.519,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 80
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.692,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 80
+     },
+     "seconds": 1.479,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840062400,
+   "family": "(0,0,0)",
+   "fc_regression_equal": true,
+   "i": 32,
+   "seed": 840059900
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 15,
+      "3": 24
+     },
+     "seconds": 1.589,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 4
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.221,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 0,
+      "3": 16
+     },
+     "seconds": 3.278,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 16
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 0,
+      "3": 16
+     },
+     "seconds": 2.496,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"touches_border\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?2\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 16
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 0,
+      "3": 16
+     },
+     "seconds": 3.127,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 16
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 1.131,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 2,
+      "3": 256
+     },
+     "seconds": 1.996,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840066000,
+   "family": "(0,0,0)",
+   "fc_regression_equal": true,
+   "i": 33,
+   "seed": 840062400
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 4,
+      "3": 100
+     },
+     "seconds": 2.105,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.435,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 2.044,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "D",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 1.501,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_rect\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 8
+     },
+     "seconds": 2.002,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 8
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.811,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 28
+     },
+     "seconds": 1.227,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    }
+   },
+   "donor_seed": 840066200,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 34,
+   "seed": 840066000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 31,
+      "3": 24
+     },
+     "seconds": 1.341,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.541,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 0.965,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 0.736,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 0.683,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.84,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 28
+     },
+     "seconds": 1.315,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    }
+   },
+   "donor_seed": 840070100,
+   "family": "(0,1)",
+   "fc_regression_equal": true,
+   "i": 35,
+   "seed": 840066200
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 11
+     },
+     "seconds": 0.844,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"hw\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 1
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.926,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 3
+     },
+     "seconds": 0.745,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 3
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 3
+     },
+     "seconds": 0.882,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 3
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 3
+     },
+     "seconds": 0.854,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 3
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.71,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 19
+     },
+     "seconds": 0.658,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 3
+     }
+    }
+   },
+   "donor_seed": 840076800,
+   "family": "(1,0)",
+   "fc_regression_equal": true,
+   "i": 36,
+   "seed": 840070100
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 216
+     },
+     "seconds": 9.284,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"hw\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 108
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.849,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 18.108,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 256
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 18.104,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 256
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 18.666,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 256
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.852,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 15.094,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_rectangular\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 209
+     }
+    }
+   },
+   "donor_seed": 840079000,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 37,
+   "seed": 840076800
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "NO_VERIFIABLE_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 17,
+      "3": 54
+     },
+     "seconds": 1.606,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 2.632,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.269,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.024,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "PURE": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 4
+     },
+     "seconds": 1.164,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.935,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "VERIFICATION_UNIQUE",
+     "proposals": {
+      "2": 28
+     },
+     "seconds": 1.265,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"separator_panels\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"neighbour_colours\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"is_square\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 4
+     }
+    }
+   },
+   "donor_seed": 840079800,
+   "family": "(0,0)",
+   "fc_regression_equal": true,
+   "i": 38,
+   "seed": 840079000
+  },
+  {
+   "arms": {
+    "BLIND": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 208
+     },
+     "seconds": 7.841,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"hw\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 88
+     }
+    },
+    "DEMO_ONLY": {
+     "class": "PROPOSAL_LIMIT",
+     "level": null,
+     "proposals": {
+      "2": 256,
+      "3": 256
+     },
+     "seconds": 1.708,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "FAILURE_CONDITIONED": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 19.316,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 256
+     }
+    },
+    "NO_RESPONSE": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 18.154,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 256
+     }
+    },
+    "PURE": {
+     "class": "SELECTION_ABSTAINED",
+     "level": "ABSTAINED",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 19.042,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 256
+     }
+    },
+    "SHUFFLED_COORDINATES": {
+     "class": "NO_PROPOSAL",
+     "level": null,
+     "proposals": {
+      "2": 0,
+      "3": 0
+     },
+     "seconds": 0.794,
+     "selected": null,
+     "useful": false,
+     "verified_by_depth": {
+      "2": 0,
+      "3": 0
+     }
+    },
+    "SHUFFLED_FRONTIER": {
+     "class": "SELECTED",
+     "level": "MDL",
+     "proposals": {
+      "2": 256
+     },
+     "seconds": 16.218,
+     "selected": "{\"args\":[{\"args\":[{\"lit\":\"\\\"colour_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"all\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?0\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"},{\"args\":[{\"lit\":\"\\\"background_components\\\"\"}],\"op\":\"Partition\"},{\"args\":[{\"lit\":\"\\\"not_touching_border\\\"\"}],\"op\":\"Select\"},{\"args\":[{\"args\":[{\"lit\":\"\\\"area\\\"\"}],\"op\":\"Key\"},{\"args\":[{\"lit\":\"\\\"?1\\\"\"}],\"op\":\"Lookup\"}],\"op\":\"Map\"},{\"args\":[],\"op\":\"Paint\"}],\"op\":\"Compose\"}",
+     "useful": true,
+     "verified_by_depth": {
+      "2": 256
+     }
+    }
+   },
+   "donor_seed": 840001000,
+   "family": "(1,1)",
+   "fc_regression_equal": true,
+   "i": 39,
+   "seed": 840079800
+  }
+ ],
+ "summary": {
+  "baseline_3x_engine_subset": [
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     31.51,
+     31.13,
+     31.63
+    ],
+    "seconds": 24.13
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     33.03,
+     31.6,
+     31.77
+    ],
+    "seconds": 24.09
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.35,
+     31.72,
+     31.8
+    ],
+    "seconds": 32.07
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.21,
+     31.73,
+     31.8
+    ],
+    "seconds": 5.04
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.48,
+     31.94,
+     31.87
+    ],
+    "seconds": 24.11
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.34,
+     31.94,
+     31.87
+    ],
+    "seconds": 24.04
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     32.05,
+     31.95,
+     31.88
+    ],
+    "seconds": 24.14
+   },
+   {
+    "accepted": false,
+    "heldout_exact": false,
+    "loadavg": [
+     31.95,
+     31.94,
+     31.88
+    ],
+    "seconds": 3.93
+   }
+  ],
+  "classes": {
+   "BLIND": {
+    "NO_VERIFIABLE_PROPOSAL": 10,
+    "SELECTED": 30
+   },
+   "DEMO_ONLY": {
+    "PROPOSAL_LIMIT": 40
+   },
+   "FAILURE_CONDITIONED": {
+    "SELECTED": 40
+   },
+   "NO_RESPONSE": {
+    "SELECTED": 40
+   },
+   "PURE": {
+    "SELECTED": 10,
+    "SELECTION_ABSTAINED": 30
+   },
+   "SHUFFLED_COORDINATES": {
+    "NO_PROPOSAL": 40
+   },
+   "SHUFFLED_FRONTIER": {
+    "NO_PROPOSAL": 1,
+    "NO_VERIFIABLE_PROPOSAL": 8,
+    "PROPOSAL_LIMIT": 5,
+    "SELECTED": 26
+   }
+  },
+  "development_only": true,
+  "discordant_vs_FC": {
+   "BLIND": [
+    10,
+    0
+   ],
+   "DEMO_ONLY": [
+    40,
+    0
+   ],
+   "NO_RESPONSE": [
+    0,
+    0
+   ],
+   "PURE": [
+    30,
+    0
+   ],
+   "SHUFFLED_COORDINATES": [
+    40,
+    0
+   ],
+   "SHUFFLED_FRONTIER": [
+    14,
+    0
+   ]
+  },
+  "fc_regression_equal": 40,
+  "proposer_sha256": "8fbb08018814f31bb584b9fb1bf9eff03465bfab1f72bfbcb3a517ef046cdf07",
+  "seconds": 1134.1,
+  "tasks": 40,
+  "useful": {
+   "BLIND": 30,
+   "DEMO_ONLY": 0,
+   "FAILURE_CONDITIONED": 40,
+   "NO_RESPONSE": 40,
+   "PURE": 10,
+   "SHUFFLED_COORDINATES": 0,
+   "SHUFFLED_FRONTIER": 26
+  }
+ }
+}
