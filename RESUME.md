@@ -179,37 +179,31 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.8 NO-ORACLE EXTENSION PROPOSER: DESIGN DONE (d531141), IMPLEMENTATION
-NEXT** (2026-10-05; directive: design, implement, development audit,
-freeze, ONE review, errata; do NOT run the closed-loop ARC pilot).
-- Design record `records/ITEM2_V18_PROPOSER_DESIGN.md`: residual peeling
-  over K's own blocks (PARTIAL K blocks are top layers; a lower K block
-  covers the residual consistently; depth 2, then 3), frozen bounds,
-  selection = verification, P0, D (refit from v1.6's training resource),
-  MDL guess; real S5 with proposal inside every fold; S6 levels A/B/C with
-  a non-empty comparison set.
-- Development seeds 840,000,000 + 100k (40 tasks, 8 through the engine);
-  prospective seeds 860,000,000 + 100k reserved.
-- DONE: frozen D `outputs/tti/v18_frozen_d.json` (b0ae3eca; refit by v1.6's
-  own path reproduces all five v1.6 D/P0_then_D numbers; defbd5c);
-  `cora_arc2026/v18_proposer.py` + `tests/test_v18_proposer.py` (bab4b75).
-  Smoke on v1.7 fixtures: fixture 0 10 PARTIAL tops, 2 proposals, selected
-  = target behaviourally; fixture 1 18 verified, 2 distinct, D decided.
-- Instrument correction (3f356d0, design record section 11): the frozen
-  probes were blind to layered programs (task 0: full == top alone on all
-  16 probes; 30 partial programs, 3 probe fingerprints), so the duplicate
-  law and S6 level C now use 64 task-distribution witness grids (seeds
-  9e12 + i); probes stay as secondary C_probes. First 2 audit rows set
-  aside as superseded.
-- RUNNING (detached, pid 703781, logs/v18/run_dev.pid): engine test DONE
-  (passed, 132.5 s, final code), then the full development audit (task 0
-  done at 00:29Z; rows resumable: a rerun of scripts/v18_dev_audit.py skips
-  finished seeds) (40 tasks, 8 through the engine) with the
-  final code. Outputs outputs/tti/v18_dev_rows.jsonl (resumable) and
-  outputs/tti/v18_dev_audit.json.
-- Then: development record, feasibility record (set N_TASKS and W_MIN in
-  scripts/v18_prospective.py), exclusion set (scripts/v18_build_exclusion.py),
-  protocol sections 13-14, freeze (scripts/freeze_v18.py), ONE review.
+**v1.8 NO-ORACLE EXTENSION PROPOSER: FROZEN (e7afc0f), ONE REVIEW NEXT**
+(2026-10-06; directive: design, implement, development audit, freeze, ONE
+review, errata; do NOT run the prospective test or the ARC pilot here).
+- Frozen: manifest `outputs/tti/no_oracle_proposer_v18_manifest.json`
+  sha256 bd657faa12225d775e028a07e6208345c37b518f6c4c0f07ce518bdc9c8e8f7a;
+  protocol `docs/CORA_TTI_NO_ORACLE_PROPOSER_v1.8.md` 32395af9; proposer
+  0b3cb0a6; K* b009a9fb (v1.7 compiler unchanged, 04c6b3a1); frozen D
+  b0ae3eca; 28 pinned files; exclusion 3,817 digests.
+- Mechanism: residual peeling over K's own blocks (design record, with the
+  section 11 witness-grid addendum). Selection: verification, P0, D, MDL.
+- Development (DEVELOPMENT ONLY, `records/ITEM2_V18_DEVELOPMENT_RESULT.md`):
+  40 tasks; FAILURE_CONDITIONED 40/40 selected and held-out exact;
+  SHUFFLED_FRONTIER 0/40 (no proposal); DEMO_ONLY 0/40 (no verified); PURE
+  10/40; selection = generator's behaviour 19/40 (MDL guess decided 25);
+  engine subset 8/8 necessary and held-out exact, real LOO all folds 6/8,
+  complete synthetic witnesses 6/8; S6 C separated 8/8 (sets 18-69).
+- Completeness by construction (protocol section 15): the corpus law makes
+  a verifying composition reachable up to the caps; evidence is selection,
+  generalization and failure specificity.
+- Prospective test (frozen, NOT run): `scripts/v18_prospective.py`, seeds
+  860M, N=30, W=15 (`records/ITEM2_V18_FEASIBILITY.md`), gates G1 (sign
+  tests vs SHUFFLED and DEMO_ONLY) and G2 (15/30 complete witnesses).
+- Tests: fast 21 passed; engine 1 passed (132.5 s).
+- NOW: write `records/ITEM2_V18_REVIEW_REQUEST.md`, run ONE adversarial
+  review, scan its tool inputs, compare tracked hashes, errata, re-freeze.
 
 Earlier: NEXT: DESIGN AND FREEZE THE NO-ORACLE EXTENSION PROPOSER (now
 in progress above).
