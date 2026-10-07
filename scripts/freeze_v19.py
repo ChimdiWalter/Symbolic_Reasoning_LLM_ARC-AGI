@@ -58,7 +58,7 @@ def exclusion():
     dev = {t["digest"] for t in json.load(open(os.path.join(OUTD, "v19_dev_corpus.json")))["tasks"]}
     body = sorted(e_dev | dev)
     json.dump({"sources": ["outputs/tti/v19_dev_exclusion.json (3,847)",
-                           "outputs/tti/v19_dev_corpus.json target digests (60)"],
+                           "outputs/tti/v19_dev_corpus.json target digests (54)"],
                "total": len(body), "target_digests": body}, open(path, "w"), indent=0)
     return path
 

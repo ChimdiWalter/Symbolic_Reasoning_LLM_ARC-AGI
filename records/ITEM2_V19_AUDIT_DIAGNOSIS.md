@@ -11,7 +11,8 @@ manifest sha256 de7bca3d).
 - Pipeline `logs/v19/run_audit.sh`, pid 1410140 (own session), 3 workers,
   launched 2026-10-06T21:44:22Z at load 58; phase 1 done 22:20:49Z, phase 2
   done 22:44:14Z, analysis exit 0. Launch record `logs/v19/audit_launch.json`.
-- Corpus: 60 tasks prepared (`outputs/tti/v19_dev_corpus.json`), exclusion
+- Corpus: 60 tasks requested, 54 qualified within the 2,000-seed limit (seeds
+  870003200 to 870194700; `outputs/tti/v19_dev_corpus.json`), exclusion
   E_dev = 3,817 + 30 = 3,847 digests (`outputs/tti/v19_dev_exclusion.json`).
 - Stop rule met at exactly 30 audited tasks (the first 30 in corpus order,
   all SELECTED and compiled). Two further tasks finished in flight (indices

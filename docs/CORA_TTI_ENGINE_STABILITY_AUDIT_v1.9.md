@@ -464,7 +464,7 @@ run while they are unset or the freeze is broken.
 Corpus: seed base 880,000,000 + 100k (reserved in section 11, never
 generated before), the v1.8 corpus law unchanged, distinct target digests,
 the first N_TASKS qualifying tasks within 2,000 seeds, skipping every
-digest in `outputs/tti/v19_prospective_exclusion.json` (E_dev plus all 60
+digest in `outputs/tti/v19_prospective_exclusion.json` (E_dev plus all 54
 digests of the v1.9 development corpus).
 
 Per task:
