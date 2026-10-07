@@ -179,6 +179,29 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
+**v1.9 PROSPECTIVE TEST RUNNING** (launched ONCE 2026-10-07T18:07:49Z per the
+user's execution directive; coordinator pid 1360853, own session, start ticks
+61938419, boot 5c543236; launch record `logs/v19/prospective_launch.json`;
+load 50 on 24 CPUs). ADMINISTRATIVE MONITORING ONLY: liveness, row count,
+elapsed, load, disk, tracebacks, resume state, marker; do NOT read partial
+rows, gates or outcome.
+- WATCHER `logs/v19/prospective_watch.sh` (pid 1362727, lock
+  `logs/v19/prospective_watch.lock`, log `logs/v19/prospective_watch.log`):
+  resumes ONCE with `--resume` only if the coordinator is gone, the start
+  record exists, report and marker are absent and no recorded pid is alive;
+  on the marker runs `logs/v19/verify_prospective.py` ->
+  `logs/v19/verify_prospective.json`, then removes its `@reboot` hook
+  (installed; crontab backup `crontab_before_v19_prospective.txt` in the
+  session scratchpad, 22 lines).
+- After the marker: terminal verification (freeze, identities, corpus law,
+  30 distinct tasks outside the 3,901 exclusion digests, no leakage, no
+  unexpected error, resume history, no duplicate rows, control failures),
+  the verifier's all_checks_pass, independent recomputation of G1-G4, legs,
+  LOO, pairing, precision, marginal rule, strata, controls; then the result
+  record with the literal outcome. Accepted -> LEVEL 2 synthetic only, STOP,
+  next block = design and freeze the real ARC causal pilot. Not accepted ->
+  record the exact blocker, STOP.
+
 **v1.9 ENGINE ACCEPTANCE STABILITY: RE-FROZEN AFTER ERRATUM 01 at 44a64f0
 (manifest 528981dd, FROZEN_AFTER_ERRATUM_01_NOT_PROSPECTIVELY_TESTED). STOPPED
 before the prospective test (directive section 24).**

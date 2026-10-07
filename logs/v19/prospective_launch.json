@@ -1,0 +1,41 @@
+{
+ "what": "v1.9 prospective engine-stability test, launched once (user directive 2026-10-07)",
+ "launched_utc": "2026-10-07T18:07:49Z",
+ "coordinator_pid": 1360853,
+ "pgid": 1360853,
+ "sid": 1360853,
+ "ppid_after_detach": 1,
+ "start_ticks": 61938419,
+ "clock_ticks_per_s": 100,
+ "boot_id": "5c543236-c905-416e-9e7f-af441c8fc4b5",
+ "head": "df6340cdd6d387cca090b6ea9fe0ed2be3b301b6",
+ "refrozen_commit": "44a64f0",
+ "manifest_sha256": "528981ddd2827aaf822e43e9e52655cbbed0b42f51778849a319c61021307e0b",
+ "repair_identity_prefix": "e4672bfa",
+ "k_identity_prefix": "b009a9fb",
+ "loadavg_at_launch": [
+  "50.16",
+  "54.46",
+  "53.10"
+ ],
+ "cpus": 24,
+ "command": "setsid nohup .venv_arc2026/bin/python scripts/v19_prospective.py > logs/v19/prospective.log 2>&1 < /dev/null &",
+ "environment": {
+  "PYTHONHASHSEED": "0",
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "PYTHONPATH": "/deltos/e/lesion_phes/code/python/pipeline/Reasoning_Project_tti",
+  "ARC_*": "none"
+ },
+ "outputs": {
+  "log": "logs/v19/prospective.log",
+  "start": "logs/v19/prospective_start.json",
+  "tasks": "outputs/tti/v19_prospective_tasks.json",
+  "rows": "outputs/tti/v19_prospective_rows.jsonl",
+  "report": "outputs/tti/v19_prospective_report.json",
+  "marker": "logs/V19_PROSPECTIVE_DONE",
+  "workers": "logs/v19/prospective_workers.json",
+  "resumes": "logs/v19/prospective_resumes.jsonl",
+  "interrupted": "logs/v19/prospective_interrupted.json"
+ },
+ "resume_rule": "only after a genuine interruption: start record present, report and marker absent, no recorded coordinator or worker pid alive; never because progress is slow; recorded in logs/v19/prospective_resumes.jsonl"
+}
