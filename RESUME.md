@@ -179,67 +179,35 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.9 ENGINE ACCEPTANCE STABILITY: DIAGNOSIS DONE, REPAIR BUILT, DEV ABLATION RUNNING**
-(user directive 2026-10-06; diagnosis -> ONE generic repair -> tests ->
-freeze -> ONE review -> errata; STOP before the v1.9 prospective test).
-- DIAGNOSIS (d9b4479, `records/ITEM2_V19_AUDIT_DIAGNOSIS.md`): success
-  condition PASS (145/145 events mechanistic and reproducing in process and
-  in a fresh process; traced == untraced 12/12). Dominant mechanism H1
-  re-induction instability 145/145: SLOT_FIT_FAILED:witness 86 (K*-2
-  fitter's MIN_KEY_WITNESSES=2 re-applied inside the engine's five-pair
-  refits), RANKED_BELOW_COMPETITOR 59 (pixel-rule reductions labelled
-  RELATIONAL with unpriced tables outrank e). Load and budget eliminated
-  (CPU1 and CPU10: 0/18 decisions changed each); H4 0/30.
-- REPAIR K*-4 installed-extension re-induction (`cora_arc2026/v19_repair.py`,
-  protocol sections 14-15, 1e5937e): while an extension is installed, the
-  installed concept is fitted with every consistent witness and ranks first
-  in every ranking; gate unchanged; inert with nothing installed. Tests
-  `tests/test_v19_repair.py` 6 fast + 3 engine pass.
-- RUNNING (detached, survive session restarts; rows written per task):
-  (a) dev ablation pipeline pid 1546874 (4 workers), marker
-  `logs/v19/REPAIR_DEV_DONE`, report `outputs/tti/v19_repair_dev_report.json`,
-  restart `setsid nohup bash logs/v19/run_repair_dev.sh`;
-  (b) reduced-demonstration false-acceptance measurement: DONE (dc9da93);
-  clause-level follow-up DONE (6d77189);
-  (c) WATCHER `logs/v19/v19_watch.sh` pid 1603534 (lock
-  `logs/v19/v19_watch.lock`, log `logs/v19/v19_watch.log`): relaunches (a)
-  or (b) if gone before its marker (3 restarts max each), writes
-  `logs/v19/V19_DEV_ALL_DONE` when both markers exist, then removes its
-  `@reboot` crontab hook (installed 2026-10-06, `sleep 300`; crontab backup
-  in the session scratchpad `crontab_before_v19.txt`, 22 lines). No git
-  operations in the watcher.
-- FALSE-ACCEPTANCE FINDING (dev; dc9da93, 6d77189; protocol section 15a,
-  4af2bd1): with seven demonstrations no wrong verified extension exists
-  (0/30 tasks, both rules). With four demonstrations (train 0-3, evaluate
-  4-6 + held-out): K* accepts 8/24 right and 6/19 wrong installed
-  extensions, K*' 24/24 and 19/19; fit-only 13/24 and 9/19; rank-only
-  17/24 and 10/19. The engine's internal gate does NOT discriminate right
-  from wrong installed extensions under scarce demonstrations in any
-  variant; old rejections were indiscriminate. Decision: keep K*-4 (both
-  clauses); prospective G4 gates wrong certified outputs at three system
-  levels (selected FULL, adaptive-LOO folds, seven-pair wrong trials,
-  strict K*' <= K*); the four-demonstration control is run and REPORTED
-  with a pre-registered expectation, not gated; claim ceiling carries the
-  real-ARC caveat (correctness rests on the proposer's selection and the
-  held-out / adaptive-LOO checks). The 86 fitting events are H1 only under
-  the one-witness standard (H2 under the fitter's two-witness standard):
-  state this in the diagnosis record.
-- Early ablation rows (dev): 57/57 old-accepted runs keep the identical
-  program under K*'; 0 residual K*' rejections; category-A adaptive LOO
-  3/7 and 2/7 -> 7/7.
-- AFTER both markers, in order: (1) commit all v1.9 dev outputs (force-add
-  outputs/ and logs/); (2) MOVE cora_arc2026/v19_{trace,audit,repair}.py to
-  a new package cora_v19/ (they broke v1.8's pinned cora_arc2026 tree
-  digest; without them it matches 9032ec17 exactly), fix imports in
-  cora_v19/v19_audit.py, scripts/v19_audit_dev.py, scripts/v19_repair_dev.py,
-  tests/test_v19_audit.py, tests/test_v19_repair.py; rerun all v1.9 tests;
-  (3) decide the prospective false-acceptance control from (b); (4)
-  `scripts/v19_feasibility.py` -> N/W/DELTA into `scripts/v19_prospective.py`;
-  (5) records ITEM2_V19_REPAIR_DEVELOPMENT.md + ITEM2_V19_FEASIBILITY.md;
-  (6) `scripts/freeze_v19.py`; commit; (7) ONE adversarial review (request
-  record, tracked-hash snapshot, scan its tool inputs); errata; re-freeze;
-  STOP before the prospective test.
-- Development range 870M + 100k; prospective 880M + 100k RESERVED.
+**v1.9 ENGINE ACCEPTANCE STABILITY: FROZEN 276583d (manifest 26e63d79); ONE REVIEW IN PROGRESS**
+(user directive 2026-10-06; STOP before the v1.9 prospective test).
+- Diagnosis (d9b4479, record + addendum): H1 145/145 (86 single-witness
+  refits, 59 pixel-rule rankings); load, budget, H4 eliminated; the H1 label
+  of the fitting events depends on the one-witness standard.
+- Repair K*-4 (`cora_v19/v19_repair.py`; modules moved out of cora_arc2026
+  at df851c7 so v1.8's freeze_problems() returns [] again).
+- Development ablation (af4b7c1, `records/ITEM2_V19_REPAIR_DEVELOPMENT.md`):
+  witnesses 26/30 vs 12; adaptive LOO 26 vs 12 (folds 206 vs 132 of 210);
+  same-e folds 210/210 vs 134; no regression 161/161; replay, attribution,
+  restoration, fresh process all pass; inertness gate FAILED on 1/30 events
+  (base-engine timing, logs/v19/inert_probe.log); precision of certified
+  outputs 236/238 vs 159/160.
+- False acceptance (protocol 15a): 7 demos 0 wrong candidates; 4 demos
+  K* 8/24 right + 6/19 wrong, K*' 24/24 + 19/19 (no logic discriminates).
+- Prospective (frozen, NOT run): seeds 880M, N 30, W 19, DELTA 6, 4 workers,
+  G1 failure specificity, G2 witnesses, G3 LOO stability, G4 safety
+  (precision >= 0.95 and >= K* - 0.02; decision inertness; no regression;
+  replay/attribution/restoration); 4-demo control reported only.
+  Exclusion 3,901 digests. Feasibility `records/ITEM2_V19_FEASIBILITY.md`.
+- REVIEW: request `records/ITEM2_V19_REVIEW_REQUEST.md` (4a5006f); tracked
+  hashes before in the session scratchpad `v19_review_tracked_before.txt`
+  (2,315 files). After it returns: scan its tool inputs (forbidden trees,
+  seeds >= 880M or 860M/830M, repo writes), compare hashes, save it verbatim
+  as records/ITEM2_V19_REVIEW_RESULT.md, errata only for genuine defects,
+  re-freeze, return the directive's section 25 items, STOP.
+- Background: the watcher (pid 1603534) has finished both pipelines;
+  logs/v19/V19_DEV_ALL_DONE expected; the engine's own tests run in
+  logs/v19/engine_own_tests.log.
 
 **STOPPED: v1.8 PROSPECTIVE = FAILURE_SPECIFIC_BUT_NOT_END_TO_END** (run once
 2026-10-06, 5,911.6 s; record `records/ITEM2_V18_PROSPECTIVE_RESULT_20261006.md`;
