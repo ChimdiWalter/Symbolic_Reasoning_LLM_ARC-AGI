@@ -179,6 +179,33 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
+**REAL ARC CAUSAL PILOT v1: DESIGN IN PROGRESS (paused 2026-10-07 for the
+user's mapping / manuscript / GitHub request).** Directive: design, static
+feasibility, freeze only; no pilot execution.
+- Done: data audit `records/REAL_ARC_PILOT_V1_DATA_AUDIT.md` (513520f):
+  ARC-AGI-2 training challenges sha256 779eaba8..., solutions 9f07a38b...,
+  1000 ids, byte-identical across 7 copies incl. Reasoning_Project/data/arc
+  (checksum only); disjoint from dev60. Constraints record
+  `records/KAGGLE_2026_CONSTRAINTS.md` (entry deadline 2026-10-26 23:59 UTC;
+  code 11-02; paper 11-08; 12 h CPU/GPU; no internet; pass@2; paper results
+  exclude the training set).
+- Static scope (demonstrations only): 674 same-shape every-pair-changes
+  tasks; 548 with >= 3 demonstrations (3: 403, 4: 120, 5+: 25).
+- Design decisions so far: sample = hash-ordered draw from the 548 (no
+  proposer pre-filter, no target access), stratified by demonstration count;
+  reasoner gets an opaque-key bundle (train pairs + test inputs only);
+  blind evaluator holds targets and the id map, scores after a committed,
+  hashed prediction file; activation gates (train-only): native not
+  accepted, proposer SELECTED, unanimity of verified candidates on the test
+  inputs, witness support >= 2 for every test-input key, K*' + e accepted
+  and uses e, adaptive LOO passes, engine == direct execution; else ABSTAIN
+  with native fallback.
+- Remaining: protocol `docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md`, selection
+  script + bundle/targets files, reasoner pipeline + blind evaluator
+  (cora_pilot/), coordinator, verifier, tests incl. isolation and negative
+  controls, harness smoke test on synthetic bundles, feasibility record,
+  freeze, RESUME/ledger/memory. Then NEXT: run it once (separate session).
+
 **STOPPED: v1.9 PROSPECTIVE = ENGINE_STABILITY_REPAIR_ACCEPTED** (run once
 2026-10-07, 3,159.8 s; record `records/ITEM2_V19_PROSPECTIVE_RESULT_20261007.md`;
 paper section 8.14). Claim LEVEL 2, SYNTHETIC DOMAIN ONLY, under the
