@@ -196,6 +196,11 @@ pilot, no ARC-1000, no eval splits, no push.
   census`), rows outputs/reach_v1/census_rows.jsonl, marker
   logs/reach_v1/CENSUS_0_DONE. If interrupted: `scripts/reach_v1_run.py
   census --resume` (refuses while a recorded worker is alive; 2 resumes max).
+  Continual saving: detached checkpointer `scripts/reach_v1_checkpoint.sh`
+  (pid in logs/reach_v1/checkpointer_state.json) commits the census rows
+  and programs every 15 minutes and at completion, then exits; after a
+  resume, relaunch it with `setsid nohup bash scripts/reach_v1_checkpoint.sh`
+  (edit the coordinator pid inside first).
   Checkpoint 23:14Z: 11 of 60 rows (about 0.6 per minute, finish near
   00:35Z); rows are appended atomically per task, so nothing is lost on
   interruption.
