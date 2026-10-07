@@ -1,9 +1,11 @@
 # CORA real ARC causal pilot v1: protocol
 
-Status: DRAFT. Sections 1 to 11 and 13 to 16, and the feasibility rule of
-section 12, are fixed before the development dry run; section 12's measured
-values, N and the identities in section 17 are filled in after it, before the
-freeze. The frozen state is named in `outputs/pilot_v1/pilot_v1_manifest.json`.
+Status: NOT FROZEN. The feasibility rule of section 12, fixed before the
+development dry run (commit f47c795), failed: 0 of 60 development tasks
+reach the installed stage (`records/REAL_ARC_PILOT_V1_FEASIBILITY.md`). By
+that rule no pilot is frozen and the blocker is recorded. Everything else
+here stands as the design a later freeze would use unchanged; section 17 is
+empty because nothing was frozen.
 
 ## 1. Question and claim ceiling
 
@@ -232,7 +234,14 @@ N: with a = activated development tasks and e = tasks reaching the installed
 stage, N is the smallest allowed value (48, 72, 96, 120) with N x a / 60 >=
 4, and 120 when a = 0 or no allowed value reaches 4.
 
-[measured values: to be filled after the dry run]
+Measured (2026-10-07, 675.7 s, `outputs/pilot_v1_dev/feasibility.json`):
+isolation clean (8 logs, 0 refused accesses); CORA phase 60 of 60, native 6
+of 6; one native RUN_ERROR (a library-install race between workers, fixed
+after the run and covered by a test); installed stage reached by 0 of 60
+(path class NO_PROPOSAL 60; proposer NO_PROPOSAL 59, K_ALREADY_SOLVES 1;
+consistent single blocks on 13 of 60 tasks). READY fails on "loop
+operable"; N would have been 120 (a = 0). Verdict: NOT READY, blocker
+recorded, no pilot frozen.
 
 ## 13. Runtime and resource caps
 
@@ -273,4 +282,4 @@ engine distinguishes right from wrong extensions.
 
 ## 17. Identities
 
-[filled at the freeze]
+None: the pilot was not frozen (section 12).

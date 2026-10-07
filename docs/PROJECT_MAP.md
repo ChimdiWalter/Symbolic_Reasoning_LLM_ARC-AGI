@@ -72,7 +72,7 @@ outcome.
 | v1.7 compiler | 5 Oct | can a selected extension become a production of the same engine? | yes | 6 of 6 accepted, used and exact; 3x-budget baseline 0 of 6; independent verification 11 of 11 |
 | v1.8 no-oracle proposer | 6 Oct | can the extension come from the engine's own failure? | failure-specific, not end to end | specificity 13 to 0 and 7 to 0; complete witnesses 11 of 30 against 15 required |
 | v1.9 engine stability | 7 Oct | why does the engine reject a produced extension on six-pair folds, and can one generic repair fix it? | repair accepted | 27 of 30 complete witnesses against 12; leave-one-out 27 against 12 tasks; precision 237 of 239 against 157 of 157 |
-| real ARC pilot v1 | 7 Oct | does the closed loop rescue a real ARC-AGI-2 task? | design in progress, not run | training split verified by checksum; 548 in-scope tasks found from demonstrations only |
+| real ARC pilot v1 | 7 Oct | does the closed loop rescue a real ARC-AGI-2 task? | not frozen: the proposer reaches no real task | harness built and tested; 0 of 60 real development tasks reach a verified proposal (frozen feasibility rule) |
 
 ## 5. Tried and dropped
 
@@ -119,10 +119,11 @@ Not established:
 
 ## 7. Where things stand (7 October 2026) and what comes next
 
-1. Real ARC causal pilot v1: data audit done
-   (`records/REAL_ARC_PILOT_V1_DATA_AUDIT.md`), design and freeze in
-   progress, not run. Goal: one complete, independently scored rescue of a
-   real training task.
+1. Real ARC causal pilot v1: harness built, data verified, not frozen. On
+   60 real development tasks the frozen proposer built no verifiable
+   extension (`records/REAL_ARC_PILOT_V1_FEASIBILITY.md`), so the blocker is
+   the proposer's reach on real tasks. Goal unchanged: one complete,
+   independently scored rescue of a real training task.
 2. If it produces a witness: bounded real-task development, then a frozen
    1,000-task characterization, the 60 DEV, a final freeze, and the protected
    60 HOLDOUT, in that order. The 1,000-task run, the 60 DEV and the 60

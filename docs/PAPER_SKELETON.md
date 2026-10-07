@@ -45,8 +45,9 @@ correct.
 These results are synthetic. The repaired engine accepts any installed
 extension that verifies, wrong ones included, so on real tasks correctness
 has to come from selection, held-out checks and abstention. No real ARC task
-has yet been solved by a constructed extension; a same-reasoner pilot on real
-training tasks is being designed and has not run. Durable semantic invention
+has yet been solved by a constructed extension, and on 60 real development
+tasks the frozen proposer built no verifiable extension at all, so the
+same-reasoner pilot on real training tasks has not been frozen. Durable semantic invention
 remains under independent evaluation in the frozen Step-B experiment, which
 has no verdict. We do not claim that CORA has demonstrated semantic invention
 or self-improvement.
@@ -1152,6 +1153,40 @@ extension keys have at least two witnesses in each run. It licenses the
 design of a real ARC causal pilot, which must carry the safety burden the
 engine does not.
 
+## 8.15 A real ARC pilot, and why it has not run
+
+[DESIGN AND FEASIBILITY 2026-10-07; NOT FROZEN]
+
+Section 8.14 licensed a pilot on real ARC-AGI-2 training tasks: one
+independently scored rescue with the full witness, the same reasoner, and
+abstention whenever the training evidence is thin. The harness was built
+first, with two processes that never share data. The reasoner sees only
+demonstrations and unlabelled test inputs under opaque keys, inside an
+audit hook that refuses any access to data files, answers or the key map.
+A blind evaluator scores only predictions already committed to version
+control. Activation needs eleven train-only gates, among them a complete
+adaptive leave-one-out, agreement of every verified candidate on the test
+input, and at least two demonstration witnesses for every key the test
+input uses.
+
+A feasibility rule was fixed before any real task was run: the pilot is
+frozen only if at least one of 60 development tasks reaches the stage where
+a proposed extension is compiled and installed. None did. The proposer
+stopped on all 60 because nothing it can build fits the demonstrations. The
+reasoner's own failure frontier found a consistent single block on only 13
+tasks, and the change in these tasks rarely takes the form the grammar
+expresses (whole regions recoloured by a feature lookup). Across 12,000
+block evaluations the commonest rejections were changes outside every
+selected region (4,280) and regions that change only in part (3,688). On four
+synthetic tasks where the grammar applies, the same harness passed every
+gate up to witness support on all four and activated, correctly, on one;
+the other three abstained at the witness-support gate although their
+predictions were right, so that gate is strict and costs recall.
+
+So the bottleneck on real tasks is the proposer's reach, not the engine or
+the selection. The pilot candidates remain unused; the harness can be
+frozen unchanged once a proposer reaches real tasks.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
@@ -1212,6 +1247,9 @@ is a perception and correspondence limit rather than a language limit.
 - The no-oracle proposer (section 8.13) was failure-specific but not end to
   end: 11 of 30 complete witnesses against 15 required, because the engine
   rejected most produced extensions on six-pair leave-one-out folds.
+- On real tasks the same proposer reached nothing: 0 of 60 real development
+  tasks produced a verified proposal (section 8.15), so the real ARC pilot
+  was not frozen.
 - The contrastive corpus (section 8.8) failed its identifiability gate: the
   failure summary told two close targets apart at 0.470 against an exact
   null of 0.429.
@@ -1407,7 +1445,7 @@ The full map of the four project trees, with every step and its record, is
 | Aug 2026 | CORA adopted; Step B frozen and launched | no verdict yet |
 | Sep 2026 | test-time invention attempts; transfer and abstraction studies | DEV-60 0.0; 0 of 1,500 admitted; no reach gain |
 | Sep-Oct 2026 | delivery sprint v1.2 to v1.9 (sections 8.5 to 8.14) | 27 of 30 synthetic end-to-end witnesses |
-| Oct 2026 | real ARC causal pilot designed, not run | one real witness is the next milestone |
+| Oct 2026 | real ARC pilot harness built; the frozen proposer reaches 0 of 60 real development tasks | pilot not frozen; proposer reach is the blocker |
 
 Tried and dropped, each with its recorded diagnosis: language-model hints and
 learned ranking policies, a world-model reranker, a vision probe, a small

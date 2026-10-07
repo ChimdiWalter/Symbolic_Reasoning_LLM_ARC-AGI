@@ -322,7 +322,35 @@
   },
   {
    "id": "real_arc_causal_pilot",
-   "status": "LICENSED (by v1.9 ENGINE_STABILITY_REPAIR_ACCEPTED); not designed"
+   "status": "DESIGNED, NOT FROZEN: BLOCKER PROPOSER_SCOPE (0 of 60 development tasks reach a verified proposal; feasibility rule of protocol section 12 failed on 2026-10-07)",
+   "protocol": "docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md",
+   "data_audit": "records/REAL_ARC_PILOT_V1_DATA_AUDIT.md (training challenges 779eaba8, solutions 9f07a38b)",
+   "selection": "records/pilot_v1/selection.json (commit 4d3c29b; 548 in scope; dev 60; pilot candidates n3 356, n4 109, n5p 23, untouched)",
+   "rule_commit": "f47c795 (feasibility and N rule fixed before the dry run)",
+   "feasibility": "records/REAL_ARC_PILOT_V1_FEASIBILITY.md",
+   "dry_run": {
+    "cora_rows": 60,
+    "native_rows": 6,
+    "isolation_problems": 0,
+    "installed": 0,
+    "activated": 0,
+    "path_classes": {
+     "NO_PROPOSAL": 60
+    },
+    "proposer_classes": {
+     "NO_PROPOSAL": 59,
+     "K_ALREADY_SOLVES": 1
+    },
+    "tasks_with_consistent_single_block": 13,
+    "dominant_conflict": {
+     "slot_unobservable": 33,
+     "region_colour_conflict": 21,
+     "scoped_fit_failed": 6
+    },
+    "run_error": "1 native library-install race, fixed and tested"
+   },
+   "harness": "cora_pilot/ (bundle, isolation, native, reasoner, evaluator), scripts/pilot_v1_{select,run,evaluate,feasibility,dev_frontier,positive_control}.py, scripts/freeze_pilot_v1.py, logs/pilot_v1/verify_pilot.py, tests/test_pilot_v1.py",
+   "next": "STOP: user decision on how the proposer is to reach real tasks; the harness is reusable unchanged once a proposer reaches the installed stage on development tasks"
   },
   {
    "id": "bounded_development",
