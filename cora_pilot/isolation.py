@@ -49,7 +49,7 @@ def _norm(path):
 
 def forbidden(path: str) -> str | None:
     """The rule a path breaks, or None."""
-    low = path.lower()
+    low = path.lower().rstrip("/") + "/"          # a directory matches as well as its files
     if _STATE["bundle"] is not None and path == _STATE["bundle"]:
         return None
     for tree in FORBIDDEN_TREES:

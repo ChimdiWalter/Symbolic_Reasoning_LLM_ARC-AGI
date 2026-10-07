@@ -61,9 +61,14 @@ def main() -> None:
     if record["predictions_sha256"] != B.sha256_file(os.path.join(OUT, "committed_predictions.json")):
         raise SystemExit("predictions sha256 differs from the reasoner record")
     #  only now: the evaluator-side inputs
+    sys.path.insert(0, os.path.join(HERE, "scripts"))
+    import freeze_pilot_v1 as FZ
+    frozen = FZ.freeze_problems("evaluator")
     keymap = json.load(open(KEYMAP))
-    report = {"commit_scored": commit}
+    report = {"commit_scored": commit, "freeze_problems": frozen}
     try:
+        if frozen:
+            raise ValueError(f"frozen state changed: {frozen}")
         if keymap["bundle_sha256"] != record["bundle_sha256"]:
             raise ValueError("bundle differs from the key map's bundle")
         solutions = EV.load_pinned(B.SOLUTIONS, B.SOLUTIONS_SHA256)
