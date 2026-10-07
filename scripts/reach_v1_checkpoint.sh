@@ -17,6 +17,15 @@ while true; do
     sleep 20
   done
   [ $final = 1 ] && echo "$(date -u +%FT%TZ) final checkpoint, exiting" >> logs/reach_v1/checkpoint.log && exit 0
-  kill -0 3382121 2>/dev/null || { sleep 60; [ -f logs/reach_v1/CENSUS_0_DONE ] || { echo "$(date -u +%FT%TZ) coordinator gone without marker" >> logs/reach_v1/checkpoint.log; }; }
+  if ! kill -0 3382121 2>/dev/null; then
+    sleep 60
+    if [ ! -f logs/reach_v1/CENSUS_0_DONE ]; then
+      git add -f $FILES 2>/dev/null
+      git diff --cached --quiet -- $FILES || git commit -q -m "Updating the real-task reach native census checkpoint ($n of 60 rows, coordinator stopped without its marker)" -- $FILES
+      echo "$(date -u +%FT%TZ) coordinator gone without marker; last checkpoint, exiting" >> logs/reach_v1/checkpoint.log
+      exit 0
+    fi
+    continue
+  fi
   sleep 900
 done
