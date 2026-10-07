@@ -185,10 +185,14 @@ user's execution directive; coordinator pid 1360853, own session, start ticks
 load 50 on 24 CPUs). ADMINISTRATIVE MONITORING ONLY: liveness, row count,
 elapsed, load, disk, tracebacks, resume state, marker; do NOT read partial
 rows, gates or outcome.
-- WATCHER `logs/v19/prospective_watch.sh` (pid 1362727, lock
-  `logs/v19/prospective_watch.lock`, log `logs/v19/prospective_watch.log`):
-  resumes ONCE with `--resume` only if the coordinator is gone, the start
-  record exists, report and marker are absent and no recorded pid is alive;
+- WATCHER v2 `logs/v19/prospective_watch.sh` (pid 1371476 since 18:13:28Z;
+  v1 pid 1362727 replaced on the user's "run even when interrupted and
+  detached"; lock `logs/v19/prospective_watch.lock`, log
+  `logs/v19/prospective_watch.log`): never touches a running coordinator;
+  resumes with `--resume` only if the coordinator is gone, the start record
+  exists, report and marker are absent and no recorded process runs the
+  script (pid reuse ignored), at most 3 resumes (counted from
+  `logs/v19/prospective_resumes.jsonl`), stops after 5 refused attempts;
   on the marker runs `logs/v19/verify_prospective.py` ->
   `logs/v19/verify_prospective.json`, then removes its `@reboot` hook
   (installed; crontab backup `crontab_before_v19_prospective.txt` in the

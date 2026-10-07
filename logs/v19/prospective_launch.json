@@ -37,5 +37,13 @@
   "resumes": "logs/v19/prospective_resumes.jsonl",
   "interrupted": "logs/v19/prospective_interrupted.json"
  },
- "resume_rule": "only after a genuine interruption: start record present, report and marker absent, no recorded coordinator or worker pid alive; never because progress is slow; recorded in logs/v19/prospective_resumes.jsonl"
+ "resume_rule": "only after a genuine interruption: start record present, report and marker absent, no recorded coordinator or worker pid alive; never because progress is slow; recorded in logs/v19/prospective_resumes.jsonl",
+ "watcher": {
+  "v1_pid": 1362727,
+  "v1_stopped_utc": "2026-10-07T18:13:04Z",
+  "v2_pid": 1371476,
+  "v2_started_utc": "2026-10-07T18:13:28Z",
+  "v2_rules": "never touches a running coordinator; resumes only if the coordinator is gone, the start record exists, report and marker are absent and no recorded process runs scripts/v19_prospective.py (pid reuse ignored); at most 3 resumes counted from logs/v19/prospective_resumes.jsonl; stops after 5 refused attempts; verifier on the marker; removes its @reboot hook",
+  "reason": "user instruction 2026-10-07: run even when interrupted and detached"
+ }
 }
