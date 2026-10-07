@@ -125,14 +125,17 @@ def score_task(key, pred, cora_row, targets, in_sealed) -> dict:
 def evaluate(keymap, predictions, cora_rows, native_rows, solutions, sealed, isolation, run_ok=True) -> dict:
     """The full scoring and the frozen ladder."""
     keys = sorted(keymap["keys"])
+    leak = bool(isolation.get("problems")) or any(
+        (r.get("path_class") == "LEAKAGE") for r in cora_rows.values())
+    no_verdict = "PILOT_LEAKAGE" if leak else "NO_VERDICT_DATASET"     # the ladder's precedence
     if sorted(predictions) != keys:
-        return {"outcome": "NO_VERDICT_DATASET", "reason": "predictions do not cover exactly the pilot keys"}
+        return {"outcome": no_verdict, "reason": "predictions do not cover exactly the pilot keys"}
     tasks = {}
     for k in keys:
         tid = keymap["keys"][k]["task_id"]
         targets = solutions[tid]
         if len(targets) != keymap["keys"][k]["n_test"]:
-            return {"outcome": "NO_VERDICT_DATASET", "reason": f"{k}: test count"}
+            return {"outcome": no_verdict, "reason": f"{k}: test count"}
         tasks[k] = score_task(k, predictions[k], cora_rows.get(k), targets, tid in sealed)
         tasks[k]["stratum"] = keymap["keys"][k]["stratum"]
     n = len(keys)
@@ -165,8 +168,6 @@ def evaluate(keymap, predictions, cora_rows, native_rows, solutions, sealed, iso
                                     "fc_correct_with_e": count(lambda t: t["cora_with_e_correct"])}
     summary["safety"] = ("SAFE" if lost == 0 and wrong_act <= right_act and system_solved >= native_solved
                          else "UNSAFE")
-    leak = bool(isolation.get("problems")) or any(
-        (r.get("path_class") == "LEAKAGE") for r in cora_rows.values())
     run_errors = count(lambda t: t["mechanism"] == "RUN_ERROR") + sum(
         1 for r in native_rows.values() if r.get("path_class") == "RUN_ERROR")
     if leak:

@@ -74,7 +74,8 @@ def main() -> None:
         solutions = EV.load_pinned(B.SOLUTIONS, B.SOLUTIONS_SHA256)
         sealed = EV.sealed_solved()
     except (ValueError, KeyError) as exc:
-        report.update(outcome="NO_VERDICT_DATASET", reason=str(exc))
+        leak = bool((record.get("isolation") or {}).get("problems", {"missing": 1}))
+        report.update(outcome="PILOT_LEAKAGE" if leak else "NO_VERDICT_DATASET", reason=str(exc))
     else:
         preds = json.load(open(os.path.join(OUT, "committed_predictions.json")))
         res = EV.evaluate(keymap, preds, read_rows(os.path.join(OUT, "cora_rows.jsonl")),

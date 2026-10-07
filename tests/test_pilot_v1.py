@@ -304,3 +304,10 @@ def test_evaluator_and_independent_verifier_agree_on_random_tasks():
         s = EV.score_task("k", p, r, tg, sealed)
         native_ok, wit, o = V.independent_outcome(p, r, tg, sealed)
         assert (s["native_solved"], s["witness"], s["outcome"]) == (native_ok, wit, o), (p, r, tg, sealed)
+
+
+def test_leakage_takes_precedence_over_a_dataset_problem():
+    keys = ["ka"]
+    res = EV.evaluate(_keymap(keys + ["kz"]), {"ka": pred()}, {"ka": {"path_class": "NO_PROPOSAL"}}, {},
+                      {"idka": [G1], "idkz": [G1]}, set(), {"problems": {"cora_1": ["refused open"]}})
+    assert res["outcome"] == "PILOT_LEAKAGE"
