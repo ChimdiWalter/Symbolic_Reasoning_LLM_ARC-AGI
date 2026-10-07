@@ -52,9 +52,9 @@ import v19_repair_dev as RD                                       # noqa: E402
 import v19_falseaccept_reduced_dev as FR                          # noqa: E402
 
 SEED_BASE = 880_000_000
-N_TASKS = None          # set by records/ITEM2_V19_FEASIBILITY.md before any prospective data
-W_MIN = None            # complete K*' witnesses required (same record)
-DELTA_MIN = None        # minimum (new-only minus old-only) adaptive leave-one-out passes (same record)
+N_TASKS = 30            # records/ITEM2_V19_FEASIBILITY.md, fixed before any prospective data
+W_MIN = 19              # complete K*' witnesses required: P(X >= 19 | 0.40) = 0.008 (same record)
+DELTA_MIN = 6           # net adaptive leave-one-out gain, ceil(0.2 * N) (same record)
 WORKERS = 4
 ALPHA = 0.05
 PRECISION_FLOOR = 0.95      # K*' precision over certified outputs (protocol section 15a, fixed before data)

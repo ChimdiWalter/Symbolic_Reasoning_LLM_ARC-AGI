@@ -457,8 +457,9 @@ event differences.
 Script `scripts/v19_prospective.py`; independent terminal verifier
 `logs/v19/verify_prospective.py` (written before any prospective data).
 Thresholds come from `records/ITEM2_V19_FEASIBILITY.md`, fixed before any
-prospective task is generated; the script refuses to run while they are
-unset or the freeze is broken.
+prospective task is generated: N_TASKS = 30, W_MIN = 19 (size 0.008 at the
+old-logic rate 0.40), DELTA_MIN = 6, four workers; the script refuses to
+run while they are unset or the freeze is broken.
 
 Corpus: seed base 880,000,000 + 100k (reserved in section 11, never
 generated before), the v1.8 corpus law unchanged, distinct target digests,

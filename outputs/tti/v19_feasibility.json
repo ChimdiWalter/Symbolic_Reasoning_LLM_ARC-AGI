@@ -1,0 +1,49 @@
+{
+ "DELTA_MIN": 6,
+ "G1": {
+  "note": "proposer-level gate, unchanged by the repair; v1.8 development discordance",
+  "power_if_advantage_shrinks_q0.15": 0.4755312536743951,
+  "power_vs_blind": 0.902130400435344,
+  "power_vs_transplant": 0.9924822854131868
+ },
+ "G2": {
+  "power_at_dev_rate": 0.9997381217732696,
+  "power_at_dev_rate_minus_0.15": 0.8859653875418207,
+  "power_at_dev_rate_minus_0.25": 0.5059161587611458,
+  "rule": "W_MIN = smallest W with P(X >= W | p0) <= 0.01",
+  "size_at_p0": 0.008301584386225507
+ },
+ "G3": {
+  "power_at_dev_discordance": 0.9994045196663184,
+  "power_if_gain_halves": 0.7333825258920296,
+  "rule": "b - c >= DELTA_MIN and one-sided sign p < 0.05",
+  "size_no_gain_q_r_0.05": 0.0011209120350428453,
+  "size_no_gain_q_r_0.15": 0.020296664083328347
+ },
+ "N_TASKS": 30,
+ "W_MIN": 19,
+ "feasible": true,
+ "inputs": {
+  "development_tasks": 30,
+  "loo_new_only_dev": 14,
+  "loo_old_only_dev": 0,
+  "p0_null": 0.4,
+  "stability_new": {
+   "adaptive_loo_folds_success": 206,
+   "adaptive_loo_passed": 26,
+   "full_accepted": 30,
+   "same_e_folds_accepted": 210,
+   "same_e_folds_total": 210
+  },
+  "stability_old": {
+   "adaptive_loo_folds_success": 132,
+   "adaptive_loo_passed": 12,
+   "full_accepted": 27,
+   "same_e_folds_accepted": 134,
+   "same_e_folds_total": 210
+  },
+  "witness_new_dev": 26,
+  "witness_old_dev": 12,
+  "witness_old_v18_prospective": "11 of 30"
+ }
+}
