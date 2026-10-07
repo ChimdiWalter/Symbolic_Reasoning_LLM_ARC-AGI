@@ -23,3 +23,31 @@ the five flags in the harness subprocess environment (and budget the
 frames allowance inside the 12 hours), or the submission's measured
 configuration must be stated as the flag-free one. No change was made here;
 the notebook is outside this block's frozen scope.
+
+## Correction applied and verified (2026-10-07, commits c57f4b3, c407776)
+
+- Found a second gap: the sealed runs also had `learned_verbs.json` in the
+  object directory (records/NATIVE_ASSETS_PROVENANCE.md); the package and
+  the notebook carried neither it nor a working library path (the package
+  shipped the library under a v22 output path the notebook never read, so
+  the notebook would have stopped before the harness ran).
+- `kaggle/kaggle_notebook.py` now sets the five flags for the harness
+  subprocess only, installs both assets with sha256 checks (refusing missing
+  or altered files) and logs its configuration; `kaggle/build_dataset.sh`
+  builds `arc_certified_solver_v23.tar.gz` (code, library.json,
+  learned_verbs.json; no data, no outputs, no research artifacts).
+- Tests (`tests/test_kaggle_parity.py`, 5 pass): the native environment has
+  exactly the sealed flags; notebook and pilot native baseline agree on
+  flags and assets; altered assets are refused; K* refuses the five flags;
+  research workers strip them.
+- Local notebook run on the built package (one synthetic fixture and two
+  development tasks; 2 workers, 1,500 s budget; no answers read): flags
+  present in the harness process and both pool workers; imports from the
+  staged package; asset hashes correct; valid submission (every id, both
+  attempts per output); the fixture's attempt 1 is its correct recolouring.
+  No network module is used (one `socket.gethostname()` call).
+- Runtime: the frames allowance (+345 s per task) is outside the governor;
+  the worst case at 120 tasks on 4 CPUs (about 720 s per task) is about 6 h,
+  inside the 11.25 h budget.
+- Not measured: the accuracy effect. This is deployment repair, not a
+  reasoning contribution; it reproduces no score until a scored run.
