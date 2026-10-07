@@ -22,8 +22,14 @@ import time
 CHAIN_FLAGS = {"ARC_DIHEDRAL_FRAMES": "45", "ARC_GENERATIVE": "1", "ARC_PATTERN_DERIVE": "1",
                "ARC_VARIANT_BUDGET": "1", "ARC_RAY_EXT": "1"}
 LIBRARY_SHA256 = "cdacd018da0bd9a3fa460c23beeff89fd5b0c5a85d70ecca276fe212df13ce03"
+#: the sealed v22/v23 runs also had learned_verbs.json in the object layer's
+#: directory (the engine loads it at start from its output dir); copied from
+#: Reasoning_Project/outputs/unified_harness_v23/object/ (records/NATIVE_ASSETS_PROVENANCE.md)
+LEARNED_VERBS_SHA256 = "b1f07ba5f4337cf450b9c13cc142937c1c56b0dcc10e1796e6fcdb39fe2b585c"
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIBRARY = os.path.join(HERE, "library.json")
+LEARNED_VERBS = os.path.join(HERE, "learned_verbs.json")
+ASSETS = ((LIBRARY, "library.json", LIBRARY_SHA256), (LEARNED_VERBS, "learned_verbs.json", LEARNED_VERBS_SHA256))
 
 
 def environment_problems() -> list:
@@ -40,23 +46,24 @@ def environment_problems() -> list:
 
 
 def prepare_object_dir(out_dir: str) -> str:
-    """The object layer's directory with the frozen library, as in the
-    sealed runs (the library is byte-identical from v20 to v23)."""
+    """The object layer's directory with the sealed runs' assets: the frozen
+    library (byte-identical v20 to v23) and the learned-verb registry."""
     obj = os.path.join(out_dir, "object")
     os.makedirs(obj, exist_ok=True)
-    dst = os.path.join(obj, "library.json")
-    with open(LIBRARY, "rb") as handle:
-        data = handle.read()
-    if hashlib.sha256(data).hexdigest() != LIBRARY_SHA256:
-        raise ValueError("frozen library.json hash mismatch")
-    if not os.path.exists(dst):
-        tmp = f"{dst}.tmp.{os.getpid()}"            # per process: workers may race here
-        with open(tmp, "wb") as handle:
-            handle.write(data)
-        os.replace(tmp, dst)
-    with open(dst, "rb") as handle:
-        if hashlib.sha256(handle.read()).hexdigest() != LIBRARY_SHA256:
-            raise ValueError("installed library.json hash mismatch")
+    for src, name, digest in ASSETS:
+        with open(src, "rb") as handle:
+            data = handle.read()
+        if hashlib.sha256(data).hexdigest() != digest:
+            raise ValueError(f"frozen {name} hash mismatch")
+        dst = os.path.join(obj, name)
+        if not os.path.exists(dst):
+            tmp = f"{dst}.tmp.{os.getpid()}"            # per process: workers may race here
+            with open(tmp, "wb") as handle:
+                handle.write(data)
+            os.replace(tmp, dst)
+        with open(dst, "rb") as handle:
+            if hashlib.sha256(handle.read()).hexdigest() != digest:
+                raise ValueError(f"installed {name} hash mismatch")
     return obj
 
 

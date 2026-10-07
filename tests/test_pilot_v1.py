@@ -323,3 +323,5 @@ def test_library_install_is_safe_under_concurrent_workers(tmp_path):
     import hashlib
     from cora_pilot import native as N
     assert hashlib.sha256(open(tmp_path / "object" / "library.json", "rb").read()).hexdigest() == N.LIBRARY_SHA256
+    assert hashlib.sha256(open(tmp_path / "object" / "learned_verbs.json", "rb").read()).hexdigest() \
+        == N.LEARNED_VERBS_SHA256
