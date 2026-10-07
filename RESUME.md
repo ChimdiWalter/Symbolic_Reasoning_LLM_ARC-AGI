@@ -179,6 +179,30 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
+**REAL-TASK REACH v1 BLOCK IN PROGRESS (user directive 2026-10-07 "REAL-TASK
+PROPOSER REACH AND BASELINE DELIVERY PARITY" + binding failure-driven
+invention invariant).** Development only on the 60-task dev bundle; no
+pilot, no ARC-1000, no eval splits, no push.
+- Protocol `docs/CORA_REAL_TASK_REACH_DEV_v1.md` (3b638f7; invariant
+  section 0; operational A-E diagnosis; one-mechanism rule).
+- Native assets: sealed runs also used `learned_verbs.json` (b1f07ba5),
+  now vendored and installed (c57f4b3, records/NATIVE_ASSETS_PROVENANCE.md);
+  learned generators NOT part of the sealed config.
+- Delivery parity DONE (c407776, dd27685): notebook sets the five flags in
+  the harness subprocess only, assets hash-checked, v23 tarball; 5 parity
+  tests; local notebook smoke valid (flags verified in child processes).
+- NATIVE FAILURE CENSUS RUNNING detached since 22:56:35Z: coordinator pid
+  3382121 (`setsid nohup .venv_arc2026/bin/python scripts/reach_v1_run.py
+  census`), rows outputs/reach_v1/census_rows.jsonl, marker
+  logs/reach_v1/CENSUS_0_DONE. If interrupted: `scripts/reach_v1_run.py
+  census --resume` (refuses while a recorded worker is alive; 2 resumes max).
+- Concurrency note: commit f5edd91 (census.py summaries) came from another
+  session (not deltos-e7, e-a7, deltos-e1 or deltos-52; likely deltos-6c);
+  kept; sessions asked to stand down.
+- Next: `scripts/reach_v1_census_summary.py`, choose ONE mechanism by the
+  protocol rule, compiler contract check, bridge, measure on 60, readiness
+  recheck, records, return list.
+
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
 commit ce123e8). The feasibility rule fixed before the dry run (protocol
