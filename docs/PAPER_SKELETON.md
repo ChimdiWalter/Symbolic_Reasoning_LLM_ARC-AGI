@@ -1,7 +1,9 @@
 # CORA: Separating Search, Hypothesis Selection, and Capability Growth in ARC-AGI-2
 
 Authoritative technical manuscript for the ARC Prize 2026 Paper Track.
-Updated 2026-09-23. No LaTeX source, compiled PDF or BibTeX file exists in
+Updated 2026-10-07: results through v1.9 (section 8.14), the real ARC pilot
+status, and the research trajectory (Appendix C; full map in
+`docs/PROJECT_MAP.md`). No LaTeX source, compiled PDF or BibTeX file exists in
 this workspace, so there is no compile step and no page count to report;
 section 10 is the bibliography stub. The concise Paper Track writeup is
 `kaggle/writeup.md`, at most 1,500 words, describing the same implemented
@@ -14,41 +16,62 @@ executable language and adapting the language itself. The system combines
 non-LLM program induction with immutable leave-one-out verification and
 separates, formally and empirically, three things reasoning research often
 conflates: better search, better hypothesis selection, and growth in
-capability.
+capability. Its base reasoner solves 185 of the 1,000 ARC-AGI-2 training
+tasks with leave-one-out certificates and none of the 120 public evaluation
+tasks.
 
-A diagnostic audit reported here found that the original test-time failure
-representation observed a restricted proxy search rather than the deployed
-ARC reasoner. Over twelve prospectively fixed development tasks that channel
-produced no executed near misses and no mismatch evidence, and its candidate
-census was identical across structurally unrelated tasks. That explains a
-previous null result in which shuffled failure evidence performed about as
-well as real failure evidence.
-
+A diagnostic audit found that the original test-time failure representation
+observed a restricted proxy search rather than the deployed reasoner.
 Instrumenting the deployed reasoner, without changing its search, exposed
-task-dependent candidate frontiers, successful parameter fits and executable
-near misses. A subsequent compatibility repair between the real candidate
-representation and the failure-graph evaluator carried that evidence into the
-graph and moved the channel across its preregistered diagnostic threshold.
-The constructive components that would consume the evidence remain
-unimplemented, so no capability claim follows.
+task-dependent failure frontiers with executable near misses.
 
-Durable semantic invention remains under independent evaluation in the frozen
-Step-B experiment, which is ongoing and has no interpretable verdict. We do
-not claim that CORA has demonstrated semantic invention.
+A chain of preregistered experiments, each frozen and reviewed before its
+data existed, then asked what that failure evidence is good for. Passive
+descriptions of the failure did not improve the choice between candidate
+extensions beyond the demonstrations (288 independent test groups). Treating
+the failure as an intervention target did: a fixed rule over each candidate's
+effect on the failed reasoner, with ties passed to a demonstration selector,
+chose correctly on 0.641 of ambiguous queries against 0.580 (136 groups,
+p 3.8e-5). A compiler then installed a selected extension into the same
+engine (6 of 6 synthetic tasks). A proposer with no access to the answer
+built the extension from the engine's own failure frontier and beat
+transplanted and blind failure evidence on every discordant task, but
+completed only 11 of 30 end-to-end witnesses. Tracing every rejection inside
+the engine found one cause, two native heuristics re-applied inside the
+engine's own leave-one-out; one generic repair raised complete witnesses on
+30 new synthetic tasks from 12 to 27, with 237 of 239 certified outputs
+correct.
+
+These results are synthetic. The repaired engine accepts any installed
+extension that verifies, wrong ones included, so on real tasks correctness
+has to come from selection, held-out checks and abstention. No real ARC task
+has yet been solved by a constructed extension; a same-reasoner pilot on real
+training tasks is being designed and has not run. Durable semantic invention
+remains under independent evaluation in the frozen Step-B experiment, which
+has no verdict. We do not claim that CORA has demonstrated semantic invention
+or self-improvement.
 
 ## Contributions
 
 1. A formal and empirical separation of search improvement, hypothesis
    selection and capability growth.
-2. A non-LLM ARC reasoning system with immutable leave-one-out verification.
-3. A frozen causal-witness protocol for durable capability growth.
-4. An architecture for failure-conditioned task-local language adaptation.
+2. A non-LLM ARC reasoning system with immutable leave-one-out verification
+   (185 of 1,000 training tasks certified).
+3. A frozen causal-witness protocol (B/P/U/L/T/A) for capability growth.
+4. An architecture for failure-conditioned task-local language adaptation,
+   implemented end to end on a synthetic constructive grammar: proposal from
+   the reasoner's own failure, compilation into the same reasoner, and
+   re-induction under its unchanged acceptance gate.
 5. An empirical diagnosis showing that an earlier failure representation
-   observed the wrong reasoning process.
-6. A repaired full-engine observation path exposing task-specific semantic
-   frontiers and executable near misses.
-7. Negative results showing why score gains, search gains and known-operator
-   reconstruction are insufficient evidence of semantic invention.
+   observed the wrong reasoning process, and its repair.
+6. Evidence that failure is useful as an intervention target rather than as a
+   passive description (sections 8.10 and 8.11).
+7. A mechanistic account of why a correct extension can fail the reasoner's
+   own leave-one-out, with one generic repair tested prospectively (section
+   8.14).
+8. Negative results showing why score gains, search gains, passive failure
+   descriptors and known-operator reconstruction are insufficient evidence of
+   capability growth.
 
 ## 1. Introduction
 
@@ -58,7 +81,7 @@ not claim that CORA has demonstrated semantic invention.
 |---|---|
 | ARC-AGI-2 entry deadline | 2026-10-26, 23:59 UTC |
 | final prediction and code submission | 2026-11-02, 23:59 UTC |
-| Paper Track final deadline | 2026-11-09, 23:59 UTC |
+| Paper Track final deadline | 2026-11-08 (arcprize.org, read 2026-10-07; an earlier reading gave 2026-11-09, 23:59 UTC) |
 | submission form | Kaggle Notebook |
 | runtime limit | 12 hours CPU, or 12 hours GPU |
 | internet | disabled |
@@ -192,8 +215,10 @@ CORA is non-LLM. No language model runs at inference.
 
 ### 3.2 What is research and not part of the submitted solver
 
-The constructive AST proposer and the ConstructiveExtensionCompiler are
-specified and unimplemented. The failure representation and its repair are
+The constructive proposer (section 8.13), the ConstructiveExtensionCompiler
+(section 8.12) and the installed-extension repair K*-4 (section 8.14) are
+implemented and tested on the synthetic constructive grammar only; none has
+run on a real ARC task. The failure representation and its repair are
 diagnostic instrumentation. None of these contribute to the leaderboard
 result, and the paper attributes nothing to them. Binding requirement: the
 manuscript method, the writeup method and the public notebook method are the
@@ -202,8 +227,8 @@ same method for every claim about the submitted solver.
 ## 4. Failure-Conditioned Language Adaptation
 
     K -> ordinary reasoning -> failure -> typed failure graph
-      -> constructive AST proposal  [specified only]
-      -> ephemeral K union {e}      [specified only]
+      -> constructive AST proposal  [implemented, synthetic grammar: 8.13]
+      -> ephemeral K union {e}      [implemented, synthetic grammar: 8.12, 8.14]
       -> ordinary re-induction -> verification -> prediction -> reset to K
 
 The extension is discarded after the task.
@@ -220,8 +245,10 @@ ranks existing catalogue production names by cost and name. The constructive
 vocabulary defines what a legal constructive AST is; it does not decide which
 new AST to construct, and it is not a proposal mechanism.
 
-Not implemented: the grammar-constrained unseen-AST proposer, and the
-extension compiler. Neither is marked complete in any text or figure.
+Implemented since 2026-10-05, on the synthetic constructive grammar only: the
+no-oracle extension proposer (section 8.13), the extension compiler (section
+8.12) and the installed-extension re-induction repair (section 8.14). None
+has run on a real ARC task and none is part of the submitted solver.
 
 ## 5. Durable Capability Growth
 
@@ -238,7 +265,8 @@ candidates.
 
 Latest recorded checkpoint, not a live claim and not an inspection of
 semantics: K2 proposal phase at 350 of 497 units, zero recorded errors, no
-freeze marker, no final output hash.
+freeze marker, no final output hash. A later progress report (2026-10-02)
+gave 389 of 497 units and zero errors.
 
 Step B remains ongoing and has no interpretable semantic verdict at the time
 of this manuscript revision. No Step-B candidate or outcome enters the
@@ -1184,6 +1212,14 @@ is a perception and correspondence limit rather than a language limit.
 - The no-oracle proposer (section 8.13) was failure-specific but not end to
   end: 11 of 30 complete witnesses against 15 required, because the engine
   rejected most produced extensions on six-pair leave-one-out folds.
+- The contrastive corpus (section 8.8) failed its identifiability gate: the
+  failure summary told two close targets apart at 0.470 against an exact
+  null of 0.429.
+- The engine does not discriminate installed extensions. With four
+  demonstrations neither the original nor the repaired engine separated
+  right from wrong ones, and in the v1.9 prospective test the repaired engine
+  accepted all 5 seven-demonstration and all 28 four-demonstration wrong
+  extensions it was given (section 8.14).
 
 ### 9.4 Reproducibility
 
@@ -1249,17 +1285,27 @@ task-dependent semantic frontiers. That is not semantic invention.
 
 ## 11. Limitations
 
-- The public ARC score is not yet measured and may remain low.
+- No public ARC score has been measured for CORA's constructive path, and it
+  may remain low. The base reasoner scored 0.0 on Kaggle in July 2026 and 0 of
+  120 on the local public evaluation.
 - Verification has shown poor off-distribution calibration: 40 of 42 on
   training against 0 of 11 on an evaluation development split.
-- The repaired failure evidence has not produced any autonomous unseen-AST
-  capability.
-- The constructive AST proposer is unfinished.
-- The extension compiler is unfinished.
+- Every constructive result (sections 8.11 to 8.14) is on the synthetic
+  constructive grammar; none involves a real ARC task.
+- The repaired engine does not discriminate right from wrong installed
+  extensions. Correctness rests on selection, held-out checks and abstention,
+  which the real pilot has to carry.
+- The v1.9 gain is limited to extensions whose keys are witnessed at least
+  twice in each run. The synthetic corpus guarantees this by construction;
+  real tasks with two to five demonstrations often will not.
+- On the synthetic corpus a verifying extension exists in the proposer's
+  search space by construction, so the evidence concerns selection and
+  generalization, not the difficulty of finding an extension.
+- The v1.6 selection result is hybrid and below its powered size.
 - Step B has no verdict.
-- The informative classification rests on twelve tasks and sits exactly at
-  its threshold.
-- Three of those twelve tasks emit no candidates at all.
+- The informative failure-channel classification rests on twelve tasks and
+  sits exactly at its threshold; three of those twelve tasks emit no
+  candidates at all.
 - Bounded semantic separation does not establish universal non-definability.
 - Empirical cross-domain transfer is not demonstrated.
 - ARC results alone do not establish general intelligence.
@@ -1269,12 +1315,16 @@ task-dependent semantic frontiers. That is not semantic invention.
 CORA separates three things a score cannot separate, and holds a fixed
 verifier between proposal and acceptance so that generated novelty is not
 mistaken for capability. The measured contribution in this revision is a
-negative result and its repair: the system's record of its own reasoning
-failures was observing the wrong reasoner, which explained an earlier null,
-and repairing the observation exposed task-dependent semantic frontiers with
-executable near misses. The constructive step that would use them is
-specified and unbuilt, and the durable-growth experiment has no verdict. We
-report what is measured and mark the rest unmeasured.
+chain, each link frozen before its data. The system's record of its own
+failures was observing the wrong reasoner and was repaired. Passive
+descriptions of failure did not help choose an extension beyond the
+demonstrations, but a candidate's effect on the failed reasoner did. A
+selected extension can be compiled into the same reasoner, and one can be
+proposed from the reasoner's own failure without an oracle. After one generic
+engine repair the closed loop completed on 27 of 30 new synthetic tasks. None
+of this has yet touched a real ARC task, the engine accepts wrong extensions
+as readily as right ones, and the durable-growth experiment has no verdict.
+We report what is measured and mark the rest unmeasured.
 
 ## Appendix A. Evidence mapped to the six criteria
 
@@ -1291,7 +1341,11 @@ Internal coverage check, not a self-score and not for rubric prediction.
 | full-engine observation repair | no | partly | yes | yes | yes | yes |
 | candidate-executor compatibility repair | no | no | yes | partly | yes | partly |
 | matched-compute ablation | pending | no | yes | yes | yes | no |
-| constructive reach witnesses | not yet | no | not yet | yes | not yet | yes |
+| intervention-based selection (v1.6), hybrid | no | partly | yes | yes | yes | partly |
+| extension compiler (v1.7) | no | no | yes | partly | yes | partly |
+| no-oracle proposer specificity (v1.8) | no | partly | yes | yes | yes | yes |
+| synthetic closed-loop witnesses (v1.9), 27 of 30 | no | partly | yes | yes | yes | yes |
+| real ARC causal witness | not yet | no | not yet | yes | not yet | yes |
 | bounded semantic separation | not yet | partly | not yet | yes | not yet | yes |
 | independent transfer | not yet | yes | not yet | yes | not yet | yes |
 | Step-B durable-growth result | no | partly | not yet | yes | partly | yes |
@@ -1329,11 +1383,37 @@ different questions. It does not claim the hypothesis is proven.
 claim. Failure categories are listed with unmeasured entries marked.
 
 **Novelty.** After accounting for prior art, what remains is the conjunction
-in section 10, which is not demonstrated, plus the self-observation
-diagnostic, which is.
+in section 10. Its synthetic links (failure-specific proposal, compilation
+into the same reasoner, additive comparison, adaptive leave-one-out, use and
+removal) are demonstrated in sections 8.12 to 8.14; its real-task links are
+not. The self-observation diagnostic is demonstrated.
 
-**Flagged weakness.** Accuracy has no evidence yet. That is stated here
-rather than hidden behind the stronger sections.
+**Flagged weakness.** Accuracy has no evidence yet, and every constructive
+result is synthetic. That is stated here rather than hidden behind the
+stronger sections.
+
+## Appendix C. Research trajectory, December 2025 to October 2026
+
+The full map of the four project trees, with every step and its record, is
+`docs/PROJECT_MAP.md`.
+
+| when | what | key number |
+|---|---|---|
+| Dec 2025 | first prototype (program language, language-model hints, learned ranking) | prototype only |
+| Apr 2026 | restart as a research program on synthetic worlds | falsification nearly eliminated false rules |
+| May-Jun 2026 | real ARC, solver portfolio, module audit, object engine started | 67 of 1,000; 0 false positives in 480 audit runs |
+| Jul 2026 | sealed runs with leave-one-out certificates; first Kaggle submission | 151 to 173 of 1,000; Kaggle 0.0 |
+| Aug 2026 | generated rules, primitives reinvented from residuals, v23 sealed | 185 of 1,000 |
+| Aug 2026 | CORA adopted; Step B frozen and launched | no verdict yet |
+| Sep 2026 | test-time invention attempts; transfer and abstraction studies | DEV-60 0.0; 0 of 1,500 admitted; no reach gain |
+| Sep-Oct 2026 | delivery sprint v1.2 to v1.9 (sections 8.5 to 8.14) | 27 of 30 synthetic end-to-end witnesses |
+| Oct 2026 | real ARC causal pilot designed, not run | one real witness is the next milestone |
+
+Tried and dropped, each with its recorded diagnosis: language-model hints and
+learned ranking policies, a world-model reranker, a vision probe, a small
+recursive network, a search-guide network, a per-task compression solver,
+generic test-time schemas, learned abstraction selection, abstraction
+transfer, and passive failure descriptors as a selection signal.
 
 ## Out of scope
 
