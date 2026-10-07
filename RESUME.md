@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-06. Current: v1.9 engine acceptance stability audit, development diagnosis running (see "Next action"); v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END.
+Last updated 2026-10-07. Current: v1.9 re-frozen after erratum 01 (44a64f0), prospective test NOT run (see "Next action"); v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -179,35 +179,34 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.9 ENGINE ACCEPTANCE STABILITY: FROZEN 276583d (manifest 26e63d79); ONE REVIEW IN PROGRESS**
-(user directive 2026-10-06; STOP before the v1.9 prospective test).
+**v1.9 ENGINE ACCEPTANCE STABILITY: RE-FROZEN AFTER ERRATUM 01 at 44a64f0
+(manifest 528981dd, FROZEN_AFTER_ERRATUM_01_NOT_PROSPECTIVELY_TESTED). STOPPED
+before the prospective test (directive section 24).**
 - Diagnosis (d9b4479, record + addendum): H1 145/145 (86 single-witness
-  refits, 59 pixel-rule rankings); load, budget, H4 eliminated; the H1 label
-  of the fitting events depends on the one-witness standard.
-- Repair K*-4 (`cora_v19/v19_repair.py`; modules moved out of cora_arc2026
-  at df851c7 so v1.8's freeze_problems() returns [] again).
-- Development ablation (af4b7c1, `records/ITEM2_V19_REPAIR_DEVELOPMENT.md`):
-  witnesses 26/30 vs 12; adaptive LOO 26 vs 12 (folds 206 vs 132 of 210);
-  same-e folds 210/210 vs 134; no regression 161/161; replay, attribution,
-  restoration, fresh process all pass; inertness gate FAILED on 1/30 events
-  (base-engine timing, logs/v19/inert_probe.log); precision of certified
-  outputs 236/238 vs 159/160.
-- False acceptance (protocol 15a): 7 demos 0 wrong candidates; 4 demos
-  K* 8/24 right + 6/19 wrong, K*' 24/24 + 19/19 (no logic discriminates).
-- Prospective (frozen, NOT run): seeds 880M, N 30, W 19, DELTA 6, 4 workers,
-  G1 failure specificity, G2 witnesses, G3 LOO stability, G4 safety
-  (precision >= 0.95 and >= K* - 0.02; decision inertness; no regression;
-  replay/attribution/restoration); 4-demo control reported only.
-  Exclusion 3,901 digests. Feasibility `records/ITEM2_V19_FEASIBILITY.md`.
-- REVIEW: request `records/ITEM2_V19_REVIEW_REQUEST.md` (4a5006f); tracked
-  hashes before in the session scratchpad `v19_review_tracked_before.txt`
-  (2,315 files). After it returns: scan its tool inputs (forbidden trees,
-  seeds >= 880M or 860M/830M, repo writes), compare hashes, save it verbatim
-  as records/ITEM2_V19_REVIEW_RESULT.md, errata only for genuine defects,
-  re-freeze, return the directive's section 25 items, STOP.
-- Background: the watcher (pid 1603534) has finished both pipelines;
-  logs/v19/V19_DEV_ALL_DONE expected; the engine's own tests run in
-  logs/v19/engine_own_tests.log.
+  refits, 59 pixel-rule rankings); load, budget, H4 eliminated.
+- Repair K*-4 (`cora_v19/v19_repair.py`, K*' identity e4672bfa): lowers the
+  evidence requirement for installed extensions (three witnesses per key to
+  two) and lets no native candidate displace a verified installed concept.
+- Development (af4b7c1): witnesses 26/30 vs 12; adaptive LOO 26 vs 12;
+  K*' accepted every installed extension it was given (491/491, incl. 19/19
+  wrong four-pair trials); certified precision 236/238 vs 159/160.
+- ONE review (`records/ITEM2_V19_REVIEW_RESULT.md`, access audit clean):
+  BLOCKING_DEFECTS (1 blocking, 2 major, 9 minor), all answered by
+  `records/ITEM2_V19_ERRATUM_01.md` (e283f8f): threshold lowering and the G4
+  history stated; marginal-precision gate added; corpus-arithmetic caveat
+  and LEVEL 2 limited to tasks with >= 2 witnesses per key; "no
+  discrimination detected" wording; verifier P leg; protocol hash check;
+  exception-safe controls; crash/resume; pairing mismatches; native-switch
+  no-regression. Not re-reviewed (one-review rule).
+- NEXT SESSION, run ONCE: in this repo, with `PYTHONHASHSEED=0
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Reasoning_Project_tti>` and no ARC_*:
+  `setsid nohup .venv_arc2026/bin/python scripts/v19_prospective.py >
+  logs/v19/prospective.log 2>&1 &` (4 workers, about 60-75 min); record pid,
+  pgid, boot id, load, HEAD; administrative monitoring only; `--resume`
+  only after a genuine interruption (start record, no report, no marker, no
+  live recorded pid); then `.venv_arc2026/bin/python
+  logs/v19/verify_prospective.py` and the result record. Seeds 880M,
+  exclusion 3,901 digests, N 30, W 19, DELTA 6.
 
 **STOPPED: v1.8 PROSPECTIVE = FAILURE_SPECIFIC_BUT_NOT_END_TO_END** (run once
 2026-10-06, 5,911.6 s; record `records/ITEM2_V18_PROSPECTIVE_RESULT_20261006.md`;

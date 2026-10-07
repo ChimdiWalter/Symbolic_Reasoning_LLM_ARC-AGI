@@ -266,17 +266,24 @@
   },
   {
    "id": "engine_stability_v19",
-   "status": "FROZEN_NOT_PROSPECTIVELY_TESTED (v1.9; one review in progress)",
+   "status": "PACKAGE_ACCEPTED_REFROZEN_AFTER_ERRATUM_01 (v1.9; prospective test frozen, not run)",
    "protocol": "docs/CORA_TTI_ENGINE_STABILITY_AUDIT_v1.9.md",
-   "manifest_sha256": "26e63d798ab21773b14eec7a8f8d0ced56524ce2879617c024db5190ca7c4f24",
-   "frozen_commit": "276583d",
+   "manifest_sha256": "528981ddd2827aaf822e43e9e52655cbbed0b42f51778849a319c61021307e0b",
+   "frozen_commit": "44a64f0",
    "diagnosis": "records/ITEM2_V19_AUDIT_DIAGNOSIS.md (H1 145/145: 86 single-witness refits, 59 pixel-rule rankings)",
    "repair": "K*-4 installed-extension re-induction, cora_v19/v19_repair.py",
    "development": "records/ITEM2_V19_REPAIR_DEVELOPMENT.md (witnesses 26/30 vs 12; inertness gate failed on one timing event)",
    "feasibility": "records/ITEM2_V19_FEASIBILITY.md (N 30, W 19, DELTA 6)",
    "prospective_seed_base": 880000000,
    "development_seed_base": 870000000,
-   "review": "records/ITEM2_V19_REVIEW_REQUEST.md"
+   "review": "records/ITEM2_V19_REVIEW_RESULT.md (BLOCKING_DEFECTS: 1 blocking, 2 major, 9 minor; access audit clean)",
+   "first_freeze": {
+    "commit": "276583d",
+    "manifest_sha256": "26e63d798ab21773b14eec7a8f8d0ced56524ce2879617c024db5190ca7c4f24"
+   },
+   "erratum": "records/ITEM2_V19_ERRATUM_01.md",
+   "repair_identity": "e4672bfa",
+   "next": "run the one frozen v1.9 prospective engine-stability test (seeds 880M) in a fresh session"
   },
   {
    "id": "closed_loop",
