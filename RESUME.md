@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-07. Current: v1.9 re-frozen after erratum 01 (44a64f0), prospective test NOT run (see "Next action"); v1.8 prospective FAILURE_SPECIFIC_BUT_NOT_END_TO_END.
+Last updated 2026-10-07. Current: v1.9 prospective ENGINE_STABILITY_REPAIR_ACCEPTED (LEVEL 2 synthetic); next = design the real ARC causal pilot (see "Next action").
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -179,32 +179,25 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**v1.9 PROSPECTIVE TEST RUNNING** (launched ONCE 2026-10-07T18:07:49Z per the
-user's execution directive; coordinator pid 1360853, own session, start ticks
-61938419, boot 5c543236; launch record `logs/v19/prospective_launch.json`;
-load 50 on 24 CPUs). ADMINISTRATIVE MONITORING ONLY: liveness, row count,
-elapsed, load, disk, tracebacks, resume state, marker; do NOT read partial
-rows, gates or outcome.
-- WATCHER v2 `logs/v19/prospective_watch.sh` (pid 1371476 since 18:13:28Z;
-  v1 pid 1362727 replaced on the user's "run even when interrupted and
-  detached"; lock `logs/v19/prospective_watch.lock`, log
-  `logs/v19/prospective_watch.log`): never touches a running coordinator;
-  resumes with `--resume` only if the coordinator is gone, the start record
-  exists, report and marker are absent and no recorded process runs the
-  script (pid reuse ignored), at most 3 resumes (counted from
-  `logs/v19/prospective_resumes.jsonl`), stops after 5 refused attempts;
-  on the marker runs `logs/v19/verify_prospective.py` ->
-  `logs/v19/verify_prospective.json`, then removes its `@reboot` hook
-  (installed; crontab backup `crontab_before_v19_prospective.txt` in the
-  session scratchpad, 22 lines).
-- After the marker: terminal verification (freeze, identities, corpus law,
-  30 distinct tasks outside the 3,901 exclusion digests, no leakage, no
-  unexpected error, resume history, no duplicate rows, control failures),
-  the verifier's all_checks_pass, independent recomputation of G1-G4, legs,
-  LOO, pairing, precision, marginal rule, strata, controls; then the result
-  record with the literal outcome. Accepted -> LEVEL 2 synthetic only, STOP,
-  next block = design and freeze the real ARC causal pilot. Not accepted ->
-  record the exact blocker, STOP.
+**STOPPED: v1.9 PROSPECTIVE = ENGINE_STABILITY_REPAIR_ACCEPTED** (run once
+2026-10-07, 3,159.8 s; record `records/ITEM2_V19_PROSPECTIVE_RESULT_20261007.md`;
+paper section 8.14). Claim LEVEL 2, SYNTHETIC DOMAIN ONLY, under the
+witness-support regime. Real ARC causal pilot LICENSED (not designed).
+- Verifier `logs/v19/verify_prospective.json` 28/28; independent
+  recomputation `logs/v19/recompute_prospective.json` agrees on every value;
+  no resume, workers clean, freeze_problems [] after the run.
+- G1 6:0 (p 0.0156) and 8:0 (p 0.0039); G2 27/30 K*' witnesses (K* 12);
+  G3 adaptive LOO 27 vs 12 (net 15, p 3.05e-5; folds 207 vs 133; pairing 0);
+  G4 all pass (precision 237/239 vs 157/157; added correct 80, wrong 2).
+- Disclosed: K*' accepted 5/5 seven-pair and 28/28 four-pair wrong installed
+  extensions (K* 1/5 and 9/28); no discrimination; gain partly corpus
+  arithmetic (3-witness stratum 0 -> 6).
+- The watcher finished and removed its @reboot hook; no v1.9 process runs.
+
+NEXT (fresh session): DESIGN AND FREEZE THE REAL ARC CAUSAL PILOT FOR THE FIRST
+GENUINE B/P/U/L/T/A WITNESS. Do not start ARC-1000, the 60 DEV or the 60
+HOLDOUT. The pilot must carry the safety burden the engine does not
+(selection quality, held-out checks, abstention) on two-to-five-demo tasks.
 
 **v1.9 ENGINE ACCEPTANCE STABILITY: RE-FROZEN AFTER ERRATUM 01 at 44a64f0
 (manifest 528981dd, FROZEN_AFTER_ERRATUM_01_NOT_PROSPECTIVELY_TESTED). STOPPED

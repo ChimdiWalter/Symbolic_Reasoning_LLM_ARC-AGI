@@ -1,0 +1,180 @@
+{
+ "duplicate_rows": 0,
+ "gates": {
+  "G1_vs_blind": {
+   "a_only": 8,
+   "b_only": 0,
+   "p_one_sided": 0.00390625,
+   "pass": true
+  },
+  "G1_vs_shuffled_frontier": {
+   "a_only": 6,
+   "b_only": 0,
+   "p_one_sided": 0.015625,
+   "pass": true
+  },
+  "G2_witnesses_new": {
+   "complete": 27,
+   "complete_old": 12,
+   "pass": true,
+   "required": 19
+  },
+  "G3_loo_stability": {
+   "delta_min": 6,
+   "new_only": 15,
+   "old_only": 0,
+   "p_one_sided": 3.0517578125e-05,
+   "pairing_mismatches": 0,
+   "pass": true
+  },
+  "G4_safety": {
+   "alone_events_differ": 0,
+   "checks": {
+    "attribution": true,
+    "inert": true,
+    "marginal_precision": true,
+    "no_regression_folds": true,
+    "no_regression_full": true,
+    "precision_floor": true,
+    "precision_noninferior": true,
+    "replays_training": true,
+    "restored": true
+   },
+   "control_fa_new": 5,
+   "control_fa_old": 1,
+   "control_trials": 5,
+   "pass": true,
+   "precision": {
+    "added_correct": 80,
+    "added_wrong": 2,
+    "new": {
+     "certified": 239,
+     "correct": 237,
+     "precision": 0.9916317991631799,
+     "wilson_lower": 0.970007425050745,
+     "wrong_folds": 2,
+     "wrong_full": 0
+    },
+    "old": {
+     "certified": 157,
+     "correct": 157,
+     "precision": 1.0,
+     "wilson_lower": 0.976116488566691,
+     "wrong_folds": 0,
+     "wrong_full": 0
+    }
+   }
+  }
+ },
+ "leakage": 0,
+ "loadavg_end": [
+  43.83935546875,
+  44.89208984375,
+  46.1298828125
+ ],
+ "manifest_sha256": "528981ddd2827aaf822e43e9e52655cbbed0b42f51778849a319c61021307e0b",
+ "outcome": "ENGINE_STABILITY_REPAIR_ACCEPTED",
+ "repair_identity": "e4672bfa668ff5c351d8384592b4c14bcb0b409e815fd8180705aa9beeeb77e3",
+ "resumes": [],
+ "rows": 30,
+ "seconds": 3159.8,
+ "seed_base": 880000000,
+ "supplementary": {
+  "by_family": {
+   "(0,1)": {
+    "tasks": 9,
+    "witnesses_new": 9,
+    "witnesses_old": 6
+   },
+   "(1,0)": {
+    "tasks": 6,
+    "witnesses_new": 4,
+    "witnesses_old": 1
+   },
+   "(1,1)": {
+    "tasks": 15,
+    "witnesses_new": 14,
+    "witnesses_old": 5
+   }
+  },
+  "control_failures": 0,
+  "legs_new": {
+   "A": 30,
+   "B": 30,
+   "L": 27,
+   "P": 30,
+   "T": 30,
+   "U": 30
+  },
+  "legs_old": {
+   "A": 30,
+   "B": 30,
+   "L": 12,
+   "P": 30,
+   "T": 24,
+   "U": 24
+  },
+  "loo_fold_classes_new": {
+   "LOO_FAILURE": 3,
+   "SUCCESS": 207
+  },
+  "loo_fold_classes_old": {
+   "LOO_FAILURE": 77,
+   "SUCCESS": 133
+  },
+  "reduced_control": {
+   "new": {
+    "discrimination": -0.045454545454545414,
+    "false_accept": 28,
+    "right_trials": 22,
+    "true_accept": 21,
+    "wrong_trials": 28
+   },
+   "old": {
+    "discrimination": -0.09415584415584419,
+    "false_accept": 9,
+    "right_trials": 22,
+    "true_accept": 5,
+    "wrong_trials": 28
+   },
+   "trials": 50
+  },
+  "selection_levels": {
+   "ABSTAINED": 0,
+   "D": 2,
+   "MDL": 23,
+   "P0": 2,
+   "VERIFICATION_UNIQUE": 3
+  },
+  "useful_by_arm": {
+   "BLIND": 22,
+   "FAILURE_CONDITIONED": 30,
+   "SHUFFLED_FRONTIER": 24
+  },
+  "witness_strata": {
+   "3": {
+    "loo_new_passed": 6,
+    "loo_old_passed": 0,
+    "tasks": 7,
+    "witnesses_new": 6,
+    "witnesses_old": 0
+   },
+   ">=4": {
+    "loo_new_passed": 21,
+    "loo_old_passed": 12,
+    "tasks": 23,
+    "witnesses_new": 21,
+    "witnesses_old": 12
+   }
+  }
+ },
+ "tasks": 30,
+ "unexpected": [],
+ "unparsable_lines": 0,
+ "worker_exit_codes": [
+  0,
+  0,
+  0,
+  0
+ ]
+}

@@ -1,0 +1,179 @@
+{
+ "recomputed": {
+  "rows_total": 30,
+  "duplicates": 0,
+  "error_rows": 0,
+  "indices_ok": true,
+  "seeds_distinct": true,
+  "digests_distinct": true,
+  "outside_exclusion": true,
+  "seeds_in_880M_range": true,
+  "rows_match_task_file": true,
+  "leakage": 0,
+  "G1": {
+   "SHUFFLED_FRONTIER": {
+    "main_only": 6,
+    "control_only": 0,
+    "p": 0.015625,
+    "pass": true,
+    "main_useful": 30,
+    "control_useful": 24
+   },
+   "BLIND": {
+    "main_only": 8,
+    "control_only": 0,
+    "p": 0.00390625,
+    "pass": true,
+    "main_useful": 30,
+    "control_useful": 22
+   }
+  },
+  "legs_new": {
+   "B": 30,
+   "P": 30,
+   "U": 30,
+   "L": 27,
+   "T": 30,
+   "A": 30
+  },
+  "legs_old": {
+   "B": 30,
+   "P": 30,
+   "U": 24,
+   "L": 12,
+   "T": 24,
+   "A": 30
+  },
+  "G2_complete_new": 27,
+  "G2_complete_old": 12,
+  "G3": {
+   "new_only": 15,
+   "old_only": 0,
+   "p": 3.0517578125e-05,
+   "pass": true,
+   "loo_old_passed": 12,
+   "loo_new_passed": 27,
+   "folds_success_old": 133,
+   "folds_success_new": 207,
+   "pairing_mismatches": 0
+  },
+  "G4": {
+   "inert": true,
+   "no_regression_full": true,
+   "no_regression_folds": true,
+   "replays_training": true,
+   "attribution": true,
+   "restored": true,
+   "precision_floor": true,
+   "precision_noninferior": true,
+   "marginal_precision": true
+  },
+  "precision_old": {
+   "certified": 157,
+   "correct": 157,
+   "precision": 1.0,
+   "wrong_full": 0,
+   "wrong_folds": 0
+  },
+  "precision_new": {
+   "certified": 239,
+   "correct": 237,
+   "precision": 0.9916317991631799,
+   "wrong_full": 0,
+   "wrong_folds": 2
+  },
+  "added_correct": 80,
+  "added_wrong": 2,
+  "seven_pair_wrong_trials": {
+   "trials": 5,
+   "false_accept_old": 1,
+   "false_accept_new": 5,
+   "by_source": {
+    "POOL": 4,
+    "BLIND": 1
+   }
+  },
+  "alone_events_differ": 0,
+  "reduced": {
+   "trials": 50,
+   "right_trials": 22,
+   "wrong_trials": 28,
+   "old": {
+    "true_accept": 5,
+    "false_accept": 9
+   },
+   "new": {
+    "true_accept": 21,
+    "false_accept": 28
+   },
+   "wrong_tasks": 13
+  },
+  "strata": {
+   ">=4": {
+    "tasks": 23,
+    "witnesses_new": 21,
+    "witnesses_old": 12,
+    "loo_new_passed": 21,
+    "loo_old_passed": 12
+   },
+   "3": {
+    "tasks": 7,
+    "witnesses_new": 6,
+    "witnesses_old": 0,
+    "loo_new_passed": 6,
+    "loo_old_passed": 0
+   }
+  },
+  "min_key_witnesses_values": {
+   "4": 9,
+   "7": 8,
+   "6": 6,
+   "3": 7
+  },
+  "control_failures": 0,
+  "levels": {
+   "VERIFICATION_UNIQUE": 3,
+   "MDL": 23,
+   "D": 2,
+   "P0": 2
+  },
+  "families": {
+   "(0,1)": {
+    "tasks": 9,
+    "witnesses_new": 9,
+    "witnesses_old": 6
+   },
+   "(1,0)": {
+    "tasks": 6,
+    "witnesses_new": 4,
+    "witnesses_old": 1
+   },
+   "(1,1)": {
+    "tasks": 15,
+    "witnesses_new": 14,
+    "witnesses_old": 5
+   }
+  },
+  "outcome": "ENGINE_STABILITY_REPAIR_ACCEPTED"
+ },
+ "agrees_with_report": {
+  "outcome": true,
+  "G1": true,
+  "G2": true,
+  "G3": true,
+  "G4_checks": true,
+  "precision": true,
+  "added": true,
+  "legs_new": true,
+  "legs_old": true,
+  "strata": true,
+  "reduced": true,
+  "control_failures": true,
+  "no_duplicates_or_errors": true,
+  "no_resumes": true,
+  "workers_clean": true,
+  "unparsable": true
+ },
+ "ALL_AGREE": true,
+ "report_seconds": 3159.8
+}

@@ -1072,6 +1072,58 @@ What this does not show:
 
 The claim stays LEVEL 1. The real ARC pilot is not licensed.
 
+## 8.14 Why the same extension was accepted with seven demonstrations and rejected with six
+
+[METHOD WRITTEN 2026-10-06; RESULT SEALED 2026-10-07]
+
+Section 8.13's proposer selected an extension on every task, yet the
+reasoner rejected it on most six-demonstration folds. A tracing audit,
+frozen before it ran, followed every rejection inside the engine on
+development data. All 145 rejections had the same cause: inside the
+engine's own leave-one-out re-induction, two heuristics written for its
+native hypotheses displaced an extension whose fold-fitted semantics
+reproduced the held-out pair. A rule requiring two witnesses per table
+key, applied again inside every five-pair refit, effectively demanded a
+third (86 events); and a pixel-rule program with an unpriced colour table
+outranked the extension (59 events). Load, compute budget and the
+proposer's choice were ruled out.
+
+One repair, K*-4, applies while an extension is installed: the extension
+is fitted with every consistent witness and ranks first in every ranking;
+the engine's acceptance gate is unchanged, and nothing changes when no
+extension is installed. The repair lowers the evidence the engine
+requires of an installed extension from three witnesses per key to two.
+With four demonstrations neither the old nor the repaired engine
+discriminated right from wrong installed extensions. One adversarial
+review found that the protocol had denied the threshold lowering and that
+the safety gate had been loosened after development data; an erratum
+stated both and added a stricter rule (the outputs the repair adds must be
+at least 95 percent correct) before any prospective data.
+
+The prospective test ran once on 30 new synthetic tasks:
+**ENGINE_STABILITY_REPAIR_ACCEPTED**.
+- Complete end-to-end witnesses: 27 of 30 under the repaired engine,
+  against 12 under the old one; adaptive leave-one-out with the proposal
+  rebuilt in every fold passed on 27 against 12 tasks (207 against 133 of
+  210 folds).
+- Failure specificity held against both controls (6 to 0 and 8 to 0).
+- Precision over everything the system certified: 237 of 239 against
+  157 of 157; the repair added 80 correct and 2 wrong certified outputs.
+
+What this does not show:
+- that the engine can tell right from wrong installed extensions: it
+  accepted all 5 seven-demonstration and all 28 four-demonstration wrong
+  extensions it was given; correctness rests on the proposer's selection
+  and the held-out checks;
+- a gain independent of the corpus: every target key has at least three
+  witnesses by construction, which is what the relaxed rule needs;
+- anything about real ARC tasks.
+
+The claim is LEVEL 2 for the synthetic domain, limited to tasks whose
+extension keys have at least two witnesses in each run. It licenses the
+design of a real ARC causal pilot, which must carry the safety burden the
+engine does not.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

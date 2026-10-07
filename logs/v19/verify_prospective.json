@@ -1,0 +1,103 @@
+{
+ "all_checks_pass": true,
+ "checks": {
+  "freeze_problems_empty": true,
+  "no_duplicate_rows": true,
+  "rows_N": true,
+  "indices": true,
+  "seeds_distinct": true,
+  "digests_distinct": true,
+  "outside_exclusion": true,
+  "seed_range": true,
+  "corpus_law_rederived": true,
+  "task_file_matches": true,
+  "no_error_rows": true,
+  "no_unexpected": true,
+  "no_leakage": true,
+  "marker_equals_outcome": true,
+  "manifest_in_report": true,
+  "resume_record_consistent": true,
+  "workers_exited_cleanly": true,
+  "unparsable_lines_equal": true,
+  "witness_rows_match": true,
+  "reduced_equal": true,
+  "G1_equal": true,
+  "G2_equal": true,
+  "G3_equal": true,
+  "strata_equal": true,
+  "G4_equal": true,
+  "precision_equal": true,
+  "legs_equal": true,
+  "outcome_equal": true
+ },
+ "recomputed": {
+  "G1": {
+   "SHUFFLED_FRONTIER": {
+    "a_only": 6,
+    "b_only": 0,
+    "p": 0.015625,
+    "pass": true
+   },
+   "BLIND": {
+    "a_only": 8,
+    "b_only": 0,
+    "p": 0.00390625,
+    "pass": true
+   }
+  },
+  "complete_new": 27,
+  "complete_old": 12,
+  "legs_new": {
+   "B": 30,
+   "P": 30,
+   "U": 30,
+   "L": 27,
+   "T": 30,
+   "A": 30
+  },
+  "G3": {
+   "new_only": 15,
+   "old_only": 0,
+   "p": 3.0517578125e-05,
+   "pass": true,
+   "pairing_mismatches": 0
+  },
+  "precision": {
+   "old": {
+    "certified": 157,
+    "correct": 157,
+    "precision": 1.0,
+    "wilson_lower": 0.976116488566691
+   },
+   "new": {
+    "certified": 239,
+    "correct": 237,
+    "precision": 0.9916317991631799,
+    "wilson_lower": 0.970007425050745
+   }
+  },
+  "G4": {
+   "inert": true,
+   "no_regression_full": true,
+   "no_regression_folds": true,
+   "replays_training": true,
+   "attribution": true,
+   "restored": true,
+   "precision_floor": true,
+   "precision_noninferior": true,
+   "marginal_precision": true
+  },
+  "reduced": {
+   "old": {
+    "true_accept": 5,
+    "false_accept": 9
+   },
+   "new": {
+    "true_accept": 21,
+    "false_accept": 28
+   }
+  },
+  "outcome": "ENGINE_STABILITY_REPAIR_ACCEPTED"
+ },
+ "report_outcome": "ENGINE_STABILITY_REPAIR_ACCEPTED"
+}

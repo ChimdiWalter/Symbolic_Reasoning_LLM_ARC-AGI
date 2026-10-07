@@ -1,0 +1,69 @@
+{
+ "outcome": "ENGINE_STABILITY_REPAIR_ACCEPTED",
+ "gates": {
+  "G1_vs_shuffled_frontier": {
+   "a_only": 6,
+   "b_only": 0,
+   "p_one_sided": 0.015625,
+   "pass": true
+  },
+  "G1_vs_blind": {
+   "a_only": 8,
+   "b_only": 0,
+   "p_one_sided": 0.00390625,
+   "pass": true
+  },
+  "G2_witnesses_new": {
+   "complete": 27,
+   "required": 19,
+   "pass": true,
+   "complete_old": 12
+  },
+  "G3_loo_stability": {
+   "new_only": 15,
+   "old_only": 0,
+   "p_one_sided": 3.0517578125e-05,
+   "delta_min": 6,
+   "pass": true,
+   "pairing_mismatches": 0
+  },
+  "G4_safety": {
+   "checks": {
+    "inert": true,
+    "no_regression_full": true,
+    "no_regression_folds": true,
+    "replays_training": true,
+    "attribution": true,
+    "restored": true,
+    "precision_floor": true,
+    "precision_noninferior": true,
+    "marginal_precision": true
+   },
+   "precision": {
+    "old": {
+     "certified": 157,
+     "correct": 157,
+     "precision": 1.0,
+     "wilson_lower": 0.976116488566691,
+     "wrong_full": 0,
+     "wrong_folds": 0
+    },
+    "new": {
+     "certified": 239,
+     "correct": 237,
+     "precision": 0.9916317991631799,
+     "wilson_lower": 0.970007425050745,
+     "wrong_full": 0,
+     "wrong_folds": 2
+    },
+    "added_correct": 80,
+    "added_wrong": 2
+   },
+   "control_trials": 5,
+   "control_fa_old": 1,
+   "control_fa_new": 5,
+   "alone_events_differ": 0,
+   "pass": true
+  }
+ }
+}

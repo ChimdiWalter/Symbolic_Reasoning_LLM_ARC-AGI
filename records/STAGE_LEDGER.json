@@ -266,7 +266,7 @@
   },
   {
    "id": "engine_stability_v19",
-   "status": "PACKAGE_ACCEPTED_REFROZEN_AFTER_ERRATUM_01 (v1.9; prospective test frozen, not run)",
+   "status": "ENGINE_STABILITY_REPAIR_ACCEPTED (v1.9 prospective, run once 2026-10-07; G1-G4 pass; LEVEL 2 synthetic only)",
    "protocol": "docs/CORA_TTI_ENGINE_STABILITY_AUDIT_v1.9.md",
    "manifest_sha256": "528981ddd2827aaf822e43e9e52655cbbed0b42f51778849a319c61021307e0b",
    "frozen_commit": "44a64f0",
@@ -283,7 +283,38 @@
    },
    "erratum": "records/ITEM2_V19_ERRATUM_01.md",
    "repair_identity": "e4672bfa",
-   "next": "run the one frozen v1.9 prospective engine-stability test (seeds 880M) in a fresh session"
+   "next": "DESIGN AND FREEZE THE REAL ARC CAUSAL PILOT FOR THE FIRST GENUINE B/P/U/L/T/A WITNESS (fresh session)",
+   "result": {
+    "outcome": "ENGINE_STABILITY_REPAIR_ACCEPTED",
+    "G1": "pass: vs SHUFFLED_FRONTIER 6:0 p 0.0156; vs BLIND 8:0 p 0.0039",
+    "G2": "pass: 27 of 30 complete K*' witnesses (19 required); K* 12",
+    "G3": "pass: adaptive LOO new-only 15, old-only 0, p 3.05e-5; folds 207 vs 133 of 210; pairing mismatches 0",
+    "G4": "pass: inert, no regression, replay, attribution, restoration; precision 237/239 vs 157/157; added correct 80, added wrong 2",
+    "legs_new": {
+     "B": 30,
+     "P": 30,
+     "U": 30,
+     "L": 27,
+     "T": 30,
+     "A": 30
+    },
+    "legs_old": {
+     "B": 30,
+     "P": 30,
+     "U": 24,
+     "L": 12,
+     "T": 24,
+     "A": 30
+    },
+    "reported": "7-pair wrong trials: K* 1/5, K*' 5/5 accepted wrong; 4-demo control: right 5/22 vs 21/22, wrong 9/28 vs 28/28; strata 3-witness 0->6, >=4 12->21",
+    "record": "records/ITEM2_V19_PROSPECTIVE_RESULT_20261007.md",
+    "report_sha256": "987ab9ea074ac82bf72cc70ac109168534c61693e813656e83880783c4ddaf6c",
+    "rows_sha256": "aad86def227a6c50e4d1c7e0e7e2819654385c40286e35102004bcf0985e8e48",
+    "independent_verification": "logs/v19/verify_prospective.json 28/28; logs/v19/recompute_prospective.json agrees on every quantity",
+    "seconds": 3159.8,
+    "claim": "LEVEL 2, synthetic domain only, under the witness-support regime (every key >= 2 witnesses per run)",
+    "real_arc_pilot_licensed": true
+   }
   },
   {
    "id": "closed_loop",
@@ -291,7 +322,7 @@
   },
   {
    "id": "real_arc_causal_pilot",
-   "status": "BLOCKED"
+   "status": "LICENSED (by v1.9 ENGINE_STABILITY_REPAIR_ACCEPTED); not designed"
   },
   {
    "id": "bounded_development",
