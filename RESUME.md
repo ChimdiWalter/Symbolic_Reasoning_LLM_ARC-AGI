@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-07. Current: v1.9 prospective ENGINE_STABILITY_REPAIR_ACCEPTED (LEVEL 2 synthetic); next = design the real ARC causal pilot (see "Next action").
+Last updated 2026-10-07. Current: real ARC causal pilot v1 designed and built but NOT FROZEN: blocker = proposer reach on real tasks (0 of 60 development tasks reach a verified proposal); v1.9 stays LEVEL 2 synthetic; next = user decision (see "Next action").
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -179,22 +179,35 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
-**REAL ARC PILOT v1 DESIGN RESUMED (2026-10-07, after the user's "go
-ahead").** Committed so far: selection 4d3c29b (548 in scope, dev 60,
-candidates n3 356 / n4 109 / n5p 23); protocol draft + modules f47c795
-(docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md; cora_pilot/{bundle,isolation,
-native,reasoner,evaluator}.py; scripts/pilot_v1_{select,run,evaluate}.py);
-tests, freeze script, verifier next commit. DEVELOPMENT DRY RUN running
-detached since ~20:40Z: coordinator pid 2192450 (`setsid nohup
-.venv_arc2026/bin/python scripts/pilot_v1_run.py dev`), outputs
-outputs/pilot_v1_dev/, logs logs/pilot_v1_dev/ (reasoner only, never
-scored). If it died: `rm -rf outputs/pilot_v1_dev logs/pilot_v1_dev` and
-relaunch the same command. Next: read dev rows (path classes, timing,
-isolation logs), write records/REAL_ARC_PILOT_V1_FEASIBILITY.md, apply the
-section-12 rule (READY needs >= 1 dev task at the installed stage; N from
-activations), `scripts/pilot_v1_select.py pilot N`, a short smoke on the
-final code, fill protocol sections 12 and 17, `scripts/freeze_pilot_v1.py`,
-commit, ledger, memory, return list. DO NOT run the pilot in this block.
+**STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
+ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
+commit ce123e8). The feasibility rule fixed before the dry run (protocol
+section 12, f47c795) needed at least one of 60 development tasks to reach
+the compiled-and-installed stage: 0 of 60 did (path class NO_PROPOSAL 60;
+proposer NO_PROPOSAL 59, K_ALREADY_SOLVES 1; consistent single blocks on 13
+of 60; fitter rejections over 12,000 block evaluations led by
+slot_unobservable 4,280 and region_colour_conflict 3,688). Positive control
+on 4 synthetic v1.9 dev tasks: every gate through unanimity passed on all 4,
+1 ACTIVATED and correct, 3 abstained at witness support with right
+predictions (support gate strict; design note only). Isolation clean on
+every log. One native library-install race found and fixed (24fad7e).
+- Built and kept for reuse (unchanged once a proposer reaches real tasks):
+  selection 4d3c29b (548 in scope; dev 60; pilot candidates n3 356, n4 109,
+  n5p 23, untouched), protocol `docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md`
+  (sha256 751e0d41..., status NOT FROZEN), `cora_pilot/`, scripts
+  `pilot_v1_{select,run,evaluate,feasibility,dev_frontier,positive_control}.py`,
+  `freeze_pilot_v1.py`, `logs/pilot_v1/verify_pilot.py`, 33 tests pass.
+- Not done, by the rule: pilot bundle, N, manifest, freeze. The pilot was
+  never run; no target was read; the evaluator key map for the pilot was
+  never written.
+- Separate finding for the Kaggle entry (deadline 2026-10-26):
+  `records/KAGGLE_NOTEBOOK_FLAGS_FINDING_20261007.md` (the notebook sets
+  none of the five sealed chain flags).
+- NEXT: user decision on how the proposer is to reach real tasks (e.g. a
+  bounded proposer-reach development block on the 60 development tasks only,
+  metric = tasks reaching the installed stage, pilot candidates untouched;
+  or a different construction source such as the engine's own leave-one-out
+  near-misses). Then re-run the feasibility rule; freeze only if it passes.
 
 **2026-10-07 mapping / manuscript / GitHub request: DONE.** Map of the four
 trees in `docs/PROJECT_MAP.md`; `docs/PAPER_SKELETON.md` updated to the v1.9
@@ -207,33 +220,6 @@ evidence (e90f02d, from a scratch clone; the Reasoning_Project worktree was
 not touched). No AI co-author anywhere. Still stale: `kaggle/writeup.md`
 (2026-09-23 state). The ARC-1000 run has NOT been started (blocked until the
 pilot gives a real witness).
-
-**REAL ARC CAUSAL PILOT v1: DESIGN IN PROGRESS (paused 2026-10-07 for the
-user's mapping / manuscript / GitHub request).** Directive: design, static
-feasibility, freeze only; no pilot execution.
-- Done: data audit `records/REAL_ARC_PILOT_V1_DATA_AUDIT.md` (513520f):
-  ARC-AGI-2 training challenges sha256 779eaba8..., solutions 9f07a38b...,
-  1000 ids, byte-identical across 7 copies incl. Reasoning_Project/data/arc
-  (checksum only); disjoint from dev60. Constraints record
-  `records/KAGGLE_2026_CONSTRAINTS.md` (entry deadline 2026-10-26 23:59 UTC;
-  code 11-02; paper 11-08; 12 h CPU/GPU; no internet; pass@2; paper results
-  exclude the training set).
-- Static scope (demonstrations only): 674 same-shape every-pair-changes
-  tasks; 548 with >= 3 demonstrations (3: 403, 4: 120, 5+: 25).
-- Design decisions so far: sample = hash-ordered draw from the 548 (no
-  proposer pre-filter, no target access), stratified by demonstration count;
-  reasoner gets an opaque-key bundle (train pairs + test inputs only);
-  blind evaluator holds targets and the id map, scores after a committed,
-  hashed prediction file; activation gates (train-only): native not
-  accepted, proposer SELECTED, unanimity of verified candidates on the test
-  inputs, witness support >= 2 for every test-input key, K*' + e accepted
-  and uses e, adaptive LOO passes, engine == direct execution; else ABSTAIN
-  with native fallback.
-- Remaining: protocol `docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md`, selection
-  script + bundle/targets files, reasoner pipeline + blind evaluator
-  (cora_pilot/), coordinator, verifier, tests incl. isolation and negative
-  controls, harness smoke test on synthetic bundles, feasibility record,
-  freeze, RESUME/ledger/memory. Then NEXT: run it once (separate session).
 
 **STOPPED: v1.9 PROSPECTIVE = ENGINE_STABILITY_REPAIR_ACCEPTED** (run once
 2026-10-07, 3,159.8 s; record `records/ITEM2_V19_PROSPECTIVE_RESULT_20261007.md`;
