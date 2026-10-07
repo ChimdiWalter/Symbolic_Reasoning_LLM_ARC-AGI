@@ -49,18 +49,39 @@ def _as_dict(p):
         return {"unserializable": type(p).__name__}
 
 
+def _ops(v, out):
+    if isinstance(v, dict):
+        if isinstance(v.get("op"), str):
+            out.add(v["op"])
+        for x in v.values():
+            _ops(x, out)
+    elif isinstance(v, (list, tuple)):
+        for x in v:
+            _ops(x, out)
+    return out
+
+
 def prog_summary(p) -> dict | None:
     d = _as_dict(p)
     if d is None:
         return None
     rules = d.get("rules")
-    wpc = getattr(p, "worst_parameter_class", None) if not isinstance(p, dict) else None
+    obj = p
+    if isinstance(p, dict):
+        try:
+            from geocat_arc.object_reasoning.types import program_from_dict
+            obj = program_from_dict(json.loads(json.dumps(p)))
+        except Exception:                                       # noqa: BLE001
+            obj = None
+    wpc = getattr(obj, "worst_parameter_class", None) if obj is not None else None
     if callable(wpc):
         try:
             wpc = wpc()
         except Exception:                                       # noqa: BLE001
             wpc = None
-    return {"class": d.get("program_class", "object"),
+    actions_ops = sorted(_ops([r.get("action") for r in rules], set())) if isinstance(rules, list) else None
+    selector_ops = sorted(_ops([r.get("selector") for r in rules], set())) if isinstance(rules, list) else None
+    return {"class": d.get("program_class", "object"), "param_ops": actions_ops, "selector_ops": selector_ops,
             "rules": len(rules) if isinstance(rules, list) else None,
             "actions": [((r.get("action") or {}).get("delta_type")) for r in rules]
             if isinstance(rules, list) else None,
@@ -103,14 +124,30 @@ def _near_solve(ns) -> dict | None:
             "delta_histogram": ns.delta_histogram, "partial": prog_summary(ns.program_partial)}
 
 
+def reference_program(ind):
+    """The demonstration-exact program whose leave-one-out is reported: the
+    accepted program when there is one; when leave-one-out failed the engine
+    leaves it only in the near-solve partial."""
+    if ind is None:
+        return None
+    if ind.program is not None:
+        return _as_dict(ind.program)
+    ns = ind.near_solve
+    return ns.program_partial if ns is not None else None
+
+
 def divergence_class(ind) -> str | None:
     """PARAM: every failed fold re-derives the full program's skeleton with
     other values. STRUCT: some failed fold derives another skeleton. NOFOLD:
-    some failed fold derives nothing. None: no leave-one-out report."""
+    some failed fold derives nothing. None: no leave-one-out report. A
+    rejected induction may keep no program; its demonstration-exact program
+    is then the near-solve's partial."""
     loo = ind.loo if ind is not None else None
     if loo is None or not loo.divergence:
         return None
-    full = _as_dict(ind.program)
+    full = reference_program(ind)
+    if full is None and ind.near_solve is not None and float(ind.near_solve.train_fit_pixels) >= 1.0:
+        full = ind.near_solve.program_partial
     sk = _sha(skeleton(full)) if full is not None else None
     out = "PARAM"
     for dv in loo.divergence:
@@ -200,7 +237,7 @@ def run_census(key: str, task: dict, out_dir: str, programs_dir: str) -> dict:
            "diagnosis": diagnose(accepted, identity)}
     ns = identity.near_solve if identity is not None else None
     row["usable_trace"] = bool((ns is not None and ns.explained_rules)
-                               or (row["diagnosis"]["class"] == "DE_LOO" and identity.program is not None))
+                               or (row["diagnosis"]["class"] == "DE_LOO" and reference_program(identity) is not None))
     row["exact_demo_fit"] = bool(identity is not None and float(identity.train_fit_pixels) >= 1.0)
     os.makedirs(programs_dir, exist_ok=True)
     with open(os.path.join(programs_dir, f"{key}.json"), "w") as handle:
