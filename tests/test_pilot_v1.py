@@ -311,3 +311,15 @@ def test_leakage_takes_precedence_over_a_dataset_problem():
     res = EV.evaluate(_keymap(keys + ["kz"]), {"ka": pred()}, {"ka": {"path_class": "NO_PROPOSAL"}}, {},
                       {"idka": [G1], "idkz": [G1]}, set(), {"problems": {"cora_1": ["refused open"]}})
     assert res["outcome"] == "PILOT_LEAKAGE"
+
+
+def test_library_install_is_safe_under_concurrent_workers(tmp_path):
+    code = (f"import sys; sys.path.insert(0, {HERE!r}); from cora_pilot import native as N; "
+            f"N.prepare_object_dir({str(tmp_path)!r}); print('OK')")
+    procs = [subprocess.Popen([sys.executable, "-c", code], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+             for _ in range(8)]
+    outs = [p.communicate(timeout=120) for p in procs]
+    assert all(o[0].strip() == "OK" for o in outs), [o[1][-300:] for o in outs]
+    import hashlib
+    from cora_pilot import native as N
+    assert hashlib.sha256(open(tmp_path / "object" / "library.json", "rb").read()).hexdigest() == N.LIBRARY_SHA256

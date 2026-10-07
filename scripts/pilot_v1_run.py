@@ -302,6 +302,9 @@ def coordinator(mode, resume=False, dev_args=()) -> None:
         extra = {"PILOT_DEV_LIMIT": str(limit)} if limit else {}
     t0 = time.time()
     results = {}
+    if "native" in phases:
+        from cora_pilot import native as N
+        N.prepare_object_dir(p["native_dir"])          # once, before the workers start
     for ph in phases:
         env = dict(extra)
         if mode == "dev" and ph == "native" and "PILOT_DEV_LIMIT" not in env:

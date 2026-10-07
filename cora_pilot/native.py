@@ -50,9 +50,13 @@ def prepare_object_dir(out_dir: str) -> str:
     if hashlib.sha256(data).hexdigest() != LIBRARY_SHA256:
         raise ValueError("frozen library.json hash mismatch")
     if not os.path.exists(dst):
-        with open(dst + ".tmp", "wb") as handle:
+        tmp = f"{dst}.tmp.{os.getpid()}"            # per process: workers may race here
+        with open(tmp, "wb") as handle:
             handle.write(data)
-        os.replace(dst + ".tmp", dst)
+        os.replace(tmp, dst)
+    with open(dst, "rb") as handle:
+        if hashlib.sha256(handle.read()).hexdigest() != LIBRARY_SHA256:
+            raise ValueError("installed library.json hash mismatch")
     return obj
 
 
