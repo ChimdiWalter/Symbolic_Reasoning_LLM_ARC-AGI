@@ -179,6 +179,18 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
+**2026-10-07 mapping / manuscript / GitHub request: DONE.** Map of the four
+trees in `docs/PROJECT_MAP.md`; `docs/PAPER_SKELETON.md` updated to the v1.9
+state (abstract, contributions, 3.2, 4, 5, 9.3, 11, 12, appendices A to C,
+Paper Track deadline 11-08); pushed this repository to GitHub as branch
+`arc2026-sprint` (push by URL: `git push
+git@github.com:ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI.git
+master:refs/heads/arc2026-sprint`); `main` README rewritten to the latest
+evidence (e90f02d, from a scratch clone; the Reasoning_Project worktree was
+not touched). No AI co-author anywhere. Still stale: `kaggle/writeup.md`
+(2026-09-23 state). The ARC-1000 run has NOT been started (blocked until the
+pilot gives a real witness).
+
 **REAL ARC CAUSAL PILOT v1: DESIGN IN PROGRESS (paused 2026-10-07 for the
 user's mapping / manuscript / GitHub request).** Directive: design, static
 feasibility, freeze only; no pilot execution.
