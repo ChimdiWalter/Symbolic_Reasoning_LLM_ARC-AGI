@@ -198,6 +198,25 @@ NEXT (fresh session): DESIGN AND FREEZE THE REAL ARC CAUSAL PILOT FOR THE FIRST
 GENUINE B/P/U/L/T/A WITNESS. Do not start ARC-1000, the 60 DEV or the 60
 HOLDOUT. The pilot must carry the safety burden the engine does not
 (selection quality, held-out checks, abstention) on two-to-five-demo tasks.
+Pilot brief (from the v1.9 records, user note 2026-10-07):
+- Biggest risk = wrong-extension acceptance: K*' accepted 5/5 seven-pair and
+  28/28 four-pair deliberately wrong installed extensions. The pilot must
+  test whether proposer + verifier + reasoner select correct extensions AND
+  abstain when evidence is insufficient; abstention and wrong-certification
+  rates are first-class, pre-registered outcomes.
+- Real tasks have no completeness by construction: the right extension may
+  not be in the proposer's space (compositions of K's blocks; expression
+  trigger needs same shape, additive change, every pair changing). Fix the
+  scope filter from demonstrations only, before any task is seen.
+- Data prerequisite (ledger open item): the authorized ARC training set is
+  NOT in this repo (data/arc holds only the 60 DEV evaluation challenges and
+  a 3-byte solutions placeholder). Locate it through the project's data
+  manifest and verify version, 1000 unique IDs, checksums and exposure, then
+  freeze a small fixed pilot set from it, before any run. Never the 60 DEV
+  or the 60 HOLDOUT.
+- Same reasoner, frozen K*' (e4672bfa) and the frozen v1.8 proposer; L =
+  adaptive leave-one-out rebuilding the proposal in every fold; A = remove
+  e (and matched compute) destroys the gain.
 
 **v1.9 ENGINE ACCEPTANCE STABILITY: RE-FROZEN AFTER ERRATUM 01 at 44a64f0
 (manifest 528981dd, FROZEN_AFTER_ERRATUM_01_NOT_PROSPECTIVELY_TESTED). STOPPED
