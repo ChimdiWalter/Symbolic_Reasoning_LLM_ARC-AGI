@@ -1,0 +1,124 @@
+{
+ "tasks": 30,
+ "run_errors": 0,
+ "witness_old": 12,
+ "witness_new": 26,
+ "rescues": 14,
+ "legs_old": {
+  "B": 30,
+  "P": 30,
+  "U": 27,
+  "L": 12,
+  "T": 27,
+  "A": 30
+ },
+ "legs_new": {
+  "B": 30,
+  "P": 30,
+  "U": 30,
+  "L": 26,
+  "T": 30,
+  "A": 30
+ },
+ "stability_old": {
+  "full_accepted": 27,
+  "same_e_folds_accepted": 134,
+  "same_e_folds_total": 210,
+  "adaptive_loo_passed": 12,
+  "adaptive_loo_folds_success": 132
+ },
+ "stability_new": {
+  "full_accepted": 30,
+  "same_e_folds_accepted": 210,
+  "same_e_folds_total": 210,
+  "adaptive_loo_passed": 26,
+  "adaptive_loo_folds_success": 206
+ },
+ "clauses_on_A_and_R": {
+  "fit": {
+   "tasks": 18,
+   "full_accepted": 15,
+   "folds_accepted": 88,
+   "fully_stable": 9
+  },
+  "rank": {
+   "tasks": 18,
+   "full_accepted": 18,
+   "folds_accepted": 85,
+   "fully_stable": 7
+  },
+  "both": {
+   "tasks": 18,
+   "full_accepted": 18,
+   "folds_accepted": 126,
+   "fully_stable": 18
+  }
+ },
+ "residual_failures": [],
+ "gates": {
+  "inert": {
+   "checked": 30,
+   "pass": false
+  },
+  "no_regression": {
+   "checked": 161,
+   "pass": true
+  },
+  "replays_training": {
+   "checked": 240,
+   "pass": true
+  },
+  "attribution": {
+   "checked": 240,
+   "pass": true
+  },
+  "restored": {
+   "checked": 300,
+   "pass": true
+  },
+  "fresh_process": {
+   "checked": 240,
+   "pass": true
+  },
+  "false_acceptance": {
+   "tasks": 0,
+   "old": 0,
+   "new": 0,
+   "pass": true
+  },
+  "protected_data": {
+   "pass": true,
+   "note": "the script reads only the development corpus, the diagnosis rows and the frozen package"
+  }
+ },
+ "all_gates_pass": false,
+ "E_accepted": 0,
+ "D_accepted": 0,
+ "by_category": {
+  "A": {
+   "tasks": 15,
+   "witness_old": 0,
+   "witness_new": 12
+  },
+  "B": {
+   "tasks": 12,
+   "witness_old": 12,
+   "witness_new": 12
+  },
+  "R": {
+   "tasks": 3,
+   "witness_old": 0,
+   "witness_new": 2
+  }
+ },
+ "loo_new_fold_classes": {
+  "SUCCESS": 206,
+  "K_ALREADY_SOLVES": 2,
+  "LOO_FAILURE": 2
+ },
+ "loo_old_fold_classes": {
+  "LOO_FAILURE": 76,
+  "SUCCESS": 132,
+  "K_ALREADY_SOLVES": 2
+ }
+}
