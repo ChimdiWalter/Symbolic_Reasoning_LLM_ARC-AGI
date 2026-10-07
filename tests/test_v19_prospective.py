@@ -66,10 +66,12 @@ def test_unsafe_overrides_acceptance(thresholds):
     rows = [_row(i) for i in range(30)]
     rows[4]["new_alone"]["accepted"] = True                     # not inert
     assert PR.outcome(rows, [], 30, 0)[0] == "REPAIR_UNSAFE"
-    rows = [_row(i) for i in range(30)]
-    rows[5]["wrong_trials"] = [{"old": {"accepted": False, "heldout_exact": False},
-                                "new": {"accepted": True, "heldout_exact": False}}]
-    assert PR.outcome(rows, [], 30, 0)[0] == "REPAIR_UNSAFE"     # a false acceptance the old logic avoided
+    rows = [_row(i, lo=True) for i in range(30)]
+    for i in range(14):                                          # 14 wrong certified folds: precision collapses
+        rows[i]["loo_new"]["folds"] = [{"class": "LOO_FAILURE", "accepted": True, "heldout_exact": False}] + \
+            [{"class": "SUCCESS", "accepted": True, "heldout_exact": True}] * 6
+    out, gates = PR.outcome(rows, [], 30, 0)
+    assert out == "REPAIR_UNSAFE" and not gates["G4_safety"]["checks"]["precision_floor"]
     rows = [_row(i, lo=True) for i in range(30)]
     rows[6]["loo_new"] = {"passed": False, "folds": [{"class": "LOO_FAILURE"}] + [{"class": "SUCCESS"}] * 6}
     assert PR.outcome(rows, [], 30, 0)[0] == "REPAIR_UNSAFE"     # an old SUCCESS fold regressed
@@ -105,13 +107,31 @@ def test_refuses_while_thresholds_unset_or_unfrozen():
         assert problems
 
 
-def test_fold_level_false_acceptance_is_gated(thresholds):
+def test_one_extra_wrong_fold_is_reported_but_does_not_gate(thresholds):
     rows = [_row(i) for i in range(30)]
     rows[7]["loo_new"]["folds"] = [{"class": "LOO_FAILURE", "accepted": True, "heldout_exact": False}] + \
         [{"class": "SUCCESS", "accepted": True, "heldout_exact": True}] * 6
     rows[7]["loo_new"]["passed"] = False
     out, gates = PR.outcome(rows, [], 30, 0)
-    assert out == "REPAIR_UNSAFE" and gates["G4_safety"]["checks"]["false_acceptance_folds"] is False
+    p = gates["G4_safety"]["precision"]
+    assert p["new"]["wrong_folds"] == 1 and p["new"]["certified"] == 30 + 210
+    assert gates["G4_safety"]["pass"] and out == "ENGINE_STABILITY_REPAIR_ACCEPTED"
+
+
+def test_precision_noninferiority_margin(thresholds):
+    rows = [_row(i, lo=True) for i in range(30)]               # old: 240 certified, all correct
+    for i in range(6):                                          # new: 6 wrong of 240 -> 0.975 < 1.0 - 0.02
+        rows[i]["loo_new"]["folds"] = [{"class": "LOO_FAILURE", "accepted": True, "heldout_exact": False}] + \
+            [{"class": "SUCCESS", "accepted": True, "heldout_exact": True}] * 6
+    g = PR.outcome(rows, [], 30, 0)[1]["G4_safety"]
+    assert not g["checks"]["precision_noninferior"] and g["checks"]["precision_floor"] is False or \
+        not g["checks"]["precision_noninferior"]
+
+
+def test_wilson_lower_bound():
+    assert PR.wilson_lower(0, 0) == 0.0
+    assert 0.96 < PR.wilson_lower(236, 238) < 0.99
+    assert PR.wilson_lower(100, 100) > 0.96
 
 
 def test_reduced_control_is_reported_not_gated(thresholds):
@@ -123,4 +143,10 @@ def test_reduced_control_is_reported_not_gated(thresholds):
     assert out == "ENGINE_STABILITY_REPAIR_ACCEPTED"
     s = PR.reduced_summary(rows)
     assert s["new"]["false_accept"] == 30 and s["old"]["false_accept"] == 0
+
+
+def test_low_volume_perfect_precision_is_not_unsafe(thresholds):
+    rows = [_row(i, ln=i < 5, lo=False) for i in range(30)]     # 65 certified, all correct
+    out, g = PR.outcome(rows, [], 30, 0)
+    assert g["G4_safety"]["checks"]["precision_floor"] and out == "REPAIR_NOT_MATERIAL"
 

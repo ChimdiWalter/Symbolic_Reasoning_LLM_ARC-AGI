@@ -34,7 +34,7 @@ import json
 import numpy as np
 
 from cora_arc2026 import v17_compiler as X
-from cora_arc2026 import v19_trace as TR
+from cora_v19 import v19_trace as TR
 
 VERSION = "1.9.0-audit"
 

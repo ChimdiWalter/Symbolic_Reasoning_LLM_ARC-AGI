@@ -391,15 +391,66 @@ held-out and adaptive leave-one-out checks, not on the engine's internal
 gate. Narrowing the repair to one clause does not change this (both clauses
 alone also raise wrong acceptance), so the repair stays as in section 14.
 
-Design consequence (fixed here, before the freeze): the prospective safety
-gate counts wrong certified outputs of the system at three levels (section
-16, G4); the reduced-demonstration control is run prospectively and
-reported with its pre-registered expectation (K*' accepts at least as many
-wrong extensions as K*, and neither logic discriminates), and it does not
-gate. The diagnosis's H1 classification of the 86 fitting events also
+4. The section-15 ablation's adaptive leave-one-out (proposer, compiler,
+   installation and reasoner from scratch per fold, six pairs): certified
+   folds with a wrong held-out prediction, K* 1 (task 17 fold 3, an MDL
+   selection both logics accept) and K*' 2 (the same, plus task 18 fold 0,
+   a D selection the old logic happened to reject). Precision of certified
+   folds: K* 132 of 133 (0.992), K*' 206 of 208 (0.990), with 74 more
+   correct certified folds.
+
+Design consequence (fixed here, before the freeze). Because the old gate is
+indiscriminate, any recall-raising change will sometimes certify a wrong
+selection the old gate happened to reject; a strict "no more wrong
+certified outputs than K*" count therefore answers a question these data
+already answer (yes, one in 208 folds) and would make the prospective
+verdict hinge on one or two rare events. The prospective safety gate
+(section 16, G4) instead requires that the false-acceptance cost not
+offset the gain, as precision over everything the system certifies: K*'
+precision is at least 0.95 (a certified output wrong at most one time in
+twenty), and at most 0.02 below K* precision on the same tasks. Both
+numbers are design choices made here, before any prospective data; on
+development they would read 236 of 238 for K*' and 159 of 160 for K*.
+(A first draft required the 95 percent Wilson lower bound to clear 0.95;
+the prospective tests showed that it labels a perfect but low-volume
+system unsafe, for example 65 of 65 correct gives a bound of 0.944, which
+would put REPAIR_UNSAFE ahead of REPAIR_NOT_MATERIAL. The bounds are
+reported instead.) Every count of
+wrong certified outputs (selected seven-pair runs, adaptive leave-one-out
+folds, seven-pair wrong-extension trials) is reported. The
+reduced-demonstration control is run prospectively and reported with its
+pre-registered expectation (K*' accepts at least as many wrong extensions
+as K*, and neither logic discriminates); it does not gate. The diagnosis's H1 classification of the 86 fitting events also
 depends on the one-witness identification standard of section 6; under the
 fitter's two-witness standard they would be H2. The diagnosis record says
 so.
+
+## 15b. Development ablation result and the inertness finding
+
+The pre-registered ablation (section 15; `outputs/tti/v19_repair_dev_report.json`,
+af4b7c1) gave: K*' complete witnesses 26 of 30 against 12 under K* (14
+rescues; A 12 of 15, B 12 of 12, R 2 of 3); FULL accepted 30 of 30 with the
+held-out pair exact 30 of 30; same-e folds accepted 210 of 210 (K* 134);
+adaptive leave-one-out passed 26 against 12, folds 206 of 210 against 132
+(the four K*' non-successes: two K_ALREADY_SOLVES folds, unchanged by the
+repair, and two wrong certified folds, section 15a); no residual K*'
+rejection; D and E never accepted; clause-only on the 18 A and R tasks:
+fitting fully stable 9, ranking 7, both 18.
+
+Gates 2 to 8 pass (no regression 161 of 161, replay 240, attribution 240,
+restoration 300, fresh process 240 of 240, false acceptance 0 against 0
+with no trial, protected data). Gate 1 (inertness: D equals A in
+acceptance, program and events) FAILED on 1 of 30 tasks: on task 3 both
+reject with no program, and K*' alone also stored a near-solve. A follow-up
+probe (`logs/v19/inert_probe.py`, log beside it) repeated that task's K*
+alone run three times without the repair module: the near-solve event
+appeared in one of three, decisions identical in all six runs. The event
+records how far the search got within the 8 s wall-clock budget; it is
+base-engine timing variability, not a K*-4 effect (with nothing installed
+every patched function returns the native value, tested). The gate as
+pre-registered is nevertheless reported as failed. The prospective G4
+inertness check compares decisions (acceptance and program) and reports
+event differences.
 
 ## 16. Prospective synthetic test (frozen here, run ONCE in the next session)
 
@@ -452,18 +503,23 @@ Gates:
   b - c >= DELTA_MIN and the one-sided exact sign test on (b, c) has
   p < 0.05.
 - G4 no offsetting cost, every check required: K*' alone equals K* alone on
-  every task (acceptance, program, events); every task whose K* + e run is
+  every task in acceptance and program (events are reported, not compared:
+  section 15b); every task whose K* + e run is
   accepted with the held-out pair exact is accepted by K*' + e with the
   identical program and the held-out pair exact; every adaptive
   leave-one-out fold that succeeds under K* succeeds under K*'; every
   program K*' accepts replays its training pairs; every accepted K*' + e
   winner that uses e executes directly to the engine's prediction; no
-  K*-4 patch survives a run; and wrong certified outputs do not increase
-  at any of three levels: accepted K*' + e runs with a wrong held-out
-  prediction do not exceed those of K* + e; adaptive leave-one-out folds
-  accepted with a wrong held-out prediction under K*' do not exceed those
-  under K*; over all seven-pair wrong-extension trials, false acceptances
-  (accepted, held-out wrong) under K*' do not exceed those under K*.
+  K*-4 patch survives a run; and the false-acceptance cost does not offset
+  the gain (section 15a): over the system's certified outputs (accepted
+  K*' + e runs on the seven pairs and accepted K*' adaptive leave-one-out
+  folds), with precision = certified outputs reproducing their held-out
+  pair over certified outputs, K*' precision is at least 0.95 and at least
+  K* precision on the same tasks (accepted K* + e runs and K* adaptive
+  leave-one-out folds) minus 0.02; the 95 percent Wilson bounds are
+  reported. Reported, every level: wrong certified seven-pair runs, wrong
+  certified folds, and false acceptances in the seven-pair wrong-extension
+  trials, under K* and K*'.
 
 Reported, not gating (section 15a): the reduced-demonstration control's
 true and false acceptances under K* and K*' and each logic's

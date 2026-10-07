@@ -21,8 +21,8 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, "tests"))
 
 from cora_arc2026 import v17_compiler as X                        # noqa: E402
-from cora_arc2026 import v19_audit as A                           # noqa: E402
-from cora_arc2026 import v19_repair as R                          # noqa: E402
+from cora_v19 import v19_audit as A                           # noqa: E402
+from cora_v19 import v19_repair as R                          # noqa: E402
 from test_v17_compiler import FIXTURES, fixture                   # noqa: E402
 
 M, MI = X._meta()

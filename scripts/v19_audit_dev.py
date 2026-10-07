@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(HERE, "scripts"))
 import v18_corpus as CORPUS                                       # noqa: E402
 from cora_arc2026 import v17_compiler as X                        # noqa: E402
 from cora_arc2026 import v18_proposer as P                        # noqa: E402
-from cora_arc2026 import v19_audit as A                           # noqa: E402
+from cora_v19 import v19_audit as A                           # noqa: E402
 
 DEV_BASE = 870_000_000
 PROSPECTIVE_BASE_RESERVED = 880_000_000

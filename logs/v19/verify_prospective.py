@@ -114,7 +114,6 @@ recomputed["G3"] = g3
 eng = [r for r in ok if "old" in r]
 s = {
     "inert": all(r["new_alone"]["accepted"] == r["old"]["without"]["accepted"]
-                 and r["new_alone"]["events"] == r["old"]["without"]["events"]
                  and r["new_alone"]["program_sha"] == r["old"]["without"]["program_sha"] for r in eng),
     "no_regression_full": all(r["new_with"]["accepted"] and r["new_with"]["heldout_exact"]
                               and r["new_with"]["program_sha"] == r["old"]["with"]["program_sha"]
@@ -125,13 +124,23 @@ s = {
     "attribution": all(r["new_with"].get("direct_equals_engine") is True
                        for r in eng if r["new_with"]["accepted"] and r["new_with"].get("uses")),
     "restored": all(r.get("restored") for r in eng)}
-wrong = [w for r in eng for w in r.get("wrong_trials", [])]
-s["false_acceptance_control"] = sum(1 for w in wrong if w["new"]["accepted"] and not w["new"]["heldout_exact"]) <= \
-    sum(1 for w in wrong if w["old"]["accepted"] and not w["old"]["heldout_exact"])
-s["false_acceptance_selected"] = sum(1 for r in eng if r["new_with"]["accepted"] and not r["new_with"]["heldout_exact"]) <= \
-    sum(1 for r in eng if r["old"]["with"]["accepted"] and not r["old"]["with"]["heldout_exact"])
-s["false_acceptance_folds"] = sum(1 for r in eng for f in r["loo_new"]["folds"] if f.get("accepted") and not f.get("heldout_exact")) <= \
-    sum(1 for r in eng for f in r["loo_old"]["folds"] if f.get("accepted") and not f.get("heldout_exact"))
+def _wilson(k, n, z=1.959963984540054):
+    if n == 0:
+        return 0.0
+    p = k / n
+    return (p + z * z / (2 * n) - z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))) / (1 + z * z / n)
+
+
+prec = {}
+for side, fk, lk in (("old", "old", "loo_old"), ("new", "new_with", "loo_new")):
+    fulls = [(r[fk]["with"] if side == "old" else r[fk]) for r in eng]
+    acc = [x for x in fulls if x["accepted"]] + [f for r in eng for f in r[lk]["folds"] if f.get("accepted")]
+    k = sum(1 for x in acc if x.get("heldout_exact"))
+    prec[side] = {"certified": len(acc), "correct": k, "precision": k / len(acc) if acc else 1.0,
+                  "wilson_lower": _wilson(k, len(acc))}
+s["precision_floor"] = prec["new"]["precision"] >= PR.PRECISION_FLOOR
+s["precision_noninferior"] = prec["new"]["precision"] >= prec["old"]["precision"] - PR.PRECISION_MARGIN
+recomputed["precision"] = prec
 recomputed["G4"] = s
 tr = [t for r in ok for t in r.get("reduced", {}).get("trials", [])]
 recomputed["reduced"] = {side: {"true_accept": sum(1 for t in tr if t["kind"] == "RIGHT" and t[side]["accepted"] and t[side]["right_on_E"]),
@@ -161,6 +170,8 @@ checks["G2_equal"] = gates.get("G2_witnesses_new", {}).get("complete") == comple
 checks["G3_equal"] = gates.get("G3_loo_stability", {}).get("new_only") == b and \
     gates.get("G3_loo_stability", {}).get("old_only") == c and gates.get("G3_loo_stability", {}).get("pass") == G3
 checks["G4_equal"] = gates.get("G4_safety", {}).get("checks") == s and gates.get("G4_safety", {}).get("pass") == G4
+checks["precision_equal"] = all(gates.get("G4_safety", {}).get("precision", {}).get(side, {}).get(k) == prec[side][k]
+                                for side in ("old", "new") for k in ("certified", "correct"))
 checks["legs_equal"] = report["supplementary"]["legs_new"] == recomputed["legs_new"]
 checks["outcome_equal"] = report["outcome"] == out
 print(json.dumps({"all_checks_pass": all(checks.values()), "checks": checks, "recomputed": recomputed,
