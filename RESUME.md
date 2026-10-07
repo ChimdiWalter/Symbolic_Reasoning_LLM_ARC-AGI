@@ -196,6 +196,9 @@ pilot, no ARC-1000, no eval splits, no push.
   census`), rows outputs/reach_v1/census_rows.jsonl, marker
   logs/reach_v1/CENSUS_0_DONE. If interrupted: `scripts/reach_v1_run.py
   census --resume` (refuses while a recorded worker is alive; 2 resumes max).
+  Checkpoint 23:14Z: 11 of 60 rows (about 0.6 per minute, finish near
+  00:35Z); rows are appended atomically per task, so nothing is lost on
+  interruption.
 - Concurrency note: commit f5edd91 (census.py summaries) came from another
   session (not deltos-e7, e-a7, deltos-e1 or deltos-52; likely deltos-6c);
   kept; sessions asked to stand down.
