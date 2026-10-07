@@ -45,6 +45,7 @@ sys.path.insert(0, os.path.join(HERE, "scripts"))
 from cora_arc2026 import v14_loc as L                             # noqa: E402
 from cora_arc2026 import v17_compiler as X                        # noqa: E402
 from cora_arc2026 import v18_proposer as P                        # noqa: E402
+from cora_v19 import v19_audit as AU                              # noqa: E402
 from cora_v19 import v19_repair as R                              # noqa: E402
 import v18_corpus as CORPUS                                       # noqa: E402
 import v18_prospective as PR18                                    # noqa: E402
@@ -59,6 +60,7 @@ WORKERS = 4
 ALPHA = 0.05
 PRECISION_FLOOR = 0.95      # K*' precision over certified outputs (protocol section 15a, fixed before data)
 PRECISION_MARGIN = 0.02     # K*' precision >= K* precision - margin (same section)
+MARGINAL_RATIO = 0.05       # erratum 01: added wrong certified outputs <= 0.05 x added correct ones
 BASELINE_3X_BUDGET_S = 24.0
 ARMS = ("FAILURE_CONDITIONED", "SHUFFLED_FRONTIER", "BLIND")
 G1_CONTROLS = ("SHUFFLED_FRONTIER", "BLIND")
@@ -74,6 +76,9 @@ START = os.path.join(LOGD, "prospective_start.json")
 MARKER = os.path.join(HERE, "logs", "V19_PROSPECTIVE_DONE")
 LOCK = os.path.join(LOGD, "prospective.lock")
 CLAIMS = os.path.join(LOGD, "prospective_claims.json")
+WORKERS_FILE = os.path.join(LOGD, "prospective_workers.json")
+RESUME_LOG = os.path.join(LOGD, "prospective_resumes.jsonl")
+INTERRUPTED = os.path.join(LOGD, "prospective_interrupted.json")
 OUTCOMES = ("ENGINE_STABILITY_REPAIR_ACCEPTED", "FAILURE_SPECIFICITY_LOST",
             "REPAIR_STABILIZES_BELOW_WITNESS_THRESHOLD", "REPAIR_NOT_MATERIAL", "REPAIR_UNSAFE",
             "PROPOSER_LEAKAGE", "NO_VERDICT_FIXTURE_SHORTFALL", "NO_VERDICT_RUN_ERROR")
@@ -91,6 +96,8 @@ def freeze_problems():
     p = []
     if open(MANIFEST + ".sha256").read().split()[0] != sha(MANIFEST):
         p.append("manifest")
+    if sha(os.path.join(HERE, man["protocol_doc"])) != man["protocol_doc_sha256"]:
+        p.append("protocol")
     for rel, d in man["implementation_sha256"].items():
         if sha(os.path.join(HERE, rel)) != d:
             p.append(rel)
@@ -133,13 +140,33 @@ def claim(n):
         for i in range(n):
             if i not in claims:
                 claims.append(i)
-                json.dump(claims, open(CLAIMS, "w"))
+                write_atomic(CLAIMS, claims)
                 return i
     return None
 
 
-def read_rows():
-    return [json.loads(line) for line in open(ROWS)] if os.path.exists(ROWS) else []
+def write_atomic(path, obj):
+    tmp = path + ".tmp"
+    with open(tmp, "w") as handle:
+        json.dump(obj, handle)
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(tmp, path)
+
+
+def read_rows(report_unparsable=False):
+    """Rows; a line that does not parse (a worker killed mid-write) is
+    skipped and counted, so its task counts as missing and can be resumed."""
+    rows, bad = [], 0
+    if os.path.exists(ROWS):
+        for line in open(ROWS):
+            if not line.strip():
+                continue
+            try:
+                rows.append(json.loads(line))
+            except ValueError:
+                bad += 1
+    return (rows, bad) if report_unparsable else rows
 
 
 def ungrid(p):
@@ -175,6 +202,13 @@ def wrong_extensions(train, held, selected_name, recs):
     when selected and not useful."""
     import numpy as np
     out, names = [], {selected_name}
+    try:
+        return _wrong_extensions(train, held, names, recs, out, np), None
+    except Exception as exc:                                  # noqa: BLE001
+        return out, type(exc).__name__
+
+
+def _wrong_extensions(train, held, names, recs, out, np):
     sem = P.Semantics(train)
     inp = P.build_input(train, sem)
     deadline = time.time() + P.LIMITS["wall_s"]
@@ -244,22 +278,37 @@ def run_task(t, donor):
     with R.repaired():
         row["loo_new"] = _loo(P.real_loo(train))
     row["restored"] = row["restored"] and R.restored()
+    #  reported controls never void the run (erratum 01): failures are recorded
     row["wrong_trials"] = []
-    for source, rank, pw in wrong_extensions(train, held, prod["name"], recs):
-        row["wrong_trials"].append({"source": source, "mdl_rank": rank, "production": pw["name"],
-                                    "old": RD.summarize(X.run_reasoner(train, (pw,)), held, pw),
-                                    "new": RD.summarize(R.run_reasoner(train, (pw,)), held, pw)})
+    wl, row["wrong_trials_failure"] = wrong_extensions(train, held, prod["name"], recs)
+    for source, rank, pw in wl:
+        try:
+            row["wrong_trials"].append({"source": source, "mdl_rank": rank, "production": pw["name"],
+                                        "old": RD.summarize(X.run_reasoner(train, (pw,)), held, pw),
+                                        "new": RD.summarize(R.run_reasoner(train, (pw,)), held, pw)})
+        except Exception as exc:                              # noqa: BLE001
+            row["wrong_trials_failure"] = type(exc).__name__
     #  reduced-demonstration control (protocol sections 15a and 16): reported only
     S, E = train[:FR.K], train[FR.K:] + [held]
-    tl, pool, cls = FR.trials(S, E)
-    row["reduced"] = {"pool": pool, "selection_class": cls, "trials": []}
-    for kind, source, pw in tl:
-        o = X.run_reasoner(S, (pw,))
-        nw = R.run_reasoner(S, (pw,))
-        row["reduced"]["trials"].append({
-            "kind": kind, "source": source, "production": pw["name"],
-            "old": {"accepted": o["accepted"], "right_on_E": FR.engine_on(o, E) if o["accepted"] else None},
-            "new": {"accepted": nw["accepted"], "right_on_E": FR.engine_on(nw, E) if nw["accepted"] else None}})
+    try:
+        tl, pool, cls = FR.trials(S, E)
+        row["reduced"] = {"pool": pool, "selection_class": cls, "trials": []}
+        for kind, source, pw in tl:
+            o = X.run_reasoner(S, (pw,))
+            nw = R.run_reasoner(S, (pw,))
+            row["reduced"]["trials"].append({
+                "kind": kind, "source": source, "production": pw["name"],
+                "old": {"accepted": o["accepted"], "right_on_E": FR.engine_on(o, E) if o["accepted"] else None},
+                "new": {"accepted": nw["accepted"], "right_on_E": FR.engine_on(nw, E) if nw["accepted"] else None}})
+    except Exception as exc:                                  # noqa: BLE001
+        row.setdefault("reduced", {"trials": []})["failure"] = type(exc).__name__
+    #  witness multiplicity of e's keys on the seven pairs (erratum 01, descriptive)
+    try:
+        cz = AU.census(AU._schema(prod), train)
+        row["min_key_witnesses"] = (min(len(w) for w in cz["witness"].values())
+                                    if not cz["error"] and cz["witness"] else None)
+    except Exception as exc:                                  # noqa: BLE001
+        row["min_key_witnesses"] = f"error {type(exc).__name__}"
     row["restored"] = row["restored"] and R.restored()
     row["load_end"] = [round(x, 2) for x in os.getloadavg()]
     a_leg = not (base3["accepted"] and row["baseline_3x"]["heldout_exact"])
@@ -295,8 +344,10 @@ def safety(rows):
         #  across repeats of the same run (logs/v19/inert_probe.log); reported below
         "inert": all(r["new_alone"]["accepted"] == r["old"]["without"]["accepted"]
                      and r["new_alone"]["program_sha"] == r["old"]["without"]["program_sha"] for r in eng),
+        #  erratum 01: program identity only when K*'s winner used e
         "no_regression_full": all(r["new_with"]["accepted"] and r["new_with"]["heldout_exact"]
-                                  and r["new_with"]["program_sha"] == r["old"]["with"]["program_sha"]
+                                  and (r["new_with"]["program_sha"] == r["old"]["with"]["program_sha"]
+                                       if r["old"]["uses"] else True)
                                   for r in eng if r["old"]["with"]["accepted"] and r["old"]["with"]["heldout_exact"]),
         "no_regression_folds": all(fn["class"] == "SUCCESS"
                                    for r in eng for fo, fn in zip(r["loo_old"]["folds"], r["loo_new"]["folds"])
@@ -313,6 +364,10 @@ def safety(rows):
     prec = precision(eng)
     checks["precision_floor"] = prec["new"]["precision"] >= PRECISION_FLOOR
     checks["precision_noninferior"] = prec["new"]["precision"] >= prec["old"]["precision"] - PRECISION_MARGIN
+    d_correct = prec["new"]["correct"] - prec["old"]["correct"]
+    d_wrong = (prec["new"]["certified"] - prec["new"]["correct"]) - (prec["old"]["certified"] - prec["old"]["correct"])
+    prec["added_correct"], prec["added_wrong"] = d_correct, d_wrong
+    checks["marginal_precision"] = d_wrong <= 0 or d_wrong <= MARGINAL_RATIO * max(d_correct, 0)
     events_differ = sum(1 for r in eng if r["new_alone"]["events"] != r["old"]["without"]["events"])
     return {"checks": checks, "precision": prec, "control_trials": len(wrong), "control_fa_old": fa_old,
             "control_fa_new": fa_new, "alone_events_differ": events_differ, "pass": all(checks.values())}
@@ -359,6 +414,31 @@ def reduced_summary(rows):
     return out
 
 
+def pairing_mismatches(rows):
+    """Erratum 01: folds whose selection or production differs between the
+    K* and K*' adaptive leave-one-out (G3 assumes the same selection)."""
+    return sum(1 for r in rows for fo, fn in zip(r.get("loo_old", {}).get("folds", []),
+                                                r.get("loo_new", {}).get("folds", []))
+               if fo.get("selected") != fn.get("selected") or fo.get("production") != fn.get("production"))
+
+
+def strata(rows):
+    """Erratum 01, descriptive: results by the smallest witness count of e's
+    keys on the seven pairs (the corpus law guarantees at least three)."""
+    out = {}
+    for r in rows:
+        mk = r.get("min_key_witnesses")
+        key = "unknown" if not isinstance(mk, int) else ("3" if mk == 3 else (">=4" if mk >= 4 else f"{mk}"))
+        o = out.setdefault(key, {"tasks": 0, "witnesses_new": 0, "witnesses_old": 0,
+                                 "loo_new_passed": 0, "loo_old_passed": 0})
+        o["tasks"] += 1
+        o["witnesses_new"] += bool(r.get("witness_new", {}).get("complete"))
+        o["witnesses_old"] += bool(r.get("witness_old", {}).get("complete"))
+        o["loo_new_passed"] += bool(r.get("loo_new", {}).get("passed"))
+        o["loo_old_passed"] += bool(r.get("loo_old", {}).get("passed"))
+    return out
+
+
 def outcome(rows, unexpected, n_tasks, leakage):
     ok = [r for r in rows if "error" not in r]
     gates = {}
@@ -376,7 +456,8 @@ def outcome(rows, unexpected, n_tasks, leakage):
     c = sum(1 for r in ok if r.get("loo_old", {}).get("passed") and not r.get("loo_new", {}).get("passed"))
     p = binom_upper_p(b, c)
     gates["G3_loo_stability"] = {"new_only": b, "old_only": c, "p_one_sided": p, "delta_min": DELTA_MIN,
-                                 "pass": b - c >= DELTA_MIN and p < ALPHA}
+                                 "pass": b - c >= DELTA_MIN and p < ALPHA,
+                                 "pairing_mismatches": pairing_mismatches(ok)}
     gates["G4_safety"] = safety(ok)
     g1 = all(gates[f"G1_vs_{a.lower()}"]["pass"] for a in G1_CONTROLS)
     g2, g3, g4 = gates["G2_witnesses_new"]["pass"], gates["G3_loo_stability"]["pass"], gates["G4_safety"]["pass"]
@@ -389,6 +470,86 @@ def outcome(rows, unexpected, n_tasks, leakage):
     if g3:
         return "REPAIR_STABILIZES_BELOW_WITNESS_THRESHOLD", gates
     return "REPAIR_NOT_MATERIAL", gates
+
+
+def recorded_pids():
+    if not os.path.exists(WORKERS_FILE):
+        return []
+    rec = json.load(open(WORKERS_FILE))
+    return [rec.get("coordinator")] + list(rec.get("workers", []))
+
+
+def pid_alive(pid):
+    if not pid:
+        return False
+    try:
+        os.kill(int(pid), 0)                                  # signal 0: existence check only
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def resume_log():
+    if not os.path.exists(RESUME_LOG):
+        return []
+    return [json.loads(line) for line in open(RESUME_LOG) if line.strip()]
+
+
+def build_report(rows, tasks, unexpected, exit_codes, unparsable, started):
+    """Deduplicate rows, detect missing rows and leakage, decide the outcome
+    and assemble the report (also used by the verifier test)."""
+    unexpected = list(unexpected)
+    seen = set()
+    dedup = []
+    for r in rows:
+        if r["i"] not in seen:
+            seen.add(r["i"])
+            dedup.append(r)
+    duplicates = len(rows) - len(dedup)
+    rows = dedup
+    missing = sorted(set(range(len(tasks))) - {r["i"] for r in rows})
+    unexpected += [{"stage": f"task {r['i']}", "exception": r.get("exception")} for r in rows if "error" in r]
+    if missing and len(tasks) == N_TASKS:
+        unexpected.append({"stage": "missing rows", "tasks": missing})
+    ok = [r for r in rows if "error" not in r]
+    leakage = (sum(1 for r in ok for a in r["arms"].values() if a["class"] == "LEAKAGE_FAILURE")
+               + sum(1 for r in ok for k in ("loo_old", "loo_new") for f in r.get(k, {}).get("folds", [])
+                     if f.get("proposer_class") == "LEAKAGE_FAILURE"))
+    out, gates = outcome(rows, unexpected, len(tasks), leakage)
+    report = {"outcome": out, "gates": gates, "tasks": len(tasks), "rows": len(rows),
+              "duplicate_rows": duplicates, "unexpected": unexpected, "leakage": leakage,
+              "resumes": resume_log(), "worker_exit_codes": exit_codes, "unparsable_lines": unparsable,
+              "manifest_sha256": sha(MANIFEST), "repair_identity": R.repair_identity(),
+              "seed_base": SEED_BASE, "seconds": round(time.time() - started, 1),
+              "loadavg_end": list(os.getloadavg()),
+              "supplementary": {
+                  "useful_by_arm": {a: sum(1 for r in ok if r["arms"][a]["useful"]) for a in ARMS},
+                  "legs_new": {k: sum(1 for r in ok if r.get("witness_new", {}).get(k)) for k in "BPULTA"},
+                  "legs_old": {k: sum(1 for r in ok if r.get("witness_old", {}).get(k)) for k in "BPULTA"},
+                  "selection_levels": {lv: sum(1 for r in ok if (r["arms"]["FAILURE_CONDITIONED"]["selection"]
+                                                                 or {}).get("level") == lv)
+                                       for lv in P.SELECTION_LEVELS},
+                  "by_family": {f: {"tasks": sum(1 for r in ok if r["family"] == f),
+                                    "witnesses_new": sum(1 for r in ok if r["family"] == f
+                                                         and r.get("witness_new", {}).get("complete")),
+                                    "witnesses_old": sum(1 for r in ok if r["family"] == f
+                                                         and r.get("witness_old", {}).get("complete"))}
+                                for f in sorted({r["family"] for r in ok})},
+                  "loo_fold_classes_new": {c: sum(1 for r in ok for f in r.get("loo_new", {}).get("folds", [])
+                                                  if f["class"] == c)
+                                           for c in sorted({f["class"] for r in ok
+                                                            for f in r.get("loo_new", {}).get("folds", [])})},
+                  "reduced_control": reduced_summary(ok),
+                  "witness_strata": strata(ok),
+                  "control_failures": sum(1 for r in ok if r.get("wrong_trials_failure")
+                                          or (r.get("reduced") or {}).get("failure")),
+                  "loo_fold_classes_old": {c: sum(1 for r in ok for f in r.get("loo_old", {}).get("folds", [])
+                                                  if f["class"] == c)
+                                           for c in sorted({f["class"] for r in ok
+                                                            for f in r.get("loo_old", {}).get("folds", [])})}}}
+    return out, gates, report
 
 
 def worker(k):
@@ -420,8 +581,11 @@ def main():
     if resume:
         if not os.path.exists(START) or os.path.exists(OUT) or os.path.exists(MARKER):
             raise SystemExit("refusing --resume: needs a start record and no report or marker")
+        alive = [pid for pid in recorded_pids() if pid_alive(pid)]
+        if alive:
+            raise SystemExit(f"refusing --resume: recorded processes still alive {alive}")
     else:
-        for path in (OUT, ROWS, START, MARKER, TASKS, CLAIMS):
+        for path in (OUT, ROWS, START, MARKER, TASKS, CLAIMS, WORKERS_FILE, RESUME_LOG, INTERRUPTED):
             if os.path.exists(path):
                 raise SystemExit(f"refusing: {os.path.relpath(path, HERE)} exists; the prospective test "
                                  "runs once (use --resume only after an interruption)")
@@ -432,11 +596,18 @@ def main():
     if problems:
         raise SystemExit(f"freeze problems, refusing: {problems}")
     started = time.time()
-    resumes = []
     if resume:
-        resumes.append({"resumed_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "pid": os.getpid()})
-        done = sorted({r["i"] for r in read_rows()})
-        json.dump(done, open(CLAIMS, "w"))
+        #  erratum 01: every resume is logged when it happens, and unfinished
+        #  claims are dropped so their tasks run again
+        rows_now, bad = read_rows(report_unparsable=True)
+        with open(RESUME_LOG, "a") as handle:
+            handle.write(json.dumps({"resumed_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                                     "pid": os.getpid(), "rows_kept": len({r["i"] for r in rows_now
+                                                                           if "error" not in r}),
+                                     "unparsable_lines": bad}) + "\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        write_atomic(CLAIMS, sorted({r["i"] for r in rows_now if "error" not in r}))
     else:
         with open(START, "w") as handle:
             handle.write(json.dumps({"started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -463,57 +634,23 @@ def main():
                          "held": [t["held"][0].tolist(), t["held"][1].tolist()]})
         json.dump({"seed_base": SEED_BASE, "n": len(body), "tasks": body}, open(TASKS, "w"))
     tasks = json.load(open(TASKS))["tasks"]
+    exit_codes = []
     if not unexpected and len(tasks) == N_TASKS:
         procs = [subprocess.Popen([sys.executable, os.path.abspath(__file__), "--worker", str(k)],
                                   stdout=open(os.path.join(LOGD, f"prospective_worker_{k}.log"), "a"),
                                   stderr=subprocess.STDOUT, cwd=HERE) for k in range(1, WORKERS + 1)]
-        for pr in procs:
-            pr.wait()
-    rows = sorted(read_rows(), key=lambda r: r["i"])
-    seen = set()
-    dedup = []
-    for r in rows:
-        if r["i"] not in seen:
-            seen.add(r["i"])
-            dedup.append(r)
-    duplicates = len(rows) - len(dedup)
-    rows = dedup
-    missing = sorted(set(range(len(tasks))) - {r["i"] for r in rows})
-    unexpected += [{"stage": f"task {r['i']}", "exception": r.get("exception")} for r in rows if "error" in r]
-    if missing and len(tasks) == N_TASKS:
-        unexpected.append({"stage": "missing rows", "tasks": missing})
-    ok = [r for r in rows if "error" not in r]
-    leakage = (sum(1 for r in ok for a in r["arms"].values() if a["class"] == "LEAKAGE_FAILURE")
-               + sum(1 for r in ok for k in ("loo_old", "loo_new") for f in r.get(k, {}).get("folds", [])
-                     if f.get("proposer_class") == "LEAKAGE_FAILURE"))
-    out, gates = outcome(rows, unexpected, len(tasks), leakage)
-    report = {"outcome": out, "gates": gates, "tasks": len(tasks), "rows": len(rows),
-              "duplicate_rows": duplicates, "unexpected": unexpected, "leakage": leakage,
-              "resumes": resumes, "manifest_sha256": sha(MANIFEST), "repair_identity": R.repair_identity(),
-              "seed_base": SEED_BASE, "seconds": round(time.time() - started, 1),
-              "loadavg_end": list(os.getloadavg()),
-              "supplementary": {
-                  "useful_by_arm": {a: sum(1 for r in ok if r["arms"][a]["useful"]) for a in ARMS},
-                  "legs_new": {k: sum(1 for r in ok if r.get("witness_new", {}).get(k)) for k in "BPULTA"},
-                  "legs_old": {k: sum(1 for r in ok if r.get("witness_old", {}).get(k)) for k in "BPULTA"},
-                  "selection_levels": {lv: sum(1 for r in ok if (r["arms"]["FAILURE_CONDITIONED"]["selection"]
-                                                                 or {}).get("level") == lv)
-                                       for lv in P.SELECTION_LEVELS},
-                  "by_family": {f: {"tasks": sum(1 for r in ok if r["family"] == f),
-                                    "witnesses_new": sum(1 for r in ok if r["family"] == f
-                                                         and r.get("witness_new", {}).get("complete")),
-                                    "witnesses_old": sum(1 for r in ok if r["family"] == f
-                                                         and r.get("witness_old", {}).get("complete"))}
-                                for f in sorted({r["family"] for r in ok})},
-                  "loo_fold_classes_new": {c: sum(1 for r in ok for f in r.get("loo_new", {}).get("folds", [])
-                                                  if f["class"] == c)
-                                           for c in sorted({f["class"] for r in ok
-                                                            for f in r.get("loo_new", {}).get("folds", [])})},
-                  "reduced_control": reduced_summary(ok),
-                  "loo_fold_classes_old": {c: sum(1 for r in ok for f in r.get("loo_old", {}).get("folds", [])
-                                                  if f["class"] == c)
-                                           for c in sorted({f["class"] for r in ok
-                                                            for f in r.get("loo_old", {}).get("folds", [])})}}}
+        write_atomic(WORKERS_FILE, {"coordinator": os.getpid(), "workers": [pr.pid for pr in procs]})
+        exit_codes = [pr.wait() for pr in procs]
+    rows, unparsable = read_rows(report_unparsable=True)
+    rows = sorted(rows, key=lambda r: r["i"])
+    present = {r["i"] for r in rows}
+    if any(code != 0 for code in exit_codes) and set(range(len(tasks))) - present:
+        #  erratum 01: an abnormal worker exit with rows missing is an
+        #  interruption, not a verdict; leave the run resumable
+        write_atomic(INTERRUPTED, {"utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                                   "exit_codes": exit_codes, "missing": sorted(set(range(len(tasks))) - present)})
+        raise SystemExit(f"workers exited abnormally {exit_codes} with rows missing; resume with --resume")
+    out, gates, report = build_report(rows, tasks, unexpected, exit_codes, unparsable, started)
     json.dump(report, open(OUT, "w"), indent=1, sort_keys=True, default=str)
     with open(MARKER, "w") as handle:
         handle.write(out + "\n")

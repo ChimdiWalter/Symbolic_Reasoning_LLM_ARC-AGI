@@ -253,9 +253,11 @@ none does, the record says so.
 Written 2026-10-06 after the development diagnosis
 (`records/ITEM2_V19_AUDIT_DIAGNOSIS.md`: 145 of 145 rejection events H1;
 86 single-witness refits, 59 pixel-rule rankings; load, budget and
-selection quality eliminated). Implementation `cora_arc2026/v19_repair.py`.
+selection quality eliminated). Implementation `cora_v19/v19_repair.py`
+(written as `cora_arc2026/v19_repair.py` and moved at df851c7, byte-identical;
+erratum 01).
 
-Rule (one rule, one principle): while an extension is installed (K*-3
+Rule (two clauses under one principle; erratum 01 wording): while an extension is installed (K*-3
 overlay non-empty), every re-induction of the run re-derives the installed
 extension ITSELF from that re-induction's demonstrations, and the engine's
 unchanged gate decides:
@@ -267,7 +269,9 @@ unchanged gate decides:
   two demonstrations: the witness rule's own stated standard ("a key
   witnessed by a single demonstration cannot be re-derived by the fold that
   holds that demonstration out"), enforced once by the gate instead of
-  again inside every re-induction, where it demanded a third witness;
+  again inside every re-induction, where it demanded a third witness. In
+  effect the evidence requirement for an installed extension drops from
+  three witnesses per key to two (erratum 01);
 - ranking: in every ranking of the run (`inducer.rank_candidates`,
   `inducer.rank_by_score`) the installed concept's candidates come first
   in the native order among themselves, then the native candidates in the
@@ -282,8 +286,11 @@ re-induction-time heuristics designed for native hypotheses displacing an
 extension whose fold-fitted semantics reproduce the held-out pair
 (permissive fit predicts in 145 of 145). The development projection: 12
 of 30 tasks fully stable today, 21 with the fitting clause alone, 19 with
-the ranking clause alone, 30 with both; the clauses are not separable
-repairs of separate mechanisms.
+the ranking clause alone, 30 with both. The two failure kinds occur in
+largely separate runs (fitting only 38, ranking only 38, both 3), and each
+clause alone leaves about a third of the tasks unstable: two clauses under
+one principle, both disclosed (erratum 01; the earlier sentence said the
+clauses were "not separable repairs of separate mechanisms").
 
 Unchanged: geocat_arc; the acceptance gate (train-perfect, leave-one-out by
 re-induction, every fold exact); the fitter's other admission rules
@@ -291,17 +298,29 @@ re-induction, every fold exact); the fitter's other admission rules
 the native search; K*-1 to K*-3; the v1.7 compiler; the v1.8 proposer. The
 patches are applied outside `kstar()` and restored on exit; with nothing
 installed every patched function returns the native value, so K* alone is
-identical (tested). A one-block production keeps the engine's own learner
-and its witness rule (K*-2); the v1.8 proposer only produces two- and
-three-block compositions.
+identical (tested). Scope (erratum 01): the ranking clause applies to every
+installed concept; the fitting clause applies to every production that K*-2
+sends to the scoped fitter, that is every shape other than the engine's own
+one-block Partition-Select-Map-Paint, which keeps the engine's learner and
+its witness rule. The v1.8 proposer produces two- and three-block one-Select
+compositions only. The module docstring's "two or more blocks" is
+inaccurate; the code is left byte-identical so that K*' keeps the identity
+of the development evidence (e4672bfa).
 
 Identity: K*' = K* + K*-4, `v19_repair.repair_identity()` (K* identity,
 rule text, implementation hash). Productions compiled by the v1.7 compiler
 for K* install unchanged.
 
-Not a repair of this kind, and not done: task, family or seed branches;
-special-casing one extension; memorized outputs; larger budgets; a lower
-acceptance threshold. The gate still requires every held-out pair exactly.
+Not done: task, family or seed branches; special-casing one extension;
+memorized outputs; larger budgets. K*-4 DOES lower the effective
+acceptance threshold for installed extensions: three witnesses per key
+become two, and no native candidate can displace a verified installed
+concept. In development K*' accepted every installed extension it was
+given, 491 of 491 (30 FULL runs, 210 same-e folds, 208 adaptive folds with
+an installation, 43 four-pair trials including 19 of 19 wrong ones). The
+gate still requires every held-out pair exactly. (Erratum 01: the earlier
+text listed "a lower acceptance threshold" among the things not done; that
+was false.)
 
 ## 15. Development ablation (DEVELOPMENT ONLY, the 30 audited tasks)
 
@@ -377,19 +396,22 @@ each committed before it ran, on the 30 audited development tasks.
    alone 13 of 24 right and 9 of 19 wrong; ranking clause alone 17 of 24
    and 10 of 19.
 
-Reading. Under four demonstrations the engine's own leave-one-out gate
-does not discriminate right from wrong installed extensions in any variant:
-K* accepts about a third of each (0.33 and 0.32); each K*-4 clause raises
-both rates together; K*' accepts every verified, leave-one-out-stable
-installed extension. The old gate's rejections of installed extensions
-were therefore indiscriminate: they cost recall without buying safety. It
-follows that no repair that raises acceptance can pass a rule "false
-acceptances of deliberately installed wrong extensions must not increase"
-under scarce demonstrations, and that under K*' the correctness of an
-accepted installed extension rests on the proposer's selection and on the
-held-out and adaptive leave-one-out checks, not on the engine's internal
-gate. Narrowing the repair to one clause does not change this (both clauses
-alone also raise wrong acceptance), so the repair stays as in section 14.
+Reading (corrected by erratum 01). Under four demonstrations no
+discrimination between right and wrong installed extensions was detected in
+any variant: K* accepted 0.33 of right and 0.32 of wrong trials (difference
+0.018, Newcombe 95 percent interval -0.25 to +0.28, Fisher two-sided
+p = 1.0); the 19 wrong trials come from only 9 tasks and K*'s decisions are
+clustered by task, right trials are selections and wrong trials pool
+candidates, and in the 6 tasks with both kinds K* once accepted the right
+and rejected the wrong one and never the reverse. Each K*-4 clause raises
+both rates; K*' accepted every installed extension. Under K*' the
+correctness of an accepted installed extension therefore rests on the
+proposer's selection and on the held-out and adaptive leave-one-out
+checks, not on the engine's internal gate. Narrowing the repair to one
+clause would not avoid this (each clause alone also raises wrong
+acceptance), so the repair stays as in section 14. (The earlier text said
+the old rejections "were therefore indiscriminate: they cost recall
+without buying safety"; that overstated what 43 clustered trials show.)
 
 4. The section-15 ablation's adaptive leave-one-out (proposer, compiler,
    installation and reasoner from scratch per fold, six pairs): certified
@@ -399,12 +421,24 @@ alone also raise wrong acceptance), so the repair stays as in section 14.
    folds: K* 132 of 133 (0.992), K*' 206 of 208 (0.990), with 74 more
    correct certified folds.
 
-Design consequence (fixed here, before the freeze). Because the old gate is
-indiscriminate, any recall-raising change will sometimes certify a wrong
-selection the old gate happened to reject; a strict "no more wrong
-certified outputs than K*" count therefore answers a question these data
-already answer (yes, one in 208 folds) and would make the prospective
-verdict hinge on one or two rare events. The prospective safety gate
+Gate history as committed (erratum 01). Commit 4af2bd1, made before the
+ablation result, set G4 as strict counts at three levels (wrong certified
+seven-pair runs, wrong certified folds, seven-pair wrong-extension false
+acceptances; K*' not above K*) with inertness compared on events. The
+ablation result (af4b7c1) then showed two wrong certified folds under K*'
+against one under K* and one event mismatch, so the gate as committed would
+have returned REPAIR_UNSAFE on the development data. Commit df851c7, about
+two minutes later, replaced the strict counts by the precision rule below,
+with its two numbers chosen while the development values were known, and
+compared inertness on decisions. A version requiring the 95 percent Wilson
+lower bound was tried and dropped before any commit (see below).
+
+Design consequence. Because no discrimination was detected, a
+recall-raising change will sometimes certify a wrong selection the old
+gate happened to reject; a strict "no more wrong certified outputs than
+K*" count answers a question these data already answer (yes, one in 208
+folds) and would make the prospective verdict hinge on one or two rare
+events. The prospective safety gate
 (section 16, G4) instead requires that the false-acceptance cost not
 offset the gain, as precision over everything the system certifies: K*'
 precision is at least 0.95 (a certified output wrong at most one time in
@@ -415,12 +449,21 @@ development they would read 236 of 238 for K*' and 159 of 160 for K*.
 the prospective tests showed that it labels a perfect but low-volume
 system unsafe, for example 65 of 65 correct gives a bound of 0.944, which
 would put REPAIR_UNSAFE ahead of REPAIR_NOT_MATERIAL. The bounds are
-reported instead.) Every count of
+reported instead.) Tolerance in counts (erratum 01): with K* at 159 of 160
+and about 238 certified outputs under K*', the precision rule alone passes
+with up to 6 wrong certified outputs, six times K*'s count. Erratum 01
+therefore adds a marginal-precision rule: the outputs the repair adds must
+be at least 95 percent correct (added wrong certified outputs at most 0.05
+times added correct ones; development: 1 added wrong against 77 added
+correct), which at development volume tolerates about 3 added wrong. Every count of
 wrong certified outputs (selected seven-pair runs, adaptive leave-one-out
 folds, seven-pair wrong-extension trials) is reported. The
 reduced-demonstration control is run prospectively and reported with its
 pre-registered expectation (K*' accepts at least as many wrong extensions
-as K*, and neither logic discriminates); it does not gate. The diagnosis's H1 classification of the 86 fitting events also
+as K*); it does not gate, because it measures the engine's acceptance of
+deliberately installed wrong extensions, which K*-4 raises by design; that
+cost is reported, and the safety decision rests on the system's own
+certified outputs (erratum 01). The diagnosis's H1 classification of the 86 fitting events also
 depends on the one-witness identification standard of section 6; under the
 fitter's two-witness standard they would be H2. The diagnosis record says
 so.
@@ -517,8 +560,12 @@ Gates:
   folds), with precision = certified outputs reproducing their held-out
   pair over certified outputs, K*' precision is at least 0.95 and at least
   K* precision on the same tasks (accepted K* + e runs and K* adaptive
-  leave-one-out folds) minus 0.02; the 95 percent Wilson bounds are
-  reported. Reported, every level: wrong certified seven-pair runs, wrong
+  leave-one-out folds) minus 0.02; and the outputs K*' adds are at least
+  95 percent correct (added wrong certified outputs at most 0.05 times
+  added correct ones; erratum 01). The 95 percent Wilson bounds are
+  reported. No-regression on seven-pair runs requires the identical program
+  only when K*'s winner used e; otherwise K*' must reproduce the held-out
+  pair (erratum 01). Reported, every level: wrong certified seven-pair runs, wrong
   certified folds, and false acceptances in the seven-pair wrong-extension
   trials, under K* and K*'.
 
@@ -526,7 +573,13 @@ Reported, not gating (section 15a): the reduced-demonstration control's
 true and false acceptances under K* and K*' and each logic's
 discrimination (acceptance rate of right minus acceptance rate of wrong
 extensions). Pre-registered expectation: K*' accepts at least as many wrong
-extensions as K*, and neither logic discriminates.
+extensions as K* (a disclosed cost of the lower evidence requirement); in
+development no discrimination was detected in either logic. Also reported
+(erratum 01): the folds whose selection or production differs between the
+K* and K*' adaptive leave-one-out (G3 assumes none), and every result by
+the smallest witness count of e's keys on the seven pairs. A reported
+control that fails (a proposer limit or a compile error) is recorded in its
+row and never voids the run.
 
 Outcomes (first match):
 
@@ -548,6 +601,13 @@ coordinator refuses a second start; `--resume` is allowed only after a
 genuine interruption (start record present, report and marker absent): the
 task file is reused, finished tasks are kept, unfinished claims are
 dropped, and every resume is recorded. Nothing else may be rerun.
+Erratum 01: each resume is appended to `logs/v19/prospective_resumes.jsonl`
+when it happens and the report carries them all; a resume is refused while
+any recorded coordinator or worker process is alive; claims are written
+atomically; a row line that does not parse counts its task as missing; and
+when a worker exits abnormally with rows missing the coordinator writes
+`logs/v19/prospective_interrupted.json` and stops without a report or
+marker, so the run stays resumable.
 
 ## 17. Claim ceiling
 
@@ -557,14 +617,30 @@ dropped, and every resume is recorded. Nothing else may be rerun.
   reasoner K*' = K* + K*-4 with the leave-one-out proposal rebuilt inside
   every fold, the selection stays failure-specific against the transplant
   and blind controls, and the end-to-end witness rate clears the frozen
-  threshold without a measured safety cost. That is LEVEL 2 on the claim
-  ladder for the synthetic domain.
+  threshold while precision over certified outputs, its non-inferiority
+  and the marginal precision of the added outputs hold. That is LEVEL 2 on
+  the claim ladder for the synthetic domain, limited to tasks where every
+  key of the extension has at least two witnesses in each run. A positive
+  outcome shows that the pipeline is stable under the held-out checks; it
+  does not show that the engine discriminates installed extensions, and
+  K*-4 has a measured cost (section 15a). (Erratum 01 deleted the words
+  "without a measured safety cost".)
+- Corpus arithmetic (erratum 01). The corpus law admits a task only if the
+  target's scoped fit re-derives every training pair under leave-one-out,
+  which forces every target key to be witnessed by at least three of the
+  seven pairs. K* needs at least three witnesses among the six pairs of an
+  adaptive fold (four among the seven when the fold holds out a witness);
+  K*' needs two among six, exactly what the corpus guarantees. Much of the
+  fitting-clause gain is therefore fixed by construction on this corpus.
+  Development, by the smallest witness count of e's keys on the seven
+  pairs: 3 in 11 tasks (adaptive leave-one-out K* 0 of 11, K*' 9 of 11);
+  4 or more in 19 tasks (12 of 19 against 17 of 19). The strata are
+  reported prospectively.
 - K*-4 is an engine-side rule for installed extensions; it adds no
   vocabulary, and the extension remains a composition of K's own blocks.
-- Under K*' the engine accepts every verified, leave-one-out-stable
-  installed extension; with scarce demonstrations it accepts a wrong one as
-  readily as a right one (section 15a), as the old logic, at a third of the
-  rate, also did. Correctness of an accepted extension rests on the
+- Under K*' the engine accepted every installed extension it was given;
+  with four demonstrations that included every wrong one (section 15a), and
+  no discrimination was detected in either logic. Correctness of an accepted extension rests on the
   proposer's selection and on the held-out and adaptive leave-one-out
   checks. This is the central caveat for real ARC tasks (two to five
   demonstrations) and must shape the real ARC pilot's protocol.
@@ -587,3 +663,18 @@ dropped, and every resume is recorded. Nothing else may be rerun.
   defects fixed by recorded erratum and re-frozen; STOP. The prospective
   test runs once, in the next session. The real ARC pilot, the 1,000
   training tasks and the protected 120 stay blocked.
+
+## 19. Erratum 01 (after the one review)
+
+The one adversarial review (`records/ITEM2_V19_REVIEW_RESULT.md`, verdict
+BLOCKING_DEFECTS: 1 blocking, 2 major, 9 minor) was answered by
+`records/ITEM2_V19_ERRATUM_01.md` before any prospective data. Text:
+sections 14, 15a, 16 and 17 corrected as marked; the module paths named in
+section 4 (pre-frozen, left unchanged) are now `cora_v19/`. Gate: the
+marginal-precision rule added to G4; no-regression on seven-pair runs
+refined; pairing mismatches and witness strata reported and verified.
+Mechanics: protocol hash checked by `freeze_problems()`, reported controls
+exception-safe, crash and resume handling, and the verifier's count of the
+P leg for rows selected but not compiled. No development measurement was
+repeated and no threshold of G1, G2 or G3 changed.
+

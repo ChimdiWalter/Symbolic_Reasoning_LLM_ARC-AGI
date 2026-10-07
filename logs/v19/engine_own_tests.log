@@ -1,0 +1,19 @@
+== engine's own tests, excluding test_segmentation_features.py (reads ARC training data) and
+   test_round9_delta_certificates.py (imports scripts/meta_m3_delta_certificates.py, absent since a44d262)
+E       AssertionError: (<FailureStage.LOO: 'loo'>, LOOReport(folds=3, passed=2, failed_pair_indices=[2], divergence=[{'fold': 2, 'fold_progra...))': 9}}}, 'cells_wrong': 6, 'shape_mismatch': False, 'pred_shape': [5, 4], 'expected_shape': [5, 4], 'error': None}]))
+FAILED geocat_arc/object_reasoning/tests/test_correspondence.py::test_delta_json_round_trip_on_all_dev_pairs
+FAILED geocat_arc/object_reasoning/tests/test_round2_primitives.py::TestEndToEnd::test_mirror_reversal_accepted_with_loo
+FAILED geocat_arc/object_reasoning/tests/test_round5_in_set.py::test_induce_value_set_selector_task
+FAILED geocat_arc/object_reasoning/tests/test_stage2_composition.py::TestCompositionInduction::test_two_pass_task_solved_composed
+FAILED geocat_arc/object_reasoning/tests/test_stage2_composition.py::TestCompositionInduction::test_stage_provenance_recorded
+FAILED geocat_arc/object_reasoning/tests/test_stage2_composition.py::TestCompositionInduction::test_no_ranker_ablation_still_solves
+FAILED geocat_arc/object_reasoning/tests/test_stage2_composition.py::TestCompositionInduction::test_certificate_records_composition_depth
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestMotion05f2a901::test_non_lossy_exact_rerender_every_pair
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestMotion05f2a901::test_deltas_are_one_translate_one_keep
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestRecolor0a2355a6::test_non_lossy_exact_rerender_every_pair
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestRecolor0a2355a6::test_all_deltas_recolor_in_place
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestCopyMulticolor88a10436::test_non_lossy_exact_rerender_every_pair
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestCopyMulticolor88a10436::test_one_to_many_copy_plus_marker_delete
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestCopyMulticolor88a10436::test_lossy_alternative_still_returned_and_ordered_last
+7 failed, 340 passed, 7 errors in 841.40s (0:14:01)
+== done 2026-10-07T17:34:02Z

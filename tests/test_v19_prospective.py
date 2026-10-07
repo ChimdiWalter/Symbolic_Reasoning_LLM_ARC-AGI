@@ -150,3 +150,64 @@ def test_low_volume_perfect_precision_is_not_unsafe(thresholds):
     out, g = PR.outcome(rows, [], 30, 0)
     assert g["G4_safety"]["checks"]["precision_floor"] and out == "REPAIR_NOT_MATERIAL"
 
+
+
+# erratum 01
+def test_marginal_precision_gate(thresholds):
+    rows = [_row(i, lo=True) for i in range(30)]               # old: everything certified and correct
+    for r in rows:
+        r["loo_old"]["folds"] = [{"class": "LOO_FAILURE", "accepted": False, "heldout_exact": False}] * 7
+        r["loo_old"]["passed"] = False
+    for i in range(4):                                          # 4 added wrong vs 210 added correct - 4
+        rows[i]["loo_new"]["folds"] = [{"class": "LOO_FAILURE", "accepted": True, "heldout_exact": False}] + \
+            [{"class": "SUCCESS", "accepted": True, "heldout_exact": True}] * 6
+    g = PR.outcome(rows, [], 30, 0)[1]["G4_safety"]
+    assert g["precision"]["added_wrong"] == 4 and g["checks"]["marginal_precision"]   # 4 <= 0.05 x 206
+    for i in range(4, 12):                                      # 12 added wrong vs 198 added correct
+        rows[i]["loo_new"]["folds"] = [{"class": "LOO_FAILURE", "accepted": True, "heldout_exact": False}] + \
+            [{"class": "SUCCESS", "accepted": True, "heldout_exact": True}] * 6
+    g = PR.outcome(rows, [], 30, 0)[1]["G4_safety"]
+    assert not g["checks"]["marginal_precision"]                # 12 > 0.05 x 198
+
+
+def test_correct_switch_from_a_native_winner_is_not_a_regression(thresholds):
+    rows = [_row(i) for i in range(30)]
+    rows[0]["old"]["uses"] = False                              # K*'s winner was native
+    rows[0]["new_with"]["program_sha"] = "different"            # K*' picks e, still exact
+    g = PR.outcome(rows, [], 30, 0)[1]["G4_safety"]
+    assert g["checks"]["no_regression_full"]
+    rows[0]["old"]["uses"] = True                               # same switch when K* used e: a regression
+    assert not PR.outcome(rows, [], 30, 0)[1]["G4_safety"]["checks"]["no_regression_full"]
+
+
+def test_pairing_mismatches_counted(thresholds):
+    rows = [_row(i) for i in range(30)]
+    rows[2]["loo_new"]["folds"] = [dict(f, selected="other") for f in rows[2]["loo_new"]["folds"]]
+    assert PR.outcome(rows, [], 30, 0)[1]["G3_loo_stability"]["pairing_mismatches"] == 7
+
+
+def test_read_rows_tolerates_a_truncated_line(tmp_path, monkeypatch):
+    monkeypatch.setattr(PR, "ROWS", str(tmp_path / "rows.jsonl"))
+    with open(PR.ROWS, "w") as fh:
+        fh.write('{"i": 0}\n{"i": 1}\n{"i": 2, "arms": {"FAILU')
+    rows, bad = PR.read_rows(report_unparsable=True)
+    assert [r["i"] for r in rows] == [0, 1] and bad == 1
+
+
+def test_claims_written_atomically(tmp_path, monkeypatch):
+    monkeypatch.setattr(PR, "CLAIMS", str(tmp_path / "claims.json"))
+    monkeypatch.setattr(PR, "LOCK", str(tmp_path / "lock"))
+    assert [PR.claim(3) for _ in range(4)] == [0, 1, 2, None]
+    assert not os.path.exists(PR.CLAIMS + ".tmp")
+
+
+def test_wrong_extension_failure_is_recorded_not_raised(monkeypatch):
+    def boom(*a, **k):
+        raise RuntimeError("proposer limit")
+    monkeypatch.setattr(PR.P, "Semantics", boom)
+    out, failure = PR.wrong_extensions([], None, "cx", {})
+    assert out == [] and failure == "RuntimeError"
+
+
+def test_pid_alive():
+    assert PR.pid_alive(os.getpid()) and not PR.pid_alive(None)

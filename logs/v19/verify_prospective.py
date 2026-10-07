@@ -66,7 +66,18 @@ leak = sum(1 for r in ok for a in r["arms"].values() if a["class"] == "LEAKAGE_F
 checks["no_leakage"] = leak == 0 and report["leakage"] == 0
 checks["marker_equals_outcome"] = marker == report["outcome"]
 checks["manifest_in_report"] = report["manifest_sha256"] == sha(PR.MANIFEST) == start["manifest_sha256"]
-checks["resume_record_consistent"] = isinstance(report.get("resumes"), list)
+#  erratum 01: resumes are logged when they happen; the report must carry them all
+_rlog = [json.loads(x) for x in open(PR.RESUME_LOG) if x.strip()] if os.path.exists(PR.RESUME_LOG) else []
+checks["resume_record_consistent"] = report.get("resumes") == _rlog
+checks["workers_exited_cleanly"] = all(code == 0 for code in report.get("worker_exit_codes", []))
+_rows_raw, _bad = [], 0
+for _line in open(PR.ROWS):
+    if _line.strip():
+        try:
+            json.loads(_line)
+        except ValueError:
+            _bad += 1
+checks["unparsable_lines_equal"] = report.get("unparsable_lines") == _bad
 
 
 # 4. recomputation
@@ -84,8 +95,10 @@ recomputed["G1"] = g1
 
 
 def legs(r, which):
-    if r["arms"]["FAILURE_CONDITIONED"]["class"] != "SELECTED" or "old" not in r:
+    if r["arms"]["FAILURE_CONDITIONED"]["class"] != "SELECTED":
         return None
+    if "old" not in r:                       # selected but not compiled: P only (erratum 01)
+        return {"B": False, "P": True, "U": False, "L": False, "T": False, "A": False}
     a_leg = not (r["baseline_3x"]["accepted"] and r["baseline_3x"]["heldout_exact"])
     if which == "new":
         return {"B": r["new_alone"]["accepted"] is False, "P": True, "U": bool(r["new_with"].get("uses")),
@@ -105,18 +118,24 @@ recomputed["complete_new"], recomputed["complete_old"] = complete_new, complete_
 recomputed["legs_new"] = {k: sum(1 for x in wn if x and x[k]) for k in "BPULTA"}
 checks["witness_rows_match"] = all(
     (x is None and not r["witness_new"].get("complete")) or
-    (x is not None and all(x[k] == r["witness_new"][k] for k in "BPULTA") and all(x.values()) == r["witness_new"]["complete"])
+    (x is not None and all(x[k] == bool(r["witness_new"].get(k, False)) for k in "BPULTA")
+     and all(x.values()) == r["witness_new"]["complete"])
     for x, r in zip(wn, ok))
 b = sum(1 for r in ok if r.get("loo_new", {}).get("passed") and not r.get("loo_old", {}).get("passed"))
 c = sum(1 for r in ok if r.get("loo_old", {}).get("passed") and not r.get("loo_new", {}).get("passed"))
-g3 = {"new_only": b, "old_only": c, "p": sign_p(b, c), "pass": b - c >= PR.DELTA_MIN and sign_p(b, c) < 0.05}
+g3 = {"new_only": b, "old_only": c, "p": sign_p(b, c), "pass": b - c >= PR.DELTA_MIN and sign_p(b, c) < 0.05,
+      "pairing_mismatches": sum(1 for r in ok for fo, fn in zip(r.get("loo_old", {}).get("folds", []),
+                                                                r.get("loo_new", {}).get("folds", []))
+                                if fo.get("selected") != fn.get("selected")
+                                or fo.get("production") != fn.get("production"))}
 recomputed["G3"] = g3
 eng = [r for r in ok if "old" in r]
 s = {
     "inert": all(r["new_alone"]["accepted"] == r["old"]["without"]["accepted"]
                  and r["new_alone"]["program_sha"] == r["old"]["without"]["program_sha"] for r in eng),
     "no_regression_full": all(r["new_with"]["accepted"] and r["new_with"]["heldout_exact"]
-                              and r["new_with"]["program_sha"] == r["old"]["with"]["program_sha"]
+                              and (r["new_with"]["program_sha"] == r["old"]["with"]["program_sha"]
+                                   if r["old"]["uses"] else True)
                               for r in eng if r["old"]["with"]["accepted"] and r["old"]["with"]["heldout_exact"]),
     "no_regression_folds": all(n["class"] == "SUCCESS" for r in eng
                                for o, n in zip(r["loo_old"]["folds"], r["loo_new"]["folds"]) if o["class"] == "SUCCESS"),
@@ -140,6 +159,9 @@ for side, fk, lk in (("old", "old", "loo_old"), ("new", "new_with", "loo_new")):
                   "wilson_lower": _wilson(k, len(acc))}
 s["precision_floor"] = prec["new"]["precision"] >= PR.PRECISION_FLOOR
 s["precision_noninferior"] = prec["new"]["precision"] >= prec["old"]["precision"] - PR.PRECISION_MARGIN
+_dc = prec["new"]["correct"] - prec["old"]["correct"]
+_dw = (prec["new"]["certified"] - prec["new"]["correct"]) - (prec["old"]["certified"] - prec["old"]["correct"])
+s["marginal_precision"] = _dw <= 0 or _dw <= PR.MARGINAL_RATIO * max(_dc, 0)
 recomputed["precision"] = prec
 recomputed["G4"] = s
 tr = [t for r in ok for t in r.get("reduced", {}).get("trials", [])]
@@ -168,7 +190,20 @@ checks["G2_equal"] = gates.get("G2_witnesses_new", {}).get("complete") == comple
     gates.get("G2_witnesses_new", {}).get("pass") == G2 and \
     gates.get("G2_witnesses_new", {}).get("complete_old") == complete_old
 checks["G3_equal"] = gates.get("G3_loo_stability", {}).get("new_only") == b and \
-    gates.get("G3_loo_stability", {}).get("old_only") == c and gates.get("G3_loo_stability", {}).get("pass") == G3
+    gates.get("G3_loo_stability", {}).get("old_only") == c and gates.get("G3_loo_stability", {}).get("pass") == G3 and \
+    gates.get("G3_loo_stability", {}).get("pairing_mismatches") == g3["pairing_mismatches"]
+_strata = {}
+for r in ok:
+    mk = r.get("min_key_witnesses")
+    key = "unknown" if not isinstance(mk, int) else ("3" if mk == 3 else (">=4" if mk >= 4 else f"{mk}"))
+    o = _strata.setdefault(key, {"tasks": 0, "witnesses_new": 0, "witnesses_old": 0,
+                                 "loo_new_passed": 0, "loo_old_passed": 0})
+    o["tasks"] += 1
+    o["witnesses_new"] += bool(r.get("witness_new", {}).get("complete"))
+    o["witnesses_old"] += bool(r.get("witness_old", {}).get("complete"))
+    o["loo_new_passed"] += bool(r.get("loo_new", {}).get("passed"))
+    o["loo_old_passed"] += bool(r.get("loo_old", {}).get("passed"))
+checks["strata_equal"] = report["supplementary"].get("witness_strata") == _strata
 checks["G4_equal"] = gates.get("G4_safety", {}).get("checks") == s and gates.get("G4_safety", {}).get("pass") == G4
 checks["precision_equal"] = all(gates.get("G4_safety", {}).get("precision", {}).get(side, {}).get(k) == prec[side][k]
                                 for side in ("old", "new") for k in ("certified", "correct"))

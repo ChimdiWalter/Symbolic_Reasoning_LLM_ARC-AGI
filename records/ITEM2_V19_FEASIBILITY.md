@@ -37,11 +37,14 @@ uses the v1.8 prospective witness count only as a rate to beat.
 ## G4 (safety), from protocol section 15a
 
 K*' precision over certified outputs at least 0.95 and at least K*'s minus
-0.02 (development: 236 of 238 and 159 of 160); inertness on decisions; no
+0.02 (development: 236 of 238 and 159 of 160); marginal precision of the
+added outputs at least 0.95, that is added wrong at most 0.05 times added
+correct (erratum 01; development 1 against 77); inertness on decisions; no
 regression of old-accepted runs or folds; replay, attribution and
-restoration on every accepted run. Its risk: one or two extra wrong
-certified folds do not move precision appreciably at about 230 certified
-outputs; about 12 wrong certified outputs would break the floor.
+restoration on every accepted run. Tolerance: at about 238 certified
+outputs the floor and the non-inferiority margin alone allow up to 6 wrong
+certified outputs (K* had 1); the marginal rule allows about 3 added wrong
+at development volume.
 
 ## Runtime
 

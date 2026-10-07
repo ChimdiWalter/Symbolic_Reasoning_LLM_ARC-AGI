@@ -139,9 +139,17 @@ effect is in its own development ablation, not in this projection.
   extension fits under the fitter's own rules; a pixel rule outranks it).
 - Supplementary development measurements (protocol section 15a): with seven
   demonstrations no wrong verified extension exists on these 30 tasks; with
-  four, the engine's own leave-one-out gate does not discriminate right
-  from wrong installed extensions in any logic (K* accepts 8 of 24 right and
-  6 of 19 wrong; K*' 24 of 24 and 19 of 19; each clause alone raises both).
-  The old rejections diagnosed here were therefore indiscriminate: they cost
-  recall and bought no measured safety against wrong extensions. They are
-  still the rejections that blocked v1.8.
+  four, no discrimination between right and wrong installed extensions
+  was detected in any logic (K* accepts 8 of 24 right and 6 of 19 wrong;
+  K*' 24 of 24 and 19 of 19; each clause alone raises both). The trials are
+  few and clustered by task (the wrong ones come from 9 tasks), so this is
+  "no discrimination detected", not proof of none (erratum 01). The old
+  rejections diagnosed here are still the rejections that blocked v1.8.
+- Edge cases of the labels (erratum 01, review finding 11): `census()` does
+  not apply the fitter's coverage and hidden-key rules, and the fitter
+  checks blocks in order, so a SLOT_FIT_FAILED:witness can hide a later
+  block's hidden-key refusal; permissive_predicts (and so H1) could then be
+  true where a one-witness fitter would still refuse. `reason_codes` would
+  also assign fold-level concept codes in a run where only native programs
+  fit at the top level. Neither occurred here: K*' accepted 210 of 210
+  same-e folds, so no fold the census called identified was refused.

@@ -34,6 +34,8 @@ IMPLEMENTATION = (
     "outputs/tti/v19_clause_safety_dev_report.json",
     "logs/v19/verify_prospective.py",
     "tests/test_v19_audit.py", "tests/test_v19_repair.py", "tests/test_v19_prospective.py",
+    "tests/test_v19_verifier.py", "records/ITEM2_V19_REVIEW_REQUEST.md", "records/ITEM2_V19_REVIEW_RESULT.md",
+    "records/ITEM2_V19_ERRATUM_01.md",
     "cora_arc2026/v18_proposer.py", "cora_arc2026/v17_compiler.py", "cora_arc2026/v14_loc.py",
     "scripts/v18_corpus.py", "scripts/v18_prospective.py",
     "outputs/tti/v18_frozen_d.json", "outputs/tti/no_oracle_proposer_v18_manifest.json",

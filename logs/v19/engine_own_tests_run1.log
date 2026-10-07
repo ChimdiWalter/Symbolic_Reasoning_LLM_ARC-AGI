@@ -1,0 +1,11 @@
+== engine's own tests, excluding test_segmentation_features.py (reads ARC training data) and
+   test_round9_delta_certificates.py (imports scripts/meta_m3_delta_certificates.py, absent since a44d262)
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestMotion05f2a901::test_non_lossy_exact_rerender_every_pair
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestMotion05f2a901::test_deltas_are_one_translate_one_keep
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestRecolor0a2355a6::test_non_lossy_exact_rerender_every_pair
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestRecolor0a2355a6::test_all_deltas_recolor_in_place
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestCopyMulticolor88a10436::test_non_lossy_exact_rerender_every_pair
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestCopyMulticolor88a10436::test_one_to_many_copy_plus_marker_delete
+ERROR geocat_arc/object_reasoning/tests/test_correspondence.py::TestCopyMulticolor88a10436::test_lossy_alternative_still_returned_and_ordered_last
+7 failed, 340 passed, 7 errors in 861.22s (0:14:21)
+== done 2026-10-07T00:44:37Z

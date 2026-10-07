@@ -74,10 +74,13 @@ Rows: `outputs/tti/v19_falseaccept_dev_rows.jsonl`,
 `outputs/tti/v19_clause_safety_dev_rows.jsonl` (each script committed
 before it ran: 8c668f8, 6924756).
 
-Reading: under four demonstrations the engine's own gate does not
-discriminate right from wrong installed extensions in any logic. The old
-logic accepts about a third of each; K*' accepts every verified,
-leave-one-out-stable installed extension. In the system's own pipeline
+Reading (corrected by erratum 01): under four demonstrations no
+discrimination between right and wrong installed extensions was detected in
+any logic (43 trials over 30 tasks, the 19 wrong ones from 9 tasks,
+decisions clustered by task; K* difference 0.018, Newcombe 95 percent
+interval -0.25 to +0.28). The old logic accepts about a third of each; K*'
+accepted every installed extension it was given (491 of 491 across all v1.9
+measurements, including 19 of 19 wrong four-pair trials). In the system's own pipeline
 (the proposer's selection, six and seven pairs) wrong certified outputs
 are rare in both logics: adaptive leave-one-out folds certified with a
 wrong held-out prediction, K* 1 of 133 certified (task 17 fold 3, accepted
@@ -85,10 +88,16 @@ by both), K*' 2 of 208 (also task 18 fold 0, a D selection the old logic
 happened to reject). Precision over all certified outputs: K* 159 of 160,
 K*' 236 of 238.
 
-Consequence for the prospective gate (protocol sections 15a and 16): the
-safety gate is precision over everything K*' certifies (at least 0.95,
-and at most 0.02 below K*), with every count of wrong certified outputs
-reported; the four-pair control runs prospectively and is reported with
+Consequence for the prospective gate (protocol sections 15a and 16). As
+committed before this result (4af2bd1), G4 was strict counts (K*' wrong
+certified outputs not above K*'s at three levels) with inertness on events;
+on this development data it would have returned REPAIR_UNSAFE (2 against 1
+wrong certified folds, one event mismatch). It was then replaced (df851c7)
+by precision over everything K*' certifies (at least 0.95, and at most
+0.02 below K*), chosen with these values known, which alone tolerates up to
+6 wrong certified outputs at this volume; erratum 01 adds the
+marginal-precision rule (added wrong at most 0.05 times added correct:
+here 1 against 77). Every count of wrong certified outputs is reported; the four-pair control runs prospectively and is reported with
 its pre-registered expectation, not gated. For real ARC tasks (two to five
 demonstrations) this means K*' will certify whatever verified,
 leave-one-out-stable extension the proposer installs; correctness rests on
@@ -111,7 +120,11 @@ at 1e5937e, both with the modules under `cora_arc2026/`.
   210 same-e folds accepted against 134), more than doubles complete
   witnesses (26 against 12) and adaptive leave-one-out passes (26 against
   12), changes no old-accepted program, keeps K* alone's decisions, and
-  keeps precision over certified outputs at 0.99.
+  keeps precision over certified outputs at 0.99. It does so by lowering
+  the evidence requirement for installed extensions (three witnesses per
+  key to two) and letting no native candidate displace them; on this corpus
+  every target key has at least three witnesses by construction, so much of
+  the fitting gain is arithmetic (protocol section 17; erratum 01).
 - Not shown: anything prospective; anything on real ARC data; that the
   engine can discriminate wrong installed extensions (it cannot, in either
   logic, when demonstrations are scarce).
