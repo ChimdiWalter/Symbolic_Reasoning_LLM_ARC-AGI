@@ -199,6 +199,16 @@ pilot, no ARC-1000, no eval splits, no push.
   Checkpoint 23:14Z: 11 of 60 rows (about 0.6 per minute, finish near
   00:35Z); rows are appended atomically per task, so nothing is lost on
   interruption.
+  Interim reading at 23 of 60 (analysis only, mechanism NOT chosen yet):
+  DE_LOO 12, A_REPRESENTATION 7 (matching 6), NATIVE_CERTIFIED 3, B 1.
+  The DE_LOO "exact fits" are memorizations: one rule per object, selector
+  on an object-specific literal (shape hash, colour), action GROW in the
+  constant `pattern` fallback mode (added cells as fixed offsets); folds
+  lose the rule witnessed by the held-out pair. Candidate mechanism (to be
+  decided on the full census): construct a relational growth form from the
+  memorized per-object (object, added cells, scene) examples. Caveat: the
+  census STRUCT/PARAM split is wrong for reduction programs (string table
+  keys are not masked); recompute that split from census_programs.
 - Concurrency note: commit f5edd91 (census.py summaries) came from another
   session (not deltos-e7, e-a7, deltos-e1 or deltos-52; likely deltos-6c);
   kept; sessions asked to stand down.
