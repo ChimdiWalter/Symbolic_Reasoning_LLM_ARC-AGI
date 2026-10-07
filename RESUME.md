@@ -179,6 +179,23 @@ hidden answer may be read to supply one.
 
 ## Next action, exactly one
 
+**REAL ARC PILOT v1 DESIGN RESUMED (2026-10-07, after the user's "go
+ahead").** Committed so far: selection 4d3c29b (548 in scope, dev 60,
+candidates n3 356 / n4 109 / n5p 23); protocol draft + modules f47c795
+(docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md; cora_pilot/{bundle,isolation,
+native,reasoner,evaluator}.py; scripts/pilot_v1_{select,run,evaluate}.py);
+tests, freeze script, verifier next commit. DEVELOPMENT DRY RUN running
+detached since ~20:40Z: coordinator pid 2192450 (`setsid nohup
+.venv_arc2026/bin/python scripts/pilot_v1_run.py dev`), outputs
+outputs/pilot_v1_dev/, logs logs/pilot_v1_dev/ (reasoner only, never
+scored). If it died: `rm -rf outputs/pilot_v1_dev logs/pilot_v1_dev` and
+relaunch the same command. Next: read dev rows (path classes, timing,
+isolation logs), write records/REAL_ARC_PILOT_V1_FEASIBILITY.md, apply the
+section-12 rule (READY needs >= 1 dev task at the installed stage; N from
+activations), `scripts/pilot_v1_select.py pilot N`, a short smoke on the
+final code, fill protocol sections 12 and 17, `scripts/freeze_pilot_v1.py`,
+commit, ledger, memory, return list. DO NOT run the pilot in this block.
+
 **2026-10-07 mapping / manuscript / GitHub request: DONE.** Map of the four
 trees in `docs/PROJECT_MAP.md`; `docs/PAPER_SKELETON.md` updated to the v1.9
 state (abstract, contributions, 3.2, 4, 5, 9.3, 11, 12, appendices A to C,
