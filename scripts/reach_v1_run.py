@@ -29,7 +29,7 @@ LOG = os.path.join(HERE, "logs", "reach_v1")
 WORKERS = 4
 PHASE_WALL_CAP_S = 6 * 3600
 MAX_RESUMES = 2
-PHASES = {"census": {"native_env": True}}
+PHASES = {"census": {"native_env": True}, "instances": {"native_env": True}}
 
 
 def rows_path(phase, limit):
@@ -83,6 +83,7 @@ def worker(phase, wid, limit):
         from harness.run_harness import _set_worker_env
         _set_worker_env()
     from cora_reach import census as C
+    from cora_reach import instances as INST
     tasks = json.load(open(BUNDLE))["tasks"]
     keys = sorted(tasks)[:limit] if limit else sorted(tasks)
     rows = rows_path(phase, limit)
@@ -102,8 +103,12 @@ def worker(phase, wid, limit):
                 break
             t0 = time.time()
             try:
-                row = C.run_census(key, tasks[key], os.path.join(OUT, "native_engine"),
-                                   os.path.join(OUT, "census_programs"))
+                if phase == "census":
+                    row = C.run_census(key, tasks[key], os.path.join(OUT, "native_engine"),
+                                       os.path.join(OUT, "census_programs"))
+                else:
+                    row = INST.run_instances(key, tasks[key], os.path.join(OUT, "native_engine_instances"),
+                                             os.path.join(OUT, "instances"))
             except Exception as exc:                            # noqa: BLE001
                 row = {"key": key, "error": f"{type(exc).__name__}: {exc}"[:500],
                        "traceback": traceback.format_exc()[-3000:], "diagnosis": {"class": "RUN_ERROR"}}
@@ -175,7 +180,7 @@ def coordinator(phase, resume, limit):
     if PHASES[phase]["native_env"]:
         sys.path.insert(0, HERE)
         from cora_pilot import native as N
-        N.prepare_object_dir(os.path.join(OUT, "native_engine"))
+        N.prepare_object_dir(os.path.join(OUT, "native_engine" if phase == "census" else "native_engine_instances"))
     procs = []
     for w in range(WORKERS):
         log = open(os.path.join(LOG, f"worker_{phase}_{limit}_{w}.log"), "ab")
