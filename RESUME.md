@@ -217,9 +217,21 @@ pilot, no ARC-1000, no eval splits, no push.
 - Concurrency note: commit f5edd91 (census.py summaries) came from another
   session (not deltos-e7, e-a7, deltos-e1 or deltos-52; likely deltos-6c);
   kept; sessions asked to stand down.
-- Next: `scripts/reach_v1_census_summary.py`, choose ONE mechanism by the
-  protocol rule, compiler contract check, bridge, measure on 60, readiness
-  recheck, records, return list.
+- CENSUS DONE (records/REACH_V1_CENSUS_20261008.md, 277766e): DE_LOO 27
+  (51 of 62 reference rules = constant grow `pattern` memorizations),
+  representation 21, certified 6. SELECTED MECHANISM: growth-relation
+  construction from the memorized instances (bridge = context-scoped
+  overlay on correspondence.detect_grow + actions.apply_grow; geocat_arc
+  unchanged).
+- Tagged instance extraction (phase instances2) RUNNING since ~00:40Z:
+  coordinator pid in logs/reach_v1/instances2_0_start.json, checkpointer
+  running; resume `scripts/reach_v1_run.py instances2 --resume`. The
+  untagged phase `instances` was stopped by exact pid and superseded (rows
+  kept; logs/reach_v1/instances_0_stopped.json).
+- Next: `REACH_INSTANCES_DIR=instances2 scripts/reach_v1_grammar_coverage.py`
+  -> fix the grammar (smallest family set) + limits in the protocol, build
+  the bridge (cora_reach/bridge.py) + tests, measurement phase on 60 with
+  adaptive LOO and controls, readiness recheck, records, return list.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
