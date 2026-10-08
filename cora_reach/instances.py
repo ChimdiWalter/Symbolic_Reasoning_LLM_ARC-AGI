@@ -21,20 +21,32 @@ import numpy as np
 
 @contextlib.contextmanager
 def observed():
+    """Record pattern-fallback calls, tagged with the segmentation variant
+    whose correspondences the inducer is building
+    (inducer.enumerate_labeled_tables(seg, ...)), or None outside it."""
     import geocat_arc.object_reasoning.correspondence as CO
-    orig = CO.detect_grow
-    seen = []
+    import geocat_arc.object_reasoning.inducer as I
+    orig, orig_ev = CO.detect_grow, I.enumerate_labeled_tables
+    seen, cur = [], {"v": None}
 
     def detect_grow(in_cc, out_cc, bounds, grid=None):
         res = orig(in_cc, out_cc, bounds, grid)
         if res is not None and res.get("mode") == "pattern":
-            seen.append((in_cc, out_cc, bounds, grid))
+            seen.append((in_cc, out_cc, bounds, grid, cur["v"]))
         return res
-    CO.detect_grow = detect_grow
+
+    def enumerate_labeled_tables(seg, *args, **kwargs):
+        prev = cur["v"]
+        cur["v"] = getattr(getattr(seg, "variant", None), "value", None)
+        try:
+            yield from orig_ev(seg, *args, **kwargs)
+        finally:
+            cur["v"] = prev
+    CO.detect_grow, I.enumerate_labeled_tables = detect_grow, enumerate_labeled_tables
     try:
         yield seen
     finally:
-        CO.detect_grow = orig
+        CO.detect_grow, I.enumerate_labeled_tables = orig, orig_ev
 
 
 def _grid_list(grid):
@@ -65,13 +77,13 @@ def extract(train_pairs, obj_dir, budget_s=90.0):
     inputs = {hashlib.sha256(json.dumps(np.asarray(a).astype(int).tolist()).encode()).hexdigest(): d
               for d, (a, _b) in enumerate(train_pairs)}
     uniq = {}
-    for in_cc, out_cc, bounds, grid in seen:
-        key = (tuple(sorted(in_cc.items())), tuple(sorted(out_cc.items())))
+    for in_cc, out_cc, bounds, grid, variant in seen:
+        key = (variant, tuple(sorted(in_cc.items())), tuple(sorted(out_cc.items())))
         if key in uniq:
             continue
         g = _grid_list(grid)
         gh = hashlib.sha256(json.dumps(g).encode()).hexdigest() if g is not None else None
-        uniq[key] = {"in": _cells(in_cc), "out": _cells(out_cc), "bounds": list(bounds),
+        uniq[key] = {"variant": variant, "in": _cells(in_cc), "out": _cells(out_cc), "bounds": list(bounds),
                      "demo": inputs.get(gh), "grid": g}
     return ind, list(uniq.values())
 
@@ -87,6 +99,7 @@ def run_instances(key, task, obj_root, out_dir):
         json.dump({"instances": inst}, handle)
     demos = sorted({i["demo"] for i in inst if i["demo"] is not None})
     return {"key": key, "seconds": round(time.time() - t0, 2), "instances": len(inst),
+            "variants": sorted({str(i["variant"]) for i in inst}),
             "demos_with_instances": demos, "n_train": len(train),
             "failure_stage": getattr(ind.failure_stage, "value", None), "accepted": bool(ind.accepted),
             "added_sizes": sorted(len(i["out"]) - len(i["in"]) for i in inst)[:40]}

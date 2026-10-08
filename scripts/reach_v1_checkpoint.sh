@@ -8,7 +8,7 @@ PHASE=${1:-census}
 COORD=${2:-3382121}
 case $PHASE in
   census) EXTRA="outputs/reach_v1/census_programs" ;;
-  instances) EXTRA="outputs/reach_v1/instances" ;;
+  instances|instances2) EXTRA="outputs/reach_v1/$PHASE" ;;
   *) EXTRA="" ;;
 esac
 FILES="outputs/reach_v1/${PHASE}_rows.jsonl $EXTRA logs/reach_v1/${PHASE}_0_start.json"
