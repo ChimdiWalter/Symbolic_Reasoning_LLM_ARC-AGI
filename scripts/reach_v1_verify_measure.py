@@ -102,10 +102,13 @@ def main():
     need(not os.path.exists(os.path.join(LOG, "measure_0_resumes.jsonl")), "the run was resumed")
     boot_now = open("/proc/sys/kernel/random/boot_id").read().strip()
     notes.append(f"boot id at start {start['boot_id']}, at verification {boot_now}")
-    record = json.load(open(os.path.join(LOG, "measure_0_record.json")))
+    rec_path = os.path.join(LOG, "measure_0_record.json")
+    record = json.load(open(rec_path)) if os.path.exists(rec_path) else None
     need(os.path.exists(os.path.join(LOG, "MEASURE_0_DONE")), "no completion marker")
-    need(record["missing"] == [] and all(c == 0 for c in record["exit_codes"]),
-         f"coordinator record: missing {record['missing']}, exit codes {record['exit_codes']}")
+    need(record is not None, "no coordinator record")
+    if record is not None:
+        need(record["missing"] == [] and all(c == 0 for c in record["exit_codes"]),
+             f"coordinator record: missing {record['missing']}, exit codes {record['exit_codes']}")
 
     # ---------------------------------------------------------- rows
     bundle = json.load(open(os.path.join(HERE, "records", "pilot_v1", "dev_bundle.json")))["tasks"]
