@@ -291,6 +291,10 @@ pilot, no ARC-1000, no eval splits, no push.
     adds the invention rung (S separation + F controls fail). Freeze steps
     if READY: write section 12 (a, N) from the record, `pilot_v2_select.py N`,
     `freeze_pilot_v2.py`, commit; then STOP.
+  - Run status 2026-10-11T21:03Z (administrative): 55 of 60 rows (committed
+    90c116e at 20:53:49Z), 59 claimed, coordinator and workers alive, worker
+    logs empty, no marker yet; load about 58 to 72. The remaining tasks are
+    the failure-conditioned ones (full gates, leave-one-out and controls).
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
