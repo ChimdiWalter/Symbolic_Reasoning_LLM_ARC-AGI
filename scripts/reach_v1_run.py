@@ -3,6 +3,9 @@
   python scripts/reach_v1_run.py census            native failure census, all 60 dev tasks
   python scripts/reach_v1_run.py census --resume   only after a genuine interruption
   python scripts/reach_v1_run.py census --limit K  engineering smoke on the first K keys
+  python scripts/reach_v1_run.py measure           the mechanism and its controls, run ONCE
+                                                   (protocol section 5.1; refuses unless the
+                                                   freeze manifest matches)
   python scripts/reach_v1_run.py --worker PHASE WID LIMIT   (spawned by the coordinator)
 
 One coordinator (single-writer lock), at most four workers, single-threaded
@@ -29,7 +32,9 @@ LOG = os.path.join(HERE, "logs", "reach_v1")
 WORKERS = 4
 PHASE_WALL_CAP_S = 6 * 3600
 MAX_RESUMES = 2
-PHASES = {"census": {"native_env": True}, "instances": {"native_env": True}, "instances2": {"native_env": True}}
+PHASES = {"census": {"native_env": True}, "instances": {"native_env": True}, "instances2": {"native_env": True},
+          "measure": {"native_env": True}}
+MANIFEST = os.path.join(OUT, "measure_manifest.json")
 
 
 def rows_path(phase, limit):
@@ -84,8 +89,16 @@ def worker(phase, wid, limit):
         _set_worker_env()
     from cora_reach import census as C
     from cora_reach import instances as INST
+    from cora_reach import measure as M
     tasks = json.load(open(BUNDLE))["tasks"]
     keys = sorted(tasks)[:limit] if limit else sorted(tasks)
+    if phase == "measure":
+        problems = M.freeze_problems(HERE, MANIFEST)
+        if problems:
+            raise SystemExit(f"measure: freeze check failed: {problems}")
+        dirs = M.engine_dirs(os.path.join(OUT, "measure_engine"))
+        everyone = sorted(tasks)
+        seconds = {k: r.get("seconds") for k, r in read_rows(rows_path("instances2", 0)).items()}
     rows = rows_path(phase, limit)
     claims = os.path.join(LOG, f"{phase}_claims_{limit}.json")
     lock = os.path.join(LOG, "rows.lock")
@@ -106,6 +119,11 @@ def worker(phase, wid, limit):
                 if phase == "census":
                     row = C.run_census(key, tasks[key], os.path.join(OUT, "native_engine"),
                                        os.path.join(OUT, "census_programs"))
+                elif phase == "measure":
+                    row = M.run_task(key, tasks[key], {
+                        "dirs": dirs, "instances_dir": os.path.join(OUT, "instances2"),
+                        "donor": everyone[(everyone.index(key) + 1) % len(everyone)],
+                        "extract_seconds": seconds.get(key)})
                 else:
                     row = INST.run_instances(key, tasks[key], os.path.join(OUT, "native_engine_instances"),
                                              os.path.join(OUT, phase))
@@ -153,6 +171,12 @@ def coordinator(phase, resume, limit):
     marker = os.path.join(LOG, f"{phase.upper()}_{limit}_DONE")
     if os.path.exists(marker):
         raise SystemExit("this phase already finished")
+    if phase == "measure":                       # before any start record is written
+        sys.path.insert(0, HERE)
+        from cora_reach import measure as M
+        problems = M.freeze_problems(HERE, MANIFEST)
+        if problems:
+            raise SystemExit(f"measure: freeze check failed: {problems}")
     if os.path.exists(start) and not resume:
         raise SystemExit("start record exists: --resume only after a genuine interruption")
     if resume:
@@ -177,7 +201,9 @@ def coordinator(phase, resume, limit):
     #  claims restart from the finished rows
     write_atomic(os.path.join(LOG, f"{phase}_claims_{limit}.json"),
                  {"claimed": sorted(read_rows(rows_path(phase, limit)))})
-    if PHASES[phase]["native_env"]:
+    if phase == "measure":
+        M.engine_dirs(os.path.join(OUT, "measure_engine"))
+    elif PHASES[phase]["native_env"]:
         sys.path.insert(0, HERE)
         from cora_pilot import native as N
         N.prepare_object_dir(os.path.join(OUT, "native_engine" if phase == "census" else "native_engine_instances"))

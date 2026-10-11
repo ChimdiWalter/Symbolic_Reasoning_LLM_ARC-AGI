@@ -159,10 +159,104 @@ Support: where the existing region-key support rule applies it is kept; if
 the new representation makes it inapplicable, an explicit support contract
 is written as a prospective protocol change, never a vacuous pass.
 
+### 5.1 Measurement policy (written 2026-10-11, before the measurement run)
+
+Code `cora_reach/measure.py`, coordinator phase `measure` of
+`scripts/reach_v1_run.py`. Frozen by `outputs/reach_v1/measure_manifest.json`
+(sha256 of the implementation, this protocol, the harness object layer and
+hard-cap code, the native assets, the isolation hook and the bundle; tree
+digests of geocat_arc and of the instances2 evidence); the coordinator and
+every worker re-check it before they start and refuse on any difference.
+Run ONCE on all 60 development tasks, 4 workers, every worker under the
+isolation hook; rows `outputs/reach_v1/measure_rows.jsonl`, committed by the
+detached checkpointer. No smoke on development keys: engineering checks use
+synthetic fixtures only (`tests/test_reach_measure.py`).
+
+Reasoner. K = the harness object layer (`run_object_task`, budget 90 s, hard
+cap 450 s) with nothing installed; K + e = the same call inside
+`bridge.installed(e)`. The engine's memo caches are cleared before every
+run; every arm has its own engine directory. The full-task construction
+reads the task's committed instances2 file (sha256 in the row); every
+leave-one-out fold rebuilds its evidence from scratch.
+
+Per task, in this order:
+1. Constructions (no engine). FAILURE_CONDITIONED (FC):
+   `construct.propose` on the task's memorized instances.
+   DEMONSTRATION_ONLY: the same grammar and limits on the demonstrations
+   alone, with no trace of the reasoner (objects = 8-connected
+   non-background components; a setting is proposed when no input cell
+   changes and, on every demonstration, the union of its added cells over
+   all objects is exactly the set of input-background cells the output
+   fills, with at least 2 demonstrations adding cells). SHUFFLED_FAILURE:
+   `construct.propose` on the instances of the next key in sorted order
+   (cyclic).
+2. When any construction proposes: KALONE (K); then each control's first
+   proposal installed in the same reasoner (no leave-one-out).
+3. When FC proposes, the pilot's gates in its frozen order, every gate
+   recorded even after an earlier failure:
+   - compile: canonical serialization and reload agree (`growth_ext.load`);
+   - accepted: K + e accepts (its unchanged gate: train-exact and
+     leave-one-out by re-induction);
+   - uses: the winning program has a GROW action in e's mode;
+   - replay: the serialized program reproduces every demonstration;
+   - attribution: direct execution of the serialized program equals the
+     engine on every test input;
+   - prediction: a prediction exists for every test input;
+   - determinism: a second K + e run gives the same acceptance, program
+     digest and predictions;
+   - loo: adaptive leave-one-out on every fold: the held-out demonstration
+     removed first, then identity-frame extraction, construction,
+     selection, compilation, installation and K + e from scratch; a fold
+     succeeds when K + e accepts, the winner uses the fold's extension and
+     the held-out output is exact (v1.8 `real_loo`);
+   - unanimity: every other member of the FC pool, executed in the accepted
+     program in place of e (installed alone), predicts the committed output
+     on every test input;
+   - support: GROWTH SUPPORT CONTRACT, the prospective replacement of the
+     region-key rule, which does not apply to growth relations: on every
+     test input e adds at least one cell, and every rule that applies e on
+     a test input applied e, adding cells, in at least 2 demonstrations.
+   Then REMOVED (K after the loop) and MATCHED_COMPUTE (K at budget
+   clamp(instances2 extraction + construction + first K + e seconds, 90,
+   270); bounded: the frames allowance is not scaled and the
+   leave-one-out's cost is not charged).
+4. Separation, invariant condition 4, bounded: not a renaming (the engine's
+   own detect_grow, nothing installed, falls back to `pattern` on every
+   instance e explains); not a cache (e's body holds only scalar
+   parameters); not a composition within these bounds (KALONE and
+   MATCHED_COMPUTE both accept nothing).
+
+Classes: NO_PROPOSAL when FC proposes nothing; COMPILER_FAILURE stops the
+task at compile; otherwise the class of the first failing gate, ACTIVATED
+when none fails. Integrity per task: engine state restored; REMOVED equal
+to KALONE in acceptance, program and predictions (reported; the engine is
+deadline-bound). Reported over the 60 tasks: the progression (usable
+trace, candidate, type check, exact demonstration fit, compile, install,
+engine acceptance, use, adaptive leave-one-out, activation) against the
+saved 0 / 0 / 0 (ce123e8), every gate, the controls, the separation legs
+and the compute of every arm.
+
+Claim ceiling. A task where conditions 1 to 5 all hold (1: KALONE fails; 2:
+an FC proposal built from the memorized-instance failure trace; 3: compile
+and install; 4: separation; 5: adaptive leave-one-out) is a development
+candidate for the pilot, not an invented capability: conditions 6 to 8
+(independently scored unseen target, causal necessity on it,
+failure-conditioning evidence) need the prospective pilot, and the
+controls here are descriptive. A score change here is engineering. Host
+load is recorded on every run (2026-10-11: about 69 on 24 cores, Step B's 20
+workers and other jobs); the engine's budgets are wall-clock, so absolute
+acceptance depends on load; the arms of one task run back to back in one
+worker.
+
 ## 6. Readiness recheck
 
 The recorded rule of `docs/CORA_REAL_ARC_CAUSAL_PILOT_v1.md` section 12,
 unchanged: no isolation problem, no RUN_ERROR, native readiness tasks
 complete, at least one development task at the compiled-and-installed
 stage. Reported separately: leave-one-out successes, activations,
-abstentions, usable traces, runtime and cost.
+abstentions, usable traces, runtime and cost. For this mechanism the
+compiled-and-installed stage is: an FC proposal whose canonical form
+reloads (compile) and that was installed in the reasoner, run and removed
+with the engine state restored (install). Computed by
+`scripts/reach_v1_measure_summary.py`, which also re-derives every path
+class from its gates and audits every isolation log.
