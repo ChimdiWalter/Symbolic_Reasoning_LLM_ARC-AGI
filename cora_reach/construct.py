@@ -20,9 +20,11 @@ import numpy as np
 from cora_reach import growth_ext as GE
 from cora_reach import relations as REL
 
-#: frozen before the measurement run (protocol section 4): set by the
-#: grammar decision; None = every family in relations.FAMILIES
-GRAMMAR = None
+#: frozen before the measurement run (protocol section 4.1, 2026-10-11): the
+#: full grammar of relations.FAMILIES, named so that a later family cannot
+#: enter it silently
+GRAMMAR = ("window_fill", "empty_square", "bbox_fill", "bbox_ring", "band", "dilate", "connect",
+           "copies_bbox", "copies_offset")
 MAX_PROPOSALS = 8
 SUPPORT_DEMOS = 2
 MAX_INSTANCES = 64

@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-07. Current: real ARC causal pilot v1 designed and built but NOT FROZEN: blocker = proposer reach on real tasks (0 of 60 development tasks reach a verified proposal); v1.9 stays LEVEL 2 synthetic; next = user decision (see "Next action").
+Last updated 2026-10-11. Current: real-task reach v1 block (development, 60 dev tasks): census, mechanism, instances2, bridge, grammar decision DONE; next = measurement phase (see "Next action"). Real ARC causal pilot v1 still NOT FROZEN (blocker = proposer reach); v1.9 stays LEVEL 2 synthetic.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -228,10 +228,21 @@ pilot, no ARC-1000, no eval splits, no push.
   running; resume `scripts/reach_v1_run.py instances2 --resume`. The
   untagged phase `instances` was stopped by exact pid and superseded (rows
   kept; logs/reach_v1/instances_0_stopped.json).
-- Next: `REACH_INSTANCES_DIR=instances2 scripts/reach_v1_grammar_coverage.py`
-  -> fix the grammar (smallest family set) + limits in the protocol, build
-  the bridge (cora_reach/bridge.py) + tests, measurement phase on 60 with
-  adaptive LOO and controls, readiness recheck, records, return list.
+- instances2 DONE 2026-10-08T01:21Z (60 of 60 rows; 352 instances in 31
+  tasks; c0898b8). Bridge DONE (c44e6b2, 8 tests).
+- GRAMMAR COVERAGE + DECISION DONE 2026-10-11 (protocol section 4.1): on the
+  complete instances2 the coverage script explains 5 tasks (connect 2,
+  bbox_fill 2, window_fill 1, band 1, dilate 1); the mechanism's own rule
+  (all instances of a variant, one colour, >= 2 demonstrations) proposes on
+  4 tasks, one proposal each (window_fill k=3; connect x2, same extension;
+  bbox_fill). FROZEN: the full nine-family grammar (210 settings), named in
+  `construct.GRAMMAR`; the smallest covering set gives the same full-task
+  proposals and is not adopted (it would only ease folds and controls,
+  selected on these tasks). Limits written into section 4.1.
+- Next: measurement phase (`cora_reach/measure.py`, coordinator phase
+  `measure`, protocol section 5.1, freeze manifest, synthetic tests), run
+  ONCE detached on all 60 with adaptive LOO and controls; readiness
+  recheck; record; return list.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,

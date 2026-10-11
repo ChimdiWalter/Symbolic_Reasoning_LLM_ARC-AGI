@@ -91,6 +91,51 @@ this file before the mechanism's measurement run. No task-specific branch,
 no answer, no task id, no lookup table of outputs, no unrelated operator
 families.
 
+### 4.1 Frozen grammar and limits (decided 2026-10-11, before the measurement run)
+
+Evidence. Grammar coverage on the complete tagged extraction (instances2,
+60 of 60 rows, 352 instances in 31 tasks; `outputs/reach_v1/grammar_coverage.json`):
+5 tasks are explained by one setting under the coverage script's colour
+rules (connect 2, bbox_fill 2, window_fill 1, band 1, dilate 1). The
+mechanism's own rule (`cora_reach.construct.propose`: one setting
+reproduces every memorized instance of one segmentation variant exactly,
+one colour per instance, instances from at least two demonstrations)
+proposes on 4 tasks, one proposal each: window_fill k=3 on one task,
+connect on two (the same extension `gx_b05acfb6c5f87326`), bbox_fill on
+one. The 2026-10-07 reading (6 tasks, taken before the extraction
+finished) is superseded.
+
+Grammar. The full grammar of `cora_reach.relations` as committed at
+c44e6b2: nine families, 210 settings. window_fill k in {2,3,4,5};
+empty_square k in {2,3,4,5}; bbox_fill; bbox_ring; band axis in {rows,
+cols, cross}; dilate m in {1,2,3,4}; connect; copies_bbox (8 directions x
+gap {0,1} x until_border); copies_offset ((dr, dc) in [-4,4]^2 without
+(0,0), x until_border). The smallest family set that covers the 4 tasks,
+{bbox_fill, connect, window_fill}, gives exactly the same full-task
+proposals; restricting the grammar to it would only remove alternatives
+inside leave-one-out folds and controls, a choice selected on these 60
+tasks, so it is not adopted. No family was added after the coverage
+measurement. Disclosed: the families are human-designed generic machinery
+written after the census; empty_square was added after a 6-task coverage
+smoke (02fbf9f). `construct.GRAMMAR` names the nine families explicitly.
+
+Limits (`cora_reach.construct`, `cora_reach.measure`):
+- at most 8 proposals per construction; at most 64 instances per
+  segmentation variant; support: instances from at least 2 distinct
+  demonstrations; at most 210 settings per variant, variants in order of
+  instance count (descending) then name, settings in grammar order;
+  duplicates removed by extension name; selection = the first proposal;
+  exactly one extension installed per run;
+- program size: the extension body is a family and at most 4 scalar
+  parameters from the finite domains, no cell literal; copies stop after
+  30 steps; background colour 0 (a stated limitation);
+- wall time: the identity-frame instance extraction keeps its budget (90 s)
+  under a hard cap of 450 s; every object-layer run is the harness object
+  layer (`harness.object_layer.run_object_task`, budget 90 s) under the
+  harness hard cap budget + 15 + 7 x 45 + 30 = 450 s; the matched-compute
+  run uses budget clamp(extraction + construction + with-e seconds, 90,
+  270) with hard cap budget + 360 s; phase wall cap 6 h; 4 workers.
+
 ## 5. Step 3: bridge and measurement
 
 The compiler contract is checked explicitly; v1.7 is not edited. If the
