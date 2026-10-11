@@ -91,12 +91,23 @@ def test_freeze_detects_a_change(tmp_path):
     assert M.freeze_problems(HERE, str(tmp_path / "missing.json")) == ["no manifest"]
 
 
+def _engine_env():
+    from cora_pilot.native import CHAIN_FLAGS
+    env = {k: v for k, v in os.environ.items() if not k.startswith("ARC_")}
+    env.update(CHAIN_FLAGS)
+    env.update(ARC_DIHEDRAL_FRAMES="2", PYTHONHASHSEED="0", PYTHONDONTWRITEBYTECODE="1",
+               PYTHONPATH=os.pathsep.join([HERE, os.path.join(HERE, "src"), TTI]))
+    return env
+
+
 @pytest.mark.engine
-def test_run_task_end_to_end_on_a_synthetic_task(tmp_path):
+def test_run_task_rejection_path_on_a_copy_task(tmp_path):
     """Every arm of the fixed policy runs on a synthetic copy task (each
     shape copied one gap to its right) with hand-written memorized instances,
     in a fresh process: gates, leave-one-out, pool, controls, separation and
-    restoration are all recorded, and the engine state is untouched after."""
+    restoration are all recorded, and the engine state is untouched after.
+    (The engine sees the copy as a separate object, so this exercises the
+    rejection paths.)"""
     code = r'''
 import json, os, sys, numpy as np
 sys.path.insert(0, %(here)r)
@@ -127,13 +138,8 @@ row = M.run_task("ksyn", task, ctx)
 json.dumps(row)
 print(json.dumps({"row": row, "restored_after": BR.restored(saved) and BR.originals() == saved}, default=str))
 ''' % {"here": HERE, "tmp": str(tmp_path)}
-    from cora_pilot.native import CHAIN_FLAGS
-    env = {k: v for k, v in os.environ.items() if not k.startswith("ARC_")}
-    env.update(CHAIN_FLAGS)
-    env.update(ARC_DIHEDRAL_FRAMES="2", PYTHONHASHSEED="0", PYTHONDONTWRITEBYTECODE="1",
-               PYTHONPATH=os.pathsep.join([HERE, os.path.join(HERE, "src"), TTI]))
-    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, timeout=1500, env=env,
-                       cwd=HERE)
+    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, timeout=1500,
+                       env=_engine_env(), cwd=HERE)
     assert r.returncode == 0, r.stderr[-3000:]
     out = json.loads(r.stdout.strip().splitlines()[-1])
     row = out["row"]
@@ -156,5 +162,70 @@ print(json.dumps({"row": row, "restored_after": BR.restored(saved) and BR.origin
         assert row["gates"]["replay"] and row["gates"]["attribution"], w
         assert "support" in w and len(w["support"]["e_cells_per_test"]) == 1
         assert row["pool"]["others"] is not None and len(row["pool"]["others"]) == row["pool"]["size"] - 1
+    failed = [cls for gate, cls in M.GATES if not row["gates"][gate]]
+    assert row["path_class"] == (failed[0] if failed else "ACTIVATED")
+
+
+@pytest.mark.engine
+def test_run_task_accepted_path_on_a_band_task(tmp_path):
+    """The accepted path end to end on the bridge test's synthetic task (each
+    object's rows filled with its colour): the evidence is the engine's own
+    extraction, the unchanged gate accepts a program using e, replay,
+    attribution and the growth support contract are evaluated inside the
+    bridge, every fold rebuilds its own extension; and pool substitution
+    executes a second member in the accepted program."""
+    code = r'''
+import json, os, sys, numpy as np
+sys.path.insert(0, %(here)r)
+from cora_reach import bridge as BR, growth_ext as GE, instances as INST, measure as M
+M.MATCHED_MIN_S, M.MATCHED_MAX_S = 10.0, 20.0
+shapes = [{(1,4):3,(2,4):3}, {(3,6):4,(3,7):4,(4,7):4}, {(2,2):2}, {(4,9):6,(5,9):6}]
+train = []
+for sh in shapes:
+    g = np.zeros((7, 12), dtype=int)
+    for (r, c), v in sh.items(): g[r, c] = v
+    o = g.copy()
+    col = next(iter(sh.values()))
+    for r in {r for r, _ in sh}:
+        for c in range(12):
+            if o[r, c] == 0: o[r, c] = col
+    train.append((g, o))
+t = np.zeros((7, 12), dtype=int); t[1, 3] = 5; t[1, 4] = 5; t[5, 8] = 5
+task = {"train": [{"input": a.tolist(), "output": b.tolist()} for a, b in train], "test": [{"input": t.tolist()}]}
+idir = os.path.join(%(tmp)r, "instances"); os.makedirs(idir, exist_ok=True)
+dirs = M.engine_dirs(os.path.join(%(tmp)r, "engine"))
+_ind, inst = INST.extract(train, dirs["extract"], budget_s=20.0)
+json.dump({"instances": inst}, open(os.path.join(idir, "kband.json"), "w"))
+saved = BR.originals()
+row = M.run_task("kband", task, {"dirs": dirs, "instances_dir": idir, "donor": "kdonor", "extract_seconds": 0.0,
+                                 "budget_s": 20.0})
+e = row["extension"]
+run, prog = M.object_run("kband_pool", train, [t], dirs["fc"], ext=e, budget_s=20.0)
+cross = GE.make("band", {"axis": "cross"})
+others = M.pool_predictions(prog, e, [{"ext": e}, {"ext": cross}], [t]) if prog else None
+print(json.dumps({"row": row, "others": others, "run_predictions": run["predictions"],
+                  "restored_after": BR.restored(saved) and BR.originals() == saved}, default=str))
+''' % {"here": HERE, "tmp": str(tmp_path)}
+    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, timeout=1500,
+                       env=_engine_env(), cwd=HERE)
+    assert r.returncode == 0, r.stderr[-3000:]
+    out = json.loads(r.stdout.strip().splitlines()[-1])
+    row, w = out["row"], out["row"]["with_e"]
+    assert out["restored_after"] and row["restored"]
+    assert row["fc"]["proposals"][0]["family"] == "band"
+    assert w["accepted"] and w["uses"], w                          # as in test_reach_bridge
+    assert row["gates"]["replay"] and row["gates"]["attribution"] and row["gates"]["prediction"]
+    sup = w["support"]
+    assert sup["e_cells_per_test"][0] > 0 and sup["e_rules"] >= 1
+    assert row["gates"]["support"] == sup["ok"]
+    assert len(row["loo"]["folds"]) == 4
+    assert all(f["class"] in ("SUCCESS", "LOO_FAILURE", "NO_PROPOSAL", "RESOURCE_EXHAUSTED")
+               for f in row["loo"]["folds"])
+    assert row["separation"]["non_renaming"] and row["separation"]["non_caching"]
+    others = out["others"]
+    assert others is not None and [m["family"] for m in others] == ["band"] and others[0]["params"] == {
+        "axis": "cross"}
+    assert others[0]["predictions"][0] is not None
+    assert others[0]["predictions"] != out["run_predictions"]      # cross also fills columns
     failed = [cls for gate, cls in M.GATES if not row["gates"][gate]]
     assert row["path_class"] == (failed[0] if failed else "ACTIVATED")

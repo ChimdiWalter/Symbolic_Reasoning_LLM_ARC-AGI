@@ -239,10 +239,24 @@ pilot, no ARC-1000, no eval splits, no push.
   `construct.GRAMMAR`; the smallest covering set gives the same full-task
   proposals and is not adopted (it would only ease folds and controls,
   selected on these tasks). Limits written into section 4.1.
-- Next: measurement phase (`cora_reach/measure.py`, coordinator phase
-  `measure`, protocol section 5.1, freeze manifest, synthetic tests), run
-  ONCE detached on all 60 with adaptive LOO and controls; readiness
-  recheck; record; return list.
+- MEASUREMENT BUILT 2026-10-11 (343dcb9): `cora_reach/measure.py` (fixed
+  per-task policy, pilot gates in frozen order, adaptive LOO rebuilt from
+  scratch per fold, DEMO_ONLY + SHUFFLED_FAILURE controls, REMOVED +
+  MATCHED_COMPUTE, bounded separation = condition 4, growth support
+  contract), coordinator phase `measure` (refuses unless
+  `outputs/reach_v1/measure_manifest.json` matches), summary/verifier
+  `scripts/reach_v1_measure_summary.py`, freeze `scripts/freeze_reach_measure.py`,
+  protocol section 5.1 + section 6 installed-stage definition, tests
+  `tests/test_reach_measure.py` (5 unit pass; 1 synthetic engine test).
+- Next: engine test pass -> commit -> freeze manifest -> commit -> launch
+  ONCE detached: `setsid nohup .venv_arc2026/bin/python
+  scripts/reach_v1_run.py measure > logs/reach_v1/coordinator_measure.log
+  2>&1 < /dev/null &`, then `setsid nohup bash scripts/reach_v1_checkpoint.sh
+  measure <coordinator pid> > /dev/null 2>&1 &`; after the marker
+  `logs/reach_v1/MEASURE_0_DONE`: `.venv_arc2026/bin/python
+  scripts/reach_v1_measure_summary.py`, record, readiness recheck, return list.
+  If interrupted: `scripts/reach_v1_run.py measure --resume` (2 max; refuses
+  while a recorded worker lives); relaunch the checkpointer.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
