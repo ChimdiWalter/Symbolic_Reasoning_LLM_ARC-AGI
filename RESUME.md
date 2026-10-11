@@ -248,15 +248,25 @@ pilot, no ARC-1000, no eval splits, no push.
   `scripts/reach_v1_measure_summary.py`, freeze `scripts/freeze_reach_measure.py`,
   protocol section 5.1 + section 6 installed-stage definition, tests
   `tests/test_reach_measure.py` (5 unit pass; 1 synthetic engine test).
-- Next: engine test pass -> commit -> freeze manifest -> commit -> launch
-  ONCE detached: `setsid nohup .venv_arc2026/bin/python
-  scripts/reach_v1_run.py measure > logs/reach_v1/coordinator_measure.log
-  2>&1 < /dev/null &`, then `setsid nohup bash scripts/reach_v1_checkpoint.sh
-  measure <coordinator pid> > /dev/null 2>&1 &`; after the marker
-  `logs/reach_v1/MEASURE_0_DONE`: `.venv_arc2026/bin/python
-  scripts/reach_v1_measure_summary.py`, record, readiness recheck, return list.
-  If interrupted: `scripts/reach_v1_run.py measure --resume` (2 max; refuses
-  while a recorded worker lives); relaunch the checkpointer.
+- Tests: 15 reach tests pass (4da98f6), incl. the accepted path on the
+  synthetic band task (ACTIVATED, 4/4 rebuilt folds) and the rejection
+  path on a synthetic copy task. FROZEN c8d8e3a
+  (`outputs/reach_v1/measure_manifest.json`, head 4da98f6, 0 problems).
+- MEASUREMENT RUNNING detached since 2026-10-11T20:23:11Z (run ONCE):
+  coordinator pid 328950 (pgid 328950, boot 5c543236), workers 329132-329135
+  (`logs/reach_v1/measure_0_workers.json`), checkpointer pid 329650
+  (`scripts/reach_v1_checkpoint.sh measure 328950`, commits
+  `outputs/reach_v1/measure_rows.jsonl` every 15 min and at the end). Load
+  about 66 on 24 cores at launch. Expected about 2 to 3 h (4 FC tasks:
+  k017955a77fc5, k5991e227189e, k5a49896251a2, kf892487f1049).
+  Administrative monitoring only (row count, marker, pids).
+  If interrupted (no `logs/reach_v1/MEASURE_0_DONE`, no live recorded pid):
+  `setsid nohup .venv_arc2026/bin/python scripts/reach_v1_run.py measure
+  --resume > logs/reach_v1/coordinator_measure.log 2>&1 < /dev/null &`
+  (2 resumes max), then relaunch the checkpointer with the new coordinator
+  pid. After the marker: `.venv_arc2026/bin/python
+  scripts/reach_v1_measure_summary.py`, record
+  `records/REACH_V1_MEASURE_20261011.md`, readiness recheck, return list.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
