@@ -267,6 +267,30 @@ pilot, no ARC-1000, no eval splits, no push.
   pid. After the marker: `.venv_arc2026/bin/python
   scripts/reach_v1_measure_summary.py`, record
   `records/REACH_V1_MEASURE_20261011.md`, readiness recheck, return list.
+- USER DIRECTIVE 2026-10-11 "REACH v1 MEASUREMENT COMPLETION AND REAL-PILOT
+  READINESS" (received at HEAD 5fe9c26): recover and verify, let the run
+  finish, verify independently, report the A-N funnel, apply the unchanged
+  readiness rule; CASE A (READY) = record + freeze the development result,
+  then design AND FREEZE a versioned successor pilot and STOP before running
+  it; CASE B = record the blocker, request a development decision. No AI
+  co-author trailers; no push.
+  - Step 1 verified 20:31Z: manifest 2e567bce (committed c8d8e3a, 0 freeze
+    problems), boot id unchanged, coordinator 328950 and the 4 workers alive
+    with their recorded start ticks, 45 rows unique, 0 RUN_ERROR, worker
+    logs empty, checkpointer alive.
+  - Independent terminal verifier `scripts/reach_v1_verify_measure.py`
+    (dab575d, dc459f8), written before the outcome was read; dry run on 45
+    rows: only the expected in-progress problems. Run it with the workers'
+    environment (chain flags, PYTHONHASHSEED=0) after the marker.
+  - Successor DRAFTED (9643cd4, NOT FROZEN, before the outcome was read):
+    `docs/CORA_REAL_ARC_GROWTH_PILOT_v2.md`, `cora_pilot2/`,
+    `scripts/pilot_v2_{select,run,evaluate,verify,watch}`,
+    `scripts/freeze_pilot_v2.py`, `tests/test_pilot_v2.py` (6 pass). It
+    reuses `cora_reach.measure.run_task` unchanged, pilot v1's selection,
+    bundle format, isolation, native entry, deployable rule and ladder, and
+    adds the invention rung (S separation + F controls fail). Freeze steps
+    if READY: write section 12 (a, N) from the record, `pilot_v2_select.py N`,
+    `freeze_pilot_v2.py`, commit; then STOP.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,
