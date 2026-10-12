@@ -426,7 +426,7 @@
   },
   {
    "id": "real_task_loo_stability_v1",
-   "status": "IN_PROGRESS: DIAGNOSIS COMPLETE AND FROZEN 2026-10-12 (records/LOO_V1_DIAGNOSIS_20261012.md) + REPRESENTATION-ELIGIBILITY ADDENDUM 2026-10-12 (records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md, a719383): mechanism proven at predicate level (eligibility monotone in the demonstrations; the 4-variant cap cuts the strictly coarser S6 that the engine's own fold-convergence rule relies on); variant-first repairs harmful on synthetic negative controls (168 paired runs, 0 gains, 6 harmful); P2 LOO-anchored variant completion PROPOSED, NOT AUTHORIZED (screen predicted to fail)",
+   "status": "IN_PROGRESS (diagnosis and design only): diagnosis c2b8cd4; addendum a719383; Clarification 01 c2fa2ae (count consistency deletion-stable, complete eligibility NOT monotone: 7/724 development losses via coverage; P2 FORENSIC only); equivalence census 7d11993 (duplicate views fill the cap on kf892487f1049 (0,2)/(1,3); fold-local dedup P3 would admit S6; broad: 277/522 subsets, 4/6 native successes); P3 DESIGNED, NOT EXECUTED; reach v2 recheck STOPPED, not to resume",
    "protocol": "docs/CORA_REAL_TASK_LOO_STABILITY_v1.md",
    "preserved": "reach v1 (c8d8e3a, rows 60ddd04) and pilot v2 (c1906ee, manifest c93ec1db, FROZEN_NOT_RUN) unchanged; new code only outside every pinned tree (cora_loo/)",
    "diagnosis": {
@@ -469,7 +469,17 @@
      "P1_global_completion": "exposed on 73 of 96 synthetic subsets: rejected without a run",
      "P2_anchored_completion": "exposed on at most 3 of 72 synthetic folds; on kf892487f1049 exactly the failing inner folds"
     },
-    "proposal": "P2 LOO-anchored variant completion: NOT AUTHORIZED; predictions, criteria S1-S3 + E1 and kill rule in addendum section 7"
+    "proposal": "P2: FORENSIC only, cannot satisfy the independent inner-LOO certificate; never executed",
+    "clarification_01": {
+     "record": "records/LOO_V1_DIAGNOSIS_ADDENDUM_CLARIFICATION_01.md",
+     "commit": "c2fa2ae"
+    },
+    "equivalence_census": {
+     "record": "records/LOO_V1_SEGMENTATION_EQUIVALENCE_20261012.md",
+     "output_commit": "7d11993",
+     "sha256": "90c2a3254bff068902d87115054b2e42ed21e40f517ec6e8443ebec8ff1f0ba0",
+     "P3_fold_local_dedup": "DESIGNED, NOT EXECUTED; requires explicit authorization"
+    }
    }
   }
  ],

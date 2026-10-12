@@ -56,7 +56,7 @@ native engine's representation admission: on some two-demonstration subsets,
 finer segmentation views become eligible and fill a fixed four-view search
 cap, cutting the view that holds the correct program. The obvious repair,
 forcing a view to be searched first, was harmful on synthetic negative
-controls (no gains, six harmful changes in 168 paired runs) and was not run.
+controls (on 24 tasks it gained none and harmed five) and was not run.
 A 120-task prospective pilot on real training tasks is frozen and has not
 been run. Durable semantic invention
 remains under independent evaluation in the frozen Step-B experiment, which
@@ -645,6 +645,23 @@ an aside.
 | cross-domain empirical transfer, U3 | not demonstrated; the one matched trial elsewhere reported no gain |
 | the capability-growth half in another domain | never instantiated |
 | transfer to biology, protein design or omics | not demonstrated, prospective only |
+
+### 3.11 A portable controller (BIOLOGICAL APPLICATION: UNTESTED)
+
+The hypothesis is that the controller transfers, not the ARC operators. The
+controller is the sequence: observe the failure, classify the limitation,
+choose the justified adaptation, construct only if expressivity is missing,
+verify independently, test causally, promote under a separate protocol. Its
+evidence and certificate interfaces would transfer with it.
+
+A second domain is proposed: biological perturbation response. It would need:
+- typed adapters for cell states, perturbations and donors;
+- failure diagnosis on training data only;
+- evaluation on held-out perturbations and cell states;
+- confounder controls.
+
+It would give predictive validation only. No biological data or result
+exists in this work, and no biological repository was accessed.
 
 ## 8.5 Corpus amendment required before the scorer can be fitted
 
@@ -1255,6 +1272,16 @@ four tasks; shuffled failure evidence is never accepted with the extension
 used. No task meets the invariant's conditions 1 to 5 together: the accepted
 extension fails condition 5, adaptive leave-one-out.
 
+Four kinds of novelty evidence are kept apart, because each needs its own
+test.
+
+| claim | status |
+|---|---|
+| (a) extension causality: K alone, the extension removed and matched compute accept nothing | development only; not certified |
+| (b) failure-trace information causality: demonstrations-only and shuffled failure evidence give no accepted, used extension | descriptive, 4 tasks |
+| (c) bounded semantic extension | not established |
+| (d) later retention and reuse | untested |
+
 ## 8.17 Why the accepted extension failed leave-one-out
 
 [DIAGNOSED 2026-10-12; development and synthetic; observation only; the
@@ -1286,10 +1313,15 @@ identifiability from a single demonstration (1); proposer ordering co-occurs
 in one. A first hypothesis, that the engine's cross-variant parsimony skip
 pruned S6, was refuted.
 
-The eligibility rule behaves as designed. Each consistency clause quantifies
-over demonstration pairs, so removing demonstrations can only add coherent
-variants. A static check found 0 losses in 122 parent-fold pairs, and
-additions in 36. What fails is an invariant the engine documents for itself:
+Count consistency, all three of its clauses, is deletion-stable: each clause
+is a per-pair condition or one parameter shared by all pairs, so a fold keeps
+every view whose consistency the parent had. The complete eligibility test is
+not monotone. Its pooled coverage can fall below 0.80 when a demonstration is
+removed, and across all 60 development tasks it did so in 7 of 724
+parent-fold comparisons, with consistency intact every time (Clarification 01;
+an earlier count of 0 losses covered only 122 comparisons). The mechanism
+here does not depend on coverage, which is 1.0 on every subset of
+kf892487f1049. What fails is an invariant the engine documents for itself:
 after a winner, strictly coarser variants are "still tried" so that an n-1
 fold "converges on the same variant the full train set picks". The cap is
 applied before that rule, to the fold's larger coherent set, and cuts the
@@ -1307,6 +1339,11 @@ acceptances, 15 rejected).
 | an eligible variant searched first | 131 (23) | 128 | 2 correct to rejected, 1 rejected to false acceptance | 0 |
 | an ineligible variant searched first and admitted | 37 (10) | 34 | 2 correct to rejected, 1 correct to false acceptance | 0 |
 
+At the task level, which is the honest denominator because the 168 runs are
+correlated comparisons on 24 tasks: no task gained, and 5 of 24 were harmed.
+Four of the 7 natively correct tasks lost their answer, and 1 natively rejected
+task became a false acceptance.
+
 Three mechanisms account for the harm:
 - A coarser variant searched first prunes the finer native candidates
   through the parsimony skip.
@@ -1319,11 +1356,23 @@ coarser rule reach every cut variant was also rejected without a run. A
 static count shows it would alter the search on 73 of 96 synthetic subsets,
 mostly through the proximity variant the engine keeps as a last resort.
 
-The one remaining candidate is narrow and not yet authorized. Inside the
-engine's own leave-one-out only, it appends the validated program's variant
-when a fold finds it coherent but the cap cuts it. It never reorders and
-never admits an incoherent view. Its static exposure is 3 of 72 synthetic
-folds and, on kf892487f1049, exactly the failing inner folds.
+A narrow candidate (P2) would append, inside the engine's own leave-one-out,
+the variant of the program under validation. The parent chose that variant
+with the fold's held-out demonstration. P2 would therefore test whether the
+program is stable given a representation selected with extra information.
+That is not independent re-induction, so P2 can only be a labelled forensic
+diagnostic, never a certificate. Every fold must select its representation
+from its own training demonstrations.
+
+A census of what the reasoner actually receives then showed genuine
+redundancy. Equivalence was judged on typed objects, the engine's
+correspondence alternatives and feature tables, not on object counts. On
+(0,2) and (1,3) the four searched views are only two distinct inputs: S2 and
+S5 duplicate S1. Deduplicating views from the fold's own demonstrations
+would admit S6. That correction is fold-local and certification-preserving
+by construction, but it is broad: it changes the search on 277 of 522
+development subsets and on 4 of 6 native successes. Its safety is
+untested and it is not authorized.
 
 Its pre-registered predictions do not rescue the screen. Three of the four
 outer folds would pass. The fourth still fails, because the proposer selects
@@ -1335,7 +1384,8 @@ semantic invention.
 The lesson is the paper's thesis in miniature. The failure looked like "the
 constructed capability does not generalize". It was a defect in which
 representations the existing search admits, and only typing the failure
-told the two apart.
+told the two apart. That typing was done by forensic analysis; CORA's
+general failure-type controller is proposed, not implemented.
 
 ## 9. Ablations and Failure Analysis
 
@@ -1404,9 +1454,12 @@ is a perception and correspondence limit rather than a language limit.
   on 4 of 60 development tasks, but no extension survived adaptive
   leave-one-out (0 of 14 folds) and nothing activated (section 8.16).
 - Forcing a segmentation variant to be searched first, eligible or not,
-  produced no gains and six harmful changes in 168 paired synthetic runs
-  (section 8.17). The built repair of that class was not run. The hypothesis
-  that the parsimony skip caused the real failure was refuted.
+  gained no task and harmed 5 of 24 synthetic tasks (6 of 168 correlated
+  runs; section 8.17). The built repair of that class was not run. The
+  hypothesis that the parsimony skip caused the real failure was refuted.
+- The complete eligibility test is not monotone in the demonstrations: 7 of
+  724 development parent-fold comparisons lose a view through pooled
+  coverage. An earlier statement of monotonicity rested on 122 comparisons.
 - The contrastive corpus (section 8.8) failed its identifiability gate: the
   failure summary told two close targets apart at 0.470 against an exact
   null of 0.429.
@@ -1492,6 +1545,8 @@ task-dependent semantic frontiers. That is not semantic invention.
   seen. They explain a failure; they do not test a fix. The synthetic
   negative controls have limited power (7 of 24 tasks natively correct), and
   their rule families are not ARC.
+- The view census of section 8.17 is static: it shows what deduplication
+  would search, not what it would solve.
 - The narrow correction of section 8.17 has not been run. Its own
   predictions leave every development task short of complete adaptive
   leave-one-out.
@@ -1618,7 +1673,7 @@ The full map of the four project trees, with every step and its record, is
 | Oct 2026 | real ARC pilot harness built; the frozen proposer reaches 0 of 60 real development tasks | pilot not frozen; proposer reach is the blocker |
 | Oct 2026 | reach v1: growth relations from the engine's own memorized failures (section 8.16) | 4 of 60 installed; 1 accepted and used; 0 of 14 LOO folds |
 | Oct 2026 | pilot v2 frozen on 120 untouched training tasks | not run |
-| Oct 2026 | leave-one-out diagnosis and synthetic negative controls (section 8.17) | representation admission in 11 of 14 folds; variant-first repair 0 gains, 6 harmful in 168 |
+| Oct 2026 | leave-one-out diagnosis and synthetic negative controls (section 8.17) | representation admission in 11 of 14 folds; variant-first repair: 0 of 24 tasks gained, 5 harmed |
 
 Tried and dropped, each with its recorded diagnosis: language-model hints and
 learned ranking policies, a world-model reranker, a vision probe, a small

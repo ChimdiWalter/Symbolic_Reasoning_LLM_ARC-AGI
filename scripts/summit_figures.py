@@ -1,17 +1,18 @@
-"""Figures for the ARC Prize Research Summit poster and the paper, drawn ONLY
-from sealed outputs (no generated pictures).
+"""Poster figures for the ARC Prize Research Summit (and the paper), drawn
+ONLY from recorded outputs whose sha256 is checked before anything is drawn
+(no generated pictures).
 
-  python scripts/summit_figures.py   -> docs/summit_poster/figures/*.png
+  python scripts/summit_figures.py   -> docs/summit_poster/figures/*.png + PROVENANCE.json
 
-Sources: outputs/reach_v1/measure_funnel.json (reach v1, frozen c8d8e3a),
-records/ITEM2_V19_PROSPECTIVE_RESULT_20261007.md (v1.9 synthetic, 27 and 12 of
-30), records/pilot_v1/dev_bundle.json (TRAINING demonstrations of one
-development task; no test output exists in it), outputs/loo_v1/probe_*.json
-(forensic probes) and outputs/loo_v1/probe_negative.json (synthetic negative
-controls, when present). Palette: the dataviz reference palette (validated
-blue/orange pair, neutral and status steps); ARC grids use the standard ARC
-colours, which are the data itself.
+Printed size: every figure is 9.50 in wide, the measured text width of one
+poster block (686.8 pt), and is placed at that width, so a 22 pt label prints
+at 22 pt on the A0 sheet. Text: 20 pt minimum, 22 pt labels, 24 pt values.
+The top line of each figure states its evidence tier and its denominator.
+Palette: the dataviz reference palette (validated blue/orange pair, neutral,
+status good/critical used only for outcomes and always labelled); ARC grids
+use the standard ARC colours, which are the data itself.
 """
+import hashlib
 import json
 import os
 import sys
@@ -24,16 +25,78 @@ from matplotlib.patches import FancyBboxPatch, Patch, Rectangle     # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIG = os.path.join(HERE, "docs", "summit_poster", "figures")
+W, DPI = 9.50, 200
+FS_MIN, FS_LAB, FS_VAL = 20, 22, 24
 INK, INK2, MUTED, GRID, BASE, SURF = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7", "#fcfcfb"
 BLUE, ORANGE, NEUTRAL = "#2a78d6", "#eb6834", "#f0efec"
 GOOD, CRITICAL = "#0ca30c", "#d03b3b"
 ARC = ["#000000", "#0074D9", "#FF4136", "#2ECC40", "#FFDC00", "#AAAAAA", "#F012BE", "#FF851B", "#7FDBFF", "#870C25"]
-plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11, "axes.edgecolor": BASE, "axes.labelcolor": INK2,
-                     "xtick.color": MUTED, "ytick.color": INK2, "axes.titlecolor": INK, "figure.facecolor": SURF,
-                     "axes.facecolor": SURF, "savefig.facecolor": SURF})
+plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": FS_LAB, "axes.edgecolor": BASE,
+                     "axes.labelcolor": INK2, "xtick.color": INK2, "ytick.color": INK, "xtick.labelsize": FS_MIN,
+                     "ytick.labelsize": FS_LAB, "figure.facecolor": SURF, "axes.facecolor": SURF,
+                     "savefig.facecolor": SURF})
+
+#: Every input, pinned. A mismatch stops the script before anything is drawn.
+SOURCES = {
+    "v19_report": ("outputs/tti/v19_prospective_report.json",
+                   "987ab9ea074ac82bf72cc70ac109168534c61693e813656e83880783c4ddaf6c"),
+    "v19_rows": ("outputs/tti/v19_prospective_rows.jsonl",
+                 "aad86def227a6c50e4d1c7e0e7e2819654385c40286e35102004bcf0985e8e48"),
+    "funnel": ("outputs/reach_v1/measure_funnel.json",
+               "77fbac13cbe2150ce007c5df85ff05c8ca40dbe674f3a63c18538c1510ae55a1"),
+    "dev_bundle": ("records/pilot_v1/dev_bundle.json",
+                   "6eb7323652115ab88d4a9013d3b2bd073661136fa429eeb7bbc97125a4702180"),
+    "eligibility": ("outputs/loo_v1/probe_eligibility.json",
+                    "922151e2bd4a527adc10a616eb373f29bd16f1ed134503beb5e54fae5682ae02"),
+    "probe_kf89": ("outputs/loo_v1/probe_kf892487f1049.json",
+                   "9bdff08ad451030d0c3247c59a6d6b1cd6bd6b7bf478448a3882da2666585828"),
+    "diagnose_rows": ("outputs/loo_v1/diagnose_rows.jsonl",
+                      "31ddf9af1db3c7224e42f61fd20b9c787c31b429465ba0bbec9bc7780eec60b6"),
+    "negative": ("outputs/loo_v1/probe_negative.json",
+                 "2f1003509235d3f397385172ed77d44b488572c1fd732a4d7669108d41ca1687"),
+}
+USED, DRAWN = {}, {}
 
 
-def _bar(ax, y, w, color, height=0.56):
+def _sha(path):
+    with open(path, "rb") as handle:
+        return hashlib.sha256(handle.read()).hexdigest()
+
+
+def src(name):
+    rel, want = SOURCES[name]
+    got = _sha(os.path.join(HERE, rel))
+    if got != want:
+        raise SystemExit(f"{rel}: sha256 {got} != pinned {want}; not drawing from an unrecorded input")
+    USED[name] = {"path": rel, "sha256": got}
+    return os.path.join(HERE, rel)
+
+
+def _new(h):
+    return plt.figure(figsize=(W, h), dpi=DPI)
+
+
+def _tag(fig, text):
+    """Evidence tier and denominator, top left, 20 pt."""
+    fig.text(0.10 / W, 1 - 0.12 / fig.get_figheight(), text, ha="left", va="top", fontsize=FS_MIN, color=INK2,
+             linespacing=1.25)
+
+
+def _ax(fig, left_in, bottom_in, width_in, height_in):
+    H = fig.get_figheight()
+    return fig.add_axes((left_in / W, bottom_in / H, width_in / W, height_in / H))
+
+
+def _box(fig, x_in, y_in, w_in, h_in, **kw):
+    H = fig.get_figheight()
+    fig.patches.append(Rectangle((x_in / W, y_in / H), w_in / W, h_in / H, transform=fig.transFigure, **kw))
+
+
+def _text(fig, x_in, y_in, s, **kw):
+    fig.text(x_in / W, y_in / fig.get_figheight(), s, **kw)
+
+
+def _bar(ax, y, w, color, height=0.6):
     """A thin horizontal bar, square at the baseline, rounded at the data end."""
     if w <= 0:
         return
@@ -43,221 +106,236 @@ def _bar(ax, y, w, color, height=0.56):
     ax.add_patch(Rectangle((0, y - height / 2), min(w, 2 * r), height, linewidth=0, facecolor=color))
 
 
-def _title(fig, main, sub, top=0.86):
-    """A left-aligned title inside the canvas (never clipped), the plot below it."""
-    fig.text(0.012, 0.985, main, ha="left", va="top", fontsize=12.5, color=INK, fontweight="bold")
-    fig.text(0.012, 0.985 - 0.075 * (6.0 / fig.get_figheight()), sub, ha="left", va="top", fontsize=10, color=INK2)
-    fig.tight_layout(rect=(0, 0, 1, top))
-
-
 def _clean(ax):
     for s in ("top", "right", "left"):
         ax.spines[s].set_visible(False)
     ax.spines["bottom"].set_color(BASE)
-    ax.tick_params(axis="y", length=0)
-    ax.grid(axis="x", color=GRID, linewidth=0.8)
+    ax.tick_params(axis="y", length=0, pad=10)
+    ax.tick_params(axis="x", length=4, color=BASE)
+    ax.grid(axis="x", color=GRID, linewidth=1.0)
     ax.set_axisbelow(True)
 
 
-def funnel():
-    f = json.load(open(os.path.join(HERE, "outputs", "reach_v1", "measure_funnel.json")))["funnel"]
-    stages = [("Development tasks", 60), ("Native object engine fails", f["A_native_baseline_failure"]),
-              ("Usable failure evidence", f["B_usable_failure_evidence"]),
-              ("Machine-generated proposal", f["C_proposal"]), ("Compiled (canonical)", f["E_compilation"]),
-              ("Installed in native engine", f["F_installation"]), ("Accepted and used", f["H_uses_extension"]),
-              ("Full adaptive LOO", f["K_adaptive_loo"]), ("Activated", f["N_activation"])]
-    fig, ax = plt.subplots(figsize=(8.4, 4.6), dpi=200)
-    for i, (name, v) in enumerate(stages):
-        y = len(stages) - 1 - i
-        _bar(ax, y, v, BLUE)
-        ax.text(v + 0.8, y, str(v), va="center", ha="left", color=INK, fontsize=12, fontweight="bold")
-    ax.set_yticks(range(len(stages)))
-    ax.set_yticklabels([s for s, _ in stages][::-1], fontsize=11)
-    ax.set_xlim(0, 66)
-    ax.set_ylim(-0.6, len(stages) - 0.4)
-    ax.set_xticks([0, 10, 20, 30, 40, 50, 60])
-    _clean(ax)
-    _title(fig, "Real ARC-AGI-2 training-development tasks: the repair funnel",
-           "reach v1, run once (frozen c8d8e3a; verifier 0 problems); no test output read", top=0.87)
-    fig.savefig(os.path.join(FIG, "fig_funnel_reach_v1.png"))
+def _save(fig, name, sources):
+    fig.savefig(os.path.join(FIG, name), dpi=DPI, metadata={"Software": None})
+    h = fig.get_figheight()
+    DRAWN[name] = {"width_in": W, "height_in": round(h, 3), "printed_cm": [round(W * 2.54, 1), round(h * 2.54, 1)],
+                   "dpi": DPI, "pixels": [int(round(W * DPI)), int(round(h * DPI))], "min_font_pt": FS_MIN,
+                   "sources": {k: USED[k] for k in sources}}
     plt.close(fig)
 
 
 def synthetic():
-    rows = [("Repaired engine K*' (v1.9)", 27, BLUE), ("Earlier engine K*", 12, BASE)]
-    fig, ax = plt.subplots(figsize=(6.6, 2.4), dpi=200)
+    rep = json.load(open(src("v19_report")))
+    n = sum(1 for line in open(src("v19_rows")) if line.strip())
+    g = rep["gates"]["G2_witnesses_new"]
+    rows = [("repaired engine K*′", g["complete"], BLUE), ("earlier engine K*", g["complete_old"], BASE)]
+    fig = _new(3.6)
+    _tag(fig, f"SYNTHETIC · frozen v1.9 test, run once · n = {n} tasks")
+    ax = _ax(fig, 3.25, 0.95, 6.0, 1.75)
     for i, (name, v, c) in enumerate(rows):
         y = 1 - i
-        _bar(ax, y, v, c, height=0.5)
-        ax.text(v + 0.4, y, f"{v} / 30", va="center", ha="left", color=INK, fontsize=12, fontweight="bold")
+        _bar(ax, y, v, c)
+        ax.text(v + 0.5, y, f"{v} / {n}", va="center", ha="left", color=INK, fontsize=FS_VAL, fontweight="bold",
+                zorder=5, bbox=dict(facecolor=SURF, edgecolor="none", pad=2))
+    req = g["required"]
+    ax.axvline(req, color=INK2, linewidth=1.6, linestyle=(0, (4, 3)), zorder=1)
+    ax.text(req, 1.6, f"pre-registered pass line: {req}", ha="center", va="bottom", fontsize=FS_MIN, color=INK2)
     ax.set_yticks([1, 0])
     ax.set_yticklabels([r[0] for r in rows])
-    ax.set_xlim(0, 34)
+    ax.set_xlim(0, n + 7)
     ax.set_xticks([0, 10, 20, 30])
-    ax.set_ylim(-0.6, 1.6)
+    ax.set_ylim(-0.55, 1.55)
+    ax.set_xlabel("tasks with a complete end-to-end witness", fontsize=FS_MIN, labelpad=6)
     _clean(ax)
-    _title(fig, "SYNTHETIC tasks only: complete B/P/U/L/T/A witnesses",
-           "v1.9 prospective test, run once (record 2885a04); not ARC performance", top=0.72)
-    fig.savefig(os.path.join(FIG, "fig_synthetic_v19.png"))
-    plt.close(fig)
+    _save(fig, "fig_synthetic_v19.png", ("v19_report", "v19_rows"))
 
 
-def _grid(ax, g, title):
-    H, W = len(g), len(g[0])
-    for r in range(H):
-        for c in range(W):
-            ax.add_patch(Rectangle((c, H - 1 - r), 1, 1, facecolor=ARC[g[r][c]], edgecolor="#555555", linewidth=0.3))
-    ax.set_xlim(0, W)
-    ax.set_ylim(0, H)
-    ax.set_aspect("equal")
-    ax.axis("off")
-    ax.set_title(title, fontsize=10, color=INK2)
+def funnel():
+    f = json.load(open(src("funnel")))["funnel"]
+    assert f["E_compilation"] == f["F_installation"], "compiled and installed differ: draw them apart"
+    stages = [("development tasks", 60), ("native engine fails", f["A_native_baseline_failure"]),
+              ("usable failure evidence", f["B_usable_failure_evidence"]), ("repair proposed", f["C_proposal"]),
+              ("compiled and installed", f["F_installation"]), ("accepted and used", f["H_uses_extension"]),
+              ("passes adaptive LOO", f["K_adaptive_loo"]), ("activated", f["N_activation"])]
+    fig = _new(6.3)
+    _tag(fig, "REAL DEVELOPMENT · 60 ARC-AGI-2 training tasks\nrun once · no test output read")
+    ax = _ax(fig, 3.8, 0.95, 5.5, 4.55)
+    for i, (name, v) in enumerate(stages):
+        y = len(stages) - 1 - i
+        _bar(ax, y, v, BLUE)
+        label = str(v) + ("  (0 of 14 folds)" if name == "passes adaptive LOO" else "")
+        ax.text(v + 1.2, y, label, va="center", ha="left", color=INK, fontsize=FS_VAL, fontweight="bold")
+    ax.set_yticks(range(len(stages)))
+    ax.set_yticklabels([s for s, _ in stages][::-1])
+    ax.set_xlim(0, 75)
+    ax.set_ylim(-0.6, len(stages) - 0.4)
+    ax.set_xticks([0, 20, 40, 60])
+    ax.set_xlabel("tasks (of 60)", fontsize=FS_MIN, labelpad=6)
+    _clean(ax)
+    _save(fig, "fig_funnel_reach_v1.png", ("funnel",))
 
 
 def demos(key="kf892487f1049"):
-    t = json.load(open(os.path.join(HERE, "records", "pilot_v1", "dev_bundle.json")))["tasks"][key]
+    t = json.load(open(src("dev_bundle")))["tasks"][key]
     n = len(t["train"])
-    fig, axes = plt.subplots(2, n, figsize=(2.3 * n, 4.8), dpi=200)
+    cell, H_fig, left = 0.165, 5.35, 1.45
+    fig = _new(H_fig)
+    _tag(fig, f"REAL DEVELOPMENT · task {key} (opaque key)\n"
+              f"its {n} training demonstrations only; no test grid shown")
+    col_w = (W - left) / n
     for i, p in enumerate(t["train"]):
-        _grid(axes[0][i], p["input"], f"demonstration {i}: input")
-        _grid(axes[1][i], p["output"], f"demonstration {i}: output")
-    fig.suptitle(f"Development task {key} (opaque key): its {n} TRAINING demonstrations\n"
-                 "rendered from the development bundle; no test input or test output shown",
-                 fontsize=11, color=INK, x=0.02, ha="left")
-    fig.tight_layout(rect=(0, 0, 1, 0.9))
-    fig.savefig(os.path.join(FIG, "fig_kf89_training_demonstrations.png"))
-    plt.close(fig)
+        for g, y0 in ((p["input"], 2.3), (p["output"], 0.15)):
+            H, Wg = len(g), len(g[0])
+            ax = _ax(fig, left + i * col_w + (col_w - Wg * cell) / 2, y0 + (1.8 - H * cell) / 2, Wg * cell, H * cell)
+            for r in range(H):
+                for c in range(Wg):
+                    ax.add_patch(Rectangle((c, H - 1 - r), 1, 1, facecolor=ARC[g[r][c]], edgecolor="#555555",
+                                           linewidth=0.4))
+            ax.set_xlim(0, Wg)
+            ax.set_ylim(0, H)
+            ax.axis("off")
+        _text(fig, left + i * col_w + col_w / 2, 4.2, f"demo {i}", ha="center", va="bottom", fontsize=FS_LAB, color=INK)
+    for label, y in (("input", 3.2), ("output", 1.05)):
+        _text(fig, 0.12, y, label, ha="left", va="center", fontsize=FS_LAB, color=INK)
+    _save(fig, "fig_kf89_training_demonstrations.png", ("dev_bundle",))
 
 
 def admission(key="kf892487f1049"):
-    el = json.load(open(os.path.join(HERE, "outputs", "loo_v1", "probe_eligibility.json")))
-    pr = json.load(open(os.path.join(HERE, "outputs", "loo_v1", "probe_kf892487f1049.json")))
+    el = json.load(open(src("eligibility")))
+    pr = json.load(open(src("probe_kf89")))
     order = el["trial_order"]
     subsets = el["tasks"][key]["subsets"]
     names = ["0123", "012", "013", "023", "123", "01", "02", "03", "12", "13", "23"]
     g_found = {"0123": "G"}
     g_found.update({p: ("G" if r["engine"].get("top_is_G") else "no G") for p, r in pr["pairs"].items()})
-    #  outer folds (3 demonstrations): the top-level program of the rebuilt run (diagnosis rows)
     rows = {}
-    for line in open(os.path.join(HERE, "outputs", "loo_v1", "diagnose_rows.jsonl")):
+    for line in open(src("diagnose_rows")):           # outer folds: the top-level program of the rebuilt run
         if line.strip():
             r = json.loads(line)
             rows[r["key"]] = r
     g_sha = rows[f"{key}:full"]["A_E_WALL"]["program"]["sha"]
     for i in range(4):
-        r = rows[f"{key}:f{i}"]
-        ind = r["B_WALL"]["engine"]["trace"]["inductions"][0]      # a rejected induction keeps its top
-        top = (ind.get("program") or (ind.get("near_solve") or {}).get("partial") or {}).get("sha")  # candidate here
+        ind = rows[f"{key}:f{i}"]["B_WALL"]["engine"]["trace"]["inductions"][0]
+        top = (ind.get("program") or (ind.get("near_solve") or {}).get("partial") or {}).get("sha")
         rest = "".join(str(j) for j in range(4) if j != i)
         g_found[rest] = "G" if top == g_sha else "G*"
-    fig, ax = plt.subplots(figsize=(7.6, 5.4), dpi=200)
+    H_fig = 8.6
+    fig = _new(H_fig)
+    _tag(fig, f"FORENSIC · task {key} · 11 subsets, chosen\n"
+              "after the failure was seen (causal debugging)")
+    ax = _ax(fig, 2.45, 2.05, 6.85, 5.25)
     for i, s in enumerate(names):
         y = len(names) - 1 - i
         rec = {v["variant"]: v for v in subsets[s]["variants"]}
         for j, v in enumerate(order):
             x = rec[v]
             col = BLUE if x["searched"] else (ORANGE if x["coherent"] else NEUTRAL)
-            ax.add_patch(Rectangle((j + 0.04, y + 0.06), 0.92, 0.88, facecolor=col, linewidth=0))
+            ax.add_patch(Rectangle((j + 0.05, y + 0.07), 0.9, 0.86, facecolor=col, linewidth=0))
             if v == "S6" and s in g_found:
-                ax.text(j + 0.5, y + 0.5, g_found[s], ha="center", va="center",
-                        color="white" if col != NEUTRAL else INK, fontsize=10, fontweight="bold")
+                ax.text(j + 0.5, y + 0.5, g_found[s], ha="center", va="center", fontsize=FS_MIN,
+                        color="white" if col != NEUTRAL else INK, fontweight="bold")
     ax.set_xlim(0, len(order))
     ax.set_ylim(0, len(names))
     ax.set_xticks([j + 0.5 for j in range(len(order))])
-    ax.set_xticklabels(order)
+    ax.set_xticklabels(order, fontsize=FS_LAB)
     ax.xaxis.tick_top()
     ax.set_yticks([len(names) - 1 - i + 0.5 for i in range(len(names))])
-    ax.set_yticklabels([("demos " + " ".join(s)) + ("  (full)" if s == "0123" else "") for s in names], fontsize=10)
+    ax.set_yticklabels([("all 4 (full)" if s == "0123" else "demos " + " ".join(s)) for s in names], fontsize=FS_MIN)
+    for lab, s in zip(ax.get_yticklabels(), names):
+        if s in ("02", "13"):
+            lab.set_fontweight("bold")
     for s in ("top", "right", "left", "bottom"):
         ax.spines[s].set_visible(False)
     ax.tick_params(length=0)
-    ax.set_xlabel("segmentation variants in the engine's fixed trial order (cap: first 4 eligible are searched)",
-                  color=INK2, fontsize=10)
-    ax.legend(handles=[Patch(color=BLUE, label="searched"), Patch(color=ORANGE, label="eligible but cut by the cap"),
-                       Patch(color=NEUTRAL, label="not eligible (count relation fails)")],
-              loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=3, frameon=False, fontsize=9.5)
-    _title(fig, f"{key}: which segmentations the engine searches",
-           "per demonstration subset; G = the full-data general program found in S6; G* = the same one-rule\n"
-           "program with that fold's window_fill extension; forensic, development only", top=0.80)
-    fig.savefig(os.path.join(FIG, "fig_kf89_variant_admission.png"))
-    plt.close(fig)
+    _text(fig, 2.30, 7.55, "trial order \u2192", ha="right", va="center", fontsize=FS_MIN, color=INK2)
+    _text(fig, 0.10, 1.55, "G: the full-data one-rule program", ha="left", va="center", fontsize=FS_MIN, color=INK2)
+    _text(fig, 0.10, 1.13, "G*: the same rule, with that fold's window_fill", ha="left", va="center", fontsize=FS_MIN,
+          color=INK2)
+    for x0, col, lab in ((0.10, BLUE, "searched"), (2.15, ORANGE, "eligible, cut by the cap"),
+                         (6.55, NEUTRAL, "not eligible")):
+        _box(fig, x0, 0.32, 0.36, 0.30, facecolor=col, linewidth=1.0, edgecolor=col if col != NEUTRAL else BASE)
+        _text(fig, x0 + 0.48, 0.47, lab, ha="left", va="center", fontsize=FS_MIN, color=INK)
+    _save(fig, "fig_kf89_variant_admission.png", ("eligibility", "probe_kf89", "diagnose_rows"))
 
 
 def negative():
-    """Paired per-task grid: each overlay run against the SAME task's native
-    outcome (per-run outcome shares would mislead: the ADMIT runs pile up on
-    the natively correct halo tasks, which have six or seven ineligible
-    variants each)."""
-    path = os.path.join(HERE, "outputs", "loo_v1", "probe_negative.json")
-    if not os.path.exists(path):
-        return False
-    d = json.load(open(path))
+    d = json.load(open(src("negative")))
     order = ["S1", "S2", "S3", "S5", "S4", "S6", "S7"]
     res = {(r["task"], r["condition"], r["variant"]): r["outcome"] for r in d["results"]}
-    tasks = [f"{fam}_{s}" for fam in d["families"] for s in range(4)]
+    fams = d["families"]
+    family_label = {"recolor_by_size": "recolour\nby size", "halo": "halo", "bbox_fill_L": "bbox fill\n(L shapes)",
+                    "translate_down": "translate\ndown", "multicolor_majority": "multicolour\nmajority",
+                    "same_color_sizes": "same colour\nsizes"}
     word = {"CORRECT": "correct", "FALSE_ACCEPT": "false acc.", "REJECT": "rejected"}
     fill = {"CORRECT": GOOD, "FALSE_ACCEPT": CRITICAL, "REJECT": BASE}
-    fig, ax = plt.subplots(figsize=(8.4, 7.4), dpi=200)
-    harm = gain = runs = 0
-    for i, t in enumerate(tasks):
-        y = len(tasks) - 1 - i
-        b0 = res[(t, "BASE", None)]
-        ax.add_patch(Rectangle((0.04, y + 0.08), 1.82, 0.84, facecolor=fill[b0], linewidth=0))
-        ax.text(0.95, y + 0.5, word[b0], ha="center", va="center", fontsize=8.5,
-                color=INK if b0 == "REJECT" else "white", fontweight="bold")
-        for j, v in enumerate(order):
-            x = 2.2 + j
-            eligible = d["eligibility"][t][v]
-            cond = "PROMOTE" if eligible else "ADMIT"
-            o = res[(t, cond, v)]
-            runs += 1
-            if o == b0:
-                ax.add_patch(Rectangle((x + 0.04, y + 0.08), 0.92, 0.84, linewidth=0.8,
-                                       facecolor=NEUTRAL if eligible else SURF, edgecolor=NEUTRAL if eligible else BASE))
-                ax.text(x + 0.5, y + 0.5, "P" if eligible else "A", ha="center", va="center", fontsize=7.5, color=MUTED)
-            else:
-                good = o == "CORRECT"
-                harm += not good
-                gain += good
-                ax.add_patch(Rectangle((x + 0.04, y + 0.08), 0.92, 0.84, linewidth=0,
-                                       facecolor=GOOD if good else CRITICAL))
-                ax.text(x + 0.5, y + 0.5, ("P" if eligible else "A") + {"CORRECT": "+", "FALSE_ACCEPT": ":FA", "REJECT": ":rej"}[o],
-                        ha="center", va="center", fontsize=7.5, color="white", fontweight="bold")
-        if i % 4 == 0 and i:
-            ax.axhline(y + 1, color=GRID, linewidth=1.0, xmin=0, xmax=1)
-    ax.set_xlim(0, 2.2 + len(order))
-    ax.set_ylim(0, len(tasks))
-    ax.set_xticks([0.95] + [2.7 + j for j in range(len(order))])
-    ax.set_xticklabels(["engine\nas is"] + order, fontsize=9.5)
-    ax.xaxis.tick_top()
-    ax.set_yticks([len(tasks) - 1 - i + 0.5 for i in range(len(tasks))])
-    ax.set_yticklabels([t.rsplit("_", 1)[0].replace("_", " ") + " " + t.rsplit("_", 1)[1] for t in tasks], fontsize=8)
-    for s in ("top", "right", "left", "bottom"):
-        ax.spines[s].set_visible(False)
-    ax.tick_params(length=0)
-    ax.set_xlabel("the segmentation variant forced to be searched first (engine's trial order)", color=INK2, fontsize=9.5)
-    ax.legend(handles=[Patch(facecolor=NEUTRAL, edgecolor=NEUTRAL, label="P: eligible variant first (PROMOTE), outcome unchanged"),
-                       Patch(facecolor=SURF, edgecolor=BASE, label="A: ineligible variant first and admitted (ADMIT), unchanged"),
-                       Patch(color=CRITICAL, label="changed for the worse (:rej rejected, :FA false acceptance)"),
-                       Patch(color=GOOD, label="changed to correct (none occurred)")],
-              loc="upper center", bbox_to_anchor=(0.5, -0.05), ncol=2, frameon=False, fontsize=8.2)
-    _title(fig, "Negative controls (SYNTHETIC): forcing one segmentation variant first",
-           f"24 seeded tasks (3 training + 2 held-out demonstrations); engine's own induction, train-exact + its own LOO, 20 s.\n"
-           f"Each run is paired with the same task's native outcome: {runs} runs, {gain} gains, {harm} harmful changes.",
-           top=0.885)
-    fig.savefig(os.path.join(FIG, "fig_negative_controls.png"))
-    plt.close(fig)
-    return (runs, gain, harm)
+    n_tasks = len(fams) * 4
+    runs = sum(1 for r in d["results"] if r["condition"] != "BASE")
+    row_h, gap, H_fig = 0.31, 0.07, 11.1
+    top = H_fig - 1.55
+    fig = _new(H_fig)
+    _tag(fig, f"SYNTHETIC negative controls · {n_tasks} tasks, 6 families\n"
+              "3 training + 2 held-out demonstrations per task\n"
+              f"{runs} runs (up to 7 per task, correlated) vs native")
+    harmed, gained = set(), set()
+    x_fam, x_seed, x_base, x_var, cw = 0.10, 1.90, 2.32, 4.08, 0.76
+    for fi, fam in enumerate(fams):
+        for s in range(4):
+            t = f"{fam}_{s}"
+            y = top - (fi * 4 + s + 1) * row_h - fi * gap
+            b0 = res[(t, "BASE", None)]
+            _box(fig, x_base, y + 0.03, 1.62, row_h - 0.06, facecolor=fill[b0], linewidth=0)
+            _text(fig, x_base + 0.81, y + row_h / 2, word[b0], ha="center", va="center", fontsize=FS_MIN,
+                  color=INK if b0 == "REJECT" else "white")
+            _text(fig, x_seed + 0.15, y + row_h / 2, str(s), ha="center", va="center", fontsize=FS_MIN, color=INK2)
+            for j, v in enumerate(order):
+                eligible = d["eligibility"][t][v]
+                o = res[(t, "PROMOTE" if eligible else "ADMIT", v)]
+                x = x_var + j * cw
+                if o == b0:
+                    _box(fig, x + 0.05, y + 0.04, cw - 0.10, row_h - 0.08, linewidth=1.3,
+                         facecolor=NEUTRAL if eligible else SURF, edgecolor=NEUTRAL if eligible else BASE)
+                else:
+                    good = o == "CORRECT"
+                    (gained if good else harmed).add(t)
+                    _box(fig, x + 0.05, y + 0.04, cw - 0.10, row_h - 0.08, linewidth=0,
+                         facecolor=GOOD if good else CRITICAL)
+                    _text(fig, x + cw / 2, y + row_h / 2, {"CORRECT": "+", "FALSE_ACCEPT": "FA", "REJECT": "rej"}[o],
+                          ha="center", va="center", fontsize=FS_MIN, color="white", fontweight="bold")
+        _text(fig, x_fam, top - (fi * 4 + 2) * row_h - fi * gap, family_label[fam], ha="left", va="center",
+              fontsize=FS_MIN, color=INK, linespacing=1.0)
+    _text(fig, x_base + 0.81, top + 0.08, "native", ha="center", va="bottom", fontsize=FS_LAB, color=INK)
+    _text(fig, x_seed + 0.15, top + 0.08, "seed", ha="center", va="bottom", fontsize=FS_MIN, color=INK2)
+    for j, v in enumerate(order):
+        _text(fig, x_var + j * cw + cw / 2, top + 0.08, v, ha="center", va="bottom", fontsize=FS_LAB, color=INK)
+    legend = ((dict(facecolor=NEUTRAL, edgecolor=NEUTRAL), "eligible view forced first: unchanged"),
+              (dict(facecolor=SURF, edgecolor=BASE), "ineligible view forced first and admitted: unchanged"),
+              (dict(facecolor=CRITICAL, edgecolor=CRITICAL), "worse: rej = now rejected; FA = now a false acceptance"),
+              (dict(facecolor=GOOD, edgecolor=GOOD), "changed to correct: none occurred"))
+    for k, (style, lab) in enumerate(legend):
+        y = 1.38 - k * 0.40
+        _box(fig, 0.10, y - 0.14, 0.36, 0.28, linewidth=1.3, **style)
+        _text(fig, 0.58, y, lab, ha="left", va="center", fontsize=FS_MIN, color=INK)
+    assert not gained
+    _save(fig, "fig_negative_controls.png", ("negative",))
+    return {"tasks": n_tasks, "runs": runs, "tasks_harmed": len(harmed), "tasks_gained": len(gained)}
 
 
 def main():
     os.makedirs(FIG, exist_ok=True)
-    funnel()
     synthetic()
+    funnel()
     demos()
     admission()
-    ok = negative()
-    print("figures:", sorted(os.listdir(FIG)), "| negative controls (runs, gains, harmful):", ok if ok else "pending")
+    neg = negative()
+    prov = {"script": "scripts/summit_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
+            "printed_width_in": W, "block_text_width_pt": 686.80643, "negative_controls": neg, "figures": {}}
+    for name, meta in sorted(DRAWN.items()):
+        meta["sha256"] = _sha(os.path.join(FIG, name))
+        prov["figures"][name] = meta
+    with open(os.path.join(FIG, "PROVENANCE.json"), "w") as handle:
+        json.dump(prov, handle, indent=1, sort_keys=True)
+    print(json.dumps({"figures": sorted(DRAWN), "negative_controls": neg}, indent=1))
 
 
 if __name__ == "__main__":

@@ -15,9 +15,10 @@ imported here). Figures are drawn only from the sealed outputs below by
 | SYNTHETIC, preserved negative | The tested failure-association selector did not beat demonstrations alone | D alone 0.591, D + failure association 0.585 (increment -0.006, 95% CI -0.026 to +0.014), 288 independent groups; conditional on that selector and training resource | `records/ITEM2_V15_SELECTION_RESULT_20261001.md` (96c32559...), commit eb5efa5 |
 | REAL DEVELOPMENT (60 training-development tasks; no test output read) | Failure-conditioned construction produced executable repairs that reached the native engine; one was accepted and used with all demonstrations; none survived adaptive LOO | 54 native object-engine failures; 31 with usable failure evidence; 4 machine-generated proposals; 4 compiled; 4 installed (0/60 before, ce123e8); 1 accepted and used; adaptive LOO 0 of 14 folds; activations 0; READY = PASS by the pre-registered installation rule only | `records/REACH_V1_MEASURE_20261011.md` (f0bbd78c...), commit bb11f95; frozen c8d8e3a (manifest 2e567bce...); rows 821a6556... (60ddd04) |
 | FORENSIC (development only, observation only; the subsets examined were chosen AFTER the failure was seen: causal debugging, not test evidence) | The LOO failures trace to a segmentation-variant admission mismatch in the native engine | 11 of 14 failed folds and all 3 full-data rejections; resources ruled out (WALL = CPU1 in 23 of 23 arms) | `records/LOO_V1_DIAGNOSIS_20261012.md` (f022f287...), commit c2b8cd4; probes `outputs/loo_v1/probe_kf892487f1049.json` (955542c), `probe_variants.json`, `probe_eligibility.json` (82251a4) |
-| FORENSIC, addendum (same tier and caveat) | The eligibility predicate is monotone in the demonstrations; the defect is the 4-variant cap cutting the strictly coarser S6 that the engine's own fold-convergence rule relies on | a fold never loses a coherent variant (0 of 72 synthetic, 0 of 50 development parent-fold pairs; adds some in 12 and 24); on kf892487f1049 only (0,2) and (1,3) add S1 to S5 | `records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md`, commit a719383; `outputs/loo_v1/probe_exposure.json` (794ad70b..., 3ba75e5) |
-| SYNTHETIC, negative controls (24 seeded tasks, 6 families; not ARC) | Forcing one segmentation variant first is not a safe generic repair | 168 runs paired with each task's native outcome: 0 gains, 6 harmful changes (PROMOTE: 2 correct to rejected, 1 rejected to false acceptance; ADMIT, the reach v2 class: 2 correct to rejected, 1 correct to false acceptance); native: 7 correct, 2 false acceptances, 15 rejected | `outputs/loo_v1/probe_negative.json` (2f100350..., 70d3ed9), probe 1f03a1c; figure `fig_negative_controls.png` (914049c) |
-| PROPOSAL, NOT AUTHORIZED | One narrow correction is specified with predictions, frozen criteria and a kill rule | P2 (LOO-anchored variant completion); predicted: kf892487f1049 at most 3 of 4 folds, the screen fails | addendum section 7 |
+| FORENSIC, addendum (same tier and caveat) | Count consistency is deletion-stable; the complete eligibility test is NOT monotone (CORRECTED by Clarification 01); on kf892487f1049 the defect is the 4-variant cap cutting the strictly coarser S6 that the engine's own fold-convergence rule relies on | losses of a coherent view: 0 of 72 synthetic and 0 of 50 FC-task comparisons, but 7 of 724 across all 60 development tasks (pooled coverage; consistency never broke); on kf892487f1049 only (0,2) and (1,3) add S1 to S5 | `records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md`, commit a719383; `outputs/loo_v1/probe_exposure.json` (794ad70b..., 3ba75e5) |
+| SYNTHETIC, negative controls (24 seeded tasks, 6 families; not ARC) | Forcing one segmentation variant first is not a safe generic repair | task level: 0 of 24 gained, 5 of 24 harmed (4 of the 7 natively correct; 1 rejected became a false acceptance); runs: 168, correlated within task, 6 harmful (PROMOTE: 2 correct to rejected, 1 rejected to false acceptance; ADMIT, the reach v2 class: 2 correct to rejected, 1 correct to false acceptance); native: 7 correct, 2 false acceptances, 15 rejected | `outputs/loo_v1/probe_negative.json` (2f100350..., 70d3ed9), probe 1f03a1c; figure `fig_negative_controls.png` (914049c) |
+| PROPOSAL, NOT AUTHORIZED | One narrow correction is specified with predictions, frozen criteria and a kill rule | P2 (LOO-anchored completion): FORENSIC only, cannot be a certificate (its anchor saw the inner held-out demonstration). P3 (fold-local view dedup): designed, NOT executed; screen predicted to fail either way | addendum section 7; `records/LOO_V1_DIAGNOSIS_ADDENDUM_CLARIFICATION_01.md`, `records/LOO_V1_SEGMENTATION_EQUIVALENCE_20261012.md` (c2fa2ae) |
+| STATIC census (60 development + 24 synthetic tasks; no induction) | Equal object counts do not imply equivalent views; the cap holds duplicate views | on (0,2) and (1,3) the 4 searched views are 2 distinct reasoner inputs; 571 of 1,849 development slots (31%) duplicate an earlier view; dedup would change 277 of 522 development subsets and 4 of 6 native successes | `outputs/loo_v1/probe_equivalence.json` (90c2a325..., 7d11993) |
 | REPAIR BUILT, NOT MEASURED | A variant-carrying installation was implemented and tested on synthetic fixtures only | its 60-task recheck was stopped before any unit finished (0 rows): no result exists | 568af22 (code), 41c20a2 (stop) |
 | FROZEN, NOT RUN | A prospective protocol and an untouched sample exist | pilot v2, N = 120 | c1906ee, manifest c93ec1db... |
 | BASELINE | Historical certified training score | 185 / 1,000 (sealed v23 run + arbitration), unchanged | evaluator-pinned v23 records (sha256 763beefd..., 35e8f5c9...) |
@@ -142,9 +143,10 @@ Mechanisms (engine code path): a coarser variant searched first prunes the
 finer native ones through the parsimony skip; a forced view's program passes
 the engine's gates but is wrong on held-out demonstrations; an incoherent
 forced view uses 3.5 times the native time (consistent with budget
-displacement). Poster statement allowed: "On synthetic controls, forcing a
-segmentation variant first produced no gains and six harmful changes in 168
-paired runs; we therefore did not run the variant-first repair." Not
+displacement). Poster statement allowed: "On 24 synthetic control tasks, forcing a
+view first gained no task and harmed five; we therefore did not run the
+variant-first repair." (The 168 runs are correlated comparisons, not 168
+independent tasks.) Not
 allowed: any claim that P2 is safe (it has not been run).
 
 ## 8. Likely skeptical questions, answered within the evidence
@@ -170,7 +172,7 @@ allowed: any claim that P2 is safe (it has not been run).
   letting the coarser completion reach every cut variant would change the
   search on 73 of 96 synthetic subsets, mostly through S7, the proximity
   view the engine keeps as a last resort; and forcing a variant first was
-  harmful in 6 of 168 paired synthetic runs with no gains.
+  harmful on 5 of 24 synthetic tasks (6 of 168 correlated runs) with no gains.
 - "So the blocker was a bug in the engine, not a missing capability?" Yes:
   for kf892487f1049 the evidence says representation admission (a
   search-layer defect), which is exactly the kind of distinction the
@@ -193,4 +195,33 @@ allowed: any claim that P2 is safe (it has not been run).
    (1,3); both constant class.
 5. "Broader eligibility would fix it" -> forcing or admitting a variant was
    harmful on synthetic controls (section 7); the eligibility predicate itself
-   behaves as designed (monotone); the narrow candidate is P2, not authorized.
+   keeps count consistency under deletion (complete-test monotonicity later corrected, see 11.6); P2 is forensic only (11.7).
+
+## 10. Figure provenance (poster QC, 2026-10-12)
+
+Every figure is drawn at its printed size, 24.1 cm wide (one block), with
+text of at least 20 pt. Its inputs are pinned by sha256, and two rebuilds
+are byte-identical (`docs/summit_poster/build.sh`). Full metadata is in
+`docs/summit_poster/figures/PROVENANCE.json`.
+
+| figure | printed size (cm) | tier and denominator | inputs |
+|---|---|---|---|
+| fig_synthetic_v19.png | 24.1 x 9.1 | SYNTHETIC, n = 30 tasks | v19 report 987ab9ea..., rows aad86def... |
+| fig_funnel_reach_v1.png | 24.1 x 16.0 | REAL DEVELOPMENT, 60 tasks | measure_funnel 77fbac13... |
+| fig_kf89_training_demonstrations.png | 24.1 x 13.6 | REAL DEVELOPMENT, 1 task, training demonstrations only | dev_bundle 6eb73236... |
+| fig_kf89_variant_admission.png | 24.1 x 21.8 | FORENSIC, 1 task, 11 subsets | probe_eligibility 922151e2..., probe_kf89 9bdff08a..., diagnose_rows 31ddf9af... |
+| fig_negative_controls.png | 24.1 x 28.2 | SYNTHETIC, 24 tasks, 168 correlated runs | probe_negative 2f100350... |
+
+## 11. Further corrections (post-diagnosis addendum, 2026-10-12)
+
+6. "Eligibility is monotone": corrected. Count consistency is
+   deletion-stable; the complete test is not (7 of 724 development losses,
+   all through coverage). See Clarification 01.
+7. "P2 is the narrow repair": corrected. P2 is FORENSIC only, because its
+   anchor was chosen with the inner held-out demonstration.
+8. "168 harmful-change runs" as a sample size: corrected. These are
+   correlated runs on 24 tasks; report task-level counts (0 gained, 5
+   harmed).
+9. Implemented vs proposed: the failure typing on the poster was forensic,
+   done by hand. The general failure-type controller is proposed, not
+   implemented.

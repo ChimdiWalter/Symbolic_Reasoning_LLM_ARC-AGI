@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: LOO stability block v1: diagnosis frozen (c2b8cd4) + representation-eligibility ADDENDUM recorded (a719383): mechanism proven at predicate level (monotone eligibility; the 4-variant cap cuts the strictly coarser S6 the engine's own fold-convergence rule relies on); synthetic negative controls: variant-first overlays 168 paired runs, 0 gains, 6 harmful -> reach v2 (568af22) NOT recommended, its recheck stays STOPPED (0 rows); narrow correction P2 (LOO-anchored variant completion) PROPOSED, NOT AUTHORIZED, predicted not to pass the screen. Nothing running. Pilot v2 FROZEN_NOT_RUN (c1906ee, c93ec1db). Certified 185/1000 unchanged. Summit poster + abstract PDFs and paper sections 8.16-8.17 updated (1511af7, d5b0b62).
+Last updated 2026-10-12. Current: LOO stability block v1, DIAGNOSIS AND DESIGN ONLY. Diagnosis c2b8cd4 + addendum a719383 + Clarification 01 (c2fa2ae): count consistency deletion-stable, complete eligibility test NOT monotone (7/724 development losses via coverage); P2 FORENSIC only (anchor saw the inner held-out demonstration). Equivalence census (7d11993): on kf892487f1049 (0,2)/(1,3) the 4 searched views are 2 distinct reasoner inputs; fold-local dedup (P3) would admit S6, certification-preserving by construction but broad (277/522 development subsets, 4/6 native successes); P3 DESIGNED, NOT EXECUTED. Negative controls: 0/24 tasks gained, 5/24 harmed. reach v2 recheck STOPPED, not to resume. Nothing running. Pilot v2 FROZEN_NOT_RUN (c1906ee). Certified 185/1000 unchanged. Poster/abstract rebuilt at A0 legibility (docs/summit_poster/build.sh, byte-reproducible). NEXT: decide whether a fold-local, certification-preserving representation-selection repair is justified.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -287,8 +287,8 @@ record frozen -> repair decision.
   controls `scripts/loo_v1_probe_negative.py` (1f03a1c) -> output 70d3ed9
   (sha256 2f100350...); static exposure `scripts/loo_v1_probe_exposure.py`
   -> output 3ba75e5 (794ad70b...). Findings: exact predicate and first
-  rejection site per subset; eligibility is MONOTONE (a fold never loses a
-  coherent variant: 0/72 synthetic, 0/50 development); the defect is the
+  rejection site per subset; [CORRECTED by Clarification 01: count consistency is deletion-stable, the complete
+  eligibility test is not monotone (0/72 synthetic, 0/50 FC-task, 7/724 all-development losses)]; the defect is the
   cap cutting the strictly coarser S6 that the engine's round-3
   fold-convergence rule relies on; H_rep true, H_search variant level only,
   H_rank false, H_budget false, H_evid weak; 7 falsified hypotheses.
