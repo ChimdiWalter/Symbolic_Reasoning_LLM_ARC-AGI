@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: REAL-TASK ADAPTIVE LOO STABILITY block v1 IN PROGRESS (user directive 2026-10-12, started at a9e4577): diagnose the 14 failed reach v1 folds on the 60 development tasks (observation only), freeze the diagnosis, then at most ONE generic repair and ONE development recheck. Pilot v2 FROZEN_NOT_RUN (c1906ee, c93ec1db) must not be run or edited; reach v1 record unchanged. Certified 185/1000 unchanged.
+Last updated 2026-10-12. Current: LOO stability block v1: diagnosis frozen (c2b8cd4); repair reach v2 built (568af22) but its recheck STOPPED before any unit at the user summit addendum; now completing the predicate-level representation-eligibility diagnosis + negative synthetic probes (observation only) and the summit poster evidence note. Pilot v2 FROZEN_NOT_RUN (c1906ee, c93ec1db). Certified 185/1000 unchanged.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -252,6 +252,16 @@ record frozen -> repair decision.
   scripts/loo_v1_recheck_run.py recheck --resume > logs/loo_v1/coordinator_recheck.log
   2>&1 < /dev/null &` (2 max). After `logs/loo_v1/RECHECK_0_DONE`:
   `.venv_arc2026/bin/python scripts/loo_v1_recheck_summary.py`, record, report.
+
+- RECHECK STOPPED 2026-10-12T14:23:40Z at the user's summit addendum (it
+  asks to complete the predicate-level representation-eligibility diagnosis
+  and negative synthetic probes BEFORE any new repair or run): all four
+  workers stopped by exact pid before any unit finished; 0 rows; the
+  coordinator recorded exit -15 x4, 120 missing, resumable
+  (`logs/loo_v1/recheck_0_record.json`); checkpointer stopped. No recheck
+  outcome exists or was read. Do NOT resume without a new go-ahead: the
+  diagnosis addendum may revise the repair (then a new versioned successor
+  and a new freeze, not this one).
 
 ### Earlier in this section (reach v1 block)
 
