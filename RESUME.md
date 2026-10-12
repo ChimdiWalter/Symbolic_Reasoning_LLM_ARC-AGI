@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: LOO stability block v1, DIAGNOSIS AND DESIGN ONLY. Diagnosis c2b8cd4 + addendum a719383 + Clarification 01 (c2fa2ae): count consistency deletion-stable, complete eligibility test NOT monotone (7/724 development losses via coverage); P2 FORENSIC only (anchor saw the inner held-out demonstration). Equivalence census (7d11993): on kf892487f1049 (0,2)/(1,3) the 4 searched views are 2 distinct reasoner inputs; fold-local dedup (P3) would admit S6, certification-preserving by construction but broad (277/522 development subsets, 4/6 native successes); P3 DESIGNED, NOT EXECUTED. Negative controls: 0/24 tasks gained, 5/24 harmed. reach v2 recheck STOPPED, not to resume. Nothing running. Pilot v2 FROZEN_NOT_RUN (c1906ee). Certified 185/1000 unchanged. Poster/abstract rebuilt at A0 legibility (docs/summit_poster/build.sh, byte-reproducible). NEXT: decide whether a fold-local, certification-preserving representation-selection repair is justified.
+Last updated 2026-10-12. Current: P3 SAFETY FALSIFICATION block (user directive 2026-10-12, pasted; authorizes semantic audit, preregistered adversarial controls, ONE versioned P3 implementation, ONE frozen synthetic safety preflight, then (only if S1+S2 pass) the 6-native-success regression and the kf892487f1049 mechanistic check; NOT the 60-task recheck, pilot v2/v3, ARC-1000, protected evaluation). Progress: step 1 state verified (freezes 0); steps 3-4 audit DONE (b8bc4c1, output committed next): census reproduced exactly; train-equivalent views diverge on unseen inputs (development 61 of 769 pairs, synthetic 9 of 231) -> P3 is NOT semantics-preserving, only selection-preserving among duplicates. NEXT: step 5 preregistration (docs/CORA_P3_SAFETY_PREFLIGHT_v1.md + adversarial corpus families A-G, >=12 tasks, seeds and hashes) BEFORE any P3 code; then steps 6-7. See the P3 block below.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -310,6 +310,45 @@ record frozen -> repair decision.
   REPRESENTATION-ELIGIBILITY DIAGNOSIS BEFORE ANY NEW REPAIR OR RUN. Await an
   explicit decision on P2 (authorize as specified, amend, or stay at
   diagnosis). Launch nothing without it.
+
+### P3 safety falsification block (2026-10-12)
+
+Directive text: pasted by the user on 2026-10-12, titled "P3 SAFETY FALSIFICATION AND FOLD-LOCAL REPRESENTATION
+AUDIT". Kill rule: any unsafe synthetic outcome, native regression, information transfer, change outside the
+declared exposure, or freeze failure rejects P3. If P3 passes everything, label it P3_SYNTHETIC_PREFLIGHT_PASS,
+never REAL_ARC_CAPABILITY_GROWTH. End lines: on failure "NEXT: REJECT P3, PRESERVE THE NEGATIVE RESULT AND
+REASSESS THE FAILURE-TYPED REASONING CONTROLLER."; on a pass "NEXT: REQUEST AUTHORIZATION FOR A VERSIONED
+REAL-DEVELOPMENT COMPARISON." Do not launch that comparison.
+
+- Step 1 DONE. HEAD 3216957 (only deliverable commits since 473a089); all 6 freezes 0 problems.
+- Steps 3-4 DONE. Audit `scripts/p3_audit_equivalence.py` (b8bc4c1) -> `outputs/p3/audit_equivalence.json`
+  (sha256 b3829334...).
+  - Census reproduced exactly (0 mismatches): 571/1849 slots, 277/522 subsets, 4/6 native successes
+    (k328b173af636, k553a7e98f13d, kc8866e481747, kf105d51e18c5), kf892487f1049 02 -> +S6, 13 -> +S6, S7.
+  - Training equivalence is NOT unseen equivalence: INDUCTION-equal views segment an input outside the
+    subset differently in 61 of 769 development pairs (S1~S2 22, S3~S4 11, S4~S7 10, S3~S7 8, S1~S6 5,
+    S1~S5 3, S2~S6 2) and in 9 of 231 synthetic pairs.
+  - kf892487f1049: on (0,2), S3~S7 diverge on demos 1 and 3; S1~S2, S1~S5 and S3~S4 do not.
+  - Structural point for the record: natively, the earlier duplicate already wins ties (key, count,
+    trial order), so P3 keeps the selected program among duplicates except through the cheap-first
+    probe and deadline timing. P3 is selection-preserving among duplicates, not semantics-preserving. Its
+    real effect is admitting new views.
+- Step 5 TODO, before any P3 code:
+  - `docs/CORA_P3_SAFETY_PREFLIGHT_v1.md`;
+  - adversarial generator `scripts/p3_adversarial_corpus.py` with families A (duplicate frees a useful
+    slot, kf89-like corner pairs), B (a freed slot admits a misleading coarser view), C (train-equal,
+    held-out-divergent), D (native successes must stay), E (no duplicates: P3 must be a no-op), F
+    (duplicates only in inner folds); G as mutation tests;
+  - at least 12 tasks, 3 training and 2 held-out demonstrations each, fixed seeds, fixtures chosen by
+    static properties only, corpus hash;
+  - arms: BASE, BASE-repeat (native noise) and P3, 20 s budget as in the negative probe;
+  - S1: 0 new false acceptances, 0 regressions; S2: byte-identical outside the exposure unless BASE and
+    BASE-repeat disagree (then UNSTABLE, reported).
+- Step 6 TODO: package `cora_p3/` as an overlay with a generated copy of inducer._induce_candidate. Dedup at
+  the INDUCTION level, before the cap, in trial order. A build `--check` and mutation tests.
+- Step 7 TODO: freeze manifest `outputs/p3/`, then run the preflight ONCE.
+- Step 8 only if S1+S2 pass: the 6 native successes, BASE vs P3, through the isolation hook.
+- Step 9 only if that also passes: kf892487f1049 folds under P3.
 
 ### Earlier in this section (reach v1 block)
 

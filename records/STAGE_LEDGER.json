@@ -481,6 +481,16 @@
      "P3_fold_local_dedup": "DESIGNED, NOT EXECUTED; requires explicit authorization"
     }
    }
+  },
+  {
+   "id": "p3_safety_falsification_v1",
+   "status": "IN_PROGRESS: audit done (census reproduced; train-equivalent views diverge on unseen inputs 61/769 dev, 9/231 synthetic); next: preregistration before any P3 code",
+   "authorized": "semantic audit; preregistered adversarial controls; one versioned P3; one frozen synthetic preflight; 6-native regression and kf89 check only after S1+S2 pass",
+   "not_authorized": "60-task recheck, pilot v2/v3, ARC-1000, protected evaluation",
+   "audit": {
+    "script_commit": "b8bc4c1",
+    "output": "outputs/p3/audit_equivalence.json"
+   }
   }
  ],
  "recovered_definitions": {
