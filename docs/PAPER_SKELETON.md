@@ -1,8 +1,10 @@
 # CORA: Separating Search, Hypothesis Selection, and Capability Growth in ARC-AGI-2
 
 Authoritative technical manuscript for the ARC Prize 2026 Paper Track.
-Updated 2026-10-07: results through v1.9 (section 8.14), the real ARC pilot
-status, and the research trajectory (Appendix C; full map in
+Updated 2026-10-12: results through v1.9 (section 8.14), the real-task
+reach v1 measurement (section 8.16), the adaptive leave-one-out diagnosis
+with synthetic negative controls (section 8.17), the real ARC pilot status
+(section 8.15) and the research trajectory (Appendix C; full map in
 `docs/PROJECT_MAP.md`). No LaTeX source, compiled PDF or BibTeX file exists in
 this workspace, so there is no compile step and no page count to report;
 section 10 is the bibliography stub. The concise Paper Track writeup is
@@ -45,9 +47,18 @@ correct.
 These results are synthetic. The repaired engine accepts any installed
 extension that verifies, wrong ones included, so on real tasks correctness
 has to come from selection, held-out checks and abstention. No real ARC task
-has yet been solved by a constructed extension, and on 60 real development
-tasks the frozen proposer built no verifiable extension at all, so the
-same-reasoner pilot on real training tasks has not been frozen. Durable semantic invention
+has yet been solved by a constructed extension. On 60 real development tasks
+a growth-relation proposer, built from the instances the engine memorized
+instead of generalizing, installed extensions on 4 tasks (none before), and
+the unchanged engine accepted and used one; none survived adaptive
+leave-one-out (0 of 14 folds). Forensic analysis traced those failures to the
+native engine's representation admission: on some two-demonstration subsets,
+finer segmentation views become eligible and fill a fixed four-view search
+cap, cutting the view that holds the correct program. The obvious repair,
+forcing a view to be searched first, was harmful on synthetic negative
+controls (no gains, six harmful changes in 168 paired runs) and was not run.
+A 120-task prospective pilot on real training tasks is frozen and has not
+been run. Durable semantic invention
 remains under independent evaluation in the frozen Step-B experiment, which
 has no verdict. We do not claim that CORA has demonstrated semantic invention
 or self-improvement.
@@ -73,6 +84,11 @@ or self-improvement.
 8. Negative results showing why score gains, search gains, passive failure
    descriptors and known-operator reconstruction are insufficient evidence of
    capability growth.
+9. On real development tasks: a constructed extension that the unchanged
+   engine accepted and used, and a predicate-level account of why it failed
+   adaptive leave-one-out (a representation-admission defect in the native
+   search, not a missing capability), with synthetic negative controls that
+   rejected the obvious repair before it was run (sections 8.16 and 8.17).
 
 ## 1. Introduction
 
@@ -219,8 +235,9 @@ CORA is non-LLM. No language model runs at inference.
 The constructive proposer (section 8.13), the ConstructiveExtensionCompiler
 (section 8.12) and the installed-extension repair K*-4 (section 8.14) are
 implemented and tested on the synthetic constructive grammar only; none has
-run on a real ARC task. The failure representation and its repair are
-diagnostic instrumentation. None of these contribute to the leaderboard
+run on a real ARC task. The growth-relation proposer of section 8.16 has run
+on real training-development tasks, once and for development only. The
+failure representation and its repair are diagnostic instrumentation. None of these contribute to the leaderboard
 result, and the paper attributes nothing to them. Binding requirement: the
 manuscript method, the writeup method and the public notebook method are the
 same method for every claim about the submitted solver.
@@ -249,7 +266,10 @@ new AST to construct, and it is not a proposal mechanism.
 Implemented since 2026-10-05, on the synthetic constructive grammar only: the
 no-oracle extension proposer (section 8.13), the extension compiler (section
 8.12) and the installed-extension re-induction repair (section 8.14). None
-has run on a real ARC task and none is part of the submitted solver.
+has run on a real ARC task and none is part of the submitted solver. Since
+2026-10-11 a separate growth-relation proposer (section 8.16) has run on the
+60 real training-development tasks, for development only. It is not part of
+the submitted solver either.
 
 ## 5. Durable Capability Growth
 
@@ -1155,7 +1175,9 @@ engine does not.
 
 ## 8.15 A real ARC pilot, and why it has not run
 
-[DESIGN AND FEASIBILITY 2026-10-07; NOT FROZEN]
+[DESIGN AND FEASIBILITY 2026-10-07; superseded 2026-10-11: after section
+8.16 the feasibility rule passed and the successor pilot v2 was FROZEN with
+N = 120 (c1906ee); it has NOT been run.]
 
 Section 8.14 licensed a pilot on real ARC-AGI-2 training tasks: one
 independently scored rescue with the full witness, the same reasoner, and
@@ -1183,9 +1205,137 @@ gate up to witness support on all four and activated, correctly, on one;
 the other three abstained at the witness-support gate although their
 predictions were right, so that gate is strict and costs recall.
 
-So the bottleneck on real tasks is the proposer's reach, not the engine or
-the selection. The pilot candidates remain unused; the harness can be
-frozen unchanged once a proposer reaches real tasks.
+So the bottleneck on real tasks was the proposer's reach, not the engine or
+the selection. Section 8.16 addresses that reach. With 4 of 60 development
+tasks at the installed stage, the unchanged feasibility rule passed, and the
+versioned successor (pilot v2, `docs/CORA_REAL_ARC_GROWTH_PILOT_v2.md`) was
+frozen on 120 untouched training tasks with N set by the unchanged rule. It
+has not been run: while the leave-one-out blocker of section 8.17 stands, the
+development data predict that it would produce no witness.
+
+## 8.16 Reaching real tasks: growth relations from the engine's own failures
+
+[MEASURED 2026-10-11; development only; run once; independently verified]
+
+The proposer of section 8.13 reached no real task (section 8.15). Its grammar
+recolours whole regions by a feature lookup, and real changes rarely take
+that form. Reach v1 starts instead from a failure trace the native object
+engine already writes: when it cannot generalize a change, it memorizes it
+as a constant `pattern` fallback. The memorized instances become evidence for
+a growth relation (how an object grows into its output), and a frozen
+grammar of 9 families and 210 settings is searched for one setting that
+reproduces every memorized instance of one segmentation variant. A match is
+compiled into a canonical growth extension, installed into the unchanged
+engine through a reversible bridge, and judged by the engine's own gate
+(train-exact plus its own leave-one-out) and then by the protocol's adaptive
+leave-one-out, which removes a demonstration first and rebuilds everything
+from scratch.
+
+| stage (60 training-development tasks) | tasks |
+|---|---|
+| native baseline failure | 54 |
+| usable failure evidence (memorized growth instances) | 31 |
+| machine-generated proposal | 4 |
+| canonical extension, compiled | 4 |
+| installed into the native engine (0 of 60 before) | 4 |
+| accepted native program that uses the extension | 1 |
+| full adaptive leave-one-out | 0 (0 of 14 folds) |
+| activation | 0 |
+
+The accepted case (opaque key kf892487f1049; a `bbox_fill` relation in the
+colour-layers variant S6) passed replay, attribution, prediction,
+determinism, unanimity and support. Within the tested budgets it is not
+reachable without the extension: the engine alone, the extension removed,
+and matched compute (90 s) accept nothing. It is not a renaming (the
+engine's own growth detector falls back to `pattern` on all 6 instances) and
+not a cache (a 119-byte body against 83 memorized cells). No complete bounded
+absence proof over the whole engine exists, so we do not label it a certified
+semantic extension. Demonstrations-only construction proposes nothing on the
+four tasks; shuffled failure evidence is never accepted with the extension
+used. No task meets the invariant's conditions 1 to 5 together: the accepted
+extension fails condition 5, adaptive leave-one-out.
+
+## 8.17 Why the accepted extension failed leave-one-out
+
+[DIAGNOSED 2026-10-12; development and synthetic; observation only; the
+subsets examined were chosen after the failure was seen]
+
+A frozen diagnosis (18 units, 102 engine runs, 29,828 CPU seconds) first ruled
+out resources. Wall-clock and process-CPU deadlines gave identical
+acceptance and stage in 23 of 23 paired arms, and matched compute up to
+270 s never accepted. Forensic probes then located the mechanism in the
+native engine's representation admission. The engine searches at most four
+coherent segmentation variants, in a fixed trial order. Coherence requires a
+consistent object-count relation across the demonstrations and pixel
+coverage of at least 0.8.
+
+In every outer fold of kf892487f1049 the engine finds the full-data program
+$G$ at the top level. Its own leave-one-out then re-induces from two
+demonstrations. On four of the six pairs it searches S6 first and returns
+$G$. On the pairs (0,2) and (1,3) the demonstrations have identical object
+counts in the fine variants, so a constant difference makes all five fine
+variants coherent. Four of them fill the cap, and the strictly coarser S6
+(4 against 6 and 8 against 12 objects) is never searched. The winners are
+constant-class programs that are wrong on the held-out demonstration (21 to
+33 cells). $G$ is train-exact on both pairs and would win on the engine's own
+key (parameter class FEATURE against CONSTANT); it is simply never generated.
+
+Across the four tasks, variant admission explains 11 of 14 failed folds and
+all three full-data rejections. The remaining folds are support (2) and
+identifiability from a single demonstration (1); proposer ordering co-occurs
+in one. A first hypothesis, that the engine's cross-variant parsimony skip
+pruned S6, was refuted.
+
+The eligibility rule behaves as designed. Each consistency clause quantifies
+over demonstration pairs, so removing demonstrations can only add coherent
+variants. A static check found 0 losses in 122 parent-fold pairs, and
+additions in 36. What fails is an invariant the engine documents for itself:
+after a winner, strictly coarser variants are "still tried" so that an n-1
+fold "converges on the same variant the full train set picks". The cap is
+applied before that rule, to the fold's larger coherent set, and cuts the
+coarser variant in exactly the case the rule was written for.
+
+**Negative controls.** The obvious repair forces the extension's variant to
+be searched first, admitting it even when incoherent. Before running it on
+real tasks we tested that class on 24 seeded synthetic tasks (6 rule
+families; 3 training and 2 held-out demonstrations each). Each run was
+paired with the same task's native outcome (natively: 7 correct, 2 false
+acceptances, 15 rejected).
+
+| overlay | runs (tasks) | unchanged | harmful changes | gains |
+|---|---|---|---|---|
+| an eligible variant searched first | 131 (23) | 128 | 2 correct to rejected, 1 rejected to false acceptance | 0 |
+| an ineligible variant searched first and admitted | 37 (10) | 34 | 2 correct to rejected, 1 correct to false acceptance | 0 |
+
+Three mechanisms account for the harm:
+- A coarser variant searched first prunes the finer native candidates
+  through the parsimony skip.
+- A forced view's program passes every engine gate but is wrong on held-out
+  demonstrations.
+- An incoherent forced view uses 3.5 times the native time.
+
+The variant-first repair had already been built; it was not run. Letting the
+coarser rule reach every cut variant was also rejected without a run. A
+static count shows it would alter the search on 73 of 96 synthetic subsets,
+mostly through the proximity variant the engine keeps as a last resort.
+
+The one remaining candidate is narrow and not yet authorized. Inside the
+engine's own leave-one-out only, it appends the validated program's variant
+when a fold finds it coherent but the cap cuts it. It never reorders and
+never admits an incoherent view. Its static exposure is 3 of 72 synthetic
+folds and, on kf892487f1049, exactly the failing inner folds.
+
+Its pre-registered predictions do not rescue the screen. Three of the four
+outer folds would pass. The fourth still fails, because the proposer selects
+a different extension that the held-out demonstration refutes. So no
+development task is predicted to reach conditions 1 to 5. Even then, the
+change would be a representation correction in the native search, not
+semantic invention.
+
+The lesson is the paper's thesis in miniature. The failure looked like "the
+constructed capability does not generalize". It was a defect in which
+representations the existing search admits, and only typing the failure
+told the two apart.
 
 ## 9. Ablations and Failure Analysis
 
@@ -1248,8 +1398,15 @@ is a perception and correspondence limit rather than a language limit.
   end: 11 of 30 complete witnesses against 15 required, because the engine
   rejected most produced extensions on six-pair leave-one-out folds.
 - On real tasks the same proposer reached nothing: 0 of 60 real development
-  tasks produced a verified proposal (section 8.15), so the real ARC pilot
-  was not frozen.
+  tasks produced a verified proposal (section 8.15), so the first real ARC
+  pilot was not frozen.
+- The growth-relation proposer that replaced it reached the installed stage
+  on 4 of 60 development tasks, but no extension survived adaptive
+  leave-one-out (0 of 14 folds) and nothing activated (section 8.16).
+- Forcing a segmentation variant to be searched first, eligible or not,
+  produced no gains and six harmful changes in 168 paired synthetic runs
+  (section 8.17). The built repair of that class was not run. The hypothesis
+  that the parsimony skip caused the real failure was refuted.
 - The contrastive corpus (section 8.8) failed its identifiability gate: the
   failure summary told two close targets apart at 0.470 against an exact
   null of 0.429.
@@ -1328,8 +1485,16 @@ task-dependent semantic frontiers. That is not semantic invention.
   120 on the local public evaluation.
 - Verification has shown poor off-distribution calibration: 40 of 42 on
   training against 0 of 11 on an evaluation development split.
-- Every constructive result (sections 8.11 to 8.14) is on the synthetic
-  constructive grammar; none involves a real ARC task.
+- Every constructive result that completed a witness (sections 8.11 to
+  8.14) is on the synthetic constructive grammar. The real-task results
+  (sections 8.16 and 8.17) are development-only and complete no witness.
+- The forensic subsets of section 8.17 were examined after the failure was
+  seen. They explain a failure; they do not test a fix. The synthetic
+  negative controls have limited power (7 of 24 tasks natively correct), and
+  their rule families are not ARC.
+- The narrow correction of section 8.17 has not been run. Its own
+  predictions leave every development task short of complete adaptive
+  leave-one-out.
 - The repaired engine does not discriminate right from wrong installed
   extensions. Correctness rests on selection, held-out checks and abstention,
   which the real pilot has to carry.
@@ -1359,10 +1524,15 @@ descriptions of failure did not help choose an extension beyond the
 demonstrations, but a candidate's effect on the failed reasoner did. A
 selected extension can be compiled into the same reasoner, and one can be
 proposed from the reasoner's own failure without an oracle. After one generic
-engine repair the closed loop completed on 27 of 30 new synthetic tasks. None
-of this has yet touched a real ARC task, the engine accepts wrong extensions
-as readily as right ones, and the durable-growth experiment has no verdict.
-We report what is measured and mark the rest unmeasured.
+engine repair the closed loop completed on 27 of 30 new synthetic tasks. On
+real development tasks the loop now reaches the native engine, and the
+unchanged engine accepted and used one constructed extension. It did not
+survive adaptive leave-one-out, and the cause was a representation-admission
+defect in the native search, not a missing capability. The obvious repair
+was harmful on negative controls and was not run. No real ARC task has been
+solved by a constructed extension, the engine accepts wrong extensions as
+readily as right ones, and the durable-growth experiment has no verdict. We
+report what is measured and mark the rest unmeasured.
 
 ## Appendix A. Evidence mapped to the six criteria
 
@@ -1446,6 +1616,9 @@ The full map of the four project trees, with every step and its record, is
 | Sep 2026 | test-time invention attempts; transfer and abstraction studies | DEV-60 0.0; 0 of 1,500 admitted; no reach gain |
 | Sep-Oct 2026 | delivery sprint v1.2 to v1.9 (sections 8.5 to 8.14) | 27 of 30 synthetic end-to-end witnesses |
 | Oct 2026 | real ARC pilot harness built; the frozen proposer reaches 0 of 60 real development tasks | pilot not frozen; proposer reach is the blocker |
+| Oct 2026 | reach v1: growth relations from the engine's own memorized failures (section 8.16) | 4 of 60 installed; 1 accepted and used; 0 of 14 LOO folds |
+| Oct 2026 | pilot v2 frozen on 120 untouched training tasks | not run |
+| Oct 2026 | leave-one-out diagnosis and synthetic negative controls (section 8.17) | representation admission in 11 of 14 folds; variant-first repair 0 gains, 6 harmful in 168 |
 
 Tried and dropped, each with its recorded diagnosis: language-model hints and
 learned ranking policies, a world-model reranker, a vision probe, a small
