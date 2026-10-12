@@ -242,3 +242,17 @@ def test_recheck_units_pair_every_task_with_both_arms():
     assert {u.split("|")[0] for u in units[:8]} == fc and fc == {"k017955a77fc5", "k5991e227189e",
                                                                   "k5a49896251a2", "kf892487f1049"}
     assert all(units[i].split("|")[0] == units[i + 1].split("|")[0] for i in range(0, 120, 2))
+
+
+def test_recheck_worker_freeze_reads_no_forbidden_path():
+    """Erratum 1: everything a worker hashes must pass the isolation hook."""
+    from cora_loo import recheck as RC
+    from cora_pilot import isolation as ISO
+    ISO._STATE["bundle"] = os.path.normpath(os.path.join(HERE, "records", "pilot_v1", "dev_bundle.json"))
+    try:
+        for f in RC.FROZEN_FILES + RC.FROZEN_TREES:
+            assert ISO.forbidden(os.path.normpath(os.path.join(HERE, f))) is None, f
+        for f in RC.COORDINATOR_ONLY:
+            assert ISO.forbidden(os.path.normpath(os.path.join(HERE, f))) is not None, f
+    finally:
+        ISO._STATE["bundle"] = None

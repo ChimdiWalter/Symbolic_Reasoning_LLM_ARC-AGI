@@ -87,7 +87,7 @@ def worker(phase, wid):
     from harness.run_harness import _set_worker_env
     _set_worker_env()
     from cora_loo import recheck as RC
-    problems = RC.freeze_problems(HERE, MANIFEST)
+    problems = RC.freeze_problems(HERE, MANIFEST, role="worker")
     if problems:
         raise SystemExit(f"recheck: freeze check failed: {problems}")
     tasks = json.load(open(BUNDLE))["tasks"]

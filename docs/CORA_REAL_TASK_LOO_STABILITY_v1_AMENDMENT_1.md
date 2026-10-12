@@ -56,3 +56,18 @@ pass, because the evidence-side cuts, the lost support and the ordering on
 kf892487f1049 fold 1 are not addressed by this repair. A pass licenses
 designing pilot v3 only; a failure is recorded and the 488 candidates stay
 untouched.
+
+## Erratum 1 (2026-10-12T14:09Z): aborted first launch
+
+The first launch of the recheck (start 2026-10-12T14:08:50Z from 6f31817,
+manifest d46334d8) stopped before any unit: every worker's freeze check
+hashed `records/LOO_V1_DIAGNOSIS_20261012.md`, which the isolation hook
+refuses inside the reasoner (every records/ path but the bundle), so all four
+workers exited with code 1. No unit was claimed, no row was written, no
+outcome exists. Its start record, worker list, record and worker logs (with
+the refused read) are kept in `logs/loo_v1/recheck_aborted_launch1/`; its
+manifest is withdrawn. Correction: that record is pinned as COORDINATOR_ONLY
+(checked by the coordinator, outside the hook); the workers check every
+other pinned file and tree; a test now asserts that nothing a worker hashes
+is a forbidden path. Nothing else changed; the recheck is re-frozen and
+launched once more, as its first run.

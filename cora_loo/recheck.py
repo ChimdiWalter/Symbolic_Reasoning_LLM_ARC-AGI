@@ -22,7 +22,6 @@ FROZEN_FILES = (
     "cora_loo/recheck.py", "scripts/loo_v1_recheck_run.py", "scripts/loo_v1_recheck_summary.py",
     "scripts/loo_v1_checkpoint.sh", "scripts/build_measure2.py", "tests/test_reach2.py",
     "docs/CORA_REAL_TASK_LOO_STABILITY_v1.md", "docs/CORA_REAL_TASK_LOO_STABILITY_v1_AMENDMENT_1.md",
-    "records/LOO_V1_DIAGNOSIS_20261012.md",
     "cora_reach2/__init__.py", "cora_reach2/variant.py", "cora_reach2/measure2.py",
     "cora_reach/measure.py", "cora_reach/bridge.py", "cora_reach/construct.py", "cora_reach/relations.py",
     "cora_reach/growth_ext.py", "cora_reach/instances.py", "harness/object_layer.py", "harness/run_harness.py",
@@ -30,6 +29,9 @@ FROZEN_FILES = (
     "records/pilot_v1/dev_bundle.json", "outputs/reach_v1/instances2_rows.jsonl",
     "outputs/reach_v1/census_rows.jsonl")
 FROZEN_TREES = ("geocat_arc", "cora_arc2026", "outputs/reach_v1/instances2")
+#: pinned too, but checked by the coordinator only: the workers' isolation hook
+#: refuses every records/ path but the bundle (erratum 1 of Amendment 1)
+COORDINATOR_ONLY = ("records/LOO_V1_DIAGNOSIS_20261012.md",)
 
 
 def units(keys, fc_keys) -> list:
@@ -68,22 +70,24 @@ def _sha(path) -> str:
         return hashlib.sha256(handle.read()).hexdigest()
 
 
-def freeze_state(here) -> dict:
+def freeze_state(here, role="coordinator") -> dict:
     from cora_reach2 import measure2 as M2
-    return {"files": {f: _sha(os.path.join(here, f)) for f in FROZEN_FILES},
+    files = FROZEN_FILES + (COORDINATOR_ONLY if role == "coordinator" else ())
+    return {"files": {f: _sha(os.path.join(here, f)) for f in files},
             "trees": {t: M.tree_sha(os.path.join(here, t)) for t in FROZEN_TREES},
             "constants": {"version": VERSION, "arms": list(ARMS), "v1": "reach-v1-measure", "v2": M2.VERSION,
                           "budget_s": M.BUDGET_S, "extract_cap_s": M.EXTRACT_CAP_S,
                           "matched_s": [M.MATCHED_MIN_S, M.MATCHED_MAX_S]}}
 
 
-def freeze_problems(here, manifest_path) -> list:
+def freeze_problems(here, manifest_path, role="coordinator") -> list:
+    """role "worker" (inside the isolation hook) skips COORDINATOR_ONLY."""
     if not os.path.exists(manifest_path):
         return ["no manifest"]
     with open(manifest_path) as handle:
         frozen = json.load(handle)["state"]
-    now = freeze_state(here)
-    problems = [f"file {f}" for f in FROZEN_FILES if frozen["files"].get(f) != now["files"][f]]
+    now = freeze_state(here, role)
+    problems = [f"file {f}" for f in now["files"] if frozen["files"].get(f) != now["files"][f]]
     problems += [f"tree {t}" for t in FROZEN_TREES if frozen["trees"].get(t) != now["trees"][t]]
     if frozen.get("constants") != now["constants"]:
         problems.append("constants")
@@ -98,7 +102,7 @@ def main(argv):
     if os.path.exists(path):
         raise SystemExit("a manifest exists: the recheck is frozen")
     dirty = subprocess.run(["git", "status", "--porcelain", "--",
-                            *[f for f in FROZEN_FILES if not f.startswith("outputs/")]],
+                            *[f for f in FROZEN_FILES + COORDINATOR_ONLY if not f.startswith("outputs/")]],
                            cwd=here, capture_output=True, text=True).stdout.strip()
     if dirty:
         raise SystemExit(f"frozen files differ from HEAD: commit first\n{dirty}")
