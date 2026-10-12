@@ -234,6 +234,25 @@ record frozen -> repair decision.
   expectation in the record: the screen (conditions 1-5 on one task) is NOT
   expected to pass (evidence-side cuts, support, ordering remain).
 
+- REPAIR BUILT 568af22 (`cora_reach2/`: variant-carrying installation;
+  `measure2.py` = reach v1 + 11 `# V2` lines via `scripts/build_measure2.py`;
+  10 tests incl. 4 mutants) + Amendment 1
+  (`docs/CORA_REAL_TASK_LOO_STABILITY_v1_AMENDMENT_1.md`, separate file so
+  the diagnosis-pinned protocol stays byte-identical). Erratum 1 (0feaaeb):
+  the first recheck launch stopped before any unit (workers' freeze read a
+  records/ file the hook refuses; 0 rows, no outcome; artifacts in
+  `logs/loo_v1/recheck_aborted_launch1/`). Re-frozen ad0c4b5
+  (`outputs/loo_v1/recheck_manifest.json` sha256 7be92e40...).
+- RECHECK RUNNING detached since 2026-10-12T14:10:57Z (run once): coordinator
+  pid 1587690, workers 1587758-1587761 (`logs/loo_v1/recheck_0_workers.json`),
+  checkpointer pid 1588780 (`scripts/loo_v1_checkpoint.sh recheck 1587690`;
+  its commit text says "of 18 units" but counts recheck rows of 120). 120
+  units (60 tasks x ORIGINAL, SUCCESSOR), FC tasks first. Resume only after
+  a genuine interruption: `setsid nohup .venv_arc2026/bin/python
+  scripts/loo_v1_recheck_run.py recheck --resume > logs/loo_v1/coordinator_recheck.log
+  2>&1 < /dev/null &` (2 max). After `logs/loo_v1/RECHECK_0_DONE`:
+  `.venv_arc2026/bin/python scripts/loo_v1_recheck_summary.py`, record, report.
+
 ### Earlier in this section (reach v1 block)
 
 
