@@ -1,10 +1,10 @@
 # CORA real ARC growth-repair causal pilot v2: protocol
 
-Status: DRAFT, NOT FROZEN. Drafted 2026-10-11 while the reach v1
-development measurement was running, before its outcome was read. It is
-frozen (section 17) only if that measurement passes the readiness rule of
-pilot v1 section 12, after its result is recorded; it is never run without
-an explicit go-ahead.
+Status: FROZEN_NOT_RUN (section 17). Drafted 2026-10-11 while the reach v1
+development measurement was running, before its outcome was read (9643cd4);
+completed and frozen 2026-10-12 after that measurement passed the readiness
+rule of pilot v1 section 12 and its result was recorded (section 12). It is
+not run without an explicit go-ahead.
 
 ## 1. Question and claim ceiling
 
@@ -43,8 +43,9 @@ that demonstration-only and shuffled-failure constructions did not match.
   for stacked region recolouring, by the reach v1 mechanism.
 - Reach v1 (`docs/CORA_REAL_TASK_REACH_DEV_v1.md` sections 4.1 and 5.1;
   frozen c8d8e3a; record `records/REACH_V1_MEASURE_20261011.md`): the
-  per-task policy `cora_reach.measure.run_task` is used here unchanged.
-  Its development result and readiness verdict are stated in section 12.
+  per-task policy `cora_reach.measure.run_task` is used here unchanged; no
+  part of the mechanism was changed after its outcome was read. Its
+  development result and readiness verdict are stated in section 12.
 
 ## 3. Data
 
@@ -182,8 +183,21 @@ The pilot's held-out outcomes are never used to tune anything.
 The rule of pilot v1 section 12, unchanged: with a = activated development
 tasks of the reach v1 measurement, N is the smallest allowed value (48, 72,
 96, 120) with N x a / 60 >= 4, and 120 when a = 0 or no allowed value
-reaches 4. Development result, readiness verdict, a and N: to be written
-here from `records/REACH_V1_MEASURE_20261011.md` before the freeze.
+reaches 4.
+
+Development result (`records/REACH_V1_MEASURE_20261011.md`, run once,
+verified with 0 problems): isolation clean, no RUN_ERROR, native readiness
+complete, 4 of 60 tasks at the compiled-and-installed stage (0 of 60 before,
+ce123e8): READY = PASS. Accepted programs 1, adaptive leave-one-out
+successes 0, activations a = 0, conditions 1 to 5 together on 0 tasks.
+Hence N = 120: n3 60, n4 40, n5p 20.
+
+Expected-outcome note, written before the pilot: with 0 of 60 development
+activations and 0 of 14 rebuilt leave-one-out folds succeeding, the
+development data predict that a pilot of 120 will most likely end at
+NO_REAL_ARC_WITNESS, the binding blocker being the adaptive leave-one-out.
+Running it would also use 120 of the 488 untouched candidates. This note
+changes no rule.
 
 ## 13. Runtime and resource caps
 
@@ -236,4 +250,11 @@ that the engine distinguishes right from wrong extensions.
 
 ## 17. Identities
 
-None: the pilot is not frozen.
+The manifest `outputs/pilot_v2/pilot_v2_manifest.json` and its `.sha256`
+file pin this protocol's sha256, every implementation file, the frozen
+reach v1 mechanism and its development record, the selection, the bundle,
+the evaluator-only key map, the dependency trees, runtime versions, data
+and sealed-record checksums and the constants; their digests are recorded
+in RESUME.md and the stage ledger (not here, since this file is pinned).
+`scripts/freeze_pilot_v2.py` checks them (role reasoner in the coordinator,
+role evaluator in the evaluator and the verifier).
