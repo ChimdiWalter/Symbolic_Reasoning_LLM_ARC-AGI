@@ -71,9 +71,9 @@ def main():
                              "granularity_mismatch": r.granularity_mismatch, "coherent": r.coherent,
                              "first_rejection": first})
             searched = coherent_order[:I.MAX_SEG_VARIANTS_TRIED]
-            if not coherent_order:
-                inc = [x for x in rows]
-                fb = max(inc, key=lambda x: (0.0, x["pixel_coverage"]))["variant"]
+            if not coherent_order:                # the engine's fallback: max (coherence, pixel_coverage)
+                res = {v.value: S.evaluate_variant(v, pairs) for v in I.SEGMENTATION_TRIAL_ORDER}
+                fb = max(res.values(), key=lambda r: (r.coherence, r.pixel_coverage)).variant.value
                 searched = [fb]
             for x in rows:
                 x["coherent_rank"] = coherent_order.index(x["variant"]) + 1 if x["variant"] in coherent_order else None
