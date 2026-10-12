@@ -181,3 +181,16 @@ Five claims are reported separately, never merged:
   D. The rule is not changed after the fact.
 - **Preflight corpus.** These 17 tasks plus the 24 negative-control tasks: 41
   tasks, 3 arms each.
+
+## 8. Clarification before any run (2026-10-12)
+
+**Exposure, as frozen in the corpus code.** EXPOSED means deduplication
+ADMITS a view the native cap had cut, in some training subset the engine
+sees. That is the census field `dedup_admits`, and it is what
+`scripts/p3_adversarial_corpus.py` uses.
+
+**Drop-only tasks are UNEXPOSED.** A task where P3 only drops a duplicate and
+admits nothing is UNEXPOSED. S2 therefore also tests the claim that dropping
+duplicates is neutral to selection: natively, the earlier duplicate wins
+ties. A difference there counts as a violation unless BASE and BASE_REPEAT
+disagree on that task.
