@@ -177,6 +177,17 @@ can be produced under the frozen v1.1 admission law.
 Real ARC failures now give informative graphs but carry no target AST, and no
 hidden answer may be read to supply one.
 
+## Standing deliverables (user, 2026-10-12): update after EVERY new result
+
+- Award paper: `docs/PAPER_SKELETON.md` (paper track deadline 2026-11-08).
+- Summit poster (ARC Prize Research Summit 2026-10-23): `docs/summit_poster/`
+  (poster source + PDF; every PNG it uses in `docs/summit_poster/figures/`).
+- Poster abstract as PDF: `docs/summit_poster/`.
+- Figures ONLY from sealed outputs or the real pipeline
+  (`scripts/summit_figures.py`); no generated pictures; toy illustrations
+  only if labelled as such. Evidence note:
+  `records/CORA_SUMMIT_POSTER_EVIDENCE_20261012.md`. VDCG never included.
+
 ## Next action, exactly one
 
 **REAL-TASK ADAPTIVE LOO STABILITY v1 (user directive 2026-10-12) IN PROGRESS.**
