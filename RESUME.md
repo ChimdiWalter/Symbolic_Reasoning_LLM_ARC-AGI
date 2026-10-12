@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: STOPPED after CASE A. Reach v1 measurement COMPLETE and VERIFIED (`records/REACH_V1_MEASURE_20261011.md`): READY = PASS by the unchanged rule (installed 4/60, baseline 0/60), accepted 1, adaptive LOO 0, activations 0. Successor pilot v2 FROZEN_NOT_RUN (c1906ee; manifest c93ec1db; N = 120). Next = user decision: run pilot v2, or first a development block on the LOO blocker (dev tasks only). v1.9 stays LEVEL 2 synthetic; certified 185/1000 unchanged.
+Last updated 2026-10-12. Current: REAL-TASK ADAPTIVE LOO STABILITY block v1 IN PROGRESS (user directive 2026-10-12, started at a9e4577): diagnose the 14 failed reach v1 folds on the 60 development tasks (observation only), freeze the diagnosis, then at most ONE generic repair and ONE development recheck. Pilot v2 FROZEN_NOT_RUN (c1906ee, c93ec1db) must not be run or edited; reach v1 record unchanged. Certified 185/1000 unchanged.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -178,6 +178,26 @@ Real ARC failures now give informative graphs but carry no target AST, and no
 hidden answer may be read to supply one.
 
 ## Next action, exactly one
+
+**REAL-TASK ADAPTIVE LOO STABILITY v1 (user directive 2026-10-12) IN PROGRESS.**
+Data: the 60 development tasks only (demonstrations; leave-one-out scores
+held-out demonstrations); never the pilot v2 bundle, the 488 candidates,
+evaluation DEV / HOLDOUT, solutions, Step B, VDCG, E_transfer, Lockbox.
+Pinned trees (pilot v2 manifest): cora_reach, cora_pilot, cora_pilot2,
+harness, geocat_arc, cora_arc2026, src/reasoning_project and three TTI
+packages; a new file inside any of them breaks pilot v2's freeze, so new
+code lives in `cora_loo/` and new scripts; after every commit re-run
+`freeze_pilot_v2.freeze_problems` and the reach v1 manifest check (both
+must stay []).
+Plan: protocol `docs/CORA_REAL_TASK_LOO_STABILITY_v1.md` -> observation-only
+instrument (`cora_loo/`, v1.9 tracer + deadline and substitution spies,
+WALL and CPU1 clocks) -> synthetic tests -> diagnosis freeze -> one
+detached run (arms A full-data, B adaptive fold, C fixed-extension
+FORENSIC, D no extension, E matched) -> H1-H6 classification -> diagnosis
+record frozen -> repair decision.
+
+### Earlier in this section (reach v1 block)
+
 
 **REAL-TASK REACH v1 BLOCK IN PROGRESS (user directive 2026-10-07 "REAL-TASK
 PROPOSER REACH AND BASELINE DELIVERY PARITY" + binding failure-driven
