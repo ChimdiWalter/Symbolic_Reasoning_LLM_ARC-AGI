@@ -1,6 +1,7 @@
-% Spoken explainer for the CORA summit poster: words to say, panel by panel,
-% to someone with no background. Every number matches the poster and
-% records/CORA_SUMMIT_POSTER_EVIDENCE_20261012.md.
+% Spoken explainer for the CORA summit poster, for a listener with no
+% background: the story, the related work, the research journey, the poster
+% panel by panel, what is and is not done. Every number matches the poster,
+% the paper (docs/PAPER_SKELETON.md) or records/CORA_SUMMIT_POSTER_EVIDENCE_20261012.md.
 \documentclass[11pt]{article}
 \usepackage[a4paper, margin=2.3cm]{geometry}
 \usepackage[scaled]{helvet}
@@ -9,172 +10,284 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
 \definecolor{ink2}{HTML}{52514E}
 \definecolor{accent}{HTML}{2A78D6}
 \pagestyle{plain}
 \pdftrailerid{}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.6em}
-\setlist{itemsep=0.2em, topsep=0.2em}
-\newcommand{\cue}[1]{{\color{ink2}\textit{[Point to: #1]}}\par}
-\newcommand{\panel}[1]{\par\vspace{0.8em}{\large\bfseries\color{accent}#1}\par\vspace{0.1em}}
+\setlist{itemsep=0.25em, topsep=0.2em}
+\newcommand{\cue}[1]{{\color{ink2}\textit{[#1]}}\par}
+\newcommand{\bigpart}[1]{\par\vspace{1.2em}{\Large\bfseries #1}\par\vspace{0.1em}}
+\newcommand{\panel}[1]{\par\vspace{0.7em}{\large\bfseries\color{accent}#1}\par\vspace{0.05em}}
 
 \begin{document}
-{\LARGE\bfseries Poster explainer: what to say, panel by panel\par}
+{\LARGE\bfseries The poster, explained to someone new\par}
 \vspace{0.3em}
-{\color{ink2} For a listener with no background. Read the plain text aloud; the grey lines tell you where to
-point. Every number here is on the poster.\par}
+{\color{ink2} Read the plain text aloud. The grey lines in brackets are notes to you: where to point, or
+when to pause. Every number in here is on the poster or in the paper.\par}
 
 \panel{If you only have 20 seconds}
-``This poster is about a computer program that solves picture puzzles. When it fails, we want it to work
-out \emph{why} it failed before it tries to fix itself, because different failures need different fixes, and
-the wrong fix can break things that used to work. We found a case where the program could have had the
-answer but never looked at the puzzle the right way. We also found that the obvious fix made other puzzles
-worse. So we have not solved new puzzles yet. What we have learned is how to diagnose a failure properly
-first.''
+This poster is about teaching a computer to learn from its mistakes the way people do. When it fails a
+puzzle, I want it to work out \emph{why} it failed before it changes anything, because different failures
+need different fixes, and the wrong fix can break things that used to work. I found a case where the
+program could have found the right answer but never looked at the puzzle the right way. I also found that
+the obvious fix made other puzzles worse. So the program has not solved new puzzles yet. What it has given
+me is a working way to diagnose a failure before fixing it.
 
-\panel{1. What are the puzzles?}
-\cue{the small coloured grids in the middle column, ``demo 0'' to ``demo 3''}
-``These are ARC puzzles. Each one is a small grid of coloured squares. The puzzle gives a few examples: an
-input picture, and the output picture it turns into. The solver has to work out the rule from those few
-examples, and then use the rule on a new picture.
+% ======================================================================
+\bigpart{Part 1. The story}
+
+\panel{Learning from failure is a very human thing}
+Think about how you learn. When you get something wrong, you do not just try the same thing again, harder.
+You ask: did I misread the question? Did I not know the method? Was there not enough information? Then you
+change \emph{that} part. A child learning to stack blocks does this. A scientist whose experiment fails does
+this. A doctor does it too: diagnose first, then prescribe.
+
+Most computer programs do not. When they fail, they either give up, or they do more of the same: search
+longer, try more guesses, use more computer power. My question is whether a program can do the human thing:
+notice \emph{what kind} of failure it had, and change only the part that was actually missing.
+
+\panel{The puzzles, and why they are a good test}
+\cue{point to the small coloured grids, ``demo 0'' to ``demo 3''}
+The puzzles come from a test called ARC, created by the AI researcher Fran\c{c}ois Chollet. Each puzzle
+is a small grid of coloured squares. You get a few examples, each one an input picture and the output
+picture it should turn into. You must work out the rule, and use it on a new picture.
 
 Look at these four examples. Two yellow dots become a filled yellow square, and the dots mark its corners.
-So the rule is: draw the box whose corners are the dots, in the dots' colour. People find puzzles like this
-easy. Computers find them hard, because every puzzle has a new rule and only a few examples.''
+So the rule is: draw the box whose corners are the dots, in the dots' colour. Most people see that in a few
+seconds.
 
-\panel{2. The question}
+Chollet's idea is that intelligence is not how many skills you already have. It is how quickly you can
+learn a \emph{new} skill from very little. ARC is built to test exactly that: every puzzle has a new rule,
+and you usually get only two to five examples. You cannot pass it by memorizing. The version I use, ARC-AGI-2, is
+the harder second version. Chollet and Mike Knoop run the ARC Prize, which hosts this summit.
+
+\panel{Where big neural networks struggle}
+Today's most famous AI systems are big neural networks: deep learning, the technology behind chatbots and
+image generators. They are excellent at things that look like what they saw in training. ARC is designed to
+be hard for them, for a few simple reasons:
+\begin{itemize}
+  \item They learn from huge amounts of data. Here each new rule comes with only a handful of examples.
+  \item They are good at recognizing familiar patterns, and weaker at a rule they have never seen.
+  \item They have no built-in exact check, so they can be confidently wrong.
+  \item When they fail, it is hard to see why, so it is hard to fix the right thing. The usual fix is more
+    data, more training or more computing power.
+\end{itemize}
+To be fair: newer systems have improved a lot on the first ARC test, often by spending a great deal of
+computing on each puzzle, and many strong entries combine neural networks with search. Neural networks are
+not useless here. But on their own they do not tell you why they failed.
+
+I took the opposite bet. My solver writes small, exact programs, and checks every program against every
+example. When it fails, it leaves a written record of what it tried. That record is something you can read
+and reason about. I also tried several neural pieces along the way: hints from a language model, learned
+ranking, a small recursive network and a search-guiding network. None of them helped enough in my setting,
+so I dropped them and wrote down why.
+
+\panel{What others have done, and what is different here}
+Two well-known ideas come close to mine.
+\begin{itemize}
+  \item \textbf{Counterexample-guided synthesis (CEGIS).} Guess a program, find an example where it breaks
+    (a counterexample), use that to fix the guess, and repeat. It is ``guess, check, fix''.
+  \item \textbf{DreamCoder} (Kevin Ellis and colleagues). It learns by writing programs and saving useful
+    pieces as new building blocks, so its toolbox grows over time.
+\end{itemize}
+Both are important. My question is narrower: before fixing anything, decide \emph{which layer} failed.
+Should the system search more, look at the picture differently, build a new tool, or admit that the
+examples are not enough? Then change only that layer, with checks that are fixed in advance and cannot be
+bent. That is a claim I can test and could lose. If my approach does not beat ``guess, check, fix'' and
+``grow a toolbox'' under equal conditions, it is wrong. I have not run that comparison on real puzzles yet.
+
+\panel{My journey: ten months of changing my mind}
+\cue{optional: tell this part if the listener is interested; it is the human side of the work}
+The work itself followed the same loop: try, fail, ask why, change the hypothesis.
+\begin{itemize}
+  \item \textbf{December 2025.} A first prototype that used language-model hints. It was a prototype only.
+  \item \textbf{April 2026.} I restarted with made-up puzzle worlds, where I know the answers. Checking
+    every guess against the examples nearly eliminated false rules.
+  \item \textbf{May to August 2026.} Real ARC puzzles. My solver went from 67 to 185 of the 1,000 practice
+    puzzles, each one with a certificate.
+  \item \textbf{The humbling part.} The same solver solved none of the 120 public test puzzles, and scored
+    0 on the online leaderboard. More hand-written tricks were clearly not enough. So I changed the goal:
+    instead of adding skills by hand, could the system get what it was missing from its own failures?
+  \item \textbf{September 2026.} The first try at that admitted nothing: 0 of 1,500 attempts. The reason
+    was not bad luck. The new learner could only build what the old search could already reach.
+  \item \textbf{Then a surprise.} The system's record of its own failures had been watching the wrong
+    process, a simplified copy of the solver rather than the real one. Once repaired, the failures became
+    informative.
+  \item \textbf{Two opposite results.} Simply \emph{describing} a failure did not help choose a fix (0.585
+    against 0.591, so no gain). Asking \emph{how each possible fix changes the failure} did help (0.641
+    against 0.580). That told me failure is useful as something to experiment on, not just to describe.
+  \item \textbf{October 2026.} On made-up puzzles the full loop worked, in 27 of 30. On real puzzles, it
+    reached the solver for the first time, but did not survive the strict check. The poster is about why.
+\end{itemize}
+Each step changed what I believed. That is the point: reasoning from failure is how people make progress,
+and I want a program that can do it too.
+
+% ======================================================================
+\bigpart{Part 2. The poster, panel by panel}
+
+\panel{1. The question}
 \cue{``The question'', top left}
-``Our question is: how can a program tell that its way of solving is not good enough, and get a better one,
-without cheating on the test that judges it?
-
-When the program fails, there can be different reasons:
+My question is: how can a program tell that its way of solving is not good enough, and get a better one,
+without cheating on the test that judges it? A failure can have different causes, and each needs a
+different fix:
 \begin{itemize}
   \item it did not look hard enough (\emph{search});
   \item it looked at the picture the wrong way (\emph{representation});
   \item it does not have the tool it needs (\emph{capability});
   \item the examples are not enough to pin down the rule (\emph{evidence});
-  \item a correct answer was blocked by our safety checks (\emph{certification}).
+  \item a correct answer was blocked by the safety checks (\emph{certification}).
 \end{itemize}
-Each reason needs a different fix. It is like a doctor: you diagnose before you prescribe.''
 
-\panel{3. The CORA loop}
-\cue{the diagram ``The CORA loop'', left column}
-``CORA is the name of our system. It works in a loop. The solver tries the puzzle. If it fails, we look at a
-record of what it did. We decide what kind of failure it was, choose a fix, and test the fix with checks we
-wrote down in advance. Only after that is the fix allowed to be used.
+\panel{2. The CORA loop}
+\cue{the diagram, left column}
+CORA is the name of my system. The solver tries the puzzle. If it fails, I look at the record of what it
+did, decide what kind of failure it was, and choose a fix. The fix is tested with checks written down in
+advance, and only then can it be used. Solid boxes are built and measured. Dashed boxes are ideas not built
+yet. One honest point: in this work I decided the kind of failure by hand. The automatic version is not
+built yet.
 
-The solid boxes are built and measured. The dashed boxes are ideas we have not built yet. One honest point:
-in this work, the step that decides what kind of failure it was was done by hand. It is not automatic yet.''
-
-\panel{4. Four separate questions}
-\cue{``Four claims, four kinds of evidence'', bottom left}
-``We keep four questions apart:
+\panel{3. Four separate questions}
+\cue{``Four claims, four kinds of evidence''}
+I keep four questions apart:
 \begin{itemize}
   \item Did the new tool really cause the success?
   \item Did the record of the failure matter?
   \item Is the new tool truly new?
   \item Does it help later, on other puzzles?
 \end{itemize}
-The first two have only early evidence, on practice puzzles. The third is not established. The fourth is
-not tested yet.''
+The first two have early evidence on practice puzzles only. The third is not established. The fourth is
+not tested in this work.
 
-\panel{5. What we measured}
-\cue{the first bar chart, ``27 / 30'' and ``12 / 30''}
-``First we tested on made-up practice puzzles that we generate ourselves, where we know the right answers.
-The improved version passed 27 of 30. The earlier version passed 12 of 30. That tells us about made-up
-puzzles only, not real ones.''
+\panel{4. What I measured}
+\cue{the first bar chart, 27 / 30 against 12 / 30}
+On made-up puzzles, the improved system completed 27 of 30, against 12 of 30 before. That is about made-up
+puzzles only.
 
-\cue{the second bar chart, the one that shrinks from 60 to 0}
-``Then we used 60 real ARC practice puzzles. The built-in solver failed 54 of them. In 31 it left useful
-clues about why. In 4, our system built a new tool from those clues and plugged it in. In 1, the solver
-accepted the new tool and used it.
+\cue{the second bar chart, which shrinks from 60 to 0}
+On 60 real practice puzzles:
+\begin{itemize}
+  \item the solver failed 54;
+  \item in 31 it left useful clues about why;
+  \item in 4, my system built a new tool from those clues and plugged it in;
+  \item in 1, the solver accepted the tool and used it.
+\end{itemize}
+But that success failed the strictest check, called leave-one-out. I hide one example, rebuild everything
+from the rest, and see whether the hidden example still comes out right. It is like testing a student: if
+they can solve a worked example you hid from them, they understood it; if not, they may have just
+memorized. It passed 0 of 14 of these checks. So no new real puzzle was solved, and my official score stays
+at 185 out of 1,000.
 
-But that one success did not survive our strictest check, called `leave-one-out'. We hide one example, rebuild
-everything from the others, and see whether the hidden example still comes out right. Think of a student:
-if you hide one worked example and they can still solve it from the rest, they understood; if not, they may
-have just memorized. Our system passed 0 of 14 of those checks.
-
-So no new real puzzle was solved, and our official score stays at 185 out of 1,000.''
-
-\panel{6. Why it failed: the right view was pushed out}
-\cue{the big blue-and-orange grid in the middle column}
-``Then we asked why. The program can look at a picture in seven different ways. We call them views, S1 to
-S7. For example, one view says `each separate blob is an object'. Another says `all squares of the same
-colour together are one object'. The program only has room to search four views, in a fixed order.
+\panel{5. A counterexample to ``just search harder''}
+\cue{the big blue-and-orange grid, middle column}
+Why did it fail? The program can look at a picture in seven different ways, called views. One view says
+``each separate blob is an object''. Another says ``all squares of one colour are one object''. The program
+only has room to search four views, in a fixed order.
 
 With all the examples, only a couple of views pass a basic test, the right one among them, and the program
-finds the right rule. It is marked G. But when we hide examples and leave only two, more views pass the
-test by coincidence and fill up the four places. The right view, S6, gets pushed out, so the program never
-even looks at the right answer. Those are the orange boxes marked `no G'.
+finds the right rule, marked G. When I hide examples and leave only two, more views pass the test by
+coincidence and take the four places. The right view gets pushed out, so the program never even looks at
+the right answer. Searching longer would not help, because the right view is not on the list being
+searched.
 
-And two of the four places were wasted on views that look exactly the same to the program. It is like a
-library with four reading desks: if two desks are taken by copies of the same wrong book, the right book
-never gets read.''
+Two of the four places were wasted on views that look exactly the same to the program. It is like a library
+with four reading desks: if two desks are taken by copies of the same wrong book, the right book never gets
+read.
 
-\panel{7. Testing the obvious fix first}
-\cue{the grid with the red boxes, top right}
-``The obvious fix is: force the program to look at a particular view first. Before trying that on real
-puzzles, we tried it on 24 made-up puzzles where we know the answers. Each row is one puzzle. Grey means
-nothing changed; red means it got worse.
+\panel{6. Test the fix before you trust it}
+\cue{the grid with red boxes, top right}
+The obvious fix is to force the program to look at one particular view first. Before trying that on real
+puzzles, I tried it on 24 made-up puzzles where I know the answers. Each row is one puzzle; red means it got
+worse. It helped none and hurt five. Four that were right went wrong, and one wrong answer got accepted. So
+I did not use it. A fix that rescues your favourite example can quietly break others.
 
-It helped none of them, and it hurt five. Four that were right became wrong or rejected, and one wrong
-answer got accepted as if it were right. So we did not use that fix. The lesson: a fix that makes your
-favourite example work can quietly break others.''
-
-\panel{8. The rules any fix must follow}
+\panel{7. The rules any fix must follow}
 \cue{``What a valid repair must respect''}
-``Any fix must play fair. When we hide an example to test the program, the program is not allowed to peek
-at it, not even indirectly.
+Any fix must play fair. When I hide an example to test the program, the program may not peek at it, not
+even indirectly. One idea I had would have peeked indirectly, so I only use it to learn, never as proof.
+Removing the duplicate views plays fair, but it would change what the program looks at in about half of
+the situations I checked, so it must be tested carefully first. I have not run it. I also found that hiding
+an example can occasionally make a view fail the basic test, 7 times out of 724, so I call that an
+observation, not a rule.
+
+\panel{8. Could this work outside puzzles?}
+\cue{the panel marked BIOLOGICAL APPLICATION: UNTESTED}
+The decision-making part might work in other fields: diagnose the failure, choose a fix, check the fix. One
+example is predicting how cells respond to a drug or a gene change. The puzzle-specific parts would not
+carry over. This is only an idea: I have no biology data and no biology results.
+
+\panel{9. The message}
+Before a reasoning system changes itself, it should find out what kind of failure it had. And every fix
+should be tested fairly, including on cases where it could do harm.
+
+% ======================================================================
+\bigpart{Part 3. What has been done, and what has not}
+
+\textbf{Done and measured}
 \begin{itemize}
-  \item One idea we had would have peeked indirectly. So we only use it to learn, never as proof.
-  \item Another idea, removing the duplicate views, plays fair. But it would change what the program looks
-    at in about half of the situations we checked. So it must be tested carefully first. We have not run it.
-  \item We also found that hiding an example can sometimes make a view fail the basic test, 7 times out of
-    724. So we call that an observation, not a rule.
-\end{itemize}''
+  \item A puzzle solver that writes exact programs and certifies 185 of 1,000 ARC practice puzzles.
+  \item On made-up puzzles: the full learn-from-failure loop worked in 27 of 30 cases, against 12 of 30
+    before.
+  \item On 60 real practice puzzles: tools built from the solver's own failures reached the solver in 4,
+    and one was accepted and used.
+  \item A precise explanation of why that one failed the strict check: the right view was cut, not missing.
+  \item A safety test showing that the obvious fix harms other puzzles, so it was not used.
+\end{itemize}
 
-\panel{9. Could this work outside puzzles?}
-\cue{``A portable controller?'', marked BIOLOGICAL APPLICATION: UNTESTED}
-``We think the decision-making part could work in other fields: diagnose the failure, choose a fix, check
-the fix. One example would be predicting how cells respond to a drug or a gene change. The puzzle-specific
-parts would not carry over. This is only an idea. We have no biology data and no biology results.''
-
-\panel{10. What we are not claiming}
-\cue{``Not claimed'', bottom right}
-``To be clear:
+\textbf{Not done, or not yet}
 \begin{itemize}
-  \item We did not improve the ARC score.
-  \item We did not show that the computer invents truly new ideas.
-  \item We have not built the automatic diagnosis yet.
-  \item A larger test on 120 new puzzles is written down and frozen, but it has not been run.
-\end{itemize}''
+  \item No new real ARC puzzle solved, and no score improvement. The score is still 185 of 1,000 on
+    practice puzzles, and none of the 120 public test puzzles.
+  \item No proof that the system invents truly new ideas.
+  \item No automatic failure diagnosis. On this poster I did it by hand.
+  \item No fair comparison yet against ``guess, check, fix'' or ``grow a toolbox'' on real puzzles.
+  \item The duplicate-removal fix is designed but not run.
+  \item A larger test on 120 new puzzles is frozen and has not been run.
+  \item No biology results.
+\end{itemize}
 
-\panel{11. The one-sentence message}
-``Before a reasoning system changes itself, it should find out what kind of failure it had, and every fix
-should be tested fairly, including on cases where the fix could do harm.''
+% ======================================================================
+\bigpart{Part 4. If they ask}
 
-\panel{If they ask}
-\textbf{``Did it solve any new puzzles?''} ``Not yet. No new real puzzles.''
+\textbf{``Did it solve any new puzzles?''} Not yet. No new real puzzles.
 
-\textbf{``Why not just let it search longer?''} ``Searching longer would not help here. The right view was
-never on the list it searched.''
+\textbf{``Isn't this just guess, check, fix?''} It includes that. What it adds is deciding what kind of
+failure happened before choosing a fix. Whether that extra step really helps is the next experiment.
 
-\textbf{``Why use made-up puzzles?''} ``Because there we know the right answers, so we can see when a fix
-does harm.''
+\textbf{``How is it different from DreamCoder?''} DreamCoder grows a toolbox. I am asking when the toolbox is
+actually the problem, and when the problem is search, the view, or too few examples.
 
-\textbf{``What happens next?''} ``We test the `remove duplicates' fix fairly, with safety checks, before any
-new real test.''
+\textbf{``Why not just use a big neural network?''} They are powerful, but they need lots of data, they cannot
+check themselves exactly, and they do not tell you why they failed. I wanted failures I can read and fixes I
+can test.
 
-\panel{Words you may need}
-\begin{description}[itemsep=0.1em, labelwidth=4.2cm, leftmargin=4.4cm, labelsep=0.2cm, font=\normalfont\bfseries]
-  \item[ARC] a public set of picture puzzles used to test reasoning.
+\textbf{``So was it a bug?''} In this case, yes: a limit in how the solver chooses its views. Telling that
+apart from a missing ability is exactly what the diagnosis is for.
+
+\textbf{``What would Chollet say?''} Probably: show me that it learns new skills efficiently, with every cost
+counted. That is the right test, and I have not passed it yet.
+
+\textbf{``What happens next?''} Test the duplicate-removal fix fairly, with safety checks, before any new
+real test.
+
+% ======================================================================
+\bigpart{Words you may need}
+\begin{description}[itemsep=0.15em, labelwidth=4.4cm, leftmargin=4.6cm, labelsep=0.2cm, font=\normalfont\bfseries]
+  \item[ARC] a public set of picture puzzles that tests learning new rules from a few examples.
   \item[example pair] one input picture and the output it should become.
   \item[rule] what turns the input into the output.
   \item[solver, engine] the program that looks for the rule.
+  \item[program synthesis] finding a rule by writing a small program.
+  \item[neural network, deep learning] AI that learns patterns from large amounts of data.
   \item[view] one way of cutting a picture into objects.
   \item[leave-one-out] hide one example and check that the rest still give it correctly.
-  \item[made-up (synthetic)] puzzles we generate ourselves, with known answers.
+  \item[counterexample] a case where a guessed rule gives the wrong answer.
+  \item[CEGIS] counterexample-guided synthesis: guess, check, fix, repeat.
+  \item[DreamCoder] a system that grows its own toolbox of program pieces.
+  \item[made-up (synthetic)] puzzles I generate myself, with known answers.
   \item[false acceptance] a wrong answer that passed the checks.
 \end{description}
 \end{document}
