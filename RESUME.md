@@ -195,6 +195,21 @@ WALL and CPU1 clocks) -> synthetic tests -> diagnosis freeze -> one
 detached run (arms A full-data, B adaptive fold, C fixed-extension
 FORENSIC, D no extension, E matched) -> H1-H6 classification -> diagnosis
 record frozen -> repair decision.
+- Instrument committed 0e3d091 (6 tests pass); diagnosis FROZEN 462e8ef
+  (`outputs/loo_v1/diagnose_manifest.json` sha256 58de06d5...7a7ede);
+  reach v1 and pilot v2 freezes re-checked: 0 problems.
+- DIAGNOSIS RUNNING detached since 2026-10-12T00:42:50Z (run ONCE):
+  coordinator pid 711041 (pgid 711041, boot 5c543236), workers
+  711068-711071 (`logs/loo_v1/diagnose_0_workers.json`), checkpointer pid
+  711811 (`scripts/loo_v1_checkpoint.sh diagnose 711041`, commits
+  `outputs/loo_v1/diagnose_rows.jsonl` every 15 min and at the end). 18
+  units (4 full-data, 14 folds), kf892487f1049 first. Administrative
+  monitoring only. If interrupted (no `logs/loo_v1/DIAGNOSE_0_DONE`, no
+  live recorded pid): `setsid nohup .venv_arc2026/bin/python
+  scripts/loo_v1_run.py diagnose --resume > logs/loo_v1/coordinator_diagnose.log
+  2>&1 < /dev/null &` (2 max), then relaunch the checkpointer with the new
+  pid. After the marker: `.venv_arc2026/bin/python scripts/loo_v1_classify.py`
+  (in the workers' environment), then the diagnosis record.
 
 ### Earlier in this section (reach v1 block)
 
