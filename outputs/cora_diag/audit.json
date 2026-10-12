@@ -1,0 +1,188 @@
+{
+ "controls": {
+  "demonstration_only": {
+   "primary_accuracy": 0.0,
+   "set_precision": null,
+   "set_recall": 0.0
+  },
+  "shuffled_traces": {
+   "mean_primary_accuracy": 0.276,
+   "p_ge_real": 0.0
+  },
+  "type_blind_majority": {
+   "label": "REPRESENTATION_EXCLUDED",
+   "primary_accuracy": 0.333,
+   "set_precision": 0.778,
+   "set_recall": 0.333
+  }
+ },
+ "disagreements": [
+  {
+   "reference_primary": "REPAIR_NOT_GENERATED",
+   "reference_set": [
+    "REPAIR_NOT_GENERATED",
+    "REPRESENTATION_EXCLUDED"
+   ],
+   "unit": "k5a49896251a2:f0",
+   "v0_primary": "REPAIR_NOT_GENERATED",
+   "v0_set": [
+    "REPAIR_NOT_GENERATED"
+   ]
+  },
+  {
+   "reference_primary": "REPAIR_NOT_GENERATED",
+   "reference_set": [
+    "REPAIR_NOT_GENERATED",
+    "REPRESENTATION_EXCLUDED"
+   ],
+   "unit": "k5a49896251a2:f2",
+   "v0_primary": "REPAIR_NOT_GENERATED",
+   "v0_set": [
+    "REPAIR_NOT_GENERATED"
+   ]
+  },
+  {
+   "reference_primary": "RESOURCE_EXHAUSTED",
+   "reference_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ],
+   "unit": "k017955a77fc5:full",
+   "v0_primary": "REPRESENTATION_EXCLUDED",
+   "v0_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ]
+  },
+  {
+   "reference_primary": "REPAIR_NOT_GENERATED",
+   "reference_set": [
+    "INSUFFICIENT_EVIDENCE",
+    "REPAIR_NOT_GENERATED"
+   ],
+   "unit": "k017955a77fc5:f0",
+   "v0_primary": "REPAIR_NOT_GENERATED",
+   "v0_set": [
+    "REPAIR_NOT_GENERATED"
+   ]
+  },
+  {
+   "reference_primary": "REPAIR_NOT_GENERATED",
+   "reference_set": [
+    "INSUFFICIENT_EVIDENCE",
+    "REPAIR_NOT_GENERATED"
+   ],
+   "unit": "k017955a77fc5:f1",
+   "v0_primary": "REPAIR_NOT_GENERATED",
+   "v0_set": [
+    "REPAIR_NOT_GENERATED"
+   ]
+  },
+  {
+   "reference_primary": "INSUFFICIENT_EVIDENCE",
+   "reference_set": [
+    "INSUFFICIENT_EVIDENCE",
+    "RESOURCE_EXHAUSTED"
+   ],
+   "unit": "k017955a77fc5:f2",
+   "v0_primary": "RESOURCE_EXHAUSTED",
+   "v0_set": [
+    "RESOURCE_EXHAUSTED"
+   ]
+  },
+  {
+   "reference_primary": "RESOURCE_EXHAUSTED",
+   "reference_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ],
+   "unit": "k5991e227189e:full",
+   "v0_primary": "REPRESENTATION_EXCLUDED",
+   "v0_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ]
+  },
+  {
+   "reference_primary": "REPAIR_NOT_GENERATED",
+   "reference_set": [
+    "REPAIR_NOT_GENERATED",
+    "REPRESENTATION_EXCLUDED"
+   ],
+   "unit": "k5991e227189e:f1",
+   "v0_primary": "REPAIR_NOT_GENERATED",
+   "v0_set": [
+    "REPAIR_NOT_GENERATED"
+   ]
+  },
+  {
+   "reference_primary": "RESOURCE_EXHAUSTED",
+   "reference_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ],
+   "unit": "k5991e227189e:f2",
+   "v0_primary": "REPRESENTATION_EXCLUDED",
+   "v0_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ]
+  },
+  {
+   "reference_primary": "RESOURCE_EXHAUSTED",
+   "reference_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ],
+   "unit": "k5991e227189e:f3",
+   "v0_primary": "REPRESENTATION_EXCLUDED",
+   "v0_set": [
+    "REPRESENTATION_EXCLUDED",
+    "RESOURCE_EXHAUSTED"
+   ]
+  }
+ ],
+ "per_category": {
+  "CERTIFICATION_UNSTABLE": {
+   "fn": 0,
+   "fp": 0,
+   "tp": 7
+  },
+  "ENGINE_REJECTED": {
+   "fn": 0,
+   "fp": 0,
+   "tp": 7
+  },
+  "INSUFFICIENT_EVIDENCE": {
+   "fn": 3,
+   "fp": 0,
+   "tp": 0
+  },
+  "MULTIPLE_PLAUSIBLE_REPAIRS": {
+   "fn": 0,
+   "fp": 0,
+   "tp": 1
+  },
+  "REPAIR_NOT_GENERATED": {
+   "fn": 0,
+   "fp": 0,
+   "tp": 5
+  },
+  "REPRESENTATION_EXCLUDED": {
+   "fn": 3,
+   "fp": 0,
+   "tp": 11
+  },
+  "RESOURCE_EXHAUSTED": {
+   "fn": 0,
+   "fp": 0,
+   "tp": 5
+  }
+ },
+ "units": 18,
+ "v0": {
+  "primary_accuracy": 0.722,
+  "set_precision": 1.0,
+  "set_recall": 0.857
+ }
+}
