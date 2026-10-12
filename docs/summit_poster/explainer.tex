@@ -208,8 +208,9 @@ I did not use it. A fix that rescues your favourite example can quietly break ot
 \cue{``What a valid repair must respect''}
 Any fix must play fair. When I hide an example to test the program, the program may not peek at it, not
 even indirectly. One idea I had would have peeked indirectly, so I only use it to learn, never as proof.
-Removing the duplicate views plays fair, but it would change what the program looks at in about half of
-the situations I checked, so it must be tested carefully first. I have not run it. I also found that hiding
+Removing the duplicate views plays fair, so I tested it, with the rules written down first, on 41 made-up
+puzzles. It fixed one and broke four: two right answers were lost and two wrong answers got accepted, because
+the freed places let in a coarse view that gives simple but wrong rules. So I rejected it too. I also found that hiding
 an example can occasionally make a view fail the basic test, 7 times out of 724, so I call that an
 observation, not a rule.
 
@@ -244,7 +245,8 @@ should be tested fairly, including on cases where it could do harm.
   \item No proof that the system invents truly new ideas.
   \item No automatic failure diagnosis. On this poster I did it by hand.
   \item No fair comparison yet against ``guess, check, fix'' or ``grow a toolbox'' on real puzzles.
-  \item The duplicate-removal fix is designed but not run.
+  \item The duplicate-removal fix was tested on made-up puzzles and rejected: it fixed one and broke
+    four.
   \item A larger test on 120 new puzzles is frozen and has not been run.
   \item No biology results.
 \end{itemize}
@@ -270,8 +272,8 @@ apart from a missing ability is exactly what the diagnosis is for.
 \textbf{``What would Chollet say?''} Probably: show me that it learns new skills efficiently, with every cost
 counted. That is the right test, and I have not passed it yet.
 
-\textbf{``What happens next?''} Test the duplicate-removal fix fairly, with safety checks, before any new
-real test.
+\textbf{``What happens next?''} Teach the system to notice when the examples are not enough to choose
+between competing fixes, instead of picking one, before any new real test.
 
 % ======================================================================
 \bigpart{Words you may need}

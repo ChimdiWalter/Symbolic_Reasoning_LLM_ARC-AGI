@@ -168,9 +168,9 @@
       demonstrations only}.
     \item Anchoring a fold to the parent's view would use the fold's held-out demonstration:
       \textbf{forensic only}, never a certificate.
-    \item Removing duplicate views would reach S6 on both failing pairs, from the fold's data alone.
-      But it changes the search on 277 of 522 development subsets and on 4 of 6 native successes:
-      \textbf{untested, not authorized}.
+    \item Removing duplicate views reaches S6 on both failing pairs, from the fold's data alone. Tested
+      on 41 synthetic tasks, it gained 1 and harmed 4 (2 correct answers lost, 2 false acceptances)
+      through the coarse views it let in: \textbf{rejected}.
     \item Observed, not a theorem: removing a demonstration made an eligible view ineligible in 7 of 724
       development comparisons (pooled coverage).
   \end{itemize}

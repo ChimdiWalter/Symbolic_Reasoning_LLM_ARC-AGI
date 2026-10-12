@@ -1371,8 +1371,22 @@ correspondence alternatives and feature tables, not on object counts. On
 S5 duplicate S1. Deduplicating views from the fold's own demonstrations
 would admit S6. That correction is fold-local and certification-preserving
 by construction, but it is broad: it changes the search on 277 of 522
-development subsets and on 4 of 6 native successes. Its safety is
-untested and it is not authorized.
+development subsets and on 4 of 6 native successes. A preregistered,
+frozen synthetic safety preflight then tested it once
+(`records/P3_SAFETY_PREFLIGHT_RESULT_20261012.md`), with BASE, a repeat of
+BASE and P3 on 41 tasks.
+
+| | result |
+|---|---|
+| tasks harmed | 4: two natively correct tasks became rejections, two rejected tasks became false acceptances |
+| tasks gained | 1 |
+| unexposed tasks | 7, byte-identical |
+| native noise | none |
+
+Every change ran through the coarse views that the freed slots admitted.
+The mechanism was rejected by its kill rule. Removing duplicates is not
+neutral once it admits views: the cap, the trial order and the tie-break
+toward fewer objects act as an inductive bias.
 
 Its pre-registered predictions do not rescue the screen. Three of the four
 outer folds would pass. The fourth still fails, because the proposer selects

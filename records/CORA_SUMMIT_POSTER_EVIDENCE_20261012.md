@@ -17,7 +17,7 @@ imported here). Figures are drawn only from the sealed outputs below by
 | FORENSIC (development only, observation only; the subsets examined were chosen AFTER the failure was seen: causal debugging, not test evidence) | The LOO failures trace to a segmentation-variant admission mismatch in the native engine | 11 of 14 failed folds and all 3 full-data rejections; resources ruled out (WALL = CPU1 in 23 of 23 arms) | `records/LOO_V1_DIAGNOSIS_20261012.md` (f022f287...), commit c2b8cd4; probes `outputs/loo_v1/probe_kf892487f1049.json` (955542c), `probe_variants.json`, `probe_eligibility.json` (82251a4) |
 | FORENSIC, addendum (same tier and caveat) | Count consistency is deletion-stable; the complete eligibility test is NOT monotone (CORRECTED by Clarification 01); on kf892487f1049 the defect is the 4-variant cap cutting the strictly coarser S6 that the engine's own fold-convergence rule relies on | losses of a coherent view: 0 of 72 synthetic and 0 of 50 FC-task comparisons, but 7 of 724 across all 60 development tasks (pooled coverage; consistency never broke); on kf892487f1049 only (0,2) and (1,3) add S1 to S5 | `records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md`, commit a719383; `outputs/loo_v1/probe_exposure.json` (794ad70b..., 3ba75e5) |
 | SYNTHETIC, negative controls (24 seeded tasks, 6 families; not ARC) | Forcing one segmentation variant first is not a safe generic repair | task level: 0 of 24 gained, 5 of 24 harmed (4 of the 7 natively correct; 1 rejected became a false acceptance); runs: 168, correlated within task, 6 harmful (PROMOTE: 2 correct to rejected, 1 rejected to false acceptance; ADMIT, the reach v2 class: 2 correct to rejected, 1 correct to false acceptance); native: 7 correct, 2 false acceptances, 15 rejected | `outputs/loo_v1/probe_negative.json` (2f100350..., 70d3ed9), probe 1f03a1c; figure `fig_negative_controls.png` (914049c) |
-| PROPOSAL, NOT AUTHORIZED | One narrow correction is specified with predictions, frozen criteria and a kill rule | P2 (LOO-anchored completion): FORENSIC only, cannot be a certificate (its anchor saw the inner held-out demonstration). P3 (fold-local view dedup): designed, NOT executed; screen predicted to fail either way | addendum section 7; `records/LOO_V1_DIAGNOSIS_ADDENDUM_CLARIFICATION_01.md`, `records/LOO_V1_SEGMENTATION_EQUIVALENCE_20261012.md` (c2fa2ae) |
+| PROPOSAL, NOT AUTHORIZED | One narrow correction is specified with predictions, frozen criteria and a kill rule | P2 (LOO-anchored completion): FORENSIC only, cannot be a certificate (its anchor saw the inner held-out demonstration). P3 (fold-local view dedup): tested once on 41 synthetic tasks and REJECTED (1 gain; 4 harmed: 2 regressions, 2 new false acceptances; 98c9bed) | addendum section 7; `records/LOO_V1_DIAGNOSIS_ADDENDUM_CLARIFICATION_01.md`, `records/LOO_V1_SEGMENTATION_EQUIVALENCE_20261012.md` (c2fa2ae) |
 | STATIC census (60 development + 24 synthetic tasks; no induction) | Equal object counts do not imply equivalent views; the cap holds duplicate views | on (0,2) and (1,3) the 4 searched views are 2 distinct reasoner inputs; 571 of 1,849 development slots (31%) duplicate an earlier view; dedup would change 277 of 522 development subsets and 4 of 6 native successes | `outputs/loo_v1/probe_equivalence.json` (90c2a325..., 7d11993) |
 | REPAIR BUILT, NOT MEASURED | A variant-carrying installation was implemented and tested on synthetic fixtures only | its 60-task recheck was stopped before any unit finished (0 rows): no result exists | 568af22 (code), 41c20a2 (stop) |
 | FROZEN, NOT RUN | A prospective protocol and an untouched sample exist | pilot v2, N = 120 | c1906ee, manifest c93ec1db... |
@@ -225,3 +225,20 @@ are byte-identical (`docs/summit_poster/build.sh`). Full metadata is in
 9. Implemented vs proposed: the failure typing on the poster was forensic,
    done by hand. The general failure-type controller is proposed, not
    implemented.
+
+## 12. P3 synthetic safety preflight (2026-10-12)
+
+Record: `records/P3_SAFETY_PREFLIGHT_RESULT_20261012.md` (evidence 98c9bed;
+frozen b594223). Verdict: P3_REJECTED.
+
+| | result |
+|---|---|
+| tasks harmed | 4: 2 regressions, 2 new false acceptances |
+| tasks gained | 1 |
+| unexposed tasks | 7, byte-identical |
+| unstable tasks | 0 |
+| CPU | +15.5% |
+
+Allowed poster statement: "Removing duplicate views, the fold-local repair,
+was tested on 41 synthetic tasks: it gained 1 and harmed 4, so it was
+rejected." Synthetic only.
