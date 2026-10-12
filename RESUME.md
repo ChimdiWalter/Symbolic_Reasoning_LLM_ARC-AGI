@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-11. Current: real-task reach v1 block (development, 60 dev tasks): census, mechanism, instances2, bridge, grammar decision DONE; next = measurement phase (see "Next action"). Real ARC causal pilot v1 still NOT FROZEN (blocker = proposer reach); v1.9 stays LEVEL 2 synthetic.
+Last updated 2026-10-12. Current: reach v1 measurement COMPLETE and VERIFIED (record `records/REACH_V1_MEASURE_20261011.md`): READY = PASS by the unchanged rule (installed 4/60, baseline 0/60), but accepted 1, adaptive LOO 0, activations 0; conditions 1-5 together on 0 tasks. CASE A: successor pilot v2 being frozen (N = 120), NOT to be run without a go-ahead. v1.9 stays LEVEL 2 synthetic; certified 185/1000 unchanged.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -295,6 +295,23 @@ pilot, no ARC-1000, no eval splits, no push.
     90c116e at 20:53:49Z), 59 claimed, coordinator and workers alive, worker
     logs empty, no marker yet; load about 58 to 72. The remaining tasks are
     the failure-conditioned ones (full gates, leave-one-out and controls).
+- MEASUREMENT COMPLETE 2026-10-11T21:34:26Z (71 min wall; exit 0 x4; no
+  resume; rows 60ddd04, sha256 821a6556...). VERIFIED 2026-10-12: summary 0
+  problems; independent verifier 0 problems (`logs/reach_v1/verify_measure.json`).
+  Funnel A 54, B 31, C 4, D 4, E 4, F 4, G 1, H 1, I 1, J 4, K 0, L 4, M 1,
+  N 0; classes NO_PROPOSAL 56, ENGINE_REJECTION 3, LOO_FAILURE 1. The one
+  accepted repair: kf892487f1049 bbox_fill (accepted, used, separated,
+  supported; KALONE/REMOVED/MATCHED fail) -> fails all 4 rebuilt folds.
+  Controls: DEMO_ONLY 1 proposal (other task, rejected); SHUFFLED 4
+  installs, 0 accepted with e used. READY = PASS (isolation clean, no
+  RUN_ERROR, census complete, 4 installed); a = 0 -> N = 120. Record
+  `records/REACH_V1_MEASURE_20261011.md`; stage ledger updated.
+  Blockers: coverage 4/60; engine acceptance 1/4 (2 hard caps, 1 engine
+  LOO); adaptive LOO 0/4 (binding). The fold records lack the engine's
+  failure stage (limitation).
+- NEXT (CASE A): fill pilot v2 section 12 (a = 0, N = 120) and section 2;
+  `scripts/pilot_v2_select.py 120`; `scripts/freeze_pilot_v2.py`; commit;
+  STOP before running the pilot.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,

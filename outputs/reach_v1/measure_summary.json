@@ -1,0 +1,361 @@
+{
+ "READY": true,
+ "activated": [],
+ "compute_s": {
+  "fc_tasks": 12255.9,
+  "total": 14637.1
+ },
+ "conditions_1_to_5_tasks": [],
+ "controls": {
+  "DEMO_ONLY": {
+   "accepted": 0,
+   "installed": 1,
+   "proposed_tasks": 1,
+   "same_extension_as_fc": 0,
+   "uses": 0
+  },
+  "SHUFFLED_FAILURE": {
+   "accepted": 1,
+   "installed": 4,
+   "proposed_tasks": 4,
+   "same_extension_as_fc": 1,
+   "uses": 0
+  }
+ },
+ "fc_tasks": 4,
+ "gates_over_fc_tasks": {
+  "accepted": 1,
+  "attribution": 1,
+  "compile": 4,
+  "determinism": 4,
+  "loo": 0,
+  "prediction": 1,
+  "replay": 1,
+  "support": 1,
+  "unanimity": 1,
+  "uses": 1
+ },
+ "installed": [
+  "k017955a77fc5",
+  "k5991e227189e",
+  "k5a49896251a2",
+  "kf892487f1049"
+ ],
+ "isolation_logs": 4,
+ "isolation_problems": {},
+ "load": {
+  "max": 73.74,
+  "min": 54.74
+ },
+ "loo_fold_classes": {
+  "LOO_FAILURE": 9,
+  "NO_PROPOSAL": 5
+ },
+ "missing": [],
+ "path_classes": {
+  "ENGINE_REJECTION": 3,
+  "LOO_FAILURE": 1,
+  "NO_PROPOSAL": 56
+ },
+ "per_fc_task": {
+  "k017955a77fc5": {
+   "census_class": "DE_LOO",
+   "conditions_1_to_5": false,
+   "controls": {
+    "DEMO_ONLY": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    },
+    "SHUFFLED_FAILURE": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    }
+   },
+   "e_cells_per_test": null,
+   "extension": {
+    "family": "window_fill",
+    "name": "gx_edba7646eebe5316",
+    "params": {
+     "k": 3
+    }
+   },
+   "gates": {
+    "accepted": false,
+    "attribution": false,
+    "compile": true,
+    "determinism": true,
+    "loo": false,
+    "prediction": false,
+    "replay": false,
+    "support": false,
+    "unanimity": false,
+    "uses": false
+   },
+   "kalone_accepted": false,
+   "loo": {
+    "fold_classes": [
+     "NO_PROPOSAL",
+     "NO_PROPOSAL",
+     "LOO_FAILURE"
+    ],
+    "fold_same_as_full": [
+     false,
+     false,
+     true
+    ],
+    "folds_success": 0,
+    "passed": false
+   },
+   "matched_accepted": false,
+   "path_class": "ENGINE_REJECTION",
+   "pool_size": 1,
+   "removed_equals_kalone": true,
+   "seconds": 3221.394,
+   "separation": {
+    "body_bytes": 126,
+    "instances_checked": 2,
+    "memorized_cells": 18,
+    "native_modes": [
+     "pattern"
+    ],
+    "non_caching": true,
+    "non_composition_bounded": true,
+    "non_renaming": true,
+    "separated": true
+   }
+  },
+  "k5991e227189e": {
+   "census_class": "DE_LOO",
+   "conditions_1_to_5": false,
+   "controls": {
+    "DEMO_ONLY": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    },
+    "SHUFFLED_FAILURE": {
+     "accepted": false,
+     "class": "INSTALLED",
+     "same_as_fc": true
+    }
+   },
+   "e_cells_per_test": null,
+   "extension": {
+    "family": "connect",
+    "name": "gx_b05acfb6c5f87326",
+    "params": {}
+   },
+   "gates": {
+    "accepted": false,
+    "attribution": false,
+    "compile": true,
+    "determinism": true,
+    "loo": false,
+    "prediction": false,
+    "replay": false,
+    "support": false,
+    "unanimity": false,
+    "uses": false
+   },
+   "kalone_accepted": false,
+   "loo": {
+    "fold_classes": [
+     "LOO_FAILURE",
+     "NO_PROPOSAL",
+     "LOO_FAILURE",
+     "LOO_FAILURE"
+    ],
+    "fold_same_as_full": [
+     true,
+     false,
+     true,
+     true
+    ],
+    "folds_success": 0,
+    "passed": false
+   },
+   "matched_accepted": false,
+   "path_class": "ENGINE_REJECTION",
+   "pool_size": 1,
+   "removed_equals_kalone": true,
+   "seconds": 4268.85,
+   "separation": {
+    "body_bytes": 117,
+    "instances_checked": 4,
+    "memorized_cells": 67,
+    "native_modes": [
+     "pattern"
+    ],
+    "non_caching": true,
+    "non_composition_bounded": true,
+    "non_renaming": true,
+    "separated": true
+   }
+  },
+  "k5a49896251a2": {
+   "census_class": "DE_LOO",
+   "conditions_1_to_5": false,
+   "controls": {
+    "DEMO_ONLY": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    },
+    "SHUFFLED_FAILURE": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    }
+   },
+   "e_cells_per_test": null,
+   "extension": {
+    "family": "connect",
+    "name": "gx_b05acfb6c5f87326",
+    "params": {}
+   },
+   "gates": {
+    "accepted": false,
+    "attribution": false,
+    "compile": true,
+    "determinism": true,
+    "loo": false,
+    "prediction": false,
+    "replay": false,
+    "support": false,
+    "unanimity": false,
+    "uses": false
+   },
+   "kalone_accepted": false,
+   "loo": {
+    "fold_classes": [
+     "NO_PROPOSAL",
+     "LOO_FAILURE",
+     "NO_PROPOSAL"
+    ],
+    "fold_same_as_full": [
+     false,
+     true,
+     false
+    ],
+    "folds_success": 0,
+    "passed": false
+   },
+   "matched_accepted": false,
+   "path_class": "ENGINE_REJECTION",
+   "pool_size": 1,
+   "removed_equals_kalone": true,
+   "seconds": 2976.906,
+   "separation": {
+    "body_bytes": 117,
+    "instances_checked": 3,
+    "memorized_cells": 29,
+    "native_modes": [
+     "pattern"
+    ],
+    "non_caching": true,
+    "non_composition_bounded": true,
+    "non_renaming": true,
+    "separated": true
+   }
+  },
+  "kf892487f1049": {
+   "census_class": "A_REPRESENTATION",
+   "conditions_1_to_5": false,
+   "controls": {
+    "DEMO_ONLY": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    },
+    "SHUFFLED_FAILURE": {
+     "accepted": null,
+     "class": "NO_PROPOSAL",
+     "same_as_fc": null
+    }
+   },
+   "e_cells_per_test": [
+    22
+   ],
+   "extension": {
+    "family": "bbox_fill",
+    "name": "gx_9948b01172bd12a8",
+    "params": {}
+   },
+   "gates": {
+    "accepted": true,
+    "attribution": true,
+    "compile": true,
+    "determinism": true,
+    "loo": false,
+    "prediction": true,
+    "replay": true,
+    "support": true,
+    "unanimity": true,
+    "uses": true
+   },
+   "kalone_accepted": false,
+   "loo": {
+    "fold_classes": [
+     "LOO_FAILURE",
+     "LOO_FAILURE",
+     "LOO_FAILURE",
+     "LOO_FAILURE"
+    ],
+    "fold_same_as_full": [
+     true,
+     false,
+     true,
+     true
+    ],
+    "folds_success": 0,
+    "passed": false
+   },
+   "matched_accepted": false,
+   "path_class": "LOO_FAILURE",
+   "pool_size": 1,
+   "removed_equals_kalone": true,
+   "seconds": 1788.796,
+   "separation": {
+    "body_bytes": 119,
+    "instances_checked": 6,
+    "memorized_cells": 83,
+    "native_modes": [
+     "pattern"
+    ],
+    "non_caching": true,
+    "non_composition_bounded": true,
+    "non_renaming": true,
+    "separated": true
+   }
+  }
+ },
+ "progression": {
+  "activation": 0,
+  "adaptive_loo": 0,
+  "candidate": 4,
+  "compile": 4,
+  "engine_acceptance": 1,
+  "exact_demo_fit": 4,
+  "install": 4,
+  "type_check": 4,
+  "usable_trace": 31,
+  "use": 1
+ },
+ "ready": {
+  "isolation_clean": true,
+  "loop_operable": true,
+  "native_readiness_complete": true,
+  "no_run_error": true
+ },
+ "rows": 60,
+ "run_errors": [],
+ "saved_baseline": {
+  "activated": 0,
+  "commit": "ce123e8",
+  "installed": 0,
+  "verified_proposals": 0
+ },
+ "verification_problems": []
+}

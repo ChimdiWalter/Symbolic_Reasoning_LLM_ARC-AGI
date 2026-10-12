@@ -354,10 +354,38 @@
   },
   {
    "id": "real_task_reach_v1",
-   "status": "IN_PROGRESS: development on the 60 dev tasks; native failure census running",
+   "status": "COMPLETE 2026-10-11: measurement run once (frozen c8d8e3a, rows 60ddd04), verified (0 problems); READY = PASS (pilot v1 section 12 rule unchanged); installed 4/60 (baseline 0/60 at ce123e8), accepted 1, adaptive LOO 0, activations 0, conditions 1-5 together 0",
    "protocol": "docs/CORA_REAL_TASK_REACH_DEV_v1.md",
    "delivery_parity": "DONE (c407776, dd27685)",
-   "native_assets": "records/NATIVE_ASSETS_PROVENANCE.md (library cdacd018 + learned_verbs b1f07ba5)"
+   "native_assets": "records/NATIVE_ASSETS_PROVENANCE.md (library cdacd018 + learned_verbs b1f07ba5)",
+   "record": "records/REACH_V1_MEASURE_20261011.md",
+   "grammar": "protocol section 4.1 (cd75440): full nine-family grammar, 210 settings",
+   "measurement": {
+    "manifest_sha256": "2e567bce24d63342b2c38f302f58c36e1f15088bfbcb387a1e3205c0a6497b0d",
+    "rows_sha256": "821a65569e041eb42d3e8f703f49335b0d4183ad1c4e46126c923490e605bedd",
+    "funnel": {
+     "A": 54,
+     "B": 31,
+     "C": 4,
+     "D": 4,
+     "E": 4,
+     "F": 4,
+     "G": 1,
+     "H": 1,
+     "I": 1,
+     "J": 4,
+     "K": 0,
+     "L": 4,
+     "M": 1,
+     "N": 0
+    },
+    "blockers": [
+     "coverage 4/60",
+     "engine acceptance 1/4 (2 hard caps, 1 engine LOO)",
+     "adaptive leave-one-out 0/4 (binding)"
+    ]
+   },
+   "next": "CASE A: freeze the versioned successor pilot v2 (N = 120) and STOP before running it"
   },
   {
    "id": "bounded_development",
@@ -374,6 +402,12 @@
   {
    "id": "holdout_60",
    "status": "BLOCKED"
+  },
+  {
+   "id": "real_arc_growth_pilot_v2",
+   "status": "DRAFTED (9643cd4, before the reach v1 outcome was read); NOT FROZEN",
+   "protocol": "docs/CORA_REAL_ARC_GROWTH_PILOT_v2.md",
+   "harness": "cora_pilot2/ (reasoner, evaluator), scripts/pilot_v2_{select,run,evaluate,verify,watch}, scripts/freeze_pilot_v2.py, tests/test_pilot_v2.py; reuses cora_reach.measure.run_task unchanged"
   }
  ],
  "recovered_definitions": {
