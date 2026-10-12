@@ -1,0 +1,69 @@
+{
+ "mode": "fixtures",
+ "notebook_returncode": 0,
+ "wall_s": 258.4,
+ "peak_rss_mb": 548.0,
+ "tasks": 4,
+ "test_outputs": 5,
+ "schema_problems": [],
+ "manifest": {
+  "label": "NATIVE_BASELINE",
+  "version": "native_v1",
+  "flags": {
+   "ARC_DIHEDRAL_FRAMES": "45",
+   "ARC_GENERATIVE": "1",
+   "ARC_PATTERN_DERIVE": "1",
+   "ARC_VARIANT_BUDGET": "1",
+   "ARC_RAY_EXT": "1"
+  },
+  "started_unix": 1791834491.1,
+  "solver_tree_sha256": "d7856871084f136108ba41f3d573cb2b211d2e9f025b43710ef271abb7781335",
+  "task_file": "arc-agi_test_challenges.json",
+  "task_file_sha256": "c2a9196c18a29a70abf8976be4c33d6c0e8f576350d715969d951584c209a253",
+  "assets": {
+   "library.json": "cdacd018da0bd9a3fa460c23beeff89fd5b0c5a85d70ecca276fe212df13ce03",
+   "learned_verbs.json": "b1f07ba5f4337cf450b9c13cc142937c1c56b0dcc10e1796e6fcdb39fe2b585c"
+  },
+  "budget_s": 40500,
+  "workers": "4",
+  "harness_cmd": [
+   "scripts/run_unified_harness.py",
+   "--split",
+   "evaluation",
+   "--workers",
+   "4",
+   "--out-dir",
+   "/tmp/claude-100350790/-deltos/d176233f-629a-4081-b493-4e2eb8db171a/scratchpad/kaggle_emu/fixtures/working/run",
+   "--run-id",
+   "kaggle",
+   "--emit-predictions",
+   "--global-budget-s",
+   "40500"
+  ],
+  "tasks": 4,
+  "test_outputs": 5,
+  "harness_returncode": 0,
+  "harness_status": "completed",
+  "harness_s": 258.1,
+  "writer": "make_submission_v2",
+  "tasks_with_rows": 4,
+  "tasks_with_predictions": 4,
+  "validation": {
+   "tasks": 4,
+   "positions": 5,
+   "repaired_entries": 0,
+   "extra_ids_dropped": []
+  },
+  "submission_sha256": "59c066735f048316591c56e1fc2f2315ede6fd173d6590cedb556d69a82ae903",
+  "elapsed_s": 258.3
+ },
+ "network_attempts": 0,
+ "per_task_s": {
+  "n": 4,
+  "median": 58.022,
+  "max": 257.566
+ },
+ "solutions_in_input": [],
+ "tarball_sha256": "4b320ba2fe92b12bcc4345ef4523ca45115f7694e3ab999dfea6b1cfe3c9a088",
+ "notebook_sha256": "647594be17e2071a9f245e70e4454a34532e0b9e7dcb9541f5a507f6fda26ee8"
+}
