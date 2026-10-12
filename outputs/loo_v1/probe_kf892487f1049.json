@@ -1,0 +1,2591 @@
+{
+ "extension": {
+  "family": "bbox_fill",
+  "format": "cora-growth-extension/1",
+  "name": "gx_9948b01172bd12a8",
+  "params": {},
+  "version": "reach-v1"
+ },
+ "full": {
+  "accepted": true,
+  "program": {
+   "default_action": {
+    "delta_type": "keep",
+    "parameter_class": "constant",
+    "params": {}
+   },
+   "library_operators_used": [],
+   "output_spec": {
+    "background": null,
+    "fill": null,
+    "height": null,
+    "mode": "same_as_input",
+    "region": null,
+    "width": null
+   },
+   "rules": [
+    {
+     "action": {
+      "delta_type": "grow",
+      "parameter_class": "feature",
+      "params": {
+       "color": {
+        "args": [
+         {
+          "args": [],
+          "expr_class": "RefExpr",
+          "op": "self"
+         }
+        ],
+        "expr_class": "ColorExpr",
+        "op": "color_of"
+       },
+       "mode": {
+        "args": [
+         "gx_9948b01172bd12a8"
+        ],
+        "expr_class": "GrowModeExpr",
+        "op": "const"
+       }
+      }
+     },
+     "selector": {
+      "literals": 0,
+      "predicate": {
+       "args": [],
+       "expr_class": "PredExpr",
+       "op": "true"
+      }
+     }
+    }
+   ],
+   "segmentation_variant": "S6"
+  },
+  "program_sha": "f229444383231225",
+  "uses": true
+ },
+ "key": "kf892487f1049",
+ "n_train": 4,
+ "pairs": {
+  "01": {
+   "G_train_exact_on_pair": true,
+   "engine": {
+    "G_in_pool": true,
+    "cpu_s": 0.246,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "2": true,
+     "3": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     }
+    ]
+   },
+   "explore_all": {
+    "G_in_pool": true,
+    "cpu_s": 0.244,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "2": true,
+     "3": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     }
+    ]
+   }
+  },
+  "02": {
+   "G_train_exact_on_pair": true,
+   "engine": {
+    "G_in_pool": false,
+    "cpu_s": 1.64,
+    "programs": 4,
+    "reproduces_other_demos": {
+     "1": false,
+     "3": false
+    },
+    "top": {
+     "actions": [
+      "grow",
+      "scale"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "nearest_object_of_color"
+     ],
+     "rules": 2,
+     "selector_ops": [
+      "relation_exists",
+      "test"
+     ],
+     "sha": "5c8cbf6937e5",
+     "skeleton": "283fbf5b094d",
+     "worst_class": "constant"
+    },
+    "top_is_G": false,
+    "uses_e": false,
+    "variant": "S1",
+    "variants_tried": [
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "dc408490b974",
+       "skeleton": "da0a85f7f53a",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4c7b25a8c1d0",
+       "skeleton": "8bba8419eb38",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4c760c33584c",
+       "skeleton": "f265f8124296",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "dc408490b974",
+       "skeleton": "da0a85f7f53a",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "5c8cbf6937e5",
+       "skeleton": "283fbf5b094d",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     }
+    ]
+   },
+   "explore_all": {
+    "G_in_pool": false,
+    "cpu_s": 5.417,
+    "programs": 4,
+    "reproduces_other_demos": {
+     "1": false,
+     "3": false
+    },
+    "top": {
+     "actions": [
+      "grow",
+      "scale"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "nearest_object_of_color"
+     ],
+     "rules": 2,
+     "selector_ops": [
+      "relation_exists",
+      "test"
+     ],
+     "sha": "5c8cbf6937e5",
+     "skeleton": "283fbf5b094d",
+     "worst_class": "constant"
+    },
+    "top_is_G": false,
+    "uses_e": false,
+    "variant": "S1",
+    "variants_tried": [
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "dc408490b974",
+       "skeleton": "da0a85f7f53a",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4c7b25a8c1d0",
+       "skeleton": "8bba8419eb38",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4c760c33584c",
+       "skeleton": "f265f8124296",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "dc408490b974",
+       "skeleton": "da0a85f7f53a",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "5c8cbf6937e5",
+       "skeleton": "283fbf5b094d",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4c7b25a8c1d0",
+       "skeleton": "8bba8419eb38",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "eb1f3310f4f1",
+       "skeleton": "63e78b429009",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4c760c33584c",
+       "skeleton": "f265f8124296",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow",
+        "scale"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "be4f95d21778",
+       "skeleton": "11c2adeae696",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S3"
+     }
+    ]
+   }
+  },
+  "03": {
+   "G_train_exact_on_pair": true,
+   "engine": {
+    "G_in_pool": true,
+    "cpu_s": 0.878,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "1": true,
+     "2": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     }
+    ]
+   },
+   "explore_all": {
+    "G_in_pool": true,
+    "cpu_s": 2.28,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "1": true,
+     "2": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     }
+    ]
+   }
+  },
+  "12": {
+   "G_train_exact_on_pair": true,
+   "engine": {
+    "G_in_pool": true,
+    "cpu_s": 2.032,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "0": true,
+     "3": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 4,
+      "seg_count": 5,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test",
+        "true"
+       ],
+       "sha": "d135206a770a",
+       "skeleton": "1502caec3207",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 4,
+      "seg_count": 5,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test",
+        "true"
+       ],
+       "sha": "d135206a770a",
+       "skeleton": "1502caec3207",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     }
+    ]
+   },
+   "explore_all": {
+    "G_in_pool": true,
+    "cpu_s": 2.087,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "0": true,
+     "3": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 4,
+      "seg_count": 5,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test",
+        "true"
+       ],
+       "sha": "d135206a770a",
+       "skeleton": "1502caec3207",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 4,
+      "seg_count": 5,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test",
+        "true"
+       ],
+       "sha": "d135206a770a",
+       "skeleton": "1502caec3207",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 5,
+      "top": null,
+      "variant": "S7"
+     }
+    ]
+   }
+  },
+  "13": {
+   "G_train_exact_on_pair": true,
+   "engine": {
+    "G_in_pool": false,
+    "cpu_s": 23.161,
+    "programs": 8,
+    "reproduces_other_demos": {
+     "0": false,
+     "2": false
+    },
+    "top": {
+     "actions": [
+      "grow",
+      "grow",
+      "grow",
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "nearest_object_of_color"
+     ],
+     "rules": 4,
+     "selector_ops": [
+      "relation_exists",
+      "test"
+     ],
+     "sha": "41cf40878480",
+     "skeleton": "25fa3511ea5e",
+     "worst_class": "constant"
+    },
+    "top_is_G": false,
+    "uses_e": false,
+    "variant": "S1",
+    "variants_tried": [
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "fcf670f1505d",
+       "skeleton": "44a32fe0f965",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "ebe2aaa57650",
+       "skeleton": "db20e9bc99d0",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "b8756328c4cf",
+       "skeleton": "91c99218c8b3",
+       "worst_class": "constant"
+      },
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "fcf670f1505d",
+       "skeleton": "44a32fe0f965",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "41cf40878480",
+       "skeleton": "25fa3511ea5e",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "677767ce60f5",
+       "skeleton": "99e6e69f57cc",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "ec4266421c5f",
+       "skeleton": "84d14e622666",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     }
+    ]
+   },
+   "explore_all": {
+    "G_in_pool": false,
+    "cpu_s": 73.103,
+    "programs": 8,
+    "reproduces_other_demos": {
+     "0": false,
+     "2": false
+    },
+    "top": {
+     "actions": [
+      "grow",
+      "grow",
+      "grow",
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "nearest_object_of_color"
+     ],
+     "rules": 4,
+     "selector_ops": [
+      "relation_exists",
+      "test"
+     ],
+     "sha": "41cf40878480",
+     "skeleton": "25fa3511ea5e",
+     "worst_class": "constant"
+    },
+    "top_is_G": false,
+    "uses_e": false,
+    "variant": "S1",
+    "variants_tried": [
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "fcf670f1505d",
+       "skeleton": "44a32fe0f965",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "ebe2aaa57650",
+       "skeleton": "db20e9bc99d0",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "b8756328c4cf",
+       "skeleton": "91c99218c8b3",
+       "worst_class": "constant"
+      },
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4e8e43d9d385",
+       "skeleton": "872d99823c51",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "fcf670f1505d",
+       "skeleton": "44a32fe0f965",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "41cf40878480",
+       "skeleton": "25fa3511ea5e",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "677767ce60f5",
+       "skeleton": "99e6e69f57cc",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "ec4266421c5f",
+       "skeleton": "84d14e622666",
+       "worst_class": "constant"
+      },
+      "variant": "S1"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "ebe2aaa57650",
+       "skeleton": "db20e9bc99d0",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "6a089684109c",
+       "skeleton": "cae6bf52ff3f",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "22dc17bf1d2a",
+       "skeleton": "9d96e643f1bf",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "50644ace19f8",
+       "skeleton": "74b67b66deb3",
+       "worst_class": "constant"
+      },
+      "variant": "S2"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "b8756328c4cf",
+       "skeleton": "91c99218c8b3",
+       "worst_class": "constant"
+      },
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "347db63d0c9d",
+       "skeleton": "a1c79bc5704e",
+       "worst_class": "constant"
+      },
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S3"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "4e8e43d9d385",
+       "skeleton": "872d99823c51",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "709d5fcd9fcf",
+       "skeleton": "66cf08693153",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "ea2fa1290d2d",
+       "skeleton": "0ad9a4c3ae7e",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 12,
+      "top": null,
+      "variant": "S5"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 12,
+      "top": {
+       "actions": [
+        "grow",
+        "grow",
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 4,
+       "selector_ops": [
+        "and2",
+        "relation_exists",
+        "test"
+       ],
+       "sha": "c2dd0f38772b",
+       "skeleton": "9bf42854504c",
+       "worst_class": "constant"
+      },
+      "variant": "S5"
+     }
+    ]
+   }
+  },
+  "23": {
+   "G_train_exact_on_pair": true,
+   "engine": {
+    "G_in_pool": true,
+    "cpu_s": 2.157,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "0": true,
+     "1": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 7,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "18d9425ad60d",
+       "skeleton": "d50a62899b2c",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     }
+    ]
+   },
+   "explore_all": {
+    "G_in_pool": true,
+    "cpu_s": 5.891,
+    "programs": 1,
+    "reproduces_other_demos": {
+     "0": true,
+     "1": true
+    },
+    "top": {
+     "actions": [
+      "grow"
+     ],
+     "class": "object",
+     "param_ops": [
+      "color_of",
+      "const",
+      "self"
+     ],
+     "rules": 1,
+     "selector_ops": [
+      "true"
+     ],
+     "sha": "f22944438323",
+     "skeleton": "1dc6b909600c",
+     "worst_class": "feature"
+    },
+    "top_is_G": true,
+    "uses_e": true,
+    "variant": "S6",
+    "variants_tried": [
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 2,
+      "seg_count": 7,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "18d9425ad60d",
+       "skeleton": "d50a62899b2c",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": true,
+      "programs": 1,
+      "seg_count": 6,
+      "top": {
+       "actions": [
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "self"
+       ],
+       "rules": 1,
+       "selector_ops": [
+        "true"
+       ],
+       "sha": "f22944438323",
+       "skeleton": "1dc6b909600c",
+       "worst_class": "feature"
+      },
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 6,
+      "top": null,
+      "variant": "S6"
+     },
+     {
+      "has_G": false,
+      "programs": 4,
+      "seg_count": 7,
+      "top": {
+       "actions": [
+        "grow",
+        "grow"
+       ],
+       "class": "object",
+       "param_ops": [
+        "color_of",
+        "const",
+        "nearest_object_of_color"
+       ],
+       "rules": 2,
+       "selector_ops": [
+        "relation_exists",
+        "test"
+       ],
+       "sha": "18d9425ad60d",
+       "skeleton": "d50a62899b2c",
+       "worst_class": "constant"
+      },
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     },
+     {
+      "has_G": false,
+      "programs": 0,
+      "seg_count": 7,
+      "top": null,
+      "variant": "S7"
+     }
+    ]
+   }
+  }
+ },
+ "restored": true
+}
