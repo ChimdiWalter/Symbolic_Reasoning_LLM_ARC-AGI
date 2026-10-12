@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: reach v1 measurement COMPLETE and VERIFIED (record `records/REACH_V1_MEASURE_20261011.md`): READY = PASS by the unchanged rule (installed 4/60, baseline 0/60), but accepted 1, adaptive LOO 0, activations 0; conditions 1-5 together on 0 tasks. CASE A: successor pilot v2 being frozen (N = 120), NOT to be run without a go-ahead. v1.9 stays LEVEL 2 synthetic; certified 185/1000 unchanged.
+Last updated 2026-10-12. Current: STOPPED after CASE A. Reach v1 measurement COMPLETE and VERIFIED (`records/REACH_V1_MEASURE_20261011.md`): READY = PASS by the unchanged rule (installed 4/60, baseline 0/60), accepted 1, adaptive LOO 0, activations 0. Successor pilot v2 FROZEN_NOT_RUN (c1906ee; manifest c93ec1db; N = 120). Next = user decision: run pilot v2, or first a development block on the LOO blocker (dev tasks only). v1.9 stays LEVEL 2 synthetic; certified 185/1000 unchanged.
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -309,9 +309,28 @@ pilot, no ARC-1000, no eval splits, no push.
   Blockers: coverage 4/60; engine acceptance 1/4 (2 hard caps, 1 engine
   LOO); adaptive LOO 0/4 (binding). The fold records lack the engine's
   failure stage (limitation).
-- NEXT (CASE A): fill pilot v2 section 12 (a = 0, N = 120) and section 2;
-  `scripts/pilot_v2_select.py 120`; `scripts/freeze_pilot_v2.py`; commit;
-  STOP before running the pilot.
+- PILOT v2 FROZEN_NOT_RUN 2026-10-12 (CASE A done): protocol completed
+  deca7a3 (section 12: READY, a = 0, N = 120, expected-outcome note);
+  sample by `scripts/pilot_v2_select.py 120` (n3 60, n4 40, n5p 20 from the
+  untouched v1 candidates; bundle `records/pilot_v2/pilot_bundle.json`
+  sha256 8bf9e9de64727adc9968aa72dcde87890aa750198e4c6c0c205abf2c461d2f29;
+  evaluator-only key map `records/pilot_v2_evaluator/pilot_keymap.json`);
+  frozen c1906ee: `outputs/pilot_v2/pilot_v2_manifest.json` sha256
+  c93ec1dbe7ceee72256129ec28c0cde4e366cfc609989b8921f556fa18654748 (39
+  files, 10 dependency trees; 0 freeze problems, reasoner and evaluator
+  roles). 21 reach + pilot v2 tests pass. NOT RUN.
+- STOP. NEXT = USER DECISION. Either (a) run pilot v2 as frozen (about 7 h
+  on 4 workers: native, instances, cora phases; consumes 120 of the 488
+  untouched candidates; development predicts NO_REAL_ARC_WITNESS most
+  likely, the binding blocker being the adaptive LOO), launch:
+  `setsid nohup .venv_arc2026/bin/python scripts/pilot_v2_run.py pilot >
+  logs/pilot_v2/coordinator.log 2>&1 < /dev/null &` (mkdir logs/pilot_v2
+  first) then `setsid nohup bash scripts/pilot_v2_watch.sh <coordinator pid>
+  > /dev/null 2>&1 &`; or (b) an explicitly authorized development decision
+  on the leave-one-out blocker on the 60 development tasks only (the pilot
+  candidates stay untouched; a changed mechanism would need a new pilot
+  version). Not authorized now: ARC-1000, the evaluation DEV / HOLDOUT, any
+  push.
 
 **STOPPED: REAL ARC CAUSAL PILOT v1 NOT FROZEN. BLOCKER: PROPOSER REACH
 ON REAL TASKS** (2026-10-07, record `records/REAL_ARC_PILOT_V1_FEASIBILITY.md`,

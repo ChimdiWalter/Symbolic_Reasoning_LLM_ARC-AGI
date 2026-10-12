@@ -405,9 +405,24 @@
   },
   {
    "id": "real_arc_growth_pilot_v2",
-   "status": "DRAFTED (9643cd4, before the reach v1 outcome was read); NOT FROZEN",
+   "status": "FROZEN_NOT_RUN 2026-10-12: drafted 9643cd4 before the reach v1 outcome was read; completed deca7a3; frozen with N = 120; STOP: running needs an explicit go-ahead",
    "protocol": "docs/CORA_REAL_ARC_GROWTH_PILOT_v2.md",
-   "harness": "cora_pilot2/ (reasoner, evaluator), scripts/pilot_v2_{select,run,evaluate,verify,watch}, scripts/freeze_pilot_v2.py, tests/test_pilot_v2.py; reuses cora_reach.measure.run_task unchanged"
+   "harness": "cora_pilot2/ (reasoner, evaluator), scripts/pilot_v2_{select,run,evaluate,verify,watch}, scripts/freeze_pilot_v2.py, tests/test_pilot_v2.py; reuses cora_reach.measure.run_task unchanged",
+   "manifest": {
+    "path": "outputs/pilot_v2/pilot_v2_manifest.json",
+    "sha256": "c93ec1dbe7ceee72256129ec28c0cde4e366cfc609989b8921f556fa18654748"
+   },
+   "bundle": {
+    "path": "records/pilot_v2/pilot_bundle.json",
+    "sha256": "8bf9e9de64727adc9968aa72dcde87890aa750198e4c6c0c205abf2c461d2f29",
+    "n": 120,
+    "strata": {
+     "n3": 60,
+     "n4": 40,
+     "n5p": 20
+    }
+   },
+   "expected": "development predicts NO_REAL_ARC_WITNESS most likely (0/60 activations, 0/14 rebuilt folds)"
   }
  ],
  "recovered_definitions": {
