@@ -37,7 +37,6 @@ demonstration makes a coherent variant incoherent through coverage alone.
 """
 import itertools
 import json
-import multiprocessing as mp
 import os
 import sys
 
@@ -204,8 +203,7 @@ def main():
     for t in synthetic_tasks():
         n = len(t["train"])
         jobs.append((f"SYN:{t['id']}", t["train"], [tuple(range(n))] + list(itertools.combinations(range(n), n - 1)), False))
-    with mp.get_context("fork").Pool(4) as pool:
-        done = dict(pool.map(task_record, jobs, chunksize=1))
+    done = dict(task_record(j) for j in jobs)        # one process: the isolation hook refuses os.fork
     dev = {k: v for k, v in done.items() if not k.startswith("SYN:")}
     syn = {k[4:]: v for k, v in done.items() if k.startswith("SYN:")}
 
