@@ -25,6 +25,13 @@ STRICT: some r in R is strictly coarser than every kept variant (if any kept
 variant yields a train-perfect program, P1 searches r). WEAK: some r in R is
 strictly coarser than at least one kept variant (P1 searches r only if the
 winner is one of those).
+
+ANCHORED (the narrower proposal P2, not authorized, not run: inside the
+engine's own leave-one-out folds only, the variant of the program being
+validated is appended when the fold finds it coherent but the cap cuts it):
+for every parent subset P and each fold F = P minus one demonstration, the
+kept variants of P that F finds coherent and cuts. This is an upper bound on
+P2's exposure (P2 appends only the winner's variant, not every kept one).
 """
 import itertools
 import json
@@ -85,20 +92,59 @@ def development(cap):
     return out
 
 
+def anchored(rows):
+    out = {}
+    for parent, p in rows.items():
+        if len(parent) < 2:
+            continue
+        folds = ["".join(c) for c in itertools.combinations(parent, len(parent) - 1)]
+        if not all(f in rows for f in folds):
+            continue
+        out[parent] = {f: [v for v in p["kept"] if v in rows[f]["cut"]] for f in folds}
+    return out
+
+
+def monotone(rows):
+    """Example-count dependence: coherent variants a fold adds or loses
+    relative to its parent (the consistency clauses quantify over pairs, so
+    only the pooled coverage ratio can make a fold lose one)."""
+    out = {}
+    for parent, p in rows.items():
+        if len(parent) < 2:
+            continue
+        cp = set(p["kept"]) | set(p["cut"])
+        for f in ("".join(c) for c in itertools.combinations(parent, len(parent) - 1)):
+            if f in rows:
+                cf = set(rows[f]["kept"]) | set(rows[f]["cut"])
+                out[f"{parent}>{f}"] = {"added": sorted(cf - cp), "lost": sorted(cp - cf)}
+    return out
+
+
 def main():
     import geocat_arc.object_reasoning.inducer as I
     cap = I.MAX_SEG_VARIANTS_TRIED
     syn, dev = synthetic(cap), development(cap)
+    anc = {"synthetic": {t: anchored(rows) for t, rows in syn.items()},
+           "development": {t: anchored(rows) for t, rows in dev.items()}}
+    mon = {"synthetic": {t: monotone(rows) for t, rows in syn.items()},
+           "development": {t: monotone(rows) for t, rows in dev.items()}}
 
-    def tally(block):
+    def tally(block, name):
         subsets = [(t, k, r) for t, rows in block.items() for k, r in rows.items()]
+        folds = [(t, p, f, vs) for t, ps in anc[name].items() for p, fs in ps.items() for f, vs in fs.items()]
+        pairs = [(t, k, x) for t, ms in mon[name].items() for k, x in ms.items()]
         return {"subsets": len(subsets),
                 "cap_binds": sum(1 for _, _, r in subsets if r["cut"]),
                 "strict": sorted(f"{t}:{k}" for t, k, r in subsets if r["strict"]),
-                "weak": sorted(f"{t}:{k}" for t, k, r in subsets if r["weak"])}
+                "weak": sorted(f"{t}:{k}" for t, k, r in subsets if r["weak"]),
+                "anchored_folds": len(folds),
+                "anchored_exposed": sorted(f"{t}:{p}>{f}:{'+'.join(vs)}" for t, p, f, vs in folds if vs),
+                "parent_fold_pairs": len(pairs),
+                "fold_adds_coherent": sum(1 for _, _, x in pairs if x["added"]),
+                "fold_loses_coherent": sorted(f"{t}:{k}:{'+'.join(x['lost'])}" for t, k, x in pairs if x["lost"])}
     out = {"cap": cap, "trial_order": [v.value for v in I.SEGMENTATION_TRIAL_ORDER],
-           "synthetic": syn, "development": dev,
-           "summary": {"synthetic": tally(syn), "development": tally(dev)}}
+           "synthetic": syn, "development": dev, "anchored": anc, "monotone": mon,
+           "summary": {"synthetic": tally(syn, "synthetic"), "development": tally(dev, "development")}}
     with open(os.path.join(HERE, "outputs", "loo_v1", "probe_exposure.json"), "w") as handle:
         json.dump(out, handle, indent=1, sort_keys=True)
     print(json.dumps(out["summary"], indent=1))
