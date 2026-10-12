@@ -333,7 +333,19 @@ REAL-DEVELOPMENT COMPARISON." Do not launch that comparison.
     trial order), so P3 keeps the selected program among duplicates except through the cheap-first
     probe and deadline timing. P3 is selection-preserving among duplicates, not semantics-preserving. Its
     real effect is admitting new views.
-- Step 5 TODO, before any P3 code:
+- Steps 5-7 PROGRESS:
+  - preregistration `docs/CORA_P3_SAFETY_PREFLIGHT_v1.md` (7997679; section 8 clarification: exposure =
+    dedup ADMITS a view);
+  - corpus 17 adversarial tasks (`outputs/p3/adversarial_corpus.json`, file sha256 226dc3ba...);
+  - P3 implementation `cora_p3/` (884d147; 6 tests pass);
+  - runner `scripts/p3_preflight.py` (5818c51);
+  - FROZEN b594223 (`outputs/p3/p3_manifest.json`; 41 tasks, 34 exposed);
+  - the run launched detached ONCE: rows go to `outputs/p3/preflight_rows.jsonl`, the end marker is
+    `outputs/p3/PREFLIGHT_DONE`, the log is `logs/p3_preflight.log`.
+  - After the marker: `scripts/p3_preflight.py summarize` (same env as the run), then the gates S1 and S2.
+  - If interrupted before the marker: do NOT rerun silently (the runner refuses when rows exist). Record
+    the interruption and decide.
+- (Original step-5 plan, kept for reference:)
   - `docs/CORA_P3_SAFETY_PREFLIGHT_v1.md`;
   - adversarial generator `scripts/p3_adversarial_corpus.py` with families A (duplicate frees a useful
     slot, kf89-like corner pairs), B (a freed slot admits a misleading coarser view), C (train-equal,
