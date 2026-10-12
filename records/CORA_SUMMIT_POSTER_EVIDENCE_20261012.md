@@ -15,6 +15,9 @@ imported here). Figures are drawn only from the sealed outputs below by
 | SYNTHETIC, preserved negative | The tested failure-association selector did not beat demonstrations alone | D alone 0.591, D + failure association 0.585 (increment -0.006, 95% CI -0.026 to +0.014), 288 independent groups; conditional on that selector and training resource | `records/ITEM2_V15_SELECTION_RESULT_20261001.md` (96c32559...), commit eb5efa5 |
 | REAL DEVELOPMENT (60 training-development tasks; no test output read) | Failure-conditioned construction produced executable repairs that reached the native engine; one was accepted and used with all demonstrations; none survived adaptive LOO | 54 native object-engine failures; 31 with usable failure evidence; 4 machine-generated proposals; 4 compiled; 4 installed (0/60 before, ce123e8); 1 accepted and used; adaptive LOO 0 of 14 folds; activations 0; READY = PASS by the pre-registered installation rule only | `records/REACH_V1_MEASURE_20261011.md` (f0bbd78c...), commit bb11f95; frozen c8d8e3a (manifest 2e567bce...); rows 821a6556... (60ddd04) |
 | FORENSIC (development only, observation only; the subsets examined were chosen AFTER the failure was seen: causal debugging, not test evidence) | The LOO failures trace to a segmentation-variant admission mismatch in the native engine | 11 of 14 failed folds and all 3 full-data rejections; resources ruled out (WALL = CPU1 in 23 of 23 arms) | `records/LOO_V1_DIAGNOSIS_20261012.md` (f022f287...), commit c2b8cd4; probes `outputs/loo_v1/probe_kf892487f1049.json` (955542c), `probe_variants.json`, `probe_eligibility.json` (82251a4) |
+| FORENSIC, addendum (same tier and caveat) | The eligibility predicate is monotone in the demonstrations; the defect is the 4-variant cap cutting the strictly coarser S6 that the engine's own fold-convergence rule relies on | a fold never loses a coherent variant (0 of 72 synthetic, 0 of 50 development parent-fold pairs; adds some in 12 and 24); on kf892487f1049 only (0,2) and (1,3) add S1 to S5 | `records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md`, commit a719383; `outputs/loo_v1/probe_exposure.json` (794ad70b..., 3ba75e5) |
+| SYNTHETIC, negative controls (24 seeded tasks, 6 families; not ARC) | Forcing one segmentation variant first is not a safe generic repair | 168 runs paired with each task's native outcome: 0 gains, 6 harmful changes (PROMOTE: 2 correct to rejected, 1 rejected to false acceptance; ADMIT, the reach v2 class: 2 correct to rejected, 1 correct to false acceptance); native: 7 correct, 2 false acceptances, 15 rejected | `outputs/loo_v1/probe_negative.json` (2f100350..., 70d3ed9), probe 1f03a1c; figure `fig_negative_controls.png` (914049c) |
+| PROPOSAL, NOT AUTHORIZED | One narrow correction is specified with predictions, frozen criteria and a kill rule | P2 (LOO-anchored variant completion); predicted: kf892487f1049 at most 3 of 4 folds, the screen fails | addendum section 7 |
 | REPAIR BUILT, NOT MEASURED | A variant-carrying installation was implemented and tested on synthetic fixtures only | its 60-task recheck was stopped before any unit finished (0 rows): no result exists | 568af22 (code), 41c20a2 (stop) |
 | FROZEN, NOT RUN | A prospective protocol and an untouched sample exist | pilot v2, N = 120 | c1906ee, manifest c93ec1db... |
 | BASELINE | Historical certified training score | 185 / 1,000 (sealed v23 run + arbitration), unchanged | evaluator-pinned v23 records (sha256 763beefd..., 35e8f5c9...) |
@@ -35,8 +38,9 @@ LEVEL 2 claim limited to that synthetic domain and witness-support regime.
   own leave-one-out then re-induces from 2 demonstrations.
 - On the pairs (0,1), (0,3), (1,2), (2,3) the engine searches S6 first and
   returns G, which reproduces the other two demonstrations. On (0,2) and
-  (1,3) it searches S1, S2, S3, S5 only and returns a 4-rule constant-class
-  program that is wrong on the held-out demonstration (21 to 33 cells). G is
+  (1,3) it searches S1, S2, S3, S5 only and returns a constant-class program
+  (2 rules on (0,2), 4 on (1,3)) that is wrong on the held-out demonstration
+  (21 to 33 cells). G is
   train-exact on every pair; exploring all candidates of the searched
   variants does not recover it; a ranking cause is refuted.
 - The predicate: `geocat_arc/object_reasoning/segmentation.py:261`
@@ -110,6 +114,11 @@ controlled interventions.
    code is edited; compared with the original on the same 60 tasks
    (program recovery, adaptive LOO, false acceptances, native regressions,
    CPU time). Labelled REPRESENTATION/SEARCH CORRECTION, not invention.
+   The candidate is P2 (addendum section 7): inside the engine's own
+   leave-one-out only, append the validated program's variant when the fold
+   finds it coherent but the cap cuts it. NOT AUTHORIZED; its own predictions
+   say the screen still fails (kf892487f1049 fold 1 is refuted by its
+   held-out demonstration after the proposer picks window_fill).
 2. Screen for a new pilot: at least one development task with invariant
    conditions 1 to 5 together. If it fails: record the blocker; the 488
    candidates and pilot v2 stay untouched.
@@ -118,10 +127,25 @@ controlled interventions.
 
 ## 7. Negative controls (synthetic) for any admission intervention
 
-Pending at the time of writing: `outputs/loo_v1/probe_negative.json`
-(24 seeded synthetic tasks, 6 rule families; the engine with no overlay,
-PROMOTE (an eligible variant first) and ADMIT (an ineligible variant first
-and admitted); false acceptances, native regressions, gains).
+`outputs/loo_v1/probe_negative.json` (70d3ed9, sha256 2f100350...): 24 seeded
+synthetic tasks, 6 rule families, 3 training + 2 held-out demonstrations
+each; the engine's own induction (train-exact + its own LOO, 20 s). The
+engine as is: 7 correct, 2 false acceptances, 15 rejected (all at its own
+LOO). Paired with each task's own native outcome:
+
+| overlay | runs (tasks) | unchanged | harmful changes | gains |
+|---|---|---|---|---|
+| PROMOTE (an eligible variant searched first) | 131 (23) | 128 | 3: translate_down_0 S6 and translate_down_1 S7 correct to rejected; translate_down_2 S7 rejected to false acceptance | 0 |
+| ADMIT (an ineligible variant searched first and admitted; the reach v2 class) | 37 (10) | 34 | 3: halo_0 S4 correct to false acceptance; multicolor_majority_3 S1 and S5 correct to rejected | 0 |
+
+Mechanisms (engine code path): a coarser variant searched first prunes the
+finer native ones through the parsimony skip; a forced view's program passes
+the engine's gates but is wrong on held-out demonstrations; an incoherent
+forced view uses 3.5 times the native time (consistent with budget
+displacement). Poster statement allowed: "On synthetic controls, forcing a
+segmentation variant first produced no gains and six harmful changes in 168
+paired runs; we therefore did not run the variant-first repair." Not
+allowed: any claim that P2 is safe (it has not been run).
 
 ## 8. Likely skeptical questions, answered within the evidence
 
@@ -142,6 +166,16 @@ and admitted); false acceptances, native regressions, gains).
   test. Here it exposed a representation-admission defect.
 - "Why not report the 120-task pilot?" It is frozen and has not been run;
   development predicts a no-witness outcome while the LOO blocker stands.
+- "Why not just raise the cap or search every eligible variant?" Statically,
+  letting the coarser completion reach every cut variant would change the
+  search on 73 of 96 synthetic subsets, mostly through S7, the proximity
+  view the engine keeps as a last resort; and forcing a variant first was
+  harmful in 6 of 168 paired synthetic runs with no gains.
+- "So the blocker was a bug in the engine, not a missing capability?" Yes:
+  for kf892487f1049 the evidence says representation admission (a
+  search-layer defect), which is exactly the kind of distinction the
+  failure typing is meant to make. A fix would be labelled representation
+  correction, not invention.
 - "What about VDCG?" A separate project; none of its results are used here.
 
 ## 9. Corrections to the draft summit documents (2026-10-12)
@@ -155,3 +189,8 @@ and admitted); false acceptances, native regressions, gains).
    if any, is safe (section 7).
 3. A repair was built (568af22) but never measured: its recheck was stopped
    before any unit finished. No repair result exists.
+4. "The fold winner on (0,2) and (1,3) has 4 rules" -> 2 rules on (0,2), 4 on
+   (1,3); both constant class.
+5. "Broader eligibility would fix it" -> forcing or admitting a variant was
+   harmful on synthetic controls (section 7); the eligibility predicate itself
+   behaves as designed (monotone); the narrow candidate is P2, not authorized.
