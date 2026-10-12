@@ -184,42 +184,70 @@ def admission(key="kf892487f1049"):
 
 
 def negative():
+    """Paired per-task grid: each overlay run against the SAME task's native
+    outcome (per-run outcome shares would mislead: the ADMIT runs pile up on
+    the natively correct halo tasks, which have six or seven ineligible
+    variants each)."""
     path = os.path.join(HERE, "outputs", "loo_v1", "probe_negative.json")
     if not os.path.exists(path):
         return False
-    s = json.load(open(path))["summary"]
-    rows = [("No overlay (engine as is)", s["BASE"]), ("PROMOTE: eligible variant first", s["PROMOTE"]["outcomes"]),
-            ("ADMIT: ineligible variant first", s["ADMIT"]["outcomes"])]
-    cats = [("CORRECT", "accepted, held-out exact", GOOD), ("FALSE_ACCEPT", "accepted, held-out wrong", CRITICAL),
-            ("REJECT", "rejected", BASE)]
-    fig, ax = plt.subplots(figsize=(8.4, 3.0), dpi=200)
-    for i, (name, o) in enumerate(rows):
-        y = len(rows) - 1 - i
-        tot = sum(o[c] for c, _l, _k in cats)
-        left = 0.0
-        for c, _l, col in cats:
-            w = o[c] / tot if tot else 0
-            if w > 0:
-                ax.add_patch(Rectangle((left, y - 0.28), w - 0.004, 0.56, facecolor=col, linewidth=0))
-                if w > 0.07:
-                    ax.text(left + w / 2, y, str(o[c]), ha="center", va="center",
-                            color="white" if col != BASE else INK, fontsize=10, fontweight="bold")
-            left += w
-        ax.text(1.01, y, f"n = {tot}", va="center", ha="left", color=INK2, fontsize=10)
-    ax.set_yticks(range(len(rows)))
-    ax.set_yticklabels([r[0] for r in rows][::-1])
-    ax.set_xlim(0, 1.12)
-    ax.set_ylim(-0.6, len(rows) - 0.4)
-    ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
-    ax.set_xticklabels(["0%", "25%", "50%", "75%", "100%"])
-    _clean(ax)
-    ax.legend(handles=[Patch(color=k, label=f"{c.replace('_', ' ').lower()}: {l}") for c, l, k in cats],
-              loc="upper center", bbox_to_anchor=(0.5, -0.18), ncol=3, frameon=False, fontsize=9)
-    _title(fig, "Negative controls on SYNTHETIC tasks: does forcing a variant first add false acceptances?",
-           "engine's own induction (train-exact + its own LOO); 3 training + 2 held-out demonstrations per task", top=0.72)
+    d = json.load(open(path))
+    order = ["S1", "S2", "S3", "S5", "S4", "S6", "S7"]
+    res = {(r["task"], r["condition"], r["variant"]): r["outcome"] for r in d["results"]}
+    tasks = [f"{fam}_{s}" for fam in d["families"] for s in range(4)]
+    word = {"CORRECT": "correct", "FALSE_ACCEPT": "false acc.", "REJECT": "rejected"}
+    fill = {"CORRECT": GOOD, "FALSE_ACCEPT": CRITICAL, "REJECT": BASE}
+    fig, ax = plt.subplots(figsize=(8.4, 7.4), dpi=200)
+    harm = gain = runs = 0
+    for i, t in enumerate(tasks):
+        y = len(tasks) - 1 - i
+        b0 = res[(t, "BASE", None)]
+        ax.add_patch(Rectangle((0.04, y + 0.08), 1.82, 0.84, facecolor=fill[b0], linewidth=0))
+        ax.text(0.95, y + 0.5, word[b0], ha="center", va="center", fontsize=8.5,
+                color=INK if b0 == "REJECT" else "white", fontweight="bold")
+        for j, v in enumerate(order):
+            x = 2.2 + j
+            eligible = d["eligibility"][t][v]
+            cond = "PROMOTE" if eligible else "ADMIT"
+            o = res[(t, cond, v)]
+            runs += 1
+            if o == b0:
+                ax.add_patch(Rectangle((x + 0.04, y + 0.08), 0.92, 0.84, linewidth=0.8,
+                                       facecolor=NEUTRAL if eligible else SURF, edgecolor=NEUTRAL if eligible else BASE))
+                ax.text(x + 0.5, y + 0.5, "P" if eligible else "A", ha="center", va="center", fontsize=7.5, color=MUTED)
+            else:
+                good = o == "CORRECT"
+                harm += not good
+                gain += good
+                ax.add_patch(Rectangle((x + 0.04, y + 0.08), 0.92, 0.84, linewidth=0,
+                                       facecolor=GOOD if good else CRITICAL))
+                ax.text(x + 0.5, y + 0.5, ("P" if eligible else "A") + {"CORRECT": "+", "FALSE_ACCEPT": ":FA", "REJECT": ":rej"}[o],
+                        ha="center", va="center", fontsize=7.5, color="white", fontweight="bold")
+        if i % 4 == 0 and i:
+            ax.axhline(y + 1, color=GRID, linewidth=1.0, xmin=0, xmax=1)
+    ax.set_xlim(0, 2.2 + len(order))
+    ax.set_ylim(0, len(tasks))
+    ax.set_xticks([0.95] + [2.7 + j for j in range(len(order))])
+    ax.set_xticklabels(["engine\nas is"] + order, fontsize=9.5)
+    ax.xaxis.tick_top()
+    ax.set_yticks([len(tasks) - 1 - i + 0.5 for i in range(len(tasks))])
+    ax.set_yticklabels([t.rsplit("_", 1)[0].replace("_", " ") + " " + t.rsplit("_", 1)[1] for t in tasks], fontsize=8)
+    for s in ("top", "right", "left", "bottom"):
+        ax.spines[s].set_visible(False)
+    ax.tick_params(length=0)
+    ax.set_xlabel("the segmentation variant forced to be searched first (engine's trial order)", color=INK2, fontsize=9.5)
+    ax.legend(handles=[Patch(facecolor=NEUTRAL, edgecolor=NEUTRAL, label="P: eligible variant first (PROMOTE), outcome unchanged"),
+                       Patch(facecolor=SURF, edgecolor=BASE, label="A: ineligible variant first and admitted (ADMIT), unchanged"),
+                       Patch(color=CRITICAL, label="changed for the worse (:rej rejected, :FA false acceptance)"),
+                       Patch(color=GOOD, label="changed to correct (none occurred)")],
+              loc="upper center", bbox_to_anchor=(0.5, -0.05), ncol=2, frameon=False, fontsize=8.2)
+    _title(fig, "Negative controls (SYNTHETIC): forcing one segmentation variant first",
+           f"24 seeded tasks (3 training + 2 held-out demonstrations); engine's own induction, train-exact + its own LOO, 20 s.\n"
+           f"Each run is paired with the same task's native outcome: {runs} runs, {gain} gains, {harm} harmful changes.",
+           top=0.885)
     fig.savefig(os.path.join(FIG, "fig_negative_controls.png"))
     plt.close(fig)
-    return True
+    return (runs, gain, harm)
 
 
 def main():
@@ -229,7 +257,7 @@ def main():
     demos()
     admission()
     ok = negative()
-    print("figures:", sorted(os.listdir(FIG)), "| negative controls:", "drawn" if ok else "pending")
+    print("figures:", sorted(os.listdir(FIG)), "| negative controls (runs, gains, harmful):", ok if ok else "pending")
 
 
 if __name__ == "__main__":
