@@ -426,9 +426,24 @@
   },
   {
    "id": "real_task_loo_stability_v1",
-   "status": "IN_PROGRESS 2026-10-12: user directive 'REAL-TASK ADAPTIVE LOO STABILITY PROGRAM' (started at a9e4577): observation-only diagnosis of the 14 failed folds on the 60 development tasks, then at most one generic repair and one development recheck",
+   "status": "IN_PROGRESS: DIAGNOSIS COMPLETE AND FROZEN 2026-10-12 (record records/LOO_V1_DIAGNOSIS_20261012.md): dominant blocker = segmentation-variant admission mismatch (11 of 14 folds; all 3 full-data rejections); support 2, single-demonstration identifiability 1, ordering co-occurs in 1; resources ruled out (WALL = CPU1 in 23 of 23 arms). One repair licensed: variant-carrying installation (not yet implemented)",
    "protocol": "docs/CORA_REAL_TASK_LOO_STABILITY_v1.md",
-   "preserved": "reach v1 (c8d8e3a, rows 60ddd04) and pilot v2 (c1906ee, manifest c93ec1db, FROZEN_NOT_RUN) unchanged; new code only outside every pinned tree (cora_loo/)"
+   "preserved": "reach v1 (c8d8e3a, rows 60ddd04) and pilot v2 (c1906ee, manifest c93ec1db, FROZEN_NOT_RUN) unchanged; new code only outside every pinned tree (cora_loo/)",
+   "diagnosis": {
+    "manifest_sha256": "58de06d5dae81b146577f6c5ed6c70184e700ce7513c3e7157e72bb12d7a7ede",
+    "rows_commit": "4c14f9d",
+    "classification": {
+     "H3": 3,
+     "H1": 2,
+     "H4": 1,
+     "H2": 1,
+     "UNRESOLVED": 7
+    },
+    "probes": [
+     "outputs/loo_v1/probe_kf892487f1049.json",
+     "outputs/loo_v1/probe_variants.json"
+    ]
+   }
   }
  ],
  "recovered_definitions": {

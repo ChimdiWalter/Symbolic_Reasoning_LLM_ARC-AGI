@@ -210,6 +210,29 @@ record frozen -> repair decision.
   2>&1 < /dev/null &` (2 max), then relaunch the checkpointer with the new
   pid. After the marker: `.venv_arc2026/bin/python scripts/loo_v1_classify.py`
   (in the workers' environment), then the diagnosis record.
+- DIAGNOSIS COMPLETE 2026-10-12T03:03:29Z (18 of 18, 0 errors, rows
+  4c14f9d) and FROZEN as `records/LOO_V1_DIAGNOSIS_20261012.md` before any
+  repair code. Frozen classes: H3 3, H1 2, H4 1, H2 1, UNRESOLVED 7 (engine
+  LOO with a deadline hit). Forensic probes (89bdb49 + variant probe):
+  DOMINANT BLOCKER = SEGMENTATION-VARIANT ADMISSION MISMATCH: the engine
+  searches at most 4 coherent variants in a fixed order, coherence depends
+  on the demonstration subset, and the extension's construction variant is
+  cut (kf892487f1049 inner pairs (0,2), (1,3): G found on the other 4 pairs,
+  never on these; k5a49896251a2 subsets) or incoherent (k017955a77fc5 S2,
+  k5991e227189e S6): 11 of 14 folds and all 3 full-data rejections. Support
+  2 (k017955a77fc5 f0, f1), single-demonstration identifiability 1
+  (k017955a77fc5 f2), ordering co-occurs in kf892487f1049 f1. Resources ruled
+  out (WALL = CPU1 in 23 of 23 arms; CPU share 0.94-0.997). The parsimony-
+  skip hypothesis was refuted. Novelty: GROW_SUBLANGUAGE_ABSENT, NOT_A_CACHE,
+  SEARCH_INACCESSIBLE_WITHIN_BUDGET; BOUNDED_SEMANTIC_EXTENSION_CERTIFIED not
+  established.
+- NEXT: the one licensed repair, VARIANT-CARRYING INSTALLATION (while e is
+  installed its construction variant is searched first and admitted;
+  everything else unchanged), in a new package outside the pinned trees,
+  unit + mutation tests, protocol amendment (section 12), freeze, ONE
+  development recheck (original vs successor, same 60 tasks). Pre-registered
+  expectation in the record: the screen (conditions 1-5 on one task) is NOT
+  expected to pass (evidence-side cuts, support, ordering remain).
 
 ### Earlier in this section (reach v1 block)
 
