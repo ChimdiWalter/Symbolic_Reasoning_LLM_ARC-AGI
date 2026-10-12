@@ -1,0 +1,54 @@
+% CORA poster abstract, ARC Prize Research Summit, 23 October 2026.
+% Every number is indexed in records/CORA_SUMMIT_POSTER_EVIDENCE_20261012.md.
+\documentclass[11pt]{article}
+\usepackage[a4paper, margin=2.4cm]{geometry}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{xcolor}
+\definecolor{ink2}{HTML}{52514E}
+\pagestyle{empty}
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+{\Large\bfseries When Search Is Not Enough: Diagnosing Failure Before Constructing Verified Reasoning Capabilities\par}
+\vspace{0.6em}
+{\large Chimdi Walter Ndubuisi\par}
+{\color{ink2} University of Missouri \quad$\cdot$\quad ARC Prize Research Summit, 23 October 2026 \quad$\cdot$\quad poster abstract\par}
+\vspace{1.0em}
+
+Many reasoning systems respond to failure by generating more programs, refining candidates or adding
+test-time computation; these strategies are bounded by the representations and operations available to
+search. We study a complementary question: can a reasoner tell whether a failure reflects
+insufficient search, an excluded representation, a missing executable capability or insufficient
+evidence, and adapt only that component without compromising the evidence used to judge it?
+
+We present CORA, a framework for failure-conditioned construction and verification of task-local
+executable extensions. A candidate is built from auditable failure traces, installed provisionally into
+the unchanged native reasoner, and checked by demonstration replay, adaptive leave-one-out rebuilt per
+fold, independent target evaluation and removal controls; abstention is a legitimate outcome.
+
+A frozen synthetic experiment produced 27 of 30 complete end-to-end witnesses (12 of 30 for the earlier
+engine) within its declared grammar. On 60 real ARC-AGI-2 training-development tasks, four automatically
+constructed growth relations compiled and installed (none before), and one was accepted and used by
+the native engine. None survived adaptive leave-one-out (0 of 14 folds), so no new ARC solve is claimed.
+Forensic analysis traced the dominant failure to representation admission. On particular
+two-demonstration subsets, finer segmentation views become eligible and fill a fixed four-view search cap,
+which cuts the still-eligible view holding the correct general program. Synthetic negative controls
+showed that the obvious repair, forcing a view to be searched first, produced no gains and six harmful
+changes in 168 paired runs, so it was not run.
+
+We outline a domain-portable control protocol and a prospective biological-perturbation test. Neither
+biological transfer nor real ARC invention has been demonstrated.
+
+\vfill
+{\small\color{ink2}
+\textbf{Keywords:} ARC-AGI-2; program synthesis; failure diagnosis; capability construction; verification;
+leave-one-out.\par
+\textbf{Evidence tiers:} synthetic (frozen, run once); real development (training demonstrations only, no
+test output read); forensic (subsets examined after the failure was seen). The certified training score is
+unchanged at 185/1{,}000; a 120-task prospective pilot is frozen and has not been run. Every number is
+indexed with its commit and hash in \texttt{records/CORA\_SUMMIT\_POSTER\_EVIDENCE\_20261012.md}.\par}
+\end{document}
