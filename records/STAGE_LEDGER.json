@@ -484,13 +484,20 @@
   },
   {
    "id": "p3_safety_falsification_v1",
-   "status": "IN_PROGRESS: audit done (census reproduced; train-equivalent views diverge on unseen inputs 61/769 dev, 9/231 synthetic); next: preregistration before any P3 code",
+   "status": "CLOSED: P3_REJECTED (S1 fail: 2 regressions, 2 new false acceptances via admitted S6/S7; 1 gain; S2 pass; 0 unstable); steps 8-9 not run",
    "authorized": "semantic audit; preregistered adversarial controls; one versioned P3; one frozen synthetic preflight; 6-native regression and kf89 check only after S1+S2 pass",
    "not_authorized": "60-task recheck, pilot v2/v3, ARC-1000, protected evaluation",
    "audit": {
     "script_commit": "b8bc4c1",
     "output": "outputs/p3/audit_equivalence.json"
-   }
+   },
+   "protocol": "docs/CORA_P3_SAFETY_PREFLIGHT_v1.md",
+   "implementation_commit": "884d147",
+   "frozen": "b594223",
+   "evidence_commit": "98c9bed",
+   "record": "records/P3_SAFETY_PREFLIGHT_RESULT_20261012.md",
+   "rows_sha256": "30fab64f144a0069",
+   "summary_sha256": "8f10bd3e4febf36a"
   }
  ],
  "recovered_definitions": {

@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: P3 SAFETY FALSIFICATION block (user directive 2026-10-12, pasted; authorizes semantic audit, preregistered adversarial controls, ONE versioned P3 implementation, ONE frozen synthetic safety preflight, then (only if S1+S2 pass) the 6-native-success regression and the kf892487f1049 mechanistic check; NOT the 60-task recheck, pilot v2/v3, ARC-1000, protected evaluation). Progress: step 1 state verified (freezes 0); steps 3-4 audit DONE (b8bc4c1, output committed next): census reproduced exactly; train-equivalent views diverge on unseen inputs (development 61 of 769 pairs, synthetic 9 of 231) -> P3 is NOT semantics-preserving, only selection-preserving among duplicates. NEXT: step 5 preregistration (docs/CORA_P3_SAFETY_PREFLIGHT_v1.md + adversarial corpus families A-G, >=12 tasks, seeds and hashes) BEFORE any P3 code; then steps 6-7. See the P3 block below.
+Last updated 2026-10-12. Current: P3 SAFETY FALSIFICATION block CLOSED: P3_REJECTED (records/P3_SAFETY_PREFLIGHT_RESULT_20261012.md). Synthetic preflight run once (frozen b594223, evidence 98c9bed): S1 FAIL (2 natively correct tasks rejected, 2 new false acceptances, all translate_down, via admitted coarse views S6/S7; 1 gain), S2 PASS (7 unexposed byte-identical), 0 unstable. Steps 8-9 NOT run (kill rule). Nothing running. Pilot v2 FROZEN_NOT_RUN. NEXT: REJECT P3, PRESERVE THE NEGATIVE RESULT AND REASSESS THE FAILURE-TYPED REASONING CONTROLLER (user decision; candidate: proposal selection under sparse evidence / abstention when demonstrations cannot separate competing repairs).
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -345,6 +345,7 @@ REAL-DEVELOPMENT COMPARISON." Do not launch that comparison.
   - After the marker: `scripts/p3_preflight.py summarize` (same env as the run), then the gates S1 and S2.
   - If interrupted before the marker: do NOT rerun silently (the runner refuses when rows exist). Record
     the interruption and decide.
+- RESULT: P3_REJECTED (98c9bed; record `records/P3_SAFETY_PREFLIGHT_RESULT_20261012.md`). Steps 8 and 9 NOT run.
 - (Original step-5 plan, kept for reference:)
   - `docs/CORA_P3_SAFETY_PREFLIGHT_v1.md`;
   - adversarial generator `scripts/p3_adversarial_corpus.py` with families A (duplicate frees a useful
