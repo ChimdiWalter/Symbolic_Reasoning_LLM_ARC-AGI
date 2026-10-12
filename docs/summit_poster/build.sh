@@ -8,10 +8,10 @@ ROOT=$(cd "$HERE/../.." && pwd)
 "$ROOT/.venv_arc2026/bin/python" "$ROOT/scripts/summit_figures.py" > /dev/null
 TMP=$(mktemp -d)
 cd "$HERE"
-for f in poster abstract; do
+for f in poster abstract explainer; do
   SOURCE_DATE_EPOCH=1791763200 FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode -halt-on-error \
     -output-directory="$TMP" "$f.tex" > "$TMP/$f.out" 2>&1 || { tail -20 "$TMP/$f.out"; exit 1; }
   cp "$TMP/$f.pdf" "$HERE/$f.pdf"
 done
 rm -rf "$TMP"
-sha256sum "$HERE/poster.pdf" "$HERE/abstract.pdf" "$HERE"/figures/*.png | sed "s#$HERE/##"
+sha256sum "$HERE/poster.pdf" "$HERE/abstract.pdf" "$HERE/explainer.pdf" "$HERE"/figures/*.png | sed "s#$HERE/##"
