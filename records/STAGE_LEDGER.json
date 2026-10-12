@@ -426,7 +426,7 @@
   },
   {
    "id": "real_task_loo_stability_v1",
-   "status": "IN_PROGRESS: DIAGNOSIS COMPLETE AND FROZEN 2026-10-12 (record records/LOO_V1_DIAGNOSIS_20261012.md): dominant blocker = segmentation-variant admission mismatch (11 of 14 folds; all 3 full-data rejections); support 2, single-demonstration identifiability 1, ordering co-occurs in 1; resources ruled out (WALL = CPU1 in 23 of 23 arms). One repair licensed: variant-carrying installation (not yet implemented)",
+   "status": "IN_PROGRESS: DIAGNOSIS COMPLETE AND FROZEN 2026-10-12 (records/LOO_V1_DIAGNOSIS_20261012.md) + REPRESENTATION-ELIGIBILITY ADDENDUM 2026-10-12 (records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md, a719383): mechanism proven at predicate level (eligibility monotone in the demonstrations; the 4-variant cap cuts the strictly coarser S6 that the engine's own fold-convergence rule relies on); variant-first repairs harmful on synthetic negative controls (168 paired runs, 0 gains, 6 harmful); P2 LOO-anchored variant completion PROPOSED, NOT AUTHORIZED (screen predicted to fail)",
    "protocol": "docs/CORA_REAL_TASK_LOO_STABILITY_v1.md",
    "preserved": "reach v1 (c8d8e3a, rows 60ddd04) and pilot v2 (c1906ee, manifest c93ec1db, FROZEN_NOT_RUN) unchanged; new code only outside every pinned tree (cora_loo/)",
    "diagnosis": {
@@ -441,13 +441,35 @@
     },
     "probes": [
      "outputs/loo_v1/probe_kf892487f1049.json",
-     "outputs/loo_v1/probe_variants.json"
+     "outputs/loo_v1/probe_variants.json",
+     "outputs/loo_v1/probe_eligibility.json",
+     "outputs/loo_v1/probe_negative.json",
+     "outputs/loo_v1/probe_exposure.json"
     ]
    },
    "recheck": {
     "repair": "reach v2 variant-carrying installation (568af22), Amendment 1 + erratum 1",
     "manifest_sha256": "7be92e406c36f388c08a501a9f3888f7fb0327b82f4688248f07f6a714c0ac37",
-    "status": "STOPPED 2026-10-12T14:23:40Z before any unit (0 rows) at the user's summit addendum; no outcome exists; not to be resumed without a new go-ahead"
+    "status": "STOPPED 2026-10-12T14:23:40Z before any unit (0 rows) at the user's summit addendum; no outcome exists; NOT RECOMMENDED after the negative controls (its repair is variant-first); not to be resumed without a new go-ahead"
+   },
+   "addendum": {
+    "record": "records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md",
+    "commit": "a719383",
+    "negative_controls": {
+     "output_commit": "70d3ed9",
+     "sha256": "2f1003509235d3f397385172ed77d44b488572c1fd732a4d7669108d41ca1687",
+     "runs": 168,
+     "gains": 0,
+     "harmful": 6,
+     "verdict": "variant-first overlays (PROMOTE, ADMIT) not safe; reach v2 not recommended"
+    },
+    "static_exposure": {
+     "output_commit": "3ba75e5",
+     "sha256": "794ad70b490d2446befcff6fc51188c706cd3e63de0e7cecaf90e3f9e8197587",
+     "P1_global_completion": "exposed on 73 of 96 synthetic subsets: rejected without a run",
+     "P2_anchored_completion": "exposed on at most 3 of 72 synthetic folds; on kf892487f1049 exactly the failing inner folds"
+    },
+    "proposal": "P2 LOO-anchored variant completion: NOT AUTHORIZED; predictions, criteria S1-S3 + E1 and kill rule in addendum section 7"
    }
   }
  ],

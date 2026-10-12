@@ -4,7 +4,7 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-Last updated 2026-10-12. Current: LOO stability block v1: diagnosis frozen (c2b8cd4); repair reach v2 built (568af22) but its recheck STOPPED before any unit at the user summit addendum; now completing the predicate-level representation-eligibility diagnosis + negative synthetic probes (observation only) and the summit poster evidence note. Pilot v2 FROZEN_NOT_RUN (c1906ee, c93ec1db). Certified 185/1000 unchanged.
+Last updated 2026-10-12. Current: LOO stability block v1: diagnosis frozen (c2b8cd4) + representation-eligibility ADDENDUM recorded (a719383): mechanism proven at predicate level (monotone eligibility; the 4-variant cap cuts the strictly coarser S6 the engine's own fold-convergence rule relies on); synthetic negative controls: variant-first overlays 168 paired runs, 0 gains, 6 harmful -> reach v2 (568af22) NOT recommended, its recheck stays STOPPED (0 rows); narrow correction P2 (LOO-anchored variant completion) PROPOSED, NOT AUTHORIZED, predicted not to pass the screen. Nothing running. Pilot v2 FROZEN_NOT_RUN (c1906ee, c93ec1db). Certified 185/1000 unchanged. Summit poster + abstract PDFs and paper sections 8.16-8.17 updated (1511af7, d5b0b62).
 
 **v1.6 COMPLETE: PURE_RULE_WITH_DEMONSTRATION_FALLBACK_GENERALIZES** (ladder
 rule 3; hybrid headline). Record: `records/ITEM2_V16_CFR_RESULT_20261005.md`.
@@ -183,6 +183,14 @@ hidden answer may be read to supply one.
 - Summit poster (ARC Prize Research Summit 2026-10-23): `docs/summit_poster/`
   (poster source + PDF; every PNG it uses in `docs/summit_poster/figures/`).
 - Poster abstract as PDF: `docs/summit_poster/`.
+- Current files: `docs/summit_poster/poster.tex` -> `poster.pdf` (A0,
+  tikzposter), `abstract.tex` -> `abstract.pdf` (one page, 266 words).
+  Rebuild: `.venv_arc2026/bin/python scripts/summit_figures.py`, then in
+  `docs/summit_poster/`: `pdflatex -output-directory=<scratch> poster.tex`
+  and `abstract.tex`, copy the two PDFs back (no aux files in the repo).
+  Open QC item: figure text is about 12 to 16 pt at A0 (readable close up);
+  a poster-scaled font pass is still to do. `kaggle/writeup.md` (1,500-word
+  cap) has not been refreshed since 2026-09-23.
 - Figures ONLY from sealed outputs or the real pipeline
   (`scripts/summit_figures.py`); no generated pictures; toy illustrations
   only if labelled as such. Evidence note:
@@ -273,6 +281,35 @@ record frozen -> repair decision.
   outcome exists or was read. Do NOT resume without a new go-ahead: the
   diagnosis addendum may revise the repair (then a new versioned successor
   and a new freeze, not this one).
+
+- DIAGNOSIS ADDENDUM RECORDED 2026-10-12 (`records/LOO_V1_DIAGNOSIS_ADDENDUM_20261012.md`,
+  a719383; observation only, nothing launched). Probes: negative synthetic
+  controls `scripts/loo_v1_probe_negative.py` (1f03a1c) -> output 70d3ed9
+  (sha256 2f100350...); static exposure `scripts/loo_v1_probe_exposure.py`
+  -> output 3ba75e5 (794ad70b...). Findings: exact predicate and first
+  rejection site per subset; eligibility is MONOTONE (a fold never loses a
+  coherent variant: 0/72 synthetic, 0/50 development); the defect is the
+  cap cutting the strictly coarser S6 that the engine's round-3
+  fold-convergence rule relies on; H_rep true, H_search variant level only,
+  H_rank false, H_budget false, H_evid weak; 7 falsified hypotheses.
+  Negative controls: PROMOTE 131 runs and ADMIT 37 runs, paired with the
+  task's native outcome: 0 gains, 6 harmful (3 each). So reach v2's
+  variant-first repair is NOT recommended and its recheck stays STOPPED
+  (retire it only on the user's word). P1 (global coarser completion)
+  rejected statically (exposed on 73/96 synthetic subsets). P2
+  (LOO-anchored variant completion; inside the engine's own LOO only,
+  append the validated program's variant when the fold finds it coherent
+  but the cap cuts it) PROPOSED, NOT AUTHORIZED: predictions (kf892487f1049
+  3/4 outer folds at best; f1 still refuted after window_fill; screen
+  predicted to FAIL), frozen criteria S1-S3 + E1, kill rule, matched
+  accounting. It changes the engine's INTERNAL LOO gate: the user decides
+  whether that counts as weakening acceptance. All freezes re-checked after
+  the commits: reach v1, pilot v2 (reasoner, evaluator), diagnosis, recheck
+  (coordinator, worker): 0 problems.
+- NEXT: PRESERVE THE FROZEN PILOT AND COMPLETE THE GENERIC
+  REPRESENTATION-ELIGIBILITY DIAGNOSIS BEFORE ANY NEW REPAIR OR RUN. Await an
+  explicit decision on P2 (authorize as specified, amend, or stay at
+  diagnosis). Launch nothing without it.
 
 ### Earlier in this section (reach v1 block)
 
