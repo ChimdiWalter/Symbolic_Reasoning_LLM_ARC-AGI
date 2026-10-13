@@ -267,3 +267,60 @@ use is not explicitly logged, and the notebook licences remain UNVERIFIED
   - 7 of 259 positions with a genuine attempt_1, 2 with a genuine attempt_2;
   - 252 positions default only;
   - schema valid.
+
+## 9. Gate audit before completion (2026-10-13, 19:05Z; commit 25b346e)
+
+The October 23 sprint directive asked for a check that the watcher and the
+coverage audit agree on metric names, units and thresholds before any
+automatic submission.
+
+**Agreements confirmed:**
+- **Field names.** `schema_problems`, `log_span_s`, `tasks_never_started`,
+  `positions_default_only` and `positions` are written by the audit and read
+  by the watcher with identical names.
+- **Units.** `log_span_s` is in seconds: the probe gave 1,446.8 s from log
+  event times, against per-task "finished in S s" values of up to 1,171 s.
+  The threshold is 11.9 × 3600 s.
+- **Task keys.** The "finished KEY" regex yields challenge task IDs, not
+  subkeys. The probe's 4 finished tasks gave 236 never started out of 240.
+- **Slot check.** The `submission-limits` output format ("Remaining today:
+  N") matches the watcher's test.
+
+**Defect found and fixed.** The notebook's repair cell replaces a missing
+or invalid attempt with the test input. The audit counted those
+input-copies (and missing entries) as genuine predictions. A run whose
+submission.json was lost after decoding would therefore have passed every
+gate:
+- default-only 0;
+- never-started 0;
+- schema 0.
+
+**Fix.**
+- The audit adds:
+  - `positions_fallback`: default [[0]], missing, or the repair input-copy
+    signature;
+  - `positions_genuine`;
+  - `repaired_attempts`, from the manifest;
+  - `tasks_with_decoded_outputs`, from the manifest's count of decoded
+    output files.
+- The watcher also blocks when:
+  - fallback exceeds 10% of positions;
+  - fewer than 90% of tasks have decoded outputs;
+  - either field is absent (fail closed).
+
+**Dry run of the patched audit and gates:**
+
+| case | gates |
+|---|---|
+| real probe | blocks: never-started 236, default 252, fallback 252, decoded 4 |
+| lost submission repaired to input copies | blocks: fallback 259 (the old gates passed it) |
+| the same without a manifest | blocks: fallback, decoded |
+| all genuine | passes |
+
+**Watcher replacement.** The watcher was replaced in place, so only one
+copy runs:
+- the old PID 3663047 was stopped during its sleep;
+- the new PID 3853904 resumed from detached_status.json, with native and C2
+  done and neural running.
+
+No gate was relaxed.
