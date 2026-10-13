@@ -203,3 +203,24 @@ These are all stand-in (training) tasks.
 **All 14 compatibility checks are now passed or recorded.** Flash-attention
 use is not explicitly logged, and the notebook licences remain UNVERIFIED
 (Kaggle default Apache 2.0).
+
+## 6. Full NEURAL_TTT_BASELINE committed run (version 1)
+
+| item | value |
+|---|---|
+| kernel | `chimdiwalter/cora-neural-ttt-baseline-v1`, version 1, pushed 2026-10-13T16:22:52Z |
+| link | https://www.kaggle.com/code/chimdiwalter/cora-neural-ttt-baseline-v1 |
+| settings stored by Kaggle | private; internet false; GPU; NvidiaL4; competition arc-prize-2026-arc-agi-2; kernel source sorokin/pip-install-unsloth-flash-patch; model sorokin/qwen3_4b_grids15_sft139/Transformers/bfloat16/1 |
+| notebook | `kaggle/neural_v1/kernel/notebook.ipynb` sha256 0111f325... |
+| quota before the push | 2.73 h used, 27.27 h left (the probe's use not yet reflected); expected use about 24 h |
+| committed run | all 240 stand-in (training) tasks; measures the real runtime |
+| status | QUEUED at 16:23Z; poller log `outputs/kaggle_deploy/neural_v1_full_status.log` |
+
+**After completion:**
+1. Download the log, submission.json, execution_manifest.json and
+   asset_identity_light.json.
+2. Verify the schema against the stand-in file.
+3. Record the measured runtime, per-task times, timeouts and memory.
+4. Then, if every gate passes, submit this version as **NEURAL_TTT_BASELINE**
+   under the user's one-entry authorization, at most 1 submission per UTC
+   day. The native submission 57144804 is not replaced.
