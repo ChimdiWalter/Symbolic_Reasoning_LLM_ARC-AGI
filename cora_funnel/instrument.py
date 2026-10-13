@@ -97,6 +97,12 @@ def probe(n_top, test_inputs):
         t0 = I.time.monotonic()
         try:
             att = o_ic(train_pairs, config, deadline, *a, **k)
+        except Exception as exc:                                        # noqa: BLE001
+            # native catches this and reports FailureStage.SEGMENTATION; record it, then re-raise unchanged
+            if outer:
+                rec["events"].append({"type": "error", "where": "_induce_composed", "frame": st["frame"],
+                                      "n_pairs": len(train_pairs), "exc": repr(exc)[:300]})
+            raise
         finally:
             st["depth"] -= 1
         if not outer:

@@ -68,6 +68,9 @@ def test_categories():
     assert task_record(_row(False, None, [_search([[[[2]]]]), loo]), ans)["category"] == "FIT_BUT_ALL_WRONG"
     assert task_record(_row(False, None, [_search([], deadline=True)]), ans)["category"] == "NO_FIT_DEADLINE"
     assert task_record(_row(False, None, [_search([], deadline=False)]), ans)["category"] == "NO_FIT_EXHAUSTED"
+    err = {"type": "error", "where": "_induce_composed", "frame": 0, "n_pairs": 3, "exc": "ValueError()"}
+    assert task_record(_row(False, None, [err]), ans)["category"] == "NATIVE_ERROR"
+    assert task_record(_row(False, None, []), ans)["category"] == "NO_SEARCH"
 
 
 @pytest.mark.parametrize("corpus", ["dev60", "c2dev", "c3dev"])

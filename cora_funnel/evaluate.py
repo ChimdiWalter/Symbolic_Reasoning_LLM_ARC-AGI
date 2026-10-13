@@ -27,7 +27,9 @@ Per task, in funnel order:
 
 Primary category, mutually exclusive:
 CERTIFIED_CORRECT, CERTIFIED_WRONG, REJECTED_BUT_CORRECT,
-FIT_BUT_ALL_WRONG, NO_FIT_DEADLINE, NO_FIT_EXHAUSTED.
+FIT_BUT_ALL_WRONG, NO_FIT_DEADLINE, NO_FIT_EXHAUSTED, NATIVE_ERROR
+(native raised inside the search; native itself reports this as a
+segmentation failure), NO_SEARCH.
 """
 import argparse
 import collections
@@ -112,8 +114,12 @@ def task_record(r, ans, train=None):
         cat = "CERTIFIED_CORRECT" if correct else "CERTIFIED_WRONG"
     elif sets:
         cat = "REJECTED_BUT_CORRECT" if any_correct else "FIT_BUT_ALL_WRONG"
+    elif first is None:
+        # no identity-frame search ever returned: native raised inside the search (caught by native and
+        # reported as a segmentation failure) or never reached it; this is not a deadline or a fit failure
+        cat = "NATIVE_ERROR" if any(e["type"] == "error" for e in ev) or r.get("failure_stage") == "segmentation" else "NO_SEARCH"
     else:
-        cat = "NO_FIT_DEADLINE" if (first is None or first["deadline_hit"]) else "NO_FIT_EXHAUSTED"
+        cat = "NO_FIT_DEADLINE" if first["deadline_hit"] else "NO_FIT_EXHAUSTED"
     # leave-one-out detail for the candidate sets: which folds failed, and whether each failed fold rebuilt anything
     loos = [e for e in ev if e["type"] == "loo"]
     folds = [e for e in ev if e["type"] == "fold"]
@@ -128,6 +134,7 @@ def task_record(r, ans, train=None):
             "folds_rebuilt": sum(f["n_programs"] > 0 for f in folds), "folds_total": len(folds),
             "folds_deadline": sum(f["deadline_hit"] for f in folds),
             "first_loo_folds": fold_detail(ev, r["perception"].get("fold_kept_by_cap")), "unique_colours_per_pair": unique_evidence(train) if train else None,
+            "native_errors": [e["exc"] for e in ev if e["type"] == "error"][:3],
             "wall_s": r["wall_s"], "cpu_s": r["cpu_s"], "cpu_share": round(r["cpu_s"] / max(r["wall_s"], 1e-6), 2),
             "error": r.get("error")}
 
