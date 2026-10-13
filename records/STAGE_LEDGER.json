@@ -643,17 +643,18 @@
     "tests/test_funnel.py"
    ],
    "commits": [
-    "ed3d0fd",
-    "7485f00",
-    "7485f00",
+    "0f2d209",
     "6387780",
+    "7485f00",
+    "824d89d",
     "c699cb9",
-    "824d89d"
+    "ed3d0fd"
    ],
    "outputs": "outputs/funnel_v0/",
    "report": "records/CORA_FAILURE_FUNNEL_20261014.md (pending)",
    "integrity": "solver sees training pairs and test inputs only; answers read by evaluate.py/oracle.py only; native object layer unchanged (probe restores all names); verifier unchanged; no eval/HOLDOUT/ARC-1000/pilot data",
-   "updated_utc": "2026-10-13T20:58:14Z"
+   "updated_utc": "2026-10-13T21:01:05Z",
+   "notes": "the running driver holds the pre-NATIVE_ERROR evaluator, so its eval_*.json files must be regenerated; dev60 k35aabb2676c4 = native KeyError('window') reported by native as a segmentation failure"
   },
   {
    "id": "hybrid_ceiling_c2dev",

@@ -36,6 +36,19 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
 - **CORA-RG.** Adapter v1 committed (6271ffe). The C3 v1 corpus and the choice of intervention wait
   for the funnel (Oct 16).
 - **Bio one-pager:** docs/BIO_TRANSFER_PROPOSAL_20261013.md (UNTESTED).
+- **Native defects masquerade as perception failures.** dev60 task k35aabb2676c4 raises KeyError('window')
+  inside native's search in every frame; native reports it as a segmentation failure. The funnel now records
+  such exceptions, under category NATIVE_ERROR (0f2d209).
+- **NEXT-SESSION CHECKLIST (state at 21:00Z, Oct 13):**
+  1. **Neural.** After 00:00Z the watcher submits ONCE, then writes
+     outputs/kaggle_deploy/neural_v1_official_score.json. Record the score in
+     records/KAGGLE_NEURAL_V1_LOG_20261013.md section 11, labelled NEURAL_TTT_BASELINE (an NVARC reproduction,
+     not CORA). Then update the paper, poster and abstract.
+  2. **Funnel.** The running driver loaded cora_funnel/evaluate.py BEFORE the NATIVE_ERROR fix. So after each
+     driver evaluation, re-run `python -m cora_funnel.evaluate --corpus <c> [--mode budget3]`. Then write
+     records/CORA_FAILURE_FUNNEL_20261014.md from eval_dev60_native.json, eval_dev60_harness.json and
+     oracle_dev60.json.
+  3. **Oct 16.** Choose ONE intervention from the funnel, then freeze one prospective experiment.
 - **NEXT.** When phase 1 ends, write the funnel report and choose ONE intervention by Oct 16. Then
   freeze, run one prospective experiment (Oct 17-19), and freeze the summit evidence on Oct 21.
 
