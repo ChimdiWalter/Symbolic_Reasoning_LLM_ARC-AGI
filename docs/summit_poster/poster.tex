@@ -148,6 +148,11 @@
   0 and 2, or 1 and 3, finer views become eligible and fill the four slots. The colour-layer view S6,
   where $G$ lives, is never searched. Two of the four slots are duplicates: S2 and S5 give the
   reasoner exactly S1's input there.
+
+  \vspace{0.4em}
+  \textbf{Can a neural model pick the view?} Not here. In a pre-registered synthetic test (35 cases that
+  needed a different view), the fixed order picked right 35 times; a frozen Qwen2.5-1.5B 19 times, and
+  only once when shown the reasoner's real failure record (a shuffled record did the same); I-JEPA 3 times.
 }
 
 % ======================================================================

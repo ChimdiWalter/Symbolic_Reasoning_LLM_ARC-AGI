@@ -242,3 +242,26 @@ frozen b594223). Verdict: P3_REJECTED.
 Allowed poster statement: "Removing duplicate views, the fold-local repair,
 was tested on 41 synthetic tasks: it gained 1 and harmed 4, so it was
 rejected." Synthetic only.
+
+## 13. Neural view guidance, a negative result (added 2026-10-13)
+
+- **Poster** (block "The right view was cut, not missing"), the **abstract**
+  (one sentence) and the **explainer** (Part 3) now state the CORA-NVG
+  result.
+- **Source.** `records/CORA_NEURAL_VIEW_GUIDANCE_RESULT_20261013.md`. Freeze
+  `outputs/neural_view_v0/freeze_v1.json` at commit 7f0b17e; single final
+  run 2026-10-13T15:13-15:24Z.
+- **The numbers** (synthetic tier):
+  - 165 decisions, 35 warranted;
+  - fixed order 35 of 35;
+  - frozen Qwen2.5-1.5B: 19 with demonstrations only, 1 with the authentic
+    failure trace, 1 with a shuffled trace;
+  - frozen I-JEPA 3; random 12.6.
+- **Limitation, stated in the result record:** all 35 warranted decisions
+  come from one family.
+- **The explainer's diagnosis line was outdated** and is corrected: "No
+  automatic failure diagnosis" now reads that a first version exists (13 of
+  18 on recorded traces, `records/CORA_DIAG_V0_RESULT_20261012.md`) and is
+  untested on new failures.
+- **No new figure.** The poster's PNGs and `figures/PROVENANCE.json` are
+  unchanged.

@@ -236,6 +236,9 @@ should be tested fairly, including on cases where it could do harm.
     and one was accepted and used.
   \item A precise explanation of why that one failed the strict check: the right view was cut, not missing.
   \item A safety test showing that the obvious fix harms other puzzles, so it was not used.
+  \item A test of whether a small AI model could pick the right view for the solver. It could not: the
+    simple fixed order picked right 35 times out of 35, the AI 19 times, and only once when it was also
+    shown the solver's failure record. A scrambled record did the same, so the record itself did not help.
 \end{itemize}
 
 \textbf{Not done, or not yet}
@@ -243,7 +246,8 @@ should be tested fairly, including on cases where it could do harm.
   \item No new real ARC puzzle solved, and no score improvement. The score is still 185 of 1,000 on
     practice puzzles, and none of the 120 public test puzzles.
   \item No proof that the system invents truly new ideas.
-  \item No automatic failure diagnosis. On this poster I did it by hand.
+  \item Automatic failure diagnosis exists only as a first version. It reads recorded failures and agrees
+    with the hand analysis in 13 of 18 cases, but it has not yet been tested on new failures.
   \item No fair comparison yet against ``guess, check, fix'' or ``grow a toolbox'' on real puzzles.
   \item The duplicate-removal fix was tested on made-up puzzles and rejected: it fixed one and broke
     four.
