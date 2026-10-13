@@ -21,8 +21,13 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - Outputs: outputs/funnel_v0/eval_*.json and oracle_*.json.
   - It is resumable: if killed, rerun the command in cora_funnel/driver.py.
   - The report to write: records/CORA_FAILURE_FUNNEL_20261014.md.
-- **Ceiling test** (cora_hybrid.ceiling_dev, pid 3683607): running; result in
+- **Ceiling test** (cora_hybrid.ceiling_dev, pid 3683607): arm A done, arm B (answer-given) running; result in
   outputs/hybrid_c2_dev/ceiling_summary.json.
+- **C2 CORA_ONLY scored** (records/C2_CORA_ONLY_SCORE_20261013.md, c699cb9; SYNTHETIC): 47/120 exact.
+  - 53 of the 100 tasks some layer claimed are wrong.
+  - attempt_1 = the first claiming layer, pipeline first. Pipeline-only claims are right 1/38.
+  - The driver was restarted at 19:52Z (pid 3924326) to add a whole-harness dev60 step
+    (cora_funnel/harness_run.py) right after dev60 native.
 - **CORA-RG.** Adapter v1 committed (6271ffe). The C3 v1 corpus and the choice of intervention wait
   for the funnel (Oct 16).
 - **Bio one-pager:** docs/BIO_TRANSFER_PROPOSAL_20261013.md (UNTESTED).
