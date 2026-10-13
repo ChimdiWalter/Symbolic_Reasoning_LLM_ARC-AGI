@@ -224,3 +224,46 @@ use is not explicitly logged, and the notebook licences remain UNVERIFIED
 4. Then, if every gate passes, submit this version as **NEURAL_TTT_BASELINE**
    under the user's one-entry authorization, at most 1 submission per UTC
    day. The native submission 57144804 is not replaced.
+
+## 7. Licensing gate (2026-10-13)
+
+- **Model** `sorokin/qwen3_4b_grids15_sft139`: Apache-2.0 (Kaggle API).
+- **Runtime dependencies are all OSI-approved:**
+  - unsloth 2025.9.7: Apache-2.0;
+  - unsloth_zoo 2025.9.9: LGPL-3.0-or-later, used unmodified;
+  - flash-attn 2.8.2: BSD;
+  - torch, numpy, scikit-learn: BSD;
+  - transformers: Apache-2.0.
+- **Upstream notebooks.** `sorokin/arc2-qwen3-unsloth-flash-lora-batch4-queue`
+  and `sorokin/pip-install-unsloth-flash-patch` are **public** (Kaggle API,
+  `is_private: False`). The Kaggle API and SDK expose no licence field for
+  notebooks, and the pages need JavaScript, so a page-level notice could not
+  be read.
+- **The basis is the competition rules** (`outputs/kaggle_deploy/rules_20261012/rules.txt`):
+  - section 6b "Public Code Sharing": code shared publicly in Kaggle
+    competition notebooks is "deemed ... licensed ... under an Open Source
+    Initiative-approved license ... that in no event limits commercial use";
+  - section 6c "Use of Open Source": open-source code used to generate a
+    submission must be OSI-licensed, which every dependency above is.
+- **Verdict: the licensing gate PASSES under the rules.** Residual
+  uncertainty: the page-level licence notice is unread.
+- **Attribution** to Ivan Sorokin and Jean-Francois Puget (NVARC) is kept
+  in the notebook title context, this log, and any write-up.
+
+## 8. Coverage audit tool (`kaggle/neural_v1/audit_run.py`)
+
+- **What it counts:**
+  - tasks started, finished, timed out and never started (from the worker
+    log);
+  - positions with a genuine attempt_1 or attempt_2 (not the default
+    `[[0]]`), and default-only positions;
+  - identical attempts;
+  - schema problems;
+  - runtime against 12 h, per-task quantiles, per-rank peak memory.
+- **Why.** A valid submission.json is not coverage: upstream fills
+  unprocessed positions with `[[0]]`.
+- **Self-test on the probe:**
+  - 4 of 240 tasks started;
+  - 7 of 259 positions with a genuine attempt_1, 2 with a genuine attempt_2;
+  - 252 positions default only;
+  - schema valid.
