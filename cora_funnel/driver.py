@@ -5,9 +5,17 @@
 1. It waits until the C2-dev hybrid ceiling test has exited. Funnel workers
    would otherwise compete with it mid-comparison. Native budgets are
    wall-clock, so adding load during its arm B would bias that arm.
-2. Then, for dev60, c2dev and c3dev (real development first), it runs the
-   blind runner (4 workers, nice 19, on the cores the ceiling test frees)
-   and then the evaluator.
+2. Then it runs the following steps in order (4 workers, nice 19, on the
+   cores the ceiling test frees). Real development comes first.
+   1. dev60 native, then evaluate.
+   2. c3dev native, then evaluate.
+   3. The dev60 oracle expressibility probe (evaluator-side).
+   4. dev60 with budget x3 on every task that was not certified correct,
+      then evaluate. This is the matched-search intervention, and it also
+      counts false acceptances that extra search creates.
+   5. c2dev native, then evaluate, then the c2dev oracle.
+
+Every step is resumable: finished rows are skipped.
 
 Status: outputs/funnel_v0/driver_status.json. A pid file refuses a second
 copy.
@@ -23,7 +31,6 @@ OUT = os.path.join(HERE, "outputs", "funnel_v0")
 PID = os.path.join(OUT, "driver.pid")
 STATUS = os.path.join(OUT, "driver_status.json")
 CEILING_PID_HINT = int(os.environ.get("CORA_FUNNEL_WAIT_PID", "3683607"))
-CORPORA = ("dev60", "c2dev", "c3dev")
 
 
 def alive(pid):
@@ -52,14 +59,29 @@ def main():
     status(stage="waiting_for_ceiling_test", wait_pid=CEILING_PID_HINT)
     while alive(CEILING_PID_HINT):
         time.sleep(60)
-    from cora_funnel import evaluate, run
-    for c in CORPORA:
-        status(stage=f"running {c}")
-        run.main(["--corpus", c, "--workers", os.environ.get("CORA_FUNNEL_WORKERS", "4")])
-        status(stage=f"evaluating {c}")
+    from cora_funnel import evaluate, oracle, run
+    w = os.environ.get("CORA_FUNNEL_WORKERS", "4")
+
+    def native(c):
+        status(stage=f"running {c} native")
+        run.main(["--corpus", c, "--workers", w])
         evaluate.main(["--corpus", c])
-        status(**{f"done_{c}": True})
-    status(stage="phase1_done")
+        status(**{f"done_{c}_native": True})
+
+    native("dev60")
+    native("c3dev")
+    status(stage="dev60 oracle")
+    oracle.main(["--corpus", "dev60", "--workers", w])
+    status(done_dev60_oracle=True, stage="dev60 budget3")
+    ev = json.load(open(os.path.join(OUT, "eval_dev60_native.json")))
+    keys = [t["key"] for t in ev["tasks"] if t["category"] != "CERTIFIED_CORRECT"]
+    run.main(["--corpus", "dev60", "--mode", "budget3", "--workers", w, "--keys", ",".join(keys)])
+    evaluate.main(["--corpus", "dev60", "--mode", "budget3"])
+    status(done_dev60_budget3=True)
+    native("c2dev")
+    status(stage="c2dev oracle")
+    oracle.main(["--corpus", "c2dev", "--workers", w])
+    status(done_c2dev_oracle=True, stage="phase1_done")
     os.remove(PID)
 
 

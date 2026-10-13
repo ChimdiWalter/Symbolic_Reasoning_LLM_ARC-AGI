@@ -54,7 +54,7 @@ def answers(corpus):
         return {k: (sol[v["task_id"]], v.get("stratum")) for k, v in km["keys"].items()}
     if corpus == "c2dev":
         d = json.load(open(os.path.join(HERE, "outputs", "hybrid_c2_dev", "dev_tasks.json")))
-        return {k: ([p["output"] if isinstance(p, dict) else p[1] for p in t["test"]], t["family"]) for k, t in d.items()}
+        return {k: ([t["test"][1]], t["family"]) for k, t in d.items()}   # "test" is ONE [input, output] pair
     if corpus == "c3dev":
         d = json.load(open(os.path.join(HERE, "outputs", "rep_growth_v0", "corpus.json")))["tasks"]
         return {t["id"]: ([b for _, b in t["heldout"]], t["family"]) for t in d if t["split"] == "dev"}
@@ -65,7 +65,35 @@ def exact(preds, targets):
     return isinstance(preds, list) and len(preds) == len(targets) and all(p is not None and p == t for p, t in zip(preds, targets))
 
 
-def task_record(r, ans):
+def _colours(g):
+    return {v for row in g for v in row}
+
+
+def unique_evidence(train):
+    """Demonstrations only: for each pair, the colours (input or output) that no other pair shows."""
+    cs = [_colours(p["input"]) | _colours(p["output"]) for p in train]
+    return [sorted(c - set().union(*(cs[:i] + cs[i + 1:]))) for i, c in enumerate(cs)]
+
+
+def fold_detail(ev):
+    """The identity frame's first leave-one-out: per left-out pair, whether the fold passed, rebuilt any
+    train-exact program on the other pairs, or ran out of time. Folds run in pair order between a search
+    and its loo event."""
+    out, buf = [], None
+    for e in ev:
+        if e["type"] == "search":
+            buf = []
+        elif e["type"] == "fold" and buf is not None:
+            buf.append(e)
+        elif e["type"] == "loo" and buf is not None:
+            if e["frame"] == 0:
+                return [{"left_out": j, "passed": j not in e["failed"], "rebuilt": f["n_programs"] > 0,
+                         "deadline": f["deadline_hit"]} for j, f in enumerate(buf[:e["folds"]])]
+            buf = None
+    return out
+
+
+def task_record(r, ans, train=None):
     ev = r["events"]
     sets = [e for e in ev if e["type"] in ("search", "generative") and e["n_programs"] > 0]
     cand_ok = [[exact(o, ans) for o in (e["outputs"] or [])] for e in sets]
@@ -95,6 +123,7 @@ def task_record(r, ans):
             "loo": [{k: e[k] for k in ("frame", "folds", "passed", "failed")} for e in loos],
             "folds_rebuilt": sum(f["n_programs"] > 0 for f in folds), "folds_total": len(folds),
             "folds_deadline": sum(f["deadline_hit"] for f in folds),
+            "first_loo_folds": fold_detail(ev), "unique_colours_per_pair": unique_evidence(train) if train else None,
             "wall_s": r["wall_s"], "cpu_s": r["cpu_s"], "cpu_share": round(r["cpu_s"] / max(r["wall_s"], 1e-6), 2),
             "error": r.get("error")}
 
@@ -120,6 +149,16 @@ def summarize(recs, fam):
          # native budgets are wall-clock: a starved worker searches less, so deadline outcomes are confounded below 0.7
          "cpu_share_median": sorted(x["cpu_share"] for x in recs)[n // 2] if n else None,
          "cpu_starved_lt_0p7": sum(1 for x in recs if x["cpu_share"] < 0.7)}
+    # why certification failed, over every LOO-failed identity fold of a task that had train-exact candidates
+    fails = [(x, f) for x in recs if not x["solved"] and x["candidate_sets"] for f in x["first_loo_folds"] if not f["passed"]]
+    s["failed_folds"] = {"total": len(fails), "rebuilt_nothing": sum(1 for _, f in fails if not f["rebuilt"]),
+                         "rebuilt_other_rule": sum(1 for _, f in fails if f["rebuilt"]),
+                         "fold_deadline": sum(1 for _, f in fails if f["deadline"]),
+                         "left_out_pair_has_unique_colour": sum(1 for x, f in fails if x["unique_colours_per_pair"]
+                                                                and x["unique_colours_per_pair"][f["left_out"]])}
+    passed = [(x, f) for x in recs if x["candidate_sets"] for f in x["first_loo_folds"] if f["passed"]]
+    s["passed_folds"] = {"total": len(passed), "left_out_pair_has_unique_colour": sum(1 for x, f in passed if x["unique_colours_per_pair"]
+                                                                                     and x["unique_colours_per_pair"][f["left_out"]])}
     by = collections.defaultdict(collections.Counter)
     for x in recs:
         by[fam[x["key"]]][x["category"]] += 1
@@ -134,7 +173,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
     rows = [json.loads(l) for l in open(os.path.join(OUT, f"rows_{a.corpus}_{a.mode}.jsonl"))]
     key = answers(a.corpus)
-    recs = [task_record(r, key[r["key"]][0]) for r in rows]
+    from cora_funnel.run import load
+    train = {k: t["train"] for k, t in load(a.corpus)}               # demonstrations only (solver-visible)
+    recs = [task_record(r, key[r["key"]][0], train.get(r["key"])) for r in rows]
     fam = {k: v[1] for k, v in key.items()}
     s = summarize(recs, fam)
     json.dump({"corpus": a.corpus, "mode": a.mode, "summary": s, "tasks": recs}, open(os.path.join(OUT, f"eval_{a.corpus}_{a.mode}.json"), "w"), indent=1)

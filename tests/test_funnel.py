@@ -22,8 +22,13 @@ def test_loader_is_blind(corpus):
     except FileNotFoundError:
         pytest.skip(f"{corpus} corpus file absent")
     assert items
+    depth = lambda x: 1 + depth(x[0]) if isinstance(x, list) and x else 0
+    from cora_funnel.evaluate import answers
+    ans = answers(corpus)
     for key, t in items:
         assert set(t) == {"train", "test"}
+        assert all(depth(p["input"]) == 2 for p in t["test"] + t["train"]), key        # real grids, not rows
+        assert len(t["test"]) == len(ans[key][0]) and all(depth(g) == 2 for g in ans[key][0]), key
         assert all(set(p) == {"input"} for p in t["test"]), key
         assert all(set(p) == {"input", "output"} for p in t["train"]), key
 

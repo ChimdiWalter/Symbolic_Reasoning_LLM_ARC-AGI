@@ -59,8 +59,9 @@ def load(corpus):
     if corpus == "dev60":
         src = json.load(open(os.path.join(HERE, "records", "pilot_v1", "dev_bundle.json")))["tasks"]
         items = sorted(src.items())
-    elif corpus == "c2dev":
-        items = sorted(json.load(open(os.path.join(HERE, "outputs", "hybrid_c2_dev", "dev_tasks.json"))).items())
+    elif corpus == "c2dev":                                           # "test" is ONE [input, output] pair there
+        items = [(k, {"train": t["train"], "test": [t["test"]]})
+                 for k, t in sorted(json.load(open(os.path.join(HERE, "outputs", "hybrid_c2_dev", "dev_tasks.json"))).items())]
     elif corpus == "c3dev":
         items = [(t["id"], {"train": t["train"], "test": t["heldout"]})
                  for t in json.load(open(os.path.join(HERE, "outputs", "rep_growth_v0", "corpus.json")))["tasks"] if t["split"] == "dev"]
