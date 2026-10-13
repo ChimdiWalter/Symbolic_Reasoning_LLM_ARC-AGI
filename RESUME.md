@@ -6,7 +6,10 @@ Last updated 2026-09-28. Read this first.
 
 OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough sprint"; resume here):
 - **Kaggle.**
-  - The neural run `chimdiwalter/cora-neural-ttt-baseline-v1` v1 is RUNNING (pushed 16:22Z).
+  - The neural run `chimdiwalter/cora-neural-ttt-baseline-v1` v1 is COMPLETE and AUDITED (20:56Z):
+    - 240/240 tasks decoded; 259/259 genuine attempt_1; 0 fallback; schema 0; 4.34 h;
+    - every gate passes except today's slot, so the watcher submits ONCE after 00:00Z
+      (records/KAGGLE_NEURAL_V1_LOG_20261013.md section 10).
   - The watcher was replaced at 19:05Z with the gate fix (25b346e); its pid is in
     outputs/kaggle_deploy/detached_watch.pid.
   - It submits ONCE as NEURAL_TTT_BASELINE, and only if every gate passes. New gates: fallback
@@ -21,13 +24,15 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - Outputs: outputs/funnel_v0/eval_*.json and oracle_*.json.
   - It is resumable: if killed, rerun the command in cora_funnel/driver.py.
   - The report to write: records/CORA_FAILURE_FUNNEL_20261014.md.
-- **Ceiling test** (cora_hybrid.ceiling_dev, pid 3683607): arm A done, arm B (answer-given) running; result in
-  outputs/hybrid_c2_dev/ceiling_summary.json.
+- **Ceiling test DONE** (records/HYBRID_CEILING_C2DEV_RESULT_20261013.md; SYNTHETIC, oracle-assisted):
+  - native 31/60; answer-given 50/60;
+  - 19 tasks reached only with the answer; 10 not reached even with it.
 - **C2 CORA_ONLY scored** (records/C2_CORA_ONLY_SCORE_20261013.md, c699cb9; SYNTHETIC): 47/120 exact.
   - 53 of the 100 tasks some layer claimed are wrong.
   - attempt_1 = the first claiming layer, pipeline first. Pipeline-only claims are right 1/38.
-  - The driver was restarted at 19:52Z (pid 3924326) to add a whole-harness dev60 step
-    (cora_funnel/harness_run.py) right after dev60 native.
+  - The driver was restarted at 20:52Z (pid in outputs/funnel_v0/driver.pid; 824d89d):
+    - object-layer deadlines now run on process CPU time (the host is 2x oversubscribed);
+    - order: dev60, dev60 whole harness, dev60 oracle, c3dev, dev60 budget x3 on deadline-hit tasks, c2dev.
 - **CORA-RG.** Adapter v1 committed (6271ffe). The C3 v1 corpus and the choice of intervention wait
   for the funnel (Oct 16).
 - **Bio one-pager:** docs/BIO_TRANSFER_PROPOSAL_20261013.md (UNTESTED).
