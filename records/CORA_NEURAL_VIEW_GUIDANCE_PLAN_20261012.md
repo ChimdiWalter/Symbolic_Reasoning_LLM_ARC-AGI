@@ -94,12 +94,64 @@ earlier uses of failure evidence never beat demonstration-only controls, and
 both search reordering and view promotion caused harm. A negative result is
 informative and will be reported as such.
 
-## 3. Literature and novelty
+## 3. Literature and novelty (full review: `records/CORA_NVG_LITERATURE_20261012.md`)
 
-Pending: a separate review is running. Section 3 will compare LILO, Product
-of Experts, SOAR, ARC Is a Vision Problem, ConceptSearch, DreamCoder,
-neural-guided search, execution-feedback repair and JEPA. No novelty is
-claimed before it.
+**Closest prior work.**
+- **KAAR** (Lei et al., arXiv 2505.17482) tried abstractions in a fixed
+  order and moved to the next one after a failure. Asking LLMs to choose
+  abstractions from the raw grids was "unsatisfactory" (verified in the full
+  text). **Arm C therefore repeats a published negative result.**
+- **GPAR and ARGA** (AAAI 2024 and 2023): fixed simple-to-complex
+  abstraction order; ARGA's Tabu list suspends failing abstractions.
+- **ABPR** (2026): structured derivation traces beat plain execution
+  feedback for frontier LLMs revising ARC-AGI-2 programs, with no shuffled
+  control.
+- **RLEF** (ICML 2025): mismatched feedback impairs repair, the template
+  for arm E.
+- **AlphaGeometry**: a proposer is called when deduction stalls.
+- **CEGAR**: failure-driven abstraction refinement.
+
+**Not novel:**
+- a neural model guiding a symbolic synthesizer;
+- a proposer whose output a verifier certifies;
+- repair from execution feedback;
+- traces beating plain feedback on ARC;
+- multiple ARC views, or the view mattering;
+- fixed-order or failure-triggered abstraction fallback;
+- an LLM choosing abstractions from the task alone;
+- shuffled-feedback controls;
+- failure-driven abstraction refinement;
+- predicting solver failure from traces;
+- vision or JEPA priors for ARC (an ARC-JEPA v1 GitHub pre-release exists:
+  1/172).
+
+**What might be new (cautious).** An empirical test of whether the content
+of an authentic, typed failure trace improves a frozen model's choice of
+segmentation view for an unchanged symbolic engine. It must beat:
+- demonstrations only (C, the KAAR negative);
+- the failure type only (F);
+- a shuffled trace (E);
+- the fixed-order fallback (B1, the KAAR/GPAR/ARGA rule) and the
+  training-statistic heuristics (B2, B3).
+
+It must do so at matched compute, counting the advisor's cost. The
+leave-one-out verifier stays unchanged, and losses and false acceptances
+are reported. The second open element is counterfactual
+failure-transition prediction gated by the engine's own test: no exact
+precedent was found. **This is a possible finding, not an architecture,**
+and it vanishes if D matches F, E or B.
+
+**Design changes adopted from the review:**
+1. B1 is named as the prior-art fixed-order failure fallback.
+2. B3 is added: among views not yet searched (the searched views are
+   treated as tabu, as in ARGA), rank by training-only coverage times
+   consistency.
+3. **JEPA gate (development split only).** Frozen embeddings must pick the
+   reference-useful view better than chance and better than a component-
+   count descriptor, or the J arms are dropped before the final run.
+4. **Minimum power.** At least 30 warranted decisions in the final split.
+   Otherwise the result is labelled UNDERPOWERED, and only counts are
+   reported.
 
 ## 4. Athe resources (measured 2026-10-12/13)
 
@@ -193,7 +245,8 @@ The same Qwen weights and prompt skeleton serve C, D, E and F.
 |---|---|---|
 | A | native order (no change) | nothing |
 | R | seeded random order of eligible views | nothing |
-| B1 | first coherent view cut by the cap, in native order (the PROMOTE rule) | trace (cut list) |
+| B1 | fixed-order failure fallback: the first coherent view cut by the cap, in native order (KAAR/GPAR/ARGA-style; the PROMOTE rule) | trace (cut list) |
+| B3 | ARGA-style tabu: searched views excluded; the rest ranked by training-only coverage times consistency | trace (searched list) plus demonstration statistics |
 | B2 | object-change homogeneity: the fraction of a view's objects wholly changed or wholly unchanged across T's demonstrations | demonstrations only |
 | C | LLM | demonstrations plus view properties and statistics |
 | D | LLM | C plus the authentic native failure trace on T |
