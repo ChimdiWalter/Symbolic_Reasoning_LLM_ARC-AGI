@@ -559,6 +559,16 @@
     "submission_id": null,
     "previous_submission": "54617562 (2026-07-12, 0.00, July v10/v11 engine)"
    }
+  },
+  {
+   "id": "cora_nvg_v0",
+   "status": "IN PROGRESS: plan v0 + literature committed; corpus v0 (132 tasks, sha 513bed0a...) generated; evaluator reference RUNNING",
+   "plan": "records/CORA_NEURAL_VIEW_GUIDANCE_PLAN_20261012.md",
+   "literature": "records/CORA_NVG_LITERATURE_20261012.md",
+   "code": "cora_neural_view/",
+   "outputs": "outputs/neural_view_v0/ (git-ignored)",
+   "running": "reference run: `python -m cora_neural_view.reference --split all --workers 6` (nice 19), log outputs/neural_view_v0/reference.log, rows reference_rows.jsonl (resumable: rerunning skips finished rows; check `ps` first, never launch twice)",
+   "models": "outputs/neural_view_v0/models.json (Qwen2.5-1.5B-Instruct 989aa798, I-JEPA ViT-H/14 f157467e; hub sha256 verified)"
   }
  ],
  "recovered_definitions": {
