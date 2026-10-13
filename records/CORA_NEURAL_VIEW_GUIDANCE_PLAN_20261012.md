@@ -479,3 +479,22 @@ only, and are not evidence. File: `outputs/neural_view_v0/stageA_dev.json`.
 **Interpretation rule, fixed now.** If J-C beats B1 while J-D does not beat
 J-C and J-E, the result is reported as ordinary demonstrations-only neural
 representation ranking, not as failure-conditioned guidance.
+
+## Amendment 3 (2026-10-13T15:00Z): freeze v1, before the single final run
+
+- **Final split, counts only.**
+  - 210 tasks. The two native runs agree on every task: 209 REJECT/REJECT,
+    1 FALSE_ACCEPT/FALSE_ACCEPT.
+  - **165 decisions: 35 warranted, 0 misleading, 130 no help.** Two cut
+    views are FALSE_ACCEPT within decisions, so harms are possible.
+  - **The minimum-power rule (at least 30 warranted) is met.**
+- **Freeze.** `outputs/neural_view_v0/freeze_v1.json`, committed with this
+  amendment, pins:
+  - the code, the plan and the corpus;
+  - the model revisions and weight hashes;
+  - the LLM template, the counterfactual question and the sample prompts;
+  - the final-split reference rows.
+
+  `freeze check` reports no differences, and the 7 NVG tests pass.
+- **What runs next.** `run_guides --split final` once, then
+  `evaluate --split final`. No change after the result.
