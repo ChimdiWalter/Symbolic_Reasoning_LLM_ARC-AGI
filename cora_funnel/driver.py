@@ -5,16 +5,20 @@
 1. It waits until the C2-dev hybrid ceiling test has exited. Funnel workers
    would otherwise compete with it mid-comparison. Native budgets are
    wall-clock, so adding load during its arm B would bias that arm.
-2. Then it runs the following steps in order (4 workers, nice 19, on the
-   cores the ceiling test frees). Real development comes first.
+2. Then it runs the following steps in order. It uses 4 workers at nice 0,
+   the same footprint as the ceiling test's 4 workers it replaces, so the
+   load on the other jobs does not change. Object-layer native deadlines run
+   on process CPU time (cora_funnel/run.py, CLOCK). Real development comes
+   first.
    1. dev60 native (object layer, instrumented), then evaluate.
    2. dev60 on the whole frozen native harness (cora_funnel/harness_run.py),
-      then score by claiming layer.
-   3. c3dev native, then evaluate.
-   4. The dev60 oracle expressibility probe (evaluator-side).
-   5. dev60 with budget x3 on every task that was not certified correct,
-      then evaluate. This is the matched-search intervention, and it also
-      counts false acceptances that extra search creates.
+      then score by claiming layer. The harness's own budgets are
+      wall-clock, under shared load, as in the C2 and ceiling runs.
+   3. The dev60 oracle expressibility probe (evaluator-side).
+   4. c3dev native, then evaluate.
+   5. dev60 with budget x3, on every task whose search or a leave-one-out
+      fold hit its deadline. This is the matched-search intervention. It
+      also counts false acceptances that extra search creates.
    6. c2dev native, then evaluate, then the c2dev oracle.
 
 Every step is resumable: finished rows are skipped.
@@ -77,14 +81,17 @@ def main():
         harness_run.run()
     harness_run.score()
     status(done_dev60_harness=True)
-    native("c3dev")
     status(stage="dev60 oracle")
     oracle.main(["--corpus", "dev60", "--workers", w])
-    status(done_dev60_oracle=True, stage="dev60 budget3")
+    status(done_dev60_oracle=True)
+    native("c3dev")
+    status(stage="dev60 budget3")
     ev = json.load(open(os.path.join(OUT, "eval_dev60_native.json")))
-    keys = [t["key"] for t in ev["tasks"] if t["category"] != "CERTIFIED_CORRECT"]
-    run.main(["--corpus", "dev60", "--mode", "budget3", "--workers", w, "--keys", ",".join(keys)])
-    evaluate.main(["--corpus", "dev60", "--mode", "budget3"])
+    keys = [t["key"] for t in ev["tasks"] if t["category"] == "NO_FIT_DEADLINE" or t["folds_deadline"] > 0]
+    status(budget3_keys=len(keys))
+    if keys:
+        run.main(["--corpus", "dev60", "--mode", "budget3", "--workers", w, "--keys", ",".join(keys)])
+        evaluate.main(["--corpus", "dev60", "--mode", "budget3"])
     status(done_dev60_budget3=True)
     native("c2dev")
     status(stage="c2dev oracle")

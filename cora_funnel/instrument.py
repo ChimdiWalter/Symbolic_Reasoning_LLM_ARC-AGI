@@ -77,15 +77,16 @@ def probe(n_top, test_inputs):
     st = {"frame": -1, "depth": 0, "lists": {}}
     orig = (E.induce_program, I._induce_composed, I.loo_validate, I.rank_by_score, GEN.induce_generative_candidates)
     o_ip, o_ic, o_loo, o_rank, o_gen = orig
+    # every timing here uses I.time.monotonic(), the clock native's deadlines use
 
     def frame():
         return FRAMES[st["frame"]] if 0 <= st["frame"] < len(FRAMES) else None
 
     def ip(pairs, *a, **k):
         st["frame"] += 1
-        t0 = time.monotonic()
+        t0 = I.time.monotonic()
         res = o_ip(pairs, *a, **k)
-        rec["frames"].append({"frame": st["frame"], "accepted": bool(res.accepted), "s": round(time.monotonic() - t0, 2),
+        rec["frames"].append({"frame": st["frame"], "accepted": bool(res.accepted), "s": round(I.time.monotonic() - t0, 2),
                               "hypotheses": int(getattr(res, "hypotheses_enumerated", 0) or 0),
                               "failure_stage": getattr(res.failure_stage, "value", None)})
         return res
@@ -93,28 +94,28 @@ def probe(n_top, test_inputs):
     def ic(train_pairs, config, deadline, *a, **k):
         outer = st["depth"] == 0
         st["depth"] += 1
-        t0 = time.monotonic()
+        t0 = I.time.monotonic()
         try:
             att = o_ic(train_pairs, config, deadline, *a, **k)
         finally:
             st["depth"] -= 1
         if not outer:
             return att
-        hit = bool(deadline is not None and time.monotonic() >= deadline - 0.25)
+        hit = bool(deadline is not None and I.time.monotonic() >= deadline - 0.25)
         progs = list(att.programs or [])
         if len(train_pairs) == n_top:
             ev = {"type": "search", "frame": st["frame"], "force_compose": bool(k.get("force_compose", a[2] if len(a) > 2 else False)),
                   "n_programs": len(progs), "stage": getattr(att.stage, "value", None),
                   "fit_objects": round(float(att.fit_objects), 3), "fit_pixels": round(float(att.fit_pixels), 3),
                   "seg": att.seg.variant.value if att.seg is not None else None, "deadline_hit": hit,
-                  "s": round(time.monotonic() - t0, 2), "kinds": [type(p).__name__ for p in progs[:K_RENDER]],
+                  "s": round(I.time.monotonic() - t0, 2), "kinds": [type(p).__name__ for p in progs[:K_RENDER]],
                   "outputs": None, "rank": None}
             rec["events"].append(ev)
             rec["_pending"].append((ev, progs[:K_RENDER], frame()))
             st["lists"][id(att.programs)] = (att.programs, ev)
         elif len(train_pairs) == n_top - 1:
             rec["events"].append({"type": "fold", "frame": st["frame"], "n_programs": len(progs), "deadline_hit": hit,
-                                  "s": round(time.monotonic() - t0, 2), "stage": getattr(att.stage, "value", None),
+                                  "s": round(I.time.monotonic() - t0, 2), "stage": getattr(att.stage, "value", None),
                                   "seg": att.seg.variant.value if att.seg is not None else None})
         return att
 

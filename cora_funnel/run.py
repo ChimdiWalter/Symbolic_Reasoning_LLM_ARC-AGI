@@ -9,8 +9,10 @@ Per task it runs `harness.object_layer.run_object_task` exactly as the
 native harness does:
 - the sealed v23 flags;
 - the default 90 s cooperative budget;
-- the harness SIGALRM cap with room for the 7-frame fallback,
-  105 + 7 x 45 + 30 s.
+- the harness cap with room for the 7-frame fallback, 105 + 7 x 45 + 30 s.
+
+By default every native deadline and the cap run on process CPU time (see
+CLOCK below); CORA_FUNNEL_CLOCK=wall restores wall-clock deadlines.
 
 It runs inside `cora_funnel.instrument.probe`. No verifier, flag or asset is
 changed.
@@ -44,6 +46,37 @@ for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXP
     os.environ[_v] = "1"
 OUT = os.path.join(HERE, "outputs", "funnel_v0")
 MODES = {"native": (90.0, 45.0), "budget3": (270.0, 135.0)}
+# Native budgets are wall-clock (time.monotonic). On a shared, oversubscribed host
+# (2026-10-13: 40-49 runnable threads on 24 cores) a wall-clock deadline measures
+# the machine's load, not the search. CLOCK=cpu runs every native deadline on this
+# worker's process CPU time instead, emulating the dedicated core each Kaggle worker
+# had (4 CPUs, 4 workers). The hard cap becomes a CPU-time timer (ITIMER_PROF), and
+# a wall-clock alarm at 8x the cap guards only against hangs. Native logic is unchanged.
+CLOCK = os.environ.get("CORA_FUNNEL_CLOCK", "cpu")
+NICE = int(os.environ.get("CORA_FUNNEL_NICE", "0"))   # 0 = the same footprint as the ceiling test's 4 workers it replaces
+
+
+def cpu_clock():
+    """In this worker only: every object-layer module attribute bound to the time module
+    (`time`, `_time`, ...) is replaced by a copy whose monotonic() is process CPU time."""
+    import importlib
+    import time as real
+    import types
+    shim = types.ModuleType("time_on_process_cpu")
+    shim.__dict__.update({k: getattr(real, k) for k in dir(real) if not k.startswith("__")})
+    shim.monotonic = real.process_time
+    patched = []
+    for name in ("inducer", "generative", "engine", "analogy", "graduation", "meta_induction", "meta_search",
+                 "meta_v21_search", "relift"):
+        try:
+            mod = importlib.import_module(f"geocat_arc.object_reasoning.{name}")
+        except Exception:                                               # noqa: BLE001
+            continue
+        for attr, val in list(vars(mod).items()):
+            if val is real:
+                setattr(mod, attr, shim)
+                patched.append(f"{name}.{attr}")
+    return patched
 
 
 def _pair(p):
@@ -82,11 +115,13 @@ def _alarm(signum, frame):                                             # noqa: A
 def job(args):
     key, task, corpus, mode = args
     import signal
-    if os.nice(0) < 19:
-        os.nice(19 - os.nice(0))
+    if os.nice(0) < NICE:
+        os.nice(NICE - os.nice(0))
     budget, frames = MODES[mode]
     os.environ["ARC_DIHEDRAL_FRAMES"] = str(int(frames))
     signal.signal(signal.SIGALRM, _alarm)
+    signal.signal(signal.SIGPROF, _alarm)
+    patched = cpu_clock() if CLOCK == "cpu" else []
     import numpy as np
     from geocat_arc.object_reasoning.types import to_grid_pairs
     from harness.object_layer import run_object_task
@@ -100,12 +135,17 @@ def job(args):
     cap = int(budget + 15 + 7 * frames + 30)
     t0, c0 = time.time(), time.process_time()
     with probe(len(task["train"]), tests) as rec:
-        signal.alarm(cap)
+        if CLOCK == "cpu":
+            signal.setitimer(signal.ITIMER_PROF, cap)                      # the harness cap, in CPU seconds
+            signal.alarm(8 * cap)                                          # hang guard only
+        else:
+            signal.alarm(cap)
         try:
             out = run_object_task(key, task, None, out_dir=os.path.join(OUT, f"engine_{corpus}_{mode}"), budget_s=budget)
         except _HardTimeout:
             out = {"solved": False, "error": "object_hard_timeout"}
         finally:
+            signal.setitimer(signal.ITIMER_PROF, 0)
             signal.alarm(0)
     finalize(rec, tests)
     return {"key": key, "corpus": corpus, "mode": mode, "n_train": len(task["train"]), "n_test": len(tests),
@@ -113,6 +153,7 @@ def job(args):
             "partial_predictions": out.get("partial_predictions"), "failure_stage": out.get("failure_stage"),
             "seg_variant": out.get("seg_variant"), "parameter_class": out.get("parameter_class"), "error": out.get("error"),
             "wall_s": round(time.time() - t0, 2), "cpu_s": round(time.process_time() - c0, 2), "cap_s": cap,
+            "clock": CLOCK, "clock_patched": patched, "nice": os.nice(0),
             "frames": rec["frames"], "events": rec["events"]}
 
 
