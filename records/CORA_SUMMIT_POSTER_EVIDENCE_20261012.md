@@ -265,3 +265,16 @@ rejected." Synthetic only.
   untested on new failures.
 - **No new figure.** The poster's PNGs and `figures/PROVENANCE.json` are
   unchanged.
+
+## 14. Official Kaggle result of the native solver (added 2026-10-13)
+
+- The **poster** ("Not claimed" block) and the **abstract** (evidence line)
+  now state: "Official Kaggle ARC-AGI-2 score of the native solver (October
+  2026): 0.00".
+- **Source.** `records/KAGGLE_NATIVE_V1_OFFICIAL_RESULT_20261013.md`:
+  submission 57144804, notebook
+  `chimdiwalter/cora-native-v23-arc-agi-2-october-baseline` version 1,
+  dataset `chimdiwalter/arc-native-baseline-v1` version 1, tarball
+  4b320ba2...; COMPLETE, public 0.00.
+- **Label:** OFFICIAL KAGGLE, NATIVE BASELINE. It is not evidence about the
+  invention loop, which is not in the package.
