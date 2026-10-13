@@ -1,7 +1,11 @@
 # CORA: Separating Search, Hypothesis Selection, and Capability Growth in ARC-AGI-2
 
 Authoritative technical manuscript for the ARC Prize 2026 Paper Track.
-Updated 2026-10-12: results through v1.9 (section 8.14), the real-task
+Updated 2026-10-13: the October Kaggle submissions (section 6.1), a separate
+neural competition track that is not CORA (section 6.4), the pre-registered
+negative result on neural view guidance (section 8.18), the leaderboard-method
+survey (section 10) and new limitations (section 11). Updated 2026-10-12: results
+through v1.9 (section 8.14), the real-task
 reach v1 measurement (section 8.16), the adaptive leave-one-out diagnosis
 with synthetic negative controls (section 8.17), the real ARC pilot status
 (section 8.15) and the research trajectory (Appendix C; full map in
@@ -299,18 +303,18 @@ competition solver.
 
 | field | value |
 |---|---|
-| ARC-AGI-2 submission id | PENDING FINAL KAGGLE SUBMISSION |
-| public notebook URL | PENDING FINAL KAGGLE SUBMISSION |
-| notebook and configuration identity | PENDING FINAL KAGGLE SUBMISSION |
-| leaderboard score, public | PENDING FINAL KAGGLE SUBMISSION |
-| leaderboard score, private | PENDING FINAL KAGGLE SUBMISSION |
-| pass@1 | NOT YET MEASURED |
-| pass@2 | NOT YET MEASURED |
-| attempt-2 rescues | NOT YET MEASURED |
-| task outputs scored | NOT YET MEASURED |
-| runtime | NOT YET MEASURED |
-| timeout rate | NOT YET MEASURED |
-| failed-task rate | NOT YET MEASURED |
+| ARC-AGI-2 submission id | 57144804: NATIVE_BASELINE native_v1, submitted 2026-10-13T13:17Z. Status PENDING at 2026-10-13T17:00Z. Replaces nothing; the July 2026 submission 54617562, an older v10/v11 engine, scored 0.00 |
+| notebook | `chimdiwalter/cora-native-v23-arc-agi-2-october-baseline`, version 1 (private; to be made public with the writeup) |
+| notebook and configuration identity | dataset `chimdiwalter/arc-native-baseline-v1`, version 1. Tarball sha256 4b320ba2..., 273 files, byte-identical on Kaggle. Solver tree d7856871...; notebook.py 647594be...; the five sealed chain flags; library.json cdacd018...; learned_verbs.json b1f07ba5... (`records/KAGGLE_NATIVE_V1_DEPLOYMENT_LOG_20261012.md`) |
+| leaderboard score, public | PENDING (expected at or near 0: the frozen engine scores 0 of 120 on the public evaluation set) |
+| leaderboard score, private | revealed after the competition |
+| pass@1 | NOT MEASURABLE before scoring (the hidden answers are Kaggle's) |
+| pass@2 | the leaderboard score is pass@2 by definition; PENDING |
+| attempt-2 rescues | NOT MEASURABLE from the leaderboard aggregate |
+| task outputs scored | 240 hidden tasks; the public board scores a representative sample |
+| runtime | committed run on the visible stand-in (240 public ARC-AGI-2 *training* tasks): 14,512 s (4.03 h) on 4 CPUs, inside the 12 h limit. The hidden re-run's runtime is obfuscated by Kaggle |
+| timeout rate | committed run: the harness completed, and the hard limit was not reached |
+| failed-task rate | committed run (training stand-in, no answers read): 126 of 240 tasks with no candidate; 139 real attempt_1, 45 real attempt_2, 120 fallback of 259 positions. Behaviour on training tasks, not a score |
 
 Training accuracy, synthetic accuracy and development-split accuracy are
 never substituted for the leaderboard score.
@@ -343,6 +347,53 @@ a benefit. The reported categories are:
 | different but non-rescuing | NOT YET MEASURED |
 
 Unknown quantities are never written as zero.
+
+### 6.4 A separate neural competition entry, which is not CORA
+
+To obtain a stronger competition entry before 2 November, the public NVARC
+pipeline is reproduced as **NEURAL_TTT_BASELINE**. It is never presented
+as CORA, as capability invention, or as evidence for any claim in sections
+3 to 8. NVARC is the 2025 ARC-AGI-2 winner: 24.03 private.
+
+- **What it is.** NVARC's ARC-specialized Qwen3-4B checkpoint
+  (`sorokin/qwen3_4b_grids15_sft139`, Apache-2.0), with per-task LoRA
+  test-time training, augmentation, depth-first-search decoding and
+  augmentation-consistency selection. It runs in the public notebook
+  `sorokin/arc2-qwen3-unsloth-flash-lora-batch4-queue` with
+  compatibility-only patches: 2026 data and model paths, logging, schema
+  repair, a manifest. Upstream's model, training, decoding, selection and
+  time guards are unchanged.
+- **Deployment checks.** Each was measured on Kaggle L4x4:
+  - compatibility smoke test: 4x L4, LoRA TTT 89-344 s per task, peak memory
+    9.4-12.5 GB of 22 GB;
+  - probe of multi-output and 30x30 tasks: valid, at 15-18 GB;
+  - 30x30 tasks approach the 20-min per-task cap;
+  - a full 240-task committed run started 2026-10-13T16:23Z
+    (`records/KAGGLE_NEURAL_V1_LOG_20261013.md`).
+- **Coverage is audited separately from validity.** Upstream fills
+  unprocessed outputs with `[[0]]`, so a valid file is not coverage
+  (`kaggle/neural_v1/audit_run.py`).
+- **Contamination.** NVARC's own code builds its validation set from the
+  ARC-AGI-2 evaluation files, test outputs included, and ranks checkpoints by
+  validation loss. Its training data includes ARC-AGI-2 training tasks
+  (re-verified at NVARC HEAD 846d0198). The model is competition-eligible,
+  but **no generalization claim may rest on any public ARC-AGI-2 split.**
+  Only fresh synthetic tasks are clean for both NVARC and CORA (the C2
+  corpus, `records/CORA_NEURAL_CANDIDATE_EVIDENCE_PLAN_20261013.md`).
+- **Licensing.** The rules (section 6b) deem publicly shared competition
+  notebook code licensed under an OSI-approved licence. Every runtime
+  dependency is OSI-licensed (section 6c). Attribution to Sorokin and Puget
+  is kept.
+- **Integrity.** The first smoke run's logging cell hashed the
+  competition's evaluation files. It parsed nothing and used nothing, but it
+  opened them. It is recorded as a protocol violation and excluded from all
+  evidence. Every later run is confirmed not to open them
+  (`records/INTEGRITY_INCIDENT_20261013_EVAL_HASH.md`).
+- **How it relates to CORA.** In this paper the neural system is a possible
+  *source of untrusted hypotheses*: candidate outputs that CORA must turn
+  into its own certified programs, or reject. Whether that helps is a
+  separate pre-registered experiment (section 11; the C2 plan). It is not a
+  result.
 
 ## 7. The Failure-Frontier Audit
 
@@ -1557,6 +1608,23 @@ verifier-guided search or abstraction learning. Each has prior art.
 No precedence wording is used without a current primary-source check. This
 section is the bibliography stub; no formal bibliography file exists yet.
 
+**ARC-AGI-2 competition methods, 2025-2026** (survey with dated sources:
+`records/CORA_ARC_LEADER_SURVEY_20261013.md`).
+- **The best documented Kaggle-eligible systems are transductive neural
+  models with per-task test-time training:** NVARC 24.03 private, the
+  ARChitects' masked-diffusion LLaDA-8B 16.53, MindsAI and Tufa's CodeT5
+  12.64. ARC Prize attributes the top 2024 and 2025 scores to test-time
+  training.
+- **Undisclosed:** the 2026 entries scoring 77-88 on the public board.
+  Tufa Labs' documented 2026 work is an ARC-AGI-3 harness, which is not
+  evidence for its ARC-AGI-2 entry.
+- **Symbolic and induction-only systems score about 0 on ARC-AGI-2** in
+  every independent report found, consistent with CORA's base reasoner.
+- **CORA's distinctive element is strict program certification.**
+  Augmentation agreement is the field's documented selection method, and
+  selection is a documented weak point: NVARC reports correct candidates
+  not always picked.
+
 The distinctions that matter are specific rather than nominal.
 
 DreamCoder grows a reusable symbolic library, so the claim cannot be that
@@ -1607,6 +1675,13 @@ task-dependent semantic frontiers. That is not semantic invention.
 - No public ARC score has been measured for CORA's constructive path, and it
   may remain low. The base reasoner scored 0.0 on Kaggle in July 2026 and 0 of
   120 on the local public evaluation.
+- **Neural view guidance (section 8.18) failed on one effective family.**
+  All 35 warranted synthetic decisions came from a family where the fixed
+  view order is already optimal, so the test is narrow, although
+  pre-registered and adequately powered by its own rule.
+- **The neural competition entry (section 6.4) is a reproduction of public
+  work.** Its scores, when available, measure that pipeline, not CORA. Its
+  model is contaminated for every public ARC-AGI-2 split.
 - Verification has shown poor off-distribution calibration: 40 of 42 on
   training against 0 of 11 on an evaluation development split.
 - Every constructive result that completed a witness (sections 8.11 to
