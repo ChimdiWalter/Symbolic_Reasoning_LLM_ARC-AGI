@@ -386,3 +386,47 @@ It is not:
 8. Result record.
 9. Paper and poster only if the evidence is verified; otherwise a
    proposed-branch note.
+
+## Amendment 1 (2026-10-13T01:40Z), before any guide outcome was seen
+
+No guide has been scored against the reference. The reference run was still
+in its native phase, and no promoted-view outcome existed.
+
+1. **Decision.** BASE and BASE_REPEAT both REJECT, and the full training set
+   has at least one view cut by the cap. Options are the cut views plus
+   NO_CHANGE.
+   - The guide decides admission only, as the mechanism defines.
+   - When the two native runs disagree, the task is reported as unstable.
+2. **B2 is redefined as "coarsest first":** the fewest objects over the
+   training inputs, ties broken in native order.
+   - Object-change homogeneity scores every per-piece view perfectly on
+     recolouring rules, so it could not discriminate.
+   - "Coarsest first" is the simplicity prior of ARC object solvers and is
+     demonstrations only.
+3. **Selection split dropped.** Closed-set likelihood scoring cannot produce
+   a malformed answer, so the parse rule is moot. The development split
+   serves debugging, the sanity rule and the JEPA gate.
+4. **Arms added.**
+   - C-CF, D-CF and E-CF: the counterfactual-transition form. Per view: a,
+     a generalizing rule; b, nothing new; c, a rule that fits but fails on
+     new inputs. Views are ranked by P(a), and the top view is tried only
+     when a is its most likely answer.
+   - D_perm1 and C_perm1: the same prompts under a second label
+     permutation, measuring stability.
+5. **J arms defined.** The score is the mean cosine between the I-JEPA
+   embedding of a view's object partition of each training input and that of
+   the output. Patches are cell-aligned, one 14-px patch per cell.
+   - J-D restricts to the training pairs whose leave-one-out re-derivation
+     failed in the authentic trace.
+   - J-E uses another decision's failed-pair set.
+   - J arms always try their top view.
+6. **Reference semantics.**
+   - Stage A scores a choice by the engine's own promoted-view run (uniform
+     promotion, full adaptive leave-one-out, 20 s).
+   - Stage B, fold-local guidance per subset through a lookup overlay, is
+     built only if Stage A supports H1.
+7. **Shuffled source (E arms).** The next decision in id order with the same
+   number of options, never the task itself.
+8. **Prompts and code.** The prompt text is produced by
+   `cora_neural_view/guides.py` at commit 7cb8242. Its sha256 is pinned in
+   freeze v1, before the final split is run.
