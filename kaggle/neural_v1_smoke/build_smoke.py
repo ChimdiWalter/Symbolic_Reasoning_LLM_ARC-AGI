@@ -21,7 +21,10 @@ where it is meant to apply:
 4. time cap: 90 min overall instead of 12 h, to protect the GPU quota;
 5. logging: peak GPU memory per worker;
 6. a logging-only first cell: nvidia-smi, the Python version, and the size
-   and sha256 of every attached input file (asset_identity.json).
+   and sha256 of every attached file under /kaggle/input and of the utility
+   script, except answer or evaluation files, which are never opened (only
+   their size is listed);
+7. model path by discovery (2026 mount layout).
 
 Model, LoRA test-time training, decoding and selection code are untouched.
 """
@@ -36,17 +39,21 @@ IDENT = """# SMOKE: environment and asset identity (logging only; no algorithm c
 import hashlib, json, os, subprocess, sys
 print(subprocess.run(["nvidia-smi", "--query-gpu=index,name,memory.total", "--format=csv,noheader"], capture_output=True, text=True).stdout)
 print("SMOKE python", sys.version.split()[0], "| cpus", os.cpu_count(), "| inputs", sorted(os.listdir("/kaggle/input")))
-ident = {}
-for d, _, fs in os.walk("/kaggle/input"):
+ident, skipped = {}, {}
+for root in ("/kaggle/input", "/kaggle/usr/lib/notebooks"):
+  for d, _, fs in os.walk(root):
     for f in sorted(fs):
         p = os.path.join(d, f)
+        if "solution" in f.lower() or "evaluation" in f.lower():   # never open answer or evaluation files
+            skipped[os.path.relpath(p, "/kaggle")] = os.path.getsize(p)
+            continue
         h = hashlib.sha256()
         with open(p, "rb") as fh:
             for chunk in iter(lambda: fh.read(1 << 24), b""):
                 h.update(chunk)
-        ident[os.path.relpath(p, "/kaggle/input")] = [os.path.getsize(p), h.hexdigest()]
-json.dump(ident, open("/kaggle/working/asset_identity.json", "w"), indent=1)
-print("SMOKE asset files", len(ident), "bytes", sum(v[0] for v in ident.values()))
+        ident[os.path.relpath(p, "/kaggle")] = [os.path.getsize(p), h.hexdigest()]
+json.dump({"hashed": ident, "not_opened": skipped}, open("/kaggle/working/asset_identity.json", "w"), indent=1)
+print("SMOKE hashed files", len(ident), "bytes", sum(v[0] for v in ident.values()), "| not opened:", sorted(skipped))
 """
 FIND = ("next(d for d, _, fs in __import__('os').walk('/kaggle/input') "
         "if 'arc-agi_test_challenges.json' in fs)")
@@ -68,6 +75,10 @@ def main():
     # 4: time cap
     src[c0] = patch(src[c0], "global_end_time = time.time() + 12 * 3600 - 600",
                     "global_end_time = time.time() + 90 * 60  # SMOKE: 90-min cap (upstream: 12 * 3600 - 600)")
+    # 7: model path by discovery (the 2026 layout mounts models under /kaggle/input/models/...)
+    src[c4] = patch(src[c4], 'model_name="/kaggle/input/qwen3_4b_grids15_sft139/transformers/bfloat16/1",',
+                    'model_name=next(d for d, _, fs in os.walk("/kaggle/input") if "model.safetensors.index.json" in fs '
+                    'and "qwen3_4b_grids15_sft139" in d),  # SMOKE: mount-layout independent')
     # 1+2: worker test path
     src[c4] = patch(src[c4], '''    if rerun_mode:
         test_path = "/kaggle/input/arc-prize-2025/arc-agi_test_challenges.json"

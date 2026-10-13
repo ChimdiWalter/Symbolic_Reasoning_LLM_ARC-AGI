@@ -59,3 +59,54 @@ splits.
 
 **Status:** QUEUED at 2026-10-13T14:37Z. Poller log:
 `outputs/kaggle_deploy/neural_v1_smoke_status.log`.
+
+## 2. Smoke run 1: ERROR, classified as a deployment path defect (2026-10-13)
+
+- **Timeline.** Queued at 14:37Z, running by 14:46Z, ERROR at 14:49Z.
+- **Quota.** 0.15 h used. 29.85 h remained.
+- **Output.** `outputs/kaggle_deploy/neural_v1_smoke_run1/` (log,
+  asset_identity.json, generated modules).
+
+**Established by run 1:**
+- 4x NVIDIA L4 GPUs (23,034 MiB each), Python 3.11.13, 48 CPUs (check 2).
+- The utility kernel is mounted as a utility script under
+  `/kaggle/usr/lib/notebooks/sorokin/pip_install_unsloth_flash_patch/`. Its
+  torch and unsloth were the ones imported. Unsloth and Unsloth Zoo loaded
+  and patched (check 3, partial: flash attention has not yet been
+  exercised).
+- The 2026 mount layout is `/kaggle/input/competitions/<slug>/` and
+  `/kaggle/input/models/<owner>/<model>/<framework>/<variation>/<version>/`.
+  Path discovery found the competition file.
+- **The model checkpoint content.** The model directory's files are
+  recorded at runtime in `asset_identity.json` under
+  `models/sorokin/qwen3_4b_grids15_sft139/transformers/bfloat16/1/`. Sizes
+  equal the Kaggle API list: 4,996,836,472 and 2,270,397,024 bytes.
+
+**Failure.**
+- Worker 0: `RuntimeError: Unsloth: No config file found`. The upstream
+  hard-codes `model_name="/kaggle/input/qwen3_4b_grids15_sft139/..."`, which
+  is not the 2026 mount path. Classification: **wrong asset path
+  (deployment)**.
+- The final cell then failed with `FileNotFoundError: /kaggle/inference_outputs`.
+  That is a consequence: no task ran.
+
+**Deviation from check 11 (no evaluation-solution file opened), caused by
+the identity cell.**
+- The logging-only cell hashed every file under /kaggle/input. That
+  included the competition's `arc-agi_evaluation_solutions.json` (223,838
+  bytes) and `arc-agi_evaluation_challenges.json`.
+- Their bytes were read only into sha256. They were not parsed, compared,
+  displayed or used, and the hashes reveal no answers.
+- Strictly, the file was opened. This is recorded as a breach of the
+  smoke-test rule.
+- **Fixed in version 2:** the identity cell skips any file whose name
+  contains "solution" or "evaluation", listing only its size from
+  `os.stat`. No solver code ever opened those files.
+
+**Repair for version 2 (deployment only):**
+- patch 7: model path by discovery, the directory under /kaggle/input that
+  holds `model.safetensors.index.json` and the model name;
+- the identity cell restricted as above, and extended to hash the
+  utility-script tree (dependency hashes).
+
+The solver algorithm is unchanged.
