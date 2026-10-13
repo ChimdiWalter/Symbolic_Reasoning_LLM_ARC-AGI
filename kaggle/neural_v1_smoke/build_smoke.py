@@ -19,7 +19,9 @@ where it is meant to apply:
    those 4 tasks. NVARC trained on these tasks, so this is a contaminated
    pipeline check, not a score;
 4. time cap: 90 min overall instead of 12 h, to protect the GPU quota;
-5. logging: peak GPU memory per worker.
+5. logging: peak GPU memory per worker;
+6. a logging-only first cell: nvidia-smi, the Python version, and the size
+   and sha256 of every attached input file (asset_identity.json).
 
 Model, LoRA test-time training, decoding and selection code are untouched.
 """
@@ -30,6 +32,22 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 UP = os.path.join(HERE, "upstream", "arc2-qwen3-unsloth-flash-lora-batch4-queue.ipynb")
 OUT = os.path.join(HERE, "kernel")
+IDENT = """# SMOKE: environment and asset identity (logging only; no algorithm change)
+import hashlib, json, os, subprocess, sys
+print(subprocess.run(["nvidia-smi", "--query-gpu=index,name,memory.total", "--format=csv,noheader"], capture_output=True, text=True).stdout)
+print("SMOKE python", sys.version.split()[0], "| cpus", os.cpu_count(), "| inputs", sorted(os.listdir("/kaggle/input")))
+ident = {}
+for d, _, fs in os.walk("/kaggle/input"):
+    for f in sorted(fs):
+        p = os.path.join(d, f)
+        h = hashlib.sha256()
+        with open(p, "rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 24), b""):
+                h.update(chunk)
+        ident[os.path.relpath(p, "/kaggle/input")] = [os.path.getsize(p), h.hexdigest()]
+json.dump(ident, open("/kaggle/working/asset_identity.json", "w"), indent=1)
+print("SMOKE asset files", len(ident), "bytes", sum(v[0] for v in ident.values()))
+"""
 FIND = ("next(d for d, _, fs in __import__('os').walk('/kaggle/input') "
         "if 'arc-agi_test_challenges.json' in fs)")
 
@@ -88,6 +106,9 @@ if not rerun_mode:  # SMOKE: training solutions only (contaminated functional ch
     print("SMOKE schema:", {k: [sorted(e) for e in v] for k, v in reload_submission.items()})''')
     for i in code:
         nb["cells"][i]["source"] = src[i]
+    # 6: environment and asset identity, logging only, inserted after the first code cell
+    ident_cell = {"cell_type": "code", "metadata": {}, "outputs": [], "execution_count": None, "source": IDENT}
+    nb["cells"].insert(code[0] + 1, ident_cell)
     nb["metadata"].pop("kaggle", None)   # the upstream's embedded data-source ids; kernel-metadata.json defines the inputs
     os.makedirs(OUT, exist_ok=True)
     json.dump(nb, open(os.path.join(OUT, "notebook.ipynb"), "w"), indent=1)
