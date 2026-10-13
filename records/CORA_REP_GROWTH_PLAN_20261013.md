@@ -196,3 +196,125 @@ arm. A second ablation re-runs E forbidding the program E used.
 
 **Compute.** CPU, nice 19, at most 6 workers. It runs after the C2 ceiling
 job, so they never compete.
+
+## Amendment 1 (2026-10-13T19:00Z): CORA-RG under the post-Kaggle addendum. Before any final-split run
+
+**Scope.** The user's "post-Kaggle zero-score research addendum" supersedes
+sections 4-8 where they differ.
+- Only development rows (arm A on 8 development tasks) existed at this
+  point. No final-split task had been run.
+- The final corpus is regenerated under section A3 below. The grammar
+  (6870042) is unchanged.
+
+### A1. Intervention-based failure diagnosis (the controller of arm F)
+
+Per failed induction call on subset T, fold-local, the controller takes
+the first branch whose probe succeeds. Probes are actual engine re-runs on
+T: training-only, each with its own time slice.
+
+| # | diagnosis | permitted observations | cheap probe | supported if | refuted if | adaptation | abstain when |
+|---|---|---|---|---|---|---|---|
+| 1 | SEARCH_BUDGET_EXHAUSTED | native deadline reached; near-solve fit ≥ 0.9 | native re-run with +1 slice | the re-run finds a train-perfect program | the re-run fails | use the re-run (search) | - |
+| 2 | EXISTING_REPRESENTATION_EXCLUDED | coherent views cut by the cap on T | re-run with the cut views first, in native order | it finds a train-perfect program | it fails | use it (view correction; no construction) | - |
+| 3 | REPRESENTATION_LANGUAGE_INSUFFICIENT | no train-perfect program with any existing view in budget (probes 1 and 2 failed or not applicable); stage segmentation, matching or selector | constructed views (k = 2, novel and coherent, ranked by stage) each re-run | at least 1 constructed view gives a train-perfect program | none does | use it (construction) | 2 or more constructed programs that **disagree on the unlabelled test inputs** (HYPOTHESIS_AMBIGUOUS) |
+| 4 | EXECUTABLE_LANGUAGE_INSUFFICIENT | stage parameter: objects matched and selected, change unexplained | none in v0 (no operation constructor) | - | - | none | always |
+| 5 | CANDIDATE_NOT_GENERATED | no near-solve (fit below the engine minimum), and construction yields no coherent novel view | - | - | - | none | always |
+| 6 | HYPOTHESIS_AMBIGUOUS | see row 3 | - | - | - | none | always |
+| 7 | CERTIFICATION_UNSTABLE | (induce_program level) train-exact but leave-one-out fails | - | - | - | none: the native verdict stands | - |
+| 8 | INSUFFICIENT_EVIDENCE | a subset of 2 or fewer pairs where probe 3 gives programs that disagree on T's left-out input | - | - | - | none | always |
+| 9 | UNKNOWN | otherwise | - | - | - | none | always |
+
+**The construction rule.** A failure is never called language-insufficient
+because bounded search returned nothing. Probe 3 must actually produce a
+train-perfect program with a constructed view, and probes 1 and 2 must have
+failed first.
+
+### A2. Arms (the addendum's names)
+
+| arm | behaviour per failed call |
+|---|---|
+| A FROZEN_NATIVE | none |
+| B SEARCH_ONLY | none; budget raised to match F's mean measured total compute on development (fixed in freeze v1) |
+| C EXISTING_VIEW_CORRECTION | probe 2 only (cut views first); no construction |
+| D FAILURE_BLIND_CONSTRUCTOR | construction at every failed call (k = 2, canonical order, first success); no probes, no ambiguity check |
+| E SHUFFLED_FAILURE_CONSTRUCTOR | F's decision path driven by another task's arm-A top-level observations (diagnosis and stage); its probes run on its own T |
+| F FAILURE_CONDITIONED_CONSTRUCTOR | the A1 controller |
+| G OPTIONAL_NEURAL_ASSISTED | pre-registered follow-on only (Kaggle GPU quota); not in the first frozen run |
+
+### A3. Final corpus C3 v1
+
+**Families are designed now**, after the grammar and before any final run.
+At least 2 families contribute to every category in the final split. The
+solver sees only grids: no family name, id or generator metadata.
+
+| category | development | final (held out) |
+|---|---|---|
+| A solvable with existing views | A_recolour_map | A_translate, A_bbox_fill |
+| B existing view cut by the cap | B_diag_drop | B_diag_count, B_layer_pieces |
+| C new composition in G-rep | M_contain | M_shape, M_row, M_overlap |
+| D needs a relation outside G-rep | D_diagonal | D_mirror_pairs, D_row_parity |
+| E needs a new transformation | E_checker | E_cyclic_shift, E_outline |
+| F ambiguous / insufficient evidence | F_largest_leftmost | F_colour_vs_half, F_size_vs_position |
+| G misleading representation change | G_rowmates_colour | G_coincident_near, G_coincident_shape |
+
+**Sizes.** 8 tasks per final family (17 families, 136 tasks); 5 per
+development family (35).
+
+### A4. Novelty test (bounded old language)
+
+**The old representation language** is the 7 native views S1-S7.
+
+**A constructed view is NOVEL for a task** when, on every grid the engine
+segments for that task (training inputs and outputs, and the test inputs),
+its partition differs from each of the 7 views' partitions. That is an
+exhaustive check over the bounded old language.
+
+**What is claimed:**
+- COMPOSITION (L2) for every constructed view, since it is built from
+  G-rep's primitives;
+- never PRIMITIVE EXTENSION (L3).
+
+### A5. Success thresholds and minimum sample (final split, single run)
+
+**Units:** per task, correct means both held-out demonstrations exact.
+
+**REPRESENTATION_CONSTRUCTION_JUSTIFIED** requires all of:
+1. F has **at least 6 new correct** tasks over A, coming from **at least 2
+   different category-C families**;
+2. F > B and F > C on correct (exact McNemar p < 0.05);
+3. F > D, or F = D with fewer harms;
+4. F > E (McNemar p < 0.05);
+5. **0 new false acceptances** by F, and **0 lost A-correct** tasks;
+6. every F gain uses a novel constructed view, and the ablation (F without
+   that view's program) removes it;
+7. F constructs on categories D, E and G no more than D does, and causes
+   no false acceptance there.
+
+**Other outcomes:**
+- **Composition-only** (the addendum's EXISTING_CAPABILITY / COMPOSITION
+  reading): F ≈ D, or F ≈ E, with gains over A, B and C.
+- **SEARCH or VIEW_CORRECTION only:** B or C reproduce F's gains.
+- **Representation-reachability only:** constructed views become coherent
+  or reachable, but there is no end-to-end gain.
+- **NO_SUPPORTED_RESEARCH_GAIN:** no arm beats A safely.
+
+**Minimum sample.** At least 16 category-C final tasks with an arm-A
+REJECT. Otherwise the result is UNDERPOWERED.
+
+### A6. Durable-growth interface (conceptual only; no integration)
+
+A task-local constructed view would carry:
+- its canonical program name (G-rep v0);
+- its type (REPRESENTATION, a grouping);
+- its dependencies (base and relation names);
+- its verified scope (the task's demonstrations; the leave-one-out
+  verdict);
+- its certificate (the native leave-one-out report and the held-out
+  outcome);
+- its failure provenance (the A1 diagnosis and probe log);
+- an artifact: the program tuple, re-executable by `grammar.apply`;
+- promotion eligibility (none in v0);
+- version and revocation (the grammar version; revoked if any later
+  independent task gives a false acceptance).
+
+Step B is untouched.
