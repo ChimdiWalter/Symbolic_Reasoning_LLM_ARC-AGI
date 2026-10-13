@@ -7,13 +7,15 @@
    wall-clock, so adding load during its arm B would bias that arm.
 2. Then it runs the following steps in order (4 workers, nice 19, on the
    cores the ceiling test frees). Real development comes first.
-   1. dev60 native, then evaluate.
-   2. c3dev native, then evaluate.
-   3. The dev60 oracle expressibility probe (evaluator-side).
-   4. dev60 with budget x3 on every task that was not certified correct,
+   1. dev60 native (object layer, instrumented), then evaluate.
+   2. dev60 on the whole frozen native harness (cora_funnel/harness_run.py),
+      then score by claiming layer.
+   3. c3dev native, then evaluate.
+   4. The dev60 oracle expressibility probe (evaluator-side).
+   5. dev60 with budget x3 on every task that was not certified correct,
       then evaluate. This is the matched-search intervention, and it also
       counts false acceptances that extra search creates.
-   5. c2dev native, then evaluate, then the c2dev oracle.
+   6. c2dev native, then evaluate, then the c2dev oracle.
 
 Every step is resumable: finished rows are skipped.
 
@@ -69,6 +71,12 @@ def main():
         status(**{f"done_{c}_native": True})
 
     native("dev60")
+    status(stage="dev60 whole harness")
+    from cora_funnel import harness_run
+    if not os.path.exists(os.path.join(OUT, "harness_dev60", "run_meta.json")):
+        harness_run.run()
+    harness_run.score()
+    status(done_dev60_harness=True)
     native("c3dev")
     status(stage="dev60 oracle")
     oracle.main(["--corpus", "dev60", "--workers", w])

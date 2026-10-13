@@ -12,7 +12,9 @@ included?
 - a fit is found: EXPRESSIBLE_WITHIN_BUDGET. A rule consistent with the
   answer exists in the native space and the search reached it;
 - no fit, and the identity search ended before its deadline:
-  NOT_EXPRESSIBLE_IN_SEARCHED_SPACE;
+  NO_FIT_WITHIN_BOUNDS. This is NOT a claim that the rule is inexpressible.
+  The native search is bounded (variant cap, tier ladder, frames, deadline),
+  so a failed bounded search cannot prove that no program exists;
 - no fit, and the deadline was hit: UNDETERMINED_BUDGET.
 """
 import argparse
@@ -32,7 +34,7 @@ def verdict(row):
     if sets:
         return "EXPRESSIBLE_WITHIN_BUDGET"
     first = next((e for e in row["events"] if e["type"] == "search" and e["frame"] == 0), None)
-    return "UNDETERMINED_BUDGET" if (first is None or first["deadline_hit"]) else "NOT_EXPRESSIBLE_IN_SEARCHED_SPACE"
+    return "UNDETERMINED_BUDGET" if (first is None or first["deadline_hit"]) else "NO_FIT_WITHIN_BOUNDS"
 
 
 def main(argv=None):

@@ -68,3 +68,36 @@ def test_categories():
     assert task_record(_row(False, None, [_search([[[[2]]]]), loo]), ans)["category"] == "FIT_BUT_ALL_WRONG"
     assert task_record(_row(False, None, [_search([], deadline=True)]), ans)["category"] == "NO_FIT_DEADLINE"
     assert task_record(_row(False, None, [_search([], deadline=False)]), ans)["category"] == "NO_FIT_EXHAUSTED"
+
+
+@pytest.mark.parametrize("corpus", ["dev60", "c2dev", "c3dev"])
+def test_answers_never_reach_solver(corpus):
+    """Content-level blindness:
+    - the solver receives exactly the source's training pairs and test inputs,
+      and nothing else;
+    - no held-out answer is ever a test input.
+
+    An answer may coincide with a training output when the task itself repeats
+    outputs, as in the dev60 task kb3dbbfa00129. That coincidence is inherent
+    to the source demonstrations, which this test proves are passed unchanged."""
+    import json
+    from cora_funnel.evaluate import answers
+    from cora_funnel.run import HERE as R, load
+    ans = answers(corpus)
+    pair = lambda p: [p["input"], p["output"]] if isinstance(p, dict) else [p[0], p[1]]
+    if corpus == "dev60":
+        raw = json.load(open(os.path.join(R, "records", "pilot_v1", "dev_bundle.json")))["tasks"]
+        src = {k: ([pair(p) for p in t["train"]], [p["input"] for p in t["test"]]) for k, t in raw.items()}
+    elif corpus == "c2dev":
+        raw = json.load(open(os.path.join(R, "outputs", "hybrid_c2_dev", "dev_tasks.json")))
+        src = {k: ([pair(p) for p in t["train"]], [t["test"][0]]) for k, t in raw.items()}
+    else:
+        raw = json.load(open(os.path.join(R, "outputs", "rep_growth_v0", "corpus.json")))["tasks"]
+        src = {t["id"]: ([pair(p) for p in t["train"]], [a for a, _ in t["heldout"]]) for t in raw if t["split"] == "dev"}
+    for key, t in load(corpus):
+        assert set(t) == {"train", "test"}, key
+        assert [pair(p) for p in t["train"]] == src[key][0], key                       # demonstrations unchanged, none added
+        assert [p["input"] for p in t["test"]] == src[key][1], key                     # true test inputs only
+        assert all(set(p) == {"input"} for p in t["test"]), key
+        for a in ans[key][0]:
+            assert all(a != p["input"] for p in t["test"]) or a in src[key][1], key
