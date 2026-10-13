@@ -581,6 +581,13 @@
    "outputs": "outputs/neural_view_v0/ (git-ignored)",
    "running": "reference run: `python -m cora_neural_view.reference --split all --workers 6` (nice 19), log outputs/neural_view_v0/reference.log, rows reference_rows.jsonl (resumable: rerunning skips finished rows; check `ps` first, never launch twice)",
    "models": "outputs/neural_view_v0/models.json (Qwen2.5-1.5B-Instruct 989aa798, I-JEPA ViT-H/14 f157467e; hub sha256 verified)"
+  },
+  {
+   "id": "arc_leader_method_audit",
+   "status": "DRAFT: CORA-side gap audit done (stand-in = 240 ARC-AGI-2 training tasks; 114 certified, 126 no candidate; shape not the dominant blocker); competitor survey running (delegated web review); contamination audit pending",
+   "record": "records/CORA_ARC_LEADER_METHOD_AUDIT_20261013.md",
+   "script": "scripts/native_gap_audit.py",
+   "output": "outputs/kaggle_deploy/native_v1/gap_audit.json"
   }
  ],
  "recovered_definitions": {
