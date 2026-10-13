@@ -324,3 +324,48 @@ copy runs:
   done and neural running.
 
 No gate was relaxed.
+
+## 10. Full committed run: COMPLETE and audited (2026-10-13, 20:56Z)
+
+**Kernel:** `chimdiwalter/cora-neural-ttt-baseline-v1`, version 1.
+- Status COMPLETE, first seen at 20:49Z.
+- Outputs downloaded by the watcher into
+  `outputs/kaggle_deploy/neural_v1_full_run1/`.
+
+**Coverage audit** (`coverage_audit.json`; from the worker log and the
+manifest, not from submission.json alone):
+
+| measure | value |
+|---|---|
+| tasks started / finished / never started | 240 / 240 / 0 |
+| tasks with a logged timeout (outputs still emitted) | 1 |
+| tasks with decoded output files (manifest) | 240 of 240 (4,090 files) |
+| positions | 259 |
+| genuine attempt_1 | **259 of 259** |
+| genuine attempt_2 | 112 |
+| default-only, fallback, repaired | 0, 0, 0 |
+| schema problems | 0 |
+| runtime (log span) | 15,624 s = **4.34 h** (limit 12 h) |
+| per-task time: median, p90, max | 174 s, 518 s, 1,362 s; 6 tasks over 1,000 s |
+| peak GPU memory by rank | 17.7, 11.4, 14.5, 11.6 GB (L4 has 24 GB) |
+
+**Why the runtime is 4.3 h, not the 10-12 h feared.** The 4 probe tasks
+were slow ones, with a median of 1,124 s. The 240-task median is 174 s.
+
+**The pipeline-health line is not a score.** It reads 229.5 / 240 on the
+training stand-in. Those training tasks are contaminated for this model, so
+no accuracy may be inferred from them.
+
+**Gates.** All pass except the daily slot:
+- the stored metadata has internet off;
+- no earlier NEURAL_TTT_BASELINE submission exists;
+- today's slot is taken by native (submitted 13:17Z).
+
+The watcher therefore waits (`gates_waiting_for_slot`). It will submit once
+after 00:00Z, then record the official score in
+`outputs/kaggle_deploy/neural_v1_official_score.json`.
+
+**GPU quota.** The Kaggle CLI does not report the remaining quota.
+- This run used 4.34 h on L4×4.
+- The quota reset is 2026-10-17.
+- The weekly figure must be read on the Kaggle site.
