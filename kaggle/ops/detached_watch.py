@@ -19,6 +19,8 @@ outputs/kaggle_deploy/detached_status.json:
      - log span under 11.9 h;
      - all stand-in tasks started;
      - default-only positions at most 10%;
+     - fallback positions (default, missing or repair input-copy) at most 10%;
+     - decoded output files for at least 90% of tasks (from the manifest);
      - the stored kernel metadata still has internet off;
      - submission-limits shows a remaining slot;
      - no earlier NEURAL_TTT_BASELINE submission exists.
@@ -78,6 +80,12 @@ def gates(audit):
         reasons.append(f"tasks_never_started={audit.get('tasks_never_started')}")
     if audit.get("positions_default_only", 999) > 0.10 * audit.get("positions", 0):
         reasons.append(f"positions_default_only={audit.get('positions_default_only')}")
+    # fallback = default [[0]], missing, or the repair cell's input copy; none of these is a neural prediction
+    if audit.get("positions_fallback") is None or audit["positions_fallback"] > 0.10 * audit.get("positions", 0):
+        reasons.append(f"positions_fallback={audit.get('positions_fallback')}")
+    # independent of submission.json: decoded output files must exist for at least 90% of tasks
+    if (audit.get("tasks_with_decoded_outputs") or 0) < 0.90 * audit.get("tasks", 10 ** 6):
+        reasons.append(f"tasks_with_decoded_outputs={audit.get('tasks_with_decoded_outputs')}")
     return reasons
 
 
@@ -122,7 +130,8 @@ def main():
                 audit = json.load(open(os.path.join(RUN, "coverage_audit.json"))) if os.path.exists(os.path.join(RUN, "coverage_audit.json")) else {}
                 nst["audit"] = {k: audit.get(k) for k in ("tasks_started", "tasks_finished", "tasks_timed_out", "tasks_never_started",
                                                           "positions_genuine_attempt_1", "positions_genuine_attempt_2",
-                                                          "positions_default_only", "schema_problems", "log_span_h")}
+                                                          "positions_default_only", "positions_fallback", "positions_genuine", "repaired_attempts",
+                                                          "tasks_with_decoded_outputs", "schema_problems", "log_span_h")}
                 reasons = gates(audit) if audit else ["audit failed: " + a.stderr[-300:]]
                 meta_dir = os.path.join(RUN, "meta_check")
                 os.makedirs(meta_dir, exist_ok=True)
