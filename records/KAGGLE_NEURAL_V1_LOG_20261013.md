@@ -175,3 +175,31 @@ hours on the 240-task committed run:
 - 05a7bcf2 and 09c534e7: 30x30 test inputs.
 
 These are all stand-in (training) tasks.
+
+## 5. Probe (smoke version 3): COMPLETE, checks 6 and 7 passed (2026-10-13)
+
+- **Timeline.** Pushed 15:54:44Z; COMPLETE 16:22Z; notebook 1,431 s. The
+  light identity cell takes seconds.
+- **Output.** `outputs/kaggle_deploy/neural_v1_smoke_run3_probe/`.
+- **Multi-output (check 6).**
+  - 27a28665: 3 test inputs gave 3 entries.
+  - 12997ef3: 2 test inputs gave 2 entries.
+  - Functional check 4.0 of 4 under both selectors (trained-on tasks, not a
+    score). So the order of test inputs is preserved.
+- **30x30 (check 7).** 05a7bcf2 and 09c534e7 produced valid 30x30 grids.
+  - Per-task 1,123.8 and 1,171.2 s, near the upstream 1,200-s cap.
+  - Peak memory 17.94 and 15.29 GB of 22 GB.
+  - The small tasks took 70.7 and 126.1 s, at 9.92 and 10.68 GB.
+- **Whole file.** 0 schema problems over all 240 tasks; 0 repaired.
+  execution_manifest.json written (decoded files 112, tasks with outputs 4).
+- **Upstream behaviour kept.** When only one distinct candidate exists,
+  attempt_2 keeps the default `[[0]]`; 12997ef3 shows this. The
+  reproduction keeps the published selector unchanged (directive section
+  8).
+- **Runtime implication.** Large-grid tasks approach the 20-min cap, so the
+  240-task committed run should take about 10-12 h, as NVARC reports. The
+  upstream guard (12 h - 600 s) bounds it.
+
+**All 14 compatibility checks are now passed or recorded.** Flash-attention
+use is not explicitly logged, and the notebook licences remain UNVERIFIED
+(Kaggle default Apache 2.0).
