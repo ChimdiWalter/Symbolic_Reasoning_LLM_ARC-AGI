@@ -584,10 +584,13 @@
   },
   {
    "id": "arc_leader_method_audit",
-   "status": "DRAFT: CORA-side gap audit done (stand-in = 240 ARC-AGI-2 training tasks; 114 certified, 126 no candidate; shape not the dominant blocker); competitor survey running (delegated web review); contamination audit pending",
+   "status": "COMPLETE (audit and plan; nothing implemented)",
    "record": "records/CORA_ARC_LEADER_METHOD_AUDIT_20261013.md",
    "script": "scripts/native_gap_audit.py",
-   "output": "outputs/kaggle_deploy/native_v1/gap_audit.json"
+   "output": "outputs/kaggle_deploy/native_v1/gap_audit.json",
+   "survey": "records/CORA_ARC_LEADER_SURVEY_20261013.md",
+   "contamination": "NVARC sft139: competition-eligible, NOT clean for science (eval test outputs in validation/checkpoint ranking; nvarc_full encodes eval tasks); verified at NVARC HEAD 846d0198efa7",
+   "next": "NVARC notebook compatibility smoke test as a new private kernel (kaggle/neural_v1_smoke/), self-test only, no submission"
   }
  ],
  "recovered_definitions": {
