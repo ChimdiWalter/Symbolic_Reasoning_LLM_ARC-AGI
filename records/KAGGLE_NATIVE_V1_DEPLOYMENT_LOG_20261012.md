@@ -1,7 +1,7 @@
 # Kaggle native_v1 deployment log (2026-10-12)
 
-**Status: COMMITTED RUN IN PROGRESS on Kaggle (version 1, pushed 2026-10-13T01:07:11Z).**
-The dataset is uploaded and verified. Nothing is submitted yet.
+**Status: SUBMITTED (submission 57144804, 2026-10-13T13:17:12Z), SCORE PENDING.**
+The committed run of notebook version 1 completed and was verified.
 
 The package is the frozen NATIVE_BASELINE native_v1
 (`records/KAGGLE_NATIVE_V1_DELIVERY_20261012.md`), deployed unchanged. This log
@@ -122,8 +122,10 @@ equal the record.
 | dataset integrity | Kaggle unpacked the archive. The dataset, downloaded back, holds 273 files, every one byte-identical to the frozen tarball's (0 missing, 0 extra, 0 mismatches). The notebook's tree digest of the download is d7856871..., equal to the sealed solver_tree_sha256_as_staged |
 | notebook | chimdiwalter/cora-native-v23-arc-agi-2-october-baseline, version 1, pushed 2026-10-13T01:07:11Z; https://www.kaggle.com/code/chimdiwalter/cora-native-v23-arc-agi-2-october-baseline |
 | notebook settings, as Kaggle stored them (`kernels pull -m`) | private; internet false; GPU false; TPU false; dataset_sources [chimdiwalter/arc-native-baseline-v1]; competition_sources [arc-prize-2026-arc-agi-2]; docker image gcr.io/kaggle-images/python@sha256:81b1e7c4b4f0...; 1 code cell identical to kaggle/native_v1/notebook.py |
-| committed run | version 1: RUNNING (checked 2026-10-13T01:08Z) |
-| submission ID | (none) |
+| committed run | version 1: COMPLETE. Harness completed (return code 0) in 14,512 s (4.03 h) on 4 CPUs; total 14,514 s; the 11.25 h budget was not needed |
+| committed-run output (verified by `deploy_check.py verify` against the downloaded competition `arc-agi_test_challenges.json`, inputs only) | 240 tasks, 259 test outputs; 0 schema problems; order correct; 0 repaired entries. Task file arc-agi_test_challenges.json (sha matches). Label NATIVE_BASELINE native_v1; flags, assets and solver tree d7856871... all match. Writer make_submission_v2. Real attempt_1 139, real attempt_2 45, fallback 120 (of 259 positions) |
+| log lines | `using task file: arc-agi_test_challenges.json` at 12.8 s; `native configuration` with the five flags and both asset hashes; `submission.json written ... harness completed` at 14,525 s |
+| submission | 57144804, notebook version 1, submitted 2026-10-13T13:17:12Z with `kaggle competitions submit -k ... -v 1 -f submission.json`; accepted, status PENDING; 0 submissions remaining that day |
 
 ## 6. Licence correction during upload
 
@@ -175,3 +177,23 @@ new one ( if deemed better)"
   gates: zero new false acceptances, zero loss of previously correct tasks,
   no leakage, matched compute, and an honest label.
 - At most 1 submission per day.
+
+## 9. Monitoring gap (2026-10-13)
+
+The committed-run poller exited at 04:04Z on a transient Kaggle API answer
+("Permission 'kernels.get' was denied"). It treated every non-running status
+as terminal.
+
+The run completed in about 4 h, but nothing woke the session until 13:15Z.
+The next status call succeeded with the same credential, so the problem was
+transient.
+
+The submission was made at 13:17Z. The score poller now retries errors and
+stops only on the submission's own COMPLETE or ERROR status.
+
+**Counts compared with July (observation, not a score).** On the same
+placeholder file, the July v10/v11 package produced 162 real attempt_1,
+100 real attempt_2 and 97 fallback. Native v23 produced 139, 45 and 120.
+
+A "real attempt" is a render, not a correct answer. The difference cannot
+be attributed without a controlled comparison.
