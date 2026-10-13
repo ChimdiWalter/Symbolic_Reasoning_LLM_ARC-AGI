@@ -1,30 +1,33 @@
-"""Reversible, fold-local adapter: constructed grouping views for the unchanged
-native object engine (records/CORA_REP_GROWTH_PLAN_20261013.md, sections 3-5).
+"""CORA-RG adapter v1 (plan amendment 1): fold-local, reversible, in-process.
 
-    with rep_growth("E") as ev:
+    with rep_growth(arm, unlabelled=[...], shuffle=obs_of_another_task) as ev:
         res = inducer.induce_program(pairs, cfg)
-        ... render with program_apply_fn(res.program) inside the block ...
+        ... render inside the block ...
 
-Modes:
-- "off": the wrapper passes everything through (identity test);
-- "D": failure-blind, ungated, ranked in canonical order;
-- "E": failure-conditioned; gated on REPRESENTATION_LANGUAGE_INSUFFICIENT;
-  ranked by the failure stage;
-- "E-shuf": E's procedure with the gate decision and stage taken from
-  another task (`shuffle=(diagnosis, stage)`).
+Arms:
+- A and B: pass-through. B differs only by budget. Every failed call is
+  observed and logged.
+- C (EXISTING_VIEW_CORRECTION): at a failed call with coherent views cut
+  by the cap, re-run with the cut views first. No construction.
+- D (FAILURE_BLIND_CONSTRUCTOR): construct at every failed call; k
+  programs in canonical order; first success wins. No probes, no
+  ambiguity check.
+- E (SHUFFLED_FAILURE_CONSTRUCTOR): F's decision path driven by another
+  task's observations (`shuffle`). The probes still act on this task's own
+  T.
+- F (FAILURE_CONDITIONED_CONSTRUCTOR), the intervention-based controller:
+  1. the search probe, if the deadline was hit and fit ≥ 0.9;
+  2. the existing-view probe, if cut views exist;
+  3. construction, if the stage is segmentation, matching or selector,
+     with abstention when two or more successful constructed programs
+     disagree on the unlabelled inputs;
+  4. otherwise abstain: EXECUTABLE_LANGUAGE_INSUFFICIENT or UNKNOWN.
 
-At every `_induce_candidate(T, ...)` call, including leave-one-out folds and
-internal re-searches:
-1. the native attempt runs unchanged, and a train-perfect native attempt is
-   returned as is;
-2. otherwise the call is diagnosed from T, and the constructor proposes at
-   most k novel, coherent programs computed from T's demonstrations alone;
-3. each program is a pseudo-variant: an enum value-map entry plus a
-   SEGMENTERS entry. It is prepended to the trial order for one re-run
-   with its own explicit time slice (slice_s, default 8 s) beyond the
-   native deadline. Arm B's larger budget matches this.
-
-Everything is restored on exit.
+Every probe is a real engine re-run on T, with its own time slice
+(slice_s). A constructed view is a pseudo-variant: an enum value-map entry
+plus a SEGMENTERS entry, prepended to the trial order for one re-run. The
+cap, coherence test, ranking and leave-one-out are unchanged. Everything is
+restored on exit.
 """
 import contextlib
 import time
@@ -35,9 +38,7 @@ import numpy as np
 from cora_rep_growth import grammar as G
 
 LANG_STAGES = ("segmentation", "matching", "selector")
-# Search-insufficiency rule applied when the native deadline was reached: set by
-# plan amendment 1 after the development measurement. Until then: never.
-SEARCH_RULE = lambda att: False
+SEARCH_FIT = 0.9
 
 
 def _np(grid):
@@ -50,9 +51,8 @@ def make_segmenter(prog):
 
     def seg(grid, background=None):
         g = _np(grid)
-        bg = 0 if background is None else background
         out = []
-        for i, cells in enumerate(G.apply(prog, g, bg)):
+        for i, cells in enumerate(G.apply(prog, g, 0 if background is None else background)):
             cols = {x: int(g[x]) for x in cells}
             r0, c0, r1, c1 = G._bbox(cells)
             bbox = (r0, c0, r1 + 1, c1 + 1)
@@ -89,47 +89,51 @@ class _Registry:
         self.made = []
 
 
-def native_view_info(train_pairs):
-    """Coherent / kept / cut native views on T (the inducer's own admission rule)."""
+def native_views():
+    import geocat_arc.object_reasoning.inducer as I
+    return [v for v in I.SEGMENTATION_TRIAL_ORDER if not str(v.value).startswith("G:")]
+
+
+def view_info(train_pairs):
+    """The inducer's own admission rule on T: the native views coherent but cut by the cap."""
     import geocat_arc.object_reasoning.inducer as I
     import geocat_arc.object_reasoning.segmentation as S
-    order = [v for v in I.SEGMENTATION_TRIAL_ORDER if not str(v.value).startswith("G:")]
+    order = native_views()
     res = {v: S.evaluate_variant(v, train_pairs) for v in order}
     cands = [v for v in order if res[v].coherent]
     cands.sort(key=lambda v: 1 if res[v].create_orphan_relaxed else 0)
     kept = cands[:I.MAX_SEG_VARIANTS_TRIED]
-    return res, cands, kept, [v for v in cands if v not in kept]
+    return [v for v in cands if v not in kept]
 
 
-def diagnose(att, train_pairs, deadline=None):
-    _, _, _, cut = native_view_info(train_pairs)
-    if cut:
-        return "REPRESENTATION_EXCLUDED", None
+def observe(att, train_pairs, deadline):
     stage = getattr(getattr(att, "stage", None), "value", None)
-    if stage in LANG_STAGES:
-        return "REPRESENTATION_LANGUAGE_INSUFFICIENT", stage
-    if stage == "parameter":
-        return "EXECUTABLE_OPERATION_MISSING", stage
-    return "UNKNOWN", stage
+    return {"deadline_hit": bool(deadline is not None and time.monotonic() >= deadline),
+            "fit_objects": round(float(getattr(att, "fit_objects", 0.0)), 3),
+            "stage": stage, "cut": [v.value for v in view_info(train_pairs)]}
 
 
-def _native_partitions(train_pairs):
-    import geocat_arc.object_reasoning.inducer as I
+def _task_grids(train_pairs, unlabelled):
+    grids = []
+    for a, b in train_pairs:
+        grids += [_np(a), _np(b)]
+    return grids + [np.asarray(u) for u in (unlabelled or [])]
+
+
+def _native_signatures(grids):
+    """Per native view, its partitions of every task grid: the bounded old language."""
     import geocat_arc.object_reasoning.segmentation as S
-    out = []
-    for gi, _ in train_pairs:
-        out.append({G.partition_key([frozenset(o.cells) for o in S.segment(gi, v, S.background_for(gi, v))])
-                    for v in I.SEGMENTATION_TRIAL_ORDER if not str(v.value).startswith("G:")})
-    return out
+    from geocat_arc.object_reasoning.types import to_grid_pairs
+    gp = [to_grid_pairs([(g, g)])[0][0] for g in grids]
+    return {v.value: tuple(G.partition_key([frozenset(o.cells) for o in S.segment(x, v, S.background_for(x, v))]) for x in gp)
+            for v in native_views()}
 
 
 def _stage_score(prog, stage, pairs_np):
     if stage == "matching":
         cnt = [(len(G.apply(prog, a)), len(G.apply(prog, b))) for a, b in pairs_np]
-        same = all(i == o for i, o in cnt)
-        const = len({o for _, o in cnt}) == 1
-        ratio = len({(o / i) if i else None for i, o in cnt}) == 1
-        return float(same or const or ratio)
+        return float(all(i == o for i, o in cnt) or len({o for _, o in cnt}) == 1
+                     or len({(o / i) if i else None for i, o in cnt}) == 1)
     if stage == "selector":
         feats = {"size": [], "colour": [], "shape": []}
         for a, b in pairs_np:
@@ -148,85 +152,130 @@ def _stage_score(prog, stage, pairs_np):
     return 0.0
 
 
-def construct(mode, train_pairs, stage, k, reg, budget_left=None):
-    """Up to k novel, coherent programs for T. Uses only T's own pairs."""
+def candidates(train_pairs, unlabelled, stage, conditioned, k, reg, budget_s):
+    """Up to k NOVEL and coherent programs, built from T's demonstrations and
+    the unlabelled inputs only. Novel means no native view equals the
+    program's partitions on all task grids (exhaustive over S1-S7)."""
     import geocat_arc.object_reasoning.segmentation as S
     t0 = time.monotonic()
+    grids = _task_grids(train_pairs, unlabelled)
+    native = set(_native_signatures(grids).values())
     pairs_np = [(_np(a), _np(b)) for a, b in train_pairs]
-    native = _native_partitions(train_pairs)
     seen, novel = set(), []
     for prog in G.programs():
-        parts = [G.partition_key(G.apply(prog, a)) for a, _ in pairs_np]
-        sig = tuple(parts)
-        if sig in seen:
+        sig = tuple(G.partition_key(G.apply(prog, g)) for g in grids)
+        if sig in seen or sig in native:
             continue
         seen.add(sig)
-        if all(p not in nat for p, nat in zip(parts, native)):
-            novel.append(prog)
-    if mode in ("E", "E-shuf") and stage in ("matching", "selector"):
-        novel.sort(key=lambda p: -_stage_score(p, stage, pairs_np))     # stable: canonical order breaks ties
+        novel.append(prog)
+    if conditioned and stage in ("matching", "selector"):
+        novel.sort(key=lambda p: -_stage_score(p, stage, pairs_np))      # stable: canonical order breaks ties
     chosen, coh = [], {}
     for prog in novel:
-        if budget_left is not None and time.monotonic() - t0 > budget_left:
+        if time.monotonic() - t0 > budget_s:
             break
         r = S.evaluate_variant(reg.get(prog), train_pairs)
         if r.coherent:
             coh[G.name(prog)] = (float(r.coherence), float(r.pixel_coverage))
             chosen.append(prog)
-            if len(chosen) >= k and not (mode in ("E", "E-shuf") and stage == "segmentation"):
+            if len(chosen) >= k and not (conditioned and stage == "segmentation"):
                 break
-    if mode in ("E", "E-shuf") and stage == "segmentation":
+    if conditioned and stage == "segmentation":
         chosen.sort(key=lambda p: (-coh[G.name(p)][0], -coh[G.name(p)][1]))
-    return chosen[:k], {"novel": len(novel), "coherent_checked": len(coh)}
+    return chosen[:k], len(novel)
 
 
 @contextlib.contextmanager
-def rep_growth(mode, k=2, shuffle=None, slice_s=8.0):
+def rep_growth(arm, k=2, slice_s=8.0, unlabelled=None, shuffle=None, n_top=None):
     import geocat_arc.object_reasoning.inducer as I
+    from geocat_arc.object_reasoning.actions import program_apply_fn
     orig, order0 = I._induce_candidate, I.SEGMENTATION_TRIAL_ORDER
     reg = _Registry()
-    ev = {"mode": mode, "calls": 0, "failed_calls": 0, "diagnoses": Counter(), "constructed_calls": 0,
-          "programs_tried": 0, "wins": [], "novel_seen": 0, "calls_log": []}
+    ev = {"arm": arm, "calls": 0, "failed_calls": 0, "decisions": Counter(), "probe_runs": 0,
+          "constructed_tried": 0, "novel_seen": 0, "wins": [], "calls_log": [],
+          "top_candidate": None}   # the first train-exact program at the task-level call (n_top pairs), before leave-one-out
+
+    def rerun(train_pairs, config, deadline, meta, ps, ea, order):
+        ev["probe_runs"] += 1
+        d2 = max(deadline if deadline is not None else time.monotonic(), time.monotonic()) + slice_s
+        I.SEGMENTATION_TRIAL_ORDER = tuple(order)
+        try:
+            return orig(train_pairs, config, d2, meta, ps, ea)
+        finally:
+            I.SEGMENTATION_TRIAL_ORDER = order0
+
+    def renders(att):
+        try:
+            fn = program_apply_fn(att.programs[0])
+            return tuple(np.asarray(fn(np.asarray(u))).tobytes() for u in (unlabelled or []))
+        except Exception:                                              # noqa: BLE001
+            return None
+
+    def construct_and_run(train_pairs, config, deadline, meta, ps, ea, stage, conditioned, ambiguity):
+        progs, n_novel = candidates(train_pairs, unlabelled, stage, conditioned, k, reg, slice_s)
+        ev["novel_seen"] += n_novel
+        wins = []
+        for prog in progs:
+            ev["constructed_tried"] += 1
+            att2 = rerun(train_pairs, config, deadline, meta, ps, ea, (reg.get(prog),) + tuple(order0))
+            if att2.programs:
+                wins.append((prog, att2))
+                if not ambiguity:
+                    break
+        if not progs:
+            return None, "CANDIDATE_NOT_GENERATED"
+        if not wins:
+            return None, "UNKNOWN"
+        if ambiguity and len(wins) >= 2 and len({renders(a) for _, a in wins}) > 1:
+            return None, "HYPOTHESIS_AMBIGUOUS"
+        ev["wins"].append({"pairs": len(train_pairs), "program": G.name(wins[0][0])})
+        return wins[0][1], "REPRESENTATION_LANGUAGE_INSUFFICIENT"
+
+    def controller(train_pairs, config, deadline, meta, ps, ea, own, dec):
+        """Arm F (dec = own) or E (dec = shuffled). Probes act on T."""
+        if dec["deadline_hit"] and dec["fit_objects"] >= SEARCH_FIT:
+            a = rerun(train_pairs, config, deadline, meta, ps, ea, order0)
+            if a.programs:
+                return a, "SEARCH_BUDGET_EXHAUSTED"
+        if dec["cut"]:
+            cut = [v for v in order0 if v.value in own["cut"]]
+            if cut:
+                a = rerun(train_pairs, config, deadline, meta, ps, ea, cut + [v for v in order0 if v not in cut])
+                if a.programs:
+                    return a, "EXISTING_REPRESENTATION_EXCLUDED"
+        if dec["stage"] in LANG_STAGES:
+            return construct_and_run(train_pairs, config, deadline, meta, ps, ea, dec["stage"], True, True)
+        if dec["stage"] == "parameter":
+            return None, "EXECUTABLE_LANGUAGE_INSUFFICIENT"
+        return None, "UNKNOWN"
 
     def wrapper(train_pairs, config, deadline, meta, partial_sink=None, explore_all=False):
         ev["calls"] += 1
-        t_call = time.monotonic()
+        t0 = time.monotonic()
         att = orig(train_pairs, config, deadline, meta, partial_sink, explore_all)
         if att.programs:
-            ev["calls_log"].append({"pairs": len(train_pairs), "ok": True, "s": round(time.monotonic() - t_call, 2)})
+            ev["calls_log"].append({"pairs": len(train_pairs), "ok": True, "s": round(time.monotonic() - t0, 2)})
+            if n_top is not None and len(train_pairs) == n_top and ev["top_candidate"] is None:
+                ev["top_candidate"] = att.programs[0]
             return att
         ev["failed_calls"] += 1
-        deadline_hit = deadline is not None and time.monotonic() >= deadline
-        diag, stage = diagnose(att, train_pairs)   # logged in every mode, "off" included
-        if deadline_hit and diag == "REPRESENTATION_LANGUAGE_INSUFFICIENT" and SEARCH_RULE(att):
-            diag = "SEARCH_INSUFFICIENT"
-        ev["diagnoses"][diag] += 1
-        ev["calls_log"].append({"pairs": len(train_pairs), "ok": False, "s": round(time.monotonic() - t_call, 2),
-                                "deadline_hit": deadline_hit, "diag": diag, "stage": stage,
-                                "fit_objects": round(float(getattr(att, "fit_objects", 0.0)), 3)})
-        if mode == "off":
-            return att
-        if mode == "E-shuf" and shuffle is not None:
-            diag, stage = shuffle
-        if mode in ("E", "E-shuf") and diag != "REPRESENTATION_LANGUAGE_INSUFFICIENT":
-            return att
-        progs, info = construct(mode, train_pairs, stage, k, reg, budget_left=slice_s)
-        ev["novel_seen"] += info["novel"]
-        if progs:
-            ev["constructed_calls"] += 1
-        for prog in progs:
-            pv = reg.get(prog)
-            ev["programs_tried"] += 1
-            d2 = max(deadline if deadline is not None else time.monotonic(), time.monotonic()) + slice_s
-            I.SEGMENTATION_TRIAL_ORDER = (pv,) + tuple(order0)
-            try:
-                att2 = orig(train_pairs, config, d2, meta, partial_sink, explore_all)
-            finally:
-                I.SEGMENTATION_TRIAL_ORDER = order0
-            if att2.programs:
-                ev["wins"].append({"pairs": len(train_pairs), "program": G.name(prog)})
-                return att2
-        return att
+        own = observe(att, train_pairs, deadline)
+        out, decision = None, "NONE"
+        if arm == "C" and own["cut"]:
+            cut = [v for v in order0 if v.value in own["cut"]]
+            a = rerun(train_pairs, config, deadline, meta, partial_sink, explore_all, cut + [v for v in order0 if v not in cut])
+            out, decision = (a, "EXISTING_REPRESENTATION_EXCLUDED") if a.programs else (None, "VIEW_CORRECTION_FAILED")
+        elif arm == "D":
+            out, decision = construct_and_run(train_pairs, config, deadline, meta, partial_sink, explore_all, own["stage"], False, False)
+        elif arm in ("E", "F"):
+            dec = dict(shuffle) if (arm == "E" and shuffle) else own
+            out, decision = controller(train_pairs, config, deadline, meta, partial_sink, explore_all, own, dec)
+        ev["decisions"][decision] += 1
+        ev["calls_log"].append({"pairs": len(train_pairs), "ok": False, "s": round(time.monotonic() - t0, 2), **own,
+                                "decision": decision, "adapted": out is not None})
+        if out is not None and n_top is not None and len(train_pairs) == n_top and ev["top_candidate"] is None and out.programs:
+            ev["top_candidate"] = out.programs[0]
+        return out if out is not None else att
 
     I._induce_candidate = wrapper
     try:
