@@ -303,13 +303,13 @@ competition solver.
 
 | field | value |
 |---|---|
-| ARC-AGI-2 submission id | 57144804: NATIVE_BASELINE native_v1, submitted 2026-10-13T13:17Z. Status PENDING at 2026-10-13T17:00Z. Replaces nothing; the July 2026 submission 54617562, an older v10/v11 engine, scored 0.00 |
+| ARC-AGI-2 submission id | 57144804: NATIVE_BASELINE native_v1, submitted 2026-10-13T13:17Z, COMPLETE. Replaces nothing; the July 2026 submission 54617562, an older v10/v11 engine, scored 0.00 |
 | notebook | `chimdiwalter/cora-native-v23-arc-agi-2-october-baseline`, version 1 (private; to be made public with the writeup) |
 | notebook and configuration identity | dataset `chimdiwalter/arc-native-baseline-v1`, version 1. Tarball sha256 4b320ba2..., 273 files, byte-identical on Kaggle. Solver tree d7856871...; notebook.py 647594be...; the five sealed chain flags; library.json cdacd018...; learned_verbs.json b1f07ba5... (`records/KAGGLE_NATIVE_V1_DEPLOYMENT_LOG_20261012.md`) |
-| leaderboard score, public | PENDING (expected at or near 0: the frozen engine scores 0 of 120 on the public evaluation set) |
+| leaderboard score, public | **0.00** (OFFICIAL KAGGLE, NATIVE BASELINE; `records/KAGGLE_NATIVE_V1_OFFICIAL_RESULT_20261013.md`). As predicted from the frozen engine's 0 of 120 on the public evaluation set |
 | leaderboard score, private | revealed after the competition |
 | pass@1 | NOT MEASURABLE before scoring (the hidden answers are Kaggle's) |
-| pass@2 | the leaderboard score is pass@2 by definition; PENDING |
+| pass@2 | 0.00 on the public board (the leaderboard score is pass@2 by definition) |
 | attempt-2 rescues | NOT MEASURABLE from the leaderboard aggregate |
 | task outputs scored | 240 hidden tasks; the public board scores a representative sample |
 | runtime | committed run on the visible stand-in (240 public ARC-AGI-2 *training* tasks): 14,512 s (4.03 h) on 4 CPUs, inside the 12 h limit. The hidden re-run's runtime is obfuscated by Kaggle |
