@@ -154,8 +154,8 @@ report) or plain 27B-model inference.
 - **NVARC on Kaggle.** L4x4, 10-12 h for 240 tasks. A full commit run uses
   about 24 GPU-quota hours (the L4x4 double rate). The weekly quota is 30 h,
   resetting 2026-10-17. So at most about one full run per week, and a
-  submission re-run uses no development quota (INFERRED; Kaggle documents
-  re-runs as not counting).
+  whether a submission re-run draws on the development quota is
+  UNVERIFIED.
 - **Local 11 GB GPU.** Only for smoke tests (the 2B `sft141`, 2.82 GB) and
   for clean small models (VARC-18M). It cannot run 4B bf16 with r=256 LoRA
   test-time training (INFERRED).
