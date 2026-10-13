@@ -1,7 +1,7 @@
 # Kaggle native_v1 deployment log (2026-10-12)
 
-**Status: STAGED, AWAITING THE USER'S KAGGLE LOGIN.** Nothing is uploaded,
-nothing is run on Kaggle and nothing is submitted.
+**Status: COMMITTED RUN IN PROGRESS on Kaggle (version 1, pushed 2026-10-13T01:07:11Z).**
+The dataset is uploaded and verified. Nothing is submitted yet.
 
 The package is the frozen NATIVE_BASELINE native_v1
 (`records/KAGGLE_NATIVE_V1_DELIVERY_20261012.md`), deployed unchanged. This log
@@ -116,8 +116,62 @@ equal the record.
 
 | item | value |
 |---|---|
-| Kaggle account | (pending login) |
-| dataset version | (not created) |
-| notebook version | (not pushed) |
-| committed run | (not started) |
+| Kaggle account | chimdiwalter (Chimdi Walter), verified from the account's own kernel and dataset refs after the user's OAuth login (2026-10-12) |
+| competition | arc-prize-2026-arc-agi-2: entered (rules accepted, userHasEntered True); deadline 2026-11-02 23:59; limits 1 submission per day, 2 final selections; before this deployment 1 lifetime submission (54617562, 2026-07-12, COMPLETE, 0.00) and 0 today |
+| dataset | chimdiwalter/arc-native-baseline-v1, private, created 2026-10-13T01:06Z (version 1); https://www.kaggle.com/datasets/chimdiwalter/arc-native-baseline-v1 |
+| dataset integrity | Kaggle unpacked the archive. The dataset, downloaded back, holds 273 files, every one byte-identical to the frozen tarball's (0 missing, 0 extra, 0 mismatches). The notebook's tree digest of the download is d7856871..., equal to the sealed solver_tree_sha256_as_staged |
+| notebook | chimdiwalter/cora-native-v23-arc-agi-2-october-baseline, version 1, pushed 2026-10-13T01:07:11Z; https://www.kaggle.com/code/chimdiwalter/cora-native-v23-arc-agi-2-october-baseline |
+| notebook settings, as Kaggle stored them (`kernels pull -m`) | private; internet false; GPU false; TPU false; dataset_sources [chimdiwalter/arc-native-baseline-v1]; competition_sources [arc-prize-2026-arc-agi-2]; docker image gcr.io/kaggle-images/python@sha256:81b1e7c4b4f0...; 1 code cell identical to kaggle/native_v1/notebook.py |
+| committed run | version 1: RUNNING (checked 2026-10-13T01:08Z) |
 | submission ID | (none) |
+
+## 6. Licence correction during upload
+
+The first `datasets create` call was refused with "Please select a valid
+licence" for `copyright-authors`. The file blob uploaded, but no dataset was
+created, as `datasets list --mine` confirmed.
+
+The metadata now uses `other`, with the description stating "all rights
+reserved by the author (private research package); if a prize were awarded,
+the competition's CC BY 4.0 winner licence would apply". The second call
+created the private dataset. No reasoning file changed.
+
+## 7. Rules confirmed from the official pages
+
+The pages were fetched with `kaggle competitions pages` on 2026-10-12 and
+saved under `outputs/kaggle_deploy/rules_20261012/`.
+
+- **Code requirements:**
+  - submissions through Notebooks;
+  - CPU notebook 12 h or less, GPU notebook 12 h or less;
+  - no internet access;
+  - freely and publicly available external data allowed, including
+    pre-trained models;
+  - the file must be named `submission.json`;
+  - submission runtimes are obfuscated (up to 10 min variance).
+- **Submission limits:** at most 1 submission per day; up to 2 Final
+  Submissions selected for judging.
+- **Private sharing:** code or data may not be shared privately outside the
+  team. A private dataset used only by the owner's own notebook is not
+  sharing.
+- **External data:** must be publicly available or meet the reasonableness
+  standard. This package is the participant's own code, plus assets learned
+  by it from the competition's training data, not third-party external data.
+- **Winners:** prize eligibility requires open-sourcing the solution under
+  CC BY 4.0. The Innovation Prize requires open-sourced artifacts attached to
+  a Solution Writeup within 7 days of the deadline.
+
+## 8. User authorization while away (2026-10-12, verbatim)
+
+"i will be away---if you think we have advanced to a more reasoning from
+failure capacity after submiting intial one and scoring---you can resubmit
+new one ( if deemed better)"
+
+**How it is applied:**
+- The initial native_v1 submission is made once the committed run completes
+  and `deploy_check.py verify` passes on its downloaded output.
+- A successor is submitted only if it is a separately versioned package with
+  verified evidence of better reasoning from failure under the standing
+  gates: zero new false acceptances, zero loss of previously correct tasks,
+  no leakage, matched compute, and an honest label.
+- At most 1 submission per day.
