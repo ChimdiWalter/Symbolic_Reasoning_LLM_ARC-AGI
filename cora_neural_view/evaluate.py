@@ -85,7 +85,8 @@ def evaluate(split):
                            for k in table[rnd[0]]}
     pairs = {}
     for a, b in [("D", "C"), ("D", "E"), ("D", "F"), ("D", "B1"), ("D", "B2"), ("D", "B3"), ("C", "B1"),
-                 ("D-CF", "C-CF"), ("D-CF", "E-CF"), ("D-CF", "B1"), ("J-C", "B2"), ("J-D", "J-C"), ("J-D", "J-E")]:
+                 ("D-CF", "C-CF"), ("D-CF", "E-CF"), ("D-CF", "B1"), ("J-C", "B2"), ("J-D", "J-C"), ("J-D", "J-E"),
+                 ("J-C", "B1"), ("J-C", "R0"), ("B1", "R0")]:
         if a in res and b in res:
             pg = [(res[a]["gain"][t], res[b]["gain"][t]) for t in tasks]
             ph = [(res[a]["harm"][t], res[b]["harm"][t]) for t in tasks]

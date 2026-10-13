@@ -31,7 +31,7 @@ import numpy as np
 
 DEV = ("d_layer_size", "d_diag_drop", "d_cluster_fill8", "d_noise_cell", "d_colour_swap", "d_row_stripe")
 FINAL = ("f_layer_frame", "f_layer_corner", "f_diag_mirror", "f_cluster_frame", "f_noise_shift", "f_colour_cycle")
-SEEDS = {"dev": range(7000, 7008), "final": range(7100, 7114)}
+SEEDS = {"dev": range(7000, 7008), "final": range(7100, 7135)}   # final extended 2026-10-13 (amendment 2)
 DESIGN_TARGET = {"d_layer_size": "colour layer", "f_layer_frame": "colour layer", "f_layer_corner": "colour layer",
                  "d_diag_drop": "diagonal multicolour", "f_diag_mirror": "diagonal multicolour",
                  "d_cluster_fill8": "proximity cluster", "f_cluster_frame": "proximity cluster",

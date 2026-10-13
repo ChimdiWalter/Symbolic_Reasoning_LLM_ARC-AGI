@@ -430,3 +430,52 @@ in its native phase, and no promoted-view outcome existed.
 8. **Prompts and code.** The prompt text is produced by
    `cora_neural_view/guides.py` at commit 7cb8242. Its sha256 is pinned in
    freeze v1, before the final split is run.
+
+## Amendment 2 (2026-10-13T13:35Z), before any guide saw the final split
+
+**Development results.** These were used for debugging and the JEPA gate
+only, and are not evidence. File: `outputs/neural_view_v0/stageA_dev.json`.
+39 decisions: 13 warranted, 2 misleading, 24 no help.
+
+| arm | gains | harms |
+|---|---|---|
+| B1 | 8 | 0 |
+| B3 | 8 | 0 |
+| B2 | 6 | 3 |
+| random (mean) | 2.8 | 0.4 |
+| C (Qwen) | 3 | 2 |
+| D | 1 | 0 (7 abstentions) |
+| E | 2 | 0 |
+| F | 3 | 2 |
+| C-CF | 3 | 0 (27 abstentions) |
+| D-CF | 1 | 0 (36 abstentions) |
+| J-C | 11 | 2 |
+| J-D | 11 | 2 (choices identical to J-C) |
+| J-E | 11 | 2 (choices identical to J-C) |
+
+- **Label-permutation agreement:** D 0.69, C 0.59.
+- **The JEPA gate passed.** J-C's top-1 useful rate on warranted decisions
+  is 0.846, against 0.216 for random and 0.462 for B2. The J arms stay.
+- **Every LLM decision scored,** so the sanity rule is met.
+- **No prompt, code or model change was made after these results.**
+
+**Blinded sample-size extension.**
+- The final split had 14 warranted decisions (67 decisions, 84 tasks). The
+  pre-declared minimum is 30.
+- Using only that prevalence (no guide has run on the final split), each
+  final family gets seeds 7114-7134: 21 more tasks per family, 126 in
+  total.
+- The 84 existing final tasks are byte-identical, as checked.
+- Corpus v0 is now 258 tasks, sha256 41004ce9...; the reference is
+  extended by its resumable runner.
+- If the final split still has fewer than 30 warranted decisions, the
+  result is labelled UNDERPOWERED. No further extension.
+
+**Secondary comparisons added** (declared before the final run):
+- J-C vs B1, J-C vs random, B1 vs random;
+- the harm count of every arm. The zero-new-false-acceptance criterion
+  applies to every arm, the J arms included.
+
+**Interpretation rule, fixed now.** If J-C beats B1 while J-D does not beat
+J-C and J-E, the result is reported as ordinary demonstrations-only neural
+representation ranking, not as failure-conditioned guidance.
