@@ -1401,6 +1401,63 @@ representations the existing search admits, and only typing the failure
 told the two apart. That typing was done by forensic analysis; CORA's
 general failure-type controller is proposed, not implemented.
 
+## 8.18 Neural guidance of representation admission: a pre-registered negative result
+
+**Tier: synthetic** (a private generator). This is not real ARC, not a
+Kaggle score and not capability invention.
+
+**Question.** When the frozen reasoner fails and a coherent segmentation
+view was cut by its four-view cap, can a frozen neural model choose which
+view to admit, given the reasoner's authentic failure trace?
+
+**Design** (`records/CORA_NEURAL_VIEW_GUIDANCE_PLAN_20261012.md`, frozen at
+7f0b17e before the single final run).
+- **Arms.** The same Qwen2.5-1.5B with:
+  - demonstrations only (C);
+  - plus the authentic trace (D);
+  - plus a shuffled trace (E);
+  - plus the failure type only (F).
+
+  Also counterfactual-transition forms, a frozen I-JEPA encoder,
+  fixed-order (B1), ARGA-style (B3) and coarsest-first (B2) symbolic rules,
+  and random.
+- **Scoring.** Each choice is scored by the engine's own promoted-view run,
+  with full leave-one-out; held-out outputs are used only by the evaluator.
+- **Leakage.** Mutation tests show held-out outputs cannot change a guide's
+  input.
+
+**Result** (165 decisions, 35 warranted;
+`records/CORA_NEURAL_VIEW_GUIDANCE_RESULT_20261013.md`):
+
+| arm | useful views chosen |
+|---|---|
+| B1, B3 | 35 |
+| C | 19 |
+| F | 19, identical to C |
+| D | 1 |
+| E | 1, identical to D |
+| I-JEPA (every condition) | 3 |
+| random | 12.6 |
+
+- No guide caused a false acceptance.
+- **The authentic trace made the language model abstain more and choose
+  worse,** p < 0.0001 against C. The shuffled trace did exactly the same,
+  so the trace's content carried no usable signal for this model.
+- I-JEPA's development advantage did not replicate.
+
+**Limitation.** All 35 warranted decisions come from one family, in which
+the useful view is the first view the cap cuts, so the fixed order is
+optimal there.
+
+**Relation to prior work.** This extends KAAR's report that LLMs choosing
+abstractions from raw grids was unsatisfactory. Adding authentic failure
+evidence did not rescue that choice. It also agrees with this project's
+earlier finding that failure features never beat demonstration-only
+controls.
+
+The route is closed. The open question moves to neural *candidates*, not
+neural rankings, as evidence of a missing capability.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

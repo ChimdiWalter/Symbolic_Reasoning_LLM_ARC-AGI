@@ -574,13 +574,27 @@
   },
   {
    "id": "cora_nvg_v0",
-   "status": "IN PROGRESS: plan v0 + literature committed; corpus v0 (132 tasks, sha 513bed0a...) generated; evaluator reference RUNNING",
+   "status": "COMPLETE: H1 REJECTED; route closed (NEURAL_GUIDANCE_ROUTE_REJECTED for CORA-NVG)",
    "plan": "records/CORA_NEURAL_VIEW_GUIDANCE_PLAN_20261012.md",
    "literature": "records/CORA_NVG_LITERATURE_20261012.md",
    "code": "cora_neural_view/",
    "outputs": "outputs/neural_view_v0/ (git-ignored)",
-   "running": "reference run: `python -m cora_neural_view.reference --split all --workers 6` (nice 19), log outputs/neural_view_v0/reference.log, rows reference_rows.jsonl (resumable: rerunning skips finished rows; check `ps` first, never launch twice)",
-   "models": "outputs/neural_view_v0/models.json (Qwen2.5-1.5B-Instruct 989aa798, I-JEPA ViT-H/14 f157467e; hub sha256 verified)"
+   "running": null,
+   "models": "outputs/neural_view_v0/models.json (Qwen2.5-1.5B-Instruct 989aa798, I-JEPA ViT-H/14 f157467e; hub sha256 verified)",
+   "result": "records/CORA_NEURAL_VIEW_GUIDANCE_RESULT_20261013.md",
+   "freeze_commit": "7f0b17e",
+   "final": {
+    "decisions": 165,
+    "warranted": 35,
+    "B1": 35,
+    "C": 19,
+    "D": 1,
+    "E": 1,
+    "F": 19,
+    "J-C": 3,
+    "R_mean": 12.6,
+    "harms_non_random": 0
+   }
   },
   {
    "id": "arc_leader_method_audit",
