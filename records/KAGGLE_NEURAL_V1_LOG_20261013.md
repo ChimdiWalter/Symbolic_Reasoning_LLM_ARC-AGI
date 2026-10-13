@@ -110,3 +110,68 @@ the identity cell.**
   utility-script tree (dependency hashes).
 
 The solver algorithm is unchanged.
+
+## 3. Smoke run 2: COMPLETE, compatibility passed (2026-10-13)
+
+- **Timeline.** Pushed 14:52:13Z; COMPLETE at about 15:50Z.
+- **Output.** `outputs/kaggle_deploy/neural_v1_smoke_run2/` (log,
+  submission.json, asset_identity.json).
+- **Quota.** 1.92 h used in total afterwards; 28.08 h left.
+
+| # | check | result |
+|---|---|---|
+| 1 | checkpoint loads | yes, on all 4 workers |
+| 2 | four L4 GPUs | yes: 4x NVIDIA L4, 23,034 MiB each; unsloth reports 22.034 GB per GPU |
+| 3 | unsloth, flash attention | unsloth and unsloth_zoo patched and ran. Flash-attention use is not explicitly logged (UNVERIFIED); speed is as expected |
+| 4 | per-task LoRA TTT | ran: per-task 89.2, 112.8, 344.2 and 322.4 s, including TTT and DFS |
+| 5 | valid ARC outputs | yes: 0 schema problems; attempt_1 differs from attempt_2 in all 4 |
+| 6 | multi-output handling | **NOT EXERCISED** (all 4 tasks have 1 test input), so a probe follows |
+| 7 | tokenizer round trip | implicit only: the decoded grids are valid, largest 20x20. **No 30x30 grid exercised**, so a probe follows |
+| 8 | GPU memory | peaks 10.39, 9.40, 12.52 and 12.16 GB of 22 GB |
+| 9 | output writer | valid submission.json |
+| 10 | runtime | measured, see the timeline below |
+| 11 | no evaluation file opened | yes. Both evaluation files and the training solutions are listed as not opened by the identity cell. The training solutions were read only by the functional check |
+| 12 | no internet | yes (internet disabled) |
+| 13 | algorithm unchanged | yes; only the documented patches |
+| 14 | licences | model Apache-2.0; dependencies Apache, LGPL (unmodified) and BSD. Notebooks UNVERIFIED (Kaggle default Apache 2.0) |
+
+**Functional check.** 4.0 of 4 training tasks, under both `score_kgmon` and
+`score_full_probmul_3`. The model was trained on these tasks, so this is
+**not a score**.
+
+**Timeline (log seconds).**
+- The identity cell took 43 to 2,479 s, about **40.6 min**. It hashed 44,151
+  files, 16.58 GB, at about 7 MB/s on the input mount.
+- Setup to the first worker start: 2,488 to 2,630 s.
+- The four workers start in sequence about 70 s apart (upstream's
+  unsloth-patch lock).
+- Tasks end at 2,730 to 3,102 s; selection and output at 3,172 s.
+- **The solver needed about 11.5 min** of the 53-min run. The full package
+  therefore uses a light identity cell; the full-file sha256 of the
+  utility-script tree and of the model shards stands from this run.
+
+## 4. Full package built, and a probe before the expensive committed run
+
+**`kaggle/neural_v1/`** (`build_full.py`).
+- Notebook sha256 0111f325...; kernel `chimdiwalter/cora-neural-ttt-baseline-v1`
+  (private, internet off, L4, upstream image pin). Label NEURAL_TTT_BASELINE.
+- Patches:
+  - the 2026 data and model paths;
+  - the committed run processes ALL stand-in tasks; the hidden re-run
+    processes all tasks;
+  - a pipeline-health check on training solutions only;
+  - memory logging;
+  - a light identity cell;
+  - final schema validation and repair, plus execution_manifest.json.
+- The 12 h guard, the 20-min per-task cap and the 540-s DFS cap are
+  untouched.
+- **Not pushed yet.**
+
+**Probe** (the same code with a committed-run filter), version 3 of the
+smoke kernel, to exercise checks 6 and 7 before spending about 24 GPU-quota
+hours on the 240-task committed run:
+- 27a28665: 3 test inputs;
+- 12997ef3: 2 test inputs;
+- 05a7bcf2 and 09c534e7: 30x30 test inputs.
+
+These are all stand-in (training) tasks.
