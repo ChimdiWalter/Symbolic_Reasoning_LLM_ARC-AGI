@@ -7,7 +7,7 @@
 - **Exposure:** CORA was developed on the training split, so this is not a
   generalization result. It locates the failing stage.
 - **Status of this record:** the object-layer funnel is COMPLETE
-  (2026-10-13, 22:12Z). The whole-harness, oracle and matched-search
+  (2026-10-13, 22:12Z). The whole-harness section is COMPLETE (23:29Z). The oracle and matched-search
   sections are PENDING; the detached driver is running them
   (`outputs/funnel_v0/driver_status.json`).
 
@@ -125,14 +125,48 @@ starved below 0.7.
   whole-harness step. On synthetic C2 the pipeline layer, which answers
   first, accepted 53 wrong of 100 (`records/C2_CORA_ONLY_SCORE_20261013.md`).
 
+## Whole native harness on the same 60 tasks (COMPLETE, 23:29Z)
+
+**Method.** `cora_funnel/harness_run.py` ran the frozen native_v1 notebook
+unchanged, with blind input, in 4,652 s on 4 workers. The harness's own
+budgets are wall-clock under shared load, as in the C2 and ceiling runs;
+that is a caveat.
+
+| measure | tasks |
+|---|---|
+| exact under the two-attempt rule | **12 / 60** (object layer alone: 6) |
+| claimed by some layer | 29 |
+| claimed and correct | 11 |
+| **claimed and wrong** | **18** (62% of claims) |
+| unclaimed but correct (the object layer's uncertified attempt_2) | 1 |
+
+**Pipeline sub-layer, for attempt_1 of every task the pipeline claimed:**
+
+| sub-layer | correct | wrong |
+|---|---|---|
+| loo_replace | **0** | **15** |
+| adaptive_synthesizer | 5 | 1 |
+| fill_solver | 2 | 0 |
+| adaptive_reasoner | 0 | 2 |
+| reasoning_v2 | 0 | 1 |
+
+**Answer order loses certified answers.** In **2 tasks** the object layer's
+LOO-certified answer was correct (CERTIFIED_CORRECT in the funnel). The
+pipeline also claimed those tasks; its wrong render became attempt_1 and the
+correct certified answer was not submitted.
+
+**Reading.** At the whole-harness level the failure is **false acceptance**
+by the pipeline layer. It answers first; loo_replace alone produced 15
+wrong claims and none right. Meanwhile, the one layer with adaptive LOO by
+re-induction (the object layer) accepted nothing wrong. This matches the
+synthetic C2 picture (53 of 100 claims wrong).
+
 ## Pending sections
 
 These are filled when the driver finishes.
-1. **Whole harness on dev60:** precision by claiming layer
-   (`eval_dev60_harness.json`).
-2. **Oracle expressibility:** for FIT_BUT_ALL_WRONG and NO_FIT tasks
+1. **Oracle expressibility:** for FIT_BUT_ALL_WRONG and NO_FIT tasks
    (`oracle_dev60.json`).
-3. **Matched extra search:** budget ×3, on tasks that hit a deadline.
-4. **C3-dev and C2-dev funnels:** SYNTHETIC; their mechanisms are known.
-5. **The single bottleneck, and the one intervention it justifies.** Decision
+2. **Matched extra search:** budget ×3, on tasks that hit a deadline.
+3. **C3-dev and C2-dev funnels:** SYNTHETIC; their mechanisms are known.
+4. **The single bottleneck, and the one intervention it justifies.** Decision
    due Oct 16.
