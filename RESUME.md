@@ -39,6 +39,12 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
 - **Native defects masquerade as perception failures.** dev60 task k35aabb2676c4 raises KeyError('window')
   inside native's search in every frame; native reports it as a segmentation failure. The funnel now records
   such exceptions, under category NATIVE_ERROR (0f2d209).
+- **FUNNEL dev60 object layer DONE** (records/CORA_FAILURE_FUNNEL_20261014.md, 81ecf25; DEVELOPMENT):
+  - 35/60 tasks have train-exact candidates; LOO certified 6, all correct, 0 false acceptances;
+  - correct-but-rejected 2; FIT_BUT_ALL_WRONG 27; no fit 22 (17 stop at object matching); 3 native defects;
+  - gate-off counterfactual: 8 right, 26 wrong;
+  - so certification is NOT the bottleneck; generating a generalizing hypothesis is.
+  - The harness, oracle and budget sections are pending; the driver is on the whole harness (22:12Z).
 - **NEXT-SESSION CHECKLIST (state at 21:00Z, Oct 13):**
   1. **Neural.** After 00:00Z the watcher submits ONCE, then writes
      outputs/kaggle_deploy/neural_v1_official_score.json. Record the score in
