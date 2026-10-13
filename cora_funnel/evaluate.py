@@ -75,20 +75,24 @@ def unique_evidence(train):
     return [sorted(c - set().union(*(cs[:i] + cs[i + 1:]))) for i, c in enumerate(cs)]
 
 
-def fold_detail(ev):
+def fold_detail(ev, fold_kept=None):
     """The identity frame's first leave-one-out: per left-out pair, whether the fold passed, rebuilt any
     train-exact program on the other pairs, or ran out of time. Folds run in pair order between a search
     and its loo event."""
-    out, buf = [], None
+    out, buf, full_seg = [], None, None
     for e in ev:
         if e["type"] == "search":
-            buf = []
+            buf, full_seg = [], e["seg"]
         elif e["type"] == "fold" and buf is not None:
             buf.append(e)
         elif e["type"] == "loo" and buf is not None:
             if e["frame"] == 0:
+                # admission mismatch (records/LOO_V1_DIAGNOSIS_20261012.md): the full-data winner's view is not
+                # among the views the fold's own coherence rule and cap let it search
                 return [{"left_out": j, "passed": j not in e["failed"], "rebuilt": f["n_programs"] > 0,
-                         "deadline": f["deadline_hit"]} for j, f in enumerate(buf[:e["folds"]])]
+                         "deadline": f["deadline_hit"], "fold_seg": f.get("seg"), "full_seg": full_seg,
+                         "full_view_admitted": (full_seg in fold_kept[j]) if fold_kept and j < len(fold_kept) and full_seg else None}
+                        for j, f in enumerate(buf[:e["folds"]])]
             buf = None
     return out
 
@@ -123,7 +127,7 @@ def task_record(r, ans, train=None):
             "loo": [{k: e[k] for k in ("frame", "folds", "passed", "failed")} for e in loos],
             "folds_rebuilt": sum(f["n_programs"] > 0 for f in folds), "folds_total": len(folds),
             "folds_deadline": sum(f["deadline_hit"] for f in folds),
-            "first_loo_folds": fold_detail(ev), "unique_colours_per_pair": unique_evidence(train) if train else None,
+            "first_loo_folds": fold_detail(ev, r["perception"].get("fold_kept_by_cap")), "unique_colours_per_pair": unique_evidence(train) if train else None,
             "wall_s": r["wall_s"], "cpu_s": r["cpu_s"], "cpu_share": round(r["cpu_s"] / max(r["wall_s"], 1e-6), 2),
             "error": r.get("error")}
 
@@ -154,11 +158,15 @@ def summarize(recs, fam):
     s["failed_folds"] = {"total": len(fails), "rebuilt_nothing": sum(1 for _, f in fails if not f["rebuilt"]),
                          "rebuilt_other_rule": sum(1 for _, f in fails if f["rebuilt"]),
                          "fold_deadline": sum(1 for _, f in fails if f["deadline"]),
+                         "full_view_not_admitted": sum(1 for _, f in fails if f.get("full_view_admitted") is False),
+                         "fold_searched_other_view": sum(1 for _, f in fails if f.get("fold_seg") and f.get("full_seg")
+                                                         and f["fold_seg"] != f["full_seg"]),
                          "left_out_pair_has_unique_colour": sum(1 for x, f in fails if x["unique_colours_per_pair"]
                                                                 and x["unique_colours_per_pair"][f["left_out"]])}
     passed = [(x, f) for x in recs if x["candidate_sets"] for f in x["first_loo_folds"] if f["passed"]]
     s["passed_folds"] = {"total": len(passed), "left_out_pair_has_unique_colour": sum(1 for x, f in passed if x["unique_colours_per_pair"]
-                                                                                     and x["unique_colours_per_pair"][f["left_out"]])}
+                                                                                     and x["unique_colours_per_pair"][f["left_out"]]),
+                         "full_view_not_admitted": sum(1 for _, f in passed if f.get("full_view_admitted") is False)}
     by = collections.defaultdict(collections.Counter)
     for x in recs:
         by[fam[x["key"]]][x["category"]] += 1

@@ -51,14 +51,21 @@ def perception(train_pairs):
     import geocat_arc.object_reasoning.inducer as I
     import geocat_arc.object_reasoning.segmentation as S
     order = list(I.SEGMENTATION_TRIAL_ORDER)
-    coh = []
-    for v in order:
-        try:
-            if S.evaluate_variant(v, train_pairs).coherent:
-                coh.append(v.value)
-        except Exception:                                               # noqa: BLE001
-            pass
-    return {"coherent": coh, "n_coherent": len(coh), "kept_by_cap": coh[:I.MAX_SEG_VARIANTS_TRIED]}
+
+    def coherent(pairs):
+        out = []
+        for v in order:
+            try:
+                if S.evaluate_variant(v, pairs).coherent:
+                    out.append(v.value)
+            except Exception:                                           # noqa: BLE001
+                pass
+        return out
+    coh = coherent(train_pairs)
+    # the same admission rule on each leave-one-out subset (what each fold may search)
+    folds = [coherent(train_pairs[:i] + train_pairs[i + 1:])[:I.MAX_SEG_VARIANTS_TRIED] for i in range(len(train_pairs))] \
+        if len(train_pairs) > 1 else []
+    return {"coherent": coh, "n_coherent": len(coh), "kept_by_cap": coh[:I.MAX_SEG_VARIANTS_TRIED], "fold_kept_by_cap": folds}
 
 
 @contextlib.contextmanager
@@ -107,7 +114,8 @@ def probe(n_top, test_inputs):
             st["lists"][id(att.programs)] = (att.programs, ev)
         elif len(train_pairs) == n_top - 1:
             rec["events"].append({"type": "fold", "frame": st["frame"], "n_programs": len(progs), "deadline_hit": hit,
-                                  "s": round(time.monotonic() - t0, 2), "stage": getattr(att.stage, "value", None)})
+                                  "s": round(time.monotonic() - t0, 2), "stage": getattr(att.stage, "value", None),
+                                  "seg": att.seg.variant.value if att.seg is not None else None})
         return att
 
     def loo(fn, train_pairs):
