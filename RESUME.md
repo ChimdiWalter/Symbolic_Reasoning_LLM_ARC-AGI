@@ -4,6 +4,31 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
+OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough sprint"; resume here):
+- **Kaggle.**
+  - The neural run `chimdiwalter/cora-neural-ttt-baseline-v1` v1 is RUNNING (pushed 16:22Z).
+  - The watcher was replaced at 19:05Z with the gate fix (25b346e); its pid is in
+    outputs/kaggle_deploy/detached_watch.pid.
+  - It submits ONCE as NEURAL_TTT_BASELINE, and only if every gate passes. New gates: fallback
+    at most 10%; decoded outputs for at least 90% of tasks.
+  - The score goes to outputs/kaggle_deploy/neural_v1_official_score.json.
+  - Native 57144804 = 0.00. Today's slot was used by native; the next opens after 00:00Z.
+- **Failure funnel** (cora_funnel/, ed3d0fd and 7485f00).
+  - The detached driver (outputs/funnel_v0/driver.pid; status driver_status.json) waits for the
+    ceiling test (pid 3683607).
+  - Then it runs: dev60 native, c3dev, the dev60 oracle, dev60 at budget x3, then c2dev and its
+    oracle.
+  - Outputs: outputs/funnel_v0/eval_*.json and oracle_*.json.
+  - It is resumable: if killed, rerun the command in cora_funnel/driver.py.
+  - The report to write: records/CORA_FAILURE_FUNNEL_20261014.md.
+- **Ceiling test** (cora_hybrid.ceiling_dev, pid 3683607): running; result in
+  outputs/hybrid_c2_dev/ceiling_summary.json.
+- **CORA-RG.** Adapter v1 committed (6271ffe). The C3 v1 corpus and the choice of intervention wait
+  for the funnel (Oct 16).
+- **Bio one-pager:** docs/BIO_TRANSFER_PROPOSAL_20261013.md (UNTESTED).
+- **NEXT.** When phase 1 ends, write the funnel report and choose ONE intervention by Oct 16. Then
+  freeze, run one prospective experiment (Oct 17-19), and freeze the summit evidence on Oct 21.
+
 CORA REP GROWTH (user directive 2026-10-13 'architectural autonomy audit and failure-driven representation growth'): phase 1-2 audit COMPLETE (records/CORA_AUTONOMY_AUDIT_20261013.md: native = L0/L1; representation synthesis ABSENT; L3 missing); then records/CORA_AUTONOMY_AUDIT_20261013.md (levels L0-L5), records/CORA_REP_GROWTH_PLAN_20261013.md (cora_rep_growth/: typed representation grammar, failure-conditioned vs failure-blind constructor, arms A-E, fold-local regeneration), one frozen CPU synthetic experiment, decision label. Do not touch native v23, Kaggle, C2, Step B, VDCG.
 
 DETACHED WATCHER (2026-10-13T17:10Z): `kaggle/ops/detached_watch.py` runs under setsid (pid in outputs/kaggle_deploy/detached_watch.pid; log outputs/kaggle_deploy/detached_watch.log; status outputs/kaggle_deploy/detached_status.json; it refuses a second copy). It records the native score (outputs/kaggle_deploy/native_v1/official_score.json); when the full neural run completes it downloads outputs to outputs/kaggle_deploy/neural_v1_full_run1/, runs the coverage audit, and submits ONCE as NEURAL_TTT_BASELINE only if all gates pass (else NEURAL_BLOCKED with reasons), then records that score (outputs/kaggle_deploy/neural_v1_official_score.json); it notes C2 completion. On resume: read the status file first; do not submit by hand if stage is 'submitted' or 'scored'; stop it with `kill $(cat outputs/kaggle_deploy/detached_watch.pid)`. C2 CORA_ONLY runs detached (orphaned to init, own session). HYBRID CEILING TEST queued detached (`pgrep -f cora_hybrid.ceiling_dev`; waits for C2's run_meta.json, then runs the frozen native solver on 60 development tasks (seeds 9100-9104, disjoint from C2 evaluation) with 3 demos vs with the true answer as a 4th demo; result outputs/hybrid_c2_dev/ceiling_summary.json; never launch twice). 
