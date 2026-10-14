@@ -356,3 +356,47 @@ tie rule, and f_B provisional.
     tasks, all correct.
 
     **Scope.** The final split uses generator v2 and remains sealed.
+
+## Amendment 2: PROPOSED (2026-10-14). Not in force; it needs the user's decision before the freeze
+
+**Evidence.** Development only (dev split v2; `records/CORA_FHR_DEV_RESULTS_20261014.md`). No final-split
+task has been generated or run.
+
+**A. Fold verification: single-level outer adaptive LOO.**
+- **Procedure:**
+  1. Native's full acceptance gate stays on the top-level program.
+  2. In fold i, demonstration i is removed before any extraction, diagnosis or construction.
+  3. The operator is rebuilt from the remaining demonstrations.
+  4. A program is fitted from those demonstrations alone (native's train-perfect program, `OBJECT_GATE_OFF`
+     inside the fold only).
+  5. The program is executed on the omitted input and must agree exactly with its output.
+  6. No parent-fold program, operator, proposal, hint or label is reused.
+  7. Fold programs are labelled fold-fit, never certified.
+  8. The rule applies to every construction arm.
+- **Implementation:** `CORA_FHR_FOLD_GATE=ungated`, with its invariant tested in `tests/test_fhr.py`.
+- **Evidence:** in v1, folds failed on the nested gate; that was the corpus artifact. In v2, the nested gate
+  never failed a fold. The refold what-if result is in `outputs/cora_fhr/eval_v2_refold.out`.
+
+**B. The fold-level tie check is removed; the top-level tie check is kept.**
+- **Evidence:** in v2 this was the only remaining fold blocker (9 tie abstentions).
+- **Effect without it:** E 4, C 3 and D 1 NEW_COMPOSITION correct certifications, and 0 wrong in any arm.
+- **Protection kept:** the top-level check still protects underdetermined (U) tasks.
+
+**C. Shuffled control D.**
+- Donors come from a different family: a fixed cyclic derangement over families.
+- D's evidence shrinks per fold like E's: in fold i, the donor's evidence is re-extracted without the donor's
+  demonstration i.
+- **Evidence:** dev_D3_00's same-family donor gave D a certificate.
+
+**D. Control C' becomes the primary H3 comparison.** It has the same native correspondences and extraction
+compute as E, without the failure filter. P3 is restated as: E's counted gains exceed C''s.
+
+**E. H3 needs mixed-coverage families.** C4's G-rejection makes every native growth correspondence a
+memorization, so E equals C' by construction (10 of 10 D1 and D3 tasks).
+
+A test of H3 needs families where native explains part of the growth and memorizes the rest, with the
+memorized part needing a new composition. The failure trace then localizes what is missing.
+
+**Without E, H3 is untestable, and a final run can test H1 (capability growth over A and B) only.**
+
+**Matched search, measured.** B at f_B = 1.33 certified 0 of 15 development G tasks (0.99 CPU-h).
