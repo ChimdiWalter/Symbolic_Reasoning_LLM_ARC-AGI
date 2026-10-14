@@ -149,10 +149,12 @@ def groups_for(arm, train, dirs, donor_raw):
     raise ValueError(arm)
 
 
-def ambiguous(prop, groups, inputs):
-    """Amendment 1 (tie abstention): among fitting expressions of the selected one's complexity class, any
-    that adds different cells to an object of an unlabelled input (native's segmentation in the selected
-    view) is a tie the demonstrations do not resolve. Reads inputs only."""
+def ambiguous(prop, groups, inputs, preds=None):
+    """Amendment 1 item 2 (tie abstention). Among the fitting expressions of the selected one's complexity
+    class, any that adds different cells to an object the committed prediction grows is a tie the
+    demonstrations do not resolve. The objects come from native's segmentation of the unlabelled input in the
+    selected view. An object is "grown" when the prediction changes a cell of the selected operator's
+    footprint. With preds=None every object counts. Reads inputs and CORA's own prediction only."""
     import geocat_arc.object_reasoning.segmentation as S
     from geocat_arc.object_reasoning.types import SegmentationVariant, cell_colors_of
     from geocat_arc.perception.grid import Grid
@@ -163,14 +165,21 @@ def ambiguous(prop, groups, inputs):
     ctx = [GG.Ctx(O, G) for O, _A, G in insts]
     fits = [e for e in same if all(GG.evaluate(e, x) == set(A) for x, (_O, A, _G) in zip(ctx, insts))]
     view = SegmentationVariant(prop["view"])
-    for t in inputs:
-        g = Grid(np.asarray(t, dtype=int))
+    for k, t in enumerate(inputs):
+        ta = np.asarray(t, dtype=int)
+        changed = None
+        if preds is not None and preds[k] is not None and np.asarray(preds[k]).shape == ta.shape:
+            pa = np.asarray(preds[k], dtype=int)
+            changed = {(int(r), int(c)) for r, c in zip(*np.nonzero(pa != ta))}
+        g = Grid(ta)
         for o in S.segment(g, view, S.background_for(g, view)):
             cc = cell_colors_of(o)
             if not cc:
                 continue
-            x = GG.Ctx(cc, np.asarray(t, dtype=int))
+            x = GG.Ctx(cc, ta)
             ref = GG.evaluate(first, x)
+            if changed is not None and not (ref & changed):
+                continue                                              # an object the prediction does not grow
             if any(GG.evaluate(e, x) != ref for e in fits):
                 return True, len(fits)
     return False, len(fits)
@@ -191,13 +200,16 @@ def construct_and_check(arm, key, train, inputs, dirs, donor_raw):
         rec["outcome"] = "NO_PROPOSAL"
         return rec, None
     sel = prop["proposals"][0]
-    tie, n_same = ambiguous(sel, groups, inputs)
     rec["selected"] = {"name": sel["ext"]["name"], "pretty": sel["pretty"], "view": sel["view"],
-                       "novelty": sel["novelty"], "same_class_fitting": n_same}
-    if tie:
-        rec["outcome"] = "ABSTAIN_TIE"
-        return rec, None
+                       "novelty": sel["novelty"]}
+    rec["_sel"], rec["_groups"] = sel, groups                          # for the tie check; stripped before writing
     return rec, sel["ext"]
+
+
+def tie_check(rec, inputs, preds):
+    tie, n_same = ambiguous(rec.pop("_sel"), rec.pop("_groups"), inputs, preds)
+    rec["selected"]["same_class_fitting"] = n_same
+    return tie
 
 
 def loo(arm, key, train, full_ext, dirs, donor_raw):
@@ -212,10 +224,13 @@ def loo(arm, key, train, full_ext, dirs, donor_raw):
             folds.append(f)
             continue
         run, _p = object_run(f"{key}_loo{i}", rest, [a], dirs["loo"], ext=ext)
+        tie = bool(run["accepted"] and run.get("uses") and tie_check(f, [a], run["predictions"]))
+        f.pop("_sel", None), f.pop("_groups", None)
         exact = bool(run["accepted"] and run["predictions"][0] is not None and run["predictions"][0] == np.asarray(b).tolist())
         f.update(accepted=run["accepted"], uses=run.get("uses"), heldout_exact=exact, restored=run.get("restored"),
-                 cpu_s=run["cpu_s"])
-        f["class"] = "SUCCESS" if (run["accepted"] and run.get("uses") and exact) else "LOO_FAILURE"
+                 cpu_s=run["cpu_s"], tie=tie)
+        f["class"] = "SUCCESS" if (run["accepted"] and run.get("uses") and exact and not tie) else \
+            ("ABSTAIN_TIE" if tie else "LOO_FAILURE")
         folds.append(f)
     return folds
 
@@ -239,7 +254,10 @@ def run_task(key, view, arms, dirs, donor_raw, f_b):
             top, _p = object_run(key, train, tests, dirs[arm], ext=ext)
             rec["top"] = top
             if not (top["accepted"] and top.get("uses")):
+                rec.pop("_sel", None), rec.pop("_groups", None)
                 rec["outcome"] = "ENGINE_REJECTION" if not top["accepted"] else "ROUTING_FAILURE"
+            elif tie_check(rec, tests, top["predictions"]):
+                rec["outcome"] = "ABSTAIN_TIE"
             else:
                 rec["folds"] = loo(arm, key, train, ext, dirs, donor_raw)
                 if all(f["class"] == "SUCCESS" for f in rec["folds"]):

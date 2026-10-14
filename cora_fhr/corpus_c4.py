@@ -139,6 +139,25 @@ def _demo(rng, fam, expr, cols, H, W, want_obstacle=None):
     return G, out, list(zip(objs, added))
 
 
+def identifiable(truth, train_inst, test_demo):
+    """Amendment 1 item 9 (generator side, uses the ground truth): in the simplest complexity class that fits the
+    true training instances, every fitting expression predicts the truth's added cells on every true test
+    object. Otherwise the demonstrations do not determine the answer (category U's role, not G's)."""
+    ctx = [GG.Ctx(o, G) for o, _a, G in train_inst]
+    targets = [set(a) for _o, a, _G in train_inst]
+    tests = [GG.Ctx(o, test_demo[0]) for o, _a in test_demo[2]]
+    want = [GG.evaluate(truth, x) for x in tests]
+    cls_first = None
+    for e in GG.expressions():
+        if cls_first is not None and e[0] != cls_first:
+            break
+        if all(GG.evaluate(e, x) == t for x, t in zip(ctx, targets)):
+            cls_first = e[0]
+            if [GG.evaluate(e, x) for x in tests] != want:
+                return False
+    return cls_first is not None
+
+
 def make_task(fam, seed):
     from cora_fhr import baseline as BL
     rng = np.random.default_rng(seed)
@@ -167,6 +186,8 @@ def make_task(fam, seed):
         elif fam == "S" and (any(BL.native_explains(o, a, add_col, G) for o, a, G in train_inst)
                              or BL.reach_setting(train_inst) is None):
             rejected = "not_reach_only"
+        if not rejected and fam in G_FAMILIES and not identifiable(expr, train_inst, demos[3]):
+            rejected = "not_identifiable"
         if rejected:
             yield {"rejected": rejected}
             continue

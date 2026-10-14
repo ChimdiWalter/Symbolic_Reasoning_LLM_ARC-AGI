@@ -139,6 +139,11 @@ def test_tie_abstention_detects_border_vs_obstacle():
     _O, test = _obj({(1, 4)}, 3, (10, 10), extra=(((7, 4), 9),))   # an obstacle below the object
     tie, n = M.ambiguous(prop, groups, [test])
     assert tie and n >= 2
+    grows = test.copy()
+    grows[2:, 4] = 4                                                # a prediction that grows the object
+    assert M.ambiguous(prop, groups, [test], [grows])[0]
+    still = test.copy()                                             # a prediction that grows nothing: no tie
+    assert not M.ambiguous(prop, groups, [test], [still])[0]
 
 
 def test_solver_view_and_corpus_are_blind_and_final_is_sealed(monkeypatch):

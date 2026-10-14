@@ -281,6 +281,15 @@ ledger: protocol 26b08fff, grammar b0f9ad83, parameters 9578eda1.
    the held-out demonstration's input in a fold, segmented by native in the
    selected view.
 
+   **Scope (refined during the first development check).** The check runs
+   after native accepts the installed program, and considers only the
+   objects the committed prediction grows. An object is grown when the
+   prediction changes a cell of the selected operator's footprint.
+
+   **Why the refinement.** Checking every object of the input flagged
+   spurious ties on distractors the program never grows. It still reads
+   inputs and CORA's own prediction only.
+
    **Reason.** Category U is unresolvable from the demonstrations by design.
    Under the frozen rule, the canonical-first operator would be committed by
    construction, failing P5 because of the protocol rather than the
@@ -317,3 +326,16 @@ ledger: protocol 26b08fff, grammar b0f9ad83, parameters 9578eda1.
 
 The parameter file is updated to match: final families F1, F2, F4, F5, the
 tie rule, and f_B provisional.
+9. **Identifiability of growth samples (generator side).** A G sample is
+   rejected as `not_identifiable` unless one condition holds. In the simplest
+   complexity class that fits the true training instances, every fitting
+   expression must predict the truth's added cells on every true test
+   object.
+
+   **Found by:** the first development check. An obstacle-stopping ray
+   whose demonstrations never hit an obstacle is indistinguishable from a
+   border ray. Such a task is a U control, not a G task.
+
+   **Scope:** the rule uses the ground truth, so it lives only in the
+   generator. It applies identically to development and final families,
+   fixed before the freeze. Category U remains deliberately unidentifiable.
