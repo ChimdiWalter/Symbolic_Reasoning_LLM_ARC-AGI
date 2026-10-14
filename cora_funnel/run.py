@@ -46,7 +46,8 @@ for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXP
     os.environ[_v] = "1"
 OUT = os.path.join(HERE, "outputs", "funnel_v0")
 MODES = {"native": (90.0, 45.0), "budget3": (270.0, 135.0),
-         "native_rep": (90.0, 45.0)}   # native budgets again, own rows file: a structural replicate (contrast study)
+         "native_rep": (90.0, 45.0),   # native budgets again, own rows file: a structural replicate (contrast study)
+         "native_assets": (90.0, 45.0)}  # native budgets WITH the sealed engine assets (asset audit, FHR Amendment 1 item 5)
 # Native budgets are wall-clock (time.monotonic). On a shared, oversubscribed host
 # (2026-10-13: 40-49 runnable threads on 24 cores) a wall-clock deadline measures
 # the machine's load, not the search. CLOCK=cpu runs every native deadline on this
@@ -142,7 +143,11 @@ def job(args):
         else:
             signal.alarm(cap)
         try:
-            out = run_object_task(key, task, None, out_dir=os.path.join(OUT, f"engine_{corpus}_{mode}"), budget_s=budget)
+            eng = os.path.join(OUT, f"engine_{corpus}_{mode}")
+            if mode == "native_assets":                                # the sealed v23 library and learned verbs
+                from cora_pilot import native as N
+                eng = N.prepare_object_dir(eng)                        # <eng>/object, holding library.json + verbs
+            out = run_object_task(key, task, None, out_dir=eng, budget_s=budget)
         except _HardTimeout:
             out = {"solved": False, "error": "object_hard_timeout"}
         finally:

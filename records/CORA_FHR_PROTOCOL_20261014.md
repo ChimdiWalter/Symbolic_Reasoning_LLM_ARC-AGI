@@ -339,3 +339,20 @@ tie rule, and f_B provisional.
    **Scope:** the rule uses the ground truth, so it lives only in the
    generator. It applies identically to development and final families,
    fixed before the freeze. Category U remains deliberately unidentifiable.
+10. **Generator v2: distractors are per task (development evidence,
+    2026-10-14).**
+
+    **The fault.** In development split v1 (sha 4af56bb2), a non-growing
+    distractor appeared in only some demonstrations. Native's own LOO then
+    failed in every family, N0 included (A certified 0 of 27). A fold
+    without a distractor learns "every object grows", so the selector cannot
+    be rebuilt from such subsets. That is a corpus artifact, not a property
+    of growth.
+
+    **The fix.** Generator v2 decides distractor presence once per task:
+    every demonstration has one, or none does.
+
+    **Check.** On development split v2 (sha d5bab8e4), A certifies all 3 N0
+    tasks, all correct.
+
+    **Scope.** The final split uses generator v2 and remains sealed.

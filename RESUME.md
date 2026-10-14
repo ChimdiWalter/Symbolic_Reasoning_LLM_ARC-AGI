@@ -59,7 +59,17 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
     - dev_D1_00: native fails, the authentic evidence yields ray(S,border)[edge:S] (NEW_COMPOSITION),
       abstained on a tie;
     - dev_D2_00: native's memorized instances are misattributed (1 of 9 matches the truth), NO_PROPOSAL.
-  - DEV RUN detached (arms A,C,D,E; outputs/cora_fhr/rows_c4_dev.jsonl; log outputs/cora_fhr/dev_run.log):
+  - DEV RUN v1 DONE (63f33e9; DEVELOPMENT):
+    - A certifies 0 of 27: a corpus artifact, since distractors in only some demos break native's LOO;
+    - no construction arm certifies;
+    - 48 folds ran installed extensions end to end, 17 SUCCESS;
+    - failing folds are mostly native non-acceptance on 2 demos (adaptive LOO nests native's own LOO);
+    - f_B = 1.55.
+    Generator v2 (per-task distractors; Amendment 1 item 10): dev split v2, sha d5bab8e4; A certifies 3 of 3 N0.
+    Integrity-gate queue detached (outputs/cora_fhr/gate_queue.log): B on the dev G tasks, the funnel asset audit
+    (dev60 native_assets), and a refold what-if with ungated folds (proposed Amendment 2; DEVELOPMENT only).
+    NEXT: dev v2 run (A,C,D,E). The user decides the fold semantics (Amendment 2) before any freeze.
+  - DEV RUN v1 (arms A,C,D,E; outputs/cora_fhr/rows_c4_dev.jsonl; log outputs/cora_fhr/dev_run.log):
     evaluate with `python -m cora_fhr.evaluate --corpus c4_dev`. Then run B on the dev G tasks, set f_B, freeze.
     The final run needs the user's separate go-ahead.
 - **CORA-FHR v1 PROTOCOL FROZEN (specification only; Step 1 authorized by the user 2026-10-14):**

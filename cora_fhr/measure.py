@@ -298,9 +298,9 @@ def run_task(key, view, arms, dirs, donor_raw, f_b):
 
 
 def load_corpus(name):
-    if name == "c4_dev":
+    if name in ("c4_dev", "c4_dev_v2"):
         from cora_fhr.corpus_c4 import solver_view
-        d = json.load(open(os.path.join(OUT, "c4_dev.json")))
+        d = json.load(open(os.path.join(OUT, "c4_dev.json" if name == "c4_dev" else "c4_dev_v2.json")))
         return sorted((k, solver_view(t)) for k, t in d["tasks"].items())
     if name == "dev60":
         return FR.load("dev60")
@@ -327,7 +327,7 @@ def job(args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", required=True, choices=("c4_dev", "dev60"))
+    ap.add_argument("--corpus", required=True, choices=("c4_dev", "c4_dev_v2", "dev60"))
     ap.add_argument("--arms", default="A,B,C,D,E")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--keys", default="")

@@ -103,7 +103,10 @@ def _place(rng, G, shape, gap=2):
     return None
 
 
-def _demo(rng, fam, expr, cols, H, W, want_obstacle=None):
+GENERATOR_VERSION = 2   # v2 (Amendment 1 item 10): a distractor is a per-TASK property (every demonstration or none)
+
+
+def _demo(rng, fam, expr, cols, H, W, want_obstacle=None, distractor=False):
     """One (input, output, growing objects) for the task's rule, or None."""
     grow_col, minor_col, add_col, dis_col = cols
     two = fam in ("D3", "F2")
@@ -114,7 +117,7 @@ def _demo(rng, fam, expr, cols, H, W, want_obstacle=None):
         if o is None:
             return None
         objs.append(o)
-    if fam != "X" and rng.random() < 0.5:                          # a distractor that never grows
+    if fam != "X" and distractor:                                  # a distractor that never grows, in every demo
         if _place(rng, G, _shape(rng, int(rng.integers(2, 5)), False, dis_col, dis_col)) is None:
             return None
     if fam == "X":                                                 # wrong action: recolour by size, no growth
@@ -165,10 +168,11 @@ def make_task(fam, seed):
         expr = family_expr(fam, rng)
         H, W = (int(v) for v in rng.integers(10, 15, size=2))
         grow_col, minor_col, add_col, dis_col = (int(v) for v in rng.choice(np.arange(1, 10), 4, replace=False))
+        distractor = bool(rng.random() < 0.5)
         demos = []
         for k in range(4):
             dm = _demo(rng, fam, expr, (grow_col, minor_col, add_col, dis_col), H, W,
-                       want_obstacle=(k == 3) if fam == "U" else None)
+                       want_obstacle=(k == 3) if fam == "U" else None, distractor=distractor)
             if dm is None:
                 break
             demos.append(dm)
@@ -241,8 +245,9 @@ def main(argv):
     if argv[0] == "final" and os.environ.get("CORA_FHR_FINAL_FREEZE") != "1":
         sys.exit("the final split is sealed until the freeze (CORA_FHR_FINAL_FREEZE=1)")
     tasks, rejections = build(argv[0])
-    text = json.dumps({"split": argv[0], "tasks": tasks, "rejections": rejections}, sort_keys=True)
-    path = os.path.join(OUT, f"c4_{argv[0]}.json")
+    text = json.dumps({"split": argv[0], "generator_version": GENERATOR_VERSION, "tasks": tasks, "rejections": rejections},
+                      sort_keys=True)
+    path = os.path.join(OUT, f"c4_{argv[0]}_v{GENERATOR_VERSION}.json")
     open(path, "w").write(text)
     sha = hashlib.sha256(text.encode()).hexdigest()
     open(path + ".sha256", "w").write(sha + "\n")
