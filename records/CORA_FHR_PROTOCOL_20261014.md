@@ -253,3 +253,67 @@ and the operator NEW_COMPOSITION. One witness shows feasibility only.
 CPU time this is about 0.5–1 h per triggered task, and roughly 40–60 CPU-h
 for the final run on 4 workers. That fits Oct 18–19 at the existing 4-worker
 footprint.
+
+## Amendment 1 (2026-10-14)
+
+**Context.** Written during implementation, before any prospective
+evaluation. The final split has never been generated, and no arm has run on
+any final-family task. The original frozen files keep their hashes in the
+ledger: protocol 26b08fff, grammar b0f9ad83, parameters 9578eda1.
+
+1. **Fair object access for C (the user's Step 2 requirement).** Arm C no
+   longer uses `cora_reach`'s 8-connected components. It segments every
+   demonstration input with native's own `segment()` in each of the seven
+   views, the same object representations native uses for E. Added cells
+   (background in the input, non-background in the output, no input cell
+   changed) go to the nearest object by Chebyshev distance; a tie discards
+   that view for that demonstration. C reads no trace of the reasoner's
+   failure.
+
+   The difference left between C and E is the failure trace itself: which
+   objects and view native memorized, and native's own correspondence of
+   added cells to objects. C is now a stronger control.
+2. **Tie abstention, in arms C, D and E, at the top level and in every
+   fold.** Take the fitting expressions of the selected expression's
+   complexity class (d1, d2 or union). If any of them adds different cells
+   from the selected one to an object of an unlabelled input, the
+   construction abstains. That input is the test input at the top level, and
+   the held-out demonstration's input in a fold, segmented by native in the
+   selected view.
+
+   **Reason.** Category U is unresolvable from the demonstrations by design.
+   Under the frozen rule, the canonical-first operator would be committed by
+   construction, failing P5 because of the protocol rather than the
+   reasoner. The check reads inputs only.
+3. **Common commit rule.** C and D, like E (section 3, step 6), commit an
+   extension-certified output only where A has no certified output. No
+   construction arm can displace a native certificate. Harms stay measurable
+   as extension-certified wrong outputs.
+4. **F3 replaced by F5 (the preregistered rule).**
+   - **Calibration:** generation on calibration seeds 19000+, which are never
+     final tasks; no arm was run on them.
+   - **F3 rejection:** 86% of F3 samples (mirror, then tile) were rejected as
+     baseline-explainable by `cora_reach` copy settings. That is above the
+     50% rule.
+   - **The rest:** F1 9%, F2 0%, F4 13%, F5 0%.
+   - **Final split:** F1, F2, F4, F5.
+5. **Engine assets.** Every arm's engine directory is prepared with the
+   sealed v23 frozen library and learned verbs
+   (`cora_pilot.native.prepare_object_dir`), as reach v1 did.
+   - **Funnel disclosure:** the failure funnel's runs used fresh directories
+     without these assets.
+   - **Effect:** harness and funnel agreed 60 of 60 on object-layer
+     certification on dev60, so its conclusions are unaffected.
+6. **Label order (clarification).** SELECTION_ONLY is tested within the
+   "fewer than 3 counted gains" branch: at least 3 extension-certified
+   correct gains through an AVAILABLE operator. In the original order it was
+   unreachable.
+7. **Novelty class AVAILABLE_NATIVE added.** A native growth mode explains
+   every instance. This is reachable only for C's instances; E's instances
+   are `pattern` fallbacks by definition.
+8. **f_B.** Provisionally 3.0 for development. The frozen value is the median
+   over development G tasks of E's CPU divided by A's CPU, written into the
+   parameter file before the freeze.
+
+The parameter file is updated to match: final families F1, F2, F4, F5, the
+tie rule, and f_B provisional.

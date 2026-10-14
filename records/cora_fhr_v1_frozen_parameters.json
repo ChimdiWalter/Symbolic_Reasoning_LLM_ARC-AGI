@@ -67,12 +67,12 @@
    "G": {
     "F1": "ray(diag d, obstacle)(corners)",
     "F2": "ring(4)(ray(d, border)(part_minority))",
-    "F3": "repeat(size(d))(reflect(V)(self))",
     "F4": "union(ray(d1, border)(centre), ray(d2, border)(centre)), d1 != d2",
-    "per_family": 10
+    "per_family": 10,
+    "F5": "shift(size(d))(ring(8)(self))"
    },
    "alternate_family_if_rejection_over_50pct": {
-    "F5": "shift(size(d))(ring(8)(self))"
+    "applied": "F3 -> F5 (calibration: F3 rejected 86%)"
    },
    "N0": 10,
    "S": 10,
@@ -112,5 +112,19 @@
   ],
   "threshold": null
  },
- "claim_ceiling": "L2 compositional growth; no new primitive is claimed"
+ "claim_ceiling": "L2 compositional growth; no new primitive is claimed",
+ "amendment_1": {
+  "date": "2026-10-14",
+  "C_object_access": "native seven views + nearest-object attribution",
+  "tie_abstention": "same-class fitting expressions that differ on an unlabelled input's objects -> abstain (C, D, E; top level and folds)",
+  "commit_rule": "C, D, E commit only where A has no certified output",
+  "engine_assets": "cora_pilot.native.prepare_object_dir (frozen library and learned verbs)",
+  "novelty_classes": [
+   "AVAILABLE_NATIVE",
+   "AVAILABLE_REACH",
+   "NEW_COMPOSITION"
+  ],
+  "f_B_provisional": 3.0,
+  "original_sha256_prefix": "9578eda10167"
+ }
 }
