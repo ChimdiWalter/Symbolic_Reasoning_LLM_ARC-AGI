@@ -6,6 +6,9 @@ Last updated 2026-09-28. Read this first.
 
 OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough sprint"; resume here):
 - **Kaggle.**
+  - **NEURAL SUBMITTED: 57160429** (2026-10-14 00:08Z, NEURAL_TTT_BASELINE), status PENDING. The watcher
+    writes the score to outputs/kaggle_deploy/neural_v1_official_score.json.
+    Record it in KAGGLE_NEURAL_V1_LOG section 12, then update the paper, poster and abstract (neural label only).
   - The neural run `chimdiwalter/cora-neural-ttt-baseline-v1` v1 is COMPLETE and AUDITED (20:56Z):
     - 240/240 tasks decoded; 259/259 genuine attempt_1; 0 fallback; schema 0; 4.34 h;
     - every gate passes except today's slot, so the watcher submits ONCE after 00:00Z
@@ -45,6 +48,11 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - gate-off counterfactual: 8 right, 26 wrong;
   - so certification is NOT the bottleneck; generating a generalizing hypothesis is.
   - The harness, oracle and budget sections are pending; the driver is on the whole harness (22:12Z).
+- **ARBITRATION SHADOW** (cora_funnel/arbitration_shadow.py, 93a7d10; DEVELOPMENT; saved predictions only):
+  - frozen precedence 12/60;
+  - object-certificate-first, the conservative attempt_2 override and complementarity: 14/60 each
+    (+2, 0 lost);
+  - an engineering result, not capability growth; replicate on c2dev when the funnel's c2dev rows exist.
 - **NEXT-SESSION CHECKLIST (state at 21:00Z, Oct 13):**
   1. **Neural.** After 00:00Z the watcher submits ONCE, then writes
      outputs/kaggle_deploy/neural_v1_official_score.json. Record the score in

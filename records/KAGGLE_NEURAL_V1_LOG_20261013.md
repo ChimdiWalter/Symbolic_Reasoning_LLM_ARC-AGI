@@ -369,3 +369,28 @@ after 00:00Z, then record the official score in
 - This run used 4.34 h on L4×4.
 - The quota reset is 2026-10-17.
 - The weekly figure must be read on the Kaggle site.
+
+## 11. Official submission (2026-10-14, 00:08Z)
+
+**Submitted** by the detached watcher under the user's one-entry
+authorization of 2026-10-13. Every gate passed (section 10), and the daily
+slot reopened at 00:00Z.
+
+| field | value |
+|---|---|
+| submission ID | **57160429** |
+| time | 2026-10-14 00:08:23Z (7:08 PM CT, Oct 13) |
+| kernel | `chimdiwalter/cora-neural-ttt-baseline-v1`, version 1 |
+| description | NEURAL_TTT_BASELINE neural_v1: public NVARC Qwen3-4B TTT pipeline reproduced (sorokin/qwen3_4b_grids15_sft139); not CORA, not FULL_CORA |
+| CLI | rc 0, "0 submissions remaining today." |
+| status at 00:08:44Z | SubmissionStatus.PENDING; the hidden-set re-run is in progress |
+
+**Submission tally:** lifetime 3 (July 54617562, native 57144804, this one);
+today 1 of 1.
+
+The watcher follows the status and writes the official score to
+`outputs/kaggle_deploy/neural_v1_official_score.json`.
+
+**Attribution.** Any score here is a NEURAL_TTT_BASELINE result: a
+reproduction of a published NVARC-style pipeline. It is not evidence of CORA
+capability construction.
