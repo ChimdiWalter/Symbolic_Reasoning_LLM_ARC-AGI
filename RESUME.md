@@ -48,6 +48,20 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - gate-off counterfactual: 8 right, 26 wrong;
   - so certification is NOT the bottleneck; generating a generalizing hypothesis is.
   - The harness, oracle and budget sections are pending; the driver is on the whole harness (22:12Z).
+- **CORA-FHR v1 IMPLEMENTED (Step 2 authorized 2026-10-14; development only; final split SEALED):**
+  - code cora_fhr/ (ggrow, baseline, construct, bridge, measure, corpus_c4, evaluate); 12 tests pass
+    (tests/test_fhr.py); commits d0cdcfb, 128c563.
+  - Amendment 1 is in the protocol: fair object access for C, tie abstention after acceptance on grown objects,
+    common commit rule, F3 -> F5 by the calibration rule, engine assets, label order, f_B provisional 3.0,
+    identifiability of G samples.
+  - Dev split C4: 27 tasks, sha 4af56bb2 (outputs/cora_fhr/c4_dev.json).
+  - Smoke on 2 tasks:
+    - dev_D1_00: native fails, the authentic evidence yields ray(S,border)[edge:S] (NEW_COMPOSITION),
+      abstained on a tie;
+    - dev_D2_00: native's memorized instances are misattributed (1 of 9 matches the truth), NO_PROPOSAL.
+  - DEV RUN detached (arms A,C,D,E; outputs/cora_fhr/rows_c4_dev.jsonl; log outputs/cora_fhr/dev_run.log):
+    evaluate with `python -m cora_fhr.evaluate --corpus c4_dev`. Then run B on the dev G tasks, set f_B, freeze.
+    The final run needs the user's separate go-ahead.
 - **CORA-FHR v1 PROTOCOL FROZEN (specification only; Step 1 authorized by the user 2026-10-14):**
   - files: records/CORA_FHR_PROTOCOL_20261014.md, docs/CORA_FHR_GGROW_v1.md,
     records/cora_fhr_v1_frozen_parameters.json.
