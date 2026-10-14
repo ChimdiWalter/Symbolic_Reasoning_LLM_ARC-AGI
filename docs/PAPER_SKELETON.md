@@ -1599,6 +1599,16 @@ Matched search (B, 1.33x CPU): 0 of 15.
 - 3/3 folds rebuilt it, with exact held-out predictions;
 - the committed answer is correct.
 
+**Generator degeneracy** (`records/CORA_FHR_DEGENERACY_AUDIT_20261014.md`).
+- D3's planted rule `union(ring(8)[part_minority], hull[part_minority])` collapses to
+  `ring(8)[part_minority]` on every D3 object: `_shape()` makes one minority cell, its hull is
+  that occupied cell, and `finalize()` removes it.
+- Checked on all 31 dev-corpus objects and in a generator test.
+- The witness is therefore a single-step composition, not a recovered union.
+- On 1,000 objects with 2–4 minority cells the two rules differ on 81.
+- Family S also collapses, to `ring(8)[bbox]`; this is definitional, and S is a reach-only control.
+- The final split's families show same-depth aliases only, and no collapse.
+
 **But C and C' (correspondence-matched, failure-blind) match E.** On C4, E's evidence equals C''s by
 construction. H3 is therefore untestable on this corpus; mixed-coverage families are required (Amendment 2 E).
 

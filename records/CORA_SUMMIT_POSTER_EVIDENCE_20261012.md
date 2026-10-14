@@ -318,3 +318,4 @@ Poster block: "Constructing the missing operation"; abstract paragraph 4.
 | 0 wrong, 0 lost over 27 tasks | `eval_c4_dev_v2.json` |
 | matched search 0 of 15 | `eval_c4_dev_v2_B.json` |
 | failure-blind match; E = C' by design | `rows_c4_dev_v2.jsonl` (arm C), `c2_audit_c4_dev_v2.json` |
+| D3 planted union = ring(8)[part_minority] on all D3 objects (one-step witness, not a union) | `outputs/cora_fhr/degeneracy_audit.json`; `tests/test_fhr.py::test_d3_planted_union_collapses_to_the_constructed_operator` |

@@ -44,6 +44,9 @@ failures were the corpus artifact. Every overlay was restored.
 
 **The witness, dev_D3_04** (frozen verification). The truth is a ring around
 the object's minority-colour cell.
+The planted `union(ring(8), hull)[part_minority]` collapses to exactly that, because D3 objects have
+one minority cell (`records/CORA_FHR_DEGENERACY_AUDIT_20261014.md`). The witness is a single-step
+composition, not a union.
 1. A fails: native memorizes, and its LOO rejects.
 2. E's evidence is native's own `pattern` fallbacks: 15 instances in 4 views.
 3. E constructs `ring(8)[part_minority]`, classified NEW_COMPOSITION (neither

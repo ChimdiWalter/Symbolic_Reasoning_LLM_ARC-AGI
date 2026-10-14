@@ -193,3 +193,33 @@ def test_amendment2_fold_semantics_are_scoped_to_folds(monkeypatch):
     seen.clear()
     M.loo("E", "k", train, None, {"loo": "/fold_dir"}, None)
     assert all(g is None for _t, _d, g in seen)                          # frozen semantics: native's gate stays on
+
+
+def test_d3_planted_union_collapses_to_the_constructed_operator():
+    """D3's hull branch is vacuous on every object the generator makes (exactly one minority cell; the hull of
+    one cell is that occupied cell, which finalize removes), so the planted union equals ring8[part_minority].
+    With two minority cells whose bounding box holds a free cell outside their 8-ring, the two differ: the
+    equivalence is a property of the D3 generator, not of the operators."""
+    from cora_fhr import corpus_c4 as C4
+    truth = C4.family_expr("D3", np.random.default_rng(0))
+    learned = ("d1", GG.SOURCES.index("part_minority"), GG.TRANSFORMS.index(("ring", 8)))
+    rng = np.random.default_rng(424242)
+    n = 0
+    for _ in range(300):
+        H, W = (int(v) for v in rng.integers(10, 15, size=2))
+        cols = tuple(int(v) for v in rng.choice(np.arange(1, 10), 4, replace=False))
+        dm = C4._demo(rng, "D3", truth, cols, H, W, distractor=bool(rng.random() < 0.5))
+        if dm is None:
+            continue
+        for o, a in dm[2]:
+            x = GG.Ctx(o, dm[0])
+            assert len(GG.source("part_minority", x)) == 1
+            assert GG.evaluate(learned, x) == set(a) == GG.evaluate(truth, x)
+            n += 1
+    assert n >= 100
+    O = {(2, 2): 5, (2, 3): 3, (2, 4): 3, (3, 4): 3, (4, 4): 5}         # minority 5 at (2,2) and (4,4)
+    G = np.zeros((9, 9), int)
+    for p, v in O.items():
+        G[p] = v
+    x = GG.Ctx(O, G)
+    assert GG.evaluate(truth, x) - GG.evaluate(learned, x) == {(4, 2)}   # hull adds a free cell ring8 misses

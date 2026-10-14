@@ -32,6 +32,11 @@ and not a Kaggle result.
 | 1:05 | 7. the result | "Only then does CORA commit its answer. An independent evaluator scores it: correct." |
 | 1:12 | 8. the ablation | "Remove the operator and CORA fails again. The honest part: a constructor that never sees the failure trace finds the same operator. So this shows that CORA can construct and verify a missing capability; it does not yet show that the failure record made the difference. That comparison is the experiment we have designed next." |
 
+**Scope of the witness.** The constructed operator is single-step. D3's planted rule
+`union(ring(8), hull)[part_minority]` reduces to it, because each D3 object has one minority cell, so the
+hull step adds nothing (`records/CORA_FHR_DEGENERACY_AUDIT_20261014.md`). Do not present it as learning
+a two-part rule. `data/task.json` keeps the planted string as generated (hash-pinned).
+
 ## Facts behind each screen
 
 All of these are in `data/witness.json`:

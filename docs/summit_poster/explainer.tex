@@ -238,6 +238,9 @@ example, rebuilds the rule from the other two, and predicts the hidden one.
 On made-up practice puzzles, one complete case worked. The solver failed on its own, the new rule was one
 it could not express before, all three hidden-example checks passed, and the final answer was right.
 Removing the rule broke it again, and giving the solver more search time instead fixed nothing.
+The rule it found is simple: a ring around the one odd-coloured cell. The puzzle was planted as a two-part
+rule, but on its shapes the second part never adds a cell, so this shows a missing one-step tool being
+built, not a complex one.
 
 The honest part: a version that never looked at the failure record found the same rule. So this shows the
 system can build and check a missing tool. It does not yet show that learning from the failure is what
