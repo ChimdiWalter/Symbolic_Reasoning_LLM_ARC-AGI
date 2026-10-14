@@ -56,6 +56,8 @@ SOURCES = {
                  "2f1003509235d3f397385172ed77d44b488572c1fd732a4d7669108d41ca1687"),
     "funnel_dev60": ("outputs/funnel_v0/eval_dev60_native.json",
                      "3fb8c0e3b3f896668cf718db820878a86c5252b95e77d6c8e14069245fd6f595"),
+    "c4_dev_v2": ("outputs/cora_fhr/c4_dev_v2.json", "d5bab8e40f55af1926e3bd98ea59b7999ca54fe3a6c261da0aa9032da5533653"),
+    "fhr_witness": ("docs/summit_demo_20261023/data/witness.json", "ab525368012278b85fb1bd3d19aef4d249ae6e2363546b837382e799c76f30a0"),
 }
 USED, DRAWN = {}, {}
 
@@ -375,6 +377,41 @@ def failure_funnel_dev60():
     _save(fig, "fig_failure_funnel_dev60.png", ("funnel_dev60",))
 
 
+def _grid(fig, g, x0, y0, cell):
+    H, Wg = len(g), len(g[0])
+    ax = _ax(fig, x0, y0, Wg * cell, H * cell)
+    for r in range(H):
+        for c in range(Wg):
+            ax.add_patch(Rectangle((c, H - 1 - r), 1, 1, facecolor=ARC[g[r][c]], edgecolor="#555555", linewidth=0.4))
+    ax.set_xlim(0, Wg)
+    ax.set_ylim(0, H)
+    ax.axis("off")
+
+
+def fhr_witness(key="dev_D3_04"):
+    """The recorded CORA-FHR development witness: two demonstrations, the test input, and CORA's committed
+    prediction (scored correct by the evaluator), from the pinned corpus and the pinned witness bundle."""
+    t = json.load(open(src("c4_dev_v2")))["tasks"][key]
+    w = json.load(open(src("fhr_witness")))
+    assert w["key"] == key and w["evaluator"]["E"] is True
+    cell = 0.155
+    fig = _new(6.0)
+    _tag(fig, f"SYNTHETIC DEVELOPMENT · task {key} · recorded run\n"
+              f"operator {w['operator']['pretty']} · {w['operator']['novelty']}")
+    cols = [(t["train"][0][0], t["train"][0][1], "demo 0"), (t["train"][1][0], t["train"][1][1], "demo 1"),
+            (t["test"][0][0], w["committed"][0], "test")]
+    for i, (gin, gout, name) in enumerate(cols):
+        x = 0.35 + i * 3.1
+        _grid(fig, gin, x, 2.85, cell)
+        _grid(fig, gout, x, 0.55, cell)
+        _text(fig, x + len(gin[0]) * cell / 2, 4.85, name, ha="center", va="bottom", fontsize=FS_LAB, color=INK)
+    _text(fig, 0.35 + 2 * 3.1 + len(t["test"][0][0][0]) * cell, 0.15, "committed prediction: correct",
+          ha="right", va="center", fontsize=FS_MIN, color=INK)
+    for label, y in (("in", 3.8), ("out", 1.5)):
+        _text(fig, 0.05, y, label, ha="left", va="center", fontsize=FS_MIN, color=INK2)
+    _save(fig, "fig_fhr_witness_dev_D3_04.png", ("c4_dev_v2", "fhr_witness"))
+
+
 def main():
     os.makedirs(FIG, exist_ok=True)
     synthetic()
@@ -383,6 +420,7 @@ def main():
     admission()
     neg = negative()
     failure_funnel_dev60()
+    fhr_witness()
     prov = {"script": "scripts/summit_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
             "printed_width_in": W, "block_text_width_pt": 686.80643, "negative_controls": neg, "figures": {}}
     for name, meta in sorted(DRAWN.items()):

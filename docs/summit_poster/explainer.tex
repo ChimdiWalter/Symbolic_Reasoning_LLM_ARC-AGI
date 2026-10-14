@@ -331,4 +331,21 @@ between competing fixes, instead of picking one, before any new real test.
   \item[made-up (synthetic)] puzzles I generate myself, with known answers.
   \item[false acceptance] a wrong answer that passed the checks.
 \end{description}
+
+% ======================================================================
+\bigpart{Part 5. How to reproduce what you see}
+\begin{itemize}
+  \item \textbf{Poster, abstract, explainer:} \texttt{sh docs/summit\_poster/build.sh}. It redraws every figure in
+    \texttt{docs/summit\_poster/figures/} from hash-pinned recorded outputs (\texttt{scripts/summit\_figures.py};
+    the hashes are in \texttt{figures/PROVENANCE.json}). Then run \texttt{python scripts/poster\_to\_pptx.py} for the
+    PowerPoint.
+  \item \textbf{The 90-second demo:} \texttt{sh docs/summit\_demo\_20261023/run\_demo.sh}. This is an offline,
+    hash-checked replay of the recorded run; its frames are written to its \texttt{frames/} folder.
+  \item \textbf{The failure funnel:} \texttt{python -m cora\_funnel.driver} runs it, and \texttt{python -m
+    cora\_funnel.evaluate} scores it. The record is \texttt{records/CORA\_FAILURE\_FUNNEL\_20261014.md}.
+  \item \textbf{The construction experiment:} \texttt{python -m cora\_fhr.measure --corpus c4\_dev\_v2}, then
+    \texttt{python -m cora\_fhr.evaluate}. The witness audit is \texttt{python -m cora\_fhr.witness}. The record is
+    \texttt{records/CORA\_FHR\_DEV\_RESULTS\_20261014.md}.
+\end{itemize}
+
 \end{document}
