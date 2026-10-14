@@ -112,9 +112,42 @@ attribution found no instances.
 2. **D's evidence never shrinks.** E and C lose a demonstration per fold;
    D's folds reuse the donor's full evidence, which makes its LOO easier.
 
-## 6. Pending
+## 6. Final development results (2026-10-15, 00:05Z; replaces "Pending")
 
-The queue (`outputs/cora_fhr/gate_queue_v2.log`) still has to deliver:
-- arm B at f_B 1.33;
-- the funnel engine-asset audit (dev60 `native_assets`);
-- the ungated-fold refold what-if.
+Per-family table: `outputs/cora_fhr/dev_table_c4_dev_v2.md` / `.json`, from `python -m cora_fhr.dev_table`.
+
+**C′ run** (`rows_c4_dev_v2_C2.jsonl`; 21:21 to 22:04Z):
+
+| | E | C′ | C | D |
+|---|---|---|---|---|
+| certified with an extension and correct | 3 (D3 1, S 2) | 3 | 3 | 3 (D3 via a same-family donor) |
+| wrong extension certificates | 0 | 0 | 0 | 0 |
+| A-correct answers lost | 0 | 0 | 0 | 0 |
+
+- E and C′ agree on outcome **and** selected operator in 22 of 27 tasks. That covers every G-family
+  task (D1, D2, D3) and S.
+- The 5 differences are N0 (3) and U (2). There C′ proposes native-available rules (`ring(8)[self]`,
+  `ray(.)[self]`), which end in ROUTING_FAILURE or ENGINE_REJECTION, while E has nothing to learn from.
+  Neither gains an answer: A certifies the N0 tasks itself.
+- **Causal verdict on C4: failure evidence adds no measurable correctness over C′**, as the
+  structural audit predicted. The failure filter only suppresses useless proposals on
+  native-covered tasks.
+
+**Native A on the controls:**
+- 3 of 3 N0 tasks certified correct.
+- 2 wrong native certificates on the designed-ambiguous U (1) and wrong-action X (1) controls.
+- The precise-verifier claim (0 false certificates) refers to the 60 real dev tasks and to the
+  construction arms, not to native on these adversarial controls.
+
+**Refold, ungated** (Amendment 2 A what-if): identical outcome counts in every arm.
+
+**Dropping fold-level ties** (Amendment 2 B, recorded-fold what-if):
+- the no-fold-tie certifications would be correct in D1 (E 2, C2 2) and S;
+- B is still not recommended, because it is a relaxation with in-sample support only.
+
+**Also done:**
+- the asset audit (funnel record);
+- the D3 degeneracy audit (`records/CORA_FHR_DEGENERACY_AUDIT_20261014.md`): the witness is a
+  single-step composition;
+- the Amendment 2 recommendation (protocol);
+- the mixed-coverage pilot (`records/CORA_FHR_MIX_DESIGN_20261014.md`), run 2 in progress.

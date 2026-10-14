@@ -10,10 +10,10 @@ E vs C' verdict, poster/demo readiness, GO/NO-GO plus ONE next experiment). Prog
 - [x] 1a queue: ASSET AUDIT DONE (6 certified-correct unchanged; memorized 27->26; +1 asset-triggered native error on
       kd506f38dd7d6; recorded in the funnel record, paper 8.19, poster, abstract, explainer, startup, evidence)
 - [x] 1b REFOLD (ungated, Amendment 2 A what-if) DONE: identical outcome counts to the frozen run in every arm (C, D, E 3 certified each)
-- [ ] 1c C' run (arms A,C2 on c4_dev_v2) RUNNING since 21:21Z via followup_c2.sh -> rows_c4_dev_v2_C2.jsonl, eval_v2_C2.out.
+- [x] 1c C' run DONE 22:04Z: E = C' on all G tasks (dev record section 6). Was: (arms A,C2 on c4_dev_v2) since 21:21Z via followup_c2.sh -> rows_c4_dev_v2_C2.jsonl, eval_v2_C2.out.
       THEN: python -m cora_fhr.dev_table --corpus c4_dev_v2; replace section 6 of records/CORA_FHR_DEV_RESULTS_20261014.md
 - [x] 4 Amendment 2 recommendation written into the protocol (660a48c): reject A and B, adopt C, D, E (NOT in force; user decides)
-- [ ] mixed pilot (followup_mix.sh, PID 1954431) starts after 'C2 DONE'; check the stop rule in records/CORA_FHR_MIX_DESIGN_20261014.md
+- [ ] mixed pilot: run 1 crashed with 0 rows (C'' label bug, fixed in 2cb658b); RUN 2 detached since 23:58Z (followup_mix2.sh; log followup_mix.log); check the stop rule in records/CORA_FHR_MIX_DESIGN_20261014.md
 - [ ] FINAL REPORT (<600 words): integrity results, D3 verdict, corrected witness claim, Amendment 2, E vs C', poster/demo, GO/NO-GO + ONE next experiment
 - [x] 2 D3 degeneracy CONFIRMED (records/CORA_FHR_DEGENERACY_AUDIT_20261014.md, 02eec25): planted union = ring(8)[part_minority]
       on all D3 objects; differs on 81/1000 multi-minority perturbations; S collapses (definitional); final families aliases only
