@@ -400,3 +400,24 @@ memorized part needing a new composition. The failure trace then localizes what 
 **Without E, H3 is untestable, and a final run can test H1 (capability growth over A and B) only.**
 
 **Matched search, measured.** B at f_B = 1.33 certified 0 of 15 development G tasks (0.99 CPU-h).
+
+
+### Amendment 2: recommendation, component by component (2026-10-14, 21:25Z; NOT IN FORCE; the user decides)
+
+This follows the refold what-if, the asset audit and the degeneracy audit. The rule is never to relax
+verification for score. Top-level safety and evaluator blindness are preserved.
+
+| part | recommendation | why |
+|---|---|---|
+| **A**: single-level outer LOO (ungated fold fits) | **Reject** | The refold what-if (`eval_c4_dev_v2_refold_ungated.json`) gives outcome counts identical to the frozen run in every arm (C, D, E: 3 certified with an extension each, 0 wrong). The nested native gate never failed a fold in v2. A would weaken fold verification for no measured benefit |
+| **B**: drop the fold-level tie check | **Reject** | It is a relaxation. With it, a fold passes on the canonical-first choice even when the reduced evidence does not determine the held-out output. The only support is in-sample (the same 27 dev tasks that motivated it), and some gains sit on degenerate (D3) or same-family-donor evidence. Keep fold-level tie abstention |
+| **C**: D with cross-family donors and fold-symmetric evidence | **Adopt** | It repairs a control defect (dev_D3_00's same-family donor certified). It strengthens the control and relaxes nothing |
+| **D**: C′ as the primary H3 control | **Adopt** | It is the information-matched failure-blind comparison |
+| **E**: H3 needs mixed-coverage families | **Adopt** | On C4, E's evidence equals C′'s by construction. This is implemented as the DEV-only pilot in `records/CORA_FHR_MIX_DESIGN_20261014.md`, which adds the stronger blind control C″ |
+
+Unchanged throughout:
+- the sealed 80-task final;
+- the native gate on the top-level program;
+- the top-level tie check;
+- the commit rule;
+- evaluator-only answers.
