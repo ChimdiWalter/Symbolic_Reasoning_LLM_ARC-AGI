@@ -30,7 +30,7 @@ PARAMS = os.path.join(HERE, "records", "cora_fhr_v1_frozen_parameters.json")
 
 
 def answers(corpus):
-    if corpus in ("c4_dev", "c4_dev_v2", "c4_final"):
+    if corpus in ("c4_dev", "c4_dev_v2", "c4_final", "mix_dev"):
         d = json.load(open(os.path.join(OUT, f"{corpus}.json")))
         return {k: ([b for _a, b in t["test"]], t["family"]) for k, t in d["tasks"].items()}
     if corpus == "dev60":

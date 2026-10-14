@@ -153,6 +153,13 @@ def groups_for(arm, train, dirs, donor_raw):
         except _Cap:
             return {}, "extract_cap"
         return CS.group_reach_records(raw), None
+    if arm == "C3":                         # C'' (mixed-coverage design, DEVELOPMENT): C' regrouped by colour signature
+        g, why = groups_for("C2", train, dirs, donor_raw)
+        out = {}
+        for view, insts in g.items():
+            for inst in insts:
+                out.setdefault(f"{view}|{sorted(set(inst[0].values()))}", []).append(inst)
+        return out, why
     raise ValueError(arm)
 
 
@@ -279,7 +286,7 @@ def run_task(key, view, arms, dirs, donor_raw, f_b):
         b_rec, _ = object_run(key, train, tests, dirs["B"], budget_s=BUDGET_S * f_b)
         row["arms"]["B"] = {"committed": b_rec["predictions"] if b_rec["accepted"] else None, "certified": b_rec["accepted"],
                             "run": b_rec, "f_B": f_b, "cpu_s": b_rec["cpu_s"]}
-    for arm in [x for x in ("C", "C2", "D", "E") if x in arms]:
+    for arm in [x for x in ("C", "C2", "C3", "D", "E") if x in arms]:
         c0 = time.process_time()
         rec, ext = construct_and_check(arm, key, train, tests, dirs, donor_raw)
         commit, certified_by = (a_rec["predictions"], "A") if a_rec["accepted"] else (None, None)
@@ -311,6 +318,10 @@ def load_corpus(name):
         return sorted((k, solver_view(t)) for k, t in d["tasks"].items())
     if name == "dev60":
         return FR.load("dev60")
+    if name == "mix_dev":                   # mixed-coverage design (DEVELOPMENT; cora_fhr/corpus_mixed.py)
+        from cora_fhr.corpus_c4 import solver_view
+        d = json.load(open(os.path.join(OUT, "mix_dev.json")))
+        return sorted((k, solver_view(t)) for k, t in d["tasks"].items())
     raise ValueError(name)
 
 
@@ -321,7 +332,7 @@ def job(args):
     FR.cpu_clock()
     from cora_pilot import native as N
     base = os.path.join(OUT, "engines", key)
-    dirs = {a: N.prepare_object_dir(os.path.join(base, a)) for a in ("A", "B", "C", "C2", "D", "E", "extract", "loo")}
+    dirs = {a: N.prepare_object_dir(os.path.join(base, a)) for a in ("A", "B", "C", "C2", "C3", "D", "E", "extract", "loo")}
     donor_raw = None
     if "D" in arms and donor_view is not None:
         dtrain = [(np.asarray(p["input"], dtype=int), np.asarray(p["output"], dtype=int)) for p in donor_view["train"]]
@@ -334,7 +345,8 @@ def job(args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", required=True, choices=("c4_dev", "c4_dev_v2", "dev60"))
+    ap.add_argument("--corpus", required=True, choices=("c4_dev", "c4_dev_v2", "dev60", "mix_dev"))
+    ap.add_argument("--donor_corpus", default="", help="D donors from this corpus's D1/D2 tasks (other rules)")
     ap.add_argument("--arms", default="A,B,C,D,E")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--keys", default="")
@@ -354,7 +366,12 @@ def main(argv=None):
         if k in done or (want is not None and k not in want):
             continue
         donor = keys[(i + 1) % len(keys)]                              # the next key in sorted order, cyclic
-        todo.append((k, view[k], arms, donor, view[donor], a.f_b))
+        dv = view[donor]
+        if a.donor_corpus:                  # cross-family donors with a different rule (Amendment 2 C, development)
+            fam = {x: t["family"] for x, t in json.load(open(os.path.join(OUT, f"{a.donor_corpus}.json")))["tasks"].items()}
+            dpool = [(x, v) for x, v in load_corpus(a.donor_corpus) if fam.get(x) in ("D1", "D2")]
+            donor, dv = dpool[i % len(dpool)]
+        todo.append((k, view[k], arms, donor, dv, a.f_b))
     print(f"{a.corpus}: {len(todo)} to run, arms {arms}", flush=True)
     t0 = time.time()
     with mp.get_context("fork").Pool(a.workers, maxtasksperchild=1) as pool, open(path, "a") as fh:
