@@ -163,3 +163,33 @@ def test_dev_corpus_hash_is_recorded():
     if not os.path.exists(p):
         pytest.skip("dev corpus not generated")
     assert hashlib.sha256(open(p, "rb").read()).hexdigest() == open(p + ".sha256").read().strip()
+
+
+def test_amendment2_fold_semantics_are_scoped_to_folds(monkeypatch):
+    """Ungated folds (proposed Amendment 2) switch native's gate off ONLY inside a fold run and restore it; the
+    top-level gate is never touched; fold runs use the fold's own engine directory; fold records carry no
+    certificate field."""
+    from cora_fhr import measure as M
+    monkeypatch.setattr(M, "FOLD_GATE", "ungated")
+    monkeypatch.delenv("OBJECT_GATE_OFF", raising=False)
+    seen = []
+
+    def fake_object_run(task_id, train, tests, engine_dir, ext=None, budget_s=90.0):
+        seen.append((task_id, engine_dir, os.environ.get("OBJECT_GATE_OFF")))
+        return {"accepted": True, "uses": True, "predictions": [np.asarray(tests[0]).tolist()], "cpu_s": 0.0,
+                "restored": True}, None
+
+    def fake_construct(arm, key, tr, inputs, dirs, donor_raw):
+        return {"selected": {}, "_sel": None, "_groups": None}, {"name": "fx_test"}
+    monkeypatch.setattr(M, "object_run", fake_object_run)
+    monkeypatch.setattr(M, "construct_and_check", fake_construct)
+    monkeypatch.setattr(M, "tie_check", lambda rec, inputs, preds: False)
+    train = [(np.full((3, 3), i), np.full((3, 3), i)) for i in range(3)]
+    folds = M.loo("E", "k", train, None, {"loo": "/fold_dir"}, None)
+    assert all(g == "1" and d == "/fold_dir" for _t, d, g in seen) and len(seen) == 3
+    assert os.environ.get("OBJECT_GATE_OFF") is None                    # restored after every fold
+    assert all("certified_by" not in f and f["fold_gate"] == "ungated" for f in folds)
+    monkeypatch.setattr(M, "FOLD_GATE", "native")
+    seen.clear()
+    M.loo("E", "k", train, None, {"loo": "/fold_dir"}, None)
+    assert all(g is None for _t, _d, g in seen)                          # frozen semantics: native's gate stays on
