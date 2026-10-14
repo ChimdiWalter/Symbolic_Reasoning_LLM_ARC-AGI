@@ -212,6 +212,30 @@ def tie_check(rec, inputs, preds):
     return tie
 
 
+FOLD_GATE = os.environ.get("CORA_FHR_FOLD_GATE", "native")      # "native" = the frozen nested semantics
+
+
+@contextlib.contextmanager
+def fold_semantics():
+    """Frozen semantics ("native"): a fold succeeds only if native ACCEPTS on the fold's demonstrations, which
+    nests native's own LOO inside the adaptive LOO. The development what-if ("ungated", proposed as Amendment 2;
+    never used for a counted result without the user's decision) instead takes native's train-perfect program
+    on the fold's demonstrations (OBJECT_GATE_OFF, native's own E2 switch). Native's own LOO folds use the same
+    ungated search."""
+    if FOLD_GATE != "ungated":
+        yield
+        return
+    prev = os.environ.get("OBJECT_GATE_OFF")
+    os.environ["OBJECT_GATE_OFF"] = "1"
+    try:
+        yield
+    finally:
+        if prev is None:
+            os.environ.pop("OBJECT_GATE_OFF", None)
+        else:
+            os.environ["OBJECT_GATE_OFF"] = prev
+
+
 def loo(arm, key, train, full_ext, dirs, donor_raw):
     folds = []
     for i in range(len(train)):
@@ -223,7 +247,9 @@ def loo(arm, key, train, full_ext, dirs, donor_raw):
             f["class"] = f.get("outcome")
             folds.append(f)
             continue
-        run, _p = object_run(f"{key}_loo{i}", rest, [a], dirs["loo"], ext=ext)
+        with fold_semantics():
+            run, _p = object_run(f"{key}_loo{i}", rest, [a], dirs["loo"], ext=ext)
+        f["fold_gate"] = FOLD_GATE
         tie = bool(run["accepted"] and run.get("uses") and tie_check(f, [a], run["predictions"]))
         f.pop("_sel", None), f.pop("_groups", None)
         exact = bool(run["accepted"] and run["predictions"][0] is not None and run["predictions"][0] == np.asarray(b).tolist())
