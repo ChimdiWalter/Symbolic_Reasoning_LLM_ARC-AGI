@@ -2,7 +2,7 @@
 and that used the extension, under CORA_FHR_FOLD_GATE=ungated (proposed Amendment 2). Never a counted result.
 
   CORA_FHR_FOLD_GATE=ungated python -m cora_fhr.refold [--workers 4]
-      -> outputs/cora_fhr/rows_c4_dev_refold_ungated.jsonl (same row format; evaluate with --tag _refold_ungated)
+      -> outputs/cora_fhr/rows_<corpus>_refold_ungated.jsonl (same row format; evaluate with --tag _refold_ungated)
 """
 import argparse
 import copy
@@ -54,13 +54,13 @@ def job(args):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--corpus", default="c4_dev")
     a = ap.parse_args(argv)
     from cora_fhr.measure import load_corpus
-    views = dict(load_corpus("c4_dev"))
-    keys = sorted(views)
-    rows = [json.loads(l) for l in open(os.path.join(OUT, "rows_c4_dev.jsonl"))]
+    views = dict(load_corpus(a.corpus))
+    rows = [json.loads(l) for l in open(os.path.join(OUT, f"rows_{a.corpus}.jsonl"))]
     todo = [(r["key"], r, views[r["key"]], views[r["donor"]]) for r in rows]
-    path = os.path.join(OUT, "rows_c4_dev_refold_ungated.jsonl")
+    path = os.path.join(OUT, f"rows_{a.corpus}_refold_ungated.jsonl")
     t0 = time.time()
     with mp.get_context("fork").Pool(a.workers, maxtasksperchild=1) as pool, open(path, "w") as fh:
         for i, row in enumerate(pool.imap_unordered(job, todo), 1):
