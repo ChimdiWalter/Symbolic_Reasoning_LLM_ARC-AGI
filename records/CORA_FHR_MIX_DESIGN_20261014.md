@@ -66,3 +66,10 @@ footprint stays at 4 workers.
 **Added caveat (2026-10-14, before any pilot result).** In M3 the kinds differ by size. Even if E beats the
 colour-only blind controls there, that alone does not show causal use of failure evidence. A follow-up
 would need an equally equipped size-aware blind control, for example C′ regrouped by object size.
+
+**Run log.**
+- **Run 1** (22:03 to 22:25Z) crashed before writing any row. The C″ arm's group label `<view>|<colours>`
+  reached `SegmentationVariant(...)` in the tie check. No result was produced or seen.
+- **Fix:** the tie check now parses `prop["view"].split("|")[0]`. This is a no-op for every existing arm,
+  and `tests/test_fhr.py` passes.
+- **Run 2** reruns all 8 tasks unchanged. The crash log is kept as `outputs/cora_fhr/followup_mix_run1_crash.log`.

@@ -178,7 +178,7 @@ def ambiguous(prop, groups, inputs, preds=None):
     same = [e for e in GG.expressions() if e[0] == first[0]]
     ctx = [GG.Ctx(O, G) for O, _A, G in insts]
     fits = [e for e in same if all(GG.evaluate(e, x) == set(A) for x, (_O, A, _G) in zip(ctx, insts))]
-    view = SegmentationVariant(prop["view"])
+    view = SegmentationVariant(prop["view"].split("|")[0])          # C3 groups are "<view>|<colours>"
     for k, t in enumerate(inputs):
         ta = np.asarray(t, dtype=int)
         changed = None
