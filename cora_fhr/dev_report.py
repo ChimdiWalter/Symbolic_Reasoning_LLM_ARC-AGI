@@ -39,7 +39,7 @@ def main(argv=None):
             for k in ("correct", "gain", "counted_gain", "new_certified_wrong", "lost_A_correct"):
                 c[k] += bool(r[k])
         row = rows[t["key"]]
-        for arm in ("C", "D", "E"):
+        for arm in ("C", "C2", "D", "E"):
             rr = row["arms"].get(arm)
             if not rr:
                 continue

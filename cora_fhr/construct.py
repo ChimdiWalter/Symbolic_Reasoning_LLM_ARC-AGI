@@ -50,6 +50,62 @@ def authentic_records(train, obj_dir, budget_s):
     return raw
 
 
+def native_all_records(train, obj_dir, budget_s):
+    """Control C' (proposed Amendment 2): the SAME identity-frame native induction as arm E, observed the same
+    way, but recording EVERY growth correspondence native built (any mode, not only the `pattern` fallbacks).
+    The object correspondence source and the extraction compute equal E's. Only the failure filter (which
+    correspondences native could not explain and memorized) is withheld."""
+    import contextlib
+    import hashlib
+    import json as _json
+    import geocat_arc.object_reasoning.correspondence as CO
+    import geocat_arc.object_reasoning.inducer as I
+    from geocat_arc.object_reasoning.engine import ObjectReasoningEngine
+    from geocat_arc.object_reasoning.inducer import InductionConfig, induce_program
+    from geocat_arc.object_reasoning.types import to_grid_pairs
+    from cora_reach.instances import _cells, _grid_list
+
+    @contextlib.contextmanager
+    def observed_all():
+        orig, orig_ev = CO.detect_grow, I.enumerate_labeled_tables
+        seen, cur = [], {"v": None}
+
+        def detect_grow(in_cc, out_cc, bounds, grid=None):
+            res = orig(in_cc, out_cc, bounds, grid)
+            if res is not None and any(c not in in_cc for c in out_cc):
+                seen.append((in_cc, out_cc, bounds, grid, cur["v"], res.get("mode")))
+            return res
+
+        def enumerate_labeled_tables(seg, *args, **kwargs):
+            prev = cur["v"]
+            cur["v"] = getattr(getattr(seg, "variant", None), "value", None)
+            try:
+                yield from orig_ev(seg, *args, **kwargs)
+            finally:
+                cur["v"] = prev
+        CO.detect_grow, I.enumerate_labeled_tables = detect_grow, enumerate_labeled_tables
+        try:
+            yield seen
+        finally:
+            CO.detect_grow, I.enumerate_labeled_tables = orig, orig_ev
+    eng = ObjectReasoningEngine(obj_dir, use_library=True, config=InductionConfig(budget_s=budget_s))
+    cfg = eng._config_with_library()
+    with observed_all() as seen:
+        induce_program(to_grid_pairs(train), cfg)
+    inputs = {hashlib.sha256(_json.dumps(np.asarray(a).astype(int).tolist()).encode()).hexdigest(): d
+              for d, (a, _b) in enumerate(train)}
+    uniq = {}
+    for in_cc, out_cc, bounds, grid, variant, mode in seen:
+        key = (variant, tuple(sorted(in_cc.items())), tuple(sorted(out_cc.items())))
+        if key in uniq:
+            continue
+        g = _grid_list(grid)
+        gh = hashlib.sha256(_json.dumps(g).encode()).hexdigest() if g is not None else None
+        uniq[key] = {"variant": variant, "in": _cells(in_cc), "out": _cells(out_cc), "bounds": list(bounds),
+                     "demo": inputs.get(gh), "grid": g, "native_mode": mode}
+    return list(uniq.values())
+
+
 def blind_groups(train):
     """Amendment 1: native's views, nearest-object attribution, no failure trace."""
     import geocat_arc.object_reasoning.inducer as I

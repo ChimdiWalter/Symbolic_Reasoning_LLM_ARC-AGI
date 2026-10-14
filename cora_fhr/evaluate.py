@@ -66,10 +66,10 @@ def main(argv=None):
         rec = {"key": row["key"], "family": fam, "A_correct": a_ok, "arms": {}}
         for arm, r in row["arms"].items():
             ok = r.get("committed") is not None and exact(r["committed"], outs)
-            by = r.get("certified_by") if arm in "CDE" else ("A" if r.get("certified") else None)
+            by = r.get("certified_by") if arm in ("C", "C2", "D", "E") else ("A" if r.get("certified") else None)
             ext_cert = str(by or "").endswith("+extension")
             rec["arms"][arm] = {"correct": ok, "certified_by": by, "outcome": r.get("outcome"),
-                                "gain": ok and not a_ok, "counted_gain": bool(ok and not a_ok and arm in "CDE" and counted(r)),
+                                "gain": ok and not a_ok, "counted_gain": bool(ok and not a_ok and arm in ("C", "C2", "D", "E") and counted(r)),
                                 "new_certified_wrong": bool(ext_cert and not ok),
                                 "lost_A_correct": bool(a_ok and not ok),
                                 "selected": (r.get("selected") or {}).get("pretty"),

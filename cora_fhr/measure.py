@@ -146,6 +146,13 @@ def groups_for(arm, train, dirs, donor_raw):
         return g, why
     if arm == "D":
         return CS.group_reach_records(donor_raw or []), None
+    if arm == "C2":                                                    # C' (proposed Amendment 2)
+        try:
+            with cpu_cap(EXTRACT_CAP_S):
+                raw = CS.native_all_records(train, dirs["extract"], BUDGET_S)
+        except _Cap:
+            return {}, "extract_cap"
+        return CS.group_reach_records(raw), None
     raise ValueError(arm)
 
 
@@ -272,7 +279,7 @@ def run_task(key, view, arms, dirs, donor_raw, f_b):
         b_rec, _ = object_run(key, train, tests, dirs["B"], budget_s=BUDGET_S * f_b)
         row["arms"]["B"] = {"committed": b_rec["predictions"] if b_rec["accepted"] else None, "certified": b_rec["accepted"],
                             "run": b_rec, "f_B": f_b, "cpu_s": b_rec["cpu_s"]}
-    for arm in [x for x in ("C", "D", "E") if x in arms]:
+    for arm in [x for x in ("C", "C2", "D", "E") if x in arms]:
         c0 = time.process_time()
         rec, ext = construct_and_check(arm, key, train, tests, dirs, donor_raw)
         commit, certified_by = (a_rec["predictions"], "A") if a_rec["accepted"] else (None, None)
@@ -314,7 +321,7 @@ def job(args):
     FR.cpu_clock()
     from cora_pilot import native as N
     base = os.path.join(OUT, "engines", key)
-    dirs = {a: N.prepare_object_dir(os.path.join(base, a)) for a in ("A", "B", "C", "D", "E", "extract", "loo")}
+    dirs = {a: N.prepare_object_dir(os.path.join(base, a)) for a in ("A", "B", "C", "C2", "D", "E", "extract", "loo")}
     donor_raw = None
     if "D" in arms and donor_view is not None:
         dtrain = [(np.asarray(p["input"], dtype=int), np.asarray(p["output"], dtype=int)) for p in donor_view["train"]]

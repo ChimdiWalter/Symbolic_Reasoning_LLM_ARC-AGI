@@ -32,7 +32,7 @@ def job(args):
     donor_raw = None
     new = copy.deepcopy(row)
     a_cert = row["arms"]["A"]["certified"]
-    for arm in ("C", "D", "E"):
+    for arm in ("C", "C2", "D", "E"):
         r = new["arms"].get(arm)
         if not r or not (r.get("top") or {}).get("accepted") or not (r.get("top") or {}).get("uses"):
             continue
