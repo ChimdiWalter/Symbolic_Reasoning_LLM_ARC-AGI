@@ -4,6 +4,15 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
+**NEWEST DIRECTIVE (2026-10-14 ~21:00Z): "CORA — FINAL SURGICAL INTEGRITY CHECK AND NEXT EXPERIMENT"** (items 1-9;
+return under 600 words: integrity results, D3 degeneracy verdict, corrected witness claim, Amendment 2 recommendation,
+E vs C' verdict, poster/demo readiness, GO/NO-GO plus ONE next experiment). Progress log (update after every step):
+- [ ] 1 queue (asset audit -> refold -> C'), detached; an auto-compare waits on 'REFOLD start'
+- [ ] 2 D3 degeneracy audit: cora_fhr/degeneracy_audit.py + a test in tests/test_fhr.py (in progress)
+- [ ] 3 witness claim correction (poster, abstract, explainer, paper 8.20, evidence 16, demo README, dev results)
+- [ ] 4 Amendment 2 component by component; 5 mixed-coverage causal study design (DEV only); 7 materials; 9 saves
+- Kaggle 57160429 COMPLETE 27.64 (done, recorded). The 80-task final stays sealed.
+
 **RESUME HERE (2026-10-14 ~20:30Z; session ended near the usage limit).** The sprint directive in force is
 "OCTOBER 23 SURGICAL BREAKTHROUGH AND MIT DEMO SPRINT" (items A-K).
 
