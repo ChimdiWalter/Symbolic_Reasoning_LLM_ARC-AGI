@@ -1,0 +1,353 @@
+{
+ "key": "dev_D3_04",
+ "tier": "DEVELOPMENT, SYNTHETIC (corpus C4 v2)",
+ "provenance": {
+  "git_head": "b7881191d4153d52a46fba0be1dbcce0fe3aa3d0",
+  "corpus_sha256": "d5bab8e40f55af1926e3bd98ea59b7999ca54fe3a6c261da0aa9032da5533653",
+  "grammar_identity": "0ec16d1ed9771a99c4165ff094c51814cae17e499f628dd69591506599f033c0",
+  "logged_row_sha256": "510a5a3d8b6c5bb5da107dfdf9cabe712043147114c421974e588a095c135aef"
+ },
+ "logged": {
+  "A": {
+   "certified": false,
+   "failure_stage": "loo"
+  }
+ },
+ "failure_evidence": {
+  "S3": 5,
+  "S4": 5,
+  "S7": 2,
+  "S6": 3
+ },
+ "operator": {
+  "pretty": "ring(8)[part_minority]",
+  "expr": "d1|1|39",
+  "name": "fx_bd15c802b6bb4940",
+  "view": "S3",
+  "novelty": "NEW_COMPOSITION"
+ },
+ "perturbation_novelty": {
+  "objects": 300,
+  "native_explains": 7,
+  "best_reach_setting": {
+   "setting": [
+    "dilate",
+    {
+     "m": 2
+    }
+   ],
+   "matches": 8
+  },
+  "semantically_available": false
+ },
+ "test_objects": [
+  [
+   [
+    [
+     3,
+     11
+    ],
+    9
+   ],
+   [
+    [
+     4,
+     11
+    ],
+    9
+   ],
+   [
+    [
+     5,
+     11
+    ],
+    3
+   ],
+   [
+    [
+     6,
+     11
+    ],
+    9
+   ]
+  ],
+  [
+   [
+    [
+     4,
+     3
+    ],
+    9
+   ],
+   [
+    [
+     5,
+     3
+    ],
+    3
+   ],
+   [
+    [
+     6,
+     2
+    ],
+    9
+   ],
+   [
+    [
+     6,
+     3
+    ],
+    9
+   ],
+   [
+    [
+     6,
+     4
+    ],
+    9
+   ]
+  ]
+ ],
+ "folds": [
+  {
+   "fold": 0,
+   "class": "SUCCESS",
+   "same_as_full": true,
+   "accepted": true,
+   "uses": true,
+   "heldout_exact": true,
+   "selected": "ring(8)[part_minority]"
+  },
+  {
+   "fold": 1,
+   "class": "SUCCESS",
+   "same_as_full": true,
+   "accepted": true,
+   "uses": true,
+   "heldout_exact": true,
+   "selected": "ring(8)[part_minority]"
+  },
+  {
+   "fold": 2,
+   "class": "SUCCESS",
+   "same_as_full": true,
+   "accepted": true,
+   "uses": true,
+   "heldout_exact": true,
+   "selected": "ring(8)[part_minority]"
+  }
+ ],
+ "replay": {
+  "program_sha": "969cdb381387ff52",
+  "replays_every_demonstration": true,
+  "per_demo": [
+   true,
+   true,
+   true
+  ],
+  "direct_test_equals_engine": true,
+  "restored": true,
+  "uses_extension": true
+ },
+ "committed": [
+  [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    9
+   ],
+   [
+    0,
+    0,
+    7,
+    9,
+    7,
+    0,
+    0,
+    0,
+    0,
+    0,
+    7,
+    9
+   ],
+   [
+    0,
+    0,
+    7,
+    3,
+    7,
+    0,
+    0,
+    0,
+    0,
+    0,
+    7,
+    3
+   ],
+   [
+    0,
+    0,
+    9,
+    9,
+    9,
+    0,
+    0,
+    0,
+    0,
+    0,
+    7,
+    9
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ ],
+ "evaluator": {
+  "A": null,
+  "C": true,
+  "C2": true,
+  "E": true
+ },
+ "ablation": {
+  "without_extension_certified": false
+ },
+ "controls": {
+  "C": "CERTIFIED_WITH_EXTENSION",
+  "C2": "CERTIFIED_WITH_EXTENSION",
+  "D": "NO_PROPOSAL"
+ },
+ "sources": {
+  "corpus": [
+   "outputs/cora_fhr/c4_dev_v2.json",
+   "d5bab8e40f55af1926e3bd98ea59b7999ca54fe3a6c261da0aa9032da5533653"
+  ],
+  "rows": [
+   "outputs/cora_fhr/rows_c4_dev_v2.jsonl",
+   "d316721b6f0cd371619b5a0ba44121dd993e8c009b54c8bab5051eb1e27f52a2"
+  ],
+  "witness": [
+   "outputs/cora_fhr/witness_dev_D3_04.json",
+   "a83f597a68d1f4d9e1c1f4dd2fbd149a696475af6dc5dad490dd3c20cdef2e5c"
+  ]
+ }
+}
