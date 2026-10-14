@@ -4,6 +4,50 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
+**RESUME HERE (2026-10-14 ~20:30Z; session ended near the usage limit).** The sprint directive in force is
+"OCTOBER 23 SURGICAL BREAKTHROUGH AND MIT DEMO SPRINT" (items A-K).
+
+DONE and committed (latest 2c52517):
+- FHR dev v2: records/CORA_FHR_DEV_RESULTS_20261014.md.
+  - Witness dev_D3_04 audited (outputs/cora_fhr/witness_dev_D3_04.json): reproduced, replay exact, restored,
+    ablation, perturbation novelty (native 7/300, best reach 8/300). E = C = C' all correct.
+- C' implemented and the C'-vs-E audit done: E = C' on D1 and D3 by construction, so H3 cannot be tested on C4.
+- Demo bundle docs/summit_demo_20261023/ (run_demo.sh, offline hash-checked replay, 90-second script).
+- Figure docs/summit_poster/figures/fig_fhr_witness_dev_D3_04.png (built, but NOT yet placed on the poster).
+- Kaggle originality audit: records/KAGGLE_NEURAL_V1_ORIGINALITY_AUDIT_20261014.md.
+- Transfer documents: docs/CORA_REPAIR_VERIFY_CONTRACT_v1.md, docs/STARTUP_HYPOTHESIS_20261014.md.
+- Tests: tests/test_fhr.py, 13 pass.
+
+RUNNING, detached:
+- outputs/cora_fhr/gate_queue_v2.sh (log gate_queue_v2.log): B done, then the funnel asset audit (dev60
+  native_assets), then the refold what-if (ungated folds).
+- outputs/cora_fhr/followup_c2.sh: waits for QUEUE DONE, then runs arm C' on dev v2 (rows_c4_dev_v2_C2.jsonl).
+
+NEXT:
+1. Read the queue's outputs:
+   - outputs/cora_fhr/eval_v2_B.out;
+   - outputs/funnel_v0/eval_assets.out: compare with eval_dev60_native.json; if the funnel numbers change, correct
+     the funnel record, paper and poster;
+   - outputs/cora_fhr/eval_v2_refold.out;
+   - outputs/cora_fhr/eval_v2_C2.out.
+   Then run `python -m cora_fhr.dev_table --corpus c4_dev_v2` for the compact per-family table.
+2. Write Amendment 2 into the protocol (dated). Decision basis:
+   - in v2 the nested native acceptance never failed a fold; the fold-level tie check is the blocker
+     (without it: E 4 / C 3 NEW_COMPOSITION correct, 0 wrong);
+   - the D-control fixes: cross-family donors, fold-symmetric evidence;
+   - C' as the H3 control;
+   - H3 needs mixed-coverage families.
+   The user decides whether to adopt it.
+3. Poster:
+   - retitle "When Search Is Not Enough: Diagnosing Reasoning Failures and Constructing Verifiable Executable
+     Capabilities";
+   - replace the PROPOSED block with "CORA-FHR (implemented; synthetic development)", using the witness figure and
+     the honest E = C caveat;
+   - rebuild; poster_to_pptx; update abstract, explainer and paper section 8.20; evidence record section 16.
+4. GO/NO-GO = NO-GO. Failing gate: a fair failure-evidence comparison (E = C' by design on C4). The final split
+   stays sealed.
+5. Kaggle 57160429 was still PENDING; check outputs/kaggle_deploy/neural_v1_official_score.json.
+
 OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough sprint"; resume here):
 - **Kaggle.**
   - **NEURAL SUBMITTED: 57160429** (2026-10-14 00:08Z, NEURAL_TTT_BASELINE), status PENDING. The watcher
