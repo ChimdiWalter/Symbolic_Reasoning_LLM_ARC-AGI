@@ -201,14 +201,155 @@ help any of them. In 10 there is no fit within bounds, a candidate for a
 missing operation or correspondence (not proof of inexpressibility). In 12
 the result is undetermined at the deadline; the budget ×3 step tests these.
 
-## Pending sections
+## Matched extra search: budget ×3 (COMPLETE, Oct 14)
 
-These are filled when the driver finishes.
-1. **Matched extra search:** budget ×3, on tasks that hit a deadline.
-2. **C3-dev and C2-dev funnels:** SYNTHETIC; their mechanisms are known.
-   C2-dev also replicates the arbitration shadow.
-3. **Structural contrast** (`cora_funnel/contrast_driver.py`, queued): the
-   spurious rules vs. each fold's rebuilt rule vs. the answer-consistent rule,
-   for the 29 tasks with fits.
-4. **The single bottleneck, and the one intervention it justifies.** Decision
-   due Oct 16.
+**Scope.** The 29 dev60 tasks whose search or a LOO fold hit its deadline:
+- the cooperative and frame budgets ×3;
+- CPU clock;
+- 7.97 CPU-h against 3.21 at native budget.
+
+| native → ×3 budget | tasks |
+|---|---|
+| FIT_BUT_ALL_WRONG → FIT_BUT_ALL_WRONG | 14 (none fixed) |
+| NO_FIT_DEADLINE → NO_FIT_DEADLINE | 5 |
+| NO_FIT_DEADLINE → NO_FIT_EXHAUSTED (search finished, still no fit) | 6 |
+| REJECTED_BUT_CORRECT → CERTIFIED_CORRECT | 1 (kf321d635cf9a) |
+| REJECTED_BUT_CORRECT → REJECTED_BUT_CORRECT | 1 |
+| CERTIFIED_CORRECT → CERTIFIED_CORRECT | 2 |
+
+- **The one gain is not a budget effect.** The native-budget replicate also
+  certified kf321d635cf9a correctly; it is a borderline task.
+- **Overall:** 0 robust gains, 0 losses and 0 false acceptances, at 2.5× the
+  CPU. More search is not the fix.
+
+## Reproducibility: native-budget replicate of 29 tasks (`native_rep`)
+
+- **Candidates.** The identity-frame first-search candidates were identical
+  in 28 of 29 tasks.
+- **Categories.** 26 FIT_BUT_ALL_WRONG reproduced. One task flipped to a
+  native exception, and kf321d635cf9a flipped from rejected to certified.
+- **Oracle replicate.** Identical table.
+
+## Structural contrast (COMPLETE, Oct 14)
+
+**What generates the spurious fits.** 25 FIT_BUT_ALL_WRONG tasks have
+recorded program structure.
+- **Parameter class.** The rank-1 spurious programs are constant-parameter
+  in **21 of 25** (induced_map 2, relational 1, feature 1).
+- **The dominant form is GROW with a constant cell-offset pattern:** 54 rule
+  instances in **19 of 25 tasks**. Translate and recolor occur in 3 tasks
+  each.
+- **Constant parameters:** the grow mode/pattern 54, colour 28, vector 6.
+- **Selector features:** colour 27 and **exact shape signature 18**.
+
+These programs memorize the drawn cells per case; they are not a rule.
+
+**What the failed folds rebuild.** Of 74 failed identity-frame LOO folds:
+- 59 rebuilt a *different* structure, again constant-parameter;
+- 11 rebuilt a different structure of another kind;
+- only 4, in 2 tasks, kept the skeleton and changed the constants.
+
+So each demonstration subset yields a different memorizing program. Caveat:
+the stored JSON is capped at 4,000 characters, but differences inside that
+prefix are real.
+
+**The oracle, reread.** The answer-consistent programs are constant-parameter
+in the same 21 of 25 tasks. Where rule counts are measurable, they usually
+add one rule (7 of 9). The oracle's "expressible" therefore mostly means
+"native can memorize one more case". It does not show that a generalizing
+rule is in the language. The "same view" finding (24 of 26) stands.
+
+**Native's own revision fails.** Phase C (`inducer.py`) is triggered when a
+flat program with constant or map parameters fails LOO. It re-searches with
+`force_relational=True`. It ran in 11 of 27 tasks at native budget and in 8
+of 14 at ×3 budget, and **returned no program in any of them**.
+
+**Existing constructor coverage.** The reach-v1 census of the same 60 tasks
+(`outputs/reach_v1/grammar_coverage.json`) tested the 9 frozen `cora_reach`
+growth families. They explain the demonstrated growth in **5 of 27**
+FIT_BUT_ALL_WRONG tasks and in 0 of the other 33:
+- connect: 2;
+- window_fill: 1;
+- bbox_fill: 1;
+- one task explained by band, bbox_fill or dilate.
+
+## Synthetic funnels (SYNTHETIC; CPU clock)
+
+| corpus | certified correct | certified wrong | REJECTED_BUT_CORRECT | FIT_BUT_ALL_WRONG | no fit | gate-off correct / wrong |
+|---|---|---|---|---|---|---|
+| C3-dev (25) | 10 | 0 | 5 | 3 | 7 | 14 / 4 |
+| C2-dev (60) | 17 | 1 | **16** | 5 | 21 | 32 / 7 |
+
+- **On synthetic families, unlike real tasks, LOO is conservative.** It
+  rejects a correct candidate in 16 of 33 C2-dev tasks where one exists.
+  These are 3-demonstration families where each demonstration carries
+  unique evidence.
+- **The C2-dev oracle:** all 16 REJECTED_BUT_CORRECT are expressible; the
+  no-fit tasks are mostly undetermined (13) or no fit within bounds (6).
+
+## Arbitration shadow, replicated (C2-dev, SYNTHETIC)
+
+| policy | exact |
+|---|---|
+| frozen | 31 / 60 (matches the ceiling test's arm A) |
+| object-certificate-first | 36 (+5, 0 lost) |
+| conservative attempt_2 | 36 (+5, 0 lost) |
+| complementarity | 39 (+8, 0 lost) |
+
+**Harness–funnel object-certification agreement:** 56 of 60. The harness runs
+on the wall clock under load, so 4 certifications differ.
+
+**Availability in the deployment path.**
+- The object layer's certified render exists inside the harness worker
+  (`run_object_task` returns it). It is discarded at the merge when the
+  pipeline claims first, so policies B and C need a change to the merge,
+  which means a new native version.
+- The rank-1 uncertified candidate used by D is not exposed by native.
+
+This remains an engineering result. No submission is justified on 2 + 5
+development tasks.
+
+## Verdict (evidence complete, Oct 14)
+
+1. **Certification is not the real-ARC bottleneck.** The object layer
+   accepted 0 wrong answers. Removing LOO would add 2 correct and 26 wrong
+   on dev60. (On synthetic C2-dev it is conservative: 16 rejections.)
+2. **The dominant real-ARC failure is rule induction by memorization.**
+   - In 27 of 60 tasks, native fits the demonstrations with constant-
+     parameter rules, mostly GROW with memorized cell patterns keyed to
+     colour or an exact shape. These rules change with every demonstration
+     subset and never generalize.
+   - Its own relational revision finds no alternative (0 of 11).
+   - More search does not help (0 of 14).
+   - The existing growth grammar covers 5 of the 27.
+3. **The second failure is matching.** 17 of 22 no-fit tasks stop at object
+   correspondence. Neither the answer nor ×3 budget helps.
+4. **Excluded as primary:**
+   - representation (24 of 26 already in the right view; 1 of 60 has no
+     coherent view);
+   - candidate selection (no correct candidate to select in 27 tasks);
+   - premature certification on real tasks (2);
+   - search budget.
+
+**The single intervention this justifies.** Failure-conditioned construction
+of a **derived executable pattern operator** for GROW. This is CORA-FHR
+whose construction step is a bounded typed operation extension.
+- **Trigger, from inference-time evidence only:** a constant GROW pattern
+  that LOO cannot rebuild.
+- **Construction:** from a declared bounded grammar of pattern derivations
+  over object geometry and context, compositional and reusing the
+  `cora_reach` families and the extension compiler.
+- **Installation:** fold-locally.
+- **Verification:** native re-induction plus full adaptive LOO.
+- **Controls:** matched search, failure-blind construction and shuffled
+  failure evidence.
+
+It targets the largest measured failure (19 of 25 analysable tasks). It
+changes one component (the GROW parameter), and native's own revision has
+been shown not to reach it.
+
+**Open risk, stated now.** Coverage by the current growth grammar is 5 of 27,
+so the declared grammar must grow, and that grammar must be fixed before the
+prospective corpus is built. A positive result would be compositional growth
+(L2), not a new primitive, unless a bounded-language novelty test says
+otherwise.
