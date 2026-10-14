@@ -71,3 +71,19 @@ effort goes.
 3. biological relevance (held-out perturbation data).
 
 Only Level 3 evidence would support a biological claim.
+
+## Update (2026-10-14)
+
+- **The domain-neutral contract** (prediction, failure evidence, diagnosis,
+  typed correction, reversible installation, fold-local validation,
+  abstention, provenance) is written in
+  `docs/CORA_REPAIR_VERIFY_CONTRACT_v1.md`.
+- **The startup framing** is in `docs/STARTUP_HYPOTHESIS_20261014.md`.
+- **ARC status:**
+  - the verifier is precise on real development tasks;
+  - the dominant failure is memorization;
+  - one synthetic constructed correction was certified and correct, matched
+    by a failure-blind control.
+
+The transferable part is the contract and the controls, not the ARC
+operators. BIOLOGICAL APPLICATION remains UNTESTED.
