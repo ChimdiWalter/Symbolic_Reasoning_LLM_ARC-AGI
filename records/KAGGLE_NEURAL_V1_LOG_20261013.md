@@ -394,3 +394,27 @@ The watcher follows the status and writes the official score to
 **Attribution.** Any score here is a NEURAL_TTT_BASELINE result: a
 reproduction of a published NVARC-style pipeline. It is not evidence of CORA
 capability construction.
+
+### 11.1 Pending check (2026-10-14, 20:05Z: 19 h 57 min after submission)
+
+| item | finding |
+|---|---|
+| live CLI status | 57160429 `SubmissionStatus.PENDING`, no score, no error |
+| watcher | PID 3853904 alive (up 1 day 1 h). It polls every 600 s; its last check was 19:59:59Z. On `COMPLETE` **or** `ERROR` it writes `neural_v1_official_score.json` and logs "neural scored", so an error is caught, not missed |
+| notebook guard | cell 0 sets `global_end_time` = notebook start + 12 h − 600 s and passes it to `starter.py --end-time`. The DFS loop exits at 540 s or at the end time; the per-task loop stops a task at 1,200 s or at the end time. The notebook's own loops therefore stop by 11 h 50 min of execution |
+| not covered by the guard | a hang outside those loops (installation, model load, a stuck CUDA call, the final cells), an exception, or a platform fault |
+| reference timings | the committed run took 4.34 h over 240 tasks; the native v23 submission went from submission (13:17Z) to COMPLETE by the watcher's 18:00Z poll, under 4 h 43 min |
+
+**Reading.**
+- Kaggle's 12-hour limit applies to notebook execution, not to the time since submission.
+- `PENDING` covers both queued and running.
+- A timeout, an exception or a resource-limit violation is reported as `ERROR`, with a category.
+- Twenty hours of `PENDING` with no `ERROR` fits a queue delay (the hidden-set rerun needs a GPU machine). It also fits a stall that Kaggle has not reported yet. The two cannot be told apart from the API.
+- The guard reduces the timeout risk but does not guarantee scoring.
+
+**Actions.**
+- No cancellation and no resubmission: neither would tell us anything, and a resubmission would use a daily slot.
+- The watcher is left running.
+- If the submission is still `PENDING` at 24 h (2026-10-15 00:08Z), the user posts
+  `records/KAGGLE_NEURAL_V1_PENDING_INQUIRY_DRAFT_20261014.md` to the competition discussion.
+- If it is `ERROR`, read the error category in the Kaggle UI before spending another submission.
