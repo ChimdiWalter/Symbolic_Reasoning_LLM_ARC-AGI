@@ -1,5 +1,6 @@
 % CORA poster, ARC Prize Research Summit, 23 October 2026.
-% Every number is indexed in records/CORA_SUMMIT_POSTER_EVIDENCE_20261012.md.
+% Every number is indexed in records/CORA_SUMMIT_POSTER_EVIDENCE_20261012.md (section 15: the
+% 14 October failure funnel and competition status, from records/CORA_FAILURE_FUNNEL_20261014.md).
 % Every image is in figures/, drawn from hash-pinned recorded outputs by
 % scripts/summit_figures.py at its printed size (9.50 in = one block's text
 % width), with its provenance in figures/PROVENANCE.json. Diagrams are TikZ
@@ -86,8 +87,8 @@
   \begin{tikzpicture}[node distance=0.85cm]
     \node[stage] (k) {$K$ attempts the task\\ \diagsub sealed native engine, frozen library};
     \node[stage, below=of k] (t) {Auditable failure trace\\ \diagsub what $K$ memorized instead of generalizing};
-    \node[stage, below=of t] (d) {Classify the limitation\\ \diagsub automated for one trigger only (memorized growth);
-      the diagnosis on this poster was forensic, by hand};
+    \node[stage, below=of t] (d) {Classify the limitation\\ \diagsub measured on 60 real tasks by an instrumented
+      failure funnel; acting on it is automated for one trigger only (memorized growth)};
     \node[planned, below=1.25cm of d.south west, anchor=north west] (c1) {search more};
     \node[planned, right=0.6cm of c1] (c2) {change the representation};
     \node[choice, below=0.5cm of c1] (c3) {construct an executable extension};
@@ -136,49 +137,61 @@
   adaptive leave-one-out. \textbf{No new ARC solve}: the certified training score stays 185/1{,}000.
 }
 
-\block{\bt{The right view was cut, not missing}}{\bodyfont
+\block{\bt{Where CORA fails on real tasks}}{\bodyfont
   \begin{tikzfigure}
-    \includegraphics[width=\linewidth]{figures/fig_kf89_training_demonstrations.png}
+    \includegraphics[width=\linewidth]{figures/fig_failure_funnel_dev60.png}
   \end{tikzfigure}
-  \vspace{0.2em}
-  \begin{tikzfigure}
-    \includegraphics[width=\linewidth]{figures/fig_kf89_variant_admission.png}
-  \end{tikzfigure}
-  \secfont The engine searches at most four eligible views, in a fixed order. With only demonstrations
-  0 and 2, or 1 and 3, finer views become eligible and fill the four slots. The colour-layer view S6,
-  where $G$ lives, is never searched. Two of the four slots are duplicates: S2 and S5 give the
-  reasoner exactly S1's input there.
-
-  \vspace{0.4em}
-  \textbf{Can a neural model pick the view?} Not here. In a pre-registered synthetic test (35 cases that
-  needed a different view), the fixed order picked right 35 times; a frozen Qwen2.5-1.5B 19 times, and
-  only once when shown the reasoner's real failure record (a shuffled record did the same); I-JEPA 3 times.
+  \secfont \textbf{The checks are not the problem}: nothing wrong was certified, and switching
+  leave-one-out off would add 2 right answers and 26 wrong ones. \textbf{The rules are}: in the 27
+  ``fits all demos'' tasks the programs memorize. 21 of 25 use constant parameters, mostly a grown
+  cell pattern keyed to a colour or an exact shape, and each leave-one-out fold rebuilds a different
+  one (59 of 74 failed folds).
+  \begin{itemize}
+    \item Native's own relational re-search finds no program (0 of 11).
+    \item Three times the search budget fixes none (0 of 14).
+    \item Given the true answer as a demonstration (diagnostic only), it fits 26 of 27, in the same
+      view in 24, by memorizing one more case.
+    \item The view-admission failure we first traced explains only 7 of 76 failed folds.
+  \end{itemize}
+  Frozen neural guides did not pick views better than the fixed order (Qwen2.5-1.5B 19 of 35,
+  I-JEPA 3 of 35; pre-registered, synthetic).
 }
 
 % ======================================================================
 \column{0.333}
-\block{\bt{Negative controls before any repair}}{\bodyfont
-  \begin{tikzfigure}
-    \includegraphics[width=\linewidth]{figures/fig_negative_controls.png}
-  \end{tikzfigure}
-  \secfont \textbf{No task gained.} Forcing one view to be searched first harmed 5 of 24 tasks: 4 of the 7
-  natively correct tasks lost their answer, and 1 rejected task became a false acceptance. The
-  variant-first repair we had built was therefore \textbf{not run}.
-}
-
-\block{\bt{What a valid repair must respect}}{\bodyfont
+\block{\bt{Repairs tested before use}}{\bodyfont
   \secfont
   \begin{itemize}
-    \item Every fold, inner and outer, selects its representation from \textbf{its own training
-      demonstrations only}.
-    \item Anchoring a fold to the parent's view would use the fold's held-out demonstration:
-      \textbf{forensic only}, never a certificate.
-    \item Removing duplicate views reaches S6 on both failing pairs, from the fold's data alone. Tested
-      on 41 synthetic tasks, it gained 1 and harmed 4 (2 correct answers lost, 2 false acceptances)
-      through the coarse views it let in: \textbf{rejected}.
-    \item Observed, not a theorem: removing a demonstration made an eligible view ineligible in 7 of 724
-      development comparisons (pooled coverage).
+    \item Forcing a view to be searched first: no task gained, 5 of 24 synthetic tasks harmed (4 correct
+      answers lost, 1 false acceptance). \textbf{Not run.}
+    \item Fold-local removal of duplicate views: gained 1, harmed 4 of 41. \textbf{Rejected.}
+    \item Every fold chooses its representation from \textbf{its own demonstrations only}; anchoring a fold
+      to the parent's view is forensic, never a certificate.
   \end{itemize}
+}
+
+\block{\bt{Competition status, 14 October}}{\bodyfont
+  \secfont
+  \textbf{OFFICIAL KAGGLE} $\cdot$ native CORA v23: \textbf{0.00}.\par\vspace{0.3em}
+  \textbf{NEURAL\_TTT\_BASELINE} $\cdot$ a reproduction of the public NVARC Qwen3-4B test-time-training
+  pipeline, \textbf{not CORA}: submitted 14 October, \textbf{score pending}. On the 240-task stand-in
+  it decoded every task (259 of 259 genuine predictions, 0 fallbacks) in 4.3 h.\par\vspace{0.3em}
+  \textbf{DEVELOPMENT} $\cdot$ whole native harness: 12 of 60; 18 of its 29 claimed answers were wrong,
+  because the pipeline layer answers first. Reordering the answers it already produces (shadow study):
+  14 of 60, and 36 to 39 of 60 on synthetic C2-dev, none lost. Engineering only; not submitted.
+}
+
+\block{\bt{Next: construct the missing operation \;{\color{warm}PROPOSED}}}{\bodyfont
+  \secfont
+  \begin{itemize}
+    \item \textbf{Trigger}, from demonstrations only: a memorized constant growth pattern that leave-one-out
+      cannot rebuild.
+    \item \textbf{Construct} a derived pattern operator from a declared, bounded grammar. CORA's 9 growth
+      families cover only 5 of the 27, so the grammar must grow, and be frozen first.
+    \item \textbf{Verify}: native re-induction in every fold, full adaptive leave-one-out, blind scoring.
+    \item \textbf{Controls}: matched extra search, failure-blind and shuffled-failure construction.
+  \end{itemize}
+  Not yet run. A gain would be compositional growth, not a new primitive.
 }
 
 \block{\bt{A portable controller? \;{\color{critical}BIOLOGICAL APPLICATION: UNTESTED}}}{\bodyfont
@@ -202,12 +215,12 @@
 }
 
 \block{\bt{Not claimed \,$\cdot$\, evidence}}{\bodyfont\raggedright
-  \secfont Official Kaggle ARC-AGI-2 score of the native solver (October 2026): \textbf{0.00}.
-  No ARC-AGI-2 solve or score gain; no semantic invention; no automatic failure-type controller;
-  no domain generality; no results from the separate VDCG project. The 120-task pilot is frozen and
-  \textbf{has not been run}.\par\vspace{0.3em}
-  \diagsub Every number, with commit and hash: \texttt{records/CORA\_SUMMIT\_POSTER\_EVIDENCE\_20261012.md};
-  figure hashes: \texttt{figures/PROVENANCE.json}.
+  \secfont No CORA solve or score gain on ARC-AGI-2; no semantic invention; no automatic failure-type
+  controller; the neural score, when it arrives, is not a CORA result; no domain generality; no
+  results from the separate VDCG project. The 120-task pilot is frozen and \textbf{has not been
+  run}.\par\vspace{0.3em}
+  \diagsub Every number, with commit and hash: \texttt{records/CORA\_SUMMIT\_POSTER\_EVIDENCE\_20261012.md}
+  and \texttt{records/CORA\_FAILURE\_FUNNEL\_20261014.md}; figure hashes: \texttt{figures/PROVENANCE.json}.
 }
 \end{columns}
 \end{document}

@@ -369,7 +369,12 @@ as CORA, as capability invention, or as evidence for any claim in sections
   - probe of multi-output and 30x30 tasks: valid, at 15-18 GB;
   - 30x30 tasks approach the 20-min per-task cap;
   - a full 240-task committed run started 2026-10-13T16:23Z
-    (`records/KAGGLE_NEURAL_V1_LOG_20261013.md`).
+    (`records/KAGGLE_NEURAL_V1_LOG_20261013.md`);
+  - it completed in 4.34 h with all 240 tasks decoded, 259/259 genuine
+    attempt_1 and 0 fallbacks, under the corrected gate that counts the
+    repair cell's input copies as fallback (section 9 of that log);
+  - official submission **57160429**, 2026-10-14 00:08Z, labelled
+    NEURAL_TTT_BASELINE; **score pending** at 2026-10-14 15:00Z.
 - **Coverage is audited separately from validity.** Upstream fills
   unprocessed outputs with `[[0]]`, so a valid file is not coverage
   (`kaggle/neural_v1/audit_run.py`).
@@ -1508,6 +1513,63 @@ controls.
 
 The route is closed. The open question moves to neural *candidates*, not
 neural rankings, as evidence of a missing capability.
+
+## 8.19 Where the native reasoner fails on real tasks: an instrumented failure funnel
+
+**Tier: DEVELOPMENT.**
+- **Tasks:** the 60 authorized development tasks, which are ARC-AGI-2
+  training tasks.
+- **Record:** `records/CORA_FAILURE_FUNNEL_20261014.md`; code `cora_funnel/`.
+
+**Instrument.** A read-only probe around the unchanged native object layer
+records:
+- every top-level search, leave-one-out fold, verdict and ranking;
+- the structure of every train-exact candidate.
+
+The solver sees training pairs and test inputs only. A separate evaluator
+scores every candidate against the held-out answers. On the shared host,
+native deadlines run on process CPU time, emulating a dedicated core.
+
+**Result.**
+
+| outcome | tasks |
+|---|---|
+| certified correct | 6 |
+| certified wrong | 0 |
+| correct candidate rejected | 2 |
+| train-exact candidates, all wrong | 27 |
+| no fit | 22 |
+| native defects | 3 |
+
+**Counterfactual, a measurement and not a policy.** Committing native's
+rank-1 candidate without leave-one-out gives 8 right and 26 wrong.
+
+**Interventions and diagnostics:**
+- **Search budget ×3**, on the 29 deadline-touched tasks at 2.5× the CPU: no
+  robust gain.
+- **Oracle**, the answer appended as a demonstration, evaluator-side: 26 of
+  27 all-wrong tasks become fittable, 24 in the same view. The fitted
+  programs are constant-parameter, so the oracle mostly shows that native
+  can memorize one more case.
+- **Structure.** In 21 of 25 cases the spurious programs are
+  constant-parameter, chiefly GROW with memorized cell patterns keyed to
+  colour or exact shape. 59 of 74 failed folds rebuild a different
+  memorizing program.
+- **Native's relational re-search (phase C)** returns no program in 11 of 11
+  runs.
+- **The frozen growth-relation grammar** of section 8.16 covers 5 of the 27.
+
+**Whole harness, same tasks.**
+- **Score:** 12 of 60.
+- **Wrong claims:** 18 of 29. The pipeline layer answers first, and
+  `loo_replace` was wrong on all 15 tasks it answered.
+- **Shadow arbitration** on saved predictions: 14 of 60 (36–39 of 60 on
+  synthetic C2-dev), 0 lost. This is engineering, not submitted.
+
+**Conclusion.** On real tasks the bottleneck is not certification, view
+admission (7 of 76 failed folds) or search budget. It is rule induction that
+memorizes. That makes the next experiment the failure-conditioned
+construction of a derived growth-pattern operator (proposed; not run).
 
 ## 9. Ablations and Failure Analysis
 

@@ -32,10 +32,11 @@ when to pause. Every number in here is on the poster or in the paper.\par}
 \panel{If you only have 20 seconds}
 This poster is about teaching a computer to learn from its mistakes the way people do. When it fails a
 puzzle, I want it to work out \emph{why} it failed before it changes anything, because different failures
-need different fixes, and the wrong fix can break things that used to work. I found a case where the
-program could have found the right answer but never looked at the puzzle the right way. I also found that
-the obvious fix made other puzzles worse. So the program has not solved new puzzles yet. What it has given
-me is a working way to diagnose a failure before fixing it.
+need different fixes, and the wrong fix can break things that used to work. Measuring 60 real practice
+puzzles step by step, I found that the program's safety check works, accepting no wrong answers, and that
+its real problem is memorizing: it writes programs that fit the examples without capturing the rule. More
+search time does not fix that. So the program has not solved new puzzles yet. What it has given me is an
+exact diagnosis, and the next experiment builds the missing tool from that diagnosis.
 
 % ======================================================================
 \bigpart{Part 1. The story}
@@ -121,7 +122,10 @@ The work itself followed the same loop: try, fail, ask why, change the hypothesi
     against 0.591, so no gain). Asking \emph{how each possible fix changes the failure} did help (0.641
     against 0.580). That told me failure is useful as something to experiment on, not just to describe.
   \item \textbf{October 2026.} On made-up puzzles the full loop worked, in 27 of 30. On real puzzles, it
-    reached the solver for the first time, but did not survive the strict check. The poster is about why.
+    reached the solver for the first time, but did not survive the strict check.
+  \item \textbf{Then a careful measurement.} I instrumented the solver on 60 real practice puzzles to see
+    exactly where it fails. Its safety check is fine. The real problem is that it writes programs that fit
+    the examples by memorizing them. The poster is about that finding, and what to build next.
 \end{itemize}
 Each step changed what I believed. That is the point: reasoning from failure is how people make progress,
 and I want a program that can do it too.
@@ -147,8 +151,8 @@ different fix:
 CORA is the name of my system. The solver tries the puzzle. If it fails, I look at the record of what it
 did, decide what kind of failure it was, and choose a fix. The fix is tested with checks written down in
 advance, and only then can it be used. Solid boxes are built and measured. Dashed boxes are ideas not built
-yet. One honest point: in this work I decided the kind of failure by hand. The automatic version is not
-built yet.
+yet. One honest point: \emph{measuring} where the solver fails is now automatic (the ``failure funnel''),
+but \emph{choosing and applying} a fix automatically is built for only one kind of failure.
 
 \panel{3. Four separate questions}
 \cue{``Four claims, four kinds of evidence''}
@@ -181,48 +185,68 @@ they can solve a worked example you hid from them, they understood it; if not, t
 memorized. It passed 0 of 14 of these checks. So no new real puzzle was solved, and my official score stays
 at 185 out of 1,000.
 
-\panel{5. A counterexample to ``just search harder''}
-\cue{the big blue-and-orange grid, middle column}
-Why did it fail? The program can look at a picture in seven different ways, called views. One view says
-``each separate blob is an object''. Another says ``all squares of one colour are one object''. The program
-only has room to search four views, in a fixed order.
+\panel{5. Where it really fails}
+\cue{the bar chart ``Where CORA fails on real tasks'', middle column}
+I measured every step on 60 real practice puzzles. The hidden answers were checked only at the very end,
+by a separate program.
+\begin{itemize}
+  \item \textbf{The safety check works.} Leave-one-out never accepted a wrong answer. If I switched it
+    off, I would gain 2 right answers but add 26 wrong ones.
+  \item \textbf{The big problem is memorizing.} In 27 puzzles the solver wrote programs that fit every
+    example, and every one of them was wrong. They copy the exact squares that changed in each example,
+    tied to that example's exact shape or colour, instead of learning the rule. It is like a student
+    who memorizes the answers to the worked examples instead of the method. When I hide one example,
+    the solver memorizes a different set.
+  \item \textbf{More time does not help.} Three times the search time fixed none of them. The solver's own
+    attempt to find a more general version found nothing.
+  \item \textbf{Even the answer does not help.} When I gave it the hidden answer as one more example
+    (a check only, never used as a prediction), it simply memorized one more case.
+  \item \textbf{My earlier explanation was only a small part.} The ``right view was cut'' story is real,
+    but it explains only 7 of the 76 failed checks.
+\end{itemize}
+In 22 more puzzles no program fit at all, mostly because the solver could not match the objects before
+and after.
 
-With all the examples, only a couple of views pass a basic test, the right one among them, and the program
-finds the right rule, marked G. When I hide examples and leave only two, more views pass the test by
-coincidence and take the four places. The right view gets pushed out, so the program never even looks at
-the right answer. Searching longer would not help, because the right view is not on the list being
-searched.
+\panel{6. Test a fix before you trust it}
+\cue{``Repairs tested before use'', top right}
+The obvious fixes were tested on made-up puzzles first, with the rules written down in advance. Forcing the
+solver to look at one particular view first helped none of 24 and hurt five, so I did not use it. Removing
+duplicate views fixed one of 41 and broke four, so I rejected it too. And every fix must play fair: when
+I hide an example to test the program, the program may not peek at it, not even indirectly.
 
-Two of the four places were wasted on views that look exactly the same to the program. It is like a library
-with four reading desks: if two desks are taken by copies of the same wrong book, the right book never gets
-read.
+\panel{7. Where the competition stands}
+\cue{``Competition status, 14 October''}
+\begin{itemize}
+  \item \textbf{Official Kaggle score of my own solver, CORA: 0.00.}
+  \item I also entered a strong neural method that someone else published (NVARC, a Qwen3-4B model that
+    retrains itself briefly on each puzzle). I reproduced it, so it is \emph{not} my invention, and its
+    score is not a CORA result. It processed every one of the 240 stand-in puzzles. Its official score
+    is still being computed.
+  \item On the 60 practice puzzles my whole solver got 12 right. But more than half of the answers it
+    claimed were wrong (18 of 29), because its least careful part answers first. Simply reordering the
+    answers it already makes gave 14 right, with none lost. That is a useful engineering fix, not a new
+    way of reasoning, and I have not submitted it.
+\end{itemize}
 
-\panel{6. Test the fix before you trust it}
-\cue{the grid with red boxes, top right}
-The obvious fix is to force the program to look at one particular view first. Before trying that on real
-puzzles, I tried it on 24 made-up puzzles where I know the answers. Each row is one puzzle; red means it got
-worse. It helped none and hurt five. Four that were right went wrong, and one wrong answer got accepted. So
-I did not use it. A fix that rescues your favourite example can quietly break others.
+\panel{8. The next step}
+\cue{the block marked PROPOSED}
+The measurement says what is missing: a general way to describe how a pattern grows from an object, instead
+of memorizing the squares. So the next experiment builds that missing tool. When the solver memorizes a
+growth pattern and the strict check rejects it, the system tries to construct a general pattern rule from
+a fixed list of building blocks written down in advance. The rule is then tested fairly, example by
+example, and compared with two cheaper explanations: simply searching longer, and building tools without
+looking at the failure. It has not been run yet.
 
-\panel{7. The rules any fix must follow}
-\cue{``What a valid repair must respect''}
-Any fix must play fair. When I hide an example to test the program, the program may not peek at it, not
-even indirectly. One idea I had would have peeked indirectly, so I only use it to learn, never as proof.
-Removing the duplicate views plays fair, so I tested it, with the rules written down first, on 41 made-up
-puzzles. It fixed one and broke four: two right answers were lost and two wrong answers got accepted, because
-the freed places let in a coarse view that gives simple but wrong rules. So I rejected it too. I also found that hiding
-an example can occasionally make a view fail the basic test, 7 times out of 724, so I call that an
-observation, not a rule.
-
-\panel{8. Could this work outside puzzles?}
+\panel{9. Could this work outside puzzles?}
 \cue{the panel marked BIOLOGICAL APPLICATION: UNTESTED}
 The decision-making part might work in other fields: diagnose the failure, choose a fix, check the fix. One
 example is predicting how cells respond to a drug or a gene change. The puzzle-specific parts would not
 carry over. This is only an idea: I have no biology data and no biology results.
 
-\panel{9. The message}
-Before a reasoning system changes itself, it should find out what kind of failure it had. And every fix
-should be tested fairly, including on cases where it could do harm.
+\panel{10. The message}
+Fitting the examples is not understanding them. Before a reasoning system changes itself, it should find out
+what kind of failure it had, and every fix should be tested fairly, including on cases where it could do
+harm.
 
 % ======================================================================
 \bigpart{Part 3. What has been done, and what has not}
@@ -235,6 +259,14 @@ should be tested fairly, including on cases where it could do harm.
   \item On 60 real practice puzzles: tools built from the solver's own failures reached the solver in 4,
     and one was accepted and used.
   \item A precise explanation of why that one failed the strict check: the right view was cut, not missing.
+    At scale this explains only a small part of the failures (7 of 76 failed checks).
+  \item A failure funnel on 60 real practice puzzles. The safety check accepted nothing wrong. The main
+    failure is memorizing programs (27 puzzles), which neither more search time nor the solver's own
+    generalization step repairs.
+  \item The whole solver on the same 60 puzzles: 12 right, with 18 of its 29 claims wrong. Reordering its
+    answers: 14 right, none lost (engineering, not submitted).
+  \item A reproduced neural baseline (NVARC, not CORA) submitted to Kaggle on 14 October, with every
+    stand-in puzzle processed; the official score is pending.
   \item A safety test showing that the obvious fix harms other puzzles, so it was not used.
   \item A test of whether a small AI model could pick the right view for the solver. It could not: the
     simple fixed order picked right 35 times out of 35, the AI 19 times, and only once when it was also
@@ -250,6 +282,8 @@ should be tested fairly, including on cases where it could do harm.
   \item Automatic failure diagnosis exists only as a first version. It reads recorded failures and agrees
     with the hand analysis in 13 of 18 cases, but it has not yet been tested on new failures.
   \item No fair comparison yet against ``guess, check, fix'' or ``grow a toolbox'' on real puzzles.
+  \item The next experiment, constructing a general growth-pattern tool from failures, is designed but not
+    run.
   \item The duplicate-removal fix was tested on made-up puzzles and rejected: it fixed one and broke
     four.
   \item A larger test on 120 new puzzles is frozen and has not been run.

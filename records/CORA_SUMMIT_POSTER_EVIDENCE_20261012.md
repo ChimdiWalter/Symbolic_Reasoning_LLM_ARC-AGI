@@ -278,3 +278,29 @@ rejected." Synthetic only.
   4b320ba2...; COMPLETE, public 0.00.
 - **Label:** OFFICIAL KAGGLE, NATIVE BASELINE. It is not evidence about the
   invention loop, which is not in the package.
+
+## 15. Failure funnel and competition status (added 2026-10-14)
+
+Poster blocks "Where CORA fails on real tasks", "Repairs tested before use",
+"Competition status, 14 October" and "Next: construct the missing operation";
+abstract paragraph 3; explainer panels 5–8. The full record is
+`records/CORA_FAILURE_FUNNEL_20261014.md`.
+
+| number on the poster | source | commit |
+|---|---|---|
+| the 60-task category bars (6 / 0 / 2 / 27 / 22 / 3) | `outputs/funnel_v0/eval_dev60_native.json`, sha256 3fb8c0e3…f595 (pinned in `scripts/summit_figures.py`); figure `fig_failure_funnel_dev60.png` | 9c58af8 |
+| with LOO 6 right / 0 wrong; LOO off 8 right / 26 wrong | the same file: `S6_correct`, `incorrect_accepted`, `gate_off_correct`, `gate_off_wrong` | 9c58af8 |
+| 21 of 25 constant-parameter; 59 of 74 failed folds rebuild a different program | `rows_dev60_native_rep.jsonl` (structure recorded), the funnel record's "Structural contrast" section | 9c58af8 |
+| relational re-search 0 of 11 | the same rows: native phase C, identity-frame searches | 9c58af8 |
+| ×3 budget fixes 0 of 14 | `eval_dev60_budget3.json` vs `eval_dev60_native.json` | 9c58af8 |
+| oracle 26 of 27, same view in 24 | `oracle_dev60.json`, sha256 90f59ad7…c1f6dc, and the rows (ORACLE, evaluator-side) | 37881f9 |
+| view admission explains 7 of 76 failed folds | `eval_dev60_native.json` summary, `failed_folds.full_view_not_admitted` | 81ecf25 |
+| growth families cover 5 of the 27 | `outputs/reach_v1/grammar_coverage.json` joined with the funnel categories | 9c58af8 |
+| whole harness 12 of 60; 18 of 29 claims wrong | `outputs/funnel_v0/eval_dev60_harness.json`, sha256 2d9d5dd0…7e78 | 5086a18 |
+| arbitration 14 of 60; 36–39 of 60 on C2-dev; 0 lost | `arbitration_shadow_dev60.json`, `arbitration_shadow_c2dev.json` | 93a7d10 (dev60); this commit (C2-dev) |
+| neural stand-in: 240 tasks decoded, 259 of 259 genuine, 0 fallbacks, 4.3 h | `outputs/kaggle_deploy/neural_v1_full_run1/coverage_audit.json`; `records/KAGGLE_NEURAL_V1_LOG_20261013.md` section 10 | 8e1976a |
+| submission on 14 October, score pending | the same log, section 11 (57160429) | 5feca13 |
+| Qwen2.5-1.5B 19 of 35, I-JEPA 3 of 35 | section 13 above | — |
+
+The "PROPOSED" block describes an experiment that has not been run. Its
+numbers (9 families, 5 of 27) are coverage measurements, not results.

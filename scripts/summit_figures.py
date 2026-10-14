@@ -54,6 +54,8 @@ SOURCES = {
                       "31ddf9af1db3c7224e42f61fd20b9c787c31b429465ba0bbec9bc7780eec60b6"),
     "negative": ("outputs/loo_v1/probe_negative.json",
                  "2f1003509235d3f397385172ed77d44b488572c1fd732a4d7669108d41ca1687"),
+    "funnel_dev60": ("outputs/funnel_v0/eval_dev60_native.json",
+                     "3fb8c0e3b3f896668cf718db820878a86c5252b95e77d6c8e14069245fd6f595"),
 }
 USED, DRAWN = {}, {}
 
@@ -321,6 +323,58 @@ def negative():
     return {"tasks": n_tasks, "runs": runs, "tasks_harmed": len(harmed), "tasks_gained": len(gained)}
 
 
+def failure_funnel_dev60():
+    """Where the 60 development tasks end in the native object layer, and the committed answers with
+    and without leave-one-out (records/CORA_FAILURE_FUNNEL_20261014.md)."""
+    s = json.load(open(src("funnel_dev60")))["summary"]
+    c = s["categories"]
+    rows = [("certified, correct", c.get("CERTIFIED_CORRECT", 0), GOOD),
+            ("certified, wrong", c.get("CERTIFIED_WRONG", 0), CRITICAL),
+            ("correct, rejected by LOO", c.get("REJECTED_BUT_CORRECT", 0), BLUE),
+            ("fits all demos, all wrong", c.get("FIT_BUT_ALL_WRONG", 0), BLUE),
+            ("no program fits", c.get("NO_FIT_DEADLINE", 0) + c.get("NO_FIT_EXHAUSTED", 0), BLUE),
+            ("native defect", c.get("NATIVE_ERROR", 0) + c.get("NO_SEARCH", 0), BASE)]
+    n = s["tasks"]
+    assert sum(v for _, v, _ in rows) == n == 60, "categories must partition the 60 tasks"
+    fig = _new(7.6)
+    _tag(fig, f"REAL DEVELOPMENT · {n} ARC-AGI-2 training tasks\n"
+              "object layer · CPU-time budgets · evaluator-only answers")
+    ax = _ax(fig, 4.05, 3.35, 5.25, 3.25)
+    for i, (name, v, col) in enumerate(rows):
+        y = len(rows) - 1 - i
+        _bar(ax, y, v, col)
+        ax.text(v + 0.8, y, str(v), va="center", ha="left", color=INK, fontsize=FS_VAL, fontweight="bold")
+    ax.set_yticks(range(len(rows)))
+    ax.set_yticklabels([r[0] for r in rows][::-1])
+    ax.set_xlim(0, 34)
+    ax.set_ylim(-0.6, len(rows) - 0.4)
+    ax.set_xticks([0, 10, 20, 30])
+    ax.set_xlabel("tasks (of 60)", fontsize=FS_MIN, labelpad=6)
+    _clean(ax)
+    # committed answers: with the native verifier, and the gate-off counterfactual (a measurement, not a policy)
+    ok_on, bad_on = s["S6_correct"], s["incorrect_accepted"]
+    ok_off, bad_off = s["gate_off_correct"], s["gate_off_wrong"]
+    _text(fig, 0.10, 2.55, "committed answers", ha="left", va="center", fontsize=FS_LAB, color=INK, fontweight="bold")
+    bx = _ax(fig, 4.05, 0.85, 5.25, 1.45)
+    for y, (ok, bad) in ((1, (ok_on, bad_on)), (0, (ok_off, bad_off))):
+        _bar(bx, y, ok + bad, CRITICAL if bad else GOOD, height=0.55)
+        _bar(bx, y, ok, GOOD, height=0.55)
+        if ok + bad + 12 <= 34:                                   # room outside: one label
+            bx.text(ok + bad + 0.8, y, f"{ok} right · {bad} wrong", va="center", ha="left", color=INK,
+                    fontsize=FS_VAL, fontweight="bold")
+        else:                                                      # long bar: label each segment inside
+            bx.text(ok / 2, y, str(ok), va="center", ha="center", color="white", fontsize=FS_VAL, fontweight="bold")
+            bx.text(ok + bad / 2, y, f"{bad} wrong", va="center", ha="center", color="white", fontsize=FS_VAL,
+                    fontweight="bold")
+    bx.set_yticks([1, 0])
+    bx.set_yticklabels(["with leave-one-out", "leave-one-out off"])
+    bx.set_xlim(0, 34)
+    bx.set_ylim(-0.55, 1.55)
+    bx.set_xticks([0, 10, 20, 30])
+    _clean(bx)
+    _save(fig, "fig_failure_funnel_dev60.png", ("funnel_dev60",))
+
+
 def main():
     os.makedirs(FIG, exist_ok=True)
     synthetic()
@@ -328,6 +382,7 @@ def main():
     demos()
     admission()
     neg = negative()
+    failure_funnel_dev60()
     prov = {"script": "scripts/summit_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
             "printed_width_in": W, "block_text_width_pt": 686.80643, "negative_controls": neg, "figures": {}}
     for name, meta in sorted(DRAWN.items()):
