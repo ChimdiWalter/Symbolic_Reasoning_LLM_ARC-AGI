@@ -161,12 +161,54 @@ wrong claims and none right. Meanwhile, the one layer with adaptive LOO by
 re-induction (the object layer) accepted nothing wrong. This matches the
 synthetic C2 picture (53 of 100 claims wrong).
 
+## Oracle expressibility probe (COMPLETE, 00:44Z Oct 14)
+
+**ORACLE: evaluator-side; never a prediction.** Each held-out answer pair
+was appended as an extra demonstration. The same frozen native object layer
+then ran (CPU clock, same budgets) on the 51 tasks in the four failure
+categories below (`oracle_dev60.json`).
+
+| native category | expressible within budget | no fit within bounds | undetermined (deadline) |
+|---|---|---|---|
+| FIT_BUT_ALL_WRONG (27) | **26** | 1 | 0 |
+| REJECTED_BUT_CORRECT (2) | 2 | 0 | 0 |
+| NO_FIT_EXHAUSTED (11) | 0 | 9 | 2 |
+| NO_FIT_DEADLINE (11) | 0 | 1 | 10 |
+
+**Same view, different rule.** Of the 26 expressible FIT_BUT_ALL_WRONG
+tasks, the answer-consistent fit came from **the same frame and segmentation
+view as native's spurious first fit in 24**; only 2 changed view. The two
+REJECTED_BUT_CORRECT tasks were the same.
+
+**Certification under the oracle is not informative.** No oracle run was
+certified except one REJECTED_BUT_CORRECT task. This is expected by
+construction: the fold that leaves out the appended answer is the original
+problem, which fails.
+
+**Reading (observation, then hypothesis).**
+- **For 26 of 60 tasks**, native's executable language and search contain a
+  rule consistent with the answer, in the view it already chose.
+- From the real demonstrations alone, its rule induction returns spurious
+  rules first and never reaches the answer-consistent one.
+
+So the dominant addressable gap is at the **rule level**: selector, action
+and parameters. It is not perception, and not verification. This favours
+failure-conditioned hypothesis revision (CORA-FHR) over new representations
+(CORA-RG).
+
+**The 22 no-fit tasks are a separate, smaller target.** The answer did not
+help any of them. In 10 there is no fit within bounds, a candidate for a
+missing operation or correspondence (not proof of inexpressibility). In 12
+the result is undetermined at the deadline; the budget ×3 step tests these.
+
 ## Pending sections
 
 These are filled when the driver finishes.
-1. **Oracle expressibility:** for FIT_BUT_ALL_WRONG and NO_FIT tasks
-   (`oracle_dev60.json`).
-2. **Matched extra search:** budget ×3, on tasks that hit a deadline.
-3. **C3-dev and C2-dev funnels:** SYNTHETIC; their mechanisms are known.
+1. **Matched extra search:** budget ×3, on tasks that hit a deadline.
+2. **C3-dev and C2-dev funnels:** SYNTHETIC; their mechanisms are known.
+   C2-dev also replicates the arbitration shadow.
+3. **Structural contrast** (`cora_funnel/contrast_driver.py`, queued): the
+   spurious rules vs. each fold's rebuilt rule vs. the answer-consistent rule,
+   for the 29 tasks with fits.
 4. **The single bottleneck, and the one intervention it justifies.** Decision
    due Oct 16.

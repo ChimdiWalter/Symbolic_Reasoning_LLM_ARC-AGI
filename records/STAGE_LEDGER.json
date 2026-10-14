@@ -632,7 +632,7 @@
   },
   {
    "id": "cora_failure_funnel_v0",
-   "status": "RUNNING (driver restarted 20:52Z with CPU-clock deadlines): dev60, dev60 whole harness, dev60 oracle, c3dev, dev60 budget x3 (deadline-hit tasks), c2dev + oracle",
+   "status": "RUNNING: dev60 object layer, whole harness and oracle COMPLETE (oracle: FIT_BUT_ALL_WRONG 26/27 expressible, 24/26 same view; no-fit 0/22); c3dev running, then budget x3, then c2dev and its oracle; contrast job queued",
    "directive": "October 23 research breakthrough sprint (user, 2026-10-13), sections 3-4",
    "code": [
     "cora_funnel/instrument.py",
@@ -653,7 +653,7 @@
    "outputs": "outputs/funnel_v0/",
    "report": "records/CORA_FAILURE_FUNNEL_20261014.md (pending)",
    "integrity": "solver sees training pairs and test inputs only; answers read by evaluate.py/oracle.py only; native object layer unchanged (probe restores all names); verifier unchanged; no eval/HOLDOUT/ARC-1000/pilot data",
-   "updated_utc": "2026-10-13T21:01:05Z",
+   "updated_utc": "2026-10-14T00:45:55Z",
    "notes": "the running driver holds the pre-NATIVE_ERROR evaluator, so its eval_*.json files must be regenerated; dev60 k35aabb2676c4 = native KeyError('window') reported by native as a segmentation failure"
   },
   {

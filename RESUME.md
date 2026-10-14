@@ -48,6 +48,14 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - gate-off counterfactual: 8 right, 26 wrong;
   - so certification is NOT the bottleneck; generating a generalizing hypothesis is.
   - The harness, oracle and budget sections are pending; the driver is on the whole harness (22:12Z).
+- **ORACLE dev60 COMPLETE** (00:44Z Oct 14; records/CORA_FAILURE_FUNNEL_20261014.md):
+  - FIT_BUT_ALL_WRONG: 26/27 expressible with the answer added; 24 of 26 in the SAME frame and view as
+    the spurious fit;
+  - no-fit tasks: 0/22 helped (10 no fit within bounds, 12 undetermined);
+  - this points to rule-level hypothesis revision (CORA-FHR), not new representations.
+  - The contrast job (cora_funnel/contrast_driver.py, pid in outputs/funnel_v0/contrast_driver.pid) is
+    queued after the phase-1 driver; the driver is now on c3dev, then budget x3, then c2dev.
+  - Do NOT implement FHR before the contrast data are in.
 - **ARBITRATION SHADOW** (cora_funnel/arbitration_shadow.py, 93a7d10; DEVELOPMENT; saved predictions only):
   - frozen precedence 12/60;
   - object-certificate-first, the conservative attempt_2 override and complementarity: 14/60 each
