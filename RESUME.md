@@ -13,7 +13,8 @@ DONE and committed (latest 2c52517):
     ablation, perturbation novelty (native 7/300, best reach 8/300). E = C = C' all correct.
 - C' implemented and the C'-vs-E audit done: E = C' on D1 and D3 by construction, so H3 cannot be tested on C4.
 - Demo bundle docs/summit_demo_20261023/ (run_demo.sh, offline hash-checked replay, 90-second script).
-- Figure docs/summit_poster/figures/fig_fhr_witness_dev_D3_04.png (built, but NOT yet placed on the poster).
+- POSTER UPDATED (45bf09c): retitled, FHR witness block, abstract paragraph 4, paper section 8.20, evidence record
+  section 16, explainer panel 8, PPTX. Amendment 2 is PROPOSED in the protocol (4b6d51d). B = 0/15.
 - Kaggle originality audit: records/KAGGLE_NEURAL_V1_ORIGINALITY_AUDIT_20261014.md.
 - Transfer documents: docs/CORA_REPAIR_VERIFY_CONTRACT_v1.md, docs/STARTUP_HYPOTHESIS_20261014.md.
 - Tests: tests/test_fhr.py, 13 pass.

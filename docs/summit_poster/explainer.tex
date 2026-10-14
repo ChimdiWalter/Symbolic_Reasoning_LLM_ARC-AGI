@@ -228,14 +228,20 @@ I hide an example to test the program, the program may not peek at it, not even 
     way of reasoning, and I have not submitted it.
 \end{itemize}
 
-\panel{8. The next step}
-\cue{the block marked PROPOSED}
-The measurement says what is missing: a general way to describe how a pattern grows from an object, instead
-of memorizing the squares. So the next experiment builds that missing tool. When the solver memorizes a
-growth pattern and the strict check rejects it, the system tries to construct a general pattern rule from
-a fixed list of building blocks written down in advance. The rule is then tested fairly, example by
-example, and compared with two cheaper explanations: simply searching longer, and building tools without
-looking at the failure. It has not been run yet.
+\panel{8. Building the missing tool}
+\cue{the block ``Constructing the missing operation'', right column}
+I built the missing tool. When the solver memorizes a growth pattern and its check rejects it, the system
+reads which objects it memorized. It then builds a general pattern rule from a fixed list of building blocks
+(37,750 possible rules), plugs it into the same solver, and tests it fairly: three times it hides one
+example, rebuilds the rule from the other two, and predicts the hidden one.
+
+On made-up practice puzzles, one complete case worked. The solver failed on its own, the new rule was one
+it could not express before, all three hidden-example checks passed, and the final answer was right.
+Removing the rule broke it again, and giving the solver more search time instead fixed nothing.
+
+The honest part: a version that never looked at the failure record found the same rule. So this shows the
+system can build and check a missing tool. It does not yet show that learning from the failure is what
+made the difference. The bigger, sealed test is designed to check that next.
 
 \panel{9. Could this work outside puzzles?}
 \cue{the panel marked BIOLOGICAL APPLICATION: UNTESTED}
