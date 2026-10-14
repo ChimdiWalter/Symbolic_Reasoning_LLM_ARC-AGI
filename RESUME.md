@@ -8,8 +8,12 @@ Last updated 2026-09-28. Read this first.
 return under 600 words: integrity results, D3 degeneracy verdict, corrected witness claim, Amendment 2 recommendation,
 E vs C' verdict, poster/demo readiness, GO/NO-GO plus ONE next experiment). Progress log (update after every step):
 - [ ] 1 queue (asset audit -> refold -> C'), detached; an auto-compare waits on 'REFOLD start'
-- [ ] 2 D3 degeneracy audit: cora_fhr/degeneracy_audit.py + a test in tests/test_fhr.py (in progress)
-- [ ] 3 witness claim correction (poster, abstract, explainer, paper 8.20, evidence 16, demo README, dev results)
+- [x] 2 D3 degeneracy CONFIRMED (records/CORA_FHR_DEGENERACY_AUDIT_20261014.md, 02eec25): planted union = ring(8)[part_minority]
+      on all D3 objects; differs on 81/1000 multi-minority perturbations; S collapses (definitional); final families aliases only
+- [x] 3 witness claim corrected to 'single-step composition, not a union' in poster/abstract/explainer/paper/evidence/README
+- [x] NVARC complementarity audit (second directive): NO-GO for a hybrid submission (records/NVARC_CORA_COMPLEMENTARITY_AUDIT_20261014.md)
+- [x] 5 mixed-coverage pilot designed and frozen (records/CORA_FHR_MIX_DESIGN_20261014.md); outputs/cora_fhr/followup_mix.sh is
+      detached (PID 1954431) and starts after 'C2 DONE'; results in rows_mix_dev.jsonl and dev_table_mix_dev.md
 - [ ] 4 Amendment 2 component by component; 5 mixed-coverage causal study design (DEV only); 7 materials; 9 saves
 - Kaggle 57160429 COMPLETE 27.64 (done, recorded). The 80-task final stays sealed.
 
