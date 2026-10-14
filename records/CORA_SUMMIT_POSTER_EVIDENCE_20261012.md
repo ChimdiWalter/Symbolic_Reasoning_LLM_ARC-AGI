@@ -299,7 +299,7 @@ abstract paragraph 3; explainer panels 5–8. The full record is
 | whole harness 12 of 60; 18 of 29 claims wrong | `outputs/funnel_v0/eval_dev60_harness.json`, sha256 2d9d5dd0…7e78 | 5086a18 |
 | arbitration 14 of 60; 36–39 of 60 on C2-dev; 0 lost | `arbitration_shadow_dev60.json`, `arbitration_shadow_c2dev.json` | 93a7d10 (dev60); this commit (C2-dev) |
 | neural stand-in: 240 tasks decoded, 259 of 259 genuine, 0 fallbacks, 4.3 h | `outputs/kaggle_deploy/neural_v1_full_run1/coverage_audit.json`; `records/KAGGLE_NEURAL_V1_LOG_20261013.md` section 10 | 8e1976a |
-| submission on 14 October, score pending | the same log, section 11 (57160429) | 5feca13 |
+| official public score 27.64 (NEURAL_TTT_BASELINE, not CORA) | the same log, section 11.2 (57160429); `outputs/kaggle_deploy/neural_v1_official_score.json` | this commit |
 | Qwen2.5-1.5B 19 of 35, I-JEPA 3 of 35 | section 13 above | — |
 
 The "PROPOSED" block describes an experiment that has not been run. Its

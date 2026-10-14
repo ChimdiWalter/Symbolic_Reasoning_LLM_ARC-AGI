@@ -418,3 +418,23 @@ capability construction.
 - If the submission is still `PENDING` at 24 h (2026-10-15 00:08Z), the user posts
   `records/KAGGLE_NEURAL_V1_PENDING_INQUIRY_DRAFT_20261014.md` to the competition discussion.
 - If it is `ERROR`, read the error category in the Kaggle UI before spending another submission.
+
+### 11.2 Official score (2026-10-14, 20:20Z)
+
+| item | value |
+|---|---|
+| status | `SubmissionStatus.COMPLETE` |
+| **public score** | **27.64** (semi-private half). The private score is released only at the end of the competition |
+| recorded | 20:20:02Z by the watcher, which polls every 10 min, so it was scored between 20:10 and 20:20Z; about 20 h after submission |
+| wait | mostly queueing: the notebook's guard caps execution at 11 h 50 min, and the committed run took 4.34 h |
+| record | `outputs/kaggle_deploy/neural_v1_official_score.json`; the watcher then exited ("all watched items settled") |
+
+**Comparison.**
+- NVARC's own 2025 scores were 27.64 public and 24.03 private, so this score equals their 2025 public
+  score.
+- Public 2026 copies of the same pipeline score 29–34 (`records/CORA_ARC_LEADER_SURVEY_20261013.md`).
+- The equal score is consistent with a faithful reproduction. Whether the 2026 public half is the same
+  120 tasks as in 2025 is not documented here.
+
+**Attribution.** This is a NEURAL_TTT_BASELINE result: NVARC's method, deployed and audited by us. It
+is not evidence for CORA. The inquiry draft of section 11.1 is obsolete.

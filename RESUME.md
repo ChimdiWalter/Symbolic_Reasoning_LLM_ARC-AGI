@@ -47,14 +47,12 @@ NEXT:
    - rebuild; poster_to_pptx; update abstract, explainer and paper section 8.20; evidence record section 16.
 4. GO/NO-GO = NO-GO. Failing gate: a fair failure-evidence comparison (E = C' by design on C4). The final split
    stays sealed.
-5. Kaggle 57160429: PENDING at 20:05Z Oct 14 (20 h). Watcher alive and it catches ERROR too (log section 11.1).
-   If still PENDING after 00:08Z Oct 15: the user posts records/KAGGLE_NEURAL_V1_PENDING_INQUIRY_DRAFT_20261014.md.
-   If ERROR: read the category before spending a submission. If COMPLETE: record it as NEURAL_TTT_BASELINE in log
-   section 11, paper section 6.4, the poster's competition block and the evidence record. Never resubmit or cancel.
+5. Kaggle 57160429 SCORED: COMPLETE, public 27.64 (by 20:20Z Oct 14), recorded in the log (section 11.2), paper,
+   poster, abstract, explainer and evidence record. The watcher exited. No new submission without the user's authorization.
 
 OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough sprint"; resume here):
 - **Kaggle.**
-  - **NEURAL SUBMITTED: 57160429** (2026-10-14 00:08Z, NEURAL_TTT_BASELINE), status PENDING. The watcher
+  - **NEURAL SUBMITTED: 57160429** (2026-10-14 00:08Z, NEURAL_TTT_BASELINE), COMPLETE, public 27.64. The watcher
     writes the score to outputs/kaggle_deploy/neural_v1_official_score.json.
     Record it in KAGGLE_NEURAL_V1_LOG section 12, then update the paper, poster and abstract (neural label only).
   - The neural run `chimdiwalter/cora-neural-ttt-baseline-v1` v1 is COMPLETE and AUDITED (20:56Z):

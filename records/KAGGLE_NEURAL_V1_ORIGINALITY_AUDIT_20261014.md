@@ -70,3 +70,8 @@ output that CORA then tries to explain with a certified executable program,
 verified on the demonstrations alone, with fold-local regeneration. This has
 not been implemented or tested. The protocol is in
 `records/CORA_NEURAL_CANDIDATE_EVIDENCE_PLAN_20261013.md`.
+
+## Result (2026-10-14)
+
+Public score **27.64**, equal to NVARC's own 2025 public score; see section 11.2 of
+`records/KAGGLE_NEURAL_V1_LOG_20261013.md`. It is labelled NEURAL_TTT_BASELINE everywhere.

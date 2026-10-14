@@ -1,3 +1,5 @@
+**OBSOLETE (2026-10-14 20:20Z): the submission scored 27.64. Do not post.**
+
 # Draft for the user to post to the competition discussion (not posted by Claude)
 
 **Post it only if 57160429 is still PENDING after 2026-10-15 00:08Z (24 h).** Credentials and

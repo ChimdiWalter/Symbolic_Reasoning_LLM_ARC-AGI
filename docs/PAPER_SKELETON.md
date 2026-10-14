@@ -374,7 +374,11 @@ as CORA, as capability invention, or as evidence for any claim in sections
     attempt_1 and 0 fallbacks, under the corrected gate that counts the
     repair cell's input copies as fallback (section 9 of that log);
   - official submission **57160429**, 2026-10-14 00:08Z, labelled
-    NEURAL_TTT_BASELINE; **score pending** at 2026-10-14 15:00Z.
+    NEURAL_TTT_BASELINE; **COMPLETE, public score 27.64**, recorded
+    2026-10-14 20:20Z, about 20 h after submission (mostly queueing: execution
+    is capped at 11 h 50 min). NVARC's own 2025 scores were 27.64 public and
+    24.03 private. This is a deployment result for a third-party method, not
+    CORA evidence. The private score is released only at the end.
 - **Coverage is audited separately from validity.** Upstream fills
   unprocessed outputs with `[[0]]`, so a valid file is not coverage
   (`kaggle/neural_v1/audit_run.py`).
