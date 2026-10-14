@@ -38,19 +38,17 @@ the native engine. None survived adaptive leave-one-out (0 of 14 folds), so no n
 An instrumented failure funnel on the same 60 tasks, with held-out answers read only by an
 independent evaluator, then located where the native reasoner fails. Its leave-one-out verifier
 certified 6 answers, all correct; switching it off would add 2 correct and 26 wrong answers. In 27
-tasks every program that fit the demonstrations was wrong: mostly memorized constant growth patterns,
+tasks (26 with the frozen library) every program that fit the demonstrations was wrong: mostly memorized constant growth patterns,
 rebuilt differently by each leave-one-out fold. Neither the reasoner's own relational re-search nor three
 times the search budget repaired any of them, and the view-admission failure we had first traced by
-hand explains only 7 of 76 failed folds. The obvious view repairs were tested on synthetic controls
-first: forcing a view to be searched first gained no task and harmed five of 24, and a fold-local
-alternative gained one and harmed four of 41, so neither was adopted. Frozen neural guides chose views
+hand explains only 7 of 76 failed folds. Two obvious view repairs, tested on synthetic controls first, harmed
+more tasks than they gained and were not adopted. Frozen neural guides chose views
 no better than the fixed order (Qwen2.5-1.5B 19 of 35, I-JEPA 3 of 35, pre-registered).
 
 We then implemented the construction step (CORA-FHR): a declared grammar of typed growth operators, the
 reasoner's own memorized-growth record as evidence, reversible installation into the unchanged engine, and
 leave-one-out that rebuilds the operator in every fold. On 27 synthetic development tasks, one constructed
-single-step operator (a ring around an object's minority-colour cell; the task's planted second step adds
-nothing on its shapes), absent from the native and existing constructor vocabularies, was rebuilt in every fold and gave a
+single-step operator (the task's planted second step proved vacuous), absent from the native and existing constructor vocabularies, was rebuilt in every fold and gave a
 correct certified prediction. There were no wrong certificates, and matched extra search gained nothing. A
 failure-blind constructor reached the same result, so the contribution of the failure record itself is not
 yet established; the prospective test is sealed.
@@ -67,7 +65,7 @@ leave-one-out.\par
 test output read); forensic (subsets examined after the failure was seen). The certified training score is
 unchanged at 185/1{,}000, and the native solver's official Kaggle ARC-AGI-2 public score is 0.00 (October 2026). A
 separately labelled neural baseline (a reproduction of a public NVARC test-time-training pipeline, not CORA)
-scored 27.64 on the official public leaderboard (14 October), equal to NVARC's own 2025 public score; it is not a CORA result. A 120-task prospective pilot is
+scored 27.64 on the official public leaderboard, equal to NVARC's 2025 public score; it is not a CORA result. A 120-task prospective pilot is
 frozen and has not been run. Every number is indexed with its commit and hash in
 \texttt{records/CORA\_SUMMIT\_POSTER\_EVIDENCE\_20261012.md} and \texttt{records/CORA\_FAILURE\_FUNNEL\_20261014.md}.\par}
 \end{document}

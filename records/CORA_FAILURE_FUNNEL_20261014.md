@@ -353,3 +353,30 @@ so the declared grammar must grow, and that grammar must be fixed before the
 prospective corpus is built. A positive result would be compositional growth
 (L2), not a new primitive, unless a bounded-language novelty test says
 otherwise.
+
+## Asset audit (2026-10-14, 21:17Z): the submitted configuration
+
+`cora_funnel.run --mode native_assets` loads the frozen library (cdacd018) and learned verbs (b1f07ba5)
+through `cora_pilot.native.prepare_object_dir`, as the harness and the Kaggle notebook do.
+
+| category | without assets (headline) | with assets |
+|---|---|---|
+| CERTIFIED_CORRECT | 6 | 6 |
+| FIT_BUT_ALL_WRONG | 27 | 26 |
+| NATIVE_ERROR | 1 | 2 |
+| NO_FIT_DEADLINE | 11 | 11 |
+| NO_FIT_EXHAUSTED | 11 | 11 |
+| NO_SEARCH | 2 | 2 |
+| REJECTED_BUT_CORRECT | 2 | 2 |
+
+**The one change** is `kd506f38dd7d6`, from FIT_BUT_ALL_WRONG to NATIVE_ERROR. It is a
+`ValueError("invalid literal for int() with base 10: 'h'")` in `_induce_composed`, in every frame:
+an asset-triggered parsing defect in the frozen native engine. It is recorded, not fixed, because
+native v23 is frozen.
+
+The correct count stays at 6 of 60, and the funnel's conclusions are unchanged:
+- memorization dominates;
+- the verifier is precise;
+- more search does not help.
+
+Sources: `outputs/funnel_v0/eval_dev60_native_assets.json`, `outputs/funnel_v0/eval_assets.out`.

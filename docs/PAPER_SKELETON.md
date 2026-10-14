@@ -1575,6 +1575,13 @@ admission (7 of 76 failed folds) or search budget. It is rule induction that
 memorizes. That makes the next experiment the failure-conditioned
 construction of a derived growth-pattern operator (proposed; not run).
 
+**Asset audit** (2026-10-14; `outputs/funnel_v0/eval_dev60_native_assets.json`). Rerunning with the frozen
+library (cdacd018) and learned verbs (b1f07ba5) loaded, as submitted:
+- certified-correct is unchanged at 6, and memorized (FIT_BUT_ALL_WRONG) goes from 27 to 26;
+- one task, `kd506f38dd7d6`, becomes NATIVE_ERROR: an asset-triggered `ValueError` parsing the
+  symbolic parameter `'h'` in `_induce_composed`, in every frame;
+- the other categories are unchanged, and the conclusions are unchanged.
+
 ## 8.20 Constructing the missing operation (CORA-FHR): development results
 
 **Tier: SYNTHETIC DEVELOPMENT.**

@@ -7,7 +7,8 @@ Last updated 2026-09-28. Read this first.
 **NEWEST DIRECTIVE (2026-10-14 ~21:00Z): "CORA — FINAL SURGICAL INTEGRITY CHECK AND NEXT EXPERIMENT"** (items 1-9;
 return under 600 words: integrity results, D3 degeneracy verdict, corrected witness claim, Amendment 2 recommendation,
 E vs C' verdict, poster/demo readiness, GO/NO-GO plus ONE next experiment). Progress log (update after every step):
-- [ ] 1 queue (asset audit -> refold -> C'), detached; an auto-compare waits on 'REFOLD start'
+- [~] 1 queue: ASSET AUDIT DONE (6 certified-correct unchanged; memorized 27->26; +1 asset-triggered native error on
+      kd506f38dd7d6; recorded in the funnel record, paper 8.19, poster, abstract, explainer, startup, evidence). Refold, then C', running
 - [x] 2 D3 degeneracy CONFIRMED (records/CORA_FHR_DEGENERACY_AUDIT_20261014.md, 02eec25): planted union = ring(8)[part_minority]
       on all D3 objects; differs on 81/1000 multi-minority perturbations; S collapses (definitional); final families aliases only
 - [x] 3 witness claim corrected to 'single-step composition, not a union' in poster/abstract/explainer/paper/evidence/README

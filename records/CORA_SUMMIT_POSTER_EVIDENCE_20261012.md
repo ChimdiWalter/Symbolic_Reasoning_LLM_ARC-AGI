@@ -319,3 +319,4 @@ Poster block: "Constructing the missing operation"; abstract paragraph 4.
 | matched search 0 of 15 | `eval_c4_dev_v2_B.json` |
 | failure-blind match; E = C' by design | `rows_c4_dev_v2.jsonl` (arm C), `c2_audit_c4_dev_v2.json` |
 | D3 planted union = ring(8)[part_minority] on all D3 objects (one-step witness, not a union) | `outputs/cora_fhr/degeneracy_audit.json`; `tests/test_fhr.py::test_d3_planted_union_collapses_to_the_constructed_operator` |
+| asset audit: 6 certified-correct unchanged; 27 to 26 memorized; +1 asset-triggered native error | `outputs/funnel_v0/eval_dev60_native_assets.json`; funnel record, section 'Asset audit' |

@@ -9,7 +9,7 @@ Models that predict how cells respond to genetic or chemical perturbations
 are proliferating. Their predictions are cheap, but the experiments that
 check them are slow and expensive. Teams cannot tell which predictions rest
 on supported structure and which on memorized coincidence. That is the same
-failure CORA measures on ARC, where 27 of 60 development tasks were fitted
+failure CORA measures on ARC, where 27 of 60 development tasks (26 with the frozen library loaded) were fitted
 by memorizing programs that did not generalize.
 
 ## The product hypothesis
