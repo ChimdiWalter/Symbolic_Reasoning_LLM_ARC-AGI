@@ -50,7 +50,7 @@
   {\fontsize{52}{62}\selectfont \@author\par}\vspace*{0.3em}{\fontsize{40}{48}\selectfont\color{ink2} \@institute}}}
 \makeatother
 
-\title{\parbox{0.94\linewidth}{\centering When Search Is Not Enough: Diagnosing Failure\\ Before Constructing Verified Reasoning Capabilities}}
+\title{\parbox{0.94\linewidth}{\centering When Search Is Not Enough: Diagnosing Reasoning Failures\\ and Constructing Verifiable Executable Capabilities}}
 \author{Chimdi Walter Ndubuisi \quad University of Missouri}
 \institute{CORA on ARC-AGI-2 \,$\cdot$\, development results \,$\cdot$\, ARC Prize Research Summit, 23 October 2026}
 
@@ -121,6 +121,15 @@
   \end{tabular}
 }
 
+\block{\bt{Repairs tested before use}}{\bodyfont
+  \secfont
+  \begin{itemize}
+    \item Forcing a view to be searched first: no task gained, 5 of 24 synthetic tasks harmed (4 correct
+      answers lost, 1 false acceptance). \textbf{Not run.}
+    \item Fold-local removal of duplicate views: gained 1, harmed 4 of 41. \textbf{Rejected.}
+  \end{itemize}
+}
+
 % ======================================================================
 \column{0.333}
 \block{\bt{What has been measured}}{\bodyfont
@@ -159,17 +168,6 @@
 
 % ======================================================================
 \column{0.333}
-\block{\bt{Repairs tested before use}}{\bodyfont
-  \secfont
-  \begin{itemize}
-    \item Forcing a view to be searched first: no task gained, 5 of 24 synthetic tasks harmed (4 correct
-      answers lost, 1 false acceptance). \textbf{Not run.}
-    \item Fold-local removal of duplicate views: gained 1, harmed 4 of 41. \textbf{Rejected.}
-    \item Every fold chooses its representation from \textbf{its own demonstrations only}; anchoring a fold
-      to the parent's view is forensic, never a certificate.
-  \end{itemize}
-}
-
 \block{\bt{Competition status, 14 October}}{\bodyfont
   \secfont
   \textbf{OFFICIAL KAGGLE} $\cdot$ native CORA v23: \textbf{0.00}.\par\vspace{0.3em}
@@ -181,17 +179,22 @@
   14 of 60, and 36 to 39 of 60 on synthetic C2-dev, none lost. Engineering only; not submitted.
 }
 
-\block{\bt{Next: construct the missing operation \;{\color{warm}PROPOSED}}}{\bodyfont
-  \secfont
+\block{\bt{Constructing the missing operation \;{\color{warm}SYNTHETIC DEVELOPMENT}}}{\bodyfont
+  \begin{tikzfigure}
+    \includegraphics[width=\linewidth]{figures/fig_fhr_witness_dev_D3_04.png}
+  \end{tikzfigure}
+  \secfont \textbf{Implemented (CORA-FHR):} a declared grammar of 37,750 typed growth operators; CORA's own
+  memorized-growth record as evidence; reversible installation into the unchanged engine; leave-one-out
+  that rebuilds the operator in every fold.
   \begin{itemize}
-    \item \textbf{Trigger}, from demonstrations only: a memorized constant growth pattern that leave-one-out
-      cannot rebuild.
-    \item \textbf{Construct} a derived pattern operator from a declared, bounded grammar. CORA's 9 growth
-      families cover only 5 of the 27, so the grammar must grow, and be frozen first.
-    \item \textbf{Verify}: native re-induction in every fold, full adaptive leave-one-out, blind scoring.
-    \item \textbf{Controls}: matched extra search, failure-blind and shuffled-failure construction.
+    \item \textbf{One complete witness.} Frozen CORA fails. The constructed operator is new (on 300 perturbed
+      shapes native reproduces it 7 times, the best existing constructor 8). All 3 folds rebuild it and
+      predict exactly. The committed answer is correct, and removing the operator removes the gain.
+    \item 27 development tasks: 0 wrong certificates, 0 lost answers. Matched extra search: 0 of 15.
+    \item \textbf{Not yet shown:} that the failure record is what matters. A failure-blind constructor found
+      the same operator, and on this corpus its evidence equals the authentic arm's by design. The
+      prospective test is sealed.
   \end{itemize}
-  Not yet run. A gain would be compositional growth, not a new primitive.
 }
 
 \block{\bt{A portable controller? \;{\color{critical}BIOLOGICAL APPLICATION: UNTESTED}}}{\bodyfont
@@ -209,14 +212,13 @@
     \node[above=0.25cm of b, font=\diagsub\bfseries, text=critical] {untested};
   \end{tikzpicture}
   \end{tikzfigure}
-  \secfont The hypothesis: the controller and its evidence and certificate interfaces are portable; ARC
-  operators are not. A test needs typed adapters, training-only diagnosis, held-out perturbations and
-  cell states, and confounder controls. No biological data or result exists here.
+  \secfont Portable: the repair-and-verification contract, not the ARC operators. A test needs held-out
+  perturbations and cell states, and controls. No biological data or result exists here.
 }
 
 \block{\bt{Not claimed \,$\cdot$\, evidence}}{\bodyfont\raggedright
   \secfont No CORA solve or score gain on ARC-AGI-2; no semantic invention; no automatic failure-type
-  controller; the neural score, when it arrives, is not a CORA result; no domain generality; no
+  controller; no evidence yet that failure records cause a gain; the neural score is not a CORA result; no domain generality; no
   results from the separate VDCG project. The 120-task pilot is frozen and \textbf{has not been
   run}.\par\vspace{0.3em}
   \diagsub Every number, with commit and hash: \texttt{records/CORA\_SUMMIT\_POSTER\_EVIDENCE\_20261012.md}

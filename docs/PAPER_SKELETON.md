@@ -1571,6 +1571,33 @@ admission (7 of 76 failed folds) or search budget. It is rule induction that
 memorizes. That makes the next experiment the failure-conditioned
 construction of a derived growth-pattern operator (proposed; not run).
 
+## 8.20 Constructing the missing operation (CORA-FHR): development results
+
+**Tier: SYNTHETIC DEVELOPMENT.**
+- **Protocol:** `records/CORA_FHR_PROTOCOL_20261014.md` (Amendment 1 in force; Amendment 2 proposed).
+- **Results:** `records/CORA_FHR_DEV_RESULTS_20261014.md`.
+
+**Mechanism:**
+- a 37,750-expression typed growth grammar;
+- authentic evidence: native's `pattern` fallbacks;
+- an identity-checked overlay into the unchanged engine;
+- fold-local adaptive LOO.
+
+**Dev v2 (27 tasks).** In each construction arm (E authentic, C failure-blind, D shuffled):
+- 7 correct and 3 gains, of which 1 is NEW_COMPOSITION;
+- 0 wrong certificates, 0 lost answers.
+
+Matched search (B, 1.33x CPU): 0 of 15.
+
+**Witness dev_D3_04**, audited (deterministic rerun, replay, restore, ablation):
+- `ring(8)[part_minority]` was constructed;
+- perturbation novelty: native 7/300, best `cora_reach` setting 8/300;
+- 3/3 folds rebuilt it, with exact held-out predictions;
+- the committed answer is correct.
+
+**But C and C' (correspondence-matched, failure-blind) match E.** On C4, E's evidence equals C''s by
+construction. H3 is therefore untestable on this corpus; mixed-coverage families are required (Amendment 2 E).
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

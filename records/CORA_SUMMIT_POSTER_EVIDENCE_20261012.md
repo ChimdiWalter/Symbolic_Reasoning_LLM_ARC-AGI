@@ -304,3 +304,17 @@ abstract paragraph 3; explainer panels 5–8. The full record is
 
 The "PROPOSED" block describes an experiment that has not been run. Its
 numbers (9 families, 5 of 27) are coverage measurements, not results.
+
+## 16. CORA-FHR development witness (added 2026-10-14)
+
+Poster block: "Constructing the missing operation"; abstract paragraph 4.
+
+| number | source |
+|---|---|
+| figure `fig_fhr_witness_dev_D3_04.png` | pinned in `scripts/summit_figures.py`: `outputs/cora_fhr/c4_dev_v2.json` and `docs/summit_demo_20261023/data/witness.json` |
+| 37,750 operators | `cora_fhr/ggrow.py`, `tests/test_fhr.py` |
+| native 7/300, best existing 8/300 | `outputs/cora_fhr/witness_dev_D3_04.json`, `perturbation_novelty` |
+| 3/3 folds, correct, ablation | the same file, and `rows_c4_dev_v2.jsonl` |
+| 0 wrong, 0 lost over 27 tasks | `eval_c4_dev_v2.json` |
+| matched search 0 of 15 | `eval_c4_dev_v2_B.json` |
+| failure-blind match; E = C' by design | `rows_c4_dev_v2.jsonl` (arm C), `c2_audit_c4_dev_v2.json` |
