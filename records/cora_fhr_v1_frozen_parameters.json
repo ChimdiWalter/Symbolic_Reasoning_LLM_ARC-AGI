@@ -1,0 +1,116 @@
+{
+ "protocol": "records/CORA_FHR_PROTOCOL_20261014.md",
+ "grammar": "docs/CORA_FHR_GGROW_v1.md",
+ "version": 1,
+ "status": "FROZEN_SPECIFICATION (not implemented, not run); f_B is set once, after the development run, before the final freeze",
+ "native": {
+  "clock": "process CPU time (cora_funnel/run.py CLOCK=cpu)",
+  "budget_s": 90,
+  "frame_budget_s": 45,
+  "frames": 7,
+  "cap_s": 450,
+  "flags": {
+   "ARC_DIHEDRAL_FRAMES": "45",
+   "ARC_GENERATIVE": "1",
+   "ARC_PATTERN_DERIVE": "1",
+   "ARC_VARIANT_BUDGET": "1",
+   "ARC_RAY_EXT": "1"
+  }
+ },
+ "limits": {
+  "SUPPORT_DEMOS": 2,
+  "MAX_INSTANCES": 64,
+  "MAX_PROPOSALS": 8,
+  "selection": "canonical-first proposal"
+ },
+ "grammar_bounds": {
+  "sources": 10,
+  "unary_transforms": 50,
+  "depth1": 500,
+  "depth2": 25000,
+  "unions_same_source": 12250,
+  "total_before_dedup": 37750
+ },
+ "arms": [
+  "A_frozen",
+  "B_matched_search",
+  "C_failure_blind",
+  "D_shuffled",
+  "E_authentic"
+ ],
+ "f_B": null,
+ "corpus": {
+  "name": "C4 v1 (SYNTHETIC)",
+  "demos": 3,
+  "tests": 1,
+  "grid_side": [
+   10,
+   14
+  ],
+  "seeds": {
+   "dev": 11000,
+   "final": 11500
+  },
+  "dev": {
+   "G": {
+    "D1": "ray(d, obstacle)(edge(d))",
+    "D2": "shift(size_gap(d))(reflect(edge d)(self))",
+    "D3": "union(ring(8)(part_minority), hull(part_minority))",
+    "per_family": 5
+   },
+   "N0": 3,
+   "S": 3,
+   "X": 3,
+   "U": 3
+  },
+  "final": {
+   "G": {
+    "F1": "ray(diag d, obstacle)(corners)",
+    "F2": "ring(4)(ray(d, border)(part_minority))",
+    "F3": "repeat(size(d))(reflect(V)(self))",
+    "F4": "union(ray(d1, border)(centre), ray(d2, border)(centre)), d1 != d2",
+    "per_family": 10
+   },
+   "alternate_family_if_rejection_over_50pct": {
+    "F5": "shift(size(d))(ring(8)(self))"
+   },
+   "N0": 10,
+   "S": 10,
+   "X": 10,
+   "U": 10,
+   "total": 80
+  },
+  "G_rejection_rule": "reject a sample if a B_native mode (native detect_grow != 'pattern' on the true objects) or a B_reach setting reproduces its added cells on all 3 demonstrations"
+ },
+ "thresholds": {
+  "P1_min_gains": 8,
+  "P1_min_families": 2,
+  "P2_max_gains_also_solved_by_B": 2,
+  "P3_min_margin_over_C": 3,
+  "P4_min_margin_over_D": 6,
+  "P5_new_certified_wrong": 0,
+  "P5_lost_A_correct": 0,
+  "P6": "every counted gain uses the extension and A does not certify it",
+  "P7": "every counted gain passes every adaptive-LOO fold with fold-rebuilt extensions",
+  "labels_in_order": [
+   "UNSAFE",
+   "NO_GAIN(<3 gains)",
+   "SELECTION_ONLY",
+   "SEARCH_SUFFICIENT",
+   "COMPOSITIONAL_GROWTH_WITHOUT_EVIDENCE_EFFECT",
+   "CAPABILITY_GROWTH_DEMONSTRATED",
+   "MORE_EVIDENCE_REQUIRED"
+  ],
+  "supporting_statistics": "exact McNemar, two-sided, alpha 0.05, E vs B/C/D on the 40 final G tasks (correlated; not decisive)"
+ },
+ "secondary_real_arc": {
+  "tier": "DEVELOPMENT",
+  "tasks": "dev60 FIT_BUT_ALL_WRONG (27) + REJECTED_BUT_CORRECT (2)",
+  "arms": [
+   "E",
+   "C"
+  ],
+  "threshold": null
+ },
+ "claim_ceiling": "L2 compositional growth; no new primitive is claimed"
+}

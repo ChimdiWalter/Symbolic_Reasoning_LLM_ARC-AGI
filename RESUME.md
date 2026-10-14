@@ -48,6 +48,18 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - gate-off counterfactual: 8 right, 26 wrong;
   - so certification is NOT the bottleneck; generating a generalizing hypothesis is.
   - The harness, oracle and budget sections are pending; the driver is on the whole harness (22:12Z).
+- **CORA-FHR v1 PROTOCOL FROZEN (specification only; Step 1 authorized by the user 2026-10-14):**
+  - files: records/CORA_FHR_PROTOCOL_20261014.md, docs/CORA_FHR_GGROW_v1.md,
+    records/cora_fhr_v1_frozen_parameters.json.
+  - Capability: a derived growth operator composed from the G-grow grammar (10 sources, 50 transforms,
+    depth <= 2 or same-source unions; 37,750 expressions; no cell literals).
+  - Trigger: native fails AND detect_grow memorized a constant pattern in >= 2 demonstrations.
+  - Arms: A frozen, B matched search, C failure-blind, D shuffled, E authentic. Native acceptance and
+    adaptive LOO decide.
+  - Final corpus: C4, 80 synthetic tasks; held-out G families F1-F4 rejected if baseline-explainable.
+  - Pass rules: P1-P7 (P1 >= 8 NEW_COMPOSITION gains in >= 2 families; P3 E beats C by >= 3; 0 harms).
+  - NOT implemented and NOT run. Next: implementation steps 1-8 (Oct 15-16), dev run and freeze (Oct 17),
+    final run (Oct 18-19). The final run needs the user's go-ahead.
 - **FUNNEL EVIDENCE COMPLETE (Oct 14, 9c58af8): VERDICT** in records/CORA_FAILURE_FUNNEL_20261014.md.
   - Real-ARC failure = rule induction by MEMORIZATION:
     - constant-parameter GROW cell patterns in 19/25 analysable FIT_BUT_ALL_WRONG tasks;
