@@ -45,7 +45,8 @@ os.environ.update({"ARC_DIHEDRAL_FRAMES": "45", "ARC_GENERATIVE": "1", "ARC_PATT
 for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
     os.environ[_v] = "1"
 OUT = os.path.join(HERE, "outputs", "funnel_v0")
-MODES = {"native": (90.0, 45.0), "budget3": (270.0, 135.0)}
+MODES = {"native": (90.0, 45.0), "budget3": (270.0, 135.0),
+         "native_rep": (90.0, 45.0)}   # native budgets again, own rows file: a structural replicate (contrast study)
 # Native budgets are wall-clock (time.monotonic). On a shared, oversubscribed host
 # (2026-10-13: 40-49 runnable threads on 24 cores) a wall-clock deadline measures
 # the machine's load, not the search. CLOCK=cpu runs every native deadline on this

@@ -43,18 +43,21 @@ def main(argv=None):
     ap.add_argument("--corpus", required=True)
     ap.add_argument("--categories", default=DEFAULT_CATS)
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--keys", default="", help="comma-separated subset")
+    ap.add_argument("--tag", default="", help="suffix for the rows and result files (replicates)")
     a = ap.parse_args(argv)
     cats = set(a.categories.split(","))
     ev = json.load(open(os.path.join(OUT, f"eval_{a.corpus}_native.json")))
     cat_of = {t["key"]: t["category"] for t in ev["tasks"]}
     tasks, ans = dict(run.load(a.corpus)), evaluate.answers(a.corpus)
-    path = os.path.join(OUT, f"rows_{a.corpus}_oracle.jsonl")
+    path = os.path.join(OUT, f"rows_{a.corpus}_oracle{a.tag}.jsonl")
+    want = set(a.keys.split(",")) if a.keys else None
     done = {json.loads(l)["key"] for l in open(path)} if os.path.exists(path) else set()
     todo = []
-    for k in sorted(k for k, c in cat_of.items() if c in cats and k not in done):
+    for k in sorted(k for k, c in cat_of.items() if c in cats and k not in done and (want is None or k in want)):
         t = tasks[k]
         aug = {"train": t["train"] + [{"input": p["input"], "output": o} for p, o in zip(t["test"], ans[k][0])], "test": t["test"]}
-        todo.append((k, aug, a.corpus + "_oracle", "native"))
+        todo.append((k, aug, a.corpus + "_oracle" + a.tag, "native"))
     print(f"oracle {a.corpus}: {len(todo)} to run", flush=True)
     with mp.get_context("fork").Pool(a.workers, maxtasksperchild=1) as pool, open(path, "a") as fh:
         for i, row in enumerate(pool.imap_unordered(run.job, todo), 1):
@@ -69,7 +72,7 @@ def main(argv=None):
         tab.setdefault(v["native_category"], {}).setdefault(v["oracle"], 0)
         tab[v["native_category"]][v["oracle"]] += 1
     json.dump({"corpus": a.corpus, "label": "ORACLE (evaluator-side; answers appended as demonstrations; never a prediction)",
-               "table": tab, "tasks": res}, open(os.path.join(OUT, f"oracle_{a.corpus}.json"), "w"), indent=1)
+               "table": tab, "tasks": res}, open(os.path.join(OUT, f"oracle_{a.corpus}{a.tag}.json"), "w"), indent=1)
     print(json.dumps(tab, indent=1))
 
 

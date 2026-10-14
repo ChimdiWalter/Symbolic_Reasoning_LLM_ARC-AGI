@@ -19,6 +19,8 @@ candidates go through the native FramedProgram. The probe changes no return
 value: native behaviour is unchanged.
 """
 import contextlib
+import hashlib
+import json
 import time
 
 import numpy as np
@@ -43,6 +45,17 @@ def render(prog, frame, test_inputs):
         except Exception:                                               # noqa: BLE001
             out.append(None)
     return out
+
+
+def summarize(prog):
+    """Compact structural record of one native program (for contrasting candidate explanations)."""
+    try:
+        txt = json.dumps(prog.to_dict(), sort_keys=True, default=str)
+    except Exception as exc:                                            # noqa: BLE001
+        return {"kind": type(prog).__name__, "error": repr(exc)[:120]}
+    pc = getattr(prog, "worst_parameter_class", None)
+    return {"kind": type(prog).__name__, "param_class": getattr(pc, "value", None),
+            "sha": hashlib.sha1(txt.encode()).hexdigest()[:12], "json": txt[:4000]}
 
 
 def perception(train_pairs):
@@ -120,9 +133,11 @@ def probe(n_top, test_inputs):
             rec["_pending"].append((ev, progs[:K_RENDER], frame()))
             st["lists"][id(att.programs)] = (att.programs, ev)
         elif len(train_pairs) == n_top - 1:
-            rec["events"].append({"type": "fold", "frame": st["frame"], "n_programs": len(progs), "deadline_hit": hit,
-                                  "s": round(I.time.monotonic() - t0, 2), "stage": getattr(att.stage, "value", None),
-                                  "seg": att.seg.variant.value if att.seg is not None else None})
+            fev = {"type": "fold", "frame": st["frame"], "n_programs": len(progs), "deadline_hit": hit,
+                   "s": round(I.time.monotonic() - t0, 2), "stage": getattr(att.stage, "value", None),
+                   "seg": att.seg.variant.value if att.seg is not None else None, "program": None}
+            rec["events"].append(fev)
+            rec["_pending"].append((fev, progs[:1], None))                  # the fold's first rebuilt program (summarized only)
         return att
 
     def loo(fn, train_pairs):
@@ -158,5 +173,9 @@ def probe(n_top, test_inputs):
 def finalize(rec, test_inputs):
     """After the task: render the kept candidates on the test inputs."""
     for ev, progs, fr in rec.pop("_pending", []):
+        if ev["type"] == "fold":
+            ev["program"] = summarize(progs[0]) if progs else None
+            continue
         ev["outputs"] = [render(p, fr, test_inputs) for p in progs]
+        ev["programs"] = [summarize(p) for p in progs[:8]]
     return rec
