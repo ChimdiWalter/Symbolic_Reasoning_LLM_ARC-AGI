@@ -7,8 +7,14 @@ Last updated 2026-09-28. Read this first.
 **NEWEST DIRECTIVE (2026-10-14 ~21:00Z): "CORA — FINAL SURGICAL INTEGRITY CHECK AND NEXT EXPERIMENT"** (items 1-9;
 return under 600 words: integrity results, D3 degeneracy verdict, corrected witness claim, Amendment 2 recommendation,
 E vs C' verdict, poster/demo readiness, GO/NO-GO plus ONE next experiment). Progress log (update after every step):
-- [~] 1 queue: ASSET AUDIT DONE (6 certified-correct unchanged; memorized 27->26; +1 asset-triggered native error on
-      kd506f38dd7d6; recorded in the funnel record, paper 8.19, poster, abstract, explainer, startup, evidence). Refold, then C', running
+- [x] 1a queue: ASSET AUDIT DONE (6 certified-correct unchanged; memorized 27->26; +1 asset-triggered native error on
+      kd506f38dd7d6; recorded in the funnel record, paper 8.19, poster, abstract, explainer, startup, evidence)
+- [x] 1b REFOLD (ungated, Amendment 2 A what-if) DONE: identical outcome counts to the frozen run in every arm (C, D, E 3 certified each)
+- [ ] 1c C' run (arms A,C2 on c4_dev_v2) RUNNING since 21:21Z via followup_c2.sh -> rows_c4_dev_v2_C2.jsonl, eval_v2_C2.out.
+      THEN: python -m cora_fhr.dev_table --corpus c4_dev_v2; replace section 6 of records/CORA_FHR_DEV_RESULTS_20261014.md
+- [x] 4 Amendment 2 recommendation written into the protocol (660a48c): reject A and B, adopt C, D, E (NOT in force; user decides)
+- [ ] mixed pilot (followup_mix.sh, PID 1954431) starts after 'C2 DONE'; check the stop rule in records/CORA_FHR_MIX_DESIGN_20261014.md
+- [ ] FINAL REPORT (<600 words): integrity results, D3 verdict, corrected witness claim, Amendment 2, E vs C', poster/demo, GO/NO-GO + ONE next experiment
 - [x] 2 D3 degeneracy CONFIRMED (records/CORA_FHR_DEGENERACY_AUDIT_20261014.md, 02eec25): planted union = ring(8)[part_minority]
       on all D3 objects; differs on 81/1000 multi-minority perturbations; S collapses (definitional); final families aliases only
 - [x] 3 witness claim corrected to 'single-step composition, not a union' in poster/abstract/explainer/paper/evidence/README

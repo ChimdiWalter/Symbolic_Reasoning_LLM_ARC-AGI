@@ -707,6 +707,31 @@
    "id": "kaggle_neural_v1_score",
    "status": "COMPLETE: submission 57160429 public score 27.64 (NEURAL_TTT_BASELINE, NVARC reproduction, not CORA); recorded 2026-10-14 20:20Z",
    "evidence": "records/KAGGLE_NEURAL_V1_LOG_20261013.md section 11.2; outputs/kaggle_deploy/neural_v1_official_score.json"
+  },
+  {
+   "id": "cora_fhr_degeneracy_audit",
+   "status": "DONE: D3 planted union collapses to ring(8)[part_minority] on all D3 objects (31/31 corpus objects; test passes); differs on 81/1000 multi-minority perturbations; S collapses (definitional); final families aliases only. Witness claim corrected to single-step everywhere",
+   "evidence": "records/CORA_FHR_DEGENERACY_AUDIT_20261014.md; commit 02eec25"
+  },
+  {
+   "id": "nvarc_cora_complementarity",
+   "status": "DONE: NO-GO for a hybrid submission. NVARC attempt_2: 112 distinct, 147 empty, 0 duplicates; on the contaminated stand-in, CORA-only solutions 0, hybrid +0 / -1; public half: CORA 0.00, so +0 possible",
+   "evidence": "records/NVARC_CORA_COMPLEMENTARITY_AUDIT_20261014.md; commit fd581f3"
+  },
+  {
+   "id": "funnel_asset_audit",
+   "status": "DONE: with the frozen library and verbs, certified-correct 6 unchanged, memorized 27->26, +1 asset-triggered native error (kd506f38dd7d6)",
+   "evidence": "records/CORA_FAILURE_FUNNEL_20261014.md section 'Asset audit'; commit 0fe75c7"
+  },
+  {
+   "id": "cora_fhr_amendment2_refold",
+   "status": "DONE: the ungated refold is identical to the frozen run; recommendation: reject A and B, adopt C, D, E (not in force)",
+   "evidence": "records/CORA_FHR_PROTOCOL_20261014.md; commit 660a48c"
+  },
+  {
+   "id": "cora_fhr_mix_pilot",
+   "status": "QUEUED (DEV only): 8 mixed-coverage tasks (M1 colour-separable, M3 size-only), arms A,B,C2,C3,D,E; frozen stop rule; starts after the C' run",
+   "evidence": "records/CORA_FHR_MIX_DESIGN_20261014.md; outputs/cora_fhr/followup_mix.sh; commit c9bc427"
   }
  ],
  "recovered_definitions": {
