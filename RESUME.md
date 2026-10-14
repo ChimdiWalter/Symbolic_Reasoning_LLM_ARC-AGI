@@ -48,6 +48,18 @@ OCTOBER 23 SPRINT (user directive 2026-10-13 "October 23 research breakthrough s
   - gate-off counterfactual: 8 right, 26 wrong;
   - so certification is NOT the bottleneck; generating a generalizing hypothesis is.
   - The harness, oracle and budget sections are pending; the driver is on the whole harness (22:12Z).
+- **FUNNEL EVIDENCE COMPLETE (Oct 14, 9c58af8): VERDICT** in records/CORA_FAILURE_FUNNEL_20261014.md.
+  - Real-ARC failure = rule induction by MEMORIZATION:
+    - constant-parameter GROW cell patterns in 19/25 analysable FIT_BUT_ALL_WRONG tasks;
+    - failed folds rebuild different constant structures (59/74);
+    - native phase C (force_relational) returns 0 programs;
+    - budget x3: 0 robust gains;
+    - frozen cora_reach growth grammar covers 5/27.
+  - The oracle's 'expressible' mostly = memorizing one more case.
+  - Recommended ONE intervention (NOT implemented; awaiting the user's go-ahead):
+    failure-conditioned construction of a derived GROW pattern operator (CORA-FHR with a bounded typed
+    operation extension), with matched-search, failure-blind and shuffled controls.
+  - Arbitration replicates on C2-dev: +5/+8, 0 lost (engineering only).
 - **ORACLE dev60 COMPLETE** (00:44Z Oct 14; records/CORA_FAILURE_FUNNEL_20261014.md):
   - FIT_BUT_ALL_WRONG: 26/27 expressible with the answer added; 24 of 26 in the SAME frame and view as
     the spurious fit;

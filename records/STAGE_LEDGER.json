@@ -632,7 +632,7 @@
   },
   {
    "id": "cora_failure_funnel_v0",
-   "status": "RUNNING: dev60 object layer, whole harness and oracle COMPLETE (oracle: FIT_BUT_ALL_WRONG 26/27 expressible, 24/26 same view; no-fit 0/22); c3dev running, then budget x3, then c2dev and its oracle; contrast job queued",
+   "status": "COMPLETE (Oct 14): real-ARC dominant failure = memorizing constant-parameter rules (GROW cell patterns 19/25); certification precise (0 false acceptances); budget x3 no robust gain; phase C 0 programs; cora_reach coverage 5/27; recommended intervention: failure-conditioned derived GROW-pattern operator construction (not implemented)",
    "directive": "October 23 research breakthrough sprint (user, 2026-10-13), sections 3-4",
    "code": [
     "cora_funnel/instrument.py",
@@ -644,16 +644,19 @@
    ],
    "commits": [
     "0f2d209",
+    "37881f9",
     "6387780",
+    "7367a4f",
     "7485f00",
     "824d89d",
+    "9c58af8",
     "c699cb9",
     "ed3d0fd"
    ],
    "outputs": "outputs/funnel_v0/",
    "report": "records/CORA_FAILURE_FUNNEL_20261014.md (pending)",
    "integrity": "solver sees training pairs and test inputs only; answers read by evaluate.py/oracle.py only; native object layer unchanged (probe restores all names); verifier unchanged; no eval/HOLDOUT/ARC-1000/pilot data",
-   "updated_utc": "2026-10-14T00:45:55Z",
+   "updated_utc": "2026-10-14T14:51:39Z",
    "notes": "the running driver holds the pre-NATIVE_ERROR evaluator, so its eval_*.json files must be regenerated; dev60 k35aabb2676c4 = native KeyError('window') reported by native as a segmentation failure"
   },
   {
