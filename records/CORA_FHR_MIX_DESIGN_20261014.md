@@ -62,3 +62,7 @@ failure evidence carrying information that blind clustering lacks.
 
 **Run.** `outputs/cora_fhr/followup_mix.sh`, detached. It waits for the C′ run to finish, so the
 footprint stays at 4 workers.
+
+**Added caveat (2026-10-14, before any pilot result).** In M3 the kinds differ by size. Even if E beats the
+colour-only blind controls there, that alone does not show causal use of failure evidence. A follow-up
+would need an equally equipped size-aware blind control, for example C′ regrouped by object size.
