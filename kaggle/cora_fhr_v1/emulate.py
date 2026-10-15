@@ -60,7 +60,7 @@ def main():
     work = os.path.join(BASE, "working")
     os.makedirs(work)
     env = dict(os.environ, K_INPUT=inp, K_WORK=work, K_GUARD_DIR=guard, K_GUARD_LOG=os.path.join(BASE, "guard.log"),
-               K_WORKERS="2", K_BUDGET_S="1200", K_FHR_START_H="1.5", K_FHR_HARD_H="2.0")
+               K_WORKERS="2", K_BUDGET_S="1200", K_FHR_START_H="3.0", K_FHR_HARD_H="4.0")
     r = subprocess.run(["nice", "-n", "19", sys.executable, os.path.join(HERE, "notebook.py")], env=env,
                        capture_output=True, text=True, cwd=work)
     open(os.path.join(BASE, "notebook.log"), "w").write(r.stdout + "\n--- stderr ---\n" + r.stderr)

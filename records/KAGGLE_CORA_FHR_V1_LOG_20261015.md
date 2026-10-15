@@ -12,10 +12,12 @@ integrity gates pass.
 
 ## Method (what is submitted)
 
-`kaggle/cora_fhr_v1/notebook.py` is built from `kaggle/native_v1/notebook.py` by 7 asserted patches
+`kaggle/cora_fhr_v1/notebook.py` is built from `kaggle/native_v1/notebook.py` by asserted exact-string patches
 (`make_notebook.py`).
 1. **Native.** The unchanged native v23 harness runs from the unchanged dataset
-   `chimdiwalter/arc-native-baseline-v1`. Its budget is 6.5 h; native_v1 needed 4.03 h.
+   `chimdiwalter/arc-native-baseline-v1`, with the same 11.25 h budget (native_v1 needed 4.03 h).
+   A lower budget was rejected because it could change native's per-task budgets. FHR starts tasks
+   until 10.75 h and stops at 11.4 h.
 2. **FHR** (`fhr_phase.py`). Each growth-shaped task that native's object layer did not certify runs
    `cora_fhr.measure.job(arm E)`, the development code path:
    - failure evidence (native's memorized-growth record);
@@ -51,8 +53,9 @@ integrity gates pass.
   - complete in under 11.5 h, with all 240 stand-in tasks covered and 0 schema problems;
   - actually run the FHR phase, with not-reached tasks recorded;
   - have 0 restore failures;
-  - produce native answers identical to native_v1's committed run, apart from documented budget
-    effects.
+  - produce native answers identical to native_v1's committed run: attempt_1 identical on at least
+    95% of positions, with every difference listed. The native harness uses wall-clock deadlines, so
+    it is not bit-deterministic. This threshold was set at 01:10Z, before any committed run.
 
 **Submit only if G1's safety gates and G2 pass.** Any wrong certificate, lost answer, restore failure,
 schema failure or overrun means no submission.

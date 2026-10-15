@@ -4,9 +4,9 @@ The native notebook is copied verbatim and changed only by the asserted exact-st
 - P1 the docstring;
 - P2 the label;
 - P3, P4 the data and package resolution for two attached datasets;
-- P5 the native harness budget (6.5 h, so there is room for the construction phase);
-- P6 the FHR helpers;
-- P7 the phase itself, after the native submission is written.
+- P5 the FHR helpers;
+- P6 the phase itself, after the native submission is written.
+The native harness keeps native_v1's 11.25 h budget.
 
 The native reasoning (harness command, flags, assets and writer) is untouched.
 """
@@ -29,15 +29,16 @@ Datasets:
   fhr_phase.py MANIFEST.json (kaggle/cora_fhr_v1/build_dataset.sh).
 
 Per task:
-1. NATIVE: the sealed unified harness, exactly as in native_v1 (flags, assets, writer). Only its global
-   budget is 6.5 h instead of 11.25 h; the native_v1 committed run needed 4.03 h.
+1. NATIVE: the sealed unified harness, exactly as in native_v1 (flags, assets, writer, 11.25 h budget);
+   the native_v1 committed run needed 4.03 h of it.
 2. FHR (fhr_phase.py), on growth-shaped tasks that native's object layer did not certify:
    - read native's own memorized-growth record (the failure evidence);
    - construct a G-grow operator;
    - install it reversibly into the same engine;
    - require native's gate, use of the operator, no tie and adaptive leave-one-out that rebuilds
      everything per fold.
-   This is cora_fhr.measure.job with arm E, the code path of the development runs.
+   This is cora_fhr.measure.job with arm E, the code path of the development runs. It uses the remaining
+   time: tasks start until 10.75 h, and the phase stops at 11.4 h.
 3. ANSWERS:
    - where FHR certifies, attempt_1 is its prediction and attempt_2 is native's attempt_1;
    - everywhere else native's answers are kept unchanged (the fallback policy);
@@ -211,9 +212,9 @@ TAIL_NEW = '''    sub, repairs, extra = validate_and_repair(sub, challenges)
 PATCHES = [
     ('LABEL, VERSION = "NATIVE_BASELINE", "native_v1"', 'LABEL, VERSION = "CORA_FHR_V1", "cora_fhr_v1"'),
     ('        if "geocat_arc" in dirname or any(f.endswith(".tar.gz") for f in files):',
-     '        if "geocat_arc" in dirname or "cora_fhr" in dirname or any(f.endswith(".tar.gz") for f in files):'),
+     '        rel = os.path.relpath(dirname, INPUT)\n'
+     '        if "geocat_arc" in rel or "cora_fhr" in rel or any(f.endswith(".tar.gz") for f in files):'),
     ('            if f.endswith(".tar.gz") and tar_path is None:', '            if f == NATIVE_TAR and tar_path is None:'),
-    ('str(int(11.25 * 3600))', 'str(int(6.5 * 3600))'),
     ('\n\ndef main():\n', '\n' + FHR_FUNCS + 'def main():\n'),
     (TAIL_OLD, TAIL_NEW),
 ]

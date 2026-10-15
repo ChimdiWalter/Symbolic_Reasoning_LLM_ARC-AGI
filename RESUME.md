@@ -8,7 +8,9 @@ Last updated 2026-09-28. Read this first.
 (ONE CORA-specific submission authorized IF gates pass; return 7 items). Gates and log: records/KAGGLE_CORA_FHR_V1_LOG_20261015.md.
 - [x] adapter kaggle/cora_fhr_v1/ (fhr_phase.py = measure.job arm E; notebook from native_v1 via make_notebook.py; build_dataset.sh;
       deploy metadata kaggle/cora_fhr_v1_deploy/{dataset,kernel}); engine files byte-identical to the native dataset
-- [ ] G2a offline emulation (python kaggle/cora_fhr_v1/emulate.py -> kaggle/cora_fhr_v1/emulation/summary.json) RUNNING
+- [ ] DETACHED GATED PIPELINE kaggle/ops/cora_fhr_v1_pipeline.py (state outputs/kaggle_deploy/cora_fhr_v1/state.json, log pipeline.log):
+      emulation (G2a) -> private dataset -> kernel push = committed run -> outputs + G2b -> wait dev60 + G1 -> submit ONE -> score.
+      Resumable: rerun the same command; it continues from state.json. BLOCKED_<stage> means a gate failed: no submission.
 - [ ] G1 dev60 real-task run (outputs/cora_fhr/followup_dev60.sh, detached; starts after MIX DONE) -> rows_dev60.jsonl
 - [ ] push dataset + kernel (private), Kaggle committed run on the 240 stand-in tasks, G2b checks, then submit ONE if gates pass
 - [ ] after scoring: log, paper, poster (+architecture figure), abstract, explainer

@@ -11,15 +11,16 @@ Datasets:
   fhr_phase.py MANIFEST.json (kaggle/cora_fhr_v1/build_dataset.sh).
 
 Per task:
-1. NATIVE: the sealed unified harness, exactly as in native_v1 (flags, assets, writer). Only its global
-   budget is 6.5 h instead of 11.25 h; the native_v1 committed run needed 4.03 h.
+1. NATIVE: the sealed unified harness, exactly as in native_v1 (flags, assets, writer, 11.25 h budget);
+   the native_v1 committed run needed 4.03 h of it.
 2. FHR (fhr_phase.py), on growth-shaped tasks that native's object layer did not certify:
    - read native's own memorized-growth record (the failure evidence);
    - construct a G-grow operator;
    - install it reversibly into the same engine;
    - require native's gate, use of the operator, no tie and adaptive leave-one-out that rebuilds
      everything per fold.
-   This is cora_fhr.measure.job with arm E, the code path of the development runs.
+   This is cora_fhr.measure.job with arm E, the code path of the development runs. It uses the remaining
+   time: tasks start until 10.75 h, and the phase stops at 11.4 h.
 3. ANSWERS:
    - where FHR certifies, attempt_1 is its prediction and attempt_2 is native's attempt_1;
    - everywhere else native's answers are kept unchanged (the fallback policy);
@@ -72,7 +73,8 @@ def find_comp():
     if os.environ.get("K_COMP"):
         return os.environ["K_COMP"]
     for dirname, _dirs, files in os.walk(INPUT):
-        if "geocat_arc" in dirname or "cora_fhr" in dirname or any(f.endswith(".tar.gz") for f in files):
+        rel = os.path.relpath(dirname, INPUT)
+        if "geocat_arc" in rel or "cora_fhr" in rel or any(f.endswith(".tar.gz") for f in files):
             continue
         names = [f.lower() for f in files]
         if any(f.endswith(".json") and ("challenge" in f or "test" in f) for f in names) \
@@ -325,7 +327,7 @@ def main():
     obj = install_assets(code, out_dir)
     man["assets"] = {n: _sha(os.path.join(obj, n)) for n in ASSETS}
     env = native_env(code)
-    budget_s = int(os.environ.get("K_BUDGET_S", str(int(6.5 * 3600))))
+    budget_s = int(os.environ.get("K_BUDGET_S", str(int(11.25 * 3600))))
     workers = os.environ.get("K_WORKERS", str(os.cpu_count()))
     cmd = [sys.executable, "scripts/run_unified_harness.py", "--split", "evaluation", "--workers", workers,
            "--out-dir", out_dir, "--run-id", "kaggle", "--emit-predictions", "--global-budget-s", str(budget_s)]
