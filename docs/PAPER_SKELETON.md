@@ -1619,6 +1619,16 @@ Matched search (B, 1.33x CPU): 0 of 15.
 **But C and C' (correspondence-matched, failure-blind) match E.** On C4, E's evidence equals C''s by
 construction. H3 is therefore untestable on this corpus; mixed-coverage families are required (Amendment 2 E).
 
+**Mixed-coverage causal pilot** (DEVELOPMENT; `records/CORA_FHR_MIX_DESIGN_20261014.md`).
+- 8 tasks, each mixing objects native explains with objects that need construction. The stop rule was
+  frozen before the run.
+- Kinds separable by colour (M1): E 2 certified-correct, pooled C′ 0, colour-clustering C″ 2.
+- Kinds separable by size only (M3): E proposed the novel operator in 3 of 4 tasks, while every blind
+  control proposed nothing. But native's gate rejected the extended program in all 3, so 0 were correct.
+- There were no wrong certificates and no lost answers.
+- **The prerequisite failed.** Failure evidence changes proposal selection, but has not yet improved
+  held-out correctness over an equally equipped blind control. The study was not enlarged.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

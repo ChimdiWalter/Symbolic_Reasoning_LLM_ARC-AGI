@@ -14,7 +14,7 @@ Last updated 2026-09-28. Read this first.
 - [ ] G1 dev60 real-task run (outputs/cora_fhr/followup_dev60.sh, detached; starts after MIX DONE) -> rows_dev60.jsonl
 - [ ] push dataset + kernel (private), Kaggle committed run on the 240 stand-in tasks, G2b checks, then submit ONE if gates pass
 - [ ] after scoring: log, paper, poster (+architecture figure), abstract, explainer
-- mixed pilot run 2 still running (followup_mix.log); do not interfere
+- [x] mixed pilot run 2 DONE: stop rule FAILED (M3: E proposes 3 vs 0 but the engine rejects all; M1: E 2 = C'' 2 > C' 0). Not enlarged
 
 **PREVIOUS DIRECTIVE (2026-10-14 ~21:00Z): "CORA — FINAL SURGICAL INTEGRITY CHECK AND NEXT EXPERIMENT"** (items 1-9;
 return under 600 words: integrity results, D3 degeneracy verdict, corrected witness claim, Amendment 2 recommendation,

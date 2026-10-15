@@ -73,3 +73,35 @@ would need an equally equipped size-aware blind control, for example C′ regrou
 - **Fix:** the tie check now parses `prop["view"].split("|")[0]`. This is a no-op for every existing arm,
   and `tests/test_fhr.py` passes.
 - **Run 2** reruns all 8 tasks unchanged. The crash log is kept as `outputs/cora_fhr/followup_mix_run1_crash.log`.
+
+## Result of run 2 (2026-10-15, 01:13Z; `rows_mix_dev.jsonl`, `dev_table_mix_dev.md`)
+
+| family | arm | proposed | engine accepted and used | all folds passed | certified correct | wrong |
+|---|---|---|---|---|---|---|
+| M1 (colour) | E | 4 | 3 | 2 | **2** | 0 |
+| M1 | C″ (colour clusters) | 4 | 2 | 2 | **2** | 0 |
+| M1 | C′ (pooled) | 0 | 0 | 0 | 0 | 0 |
+| M1 | D (other-rule donor) | 3 | 0 | 0 | 0 | 0 |
+| M1 | A, B | — | — | — | 0 | 0 |
+| M3 (size only) | E | **3** | **0** | 0 | 0 | 0 |
+| M3 | C′, C″ | 0 | 0 | 0 | 0 | 0 |
+| M3 | D | 1 | 0 | 0 | 0 | 0 |
+| M3 | A, B | — | — | — | 0 | 0 |
+
+No arm lost an answer.
+
+**Stop rule: FAILED.** E was certified-correct on 0 of the 4 M3 tasks; the rule required at least 2.
+
+**Where it failed.** In M3, E's failure evidence did change proposal selection: E proposed the novel
+operator (NEW_COMPOSITION) on 3 tasks, while both blind controls proposed nothing. But native's own gate
+rejected the program with the extension installed on all 3 (ENGINE_REJECTION). The fourth task had no
+fitting operator. The frozen engine apparently cannot dispatch the constructed operator and its own halo
+rule to objects that differ only by size.
+
+**In M1:** E beat pooled C′ (2 vs 0), but colour clustering C″ matched E (2 vs 2). That gain is
+therefore not attributable to the failure record.
+
+**Conclusion (development only):**
+- Authentic failure evidence can change which operator is proposed (M3: 3 vs 0).
+- It has not yet produced a held-out correctness gain over an equally equipped blind control.
+- As the rule requires, the study is not enlarged or retuned.
