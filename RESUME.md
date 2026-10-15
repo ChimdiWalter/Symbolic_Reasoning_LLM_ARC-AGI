@@ -11,6 +11,7 @@ Last updated 2026-09-28. Read this first.
 - [ ] DETACHED GATED PIPELINE kaggle/ops/cora_fhr_v1_pipeline.py (state outputs/kaggle_deploy/cora_fhr_v1/state.json, log pipeline.log):
       emulation (G2a) -> private dataset -> kernel push = committed run -> outputs + G2b -> wait dev60 + G1 -> submit ONE -> score.
       Resumable: rerun the same command; it continues from state.json. BLOCKED_<stage> means a gate failed: no submission.
+      PROGRESS: emulation PASSED (11/11) 01:27Z; dataset ready; kernel v1 pushed; committed Kaggle run started 01:28Z.
 - [ ] G1 dev60 real-task run (outputs/cora_fhr/followup_dev60.sh, detached; starts after MIX DONE) -> rows_dev60.jsonl
 - [ ] push dataset + kernel (private), Kaggle committed run on the 240 stand-in tasks, G2b checks, then submit ONE if gates pass
 - [ ] after scoring: log, paper, poster (+architecture figure), abstract, explainer

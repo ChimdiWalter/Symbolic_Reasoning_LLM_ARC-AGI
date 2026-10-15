@@ -61,3 +61,24 @@ integrity gates pass.
 schema failure or overrun means no submission.
 
 ## Log
+
+### 1. G2a offline emulation: PASSED (2026-10-15, 01:27Z)
+
+- **All 11 checks pass:** notebook_rc0, schema, provenance, guard_clean, no_fhr_error, fhr_rc0, fhr_ran, merge_exercised, witness_correct, no_restore_failures, no_task_errors.
+- **6 tasks:** 3 growth-shaped stand-in tasks, 2 others, and the synthetic witness.
+- **FHR:**
+  - skipped 1 (native object-certified) and 2 (not growth-shaped), and ran 3;
+  - NO_PROPOSAL on 2;
+  - CERTIFIED_WITH_EXTENSION on the witness with `ring(8)[part_minority]` (`fx_bd15c802b6bb4940`,
+    NEW_COMPOSITION). It was merged as attempt_1 and is correct (development answer, read by the
+    emulator only).
+- 0 restore failures, 0 task errors, and an empty network-guard log.
+- **Tested package sha256:** tarball 9910893f6decfe55, notebook.ipynb
+  851fe2b1c2f3ebd7.
+
+### 2. Deployment (2026-10-15, 01:28Z)
+
+- Private dataset `chimdiwalter/arc-cora-fhr-v1` is ready.
+- Kernel `chimdiwalter/cora-fhr-v1-arc-agi-2-research-entry` version 1 was pushed
+  with internet disabled (checked from the pulled metadata: False).
+- The committed run on the 240 stand-in tasks started at 2026-10-15T01:28:20Z.
