@@ -194,10 +194,14 @@ def validate(sub, ch):
 def stage_outputs(st):
     out_dir = os.path.join(DEP, f"run_v{st['kernel_version']}")
     os.makedirs(out_dir, exist_ok=True)
-    rc, out = kag("kernels", "output", KERNEL, "-p", out_dir, "--file-pattern",
-                  r"(submission\.json|submission_native\.json|execution_manifest\.json|provenance\.json|fhr_rows\.jsonl|\.log)$",
-                  timeout=3600)
-    log(f"kernels output rc={rc}: {out[-200:]}")
+    for attempt in range(12):                     # top-level files only; the solver tree is in the output too
+        rc, out = kag("kernels", "output", KERNEL, "-p", out_dir, "--file-pattern",
+                      r"^(submission\.json|submission_native\.json|execution_manifest\.json|provenance\.json|fhr_rows\.jsonl)$",
+                      timeout=3600)
+        log(f"kernels output attempt {attempt + 1} rc={rc}: {out[-200:]}")
+        if rc == 0 or "429" not in out:
+            break
+        time.sleep(300)
     need = ["submission.json", "submission_native.json", "execution_manifest.json", "provenance.json"]
     if rc != 0 or not all(os.path.exists(os.path.join(out_dir, n)) for n in need):
         block(st, "OUTPUTS", f"missing outputs: {out[-200:]}")

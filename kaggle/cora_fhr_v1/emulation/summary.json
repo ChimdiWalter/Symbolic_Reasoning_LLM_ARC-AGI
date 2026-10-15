@@ -1,0 +1,81 @@
+{
+ "returncode": 0,
+ "schema_ok": true,
+ "tasks": 6,
+ "provenance_complete": true,
+ "provenance": {
+  "00d62c1b": [
+   {
+    "attempt_1": "native:pipeline",
+    "attempt_2": "native:pipeline:copy"
+   }
+  ],
+  "00dbd492": [
+   {
+    "attempt_1": "fallback:test_input",
+    "attempt_2": "fallback:test_input:copy"
+   }
+  ],
+  "045e512c": [
+   {
+    "attempt_1": "fallback:test_input",
+    "attempt_2": "fallback:test_input:copy"
+   }
+  ],
+  "00576224": [
+   {
+    "attempt_1": "fallback:test_input",
+    "attempt_2": "fallback:test_input:copy"
+   }
+  ],
+  "007bbfb7": [
+   {
+    "attempt_1": "fallback:test_input",
+    "attempt_2": "fallback:test_input:copy"
+   }
+  ],
+  "fhrwitness": [
+   {
+    "attempt_1": "fhr:fx_bd15c802b6bb4940:ring(8)[part_minority]",
+    "attempt_2": "native:pipeline:copy"
+   }
+  ]
+ },
+ "fhr_counts": {
+  "tasks": 6,
+  "skipped": {
+   "native_object_certified": 1,
+   "not_growth_shaped": 2
+  },
+  "ran": 3,
+  "not_reached": 0,
+  "errors": 0,
+  "outcomes": {
+   "NO_PROPOSAL": 2,
+   "CERTIFIED_WITH_EXTENSION": 1
+  },
+  "proposed": 1,
+  "installed": 1,
+  "used": 1,
+  "verified": 1,
+  "committed_tasks": 1,
+  "restore_failures": 0,
+  "operators": [
+   {
+    "task": "fhrwitness",
+    "operator": "ring(8)[part_minority]",
+    "name": "fx_bd15c802b6bb4940",
+    "novelty": "NEW_COMPOSITION"
+   }
+  ]
+ },
+ "fhr_error": null,
+ "fhr_returncode": 0,
+ "elapsed_s": 2335.4,
+ "harness_s": 923.1,
+ "fhr_s": 1359.5,
+ "guard_log_empty": true,
+ "witness_attempt_1_correct (dev answer, emulator only)": true,
+ "native_tree_sha256": "d7856871084f136108ba41f3d573cb2b211d2e9f025b43710ef271abb7781335",
+ "fhr_package_sha256": "dd46ceb003b49f689aff6f17e6f58e42d4481c7bc7f531620b4a13006068dcd5"
+}
