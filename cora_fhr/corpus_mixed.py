@@ -124,21 +124,26 @@ def feasibility(task):
             "C2_separates": GG.pretty(RULE_G) in c2}
 
 
-def main():
+def main(argv=None):
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed0", type=int, default=SEED0)
+    ap.add_argument("--name", default="mix_dev")
+    a = ap.parse_args(argv)
     tasks, feas = {}, {}
     for fi, (fam, n) in enumerate(sorted(SPLIT.items())):
-        seed = SEED0 + 100 * fi
+        seed = a.seed0 + 100 * fi
         while sum(t["family"] == fam for t in tasks.values()) < n:
             t = make_task(fam, seed)
             seed += 1
             if t is None:
                 continue
-            key = f"mix_{fam}_{sum(x['family'] == fam for x in tasks.values()):02d}"
+            key = f"{a.name}_{fam}_{sum(x['family'] == fam for x in tasks.values()):02d}"
             tasks[key] = t
             feas[key] = feasibility(t)
             print(key, feas[key], flush=True)
-    json.dump({"generator": "corpus_mixed v1", "tasks": tasks}, open(os.path.join(OUT, "mix_dev.json"), "w"))
-    json.dump(feas, open(os.path.join(OUT, "mix_dev_feasibility.json"), "w"), indent=1)
+    json.dump({"generator": "corpus_mixed v1", "seed0": a.seed0, "tasks": tasks}, open(os.path.join(OUT, f"{a.name}.json"), "w"))
+    json.dump(feas, open(os.path.join(OUT, f"{a.name}_feasibility.json"), "w"), indent=1)
 
 
 if __name__ == "__main__":

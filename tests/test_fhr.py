@@ -244,3 +244,35 @@ def test_revision_controller_reads_only_observables_and_types():
     for st in (base, dict(base, evidence_views={}), dict(base, evidence_views={}, native_failure_stage="loo"),
                dict(base, evidence_cap="extract_cap"), dict(base, diag_singly_expressible=False)):
         assert RC.decide(st)["action"] in RC.ACTIONS
+
+
+def test_guarded_extension_form_search_and_restore():
+    """Guard probe: the guarded format round-trips byte-exactly, is a separate format with v1 unchanged,
+    reads only the object and scene, is found exactly when one guard splits a view into two jointly expressible
+    groups, and installs and restores like v1."""
+    from cora_fhr import bridge as BR
+    from cora_fhr import ggrow_guard as GU
+    ring, ray = ("d1", S("self"), T(("ring", 8))), ("d1", S("self"), T(("ray", "N", "border")))
+    g = {"guard": ("colours", "eq", (1,)), "then": ring, "else": ray}
+    ext = GU.make(g)
+    assert ext["name"].startswith("fg_") and ext["format"] != GG.FORMAT
+    assert GG.serialize(GG.load(GG.serialize(ext))) == GG.serialize(ext)
+    assert sum(1 for _ in GG.expressions()) == 37750                  # v1 grammar untouched
+    inst = []
+    for k, (r, c, col) in enumerate([(3, 3, 1), (3, 9, 2), (8, 4, 1), (9, 10, 2)]):
+        Gr = np.zeros((14, 14), int)
+        O = {(r, c): col, (r, c + 1): col}
+        for p, v in O.items():
+            Gr[p] = v
+        x = GG.Ctx(O, Gr)
+        inst.append((O, GU.evaluate(g, x), Gr))
+        assert GG.render(ext, O, Gr) == GU.evaluate(g, x)
+    assert GG.search(inst)[0] is None                                   # no single v1 expression fits both kinds
+    found = GU.search(inst)
+    assert found and found[0]["guard"][0] in GU.FEATURES
+    assert all(GU.evaluate({"guard": found[0]["guard"], "then": found[0]["then"], "else": found[0]["else"]},
+                           GG.Ctx(O, Gr)) == set(A) for O, A, Gr in inst)
+    saved = BR.originals()
+    with BR.installed(ext) as rec:
+        assert ext["name"] in BR.originals()[0]
+    assert rec["restored"] and BR.restored(saved)

@@ -136,8 +136,13 @@ def authentic_raw(train, engine_dir):
         return [], "extract_cap"
 
 
+GUARD_ARMS = {"EG": "E", "C2G": "C2", "DG": "D"}                  # guard probe: same evidence as the base arm
+
+
 def groups_for(arm, train, dirs, donor_raw):
     from cora_fhr import construct as CS
+    if arm in GUARD_ARMS:
+        return groups_for(GUARD_ARMS[arm], train, dirs, donor_raw)
     if arm == "E":
         raw, why = authentic_raw(train, dirs["extract"])
         return CS.group_reach_records(raw), why
@@ -174,10 +179,16 @@ def ambiguous(prop, groups, inputs, preds=None):
     from geocat_arc.perception.grid import Grid
     from cora_fhr import ggrow as GG
     insts = [(O, A, G) for O, A, G, _d, _c in groups[prop["view"]][:64]]
-    first = GG.from_str(prop["ext"]["expr"])
-    same = [e for e in GG.expressions() if e[0] == first[0]]
-    ctx = [GG.Ctx(O, G) for O, _A, G in insts]
-    fits = [e for e in same if all(GG.evaluate(e, x) == set(A) for x, (_O, A, _G) in zip(ctx, insts))]
+    if prop["ext"].get("format") == "cora_fhr_ggrow_guard":           # guard probe: every fitting guarded alternative
+        from cora_fhr import ggrow_guard as GU
+        first, ev = GU.from_str(prop["ext"]["expr"]), GU.evaluate
+        fits = [{"guard": g["guard"], "then": t, "else": e} for g in GU.search(insts)
+                for t in g["alt_then"] for e in g["alt_else"]]
+    else:
+        first, ev = GG.from_str(prop["ext"]["expr"]), GG.evaluate
+        same = [e for e in GG.expressions() if e[0] == first[0]]
+        ctx = [GG.Ctx(O, G) for O, _A, G in insts]
+        fits = [e for e in same if all(GG.evaluate(e, x) == set(A) for x, (_O, A, _G) in zip(ctx, insts))]
     view = SegmentationVariant(prop["view"].split("|")[0])          # C3 groups are "<view>|<colours>"
     for k, t in enumerate(inputs):
         ta = np.asarray(t, dtype=int)
@@ -191,10 +202,10 @@ def ambiguous(prop, groups, inputs, preds=None):
             if not cc:
                 continue
             x = GG.Ctx(cc, ta)
-            ref = GG.evaluate(first, x)
+            ref = ev(first, x)
             if changed is not None and not (ref & changed):
                 continue                                              # an object the prediction does not grow
-            if any(GG.evaluate(e, x) != ref for e in fits):
+            if any(ev(e, x) != ref for e in fits):
                 return True, len(fits)
     return False, len(fits)
 
@@ -206,7 +217,7 @@ def construct_and_check(arm, key, train, inputs, dirs, donor_raw):
     t0 = time.process_time()
     groups, why = groups_for(arm, train, dirs, donor_raw)
     rec["evidence"] = {"views": {v: len(x) for v, x in groups.items()}, "why_empty": why}
-    prop = CS.propose(groups)
+    prop = CS.propose_guarded(groups) if arm in GUARD_ARMS else CS.propose(groups)
     rec["proposals"] = [{k: v for k, v in p.items() if k != "ext"} | {"name": p["ext"]["name"], "expr": p["ext"]["expr"]}
                         for p in prop["proposals"]]
     rec["construct_cpu_s"] = round(time.process_time() - t0, 2)
@@ -286,7 +297,7 @@ def run_task(key, view, arms, dirs, donor_raw, f_b):
         b_rec, _ = object_run(key, train, tests, dirs["B"], budget_s=BUDGET_S * f_b)
         row["arms"]["B"] = {"committed": b_rec["predictions"] if b_rec["accepted"] else None, "certified": b_rec["accepted"],
                             "run": b_rec, "f_B": f_b, "cpu_s": b_rec["cpu_s"]}
-    for arm in [x for x in ("C", "C2", "C3", "D", "E") if x in arms]:
+    for arm in [x for x in ("C", "C2", "C3", "D", "E", "EG", "C2G", "DG") if x in arms]:
         c0 = time.process_time()
         rec, ext = construct_and_check(arm, key, train, tests, dirs, donor_raw)
         commit, certified_by = (a_rec["predictions"], "A") if a_rec["accepted"] else (None, None)
@@ -318,9 +329,9 @@ def load_corpus(name):
         return sorted((k, solver_view(t)) for k, t in d["tasks"].items())
     if name == "dev60":
         return FR.load("dev60")
-    if name == "mix_dev":                   # mixed-coverage design (DEVELOPMENT; cora_fhr/corpus_mixed.py)
+    if name in ("mix_dev", "mix_dev2"):     # mixed-coverage corpora (DEVELOPMENT; cora_fhr/corpus_mixed.py)
         from cora_fhr.corpus_c4 import solver_view
-        d = json.load(open(os.path.join(OUT, "mix_dev.json")))
+        d = json.load(open(os.path.join(OUT, f"{name}.json")))
         return sorted((k, solver_view(t)) for k, t in d["tasks"].items())
     raise ValueError(name)
 
@@ -332,9 +343,9 @@ def job(args):
     FR.cpu_clock()
     from cora_pilot import native as N
     base = os.path.join(OUT, "engines", key)
-    dirs = {a: N.prepare_object_dir(os.path.join(base, a)) for a in ("A", "B", "C", "C2", "C3", "D", "E", "extract", "loo")}
+    dirs = {a: N.prepare_object_dir(os.path.join(base, a)) for a in ("A", "B", "C", "C2", "C3", "D", "E", "EG", "C2G", "DG", "extract", "loo")}
     donor_raw = None
-    if "D" in arms and donor_view is not None:
+    if ("D" in arms or "DG" in arms) and donor_view is not None:
         dtrain = [(np.asarray(p["input"], dtype=int), np.asarray(p["output"], dtype=int)) for p in donor_view["train"]]
         donor_raw, _ = authentic_raw(dtrain, N.prepare_object_dir(os.path.join(base, "donor")))
     t0, c0 = time.time(), time.process_time()
@@ -345,7 +356,7 @@ def job(args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", required=True, choices=("c4_dev", "c4_dev_v2", "dev60", "mix_dev"))
+    ap.add_argument("--corpus", required=True, choices=("c4_dev", "c4_dev_v2", "dev60", "mix_dev", "mix_dev2"))
     ap.add_argument("--donor_corpus", default="", help="D donors from this corpus's D1/D2 tasks (other rules)")
     ap.add_argument("--arms", default="A,B,C,D,E")
     ap.add_argument("--workers", type=int, default=4)

@@ -168,3 +168,36 @@ def propose(groups, classify=True) -> dict:
             break
     return {"proposals": proposals, "views": {v: len(x) for v, x in groups.items()},
             "expressions_tried": tried_total, "seconds": round(time.time() - t0, 3)}
+
+
+def propose_guarded(groups, classify=True) -> dict:
+    """Guard-probe arms only (records/CORA_FHR_GUARD_PROBE_PROTOCOL_20261018.md). This is propose(), except
+    that a supported view with no joint G-grow fit may yield a guarded operator (ggrow_guard): one object
+    feature selecting between two G-grow expressions. An unguarded fit always wins."""
+    from cora_fhr import ggrow_guard as GU
+    t0 = time.time()
+    proposals, tried_total = [], 0
+    for view, insts in sorted(groups.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        insts = insts[:MAX_INSTANCES]
+        demos = sorted({d for *_x, d, _c in insts if d is not None})
+        if len(demos) < SUPPORT_DEMOS:
+            continue
+        trip = [(O, A, G) for O, A, G, _d, _c in insts]
+        expr, n_fit, tried = GG.search(trip, first_only=False, count_cap=500)
+        tried_total += tried
+        if expr is not None:
+            ext, pretty, guarded = GG.make(expr), GG.pretty(expr), False
+        else:
+            found = GU.search(trip)
+            if not found:
+                continue
+            g = found[0]
+            ext = GU.make({"guard": g["guard"], "then": g["then"], "else": g["else"]})
+            pretty, guarded, n_fit = GU.pretty(g), True, len(found)
+        nov = BL.classify(trip, [c for *_x, c in insts]) if classify else None
+        proposals.append({"ext": ext, "pretty": pretty, "view": view, "instances": len(insts), "demos": demos,
+                          "n_fitting": n_fit, "novelty": nov, "guarded": guarded})
+        if len(proposals) >= MAX_PROPOSALS:
+            break
+    return {"proposals": proposals, "views": {v: len(x) for v, x in groups.items()},
+            "expressions_tried": tried_total, "seconds": round(time.time() - t0, 3)}

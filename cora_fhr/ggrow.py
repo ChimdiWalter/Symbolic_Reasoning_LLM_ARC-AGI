@@ -279,6 +279,9 @@ def serialize(ext) -> bytes:
 
 def load(data: bytes) -> dict:
     d = json.loads(data)
+    if isinstance(d, dict) and d.get("format") == "cora_fhr_ggrow_guard":   # separate guarded format (ggrow_guard.py)
+        from cora_fhr import ggrow_guard as GU
+        return GU.load(data)
     if not isinstance(d, dict) or set(d) != {"format", "version", "expr", "name"} or d["format"] != FORMAT \
             or d["version"] != VERSION:
         raise ValueError("not a CORA-FHR G-grow extension")
@@ -290,6 +293,9 @@ def load(data: bytes) -> dict:
 
 def render(ext, cc, G) -> set:
     """The added cells of the extension for an object (cell -> colour dict) in a scene."""
+    if ext.get("format") == "cora_fhr_ggrow_guard":
+        from cora_fhr import ggrow_guard as GU
+        return GU.render(ext, cc, G)
     return evaluate(from_str(ext["expr"]), Ctx(cc, G))
 
 
