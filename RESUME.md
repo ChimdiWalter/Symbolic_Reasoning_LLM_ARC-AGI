@@ -4,7 +4,18 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-**NEWEST DIRECTIVE (2026-10-15 ~00:25Z): "BUILD AND SUBMIT OUR FIRST GENUINE CORA-FHR KAGGLE RESEARCH ENTRY"**
+**NEWEST DIRECTIVES (2026-10-18): "EVIDENCE-FIRST SUMMIT REFRAME" (pkg docs/research_package_20261017/) and "AUTOMATIC FAILURE
+DIAGNOSIS AND VERIFIED REVISION SPRINT"** (Phase 0 autopsy first; Gate 0 before any new constructor; no external push; no new Kaggle
+submission without fresh explicit authorization). Progress:
+- [x] user-requested GitHub push 2026-10-18: arc2026-sprint -> 367a09c (this repo + new README.md); main README -> bc4a617.
+      All commits are the user's; 0 co-author trailers anywhere (checked locally and on GitHub). No further pushes unless asked.
+- [x] Phase 0 log autopsy: records/CORA_REVISION_ROOT_CAUSE_20261018.md (62 = 20 no evidence + 39 evidence/no operator + 2 cap + 1 LOO)
+- [ ] declared re-extraction of the 25 dev60 evidence/no-operator cases RUNNING (PID 703243, log outputs/cora_fhr/root_cause_reextract.log,
+      result outputs/cora_fhr/root_cause_reextract_20261018.json) -> decides Gate 0
+- [ ] claim ledger records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md; poster content proposal docs/summit_20261023_reframe/; bio contract draft;
+      Kaggle manifests; final report. Kaggle 57354496 PENDING (pipeline PID 670611 polls; do not resubmit)
+
+**PREVIOUS DIRECTIVE (2026-10-15 ~00:25Z): "BUILD AND SUBMIT OUR FIRST GENUINE CORA-FHR KAGGLE RESEARCH ENTRY"**
 (ONE CORA-specific submission authorized IF gates pass; return 7 items). Gates and log: records/KAGGLE_CORA_FHR_V1_LOG_20261015.md.
 - [x] adapter kaggle/cora_fhr_v1/ (fhr_phase.py = measure.job arm E; notebook from native_v1 via make_notebook.py; build_dataset.sh;
       deploy metadata kaggle/cora_fhr_v1_deploy/{dataset,kernel}); engine files byte-identical to the native dataset
