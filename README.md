@@ -63,6 +63,7 @@ Everything below lives on the [`arc2026-sprint`][sprint] branch, which has its o
 | mixed-coverage pilot | does the failure record pick the right correction when native explains only some objects? | stop rule failed | size-only tasks: E proposed the right operator 3 times vs 0 for the blind controls, but native rejected it each time; colour tasks: colour clustering matched E ([pilot][mix]) |
 | FHR on real tasks | does it add answers on the 60 real tasks? | no | 0 certificates; matched search +1 over frozen native |
 | NVARC complementarity | does adding CORA to the NVARC baseline help? | no | CORA solves nothing NVARC misses; filling empty slots adds 0 and loses 1 ([audit][comp]) |
+| guarded construction | can a rule that says *where* it applies solve a real task? | yes, once (in-sample) | ka95aa62f67d9 solved: colour-1 objects ray north-west, others south-east; 3 of 3 folds; a failure-blind constructor found the same rule; a 10-case frozen pilot gives failure record 2 vs blind 1 (+1 abstention), not a causal result |
 | Kaggle research entry | does the full CORA-FHR loop run on unseen tasks? | runs; score pending | committed run 5.9 h; FHR ran on 62 of 240 stand-in tasks and committed 0; submitted as 57354496 |
 
 **Not shown:**
