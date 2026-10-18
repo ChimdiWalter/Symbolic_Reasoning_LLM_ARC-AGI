@@ -77,7 +77,7 @@ The count is discordant pairs, where one arm is correct and the other is not.
 **Run:** `outputs/cora_fhr/followup_gen.sh`, detached. Completion is validated by return codes and
 per-arm coverage.
 
-## Interpretation addendum (2026-10-18T18:06Z, BEFORE any result; stricter only; the run is unchanged)
+## Interpretation addendum (2026-10-18T18:06Z, before any informative result: 1 of 58 rows existed, NO_PROPOSAL in every arm; stricter only; the run is unchanged)
 
 1. **Multiplicity.**
    - The three one-sided sign tests (EG vs C2G, EGC vs C2G, EGC vs EG) are reported with raw p-values and
