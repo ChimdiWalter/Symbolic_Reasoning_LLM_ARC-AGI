@@ -71,3 +71,21 @@ happens only where A has no certificate. Answers are read only by the evaluator.
 
 `outputs/cora_fhr/followup_guard.sh` (detached). Completion is validated by return codes and per-arm row
 coverage, not by a DONE line.
+
+## Interim result: real part (dev60, finished 14:10Z; `rows_dev60_guard.jsonl`). The mix_dev2 part is still running
+
+| task | A | B | EG (authentic + guard) | C2G (blind + guard) | DG (shuffled + guard) |
+|---|---|---|---|---|---|
+| ka95aa62f67d9 | not certified | not certified | **certified, correct**: `if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]`; used, restored, folds 3/3 SUCCESS | **certified, correct** (the same rule; 3/3) | no proposal |
+| k43df875d143f | not certified | not certified | no proposal | no proposal | no proposal |
+
+**What this shows:**
+- This is the **first real ARC-AGI-2 task** (a training task, exposed) solved by a rule CORA constructed:
+  a guarded operator built, installed reversibly, used by the unchanged engine, rebuilt in every fold, and
+  correct on the held-out test.
+- Frozen native and matched search fail it, and without the extension the gain disappears.
+
+**What it does not show** (predictions 2 and 3 confirmed):
+- The failure-blind arm with the same guard grammar ties, so there is no causal advantage of the failure
+  record.
+- The task is in-sample: the autopsy selected it.

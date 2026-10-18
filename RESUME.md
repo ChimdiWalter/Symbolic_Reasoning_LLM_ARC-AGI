@@ -15,7 +15,9 @@ submission without fresh explicit authorization). Progress:
       allocation 6 vs blanket search 7 (misses the one gain); not retuned
 - [x] claim ledger, reframe drafts (docs/summit_20261023_reframe/), bio contract draft, Kaggle manifests, explainer and demo updates
       (clean-environment demo test passed)
-- [ ] GUARD PROBE RUNNING (records/CORA_FHR_GUARD_PROBE_PROTOCOL_20261018.md; outputs/cora_fhr/followup_guard.sh, log followup_guard.log,
+- [~] GUARD PROBE: dev60 part DONE: ka95aa62f67d9 SOLVED by a constructed guarded rule (EG and C2G both certified and correct, 3/3 folds;
+      A and B fail; the first real-task constructed solve; in-sample, training, ties failure-blind). mix_dev2 part RUNNING
+      (records/CORA_FHR_GUARD_PROBE_PROTOCOL_20261018.md; outputs/cora_fhr/followup_guard.sh, log followup_guard.log,
       status outputs/cora_fhr/guard_status.json; rows rows_dev60_guard.jsonl and rows_mix_dev2_guard.jsonl). On completion: check
       guard_status.json complete=true, score with cora_fhr.evaluate.answers, apply the frozen stop rule, write the results section,
       then the final report (9 items). Kaggle 57354496 still PENDING (pipeline PID 670611)
