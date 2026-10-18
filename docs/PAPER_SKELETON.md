@@ -382,7 +382,7 @@ as CORA, as capability invention, or as evidence for any claim in sections
   - **CORA_FHR_V1** (submission 57354496, 2026-10-18): unchanged native v23 plus the FHR construction
     phase (`kaggle/cora_fhr_v1/`). The committed run took 5.88 h. FHR ran on 62 of 240 stand-in tasks and
     committed 0. On the 60 dev tasks: E 0 certified, C′ 0, A 6, B 7. A near-0.00 score is expected; this
-    documents a runnable research implementation, not unseen accuracy. Score: PENDING.
+    documents a runnable research implementation, not unseen accuracy. **Official public score: 0.00** (18 October).
 - **Coverage is audited separately from validity.** Upstream fills
   unprocessed outputs with `[[0]]`, so a valid file is not coverage
   (`kaggle/neural_v1/audit_run.py`).

@@ -222,8 +222,8 @@ I hide an example to test the program, the program may not peek at it, not even 
     retrains itself briefly on each puzzle). I reproduced it, so it is \emph{not} my invention, and its
     score is not a CORA result. Its official score is 27.64, the same as NVARC's own 2025 score.
   \item On 18 October I submitted a research entry that runs my construction step after the unchanged
-    solver. In its full practice run on Kaggle the step ran on 62 eligible puzzles and added no answers, so I
-    expect a score near 0. The official score is still pending.
+    solver. In its full practice run on Kaggle the step ran on 62 eligible puzzles and added no answers, and its
+    official score is 0.00, as expected.
   \item On the 60 practice puzzles my whole solver got 12 right. But more than half of the answers it
     claimed were wrong (18 of 29), because its least careful part answers first. Simply reordering the
     answers it already makes gave 14 right, with none lost. That is a useful engineering fix, not a new
@@ -285,7 +285,7 @@ The limits:
   \item I found this puzzle through my own analysis;
   \item it is a training puzzle;
   \item a version that ignores the failure record found the same rule;
-  \item it was built after my Kaggle entry, so it is not part of it.
+  \item it was built after my Kaggle entry (which scored 0.00), so it is not part of it.
 \end{itemize}
 
 In a frozen 10-puzzle follow-up, learning from the failure got 2 right and the version that ignores it got

@@ -67,8 +67,7 @@ separate SAC student submission is not affected.
 - **Benchmark box (attribution exact):**
   - native CORA, official public score 0.00;
   - an independent reproduction of the published NVARC Qwen3-4B pipeline, 27.64 (not CORA);
-  - the CORA-FHR research entry was submitted 18 October; its score is shown only when it returns, beside
-    its local zero-commit rehearsal.
+  - the CORA-FHR research entry (18 October) scored 0.00, matching its local zero-commit rehearsal.
 
 ## Column 3. What comes next (PROPOSED)
 

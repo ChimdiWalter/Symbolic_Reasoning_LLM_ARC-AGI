@@ -129,3 +129,14 @@ E's outcomes: {"NO_PROPOSAL": 59, "LOO_FAILURE": 1}. Its single proposal was `hu
 - A score near native's 0.00 is expected.
 - The entry documents a runnable implementation of the method, for the Paper Prize's code requirement.
   It is **not** evidence of unseen reasoning accuracy.
+
+### 6. OFFICIAL SCORE (recorded by the pipeline at its 2026-10-18 18:31Z poll)
+
+Submission **57354496**: `SubmissionStatus.COMPLETE`, **public score 0.00**.
+- Row: "row, reversible install, adaptive LOO); notebook chimdiwalter/cora-fhr-v1-arc-agi-2-research-entry v1; no neural model, not NVARC SubmissionStatus.COMPLETE 0.00".
+- This is exactly what the local evidence predicted. FHR committed no answer in the rehearsal, so the
+  submitted answers were native's, and native v23 also scored 0.00.
+- The entry documents a runnable implementation of the CORA-FHR loop on Kaggle. It shows no unseen
+  accuracy.
+- The guarded rule (18 October) is **not** part of this entry.
+- Final selections are the user's; none was made automatically.
