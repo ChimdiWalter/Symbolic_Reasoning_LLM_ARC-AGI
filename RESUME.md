@@ -10,10 +10,15 @@ submission without fresh explicit authorization). Progress:
 - [x] user-requested GitHub push 2026-10-18: arc2026-sprint -> 367a09c (this repo + new README.md); main README -> bc4a617.
       All commits are the user's; 0 co-author trailers anywhere (checked locally and on GitHub). No further pushes unless asked.
 - [x] Phase 0 log autopsy: records/CORA_REVISION_ROOT_CAUSE_20261018.md (62 = 20 no evidence + 39 evidence/no operator + 2 cap + 1 LOO)
-- [ ] declared re-extraction of the 25 dev60 evidence/no-operator cases RUNNING (PID 703243, log outputs/cora_fhr/root_cause_reextract.log,
-      result outputs/cora_fhr/root_cause_reextract_20261018.json) -> decides Gate 0
-- [ ] claim ledger records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md; poster content proposal docs/summit_20261023_reframe/; bio contract draft;
-      Kaggle manifests; final report. Kaggle 57354496 PENDING (pipeline PID 670611 polls; do not resubmit)
+- [x] re-extraction DONE: 18 inexpressible, 5 insufficient support, 2 grouping conflicts (of 25); guard probe found one colour guard
+      on ka95aa62f67d9 (k43df875d143f: none). Rules-based controller built (cora_fhr/revision_controller.py); retrospective retry
+      allocation 6 vs blanket search 7 (misses the one gain); not retuned
+- [x] claim ledger, reframe drafts (docs/summit_20261023_reframe/), bio contract draft, Kaggle manifests, explainer and demo updates
+      (clean-environment demo test passed)
+- [ ] GUARD PROBE RUNNING (records/CORA_FHR_GUARD_PROBE_PROTOCOL_20261018.md; outputs/cora_fhr/followup_guard.sh, log followup_guard.log,
+      status outputs/cora_fhr/guard_status.json; rows rows_dev60_guard.jsonl and rows_mix_dev2_guard.jsonl). On completion: check
+      guard_status.json complete=true, score with cora_fhr.evaluate.answers, apply the frozen stop rule, write the results section,
+      then the final report (9 items). Kaggle 57354496 still PENDING (pipeline PID 670611)
 
 **PREVIOUS DIRECTIVE (2026-10-15 ~00:25Z): "BUILD AND SUBMIT OUR FIRST GENUINE CORA-FHR KAGGLE RESEARCH ENTRY"**
 (ONE CORA-specific submission authorized IF gates pass; return 7 items). Gates and log: records/KAGGLE_CORA_FHR_V1_LOG_20261015.md.
