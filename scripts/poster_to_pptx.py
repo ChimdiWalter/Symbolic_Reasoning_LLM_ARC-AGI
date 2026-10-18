@@ -22,7 +22,12 @@ EMU = 12700                                           # per PDF point
 
 
 def main():
-    page = fitz.open(os.path.join(POSTER, "poster.pdf"))[0]
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--pdf", default=os.path.join(POSTER, "poster.pdf"))
+    ap.add_argument("--out", default=os.path.join(POSTER, "poster.pptx"))
+    a = ap.parse_args()
+    page = fitz.open(a.pdf)[0]
     W, H = page.rect.width, page.rect.height
     prs = Presentation()
     prs.slide_width, prs.slide_height = Emu(int(W * EMU)), Emu(int(H * EMU))
@@ -100,7 +105,7 @@ def main():
                 run.font.color.rgb = RGBColor((c >> 16) & 255, (c >> 8) & 255, c & 255)
             lines += 1
     prs.core_properties.title = "When Search Is Not Enough (CORA, ARC Prize Research Summit 2026)"
-    out = os.path.join(POSTER, "poster.pptx")
+    out = a.out
     prs.save(out)
     print({"slide_cm": [round(W / 72 * 2.54, 1), round(H / 72 * 2.54, 1)], "diagrams": len(regions),
            "figures": placed, "text_lines": lines, "out": out})

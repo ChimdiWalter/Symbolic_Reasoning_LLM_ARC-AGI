@@ -1,5 +1,11 @@
 # Review outline for Toni, Chris and Pierce (please reply by Mon 20 October; print freeze Wed 21 October)
 
+**Files to review (drafts; the originals in `docs/summit_poster/` are unchanged):**
+- `poster_review.pdf`: the A0 draft, with editable `poster_review.pptx` and source `poster_review.tex`;
+- `explainer_review.pdf`: an 8-page spoken explainer around the broader question (source `explainer_review.tex`);
+- `PITCH_2MIN.md`: the two-minute pitch;
+- `CONTENT_PROPOSAL.md`, `BIO_PROBLEM_CONTRACT_DRAFT.md`.
+
 ## Five decisions we need from you
 
 1. **Scope.** Is "Learning What to Change" the right frame, or should the poster stay ARC-only with the

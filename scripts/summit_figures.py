@@ -58,6 +58,8 @@ SOURCES = {
                      "3fb8c0e3b3f896668cf718db820878a86c5252b95e77d6c8e14069245fd6f595"),
     "c4_dev_v2": ("outputs/cora_fhr/c4_dev_v2.json", "d5bab8e40f55af1926e3bd98ea59b7999ca54fe3a6c261da0aa9032da5533653"),
     "fhr_witness": ("docs/summit_demo_20261023/data/witness.json", "ab525368012278b85fb1bd3d19aef4d249ae6e2363546b837382e799c76f30a0"),
+    "real_task": ("docs/summit_demo_20261023/data/real_task.json", "b06073a7fd35d203875e673aaec4b550d0069cdc43631afd2cafdb9d3b362f45"),
+    "real_witness": ("docs/summit_demo_20261023/data/real_witness.json", "f0da3a8df23bbab61b9a39360480651bebda765ec302ede1b2d842a1a190b73f"),
 }
 USED, DRAWN = {}, {}
 
@@ -412,6 +414,31 @@ def fhr_witness(key="dev_D3_04"):
     _save(fig, "fig_fhr_witness_dev_D3_04.png", ("c4_dev_v2", "fhr_witness"))
 
 
+def fhr_real_witness():
+    """The recorded REAL-task witness (ka95aa62f67d9, an ARC-AGI-2 training task): two demonstrations, the test input
+    and CORA's committed answer (scored correct by the evaluator), from the pinned demo bundle."""
+    t = json.load(open(src("real_task")))
+    w = json.load(open(src("real_witness")))
+    assert w["committed"] == t["evaluator_answer"] and all(f["class"] == "SUCCESS" for f in w["folds"])
+    cell = 0.155
+    fig = _new(6.0)
+    assert w["rule"] == "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]"
+    _tag(fig, f"REAL ARC-AGI-2 TRAINING TASK · {t['key']} · recorded run\n"
+              "constructed rule: colour 1 → ray up-left · other → ray down-right")
+    cols = [(t["train"][0][0], t["train"][0][1], "demo 0"), (t["train"][1][0], t["train"][1][1], "demo 1"),
+            (t["test_input"], w["committed"], "test")]
+    for i, (gin, gout, name) in enumerate(cols):
+        x = 0.35 + i * 3.1
+        _grid(fig, gin, x, 2.85, cell)
+        _grid(fig, gout, x, 0.55, cell)
+        _text(fig, x + len(gin[0]) * cell / 2, 4.85, name, ha="center", va="bottom", fontsize=FS_LAB, color=INK)
+    _text(fig, 0.35 + 2 * 3.1 + len(t["test_input"][0]) * cell, 0.15, "committed answer: correct (failure-blind arm: same)",
+          ha="right", va="center", fontsize=FS_MIN, color=INK)
+    for label, y in (("in", 3.8), ("out", 1.5)):
+        _text(fig, 0.05, y, label, ha="left", va="center", fontsize=FS_MIN, color=INK2)
+    _save(fig, "fig_fhr_real_witness_ka95aa62f67d9.png", ("real_task", "real_witness"))
+
+
 def main():
     os.makedirs(FIG, exist_ok=True)
     synthetic()
@@ -421,6 +448,7 @@ def main():
     neg = negative()
     failure_funnel_dev60()
     fhr_witness()
+    fhr_real_witness()
     prov = {"script": "scripts/summit_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
             "printed_width_in": W, "block_text_width_pt": 686.80643, "negative_controls": neg, "figures": {}}
     for name, meta in sorted(DRAWN.items()):
