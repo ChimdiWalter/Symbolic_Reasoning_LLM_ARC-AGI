@@ -89,3 +89,42 @@ coverage, not by a DONE line.
 - The failure-blind arm with the same guard grammar ties, so there is no causal advantage of the failure
   record.
 - The task is in-sample: the autopsy selected it.
+
+## FINAL RESULT (2026-10-18, 15:18Z; `guard_status.json` complete: return codes [0, 0]; rows 2/2 and 8/8; all 5 arms in every row)
+
+| task | A | B | EG | C2G | DG |
+|---|---|---|---|---|---|
+| ka95aa62f67d9 (real, training) | – | – | **correct** | **correct** (same rule) | – |
+| mix_dev2_M1_00 (fresh synthetic) | – | – | **correct** (unguarded `ring(8)[part_minority]`) | **abstained (tie)** | – |
+| the 8 others (k43df875d143f, M1_01, M1_02, M1_03, M3_00 to M3_03) | – | – | – | – | – |
+
+**Totals:**
+
+| arm | correct | wrong | abstained | lost |
+|---|---|---|---|---|
+| EG | 2 | 0 | 0 | 0 |
+| C2G | 1 | 0 | 1 | 0 |
+| DG | 0 | 0 | 0 | 0 |
+| A | 0 | 0 | 0 | 0 |
+| B | 0 | 0 | 0 | 0 |
+
+- The extension was accepted and used by EG twice and by C2G twice (C2G's M1_00 then abstained at the tie check).
+- 0 restore failures.
+- CPU: A 0.99 h, B 1.16 h, EG 0.56 h, C2G 0.51 h, DG 0.43 h.
+
+**Stop rule, applied unchanged:**
+1. **Safety: PASS.**
+2. **Causal: the stop condition (C2G ≥ EG on every case) did NOT trigger.** There is one discordant pair, M1_00, favouring EG. With one discordant pair (exact sign test p = 0.5) this is **not** evidence of a causal advantage.
+3. **Engineering:** ka95aa62f67d9 is solved by a constructed rule (in-sample; tied by C2G).
+
+**Predictions:**
+- (2) the tie on ka95aa62f67d9 and (3) no change on k43df875d143f: confirmed.
+- (1) "C2G may beat EG on M3": **not tested**. No arm produced any proposal on the fresh M3 tasks.
+
+**Mechanism of the discordant pair** (recorded rows):
+- EG's evidence, which is native's memorized objects only (3 per view), fits one unguarded rule with no rival.
+- C2G's pooled evidence (6 per view) needs a guard. Its canonical guard was `if size == 3: ring(8)[part_minority] else ring(8)[self]`, but 15 equally simple guarded alternatives (size- and colour-based) disagree on the test objects, so the tie safeguard abstained correctly.
+- On this task the failure record helped by **removing applicability ambiguity**, not by adding information.
+
+**This version is not enlarged or retuned.** The follow-up is a separately proposed test:
+`records/CORA_FHR_GUARD_GENERALIZATION_PROPOSAL_20261018.md`.

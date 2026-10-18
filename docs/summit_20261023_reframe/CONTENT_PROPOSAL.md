@@ -60,6 +60,10 @@ separate SAC student submission is not affected.
   - on 60 real tasks the construction added no certificate (matched search added one);
   - of 62 eligible tasks in the Kaggle rehearsal, 20 left no failure evidence at all, 39 had evidence that no
     operator fitted, 2 hit a compute cap, and 1 proposal failed its folds.
+  - a hand-designed controller that picks a revision type from the solver's trace missed the only task that
+    extra search fixed (6 vs 7);
+  - in a frozen 10-case guard pilot the failure record gave 2 correct answers against 1 (plus 1 abstention)
+    for the blind arm; one discordant pair is not evidence.
 - **Benchmark box (attribution exact):**
   - native CORA, official public score 0.00;
   - an independent reproduction of the published NVARC Qwen3-4B pipeline, 27.64 (not CORA);

@@ -288,6 +288,12 @@ The limits:
   \item it was built after my Kaggle entry, so it is not part of it.
 \end{itemize}
 
+In a frozen 10-puzzle follow-up, learning from the failure got 2 right and the version that ignores it got
+1 right, abstaining once because several boundaries fitted equally well. One puzzle of difference is not
+evidence. I also wrote a simple rule book that chooses which kind of fix to try from the solver's trace.
+Tested on recorded runs, it missed the one puzzle that extra search time had fixed, so choosing the fix
+well is itself unsolved.
+
 \panel{9. Could this work outside puzzles?}
 \cue{the panel marked BIOLOGICAL APPLICATION: UNTESTED}
 The decision-making part might work in other fields: diagnose the failure, choose a fix, check the fix. One
