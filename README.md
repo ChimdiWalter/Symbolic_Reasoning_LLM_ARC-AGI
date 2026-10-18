@@ -1,23 +1,32 @@
 # The Learner Must Re-Derive
 ### Certified program induction and failure-driven language extension for ARC-AGI-2 (CORA)
 
-**Status, 7 October 2026.** The base reasoner solves **185 of the 1,000
-ARC-AGI-2 training tasks** with procedure-level certificates (v23, sealed
-19 August 2026) and **0 of the 120 public evaluation tasks**. Since then the
-work has asked whether the reasoner can extend its own language when it
-fails: build a new executable rule from its failure, verify it, use it, and
-discard it after the task. The latest result, on synthetic tasks, is a
-complete closed loop inside the same reasoner on **27 of 30 new tasks**
-after one generic engine repair (12 of 30 before). **No real ARC task has
-yet been solved by a constructed rule**; a pilot on real training tasks is
-being designed and has not run.
+**Status, 18 October 2026.** The base reasoner solves **185 of the 1,000 ARC-AGI-2 training tasks** with
+procedure-level certificates (v23, sealed 19 August 2026). Its official Kaggle ARC-AGI-2 public score is
+**0.00**.
+
+Since 7 October the work has followed two lines:
+- **Measuring** where the reasoner fails on real tasks: it memorizes demonstration-fitting programs.
+- **Building the missing rule** with CORA-FHR, a typed grammar of executable growth operators, installed
+  reversibly and rebuilt in every leave-one-out fold.
+
+What that shows so far:
+- CORA-FHR constructs and verifies a missing single-step operator on a synthetic task.
+- **Failure-blind controls do just as well.** On 60 real training tasks it adds no certified answer.
+- A separately labelled reproduction of the public NVARC neural pipeline (not CORA) scores **27.64**.
+- A CORA-FHR research entry was submitted on 18 October; its score is pending.
+- **No real ARC task has yet been solved by a constructed rule.**
 
 | | result | when | evidence |
 |---|---|---|---|
 | base reasoner, 1,000 training tasks | 185 certified (18.5%; 19.9% with two attempts) | sealed 2026-08-19 | `paper/`, `RUN_HISTORY.md` |
 | base reasoner, public evaluation | 0 of 120 locally; Kaggle public score 0.0 at the first submission (12 July) | Jul-Aug 2026 | `RUN_HISTORY.md` |
 | closed loop on synthetic tasks (v1.9) | 27 of 30 complete witnesses against 12; 237 of 239 certified outputs correct | 2026-10-07 | [result record][v19] |
-| real ARC causal pilot | training split verified by checksum; design in progress; not run | 2026-10-07 | [data audit][pilot] |
+| failure funnel, 60 real training tasks (object branch, frozen assets) | 6 certified, all correct; 26 memorized fits (27 without assets); with the check off, 8 correct and 25 wrong | 2026-10-14 | [funnel][funnel] |
+| CORA-FHR, synthetic witness | `ring(8)[part_minority]` built, 3 of 3 folds, correct, removal ablation; failure-blind controls match it; a mixed-coverage pilot failed its frozen stop rule | 2026-10-14/15 | [FHR results][fhr] |
+| CORA-FHR on 60 real training tasks | 0 new certificates (failure-blind 0; frozen native 6; matched extra search 7); 0 wrong, 0 lost | 2026-10-15 | [entry log][fhrlog] |
+| Kaggle official, public board | native v23 0.00; NVARC Qwen3-4B reproduction (NEURAL_TTT_BASELINE, not CORA) 27.64; CORA_FHR_V1 (57354496) pending | Oct 2026 | [neural log][nlog], [entry log][fhrlog] |
+| real ARC causal pilot (120 tasks) | frozen; not run | | [data audit][pilot] |
 | new 1,000-task training run | not started; blocked until the pilot produces a real witness | | [project map][map] |
 | Step B, durable semantic invention | running since 2026-08-25; no verdict | | `level4_stepB/` |
 
@@ -41,6 +50,25 @@ A rescue counts only as a complete **B/P/U/L/T/A witness**, all six at once:
 
 A better score, a faster search or the reconstruction of a known operator is
 not enough.
+
+## Latest findings: 8 to 18 October 2026
+
+Everything below lives on the [`arc2026-sprint`][sprint] branch, which has its own README.
+
+| step | question | answer | key numbers |
+|---|---|---|---|
+| failure funnel | where does the native reasoner fail on 60 real training tasks? | it memorizes | object branch: 6 certified, all correct, and 26 memorized fits; a correct candidate exists on 8; three times the search repairs none |
+| CORA-FHR | can the reasoner build, install and verify a missing operation? | yes, on one synthetic task | single-step `ring(8)[part_minority]`, 3 of 3 folds, correct, gain removed with the operator. The planted second step was vacuous ([degeneracy audit][degen]) |
+| E vs C′ | does the failure record cause the gain? | not shown | the information-matched failure-blind C′ equals E on every synthetic growth task |
+| mixed-coverage pilot | does the failure record pick the right correction when native explains only some objects? | stop rule failed | size-only tasks: E proposed the right operator 3 times vs 0 for the blind controls, but native rejected it each time; colour tasks: colour clustering matched E ([pilot][mix]) |
+| FHR on real tasks | does it add answers on the 60 real tasks? | no | 0 certificates; matched search +1 over frozen native |
+| NVARC complementarity | does adding CORA to the NVARC baseline help? | no | CORA solves nothing NVARC misses; filling empty slots adds 0 and loses 1 ([audit][comp]) |
+| Kaggle research entry | does the full CORA-FHR loop run on unseen tasks? | runs; score pending | committed run 5.9 h; FHR ran on 62 of 240 stand-in tasks and committed 0; submitted as 57354496 |
+
+**Not shown:**
+- that failure evidence causes a correctness gain over an equally equipped failure-blind control;
+- any real ARC task solved by a constructed rule;
+- biological transfer, which remains a proposal.
 
 ## Latest findings: the delivery sprint (23 September to 7 October 2026)
 
@@ -189,3 +217,10 @@ protocol in its `docs/` names its frozen manifest, scripts and verifier.
 [map]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/docs/PROJECT_MAP.md
 [v19]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/ITEM2_V19_PROSPECTIVE_RESULT_20261007.md
 [pilot]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/REAL_ARC_PILOT_V1_DATA_AUDIT.md
+[funnel]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_FAILURE_FUNNEL_20261014.md
+[fhr]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_FHR_DEV_RESULTS_20261014.md
+[fhrlog]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/KAGGLE_CORA_FHR_V1_LOG_20261015.md
+[nlog]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/KAGGLE_NEURAL_V1_LOG_20261013.md
+[degen]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_FHR_DEGENERACY_AUDIT_20261014.md
+[mix]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_FHR_MIX_DESIGN_20261014.md
+[comp]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/NVARC_CORA_COMPLEMENTARITY_AUDIT_20261014.md
