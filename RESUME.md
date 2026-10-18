@@ -15,7 +15,7 @@ submission without fresh explicit authorization). Progress:
       allocation 6 vs blanket search 7 (misses the one gain); not retuned
 - [x] claim ledger, reframe drafts (docs/summit_20261023_reframe/), bio contract draft, Kaggle manifests, explainer and demo updates
       (clean-environment demo test passed)
-- [~] GUARD PROBE: dev60 part DONE: ka95aa62f67d9 SOLVED by a constructed guarded rule (EG and C2G both certified and correct, 3/3 folds;
+- [~] GUARD PROBE (7/8 mix_dev2 done at 14:56Z; M1_00: EG certified vs C2G ABSTAIN_TIE; awaiting M3_03): dev60 part DONE: ka95aa62f67d9 SOLVED by a constructed guarded rule (EG and C2G both certified and correct, 3/3 folds;
       A and B fail; the first real-task constructed solve; in-sample, training, ties failure-blind). mix_dev2 part RUNNING
       DONE TOO: demo replay_real.py (hash-checked, clean venv OK), ledger rows 12b/12c, review draft, explainer 8c, generalization
       PROPOSAL records/CORA_FHR_GUARD_GENERALIZATION_PROPOSAL_20261018.md (not run). Step B read-only: propose K2 450/497, 0 errors
