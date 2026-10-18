@@ -76,3 +76,16 @@ The count is discordant pairs, where one arm is correct and the other is not.
 
 **Run:** `outputs/cora_fhr/followup_gen.sh`, detached. Completion is validated by return codes and
 per-arm coverage.
+
+## Interpretation addendum (2026-10-18T18:06Z, BEFORE any result; stricter only; the run is unchanged)
+
+1. **Multiplicity.**
+   - The three one-sided sign tests (EG vs C2G, EGC vs C2G, EGC vs EG) are reported with raw p-values and
+     **Holm-adjusted** p-values over the family of three.
+   - A failure-information advantage requires a Holm-adjusted p < 0.05 for an authentic arm against C2G.
+2. **Matched-comparison scope.**
+   - Any EGC advantage is reported with its mechanism: which object access, candidate set and guard
+     produced it.
+   - The shuffled control DG is not fold-symmetric (known limitation), so it is not used as the sole
+     evidence that the *content* of the failure trace matters.
+3. **Exposure.** The tasks are exposed training tasks: no generalization or prospective claim either way.
