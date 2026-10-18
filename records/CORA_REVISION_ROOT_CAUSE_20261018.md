@@ -58,3 +58,77 @@ that split decides whether any revision is justified.
   - NOT_REPRODUCED.
 - No answer is read; nothing is installed or certified.
 - Gate 0 is decided from this table.
+
+## 3. Result of the declared re-extraction (25 dev60 cases, 13:05 to 13:25Z, 2 workers; all 25 reproduced the logged evidence)
+
+| class | cases | meaning |
+|---|---|---|
+| INEXPRESSIBLE | **18** | no G-grow expression reproduces even single instances in any supported view. Enumeration is exhaustive: the declared language lacks the operation for this evidence. This is not "search missed it" |
+| INSUFFICIENT_SUPPORT | **5** | the growth evidence comes from fewer than 2 demonstrations |
+| GROUPING_CONFLICT | **2** (ka95aa62f67d9, k43df875d143f) | instances are expressible singly but not jointly: different objects need different operators |
+
+**Over all 25:** 64 views, 209 instances, of which 36 are singly expressible (17%); 48 views have
+support.
+
+**Attribution defect** (engineering): in 2 tasks (k398ebabbddfe, kcf73bcf87919), singly expressible
+instances carry no demonstration index, because their grid matches no demonstration input. They can
+never count toward support.
+
+**dev60, all 60, with exact counts:**
+
+| cause | tasks |
+|---|---|
+| no memorized-growth evidence | 32 |
+| inexpressible evidence | 18 |
+| insufficient support | 5 |
+| grouping conflict | 2 |
+| extraction cap | 2 |
+| reconstruction failure | 1 |
+
+**Rehearsal, 62 (Kaggle CPU, not re-extracted):**
+
+| cause | tasks |
+|---|---|
+| no evidence | 20 |
+| evidence but no operator (split unknown) | 39 |
+| extraction cap | 2 |
+| reconstruction failure | 1 |
+
+**Native's own CPU cap** (`hard_cap`, a resource limit, not a software error) was hit by native's object
+run in 17 of the 62 rehearsal cases and 12 of the 60 dev cases.
+
+## 4. The rules-based diagnostic controller (built; a selection-only baseline)
+
+**Code.** `cora_fhr/revision_controller.py`, tested by
+`tests/test_fhr.py::test_revision_controller_reads_only_observables_and_types`:
+- answer-like fields cannot change a decision;
+- every action is typed;
+- native certified → NONE;
+- a cap is not an engine error.
+
+It maps observable state to one action and executes nothing.
+
+**dev60 decisions:**
+
+| action | tasks |
+|---|---|
+| NONE | 6 |
+| ABSTAIN | 25 |
+| REVISE_REPRESENTATION | 15 (unavailable) |
+| RETRY_SEARCH | 11 |
+| CONSTRUCT_WITH_GUARD | 2 (hypothesis) |
+| CONSTRUCT | 1 |
+
+**Retrospective test of its RETRY_SEARCH choice**, using the recorded arms with answers used for scoring
+only:
+
+| policy | correct | extra CPU |
+|---|---|---|
+| frozen native A | 6 | — |
+| matched search everywhere (B, 60 tasks) | **7** | 5.89 h |
+| controller (B only on its 11 retry tasks) | **6** | 1.44 h |
+
+- The only gain from search, kf321d635cf9a, had thin growth evidence, so the rule order sent it to
+  ABSTAIN.
+- A random 11-task retry set would include it with probability 0.18.
+- **The controller does not capture the gain, and its rules are not retuned after seeing this.**

@@ -223,3 +223,24 @@ def test_d3_planted_union_collapses_to_the_constructed_operator():
         G[p] = v
     x = GG.Ctx(O, G)
     assert GG.evaluate(truth, x) - GG.evaluate(learned, x) == {(4, 2)}   # hull adds a free cell ring8 misses
+
+
+def test_revision_controller_reads_only_observables_and_types():
+    """Leakage: answer-like fields cannot change a decision. Type validity: every action is declared.
+    Null case: a certified native run yields NONE. Engine errors are never reasoning actions."""
+    from cora_fhr import revision_controller as RC
+    base = {"native_accepted": False, "native_failure_stage": "matching", "native_error": False, "native_timeout": None,
+            "evidence_views": {"S3": 4}, "evidence_cap": None, "proposal_outcome": "NO_PROPOSAL",
+            "diag_support_ok": True, "diag_joint_fit": None, "diag_singly_expressible": True}
+    leaky = dict(base, answer=[[1]], evaluator_only_funnel_category="FIT_BUT_ALL_WRONG", family="M3", truth="x")
+    assert RC.decide(base) == RC.decide(leaky)
+    assert RC.decide(base)["action"] == "CONSTRUCT_WITH_GUARD" and not RC.decide(base)["available"]
+    assert RC.decide(dict(base, native_accepted=True))["action"] == "NONE"
+    assert RC.decide(dict(base, native_error=True))["action"] == "ENGINE_ERROR"
+    row = {"key": "t", "arms": {"A": {"run": {"accepted": False, "error": "hard_cap", "timeout": True, "failure_stage": None}},
+                                "E": {"evidence": {"views": {}, "why_empty": None}, "outcome": "NO_PROPOSAL"}}}
+    assert RC.decide(RC.state_from(row))["action"] == "RETRY_SEARCH"          # a resource cap is not an engine error
+    assert RC.decide(dict(base, diag_support_ok=False))["action"] == "ABSTAIN_OR_REQUEST_EVIDENCE"
+    for st in (base, dict(base, evidence_views={}), dict(base, evidence_views={}, native_failure_stage="loo"),
+               dict(base, evidence_cap="extract_cap"), dict(base, diag_singly_expressible=False)):
+        assert RC.decide(st)["action"] in RC.ACTIONS

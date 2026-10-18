@@ -170,5 +170,57 @@ def main(argv=None):
         reextract_mode(out, a.workers)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "--guard-check" not in sys.argv:
     main()
+
+
+def guard_check(keys):
+    """Applicability-guard probe (DEVELOPMENT, diagnostic only).
+
+    For the GROUPING_CONFLICT cases: does a single object-feature guard split a view's evidence into two
+    groups that are each jointly expressible in G-grow? Features: size, number of colours, colour signature,
+    bbox height and width. Each side must be non-empty. Nothing is installed or certified, and no answer is
+    read."""
+    import numpy as np
+    from cora_fhr import construct as CS
+    from cora_fhr import ggrow as GG
+    from cora_fhr import measure as M
+    from cora_funnel import run as FR
+    from cora_pilot import native as N
+    FR.cpu_clock()
+    view = dict(FR.load("dev60"))
+    out = {}
+    for key in keys:
+        train = [(np.asarray(p["input"], dtype=int), np.asarray(p["output"], dtype=int)) for p in view[key]["train"]]
+        raw, _why = M.authentic_raw(train, N.prepare_object_dir(os.path.join(OUT, "engines_rootcause", key, "guard")))
+        res = {}
+        for v, insts in sorted(CS.group_reach_records(raw).items()):
+            insts = insts[:CS.MAX_INSTANCES]
+            feats = []
+            for O, A, G, d, c in insts:
+                x = GG.Ctx(O, G)
+                feats.append({"size": len(O), "n_colours": x.n_colours, "colours": tuple(sorted(set(O.values()))),
+                              "h": x.h, "w": x.w})
+            found = []
+            for f in ("size", "n_colours", "colours", "h", "w"):
+                for val in sorted({fe[f] for fe in feats}, key=str):
+                    for side in (("eq", lambda a, b: a == b),) + ((("le", lambda a, b: a <= b),) if f in ("size", "h", "w") else ()):
+                        ga = [i for i, fe in zip(insts, feats) if side[1](fe[f], val)]
+                        gb = [i for i, fe in zip(insts, feats) if not side[1](fe[f], val)]
+                        if not ga or not gb:
+                            continue
+                        ea = GG.search([(O, A, G) for O, A, G, _d, _c in ga])[0]
+                        eb = GG.search([(O, A, G) for O, A, G, _d, _c in gb])[0]
+                        if ea is not None and eb is not None:
+                            found.append({"guard": f"{f} {side[0]} {val}", "then": GG.pretty(ea), "else": GG.pretty(eb),
+                                          "sizes": [len(ga), len(gb)],
+                                          "demos": [sorted({d for *_x, d, _c in ga if d is not None}),
+                                                    sorted({d for *_x, d, _c in gb if d is not None})]})
+            res[v] = {"instances": len(insts), "guards": found[:6]}
+        out[key] = res
+        print(key, json.dumps({v: [(g["guard"], g["then"], g["else"], g["demos"]) for g in r["guards"][:3]] for v, r in res.items()})[:900], flush=True)
+    json.dump(out, open(os.path.join(OUT, "root_cause_guard_check_20261018.json"), "w"), indent=1)
+
+
+if __name__ == "__main__" and "--guard-check" in sys.argv:
+    guard_check(sys.argv[sys.argv.index("--guard-check") + 1].split(","))
