@@ -1,4 +1,4 @@
-# CORA-FHR guard probe: typed applicability (frozen 2026-10-18, 14:05Z, before any run; DEVELOPMENT ONLY)
+# CORA-FHR guard probe: typed applicability (frozen 2026-10-18, 13:38Z in commit 445f78e, before the run started at 13:38:20Z; DEVELOPMENT ONLY)
 
 **Why proceed.** The root-cause autopsy (`records/CORA_REVISION_ROOT_CAUSE_20261018.md`) found one
 remediable pattern: GROUPING_CONFLICT.
