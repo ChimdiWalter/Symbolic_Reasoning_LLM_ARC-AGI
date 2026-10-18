@@ -15,6 +15,11 @@ submission without fresh explicit authorization). Progress:
       allocation 6 vs blanket search 7 (misses the one gain); not retuned
 - [x] claim ledger, reframe drafts (docs/summit_20261023_reframe/), bio contract draft, Kaggle manifests, explainer and demo updates
       (clean-environment demo test passed)
+- [ ] GENERALIZATION TEST RUNNING (user-authorized 17:40Z): records/CORA_FHR_GUARD_GENERALIZATION_PROTOCOL_20261018.md (frozen ad4127a);
+      outputs/cora_fhr/followup_gen.sh (script PID 1108821), log followup_gen.log, status gen_status.json, rows rows_standin58_gen.jsonl
+      (+ rows_standin58_perm_gen.jsonl). 58 tasks x A,B,EG,C2G,DG,EGC, then relabelled twins of any certified task. On completion:
+      check gen_status complete, score with evaluate.answers, sign tests (EG vs C2G, EGC vs C2G, EGC vs EG), apply the stop rule.
+- [x] GitHub: arc2026-sprint a1a59f7 and main 4e3910f pushed at the user's request (READMEs current; 0 co-author trailers)
 - [x] GUARD PROBE COMPLETE 15:18Z (rc 0/0, coverage 10/10, 5 arms each): safety PASS; causal stop NOT triggered (EG 2 vs C2G 1 + 1 tie
       abstention; one discordant pair, p 0.5: no causal claim); dev60 part: ka95aa62f67d9 SOLVED by a constructed guarded rule (EG and C2G both certified and correct, 3/3 folds;
       A and B fail; the first real-task constructed solve; in-sample, training, ties failure-blind). mix_dev2 part RUNNING

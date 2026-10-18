@@ -1,4 +1,4 @@
-# CORA-FHR guarded-construction generalization test: FROZEN PROTOCOL (2026-10-18; DEVELOPMENT; authorized by the user 17:40Z)
+# CORA-FHR guarded-construction generalization test: FROZEN PROTOCOL (2026-10-18; frozen in commit ad4127a before the run started at 17:45:59Z; DEVELOPMENT; authorized by the user 17:40Z)
 
 **Supersedes the proposal.** It replaces `records/CORA_FHR_GUARD_GENERALIZATION_PROPOSAL_20261018.md`.
 The only change is the pool size, which follows from the fixed rule: 58, not "≤ 49". Only 4 of the 13
