@@ -1,0 +1,236 @@
+{
+ "key": "ka95aa62f67d9",
+ "rule": "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]",
+ "expr": "{\"else\": \"d1|8|28\", \"guard\": [\"colours\", \"eq\", [1]], \"then\": \"d1|8|26\"}",
+ "name": "fg_79a26087ea272330",
+ "view": "S2",
+ "novelty": "NEW_COMPOSITION",
+ "evidence_views": {
+  "S2": 6,
+  "S6": 6,
+  "S4": 4
+ },
+ "top": {
+  "accepted": true,
+  "uses": true,
+  "restored": true
+ },
+ "folds": [
+  {
+   "class": "SUCCESS",
+   "heldout_exact": true,
+   "rule": "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]"
+  },
+  {
+   "class": "SUCCESS",
+   "heldout_exact": true,
+   "rule": "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]"
+  },
+  {
+   "class": "SUCCESS",
+   "heldout_exact": true,
+   "rule": "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]"
+  }
+ ],
+ "tie_alternatives_checked": 8,
+ "committed": [
+  [
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   2,
+   2,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   2,
+   2,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   0,
+   0
+  ]
+ ],
+ "test_objects": [
+  [
+   [
+    [
+     3,
+     6
+    ],
+    1
+   ],
+   [
+    [
+     3,
+     7
+    ],
+    1
+   ],
+   [
+    [
+     4,
+     6
+    ],
+    1
+   ],
+   [
+    [
+     4,
+     7
+    ],
+    1
+   ]
+  ],
+  [
+   [
+    [
+     5,
+     2
+    ],
+    2
+   ],
+   [
+    [
+     5,
+     3
+    ],
+    2
+   ],
+   [
+    [
+     6,
+     2
+    ],
+    2
+   ],
+   [
+    [
+     6,
+     3
+    ],
+    2
+   ]
+  ]
+ ],
+ "controls": {
+  "A_frozen_native_certified": false,
+  "B_matched_search_certified": false,
+  "C2G_failure_blind_outcome": "CERTIFIED_WITH_EXTENSION",
+  "C2G_same_rule": true,
+  "same_evidence_as_failure_blind": true
+ },
+ "caveats": [
+  "selected by the development autopsy (in-sample)",
+  "ARC-AGI-2 training task (exposed)",
+  "the failure-blind constructor found the same rule from the same evidence",
+  "developed after CORA_FHR_V1 was submitted; not part of that Kaggle entry"
+ ],
+ "sources": {
+  "rows_dev60_guard.jsonl": "c7d45ab42831155fd778934fd1299ad277f7bf470513e7a13e8de878a9c3c453"
+ }
+}

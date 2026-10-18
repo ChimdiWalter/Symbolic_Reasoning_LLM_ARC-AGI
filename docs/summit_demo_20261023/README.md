@@ -19,6 +19,32 @@ The bundle was built with `build_bundle.py`, inside the repository on Athe.
 **Evidence tier: DEVELOPMENT, SYNTHETIC.** This is not an ARC-AGI-2 result
 and not a Kaggle result.
 
+## Second witness: a REAL ARC task (ka95aa62f67d9), with `sh run_demo.sh --real` or `python3 replay_real.py`
+
+**What it shows.** On an ARC-AGI-2 **training** task that frozen CORA and matched extra search both fail,
+CORA built a rule with an **applicability guard**:
+
+> if the object's colours are {1}: shoot a ray north-west from its centre; otherwise shoot it south-east.
+
+The unchanged engine accepted and used the rule. Every leave-one-out fold rebuilt it and predicted the
+held-out example. Here the rule is re-executed and reproduces exactly the cells CORA's answer changes, and
+the evaluator marks the answer correct.
+
+**Narration, about 30 seconds:**
+
+"This one is a real ARC puzzle. CORA's solver could only memorize it. From that evidence it built a rule
+that says *where* an operation applies as well as *what* it does: different coloured objects shoot rays in
+opposite directions. It held up when each example was hidden in turn, and it answers correctly. Three
+honest caveats: I found this case through my own failure analysis; it is a training puzzle; and a
+version that ignores the failure record found the same rule."
+
+**Scope:**
+- The guard was developed on 18 October, **after** the CORA_FHR_V1 Kaggle entry was submitted, and is
+  **not** part of that entry.
+- Step kinds: offline replay of the recorded run, plus standalone re-execution of the rule; not a live
+  engine run.
+- Clean-environment test (2026-10-18): fresh numpy-only venv, network blocked, exit code 0.
+
 ## The 20-second version
 
 "CORA failed this practice puzzle. From the objects it could only memorize, it built one new rule, a ring
