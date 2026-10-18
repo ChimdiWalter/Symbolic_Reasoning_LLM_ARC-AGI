@@ -82,3 +82,50 @@ schema failure or overrun means no submission.
 - Kernel `chimdiwalter/cora-fhr-v1-arc-agi-2-research-entry` version 1 was pushed
   with internet disabled (checked from the pulled metadata: False).
 - The committed run on the 240 stand-in tasks started at 2026-10-15T01:28:20Z.
+
+### 3. Committed run, version 1 (Kaggle, 240 stand-in training tasks): G2b PASSED (checked 2026-10-18, 12:40Z)
+
+| item | value |
+|---|---|
+| native harness | completed, rc 0, 4.01 h (native_v1: 4.03 h) |
+| FHR phase | rc 0, 1.87 h, no error |
+| total | 5.88 h (gate: < 11.5 h) |
+| coverage and schema | 240 tasks, 259 outputs, 0 repairs, 0 schema problems |
+| provenance | complete |
+| native agreement with native_v1 | 258 of 259 attempt_1 identical (gate: 95%). The one difference, `28e73c20:0`, comes from the wall-clock deadlines |
+| FHR | skipped 169 (not growth-shaped) and 9 (native object-certified); ran 62, reached all; 61 NO_PROPOSAL, 1 LOO_FAILURE; proposed 1, installed 1, used 1, verified 0, **committed 0**; 0 restore failures, 0 errors |
+
+**Download incident.** The output includes the staged solver tree, so listing it pages many times.
+- Default paging hit HTTP 429 and then 400 (2026-10-15).
+- The pipeline failed safe (BLOCKED_OUTPUTS, nothing submitted).
+- The two missing files were fetched on 2026-10-18 with `--page-size 200`, and the pipeline resumed.
+- No gate was changed.
+
+### 4. G1, real development (60 ARC-AGI-2 training tasks; contaminated): safety PASSED, NO GAIN
+
+| arm | certified correct | wrong | lost | CPU |
+|---|---|---|---|---|
+| A frozen native | 6 | 0 | — | 4.87 h |
+| B matched search (f_B 1.33) | 7 | 0 | — | 5.89 h |
+| C′ failure-blind construction | 0 extension | 0 | 0 | 1.81 h |
+| E authentic-failure FHR | 0 extension | 0 | 0 | 1.69 h |
+
+E's outcomes: {"NO_PROPOSAL": 59, "LOO_FAILURE": 1}. Its single proposal was `hull[self]`, which is AVAILABLE_REACH
+(not novel), and it failed LOO.
+
+**No real-task gain from construction.** Matched search did one better than frozen native: 7 vs 6.
+
+### 5. OFFICIAL SUBMISSION 57354496 (2026-10-18, 12:40:48Z)
+
+- `kaggle competitions submit -k chimdiwalter/cora-fhr-v1-arc-agi-2-research-entry -v 1`, rc 0, "0
+  submissions remaining today".
+- Message: "CORA_FHR_V1: native CORA v23 + CORA-FHR failure-driven construction (G-grow, reversible install, adaptive LOO); notebook chimdiwalter/cora-fhr-v1-arc-agi-2-research-entry v1; no neural model, not NVARC".
+- Status at submission: PENDING. The pipeline polls and writes
+  `outputs/kaggle_deploy/cora_fhr_v1/official_score.json`.
+
+**Limitation, stated before any score.**
+- FHR committed no answer on the 240 stand-in tasks or on the 60 dev tasks.
+- The submitted answers are therefore native's, except wherever FHR certifies on a hidden task.
+- A score near native's 0.00 is expected.
+- The entry documents a runnable implementation of the method, for the Paper Prize's code requirement.
+  It is **not** evidence of unseen reasoning accuracy.
