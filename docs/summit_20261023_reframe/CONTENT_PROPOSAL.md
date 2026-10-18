@@ -47,6 +47,13 @@ separate SAC student submission is not affected.
   operator in 3 of 3 leave-one-out folds and predicted the held-out query correctly; removing the operator
   removed the gain.
   - **Figure:** the actual logged witness (existing `fig_fhr_witness_dev_D3_04.png`).
+- **DONE: one real-task witness, narrow.** On one ARC-AGI-2 training task that frozen CORA and extra search
+  both fail, CORA built a rule with an applicability guard: "colour-{1} objects shoot a ray north-west, others
+  south-east". It rebuilt the rule in 3 of 3 folds and answered correctly.
+  - The failure autopsy found this case.
+  - A failure-blind constructor with the same evidence found the same rule.
+  - The rule is not part of the Kaggle entry.
+  - **Figure:** a replay frame from `docs/summit_demo_20261023/replay_real.py`.
 - **NEGATIVE, shown with the same prominence:**
   - a failure-blind constructor with the same information matched it;
   - the mixed-coverage pilot failed its frozen stop rule;

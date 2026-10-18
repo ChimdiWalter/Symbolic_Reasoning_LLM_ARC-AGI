@@ -272,6 +272,22 @@ a guarantee that the rule holds everywhere.
 \textbf{Why biology would differ.} A puzzle answer is exactly right or wrong. A biological prediction needs
 a tolerance, real replicates, held-out conditions and, in the end, an experiment.
 
+\panel{8c. A first real puzzle solved by a built rule}
+\cue{18 October; the second demo, \texttt{replay\_real.py}}
+The autopsy found two puzzles where each object's change could be described, but not all of them by one
+rule. So I let a rule say \emph{where} it applies as well as \emph{what} it does. On one of them, a real ARC
+training puzzle that my solver failed even with extra search time, CORA built ``objects of colour 1 shoot
+a ray to the upper left, the others to the lower right''. It passed all three hidden-example checks and
+answered correctly.
+
+The limits:
+\begin{itemize}
+  \item I found this puzzle through my own analysis;
+  \item it is a training puzzle;
+  \item a version that ignores the failure record found the same rule;
+  \item it was built after my Kaggle entry, so it is not part of it.
+\end{itemize}
+
 \panel{9. Could this work outside puzzles?}
 \cue{the panel marked BIOLOGICAL APPLICATION: UNTESTED}
 The decision-making part might work in other fields: diagnose the failure, choose a fix, check the fix. One
