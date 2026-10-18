@@ -17,6 +17,8 @@ submission without fresh explicit authorization). Progress:
       (clean-environment demo test passed)
 - [~] GUARD PROBE: dev60 part DONE: ka95aa62f67d9 SOLVED by a constructed guarded rule (EG and C2G both certified and correct, 3/3 folds;
       A and B fail; the first real-task constructed solve; in-sample, training, ties failure-blind). mix_dev2 part RUNNING
+      DONE TOO: demo replay_real.py (hash-checked, clean venv OK), ledger rows 12b/12c, review draft, explainer 8c, generalization
+      PROPOSAL records/CORA_FHR_GUARD_GENERALIZATION_PROPOSAL_20261018.md (not run). Step B read-only: propose K2 450/497, 0 errors
       (records/CORA_FHR_GUARD_PROBE_PROTOCOL_20261018.md; outputs/cora_fhr/followup_guard.sh, log followup_guard.log,
       status outputs/cora_fhr/guard_status.json; rows rows_dev60_guard.jsonl and rows_mix_dev2_guard.jsonl). On completion: check
       guard_status.json complete=true, score with cora_fhr.evaluate.answers, apply the frozen stop rule, write the results section,
