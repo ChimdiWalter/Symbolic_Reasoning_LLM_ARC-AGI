@@ -46,13 +46,16 @@ def holds(guard, x):
 
 
 def evaluate(g, x):
-    return GG.evaluate(g["then"] if holds(g["guard"], x) else g["else"], x)
+    """A null else branch (None) adds nothing: the operator does not apply there (the contrast arm EGC)."""
+    branch = g["then"] if holds(g["guard"], x) else g["else"]
+    return set() if branch is None else GG.evaluate(branch, x)
 
 
 def to_str(g):
     f, op, v = g["guard"]
     return json.dumps({"guard": [f, op, list(v) if isinstance(v, tuple) else v],
-                       "then": GG.to_str(g["then"]), "else": GG.to_str(g["else"])}, sort_keys=True)
+                       "then": GG.to_str(g["then"]), "else": None if g["else"] is None else GG.to_str(g["else"])},
+                      sort_keys=True)
 
 
 def from_str(s):
@@ -61,12 +64,13 @@ def from_str(s):
     if f not in FEATURES or op not in ("eq", "le") or (op == "le" and f not in ORDERED):
         raise ValueError("invalid guard")
     return {"guard": (f, op, tuple(v) if isinstance(v, list) else v), "then": GG.from_str(d["then"]),
-            "else": GG.from_str(d["else"])}
+            "else": None if d["else"] is None else GG.from_str(d["else"])}
 
 
 def pretty(g):
     f, op, v = g["guard"]
-    return f"if {f} {'==' if op == 'eq' else '<='} {v}: {GG.pretty(g['then'])} else {GG.pretty(g['else'])}"
+    els = "nothing" if g["else"] is None else GG.pretty(g["else"])
+    return f"if {f} {'==' if op == 'eq' else '<='} {v}: {GG.pretty(g['then'])} else {els}"
 
 
 def make(g):
@@ -137,3 +141,8 @@ def search(trip, cap=8):
         if fb:
             found.append({"guard": g, "then": fa[0], "else": fb[0], "alt_then": fa, "alt_else": fb})
     return found
+
+
+def separating(pos, neg):
+    """Guards true on every positive context and false on every negative one, in canonical order."""
+    return [g for g in guards(pos + neg) if all(holds(g, x) for x in pos) and not any(holds(g, x) for x in neg)]

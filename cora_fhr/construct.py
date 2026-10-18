@@ -201,3 +201,61 @@ def propose_guarded(groups, classify=True) -> dict:
             break
     return {"proposals": proposals, "views": {v: len(x) for v, x in groups.items()},
             "expressions_tried": tried_total, "seconds": round(time.time() - t0, 3)}
+
+
+def group_labelled(raw):
+    """Contrast arm EGC: C' records -> {view: [(O, A, G, demo, colour, memorized)]}, where memorized means native's
+    own growth detector ended in its `pattern` fallback (the failure record). These are observable labels."""
+    out = {}
+    for i in raw:
+        if i.get("grid") is None:
+            continue
+        G = np.asarray(i["grid"], dtype=int)
+        O = {tuple(c): int(col) for c, col in i["in"]}
+        out_cc = {tuple(c): int(col) for c, col in i["out"]}
+        A = {c: col for c, col in out_cc.items() if c not in O}
+        if not A or len(set(A.values())) != 1:
+            continue
+        out.setdefault(str(i.get("variant")), []).append(
+            (O, set(A), G, i.get("demo"), next(iter(set(A.values()))), i.get("native_mode") == "pattern"))
+    return out
+
+
+def propose_contrast(groups, classify=True, cap=8) -> dict:
+    """Contrast arm EGC (records/CORA_FHR_GUARD_GENERALIZATION_PROTOCOL_20261018.md).
+    - What: a joint G-grow fit on the memorized (failure) instances.
+    - Where: if native explained other objects in the view, a guard true on every memorized and false on every
+      explained object, with a null else branch so native's own modes keep those objects. With no explained
+      objects, the proposal is unguarded, as in arm E.
+    proposal["alts"] lists every equally simple (guard, then) alternative for the tie check."""
+    from cora_fhr import ggrow_guard as GU
+    t0 = time.time()
+    proposals = []
+    for view, insts in sorted(groups.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        insts = insts[:MAX_INSTANCES]
+        pos = [t for t in insts if t[5]]
+        neg = [t for t in insts if not t[5]]
+        demos = sorted({t[3] for t in pos if t[3] is not None})
+        if len(demos) < SUPPORT_DEMOS:
+            continue
+        ptrip = [(O, A, G) for O, A, G, *_r in pos]
+        whats = GU._fitting(ptrip, cap)
+        if not whats:
+            continue
+        if not neg:
+            ext, pretty, alts = GG.make(whats[0]), GG.pretty(whats[0]), None
+        else:
+            pc = [GG.Ctx(O, G) for O, A, G, *_r in pos]
+            nc = [GG.Ctx(O, G) for O, A, G, *_r in neg]
+            seps = GU.separating(pc, nc)
+            if not seps:
+                continue
+            g = {"guard": seps[0], "then": whats[0], "else": None}
+            ext, pretty = GU.make(g), GU.pretty(g)
+            alts = [{"guard": s_, "then": w, "else": None} for s_ in seps for w in whats]
+        nov = BL.classify(ptrip, [t[4] for t in pos]) if classify else None
+        proposals.append({"ext": ext, "pretty": pretty, "view": view, "instances": len(pos), "negatives": len(neg),
+                          "demos": demos, "n_fitting": len(whats), "novelty": nov, "guarded": alts is not None, "alts": alts})
+        if len(proposals) >= MAX_PROPOSALS:
+            break
+    return {"proposals": proposals, "views": {v: len(x) for v, x in groups.items()}, "seconds": round(time.time() - t0, 3)}

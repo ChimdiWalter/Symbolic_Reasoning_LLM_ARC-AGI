@@ -93,7 +93,7 @@ def main(argv=None):
             "no_fold_tie_certified_correct", "no_fold_tie_certified_wrong", "ungated_certified_correct", "ungated_certified_wrong", "cpu_s"]
     lines = ["| family | arm | " + " | ".join(cols) + " | novelty |", "|" + "---|" * (len(cols) + 3)]
     for fam in sorted(T):
-        for arm in ("A", "B", "C", "C2", "C3", "D", "E", "EG", "C2G", "DG"):
+        for arm in ("A", "B", "C", "C2", "C3", "D", "E", "EG", "C2G", "DG", "EGC"):
             if arm not in T[fam]:
                 continue
             c = T[fam][arm]

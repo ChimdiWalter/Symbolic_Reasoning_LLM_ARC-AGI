@@ -276,3 +276,31 @@ def test_guarded_extension_form_search_and_restore():
     with BR.installed(ext) as rec:
         assert ext["name"] in BR.originals()[0]
     assert rec["restored"] and BR.restored(saved)
+
+
+def test_contrast_arm_null_branch_and_separating_guard():
+    """Contrast arm EGC: a null else branch adds nothing. The guard is learned from native's own
+    memorized/explained labels (observable) and separates them; the then-branch fits the memorized objects only."""
+    from cora_fhr import construct as CS
+    from cora_fhr import ggrow_guard as GU
+    ring_min = ("d1", S("part_minority"), T(("ring", 8)))
+    halo = ("d1", S("self"), T(("ring", 8)))
+    g = {"guard": ("n_colours", "eq", 2), "then": ring_min, "else": None}
+    ext = GU.make(g)
+    assert GG.serialize(GG.load(GG.serialize(ext))) == GG.serialize(ext) and "nothing" in GU.pretty(g)
+    groups = {"S3": []}
+    for d, (r, c, two) in enumerate([(2, 2, True), (2, 8, False), (8, 2, True), (8, 8, False), (5, 5, True), (11, 11, False)]):
+        Gr = np.zeros((14, 14), int)
+        O = {(r, c): 4, (r, c + 1): 7 if two else 4, (r + 1, c): 4}
+        for p, v in O.items():
+            Gr[p] = v
+        x = GG.Ctx(O, Gr)
+        A = GG.evaluate(ring_min if two else halo, x)
+        groups["S3"].append((O, A, Gr, d % 3, 5, two))                # memorized = the two-colour kind
+    assert GU.evaluate(g, GG.Ctx(groups["S3"][1][0], groups["S3"][1][2])) == set()
+    prop = CS.propose_contrast(groups, classify=False)["proposals"]
+    assert prop and prop[0]["guarded"] and prop[0]["negatives"] == 3
+    best = GU.from_str(prop[0]["ext"]["expr"])
+    for O, A, Gr, _d, _c, mem in groups["S3"]:
+        got = GU.evaluate(best, GG.Ctx(O, Gr))
+        assert got == (set(A) if mem else set())
