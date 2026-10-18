@@ -1633,6 +1633,13 @@ construction. H3 is therefore untestable on this corpus; mixed-coverage families
 - **The prerequisite failed.** Failure evidence changes proposal selection, but has not yet improved
   held-out correctness over an equally equipped blind control. The study was not enlarged.
 
+**Guarded-construction generalization test** (frozen ad4127a; `records/CORA_FHR_GUARD_GENERALIZATION_PROTOCOL_20261018.md`):
+- 58 independently selected exposed training tasks; arms A, B, EG, C2G, DG and EGC.
+- 0 extension certificates in every construction arm; 0 wrong; 0 lost. Frozen native solved 1.
+- There were 0 discordant pairs, so no failure-information advantage, and the version stopped.
+- The real-task guarded solve (ka95aa62f67d9) did not generalize. The bottleneck is evidence and the
+  language's reach.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories

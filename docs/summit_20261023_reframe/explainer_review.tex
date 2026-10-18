@@ -95,7 +95,7 @@ checking is much harder.
 \toprule
 achievement & status today \\ \midrule
 detect certain reasoning failures & built, with limits \\
-construct and verify an executable correction & shown on one synthetic and one exposed real puzzle \\
+construct and verify an executable correction & one synthetic and one exposed real puzzle; 0 of 58 on an independent set \\
 learn to choose better revisions from failures & \textbf{not established} \\
 transfer a revision policy to biology & \textbf{not tested} \\ \bottomrule
 \end{tabular}
@@ -201,9 +201,9 @@ revisions, and the cost, is part of the test.
 
 \bigpart{Part 5. The experiment that would answer the larger question}
 
-\panel{12. The next test, already running}
-\cue{column 3, ``The next falsifiable test''}
-On 58 practice puzzles, chosen by a fixed rule before anything ran, I compare:
+\panel{12. The independent test, and its negative result}
+\cue{column 3, ``An independent test''}
+On 58 practice puzzles, chosen by a fixed rule before anything ran, I compared:
 \begin{itemize}
   \item the solver alone, and with extra search;
   \item learning from the failure;
@@ -212,8 +212,14 @@ On 58 practice puzzles, chosen by a fixed rule before anything ran, I compare:
   \item a new version that learns \emph{what} to change from what the solver could only memorize, and
     \emph{where} it applies from the contrast with what the solver already explains.
 \end{itemize}
-The comparisons are decided in advance, with corrections for testing several things at once. I will report
-the result only after it is checked, whatever it is.
+The comparisons were decided in advance, with corrections for testing several things at once.
+
+\textbf{The result:} no version that builds rules got a single puzzle right, 0 of 58. None got one wrong
+either; the original solver alone got 1. So the real-puzzle success did not generalize, and learning from the
+failure showed no advantage. Construction rarely even proposed a rule (at most 6 of the 58), and the
+solver usually rejected what was proposed. The bottleneck is upstream: CORA rarely has the right evidence,
+or a rich enough language, to build the missing rule. Choosing the revision cannot help until that is
+fixed.
 
 \panel{13. From puzzles to science (proposed, not tested)}
 \cue{column 3, ``Scientific prediction''}

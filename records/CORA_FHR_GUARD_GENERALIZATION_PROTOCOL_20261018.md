@@ -89,3 +89,38 @@ per-arm coverage.
    - The shuffled control DG is not fold-symmetric (known limitation), so it is not used as the sole
      evidence that the *content* of the failure trace matters.
 3. **Exposure.** The tasks are exposed training tasks: no generalization or prospective claim either way.
+
+## FINAL RESULT (2026-10-18, 22:18Z; `gen_status.json` complete: return codes [0, 0]; 58/58 rows with all 6 arms; relabelled twins 0, because nothing was certified)
+
+| arm | certified correct | wrong | proposed (guarded) | extension used | outcomes | CPU |
+|---|---|---|---|---|---|---|
+| A frozen native | 1 | 0 | — | — | — | 4.89 h |
+| B matched search | 1 | 0 | — | — | — | 6.05 h |
+| EG authentic + guard | **0** | 0 | 3 (3) | 1 | NO_PROPOSAL 55, ENGINE_REJECTION 2, LOO_FAILURE 1 | 1.62 h |
+| C2G failure-blind + guard | **0** | 0 | 6 (4) | 1 | NO_PROPOSAL 52, ENGINE_REJECTION 5, LOO_FAILURE 1 | 1.97 h |
+| DG shuffled + guard | **0** | 0 | 3 (3) | 0 | NO_PROPOSAL 55, ENGINE_REJECTION 3 | 0.26 h |
+| EGC contrast | **0** | 0 | 1 (0) | 1 | NO_PROPOSAL 57, LOO_FAILURE 1 | 1.27 h |
+
+0 lost answers and 0 restore failures in every construction arm.
+
+**Paired sign tests:** EG vs C2G, EGC vs C2G and EGC vs EG each have **0 discordant pairs**, so p = 1
+(Holm-adjusted 1).
+
+**Stop rule, applied as frozen:**
+1. **Safety: PASS.**
+2. **Causal: no failure-information advantage. This version STOPS.** It is not enlarged or retuned.
+3. **Engineering: 0 of 58** independently selected (exposed) training tasks were solved by a constructed
+   rule. The ka95aa62f67d9 solve did not generalize.
+
+**Predictions:**
+- "Most tasks NO_PROPOSAL in every arm": confirmed.
+- "Few discordant pairs, no significant result": confirmed (none).
+- "EGC may beat EG": not observed (EGC 0).
+
+**Colour relabelling:** not run. The fixed rule required a certified task, and there was none.
+
+**Reading:**
+- Construction rarely applies; even with guards, at most 6 of 58 tasks drew a proposal.
+- Where it applies, the unchanged engine usually rejects the extension or a fold breaks it.
+- The bottleneck is upstream, consistent with the autopsy: usable growth evidence, and a language
+  expressive enough for the transformation. Better selection of revisions cannot help without them.

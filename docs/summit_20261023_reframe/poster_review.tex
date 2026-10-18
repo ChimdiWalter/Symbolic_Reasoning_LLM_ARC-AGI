@@ -111,7 +111,7 @@
   \toprule
   achievement & status \\ \midrule
   detect certain reasoning failures & built, with limits \\
-  construct and verify an executable correction & shown: one synthetic task, one exposed real task \\
+  construct and verify an executable correction & one synthetic and one exposed real task; 0 of 58 on an independent set \\
   learn to choose better revisions from failures & \textbf{not established} \\
   transfer a revision policy to biology & \textbf{not tested} \\ \bottomrule
   \end{tabular}
@@ -176,11 +176,12 @@
   \end{tikzpicture}
   \end{tikzfigure}
 }
-\block{\bt{The next falsifiable test \;{\color{ink2}RUNNING}}}{\bodyfont\secfont
-  58 independently selected training tasks, frozen before the run. It asks whether failure information
-  chooses better revisions than an equally equipped failure-blind constructor. One new arm learns
-  \emph{what} to change from what the solver could only memorize, and \emph{where} from the boundary with
-  what it explains. Paired sign tests, Holm-corrected; results will be reported only after validation.
+\block{\bt{An independent test \;{\color{critical}NEGATIVE}}}{\bodyfont\secfont
+  58 training tasks chosen by a fixed rule, with the protocol frozen before the run. No construction arm
+  produced a certified answer: learning from the failure, failure-blind, shuffled, and a new arm that learns
+  \emph{where} from the boundary between explained and memorized objects all scored 0 of 58, with 0 wrong.
+  Frozen CORA solved 1. The real-task solve did not generalize, and the failure record showed no advantage.
+  The bottleneck is upstream: usable evidence, and a language rich enough for the transformation.
 }
 \block{\bt{Scientific prediction \;{\color{critical}PROPOSED, NOT TESTED}}}{\bodyfont\secfont
   With molecular measurements, should the system revise its representation, revise its hypothesis, or ask
