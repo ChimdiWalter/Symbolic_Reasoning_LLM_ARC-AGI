@@ -19,6 +19,34 @@ The bundle was built with `build_bundle.py`, inside the repository on Athe.
 **Evidence tier: DEVELOPMENT, SYNTHETIC.** This is not an ARC-AGI-2 result
 and not a Kaggle result.
 
+## The 20-second version
+
+"CORA failed this practice puzzle. From the objects it could only memorize, it built one new rule, a ring
+around the odd-coloured cell. It checked the rule three times on examples it had not seen while rebuilding
+it, then answered correctly; without the rule the answer is lost. A version that ignored the failure found
+the same rule, so this shows that CORA can build and check a missing tool, not yet that learning from the
+failure is what helped."
+
+## What kind of run each step is
+
+| step | kind |
+|---|---|
+| task, failure evidence, folds, ablation, controls | **offline replay** of the recorded run (hash-checked records in `data/`) |
+| the operator's output on the test objects | **standalone re-execution** of the recorded expression (`ggrow_standalone.py`), here and now |
+| native CORA, construction search, leave-one-out | **not rerun** here; a full engine rerun needs the repository (`python -m cora_fhr.witness --key dev_D3_04`) |
+
+**What is designed by hand and what is automatic.** The trigger ("objects native could only memorize"),
+the grammar (10 sources × 50 transforms) and the checks are human-designed. The choice of expression and
+its rebuilding in every fold are automatic. Leave-one-out is a consistency check on 3 examples, not a proof
+that the rule holds in general.
+
+**Clean-environment test (2026-10-18).**
+- **Setup:** a copy of this folder outside the repository, run from a fresh venv containing only numpy,
+  with every network call blocked by a socket guard.
+- **Command:** `python -s replay.py`.
+- **Result:** exit code 0, which means every `MANIFEST.json` sha256 matched (the script exits on any
+  mismatch). Evaluator correct, and the ablation and controls were printed.
+
 ## The 90-second script (one line per screen of `replay.py`)
 
 | time | screen | say |

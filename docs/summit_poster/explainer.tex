@@ -215,13 +215,15 @@ duplicate views fixed one of 41 and broke four, so I rejected it too. And every 
 I hide an example to test the program, the program may not peek at it, not even indirectly.
 
 \panel{7. Where the competition stands}
-\cue{``Competition status, 14 October''}
+\cue{``Competition status, 18 October''}
 \begin{itemize}
   \item \textbf{Official Kaggle score of my own solver, CORA: 0.00.}
   \item I also entered a strong neural method that someone else published (NVARC, a Qwen3-4B model that
     retrains itself briefly on each puzzle). I reproduced it, so it is \emph{not} my invention, and its
-    score is not a CORA result. It processed every one of the 240 stand-in puzzles. Its official score
-    is still being computed.
+    score is not a CORA result. Its official score is 27.64, the same as NVARC's own 2025 score.
+  \item On 18 October I submitted a research entry that runs my construction step after the unchanged
+    solver. In its full practice run on Kaggle the step ran on 62 eligible puzzles and added no answers, so I
+    expect a score near 0. The official score is still pending.
   \item On the 60 practice puzzles my whole solver got 12 right. But more than half of the answers it
     claimed were wrong (18 of 29), because its least careful part answers first. Simply reordering the
     answers it already makes gave 14 right, with none lost. That is a useful engineering fix, not a new
@@ -247,6 +249,28 @@ system can build and check a missing tool. It does not yet show that learning fr
 made the difference. A small follow-up mixed puzzles the solver half-understands. There, learning from the failure did
 pick the right new tool when nothing else did, but the solver then refused to use it, so no extra
 puzzles were solved. The bigger, sealed test stays sealed until that is fixed.
+
+\panel{8b. Why the new tool almost never appears}
+\cue{the root-cause record, 18 October}
+Of the 62 practice puzzles where the construction step could apply:
+\begin{itemize}
+  \item 20 left no trace of the solver memorizing at all;
+  \item 39 left traces that did not turn into a usable rule;
+  \item 2 ran out of time;
+  \item 1 gave a rule that fell apart when one example was hidden.
+\end{itemize}
+So the bottleneck is upstream of the checks: the right evidence, or a rule that fits it, is usually
+missing.
+
+\textbf{What is designed by hand, and what is automatic.} I designed the trigger (``objects the solver
+could only memorize''), the list of building blocks and the checks. The choice of rule, and its rebuilding
+in every check, is automatic.
+
+\textbf{Why the checks are not proof.} Hiding one of three examples at a time is a consistency check, not
+a guarantee that the rule holds everywhere.
+
+\textbf{Why biology would differ.} A puzzle answer is exactly right or wrong. A biological prediction needs
+a tolerance, real replicates, held-out conditions and, in the end, an experiment.
 
 \panel{9. Could this work outside puzzles?}
 \cue{the panel marked BIOLOGICAL APPLICATION: UNTESTED}
@@ -357,6 +381,12 @@ between competing fixes, instead of picking one, before any new real test.
   \item \textbf{The construction experiment:} \texttt{python -m cora\_fhr.measure --corpus c4\_dev\_v2}, then
     \texttt{python -m cora\_fhr.evaluate}. The witness audit is \texttt{python -m cora\_fhr.witness}. The record is
     \texttt{records/CORA\_FHR\_DEV\_RESULTS\_20261014.md}.
+  \item \textbf{Why construction rarely fires:} \texttt{python -m cora\_fhr.root\_cause} (read-only over the
+    recorded runs). The record is \texttt{records/CORA\_REVISION\_ROOT\_CAUSE\_20261018.md}.
+  \item \textbf{Every number and its scope:} \texttt{records/CORA\_SUMMIT\_CLAIM\_LEDGER\_20261017.md}.
+  \item \textbf{The demo in a clean setting:} copy \texttt{docs/summit\_demo\_20261023/} anywhere, make a fresh
+    Python environment with only numpy, and run \texttt{python -s replay.py}. It refuses to run if any
+    recorded file's hash differs.
 \end{itemize}
 
 \end{document}
