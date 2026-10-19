@@ -13,6 +13,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{array}
 \usetikzlibrary{positioning, arrows.meta, fit, calc, shapes.geometric}
 \pdftrailerid{}
 
@@ -212,10 +213,15 @@
     \node[right=1.0cm of d, font=\secfont, align=left] {{\color{good}[DONE]} {\color{critical}[NEGATIVE]}
       {\color{warm}[DEVELOPMENT]}\\ {\color{ink2}[RUNNING]} {\color{critical}[FUTURE, NOT TESTED]}};
     \node[anchor=north west, text width=25.6cm, align=left, draw=ink2, line width=1.6pt, rounded corners=8pt,
-          inner sep=14pt, font=\secfont] (nb) at (51.2,0.2) {\textbf{Neural baseline}, official public ARC-AGI-2: native
-      CORA \textbf{0.00\%} $\cdot$ CORA with rule construction \textbf{0.00\%} $\cdot$ NVARC reproduction
-      \textbf{27.64\%}, a third-party Qwen3-4B method, \textbf{not CORA}: a competitive baseline. CORA asks whether
-      executable revision adds a separate capability.};
+          inner sep=12pt, font=\fontsize{24}{29}\selectfont] (nb) at (51.2,0.3) {%
+      \textbf{Two approaches to ARC}, official public ARC-AGI-2 scores\\[0.2em]
+      \begin{tabular}{@{}>{\raggedright\arraybackslash}p{12.2cm}>{\raggedright\arraybackslash}p{12.6cm}@{}}
+      \textbf{NVARC / Qwen3-4B: 27.64\%} & \textbf{CORA: 0.00\%} (also 0.00\% with rule construction)\\
+      reproduced third-party method, \textbf{not CORA}; neural training and per-task adaptation &
+      original research; explicit hypotheses, tested revisions\\
+      \end{tabular}\\[0.2em]
+      \textbf{Open question:} can learned neural proposals help an executable reasoner find which part of a hypothesis
+      to revise?};
   \end{tikzpicture}
   \par\vspace{0.3em}
   {\fontsize{22}{27}\selectfont\color{ink2}
