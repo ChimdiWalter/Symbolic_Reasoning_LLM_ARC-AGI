@@ -49,11 +49,68 @@
   - V reproduces two recorded engineering rows exactly; arm A reproduces a recorded certified engineering answer
     exactly.
 
-## 3. Run
+## 3. Run (DONE)
 
-RUNNING (`python -m cora_revision_v2.phase2a run`; log `phase2a/run.log`). The evaluator reads the answers only
-after every arm's rows are complete or the wall cap has passed.
+- **Command:** `python -m cora_revision_v2.phase2a run`, started 15:03Z, finished after 3.93 h wall. It ran under the 6 h
+  cap and was not restarted or modified.
+- **Integrity:**
+  - coverage 40/40 for V, A and B (`run.log` last line);
+  - 0 rows CPU-limited, 0 errors;
+  - every A and B row carries bundle sha e6b145b6, and the hashes check out;
+  - 0 rows carry an answer field.
+- **Row files:** rows_A 94346985…, rows_B 49208dc8…, rows_V c5705a4f….
+- **CPU per task, mean:** A 287.3 s, B 297.5 s, V 29.0 s. A and B each timed out on 12 of 40 tasks.
 
-## 4. Result
+## 4. Result (evaluated 2026-10-19 ~19:10Z): **NO-GO** under the frozen rule
 
-PENDING.
+- **Evaluator:** `python -m cora_revision_v2.phase2a evaluate`, the first and only read of the answers. Output:
+  `phase2a_evaluator/phase2a_eval.json` (76783bb8…).
+- **Report:** `python -m cora_revision_v2.phase2a_report`, writing `phase2a_report.json` (a43f64b5…).
+
+| arm | certified correct | certified wrong | exploratory correct / wrong | none |
+|---|---|---|---|---|
+| A frozen native | 5 | **1** | — | 34 |
+| B matched search (f_B 1.053) | 5 | **1** | — | 34 |
+| V CORA-v2 growth-only | **0** | 0 | 2 / 0 | 38 |
+
+**Per task:**
+- **A and B are identical.** They certify the same 6 tasks: 5 correct, plus one wrong certificate on
+  `p2a_bad364b6c313`. V abstains there (GEOMETRY_GAP). Native's acceptance gate is not infallible on this cohort.
+- **V's two exploratory answers** both come from MANY_CONSISTENT_DISAGREE, as two attempts:
+  - `p2a_76cc969bef29` is also certified by A and B;
+  - `p2a_abf8c09c562e` is **new**: neither A nor B solves it.
+- **Solved by A or B but not by V:** 4 tasks, all V GEOMETRY_GAP.
+- **Lost in a native-first combination:** 0.
+
+**V's diagnoses:**
+- 33 NO_CONSISTENT_HYPOTHESIS:GEOMETRY_GAP;
+- 4 COLOUR_POLICY_GAP;
+- 1 UNPREDICTABLE_TEST;
+- 2 MANY_CONSISTENT_DISAGREE.
+
+Its primary actions were ABSTAIN 24, WIDEN_SEARCH 9, GUARDED_GEOMETRY 6, TWO_ATTEMPTS 1.
+
+**The frozen GO checks:**
+
+| check | result |
+|---|---|
+| complete coverage | PASS |
+| valid hashes | PASS |
+| zero wrong certified V | PASS |
+| at least 2 new correct V attempts absent from A and B | **FAIL: 1** |
+
+**Decision.**
+- Applying the rule as frozen, this version is **closed**. It is not retuned on these tasks.
+- **The evidence:** v2's growth-only language reaches no certified answer on a fresh 40-task cohort. Its one new
+  correct exploratory answer is a disagreement case, so it was not reasoned to uniquely.
+- **The bottleneck is coverage.** 33 of 40 tasks are GEOMETRY_GAP: no hypothesis in the language fits. That agrees
+  with the gap audit and with the 0 / 58 construction result.
+- **Scope.** These are reused public training tasks, so this is a development evaluation, not an unseen-task score.
+  The NVARC-derived checkpoint saw this training file (`records/CORA_NVARC_SUBSUMPTION_AUDIT_20261019.md` section 5).
+
+**Next** (the user's newest directives, 19 October): Neural-CORA v0.1.
+- Its first experiment is a learned program prior that must beat compute-matched symbolic search on held-out
+  synthetic transformation families.
+- It targets the same coverage bottleneck, with additive and non-additive programs.
+- The earlier NO-GO follow-ups wait behind it: the residual-geometry probe, the A/B/C limitation comparison and one
+  minimal intervention.

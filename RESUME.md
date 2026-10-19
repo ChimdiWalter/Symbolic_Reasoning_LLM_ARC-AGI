@@ -5,9 +5,13 @@ Last updated 2026-10-19. Read this first.
 ## State
 
 **NEWEST (2026-10-19 ~18:40Z, session d176233f). THREE NEW USER DIRECTIVES, in this priority order (the user's own):**
-1. Finish the authorized Phase 2a untouched. RUNNING: 108/120 rows at ~18:35Z. Evaluate it ONLY with
-   `python -m cora_revision_v2.phase2a evaluate`, then `python -m cora_revision_v2.phase2a_report`, and apply the frozen GO
-   rule. Then update records/CORA_REASONING_V2_PHASE2A_EXECUTION_20261019.md.
+1. Phase 2a DONE: **NO-GO** under the frozen rule (evaluated ~19:10Z).
+   - Coverage 40/40/40 in 3.93 h; hashes ok; 0 errors.
+   - A and B each certified 6 (5 correct, 1 WRONG, on p2a_bad364b6c313).
+   - V certified 0; exploratory 2/0, 1 of them new (p2a_abf8c09c562e).
+   - The GO rule needed 2 new correct answers. The version is closed; it was not retuned.
+   - Record: records/CORA_REASONING_V2_PHASE2A_EXECUTION_20261019.md sections 3-4; ledger row 23; both explainers'
+     section 10 updated.
 2. **Neural-CORA v0.1** ("Learn to propose and revise executable hypotheses"; the full text is in the session transcript).
    - It is ONE CORA-owned architecture: no router, no ensemble, no attempt-2 filler.
    - Phase 0 audit -> records/NEURAL_CORA_ARCHITECTURE_AUDIT_20261019.md.

@@ -20,6 +20,31 @@ print until the user approves.
 | column 3, "How neural learning may help" | Two solid lanes with their official public scores. One small dashed learning loop, worded as in the directive. Then the sentence from the addendum, and the statement that the neural proposal interface is not implemented. The CORA-v2 and "From ARC to science" blocks are kept. Removed: the "Inventing new operations" block (Step B is now explainer section 7, with a footer pointer) and the "Two approaches" box. |
 | legend | The [RUNNING] chip is removed, because no block on this poster is running. |
 
+## 1b. The 19 October word trim (the user's instruction: "toward 300–350 without shrinking the ARC grids")
+
+**Removed:**
+- the "Aims" line;
+- duplicate captions;
+- the "Shown:" note: the figure tag now names the arm only through the explainer;
+- "published method" in the lane label: the footer keeps "NVARC's published method, reproduced";
+- most of the footer: the four prior-work names and "failing and revising is not new" are kept.
+
+**Shortened:** the subline, the checklist, the 6/26 labels, the CORA-v2 and "From ARC to science" lines, and the bottom
+sentence.
+
+**Kept:**
+- Toni's question;
+- the real grids;
+- the ka95aa62f67d9 witness;
+- 0/58;
+- 27.64% (NVARC, not CORA) and 0.00% (CORA);
+- the one small dashed loop;
+- the required not-implemented sentence.
+
+**Grids now larger:** 00dbd492 3.0 in (was 2.75), ka95aa62f67d9 3.7 in (was 3.15), the three-failure panels 2.2 and
+1.9 in (were 1.9 and 1.65), and a new 2.75 in CORA-v2 panel `fig_v2_uncertified_00dbd492_large.png` (the visual
+poster's 2.3 in panel is unchanged).
+
 ## 2. Claim audit for new or changed statements
 
 | statement on the poster | source | status |
@@ -76,7 +101,8 @@ python scripts/poster_visual_to_pptx.py --pdf docs/summit_20261023_reframe/poste
 - no clipped text;
 - no hyphenation (the poster sets `\hyphenpenalty=10000`);
 - the bottom band and footer are on the page, with about 2.8 cm margin;
-- poster text: about 600 words.
+- poster text: **about 400 words** by `pdftotext`, of which about 346 are outside the title block, review banner and
+  footer. It was about 600 before the 19 October trim.
 
 ## 5. The companion explainer: `explainer_qwen_architecture_review.{tex,pdf}`
 

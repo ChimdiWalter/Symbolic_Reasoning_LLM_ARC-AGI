@@ -578,31 +578,30 @@ unable to do this.
 \end{itemize}
 A \term{prospective} test is one whose design and cohort are fixed before any result is seen.
 
-\textbf{Phase 2a status: RUNNING, RESULT PENDING.}
+\textbf{Phase 2a result: NO-GO} (the frozen rule, evaluated 19 October).
 \begin{itemize}
   \item \textbf{Cohort.} 40 public training tasks.
         \begin{itemize}
           \item They were selected by a declared rule and are independent of all v2 development.
           \item A single authorized, metadata-only check excluded Step B's protected splits: 44 of 100 candidates were
                 eligible, and the first 40 were used.
-          \item They are reused public tasks, so a result is a development evaluation, not a blind prospective test
-                or an unseen-task score.
+          \item They are reused public tasks, so the result is a development evaluation, not an unseen-task score.
         \end{itemize}
   \item \textbf{Arms.} Frozen native (A), matched extra search (B), and the frozen growth-only v2 (V).
-  \item \textbf{GO rule.}
+  \item \textbf{Result.}
         \begin{itemize}
-          \item complete coverage and valid hashes;
-          \item zero wrong certified v2 answers;
-          \item at least 2 tasks where v2 is right and A and B are not.
+          \item A and B each certified 6 answers: 5 correct, 1 wrong.
+          \item V certified none. It gave 2 exploratory answers, both correct; one is on a task A and B miss.
         \end{itemize}
-  \item \textbf{Reporting.} The result will be added here and to the ledger only after its integrity checks.
+  \item \textbf{GO rule.} Complete coverage, valid hashes and zero wrong certified v2 answers all passed. The rule
+        also needed at least 2 new correct v2 answers; there was 1. The version is closed and not retuned.
+  \item \textbf{What it shows.} On 33 of 40 tasks no hypothesis in v2's language fit at all (GEOMETRY\_GAP). The
+        bottleneck is coverage, not selection.
 \end{itemize}
 
-\textbf{If GO, Phase 2b.} It would test the causal question: does the diagnosis choose better revisions than applying
-everything, at matched compute, or a shuffled diagnosis? It needs a new eligible cohort and approval.
-
-\textbf{If NO-GO.} The version is closed. The next step would be one small, evidence-based change: part-aware or
-relational object parts, chosen from the 22-task characterization on page 7.
+\textbf{Next.} Phase 2b (diagnosis-chosen revision) was not run. The next experiment is Neural-CORA's first learned
+component (section 8): a learned program prior, tested against matched symbolic search on held-out synthetic task
+families.
 
 %------------------------------------------------------------------------------------------------- page 12
 \page{11. Science next, and how to reproduce everything}

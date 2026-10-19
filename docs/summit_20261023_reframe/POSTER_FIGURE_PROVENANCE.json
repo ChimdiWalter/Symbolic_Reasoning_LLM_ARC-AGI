@@ -22,10 +22,10 @@
    "dpi": 200,
    "evidence_limitations": "An exposed public training task used in CORA-v2 development; shown only to explain what an ARC task is.",
    "generation_command": "python scripts/summit_visual_figures.py",
-   "height_in": 11.05,
+   "height_in": 11.65,
    "kind": "REAL",
    "min_font_pt": 20,
-   "sha256": "1b37ede6d8c4473beecbd4f88db06bef82f949a7aec4a1aac9b65253ef9b5151",
+   "sha256": "509db020743ccc7f7cf5ad6639163a5eadbbee6ca74ac2d8a3b43e7af75c214b",
    "source_evaluation_mode": "public ARC-AGI-2 training task (training pairs and test input as recorded)",
    "source_task_id": "00dbd492",
    "sources": {
@@ -111,10 +111,10 @@
    "dpi": 200,
    "evidence_limitations": "Exposed training task selected by the development autopsy; a failure-blind constructor found the same rule; not part of any Kaggle entry; not evidence of generalization.",
    "generation_command": "python scripts/summit_visual_figures.py",
-   "height_in": 8.1,
+   "height_in": 9.3,
    "kind": "REAL",
    "min_font_pt": 20,
-   "sha256": "34afa132ba91978aca0b9cba178d4097da7b73eb0a6607efba7d5294cd2ad7a8",
+   "sha256": "50d1226ff11ff25b76ad37008d8354c006afe9db664b697bfd49b0cb54f1c174",
    "source_evaluation_mode": "development probe (guard probe, arm EG), recorded run; evaluator answer read only in the evaluator step",
    "source_task_id": "ka95aa62f67d9",
    "sources": {
@@ -133,13 +133,31 @@
    "dpi": 200,
    "evidence_limitations": "Not an ARC task and not a CORA result. Drawn only to explain representation (objects), transformation (rule-language) and evidence failures; used by the Qwen-architecture review poster.",
    "generation_command": "python scripts/summit_visual_figures.py",
-   "height_in": 13.5,
+   "height_in": 14.6,
    "kind": "ILLUSTRATIVE",
    "min_font_pt": 20,
-   "sha256": "5a079d4753403cd51c7795a1d3b87a306d8b5a5f53cd1875aa565d77ab1f7deb",
+   "sha256": "244b80c79b8665c2613fc89cd173776a122f045d203d78518d9ee84dbcdf1f47",
    "source_evaluation_mode": "hand-drawn illustration",
    "source_task_id": null,
    "sources": {},
+   "width_in": 9.37
+  },
+  "fig_v2_uncertified_00dbd492_large.png": {
+   "dpi": 200,
+   "evidence_limitations": "Exposed training task examined in development; uncertified (fold fragility); in-sample; not evidence of generalization.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 4.65,
+   "kind": "REAL",
+   "min_font_pt": 20,
+   "sha256": "29799374ffe91326f3ff516915ae081ba61e2a28adf6aeee590e79b3cf20735d",
+   "source_evaluation_mode": "CORA-v2 engineering run (blind rows; evaluator label recorded separately)",
+   "source_task_id": "00dbd492",
+   "sources": {
+    "v2_witness": {
+     "path": "docs/summit_demo_20261023/data/v2_witness_00dbd492.json",
+     "sha256": "bc25278203700e28bdf429ceaf97ac33cf3fec504a1f8d0b7a3c29b4f9fac283"
+    }
+   },
    "width_in": 9.37
   },
   "fig_v2_uncertified_00dbd492_poster.png": {
@@ -164,5 +182,5 @@
  "printed_width_in": 9.37,
  "rule": "REAL figures come only from hash-pinned recorded inputs; ILLUSTRATIVE figures say so",
  "script": "scripts/summit_visual_figures.py",
- "script_sha256": "1f50c0dd4949b78e459d92bda67d561ad1d6509a9cdacad119841bbbeabc3b01"
+ "script_sha256": "d4718c34adfda8617a4ea7944997cd9746e71c314c3953642fdb435401d1216e"
 }

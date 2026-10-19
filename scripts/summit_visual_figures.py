@@ -228,7 +228,7 @@ def four_reasons():
 def three_failures():
     """Why reasoning fails (ILLUSTRATIVE, drawn for explanation): wrong objects, wrong transformation, not enough
     evidence. Per panel: a title, one short sentence, then large grids. The Qwen-architecture review poster, column 1."""
-    H = 13.5
+    H = 14.6
     fig = _new(H)
     _tag(fig, "ILLUSTRATIVE — drawn to explain, not a CORA result", color=CRITICAL)
     white = "#ffffff"
@@ -249,7 +249,7 @@ def three_failures():
     def lab(x, y, s, col=INK2, bold=False):
         _text(fig, x, y, s, fontsize=FS_MIN, color=col, ha="center", va="top", fontweight="bold" if bold else "normal")
     # 1 wrong objects: the same grid, split two ways
-    b = 1.9
+    b = 2.2
     y = head(H - 0.62, "Wrong objects", "The grid is split into the wrong pieces.") - b
     xa, xb = 1.20, 6.17
     _grid(fig, rep, xa, y, b, outlines=[(1, 1, 2, 3, white), (4, 4, 4, 5, white)])
@@ -269,7 +269,7 @@ def three_failures():
     _text(fig, 6.20, y + b - 0.78, "move  ✗", fontsize=FS_LAB, color=CRITICAL, va="top", fontweight="bold")
     _text(fig, 6.20, y + b - 1.26, "recolour  ✗", fontsize=FS_LAB, color=CRITICAL, va="top", fontweight="bold")
     # 3 not enough evidence: two rules fit one example and disagree on a new input
-    b = 1.65
+    b = 1.9
     y = head(y - 0.80, "Not enough evidence", "Two rules fit the example but give different answers.") - b
     xa, xb = 0.35, 2.95
     _grid(fig, d_in, xa, y, b)
@@ -366,20 +366,19 @@ def real_rule(box=2.62, H=7.2, fname="fig_real_rule_ka95aa62f67d9.png", xout=5.3
 
 
 # ---------------------------------------------------------------- column 3: v2's correct but uncertified prediction (REAL)
-def v2_uncertified():
+def v2_uncertified(box=2.30, H=4.2, fname="fig_v2_uncertified_00dbd492_poster.png", xout=3.20, xt=6.00, xin=0.35):
     w = json.load(open(src("v2_witness")))
     assert w["evaluator_correct"] and w["tier_v2"] == "EXPLORATORY" and not any(w["controls"].values())
-    H = 4.2
     fig = _new(H)
     _tag(fig, "REAL TASK 00dbd492 · CORA-v2 development run\nCORRECT DEVELOPMENT PREDICTION — NOT CERTIFIED", color=INK2)
-    box, xin, xout, y = 2.30, 0.35, 3.20, 0.58
+    y = 0.58
     _grid(fig, w["test_input"], xin, y, box)
     _arrow(fig, xin + box + 0.08, y + box / 2, xout - 0.08)
     _grid(fig, w["v2_prediction"], xout, y, box)
     _text(fig, xin + box / 2, y - 0.40, "new input", fontsize=FS_MIN, color=INK2, ha="center")
     _text(fig, xout + box / 2, y - 0.40, "v2's guess (correct)", fontsize=FS_MIN, color=INK2, ha="center")
     sup, tab = w["test_table_support"], w["size_to_colour"]
-    xt, yt = 6.00, y + box + 0.05
+    yt = y + box + 0.05
     _text(fig, xt, yt, "fill colour, by size:", fontsize=FS_MIN, color=INK2, va="top")
     for j, k in enumerate(sorted(sup, key=int)):
         n = sup[k]
@@ -387,7 +386,7 @@ def v2_uncertified():
               color=CRITICAL if n == 1 else INK, fontweight="bold" if n == 1 else "normal", va="top")
     _text(fig, xt, yt - 0.44 * 4 - 0.10, "hide that example:", fontsize=FS_MIN, color=CRITICAL, va="top")
     _text(fig, xt, yt - 0.44 * 5 - 0.10, "the check fails", fontsize=FS_MIN, color=CRITICAL, va="top", fontweight="bold")
-    _save(fig, "fig_v2_uncertified_00dbd492_poster.png", "REAL", ("v2_witness",), "00dbd492",
+    _save(fig, fname, "REAL", ("v2_witness",), "00dbd492",
           "CORA-v2 engineering run (blind rows; evaluator label recorded separately)",
           "Exposed training task examined in development; uncertified (fold fragility); in-sample; not evidence of "
           "generalization.")
@@ -426,12 +425,13 @@ def main():
     four_reasons()
     real_rule()
     # the Qwen-architecture review poster: larger real grids, three failures, the 58 outcomes
-    arc_intro(box=2.75, H=11.05, fname="fig_arc_intro_00dbd492_large.png", xin=0.55, xout=6.05, step=3.42)
+    arc_intro(box=3.0, H=11.65, fname="fig_arc_intro_00dbd492_large.png", xin=0.45, xout=5.9, step=3.67)
     three_failures()
-    real_rule(box=3.15, H=8.1, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.15, label_right=True,
-              xin=0.55)
+    real_rule(box=3.7, H=9.3, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.7, label_right=True,
+              xin=0.3)
     construction_58()
     v2_uncertified()
+    v2_uncertified(box=2.75, H=4.65, fname="fig_v2_uncertified_00dbd492_large.png", xout=3.45, xt=6.45, xin=0.3)
     dev60_audit()
     prov = {"script": "scripts/summit_visual_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
             "printed_width_in": W, "rule": "REAL figures come only from hash-pinned recorded inputs; ILLUSTRATIVE figures say so",
