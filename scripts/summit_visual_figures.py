@@ -296,6 +296,45 @@ def three_failures():
           "(rule-language) and evidence failures; used by the Qwen-architecture review poster.")
 
 
+def three_causes_row():
+    """The science-first poster's compact row of three possible causes (ILLUSTRATIVE): wrong objects, wrong rule, not
+    enough evidence. The same hand-drawn grids as `three_failures`, one panel each."""
+    H = 4.15
+    fig = _new(H)
+    _tag(fig, "ILLUSTRATIVE — drawn to explain, not a CORA result", color=CRITICAL)
+    white = "#ffffff"
+    rep = _put(_put(_put(_blank(), [(1, 1), (1, 2), (2, 1), (2, 2)], 2), [(1, 3), (2, 3)], 1), [(4, 4), (4, 5)], 2)
+    c_in = _put(_blank(), [(2, 0), (2, 5)], 8)
+    c_out = _put(_put(_blank(), [(2, 0), (2, 5)], 8), [(2, 1), (2, 2), (2, 3), (2, 4)], 5)
+    d_h1 = _put(_put(_blank(), [(4, 2), (4, 3)], 2), [(1, 2), (1, 3), (1, 4)], 5)
+    d_h2 = _put(_put(_blank(), [(4, 2), (4, 3)], 5), [(1, 2), (1, 3), (1, 4)], 2)
+    b, top, y = 1.22, H - 0.55, 0.98
+
+    def head(x, titles, l1, l2):
+        for k, t in enumerate(titles):
+            _text(fig, x + 1.48, top - 0.42 * k, t, fontsize=FS_BIG, fontweight="bold", ha="center", va="top")
+        _text(fig, x + 1.48, 0.66, l1, fontsize=FS_MIN, color=INK2, ha="center", va="top")
+        _text(fig, x + 1.48, 0.33, l2, fontsize=FS_MIN, color=INK2, ha="center", va="top")
+    x = 0.12
+    head(x, ("Wrong", "objects"), "the grid grouped", "the wrong way")
+    _grid(fig, rep, x + 0.08, y, b, outlines=[(1, 1, 2, 3, white), (4, 4, 4, 5, white)])
+    _text(fig, x + 1.48, y + b / 2, "or", fontsize=FS_LAB, color=INK2, ha="center", va="center")
+    _grid(fig, rep, x + 1.66, y, b, outlines=[(1, 1, 2, 2, white), (1, 3, 2, 3, white), (4, 4, 4, 5, white)])
+    x = 3.22
+    head(x, ("Wrong", "rule"), "no operation", "draws the line")
+    _grid(fig, c_in, x + 0.08, y, b)
+    _arrow(fig, x + 0.08 + b + 0.08, y + b / 2, x + 1.66 - 0.08)
+    _grid(fig, c_out, x + 1.66, y, b)
+    x = 6.32
+    head(x, ("Not enough", "evidence"), "both rules fit;", "they disagree here")
+    _grid(fig, d_h1, x + 0.08, y, b)
+    _text(fig, x + 1.48, y + b / 2, "≠", fontsize=FS_BIG, color=CRITICAL, ha="center", va="center", fontweight="bold")
+    _grid(fig, d_h2, x + 1.66, y, b)
+    _save(fig, "fig_three_causes_row_ILLUSTRATIVE.png", "ILLUSTRATIVE", (), None, "hand-drawn illustration",
+          "Not an ARC task and not a CORA result. The science-first poster's compact row: wrong objects, wrong rule, "
+          "not enough evidence (the same grids as fig_three_failures_ILLUSTRATIVE.png).")
+
+
 def construction_58():
     """The 58-task generalization test of rule construction, one square per task (REAL, from the frozen rows)."""
     rows = [json.loads(l) for l in open(src("gen58"))]
@@ -427,6 +466,7 @@ def main():
     # the Qwen-architecture review poster: larger real grids, three failures, the 58 outcomes
     arc_intro(box=3.0, H=11.65, fname="fig_arc_intro_00dbd492_large.png", xin=0.45, xout=5.9, step=3.67)
     three_failures()
+    three_causes_row()
     real_rule(box=3.7, H=9.3, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.7, label_right=True,
               xin=0.3)
     construction_58()

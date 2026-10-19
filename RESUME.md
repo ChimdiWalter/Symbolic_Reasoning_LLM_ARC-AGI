@@ -4,6 +4,27 @@ Last updated 2026-10-19. Read this first.
 
 ## State
 
+**NEWEST (2026-10-19 ~21:30Z): SCIENCE-FIRST POSTER + EXPLAINER (user addendum; presentation only, no experiment).**
+- **Sources of truth:** docs/summit_20261023_reframe/poster_science_first_review.org and
+  explainer_science_first_review.org.
+- **Built by** `sh scripts/build_summit_org.sh all` (Org -> LaTeX -> PDF; scripts/export_summit_org.el):
+  - poster: 1 x A0;
+  - explainer: 11 x A4.
+- **Checks:** both rebuild byte-identically; `selftest` PASS for both; the poster's 5 figures are pixel-identical to
+  the pinned PNGs.
+- **Docs:** ORG_TO_PDF_README.md, POSTER_SCIENCE_FIRST_CONTENT.md (361 body words), POSTER_SCIENCE_FIRST_CLAIM_AUDIT.md,
+  POSTER_90S_SCIENCE_FIRST.md, POSTER_3MIN_SCIENCE_FIRST.md, SCIENCE_FIRST_CHANGES.md (+ _comparison.png),
+  ORG_BUILD_MANIFEST.json; optional .pptx.
+- **The Toni line is removed** from the poster; there is a factual acknowledgment in the explainer, section 11.
+- **AWAITING:** collaborator review (Toni, Chris, Pierce), organizer poster format, and the user's print approval.
+  Nothing is promoted.
+- **Neural-CORA pilot: PAUSED** at the dev engineering check, by this addendum's "do not chase experiments before Oct 21".
+  - Done: the dev corpus (880/110/110/11), targets and NVARC-encoder + hand features
+    (outputs/neural_cora_v0_dev/).
+  - Next: dev head training -> dev check (TRAIN families only) -> freeze records/NEURAL_CORA_PILOT_v0_PROTOCOL.md ->
+    the full run.
+  - Code: cora_neural_v1/ (10 tests pass). Audit: records/NEURAL_CORA_ARCHITECTURE_AUDIT_20261019.md.
+
 **NEWEST (2026-10-19 ~18:40Z, session d176233f). THREE NEW USER DIRECTIVES, in this priority order (the user's own):**
 1. Phase 2a DONE: **NO-GO** under the frozen rule (evaluated ~19:10Z).
    - Coverage 40/40/40 in 3.93 h; hashes ok; 0 errors.

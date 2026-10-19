@@ -1,5 +1,8 @@
 # Review checklist: visual-first poster set (19 October 2026)
 
+**Science-first review set (19 Oct, Org sources):** `poster_science_first_review.{org,pdf}` and `explainer_science_first_review.{org,pdf}`; build `sh scripts/build_summit_org.sh all`; see `ORG_TO_PDF_README.md`, `POSTER_SCIENCE_FIRST_CLAIM_AUDIT.md`, `SCIENCE_FIRST_CHANGES.md`.
+
+
 **Qwen-architecture review set (19 Oct):** `poster_qwen_architecture_review.{tex,pdf,pptx}` and `explainer_qwen_architecture_review.{tex,pdf}`; changes, claim audit and build steps in `POSTER_QWEN_ARCHITECTURE_NOTES.md`.
 
 
