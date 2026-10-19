@@ -1,0 +1,97 @@
+{
+ "figures": {
+  "fig_arc_intro_00dbd492.png": {
+   "dpi": 200,
+   "evidence_limitations": "An exposed public training task used in CORA-v2 development; shown only to explain what an ARC task is.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 9.45,
+   "kind": "REAL",
+   "min_font_pt": 20,
+   "sha256": "5a4fd4c59e5d6f4b9400a24a16917a2691b853c1d5f12ec2486c0be72d63d2fa",
+   "source_evaluation_mode": "public ARC-AGI-2 training task (training pairs and test input as recorded)",
+   "source_task_id": "00dbd492",
+   "sources": {
+    "v2_witness": {
+     "path": "docs/summit_demo_20261023/data/v2_witness_00dbd492.json",
+     "sha256": "bc25278203700e28bdf429ceaf97ac33cf3fec504a1f8d0b7a3c29b4f9fac283"
+    }
+   },
+   "width_in": 9.37
+  },
+  "fig_dev60_audit_assets.png": {
+   "dpi": 200,
+   "evidence_limitations": "Exposed training-development tasks; one branch of CORA, not the whole harness (whole harness: 12 of 60 over two attempts); not evidence of generalization.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 6.6,
+   "kind": "REAL",
+   "min_font_pt": 20,
+   "sha256": "897aa6d8ffba5ba55357925acc3d558fd68c2946eaa58cdd15203d1d16c7c8fb",
+   "source_evaluation_mode": "instrumented failure funnel, native v23 object branch with frozen library cdacd018 and learned verbs b1f07ba5",
+   "source_task_id": "dev60 (60 opaque keys)",
+   "sources": {
+    "dev60_assets": {
+     "path": "outputs/funnel_v0/eval_dev60_native_assets.json",
+     "sha256": "54d8d744cc8cbd6bb905ee7fda34f5f9ed5005bda770bb4b206b392d97d9c42f"
+    }
+   },
+   "width_in": 9.37
+  },
+  "fig_four_reasons_ILLUSTRATIVE.png": {
+   "dpi": 200,
+   "evidence_limitations": "Not an ARC task and not a CORA result. Drawn only to explain memorization, representation, rule-language and evidence failures.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 11.3,
+   "kind": "ILLUSTRATIVE",
+   "min_font_pt": 20,
+   "sha256": "f286f7f338c22977e7fba976d036702c1133e54e6c3bdd6021c38e3583504f76",
+   "source_evaluation_mode": "hand-drawn illustration",
+   "source_task_id": null,
+   "sources": {},
+   "width_in": 9.37
+  },
+  "fig_real_rule_ka95aa62f67d9.png": {
+   "dpi": 200,
+   "evidence_limitations": "Exposed training task selected by the development autopsy; a failure-blind constructor found the same rule; not part of any Kaggle entry; not evidence of generalization.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 7.2,
+   "kind": "REAL",
+   "min_font_pt": 20,
+   "sha256": "f21be2eb6b2a3754da157165a8ce4723335a88354eb055fc9b6d83acb8ed600f",
+   "source_evaluation_mode": "development probe (guard probe, arm EG), recorded run; evaluator answer read only in the evaluator step",
+   "source_task_id": "ka95aa62f67d9",
+   "sources": {
+    "real_task": {
+     "path": "docs/summit_demo_20261023/data/real_task.json",
+     "sha256": "b06073a7fd35d203875e673aaec4b550d0069cdc43631afd2cafdb9d3b362f45"
+    },
+    "real_witness": {
+     "path": "docs/summit_demo_20261023/data/real_witness.json",
+     "sha256": "f0da3a8df23bbab61b9a39360480651bebda765ec302ede1b2d842a1a190b73f"
+    }
+   },
+   "width_in": 9.37
+  },
+  "fig_v2_uncertified_00dbd492_poster.png": {
+   "dpi": 200,
+   "evidence_limitations": "Exposed training task examined in development; uncertified (fold fragility); in-sample; not evidence of generalization.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 4.2,
+   "kind": "REAL",
+   "min_font_pt": 20,
+   "sha256": "b97e5f4e7e05f42cc433431c86352b3ffd5b84594fa71808710206cfc3180c9e",
+   "source_evaluation_mode": "CORA-v2 engineering run (blind rows; evaluator label recorded separately)",
+   "source_task_id": "00dbd492",
+   "sources": {
+    "v2_witness": {
+     "path": "docs/summit_demo_20261023/data/v2_witness_00dbd492.json",
+     "sha256": "bc25278203700e28bdf429ceaf97ac33cf3fec504a1f8d0b7a3c29b4f9fac283"
+    }
+   },
+   "width_in": 9.37
+  }
+ },
+ "printed_width_in": 9.37,
+ "rule": "REAL figures come only from hash-pinned recorded inputs; ILLUSTRATIVE figures say so",
+ "script": "scripts/summit_visual_figures.py",
+ "script_sha256": "25cb5f669ffc8d52db8771a37beb47ddae037c9b0949068f14eefdfdae85de8e"
+}
