@@ -28,8 +28,11 @@ Last updated 2026-10-19. Read this first.
      - Its 4 new figures: arc_intro_large, three_failures_ILLUSTRATIVE, real_rule_large, construction_58_outcomes. The
        committed PNGs are byte-identical.
      - Column 3: two solid lanes + ONE small dashed learning loop (directive section 9 wording).
-   - NEXT: explainer_qwen_architecture_review.{tex,pdf}: 1-2 pages with the addendum's 9 points, plus the Neural-CORA
-     architecture, objective, controls and limitations, plus a glossary of the terms banned from the poster.
+   - DONE: explainer_qwen_architecture_review.{tex,pdf}. It has 15 pages; section 8 is new (about 2.4 pages): the
+     addendum's 9 points + Neural-CORA architecture, objective, controls, limitations + an NVARC-first / CORA-first /
+     unified comparison. Section 12 defines the terms kept off the poster.
+   - Awaiting collaborator review (Toni, Chris, Pierce) and the user's print approval. NOTHING is promoted to
+     docs/summit_poster/.
    - Higher-level draft DONE: docs/higher_order_reasoning/Learning_What_to_Change_Discussion_DRAFT.{md,org} (v0.2).
 
 **NEWEST DIRECTIVE (2026-10-19): "CORA | Learning when a hypothesis is not enough"** (Phases 0-4; ONE bounded DEV pilot;

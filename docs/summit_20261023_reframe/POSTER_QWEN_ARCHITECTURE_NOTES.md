@@ -78,9 +78,40 @@ python scripts/poster_visual_to_pptx.py --pdf docs/summit_20261023_reframe/poste
 - the bottom band and footer are on the page, with about 2.8 cm margin;
 - poster text: about 600 words.
 
-## 5. Open items
+## 5. The companion explainer: `explainer_qwen_architecture_review.{tex,pdf}`
 
-- The companion explainer pages: the architecture, training objective, controls and limitations.
+It has 15 pages and is derived from `explainer_visual_review.tex`, which is unchanged.
+
+**Changes:**
+- **Section 2:** now "Why reasoning fails", with the three-failure panels and memorization as a fourth.
+- **Section 5:** gains the 58-square figure. The failure-blind arm reads 52 / 5 / 1, also 0, from the same rows.
+- **Section 7 (Step B):** moved off the poster.
+- **Section 8 (new, about 2.4 pages): "From a neural baseline to executable hypothesis revision".** It covers:
+  - the addendum's points: why NVARC was reproduced; what changed; what test-time adaptation contributes; why 27.64% is NVARC's; why combining answer grids added nothing;
+  - how neural proposals could help, and how CORA would test them;
+  - what would show complementarity, and what must happen before any claim;
+  - the Neural-CORA single architecture, training objective, controls (N0, N+, C0, C+, L0–L3 and the blind, shuffled and no-program controls) and limitations;
+  - a three-way design comparison: NVARC-first, CORA-first, unified.
+- **Section 12 (new):** defines the terms kept off the poster.
+
+**Sources for the new statements in section 8:**
+
+| statement | source |
+|---|---|
+| six deployment-only changes; checkpoint, LoRA r = 256 with augmentations, decoding and selection unchanged | `records/KAGGLE_NEURAL_V1_ORIGINALITY_AUDIT_20261014.md`; `records/CORA_QWEN_FUSION_FEASIBILITY_20261019.md` section 2 |
+| 248 of 259 (NVARC) and 47 (CORA) on the stand-ins; 0 CORA-only; 147 empty second attempts; filling gained 0 and lost 1; hidden set 0.00 | `records/NVARC_CORA_COMPLEMENTARITY_AUDIT_20261014.md` |
+| "the model emits grids only" | feasibility record, section 3 |
+| the architecture, objective, controls and ruled-out designs | the user's Neural-CORA v0.1 directive (proposed, not results) |
+| what exists: `cora_neural_fusion/`, unit-tested only | `tests/test_fusion.py` (5 tests) |
+
+**Build:**
+
+```
+SOURCE_DATE_EPOCH=1791763200 FORCE_SOURCE_DATE=1 pdflatex explainer_qwen_architecture_review.tex   # run twice
+```
+
+## 6. Open items
+
 - Collaborator review, with Toni's wording and Chris's identity to confirm.
 - Print size is assumed A0 portrait; no organizer guide is on file.
 - If Phase 2a finishes before the freeze, add its result only after it is evaluated under the frozen rule, and only if the user agrees.

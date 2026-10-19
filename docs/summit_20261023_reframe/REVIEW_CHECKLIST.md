@@ -1,5 +1,8 @@
 # Review checklist: visual-first poster set (19 October 2026)
 
+**Qwen-architecture review set (19 Oct):** `poster_qwen_architecture_review.{tex,pdf,pptx}` and `explainer_qwen_architecture_review.{tex,pdf}`; changes, claim audit and build steps in `POSTER_QWEN_ARCHITECTURE_NOTES.md`.
+
+
 ## Files (all in `docs/summit_20261023_reframe/`)
 
 | file | what |
