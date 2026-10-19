@@ -47,6 +47,22 @@ SOURCES = {
                      "54d8d744cc8cbd6bb905ee7fda34f5f9ed5005bda770bb4b206b392d97d9c42f"),
     "gen58": ("outputs/cora_fhr/rows_standin58_gen.jsonl",
               "0ff69e04490a0b208dc843e2175f44a294c8fe7ee4c2824df4739b059e519e71"),
+    # ISIC Archive, CC-0 (see CANCER_LESION_IMAGE_PROVENANCE.md): the image, its own archive record, and the matching
+    # ISIC 2018 Task 1 ground-truth mask (same image ID, CC-0)
+    "isic_image": ("docs/summit_20261023_reframe/figures/ISIC_0000013.jpg",
+                   "087a955305a31cf5c6d197c9aa8848bb23822201b656d47f89fe4020a4b78650"),
+    "isic_mask": ("docs/summit_20261023_reframe/figures/ISIC_0000013_segmentation.png",
+                  "79d220455e70bf325e3e19a7e4c029a6fe9133637d8798b864d026bf3706bf9c"),
+    "isic_record": ("docs/summit_20261023_reframe/figures/ISIC_0000013.isic_metadata.json",
+                    "e68c4eba323690a73f0f90e96b448204ccb3ee5ab1b4bd81690fe18de2e39cf9"),
+    # the author's annotated maize leaf (unpublished; read in place, never copied or modified): leaf 1 of the ID-gated
+    # cohort of segmentors_backbones/projects/real_leaf_gallery_20261018 (see CANCER_LESION_IMAGE_PROVENANCE.md)
+    "maize_photo": ("/deltos/e/lesion_phes/code/python/pipeline/segmentors_backbones/maize_lesion_study_v1/derived/"
+                    "normalized_leaves/DSC_0042_segment_1_segmented_smoothed.png",
+                    "c8d56405812fd9e50f55ae97d0fec8390d8b96df8019aebb406843f8b8b22954"),
+    "maize_mask": ("/deltos/e/lesion_phes/code/python/pipeline/segmentors_backbones/maize_lesion_study_v1/derived/"
+                   "pseudo_labels/DSC_0042_segment_1_segmented_smoothed_corrected.png",
+                   "0f4b4d72ce0651a800c39d434be2bb4489871df0593cf2f6f9e2ba1b52cd381d"),
 }
 USED, DRAWN = {}, {}
 
@@ -335,6 +351,132 @@ def three_causes_row():
           "not enough evidence (the same grids as fig_three_failures_ILLUSTRATIVE.png).")
 
 
+def skin_lesion():
+    """The cancer-lesion poster's opening pair (REAL MEDICAL IMAGE, motivation only; not CORA data):
+    A, ISIC_0000013 as published (resized for display only); B, the same image with the outline of its own ISIC 2018
+    Task 1 ground-truth mask (dermatologist-reviewed) drawn on top. Nothing else is changed."""
+    import numpy as np
+    from PIL import Image
+    rec = json.load(open(src("isic_record")))
+    cl = rec["metadata"]["clinical"]
+    assert rec["isic_id"] == "ISIC_0000013" and rec["copyright_license"] == "CC-0"
+    assert cl["diagnosis_1"] == "Malignant" and cl["diagnosis_3"] == "Melanoma Invasive"
+    assert cl["diagnosis_confirm_type"] == "histopathology" and rec["metadata"]["acquisition"]["image_type"] == "dermoscopic"
+    img = np.asarray(Image.open(src("isic_image")).convert("RGB"))
+    mask = np.asarray(Image.open(src("isic_mask")))
+    assert mask.shape == img.shape[:2], "the mask must have the image's own size (same ID, same geometry)"
+    Wf, b = 6.60, 2.85                                   # each panel 2.85 in wide: smaller than the main ARC grids
+    h = b * img.shape[0] / img.shape[1]
+    H = h + 3.11
+    fig = plt.figure(figsize=(Wf, H), dpi=DPI)
+    for k, line in enumerate(("REAL MEDICAL IMAGE — ILLUSTRATIVE", "MOTIVATION, NOT CORA DATA")):
+        fig.text(0.12 / Wf, 1 - (0.08 + 0.36 * k) / H, line, ha="left", va="top", fontsize=FS_MIN, color=CRITICAL,
+                 fontweight="bold")
+    y0 = 1.96
+    for k, (label, outline) in enumerate((("A  observation", False), ("B  expert boundary", True))):
+        x0 = 0.12 + k * (b + 0.50)
+        ax = fig.add_axes((x0 / Wf, y0 / H, b / Wf, h / H))
+        ax.imshow(img, interpolation="antialiased")
+        if outline:
+            ax.contour(mask > 127, levels=[0.5], colors=["#00e5ff"], linewidths=2.6)
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for sp in ax.spines.values():
+            sp.set_edgecolor("#888888")
+        fig.text((x0 + b / 2) / Wf, (y0 + h + 0.08) / H, label, ha="center", va="bottom", fontsize=FS_MIN, color=INK)
+    # the documented diagnosis is quoted from the ISIC record (asserted above), never inferred from the picture
+    for k, line in enumerate(("ISIC_0000013 · ISIC Archive · CC-0", "attribution: Anonymous",
+                              "ISIC record: invasive melanoma", "(histopathology-confirmed)",
+                              "B: its own ISIC 2018 Task 1 mask (CC-0)")):
+        fig.text(0.12 / Wf, (1.72 - 0.33 * k) / H, line, ha="left", va="top", fontsize=FS_MIN, color=INK2)
+    fname = "fig_skin_lesion_ISIC_0000013_with_boundary.png"
+    fig.savefig(os.path.join(FIG, fname), dpi=DPI, metadata={"Software": None})
+    DRAWN[fname] = {"kind": "REAL_MEDICAL_IMAGE_MOTIVATION", "width_in": Wf, "height_in": round(H, 3), "dpi": DPI,
+                    "min_font_pt": FS_MIN, "sources": {k: USED[k] for k in ("isic_record", "isic_image", "isic_mask")},
+                    "source_task_id": "ISIC_0000013", "source_evaluation_mode": "ISIC Archive image record and ISIC 2018 "
+                    "Task 1 training ground truth (both CC-0)", "generation_command": "python scripts/summit_visual_figures.py",
+                    "transformations": "A: the original JPEG resized for display (no crop, no colour change). B: the same, "
+                                       "plus the contour of its own binary mask (pixels > 127) drawn as a 2.6 pt cyan line.",
+                    "evidence_limitations": "Motivation only; not CORA data. The ISIC record documents a histopathology-"
+                    "confirmed invasive melanoma; the image itself does not establish that, and the boundary is a spatial "
+                    "annotation, not a diagnosis or a mechanism."}
+    plt.close(fig)
+
+
+def maize_tile():
+    """The cancer-lesion poster's panel C (REAL maize image, the author's annotated leaf; motivation only, not CORA
+    data): a crop of DSC_0042 magnified x2 (nearest neighbour, pixel-exact) with the outline of its expert-corrected
+    lesion annotation. The window comes from a rule fixed before rendering: 360 x 214 px, at least 99% leaf, the most
+    complete 8-connected annotated lesions of >= 500 px (Project A's contract size); ties: more annotated pixels, then
+    the smallest y, then the smallest x."""
+    import numpy as np
+    from PIL import Image
+    from scipy import ndimage
+    rgb = np.asarray(Image.open(src("maize_photo")).convert("RGB"))
+    m = np.asarray(Image.open(src("maize_mask")))
+    gt = (m > 0) if m.ndim == 2 else (m[..., 2] > 0)    # Project A's gt_of: cv2 channel 0 (BGR) is PIL channel 2
+    assert gt.shape == rgb.shape[:2]
+    w, h = 360, 214
+    leaf = rgb.astype(int).sum(2) > 30
+    lab, n = ndimage.label(gt, structure=np.ones((3, 3)))
+    area = ndimage.sum(np.ones_like(lab), lab, index=np.arange(1, n + 1))
+    ny, nx = gt.shape[0] - h + 1, gt.shape[1] - w + 1
+    cnt = np.zeros((ny + 1, nx + 1), int)
+    for s_, ar in zip(ndimage.find_objects(lab), area):
+        if ar < 500:
+            continue
+        ya, yb, xa, xb = max(s_[0].stop - h, 0), min(s_[0].start, ny - 1), max(s_[1].stop - w, 0), min(s_[1].start, nx - 1)
+        if ya <= yb and xa <= xb:
+            cnt[ya, xa] += 1; cnt[ya, xb + 1] -= 1; cnt[yb + 1, xa] -= 1; cnt[yb + 1, xb + 1] += 1
+    cnt = cnt.cumsum(0).cumsum(1)[:ny, :nx]
+
+    def box(mm):
+        ii = np.pad(mm.astype(np.int64), ((1, 0), (1, 0))).cumsum(0).cumsum(1)
+        return ii[h:h + ny, w:w + nx] - ii[:ny, w:w + nx] - ii[h:h + ny, :nx] + ii[:ny, :nx]
+    ann, ok = box(gt), box(leaf) >= 0.99 * w * h
+    score = np.where(ok, cnt, -1)
+    y0w, x0w = min(map(tuple, np.argwhere(score == score.max())), key=lambda t: (-ann[t], t[0], t[1]))
+    assert (y0w, x0w, score.max()) == (280, 459, 6), (y0w, x0w, score.max())
+    crop = rgb[y0w:y0w + h, x0w:x0w + w].repeat(2, 0).repeat(2, 1)
+    cgt = gt[y0w:y0w + h, x0w:x0w + w].repeat(2, 0).repeat(2, 1)
+    hh = 2.85 * 767 / 1022                               # the skin panels' height, so A, B and C line up
+    bm = hh * w / h
+    Wm, H, y0 = bm + 0.30, hh + 3.11, 1.96               # same total height and panel baseline as skin_lesion()
+    fig = plt.figure(figsize=(Wm, H), dpi=DPI)
+    for k, line in enumerate(("REAL MAIZE LEAF,", "NOT CORA DATA")):
+        fig.text(0.12 / Wm, 1 - (0.08 + 0.36 * k) / H, line, ha="left", va="top", fontsize=FS_MIN, color=CRITICAL,
+                 fontweight="bold")
+    ax = fig.add_axes((0.12 / Wm, y0 / H, bm / Wm, hh / H))
+    ax.imshow(crop, interpolation="nearest")
+    ax.contour(cgt, levels=[0.5], colors=["#00e5ff"], linewidths=2.0)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for sp in ax.spines.values():
+        sp.set_edgecolor("#888888")
+    fig.text((0.12 + bm / 2) / Wm, (y0 + hh + 0.08) / H, "C  annotated lesions", ha="center", va="bottom",
+             fontsize=FS_MIN, color=INK)
+    for k, line in enumerate(("maize leaf DSC_0042", "author's study", "(unpublished data)", "cyan: annotation",
+                              "crop magnified \u00d72")):
+        fig.text(0.12 / Wm, (1.72 - 0.33 * k) / H, line, ha="left", va="top", fontsize=FS_MIN, color=INK2)
+    fname = "fig_maize_annotated_DSC_0042_crop_x2.png"
+    fig.savefig(os.path.join(FIG, fname), dpi=DPI, metadata={"Software": None})
+    DRAWN[fname] = {"kind": "REAL_MAIZE_IMAGE_MOTIVATION", "width_in": round(Wm, 3), "height_in": round(H, 3), "dpi": DPI,
+                    "min_font_pt": FS_MIN, "sources": {k: USED[k] for k in ("maize_photo", "maize_mask")},
+                    "source_task_id": "DSC_0042_segment_1_segmented_smoothed",
+                    "source_evaluation_mode": "leaf 1 of the ID-gated real_leaf_gallery_20261018 cohort (a Project A "
+                    "validation leaf); expert-corrected annotation binarised as Project A's gt_of (mask > 0)",
+                    "window": {"y": [int(y0w), int(y0w) + h], "x": [int(x0w), int(x0w) + w],
+                               "complete_lesions_ge_500px": 6, "annotated_px": int(ann[y0w, x0w]),
+                               "rule": "360x214 px, >= 99% leaf, most complete 8-connected annotated lesions >= 500 px; "
+                                       "ties: more annotated px, then smallest y, then smallest x"},
+                    "generation_command": "python scripts/summit_visual_figures.py",
+                    "transformations": "Crop of the stored photograph, magnified x2 by nearest-neighbour repetition (no "
+                                       "interpolation, no colour change), plus the 2.0 pt cyan contour of the annotation.",
+                    "evidence_limitations": "Motivation only; not CORA data and not a Project A result. Unpublished "
+                    "data from the author's study; an annotation marks where lesions are, not what caused them."}
+    plt.close(fig)
+
+
 def construction_58():
     """The 58-task generalization test of rule construction, one square per task (REAL, from the frozen rows)."""
     rows = [json.loads(l) for l in open(src("gen58"))]
@@ -470,6 +612,8 @@ def main():
     real_rule(box=3.7, H=9.3, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.7, label_right=True,
               xin=0.3)
     construction_58()
+    skin_lesion()
+    maize_tile()
     v2_uncertified()
     v2_uncertified(box=2.75, H=4.65, fname="fig_v2_uncertified_00dbd492_large.png", xout=3.45, xt=6.45, xin=0.3)
     dev60_audit()

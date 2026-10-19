@@ -85,6 +85,42 @@
    "sources": {},
    "width_in": 9.37
   },
+  "fig_maize_annotated_DSC_0042_crop_x2.png": {
+   "dpi": 200,
+   "evidence_limitations": "Motivation only; not CORA data and not a Project A result. Unpublished data from the author's study; an annotation marks where lesions are, not what caused them.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 5.249,
+   "kind": "REAL_MAIZE_IMAGE_MOTIVATION",
+   "min_font_pt": 20,
+   "sha256": "f62d59bfaa9a16d7d7893d516cabbe755ca38b0574cd985c098d3d357926392b",
+   "source_evaluation_mode": "leaf 1 of the ID-gated real_leaf_gallery_20261018 cohort (a Project A validation leaf); expert-corrected annotation binarised as Project A's gt_of (mask > 0)",
+   "source_task_id": "DSC_0042_segment_1_segmented_smoothed",
+   "sources": {
+    "maize_mask": {
+     "path": "/deltos/e/lesion_phes/code/python/pipeline/segmentors_backbones/maize_lesion_study_v1/derived/pseudo_labels/DSC_0042_segment_1_segmented_smoothed_corrected.png",
+     "sha256": "0f4b4d72ce0651a800c39d434be2bb4489871df0593cf2f6f9e2ba1b52cd381d"
+    },
+    "maize_photo": {
+     "path": "/deltos/e/lesion_phes/code/python/pipeline/segmentors_backbones/maize_lesion_study_v1/derived/normalized_leaves/DSC_0042_segment_1_segmented_smoothed.png",
+     "sha256": "c8d56405812fd9e50f55ae97d0fec8390d8b96df8019aebb406843f8b8b22954"
+    }
+   },
+   "transformations": "Crop of the stored photograph, magnified x2 by nearest-neighbour repetition (no interpolation, no colour change), plus the 2.0 pt cyan contour of the annotation.",
+   "width_in": 3.898,
+   "window": {
+    "annotated_px": 13247,
+    "complete_lesions_ge_500px": 6,
+    "rule": "360x214 px, >= 99% leaf, most complete 8-connected annotated lesions >= 500 px; ties: more annotated px, then smallest y, then smallest x",
+    "x": [
+     459,
+     819
+    ],
+    "y": [
+     280,
+     494
+    ]
+   }
+  },
   "fig_real_rule_ka95aa62f67d9.png": {
    "dpi": 200,
    "evidence_limitations": "Exposed training task selected by the development autopsy; a failure-blind constructor found the same rule; not part of any Kaggle entry; not evidence of generalization.",
@@ -128,6 +164,33 @@
     }
    },
    "width_in": 9.37
+  },
+  "fig_skin_lesion_ISIC_0000013_with_boundary.png": {
+   "dpi": 200,
+   "evidence_limitations": "Motivation only; not CORA data. The ISIC record documents a histopathology-confirmed invasive melanoma; the image itself does not establish that, and the boundary is a spatial annotation, not a diagnosis or a mechanism.",
+   "generation_command": "python scripts/summit_visual_figures.py",
+   "height_in": 5.249,
+   "kind": "REAL_MEDICAL_IMAGE_MOTIVATION",
+   "min_font_pt": 20,
+   "sha256": "1f077aefa6e406924183c9856e63f76363b309ef0696f54900c0d988df42305e",
+   "source_evaluation_mode": "ISIC Archive image record and ISIC 2018 Task 1 training ground truth (both CC-0)",
+   "source_task_id": "ISIC_0000013",
+   "sources": {
+    "isic_image": {
+     "path": "docs/summit_20261023_reframe/figures/ISIC_0000013.jpg",
+     "sha256": "087a955305a31cf5c6d197c9aa8848bb23822201b656d47f89fe4020a4b78650"
+    },
+    "isic_mask": {
+     "path": "docs/summit_20261023_reframe/figures/ISIC_0000013_segmentation.png",
+     "sha256": "79d220455e70bf325e3e19a7e4c029a6fe9133637d8798b864d026bf3706bf9c"
+    },
+    "isic_record": {
+     "path": "docs/summit_20261023_reframe/figures/ISIC_0000013.isic_metadata.json",
+     "sha256": "e68c4eba323690a73f0f90e96b448204ccb3ee5ab1b4bd81690fe18de2e39cf9"
+    }
+   },
+   "transformations": "A: the original JPEG resized for display (no crop, no colour change). B: the same, plus the contour of its own binary mask (pixels > 127) drawn as a 2.6 pt cyan line.",
+   "width_in": 6.6
   },
   "fig_three_causes_row_ILLUSTRATIVE.png": {
    "dpi": 200,
@@ -195,5 +258,5 @@
  "printed_width_in": 9.37,
  "rule": "REAL figures come only from hash-pinned recorded inputs; ILLUSTRATIVE figures say so",
  "script": "scripts/summit_visual_figures.py",
- "script_sha256": "0c15658cbe657b312dea6b3066ef6eef95d6a4290941952ff7003db050090bf3"
+ "script_sha256": "356f630fef97718f105255b090f34689d205bdb94d885e11d205cf636dcae1c3"
 }

@@ -4,6 +4,34 @@ Last updated 2026-10-19. Read this first.
 
 ## State
 
+**NEWEST (2026-10-19, late): CANCER-LESION REVIEW V2 POSTER + EXPLAINER (user addenda; presentation only, no experiment).**
+- **Sources of truth:** docs/summit_20261023_reframe/poster_cancer_lesion_review.org and
+  explainer_cancer_lesion_review.org (labelled V2).
+- **Build:** `sh scripts/build_summit_org.sh cancer`:
+  - poster: 1 x A0, bottom margin 1.98 cm;
+  - explainer: 13 x A4.
+- **Checks:**
+  - both rebuild byte-identically;
+  - `selftest` PASS for all four Org documents;
+  - embedded images pixel-identical to figures/ (poster 7/7, explainer 8/8).
+- **Content:**
+  - panels A and B: real ISIC_0000013 (CC-0; its record documents a histopathology-confirmed invasive melanoma) and its
+    own ISIC 2018 Task 1 mask (CC-0);
+  - panel C: the author's annotated maize leaf DSC_0042, crop magnified x2. It is leaf 1 of
+    segmentors_backbones/projects/real_leaf_gallery_20261018, read only; unpublished;
+  - a new headline on learning from failure, with representation, rules and new data defined;
+  - "Supported or failed?";
+  - plain terms (failed, exposed task and certified are defined);
+  - the "AI coding assistance" and "Authorship pending review" lines removed at the user's request.
+- **Words:** poster prose 350 (scripts/count_poster_words.py).
+- **Docs:** CANCER_LESION_IMAGE_PROVENANCE.md, CANCER_LESION_POSTER_CHANGELOG.md, ORG_TO_PDF_README.md.
+- **Outstanding:**
+  - collaborator review (Toni, Chris, Pierce);
+  - permission from the data owners to show the maize tile;
+  - the organizer's poster format;
+  - the user's print approval.
+- **Neural-CORA pilot:** still PAUSED (no training).
+
 **NEWEST (2026-10-19 ~21:30Z): SCIENCE-FIRST POSTER + EXPLAINER (user addendum; presentation only, no experiment).**
 - **Sources of truth:** docs/summit_20261023_reframe/poster_science_first_review.org and
   explainer_science_first_review.org.

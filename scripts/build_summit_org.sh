@@ -5,6 +5,7 @@
 #   sh scripts/build_summit_org.sh poster       # docs/summit_20261023_reframe/poster_science_first_review.{tex,pdf}
 #   sh scripts/build_summit_org.sh explainer    # docs/summit_20261023_reframe/explainer_science_first_review.{tex,pdf}
 #   sh scripts/build_summit_org.sh all
+#   sh scripts/build_summit_org.sh poster_cancer | explainer_cancer | cancer   # the V2 cancer-lesion review versions
 #   sh scripts/build_summit_org.sh selftest     # edits a COPY of each .org and checks the edit appears in its PDF
 #
 # The PDF is compiled from the .tex that Org just exported, never from a hand-maintained .tex.
@@ -67,7 +68,7 @@ PY
 
 selftest() {   # proves each .org is the real source: an edit to a COPY must appear in that copy's PDF
   local name sentinel B
-  for name in poster_science_first_review explainer_science_first_review; do
+  for name in ${SELFTEST_DOCS:-poster_science_first_review explainer_science_first_review poster_cancer_lesion_review explainer_cancer_lesion_review}; do
     sentinel="ORGSOURCECHECK$(date +%s)$RANDOM"
     B=$(mktemp -d "${TMPDIR:-/tmp}/summit_org_selftest.XXXXXX")
     cp -r "$DOC/figures" "$B/figures"
@@ -92,6 +93,11 @@ case "${1:-all}" in
   explainer) build explainer_science_first_review "10 11 12" "595.276 x 841.89" ;;
   all) build poster_science_first_review "1" "2383.94 x 3370.39"
        build explainer_science_first_review "10 11 12" "595.276 x 841.89" ;;
+  poster_cancer) build poster_cancer_lesion_review "1" "2383.94 x 3370.39" ;;
+  # the V2 explainer adds the medical-image section (about 1.5 pages), so its expected range is 11-13
+  explainer_cancer) build explainer_cancer_lesion_review "11 12 13" "595.276 x 841.89" ;;
+  cancer) build poster_cancer_lesion_review "1" "2383.94 x 3370.39"
+          build explainer_cancer_lesion_review "11 12 13" "595.276 x 841.89" ;;
   selftest) selftest ;;
-  *) echo "usage: $0 poster|explainer|all|selftest"; exit 2 ;;
+  *) echo "usage: $0 poster|explainer|all|poster_cancer|explainer_cancer|cancer|selftest"; exit 2 ;;
 esac
