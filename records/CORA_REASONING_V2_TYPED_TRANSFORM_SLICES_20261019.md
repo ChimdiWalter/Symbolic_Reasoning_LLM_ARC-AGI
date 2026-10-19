@@ -55,7 +55,7 @@ composition. Two slices were built, one limitation at a time.
 
 ## Findings
 
-1. Neither slice yet adds a correct prediction on the development tasks. The selection run is pending.
+1. Neither slice adds a certified answer. Selection adds 2 in-sample exploratory answers, one of them second-attempt only and none new to the merged two-attempt count; the two-stage slice adds 0.
 2. The binding limitation remains expressivity:
    - partial-object changes;
    - additions that no single growth expression reproduces.
@@ -63,6 +63,30 @@ composition. Two slices were built, one limitation at a time.
 3. The union effect (finding of slice 1) is a concrete, testable reason why diagnosis-driven revision could matter:
    applying a richer family where it is not needed adds alternatives that can turn a unique answer into a tie.
 
-## 4. Selection run results
+## 4. Selection run results (grow + select on every task: the blind arm; in-sample, exposed)
 
-PENDING (outputs/cora_revision_v2/eval_*_sel.json).
+- **Run:** `eng_sel_run.sh` (commit 3e5f1d4).
+  - rc 0 for both corpora, coverage 58/58 and 60/60;
+  - no error or CPU-limit rows, no answer fields in any row, and each evaluation written after its final row.
+- **Hashes:** rows fd4656ac and b3e243a7; eval 4957a301 and c44ef4b2; two-attempt replay c04368bf.
+- **Cost:** mean CPU per task doubled (pool 19.9 → 39.8 s; dev 11.9 → 27.0 s). Maximum 178 s.
+
+| | base (grow) | grow + select everywhere |
+|---|---|---|
+| certified | 0 | 0 |
+| pool: exploratory correct / wrong | 3 / 1 | 4 / 0 |
+| dev: exploratory correct / wrong | 1 / 0 | 2 / 0 |
+| abstained (no attempt) | 54 + 59 | 54 + 58 |
+| lost (correct before, not after) | — | 0 |
+
+**Changed tasks:**
+- **2546ccf6:** the wrong exploratory answer became correct, but only as the second attempt. The two leading
+  predictions have equal support, so complexity breaks the tie. This gain is fragile.
+- **kcc459b523a80 (dev):** none → exploratory correct, first attempt. The hypothesis is a selection one: objects of
+  colour 2 get an 8-neighbour ring in a constant colour. Native's harness already solves this task.
+- **22eb0ac0:** the **union effect** on a real task. A unique prediction (FOLD_FRAGILITY) became a disagreement
+  (MANY_CONSISTENT_DISAGREE: 552 vs 4 supporting hypotheses). The answer is still correct first.
+- **Two-attempt replay:** unchanged (pool 7 → 8 or 9, dev 12 → 12, 0 lost).
+
+Selection adds in-sample candidate answers and doubles cost. It has not produced a certified answer, and has not added
+a merged two-attempt gain. These are exposed tasks, so this is not evidence of generalization.
