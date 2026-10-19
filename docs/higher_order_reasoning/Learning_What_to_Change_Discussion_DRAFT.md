@@ -1,0 +1,312 @@
+# Learning What to Change: Representation, Reasoning, and Revision Across Different Semantics
+
+*Working discussion note · Version 0.2 · 19 October 2026*
+
+**Prepared by:** Chimdi Walter Ndubuisi, for discussion with Toni Kazic, Chris, and Pierce Taylor.
+
+**Status:** a collaborative concept draft. It is not a verbatim transcript, an agreed research plan, an established
+result, an author list or a publication claim.
+
+**How claims are marked:**
+- **[Established]**: documented work or records;
+- **[From the discussion]**: themes recorded in the Toni–Chimdi conversation;
+- **[My interpretation]**: my reading or proposal;
+- **[Untested hypothesis]**: an idea no one has tested;
+- **[To confirm]**: a fact still to be checked with a collaborator.
+
+**Sources.**
+- **The conversation.** It was recorded on 17 October 2026 (`arc_conversatn.mp3`, 1 h 20 min) and transcribed
+  automatically by Whisper (turbo) into `arc_conversatn.md`/`.txt`.
+  - The transcript gives segment start times only, with no speaker labels, and its wording has not been checked
+    against the audio. Times below are segment start times.
+  - A separate excerpt file named in an earlier draft is not on the shared server, so the full transcript is used
+    instead.
+- **The 2025 ARC work** comes from the hackathon slides and code archive (`ARC_2025_CHRIS_SOURCE_NOTES.md`).
+- **Every citation** is listed in `DISCUSSION_SOURCE_AND_ATTRIBUTION_LEDGER.md`.
+
+---
+
+## 1. A question larger than any one benchmark
+
+I would like us to consider a question that reaches beyond ARC puzzles, beyond neural or symbolic program synthesis,
+and beyond any individual biological dataset:
+
+> Can a machine learn representations and reasoning rules appropriate to unfamiliar forms of data, recognize when its
+> explanations are inadequate, decide what must change, and carry that way of revising its reasoning into a problem
+> with different semantics?
+
+**[My interpretation]** The question is not simply whether a model trained in one setting predicts more examples in
+the same setting. It asks what happens when the kinds of objects, relations, measurements and allowable explanations
+change. Can the system still learn how to reason, rather than depend on a new hand-built solution for every domain? It
+also asks whether apparent success is a genuine explanation that survives new evidence, or merely a fit to the
+available examples.
+
+## 2. The starting points from the discussion with Toni
+
+**[From the discussion]** As I understood the conversation, four concerns belong together.
+
+1. **Representation.** Given data with very different syntax and semantics, can a system induce entities, relations
+   and abstractions that permit meaningful reasoning? ("is there a way of inducing a representation of data, of very
+   different syntax and semantics", 00:00:03.)
+2. **Reasoning rules.** How could the system induce useful rules or grammars over those representations, instead of
+   relying on reasoning systems "built … by hand … about specific domains" (00:07:14)?
+   - The discussion noted earlier "work on inducing grammars from data" (00:08:15).
+   - It noted that grammars need not be deterministic: "there are stochastic grammars, and there are probabilistic
+     grammars" (00:17:39), including grammars "for molecules" (00:18:44).
+   - **[My interpretation]** Biological rules may also be context-dependent.
+3. **Learning from limited experience and failure.** With few examples of each kind, can the system learn from what
+   its current explanation cannot account for? "Can a reasoner, given just a few instances of data … learn from
+   failures?" (00:00:03.)
+4. **Transfer of reasoning itself.** "It isn't just generalizing over the data, it's generalizing over the reasoning"
+   (00:01:35); "generalization not just about data, but about reasoning" (00:04:01).
+
+**[From the discussion]** Validation mattered equally. The proposed progression was:
+- reproduce what we already know;
+- then ask whether the system generates plausible ideas that "could be verified";
+- then verification (00:27:58).
+
+**[My interpretation]** I adopt this, with *independent* verification, as a research standard. It is not an achieved
+property of any system of ours.
+
+## 3. What does it mean for reasoning to fail?
+
+**[My interpretation]** A model can reproduce every example it was given and still misunderstand the problem.
+- Several different explanations can fit the same observations, and the data may not distinguish them.
+- A system may identify the wrong entities, or have the right entities but the wrong operations, or search too
+  narrowly.
+- It may treat noise, context or a measurement artifact as part of the phenomenon.
+- A software error is a different kind of failure again, and should not be confused with a conceptual gap.
+
+This is why I am interested in a reasoner that asks *which part* of its account should change. The candidates are:
+- a different representation;
+- a richer rule language;
+- a different hypothesis within the current language;
+- more computation;
+- a request for more evidence.
+
+Often the honest output is "I am uncertain". Without an independently observed answer, a hypothesis that fits the
+evidence may still be wrong, and the system cannot always diagnose that in advance.
+
+**[My interpretation]** A distinction I would like us to test:
+
+> Detecting inadequate evidence is not the same as identifying the right revision. Proposing a revision is not the same
+> as showing that it improves prediction. Improving prediction is not the same as discovering the true mechanism.
+
+## 4. Why existing approaches do not automatically settle the question
+
+**[My interpretation]** Strong work exists on each piece, and part of our first job is to read it properly.
+- **Large language models** generate plausible answers, programs and hypotheses, and can use tools and check their
+  work.
+- **Program-synthesis systems** learn reusable abstractions (for example DreamCoder; LILO).
+- **Inductive logic programming** learns from failed hypotheses (Popper).
+- **Scientific model-discovery agents** recognize model inadequacy and design experiments (Murphy's Model Discovery
+  Agent).
+
+What I do not yet see settled, and would like us to check against the literature rather than assume, is this
+combination:
+- a system chooses *which component* of its explanation to revise, whether representation, rule language, hypothesis
+  or evidence;
+- the choice is shown to beat equally equipped alternatives that do not use the diagnosis;
+- the choice procedure itself keeps its value when the domain's semantics change.
+
+I do not claim that a failure-diagnosis-and-revision loop is new, or that any of these systems cannot do this.
+
+## 5. Why the ARC work is one testbed, not the destination
+
+**[Established]** In October and November 2025, Chris and I worked on ARC-AGI-2 for a hackathon. The slides are
+titled "ARC Solver — Symbolic Family Search with LLM Priors". We tried:
+- local LLM reasoning models, with text renderings of the grids;
+- a small transformation language;
+- a search over transformation families scored by pixel error on the training examples.
+
+One practical lesson is recorded on the slides: the reasoning model could not use the grids as given ("R1 … is
+blind").
+- **[To confirm]** No results or division of labour are recorded, so none are stated here. Chris should correct or
+  complete this summary.
+- **[To confirm]** The slides list Christian Fluharty as my co-presenter. Please confirm that he is the Chris
+  addressed here.
+
+**[Established]** My later work on CORA, an executable ARC reasoning system, makes the question concrete. ARC gives a
+few demonstrated transformations, a new grid, and an exact output against which a prediction is eventually checked.
+That lets us ask:
+- did the reasoner see useful objects?
+- did its language contain an adequate rule?
+- were several candidate programs indistinguishable on the examples?
+- did a proposed correction actually change the prediction?
+
+Hiding one example and rebuilding the rule probes fragility. It does not prove that a program generalizes.
+
+**[My interpretation]** The difficulty has not simply been obtaining answers.
+- A plausible hypothesis can fit the examples and still be unstable.
+- A correct candidate can be missing because the representation or language is too narrow.
+- Adding new rules can itself create ambiguity.
+- A system that constructs a working operation has not thereby shown that it knew why the operation was needed. In
+  my experiments, equally equipped controls that ignored the failure diagnosis sometimes constructed the same
+  operation.
+
+That is why I want to study the boundary between what a reasoner currently explains and what it cannot yet explain.
+CORA is one laboratory for that choice, and an ARC score alone would not demonstrate the larger capacity.
+
+## 6. Pierce's setting: when observations and explanations are not simple grids
+
+**[From the discussion]** Toni connected the question to my work with Pierce: "numerical data representing molecular
+species under different conditions", where I "wrote the code to decide if it was displacement or dispersion" and ran
+the tests (00:02:37).
+
+**[Established]** The archived project is *Dispersion, Not Displacement: Loss of Alveolar Epithelial State Coherence
+in Lethal COVID-19* (Pierce Taylor, Chimdi Walter Ndubuisi and Toni Kazic).
+- It asks whether diseased alveolar epithelial cells shift together toward one damaged state (displacement), or fan
+  out across several (dispersion), using single-nucleus RNA-seq.
+- Its own records flag three limits:
+  - the cross-sectional design limits causal claims;
+  - donor-level inference was still essential before submission;
+  - pseudotime should not be over-interpreted.
+
+- **[My account; to confirm with Pierce]** The literature describes displacement. After our checks, the project's conclusion was dispersion; its title is "Dispersion, Not Displacement". Pierce should confirm how to describe that result and its limits.
+
+The analysis continues in a separate research programme, and this note reports no further finding from it.
+
+**[My interpretation]** It is a good example of competing explanations.
+- **Different hypotheses.** A shift in a population's average, a change in its spread and a change in its mixture of
+  cell states are different hypotheses. Each needs a suitable unit of observation and its own validation.
+- **The unit of inference.** Conclusions can depend on whether cells or donors are treated as the units of inference.
+- **What a failure could look like:**
+  - a failed prediction for a withheld donor or condition;
+  - failure to replicate across technologies;
+  - a mismatch between RNA and protein;
+  - a perturbation that contradicts the proposed pathway.
+- **The checker.** In biology the check cannot be exact grid equality. It may require replicates, uncertainty
+  estimates, perturbations, orthogonal assays or a new experiment. A useful hypothesis may still not identify cause.
+
+Protein conformational ensembles are another possible setting, with different semantics again: geometry, chemistry,
+kinetics and stochastic ensembles. This note does not attribute that work to Pierce, or claim that the ARC reasoning
+loop has been applied to it.
+
+## 7. A third setting: genotype, maize lesions and observable phenotype
+
+**[From the discussion]** The lesions were described as Mendelian traits that are nevertheless complex, "influenced by
+… an undefined set of modifier genes in the background genome", and by "the weather" (00:33:26, 00:34:28).
+
+**[My interpretation]** Segmentation can tell us where lesions appear and how their shape and spatial organization
+change. It does not reveal a biochemical pathway or a causal gene network.
+- **If a segmentation model misses an unusual lesion pattern,** is the problem:
+  - the object boundary;
+  - the features;
+  - the supervision;
+  - or the assumption that one appearance corresponds to one biological state?
+- **If a later model links morphology and omics to a pathway,** is the link mechanistic, or a correlation? Answering
+  that needs molecular evidence, plus independent perturbation or genetic validation.
+
+What may transfer from ARC is a disciplined way to ask what the current account fails to explain, and which revision is
+justified. The ARC grid operations do not transfer.
+
+**[From the discussion]** The conversation also noted that biology's molecular, physiological and genetic levels have
+stayed separate, with no "grand synthesis" yet (00:40:43). That is another reason representation and rules may need to
+be learned anew in each setting.
+
+## 8. What might count as learning what to revise?
+
+**[Untested hypothesis]** The ambitious possibility is that a system learns a *decision process* for revising its
+explanations, not merely a library of task-specific solutions. For example:
+- two valid but inconsistent object parses might call for a representation revision;
+- several equally supported rules might call for keeping the alternatives, or seeking evidence;
+- a consistent representation with an absent operation might call for investigating the rule language;
+- repeated failures across independent conditions might call for a new model class.
+
+**[My interpretation]** The hard part is showing that such decisions generalize. A comparison must separate the benefit
+of a real diagnostic signal from simply giving one model:
+- more information;
+- a richer grammar;
+- more compute;
+- or an easier subset of tasks.
+
+It must also separate software portability (the same pipeline in two domains) from transfer of a learned revision
+strategy.
+
+## 9. A falsifiable research test
+
+**[Untested hypothesis]** A staged programme, with stated ways to fail.
+
+1. **Controlled domain.** In a reasoning domain such as ARC, a diagnosis-driven choice of revision improves held-out
+   predictions against strong controls: a failure-blind choice, applying every revision, the same at matched compute,
+   and a shuffled diagnosis.
+   - *It fails if* it does not beat these controls on tasks the system was not developed on, or if it adds wrong
+     answers.
+2. **New task family.** Freeze the revision strategy and test it on tasks with newly defined entities and rules.
+   - *It fails if* the frozen strategy gives no benefit there.
+3. **Biological data.** With Pierce, test whether the frozen strategy helps choose or reject a biological explanation,
+   under a validation protocol agreed in advance.
+   - *It fails if* it does no better than an informed analyst's standard workflow under that protocol.
+
+A failure at any stage is informative and will be reported as such.
+
+## 10. Questions I would like us to discuss
+
+**For Toni: the scope and meaning of general reasoning.**
+- Is the deepest problem learning the representation, inducing the grammar, selecting a revision, or how these choices
+  interact?
+- Could some of the reasoning process transfer while the domain's objects and rules must be learned anew?
+- What would be credible evidence that a system generalized its reasoning, rather than being redesigned for a new
+  application?
+- Where should a stochastic or probabilistic account replace a deterministic grammar?
+
+**For Chris: lessons from our 2025 ARC work and the limits of LLM-and-DSL reasoning.**
+- When a model produces a reasonable-looking program that does not generalize, what is the obstacle: the visual
+  representation, the program language, weak search or selection, poor use of evidence, or the absence of a process
+  for deciding what to revise?
+- My current hypothesis is that generating an explanation and recognizing which part of it should change are separate
+  capabilities. Does that survive your experience? Which example from our 2025 work would challenge it?
+- What experiment would convince you that a failure-aware reasoner adds something beyond a capable LLM, a stronger DSL
+  or ordinary search?
+- Which baseline is fairest? I would especially value your skepticism.
+
+**For Pierce: failure, revision and verification in biology.**
+- If a system reasoned over transcriptomic, proteomic or protein-related observations, how would we know its
+  explanation had failed, rather than biology being variable or the measurement unreliable?
+- Which entities and relations must be represented for a claim to be interpretable? Which rules should be
+  probabilistic, mechanistic or contextual?
+- When is the right next step to revise cell-state assignments, the molecular hypothesis, the statistical model, or the
+  experimental design?
+- Could the displacement-versus-dispersion question serve as a modest example of competing explanations, subject to
+  your review of its actual findings and limits?
+- Would a better test use a withheld donor, a held-out condition, an external cohort, matched protein and RNA, or a new
+  perturbation?
+- What would convince you that a system had learned a biologically meaningful revision, rather than found a convenient
+  statistical explanation?
+
+**For all four of us.**
+- Do we agree that the central object of study is a justified, testable decision about what to change when a model's
+  current explanation is inadequate?
+- If so, can we state the minimum observable evidence, the allowed revisions, an honest abstention, and a
+  domain-appropriate independent test: first in a simplified setting, then in biological data?
+- What would falsify the programme?
+
+## 11. Suggested agenda for our first group discussion (about 60 minutes)
+
+1. **The question (10 min).** Agree, or disagree, on the question in section 1, and on what "learning what to change"
+   should mean. Toni leads.
+2. **Lessons from ARC (15 min).** What the 2025 hackathon and CORA did and did not show; what is really missing. Chris
+   leads.
+3. **What failure means in biology (15 min).** What counts as failure and as verification; one tractable biological
+   question. Pierce leads.
+4. **One shared decisive experiment (15 min).** Pick the smallest test all three perspectives agree is worth running.
+5. **Next steps (5 min).** Who drafts what. Any authorship and credit for later work is decided from actual
+   contributions and consent.
+
+**Discussion prompt:** what would a system have to do, on a problem it was not tailored to solve, for us to say it
+learned not just a rule, but what and how to revise when a rule fails?
+
+## 12. A possible later paper, and a safeguard
+
+**[Untested hypothesis]** A future paper could study reasoning under semantic change:
+- how a system constructs representations and executable explanations;
+- how it tells missing knowledge from insufficient evidence or an unsuitable representation;
+- whether learning to select revisions makes a measurable difference across task families and biological measurement
+  types.
+
+Its contribution would have to be an experimentally supported mechanism and its limits, not the diagram observe → fail
+→ revise → verify.
+
+**Safeguard.** Authorship, affiliations, use of unpublished figures, and responsibilities for any later paper or poster
+will be agreed from actual contributions and collaborator consent. Nothing in this note assigns them. The conversation
+touched on authorship informally, and that was explicitly left dependent on content.
