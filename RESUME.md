@@ -11,11 +11,24 @@ training.**
   - scored: scripts/neural_cora_v1_run.sh, PID 3737323 (status in outputs/neural_cora_v1/logs/run.status). It waits for
     PREP_DONE, checks that the protocol is committed, then runs train -> run -> evaluate and writes RUN_DONE. Any
     refusal is logged as "STOP: ...".
+  - atlas: scripts/neural_cora_v1_atlas.sh, PID 3744901. It waits for RUN_DONE, then runs the dev60 expressivity
+    atlas (exposed tasks; the solve stage reads no answers, the score stage alone does) and writes ATLAS_DONE in
+    logs/atlas.status.
+- **Single reproduction script:** scripts/reproduce_neural_cora_v1_pilot.sh.
 - **Data audit:**
   - 3300 / 330 / 220 / 420 tasks;
   - 0 execution problems, 0 exact duplicates, 0 held-out signatures in train;
   - primary held-out set 395 of 420 (25 template-aliased tasks excluded: 16 delete-largest, 9 line-by-size);
   - audit sha 075e8b64, primary sha 8f647512.
+- **Progress, 23:09Z:**
+  - PREP_DONE at 23:08:31Z. Qwen features: 0.30 s per task, peak 7.51 GB.
+  - Training done. L1: 1560 steps, best val loss 0.540 (epoch 6). L1h: best val loss 0.461 (epoch 28). L0s: 2.233.
+    The weight hashes changed; details in models/training_log.json.
+  - `pilot run` started 23:09:25Z.
+  - Pace: about 21.6 s of wall time per task on 2 workers. ETA RUN_DONE about 02:45Z.
+  - The context arm C0 (native inducer) overruns its declared 5 s CPU budget: mean 25 s, max 113 s, because native
+    checks its deadlines between phases. The typed arms use about 6 s per task. Report this. Nothing was changed
+    mid-run; the protocol is frozen.
 - **After a reboot:**
   1. Confirm that no cora_neural_v1.pilot process is alive (exact ps).
   2. If prep.status lacks PREP_DONE, rerun prep.
