@@ -7,8 +7,9 @@
 **Real figures** are drawn ONLY from recorded, hash-pinned inputs. A sha256 mismatch stops the script before
 anything is drawn. Real grids are drawn cell for cell with the standard ARC colours; nothing is edited.
 
-**The one ILLUSTRATIVE figure** (four reasons an explanation can be inadequate) is drawn by hand for explanation. It
-says so on its face, and it is never presented as a CORA result.
+**The ILLUSTRATIVE figures** (four reasons an explanation can be inadequate; the three-failure version for the
+Qwen-architecture review poster) are drawn by hand for explanation. Each says so on its face, and neither is ever
+presented as a CORA result.
 
 **Printed size.** Every figure is 9.37 in wide, the measured text width of one block of the visual review poster
 (677.3 pt), and is placed at that width. Text is at least 20 pt at that size.
@@ -44,6 +45,8 @@ SOURCES = {
                      "f0da3a8df23bbab61b9a39360480651bebda765ec302ede1b2d842a1a190b73f"),
     "dev60_assets": ("outputs/funnel_v0/eval_dev60_native_assets.json",
                      "54d8d744cc8cbd6bb905ee7fda34f5f9ed5005bda770bb4b206b392d97d9c42f"),
+    "gen58": ("outputs/cora_fhr/rows_standin58_gen.jsonl",
+              "0ff69e04490a0b208dc843e2175f44a294c8fe7ee4c2824df4739b059e519e71"),
 }
 USED, DRAWN = {}, {}
 
@@ -115,18 +118,16 @@ def _save(fig, name, kind, sources, task, mode, limits):
 
 
 # ---------------------------------------------------------------- column 1: what an ARC task is (REAL)
-def arc_intro():
+def arc_intro(box=2.25, H=9.45, fname="fig_arc_intro_00dbd492.png", xin=0.85, xout=5.35, step=2.95):
     w = json.load(open(src("v2_witness")))
     assert w["key"] == "00dbd492"
-    H = 9.45
     fig = _new(H)
     _tag(fig, "REAL ARC-AGI-2 TRAINING TASK 00dbd492 (public)")
-    box, xin, xout = 2.25, 0.85, 5.35
     rows = [("Training example 1", w["train"][0][0], w["train"][0][1]),
             ("Training example 2", w["train"][1][0], w["train"][1][1]),
             ("New input", w["test_input"], None)]
     for i, (name, gin, gout) in enumerate(rows):
-        y = H - 0.62 - (i + 1) * 2.95 + 0.12
+        y = H - 0.62 - (i + 1) * step + 0.12
         _text(fig, xin, y + box + 0.12, name, fontsize=FS_BIG, fontweight="bold")
         _grid(fig, gin, xin, y, box)
         _arrow(fig, xin + box + 0.25, y + box / 2, xout - 0.25)
@@ -140,7 +141,7 @@ def arc_intro():
             ax.set_xlim(0, 1)
             ax.set_ylim(0, 1)
             ax.axis("off")
-    _save(fig, "fig_arc_intro_00dbd492.png", "REAL", ("v2_witness",), "00dbd492",
+    _save(fig, fname, "REAL", ("v2_witness",), "00dbd492",
           "public ARC-AGI-2 training task (training pairs and test input as recorded)",
           "An exposed public training task used in CORA-v2 development; shown only to explain what an ARC task is.")
 
@@ -224,28 +225,141 @@ def four_reasons():
           "and evidence failures.")
 
 
+def three_failures():
+    """Why reasoning fails (ILLUSTRATIVE, drawn for explanation): wrong objects, wrong transformation, not enough
+    evidence. Per panel: a title, one short sentence, then large grids. The Qwen-architecture review poster, column 1."""
+    H = 13.5
+    fig = _new(H)
+    _tag(fig, "ILLUSTRATIVE — drawn to explain, not a CORA result", color=CRITICAL)
+    white = "#ffffff"
+    rep = _put(_put(_put(_blank(), [(1, 1), (1, 2), (2, 1), (2, 2)], 2), [(1, 3), (2, 3)], 1), [(4, 4), (4, 5)], 2)
+    c_in = _put(_blank(), [(2, 0), (2, 5)], 8)
+    c_out = _put(_put(_blank(), [(2, 0), (2, 5)], 8), [(2, 1), (2, 2), (2, 3), (2, 4)], 5)
+    d_in, d_out = _put(_blank(), [(0, 0), (0, 1)], 5), _put(_blank(), [(0, 0), (0, 1)], 2)
+    d_new = _put(_put(_blank(), [(4, 2), (4, 3)], 5), [(1, 2), (1, 3), (1, 4)], 5)
+    d_h1 = _put(_put(_blank(), [(4, 2), (4, 3)], 2), [(1, 2), (1, 3), (1, 4)], 5)
+    d_h2 = _put(_put(_blank(), [(4, 2), (4, 3)], 5), [(1, 2), (1, 3), (1, 4)], 2)
+    FS_SENT = 22
+
+    def head(top, title, sentence):
+        _text(fig, 0.15, top, title, fontsize=FS_BIG + 3, fontweight="bold", va="top")
+        _text(fig, 0.15, top - 0.52, sentence, fontsize=FS_SENT, color=INK, va="top")
+        return top - 1.02
+
+    def lab(x, y, s, col=INK2, bold=False):
+        _text(fig, x, y, s, fontsize=FS_MIN, color=col, ha="center", va="top", fontweight="bold" if bold else "normal")
+    # 1 wrong objects: the same grid, split two ways
+    b = 1.9
+    y = head(H - 0.62, "Wrong objects", "The grid is split into the wrong pieces.") - b
+    xa, xb = 1.20, 6.17
+    _grid(fig, rep, xa, y, b, outlines=[(1, 1, 2, 3, white), (4, 4, 4, 5, white)])
+    _grid(fig, rep, xb, y, b, outlines=[(1, 1, 2, 2, white), (1, 3, 2, 3, white), (4, 4, 4, 5, white)])
+    _text(fig, (xa + b + xb) / 2, y + b / 2, "or", fontsize=FS_BIG, color=INK2, ha="center", va="center")
+    lab(xa + b / 2, y - 0.10, "2 objects")
+    lab(xb + b / 2, y - 0.10, "3 objects")
+    # 2 wrong transformation: right pieces, no operation that draws the line
+    y = head(y - 0.80, "Wrong transformation", "Right pieces, but no operation makes the change.") - b
+    xa, xb = 0.60, 3.70
+    _grid(fig, c_in, xa, y, b)
+    _grid(fig, c_out, xb, y, b)
+    _arrow(fig, xa + b + 0.15, y + b / 2, xb - 0.15)
+    lab(xa + b / 2, y - 0.10, "input")
+    lab(xb + b / 2, y - 0.10, "output")
+    _text(fig, 6.20, y + b - 0.30, "tried:", fontsize=FS_MIN, color=INK2, va="top")
+    _text(fig, 6.20, y + b - 0.78, "move  ✗", fontsize=FS_LAB, color=CRITICAL, va="top", fontweight="bold")
+    _text(fig, 6.20, y + b - 1.26, "recolour  ✗", fontsize=FS_LAB, color=CRITICAL, va="top", fontweight="bold")
+    # 3 not enough evidence: two rules fit one example and disagree on a new input
+    b = 1.65
+    y = head(y - 0.80, "Not enough evidence", "Two rules fit the example but give different answers.") - b
+    xa, xb = 0.35, 2.95
+    _grid(fig, d_in, xa, y, b)
+    _grid(fig, d_out, xb, y, b)
+    _arrow(fig, xa + b + 0.15, y + b / 2, xb - 0.15)
+    lab(xa + b / 2, y - 0.10, "example")
+    lab(xb + b / 2, y - 0.10, "its output")
+    _text(fig, 5.10, y + b - 0.25, "rule 1: bars of 2 turn red", fontsize=FS_MIN, color=INK, va="top")
+    _text(fig, 5.10, y + b - 0.72, "rule 2: the top bar turns red", fontsize=FS_MIN, color=INK, va="top")
+    _text(fig, 5.10, y + b - 1.19, "both fit this example", fontsize=FS_MIN, color=GOOD, va="top", fontweight="bold")
+    y = y - 0.55 - b
+    xn, x1, x2 = 0.35, 2.95, 5.10
+    _grid(fig, d_new, xn, y, b)
+    _arrow(fig, xn + b + 0.15, y + b / 2, x1 - 0.15)
+    _grid(fig, d_h1, x1, y, b)
+    _grid(fig, d_h2, x2, y, b)
+    lab(xn + b / 2, y - 0.10, "new input")
+    lab(x1 + b / 2, y - 0.10, "rule 1 says")
+    lab(x2 + b / 2, y - 0.10, "rule 2 says")
+    _text(fig, 7.15, y + b / 2 + 0.22, "which one?", fontsize=FS_LAB, color=CRITICAL, va="center", fontweight="bold")
+    assert y - 0.55 > 0, "three_failures: the last row is below the canvas"
+    _save(fig, "fig_three_failures_ILLUSTRATIVE.png", "ILLUSTRATIVE", (), None, "hand-drawn illustration",
+          "Not an ARC task and not a CORA result. Drawn only to explain representation (objects), transformation "
+          "(rule-language) and evidence failures; used by the Qwen-architecture review poster.")
+
+
+def construction_58():
+    """The 58-task generalization test of rule construction, one square per task (REAL, from the frozen rows)."""
+    rows = [json.loads(l) for l in open(src("gen58"))]
+    assert len(rows) == 58 and len({r["key"] for r in rows}) == 58
+    for arm in ("EG", "C2G", "DG", "EGC"):
+        assert not any(r["arms"][arm].get("outcome") == "CERTIFIED_WITH_EXTENSION" for r in rows), arm
+    eg = [r["arms"]["EG"]["outcome"] for r in rows]
+    n_none, n_fail = eg.count("NO_PROPOSAL"), eg.count("ENGINE_REJECTION") + eg.count("LOO_FAILURE")
+    assert (n_none, n_fail) == (55, 3) and n_none + n_fail == 58
+    H = 2.75
+    fig = _new(H)
+    _tag(fig, "REAL · 58 separately selected, exposed training tasks")
+    cell, pitch, ncol = 0.31, 0.355, 10
+    x0, ytop = 0.20, H - 0.55
+    light, warm = "#d9d8d4", "#eb6834"
+    colours = [light] * n_none + [warm] * n_fail
+    for k, col in enumerate(colours):
+        r, c = divmod(k, ncol)
+        ax = _ax(fig, x0 + c * pitch, ytop - (r + 1) * pitch + (pitch - cell), cell, cell)
+        ax.add_patch(FancyBboxPatch((0.04, 0.04), 0.92, 0.92, boxstyle="round,pad=0,rounding_size=0.12",
+                                    facecolor=col, edgecolor="none"))
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.axis("off")
+    xl = x0 + ncol * pitch + 0.30
+    entries = [(light, None, f"{n_none}", "no rule proposed"),
+               (warm, None, f"{n_fail}", "rule proposed, but rejected\nby CORA's checks"),
+               (SURF, GOOD, "0", "new verified solutions")]
+    for j, (fc, ec, n, label) in enumerate(entries):
+        yy = ytop - 0.22 - (0, 0.72, 1.60)[j]
+        ax = _ax(fig, xl, yy - 0.18, cell, cell)
+        ax.add_patch(FancyBboxPatch((0.06, 0.06), 0.88, 0.88, boxstyle="round,pad=0,rounding_size=0.12",
+                                    facecolor=fc, edgecolor=ec or "none", linewidth=2.6))
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.axis("off")
+        _text(fig, xl + cell + 0.18, yy, n, fontsize=FS_BIG, color=GOOD if ec else INK, fontweight="bold", va="center")
+        _text(fig, xl + cell + 0.85, yy, label, fontsize=FS_MIN, color=INK, va="center", linespacing=1.15)
+    _save(fig, "fig_construction_58_outcomes.png", "REAL", ("gen58",), "standin58 (58 exposed training tasks)",
+          "frozen guard-generalization test (ad4127a), arm EG (authentic failure records + guard); outcome labels only",
+          "Exposed training tasks; arm EG shown; the failure-blind (C2G), shuffled (DG) and contrast (EGC) arms also "
+          "certified 0 (asserted); frozen native solved 1, which is not a construction result.")
+
+
 # ---------------------------------------------------------------- column 2: the real constructed rule (REAL)
-def real_rule():
+def real_rule(box=2.62, H=7.2, fname="fig_real_rule_ka95aa62f67d9.png", xout=5.35, label_right=False, xin=0.85):
     t = json.load(open(src("real_task")))
     w = json.load(open(src("real_witness")))
     assert w["committed"] == t["evaluator_answer"] and all(f["class"] == "SUCCESS" for f in w["folds"])
     assert w["rule"] == "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]"
     assert w["controls"]["C2G_same_rule"] is True and not w["controls"]["A_frozen_native_certified"]
-    H = 7.2
     fig = _new(H)
     _tag(fig, f"REAL ARC-AGI-2 TRAINING TASK {t['key']} · recorded run")
-    box, xin, xout = 2.62, 0.85, 5.35
     rows = [("Training example", t["train"][0][0], t["train"][0][1], "target output"),
             ("New input", t["test_input"], w["committed"], "CORA's output ✓ correct")]
     for i, (name, gin, gout, olab) in enumerate(rows):
-        y = H - 0.75 - (i + 1) * 3.20 + 0.30
+        y = H - 0.75 - (i + 1) * (box + 0.58) + 0.30
         _text(fig, xin, y + box + 0.12, name, fontsize=FS_BIG, fontweight="bold")
-        _text(fig, xout, y + box + 0.12, olab, fontsize=FS_MIN, color=GOOD if i else INK2,
-              fontweight="bold" if i else "normal")
+        _text(fig, xout + box if label_right else xout, y + box + 0.12, olab, fontsize=FS_MIN, color=GOOD if i else INK2,
+              fontweight="bold" if i else "normal", ha="right" if label_right else "left")
         _grid(fig, gin, xin, y, box)
         _arrow(fig, xin + box + 0.30, y + box / 2, xout - 0.30)
         _grid(fig, gout, xout, y, box)
-    _save(fig, "fig_real_rule_ka95aa62f67d9.png", "REAL", ("real_task", "real_witness"), t["key"],
+    _save(fig, fname, "REAL", ("real_task", "real_witness"), t["key"],
           "development probe (guard probe, arm EG), recorded run; evaluator answer read only in the evaluator step",
           "Exposed training task selected by the development autopsy; a failure-blind constructor found the same rule; "
           "not part of any Kaggle entry; not evidence of generalization.")
@@ -311,6 +425,12 @@ def main():
     arc_intro()
     four_reasons()
     real_rule()
+    # the Qwen-architecture review poster: larger real grids, three failures, the 58 outcomes
+    arc_intro(box=2.75, H=11.05, fname="fig_arc_intro_00dbd492_large.png", xin=0.55, xout=6.05, step=3.42)
+    three_failures()
+    real_rule(box=3.15, H=8.1, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.15, label_right=True,
+              xin=0.55)
+    construction_58()
     v2_uncertified()
     dev60_audit()
     prov = {"script": "scripts/summit_visual_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),

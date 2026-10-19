@@ -1,8 +1,36 @@
 # ARC-2026 delivery sprint: resume
 
-Last updated 2026-09-28. Read this first.
+Last updated 2026-10-19. Read this first.
 
 ## State
+
+**NEWEST (2026-10-19 ~18:40Z, session d176233f). THREE NEW USER DIRECTIVES, in this priority order (the user's own):**
+1. Finish the authorized Phase 2a untouched. RUNNING: 108/120 rows at ~18:35Z. Evaluate it ONLY with
+   `python -m cora_revision_v2.phase2a evaluate`, then `python -m cora_revision_v2.phase2a_report`, and apply the frozen GO
+   rule. Then update records/CORA_REASONING_V2_PHASE2A_EXECUTION_20261019.md.
+2. **Neural-CORA v0.1** ("Learn to propose and revise executable hypotheses"; the full text is in the session transcript).
+   - It is ONE CORA-owned architecture: no router, no ensemble, no attempt-2 filler.
+   - Phase 0 audit -> records/NEURAL_CORA_ARCHITECTURE_AUDIT_20261019.md.
+   - Then cora_neural_v1/ typed IR + tests; a learned proposal prior (LoRA ranker/proposer); a preregistered bounded pilot
+     (L0/L1/C+ first; at most 2 CPU workers + 1 GPU, 6 h); classification verdicts.
+   - Kaggle: prepare only.
+   - Required artefacts: records/NEURAL_CORA_ARCHITECTURE_AUDIT_20261019.md, docs/NEURAL_CORA_SINGLE_ARCHITECTURE_v0.md,
+     records/NEURAL_CORA_PILOT_v0_PROTOCOL.md, cora_neural_v1/, outputs/neural_cora_v0/,
+     records/NEURAL_CORA_PILOT_v0_REPORT.md, kaggle/neural_cora_v1/ (scaffold).
+   - The earlier "ARCHITECTURAL SUBSUMPTION STUDY" paste is folded into Phase 0. A read-only background audit
+     (architectures + NVARC synthetic-program availability/licences) writes records/CORA_NVARC_SUBSUMPTION_AUDIT_20261019.md.
+     Check it, then merge it into the Phase 0 audit.
+   - The user also said: "this doesnt halt cora improvement --- still keep improving CORA to real reasoning model".
+3. Summit (print freeze Oct 21):
+   - Qwen-architecture review set:
+     - DONE: poster_qwen_architecture_review.{tex,pdf,pptx}, with POSTER_QWEN_ARCHITECTURE_NOTES.md (changes, claim
+       audit, provenance, reproduction).
+     - Its 4 new figures: arc_intro_large, three_failures_ILLUSTRATIVE, real_rule_large, construction_58_outcomes. The
+       committed PNGs are byte-identical.
+     - Column 3: two solid lanes + ONE small dashed learning loop (directive section 9 wording).
+   - NEXT: explainer_qwen_architecture_review.{tex,pdf}: 1-2 pages with the addendum's 9 points, plus the Neural-CORA
+     architecture, objective, controls and limitations, plus a glossary of the terms banned from the poster.
+   - Higher-level draft DONE: docs/higher_order_reasoning/Learning_What_to_Change_Discussion_DRAFT.{md,org} (v0.2).
 
 **NEWEST DIRECTIVE (2026-10-19): "CORA | Learning when a hypothesis is not enough"** (Phases 0-4; ONE bounded DEV pilot;
 no Kaggle, no push, no protected data, no Step B changes). Progress:
