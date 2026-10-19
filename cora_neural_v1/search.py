@@ -28,19 +28,29 @@ MAX_KEPT = 50                     # distinct consistent predictions kept per tas
 
 
 def search_typed(task, scores, budget):
+    """`pred_at[i]` is the order position at which distinct prediction i first appeared. A smaller budget b is
+    therefore an exact truncation of this run: keep the predictions with pred_at <= b (the evaluator does this)."""
+    from cora_neural_v1.ir import GRAMMAR_VERSION
+    from cora_neural_v1.state import ReasoningState
     train = task["train"]
     test_in = task["test_inputs"][0]
     doms = SP.domains(train)
+    st = ReasoningState(GRAMMAR_VERSION, budget, {"selectors": len(doms["selectors"]), "actions": len(doms["actions"])})
     c0, e0 = time.process_time(), I.STATS["executions"]
-    preds, first_at, n_consistent, kept = [], {}, 0, []
+    preds, pred_at, first_at, n_consistent, kept = [], [], {}, 0, []
     n = 0
     for h, s in SP.enumerate_programs(doms, scores, budget):
         n += 1
-        ok, _ = I.fit(h, train)
+        try:
+            ok, wrong = I.fit(h, train)
+            p = I.run(h, test_in) if ok else None
+        except Exception:                                           # noqa: BLE001  (TIMEOUT_OR_ERROR evidence)
+            st.errors += 1
+            continue
+        st.observe(h, wrong, p)
         if not ok:
             continue
         n_consistent += 1
-        p = I.run(h, test_in)
         if p is None:
             continue
         key = p.tobytes() + bytes(p.shape)
@@ -48,10 +58,14 @@ def search_typed(task, scores, budget):
             first_at[key] = n
             if len(preds) < MAX_KEPT:
                 preds.append(p.tolist())
+                pred_at.append(n)
                 kept.append({"at": n, "program": h.to_dict(), "score": round(float(s), 4)})
-    return {"attempts": preds[:2], "predictions": preds, "first_consistent_at": kept[0]["at"] if kept else None,
+    st.distinct = len(first_at)
+    return {"attempts": preds[:2], "predictions": preds, "pred_at": pred_at,
+            "first_consistent_at": kept[0]["at"] if kept else None,
             "second_distinct_at": kept[1]["at"] if len(kept) > 1 else None, "n_candidates": n,
             "n_consistent": n_consistent, "n_distinct_predictions": len(first_at), "kept": kept[:5],
+            "attempt_programs": [k["program"] for k in kept[:2]], "state": st.summary(),
             "executions": I.STATS["executions"] - e0, "cpu_s": round(time.process_time() - c0, 3),
             "domain_size": {"selectors": len(doms["selectors"]), "actions": len(doms["actions"])}}
 

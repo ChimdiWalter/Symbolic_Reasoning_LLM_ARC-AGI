@@ -4,6 +4,32 @@ Last updated 2026-10-19. Read this first.
 
 ## State
 
+**NEWEST (2026-10-19 22:24Z): NEURAL-CORA V1 PILOT, data preparation RUNNING (user directive "ONE LEARNED EXECUTABLE
+REASONER").**
+- **Running:** `sh scripts/neural_cora_v1_prep.sh`, driver PID 3709079, started 22:24:17Z. Log and status:
+  outputs/neural_cora_v1/logs/ (prep.status ends with PREP_DONE when finished).
+- **Steps:** freeze -> generate -> audit (CPU), in parallel with Qwen features (GPU 0) -> targets (1 worker) -> hand
+  features.
+- **Reboot behaviour:** every step is deterministic and overwrites its outputs, so rerun the same script. Check first
+  that no `cora_neural_v1.pilot` process is alive (exact `ps`, no pkill -f).
+- **Code changes:**
+  - cora_neural_v1: audit.py (template-alias primary set), state.py (reasoning state S_t and observable diagnoses);
+  - search records pred_at, so budgets are exact truncations;
+  - train_heads logs steps, gradient norms and weight hashes;
+  - evaluate.py implements the preregistered G1 gate;
+  - pilot.py writes outputs/neural_cora_v1;
+  - 15 tests pass.
+- **Dev smoke test (TRAIN families, 12 IID tasks; engineering only, not a result):**
+  - C+@1000, C+H@1000, L1@500, L1h@500 solve 12/12; L0 2/12; L0s 3/12; C0 4/12;
+  - L1 training: 420 optimizer steps, and the weights changed.
+- **NEXT:**
+  1. Write and commit records/NEURAL_CORA_V1_PILOT_PROTOCOL.md (frozen) BEFORE `train`.
+  2. Then: `pilot train` (GPU 0), `pilot run` (2 workers, nice 10; about 2.5-3 h), `evaluate`.
+  3. Write the records the directive requires (capability audit, data audit, report, atlas, roadmap, spec) and the
+     kaggle/neural_cora_v1 scaffold. STOP after the pilot is evaluated.
+- **Also done:** docs/summit_demo_20261023/ka95aa62f67d9_visual_replay.html, built by build_visual_replay.py (an
+  offline, static, recorded replay).
+
 **NEWEST (2026-10-19, late): CANCER-LESION REVIEW V2 POSTER + EXPLAINER (user addenda; presentation only, no experiment).**
 - **Sources of truth:** docs/summit_20261023_reframe/poster_cancer_lesion_review.org and
   explainer_cancer_lesion_review.org (labelled V2).

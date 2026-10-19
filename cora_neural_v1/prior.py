@@ -12,7 +12,7 @@
 - number of rules: 2, softmax;
 - default: 2, softmax;
 - selector bag: 31, multi-label;
-- action bag: 93, multi-label.
+- action bag: 92, multi-label.
 
 It is trained on CORA's own execution-validated synthetic tasks.
 
@@ -180,12 +180,28 @@ def _loss(out, Y):
             + 4.0 * F.binary_cross_entropy_with_logits(out["act"], Y["act"]))
 
 
-def train_heads(X, Ys, Xv, Yv, seed, epochs=60, lr=1e-3, wd=1e-4, batch=128, device="cpu", log=None):
-    """Gradient training of the heads; the epoch with the best validation loss is kept. Returns (model, history)."""
+def weights_sha(m):
+    """sha256 of every parameter tensor's bytes, in state_dict order."""
+    import hashlib
+    h = hashlib.sha256()
+    for k, v in m.state_dict().items():
+        h.update(k.encode())
+        h.update(v.detach().cpu().contiguous().numpy().tobytes())
+    return h.hexdigest()
+
+
+def train_heads(X, Ys, Xv, Yv, seed, epochs=60, lr=1e-3, wd=1e-4, batch=128, device="cpu", log=None, stats=None):
+    """Gradient training of the heads; the epoch with the best validation loss is kept. Returns (model, history).
+    If `stats` is a dict, it receives the evidence that training happened: trainable parameter count, initial and
+    final weight hashes, optimizer steps, per-epoch mean gradient norm, and the L2 distance the weights moved."""
     import copy
     import torch
     torch.manual_seed(seed)
     m = build_heads(X.shape[1], seed).to(device)
+    w0 = {k: v.detach().clone() for k, v in m.state_dict().items()}
+    if stats is not None:
+        stats.update({"trainable_params": int(sum(p.numel() for p in m.parameters() if p.requires_grad)),
+                      "initial_weights_sha256": weights_sha(m), "optimizer_steps": 0, "grad_norm_mean_by_epoch": []})
     opt = torch.optim.AdamW(m.parameters(), lr=lr, weight_decay=wd)
     Xt = torch.tensor(X, dtype=torch.float32, device=device)
     Yt = {k: torch.tensor(v, device=device) for k, v in Ys.items()}
@@ -196,14 +212,19 @@ def train_heads(X, Ys, Xv, Yv, seed, epochs=60, lr=1e-3, wd=1e-4, batch=128, dev
     for ep in range(epochs):
         m.train()
         perm = torch.randperm(len(Xt), generator=g)
-        tl = 0.0
+        tl, gn = 0.0, []
         for i in range(0, len(Xt), batch):
             idx = perm[i:i + batch].to(device)
             loss = _loss(m(Xt[idx]), {k: v[idx] for k, v in Yt.items()})
             opt.zero_grad()
             loss.backward()
+            if stats is not None:
+                gn.append(float(torch.sqrt(sum((p.grad.detach() ** 2).sum() for p in m.parameters() if p.grad is not None))))
+                stats["optimizer_steps"] += 1
             opt.step()
-            tl += float(loss) * len(idx)
+            tl += float(loss.detach()) * len(idx)
+        if stats is not None:
+            stats["grad_norm_mean_by_epoch"].append(round(float(np.mean(gn)), 5))
         m.eval()
         with torch.no_grad():
             vl = float(_loss(m(Xvt), Yvt))
@@ -214,6 +235,10 @@ def train_heads(X, Ys, Xv, Yv, seed, epochs=60, lr=1e-3, wd=1e-4, batch=128, dev
             best, best_state = vl, copy.deepcopy(m.state_dict())
     m.load_state_dict(best_state)
     m.eval()
+    if stats is not None:
+        moved = sum(float(((v.detach() - w0[k]) ** 2).sum()) for k, v in m.state_dict().items() if v.dtype.is_floating_point)
+        stats.update({"final_weights_sha256": weights_sha(m), "kept_epoch": int(np.argmin([h["val_loss"] for h in hist])),
+                      "weight_l2_moved": round(moved ** 0.5, 5)})
     return m, hist
 
 
