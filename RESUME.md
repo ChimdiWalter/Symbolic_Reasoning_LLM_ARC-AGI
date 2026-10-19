@@ -4,8 +4,24 @@ Last updated 2026-10-19. Read this first.
 
 ## State
 
-**NEWEST (2026-10-19 22:24Z): NEURAL-CORA V1 PILOT, data preparation RUNNING (user directive "ONE LEARNED EXECUTABLE
-REASONER").**
+**NEWEST (2026-10-19 22:40Z): NEURAL-CORA V1 PILOT RUNNING. The protocol was FROZEN at commit 081c1d3 before any
+training.**
+- **Two detached drivers:**
+  - prep: scripts/neural_cora_v1_prep.sh, PID 3709079 (status in outputs/neural_cora_v1/logs/prep.status);
+  - scored: scripts/neural_cora_v1_run.sh, PID 3737323 (status in outputs/neural_cora_v1/logs/run.status). It waits for
+    PREP_DONE, checks that the protocol is committed, then runs train -> run -> evaluate and writes RUN_DONE. Any
+    refusal is logged as "STOP: ...".
+- **Data audit:**
+  - 3300 / 330 / 220 / 420 tasks;
+  - 0 execution problems, 0 exact duplicates, 0 held-out signatures in train;
+  - primary held-out set 395 of 420 (25 template-aliased tasks excluded: 16 delete-largest, 9 line-by-size);
+  - audit sha 075e8b64, primary sha 8f647512.
+- **After a reboot:**
+  1. Confirm that no cora_neural_v1.pilot process is alive (exact ps).
+  2. If prep.status lacks PREP_DONE, rerun prep.
+  3. Then rerun scripts/neural_cora_v1_run.sh. `pilot run` appends missing rows, so it resumes; `train` reruns
+     deterministically (the same seed).
+- **Earlier block, same pilot:**
 - **Running:** `sh scripts/neural_cora_v1_prep.sh`, driver PID 3709079, started 22:24:17Z. Log and status:
   outputs/neural_cora_v1/logs/ (prep.status ends with PREP_DONE when finished).
 - **Steps:** freeze -> generate -> audit (CPU), in parallel with Qwen features (GPU 0) -> targets (1 worker) -> hand
