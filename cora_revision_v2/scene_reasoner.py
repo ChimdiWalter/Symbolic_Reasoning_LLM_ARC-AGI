@@ -26,6 +26,7 @@ FOLD_FRAGILITY, CERTIFIED) use the training pairs and test inputs only. No answe
 """
 import os
 import sys
+import time
 
 import numpy as np
 
@@ -242,6 +243,9 @@ def version_space(pairs, views=None, geom_cap=GEOM_CAP, stats=None):
 
 def predict(h, test_input):
     from geocat_arc.object_reasoning.types import SegmentationVariant as V
+    if h.get("family") == "select":
+        from cora_revision_v2 import selection as SEL
+        return SEL.predict(h, test_input)
     A = np.asarray(test_input)
     ctxs = [GG.Ctx(o, A) for o in _objects(test_input, V(h["view"]))]
     out = _predict([(A, ctxs)], h["expr"], h["policy"], h["table"], h["const"])
@@ -269,7 +273,12 @@ def _required_keys(h, grid):
         return set()
     A = np.asarray(grid)
     f = h["policy"].split(":")[1]
-    return {_feature(x, f) for x in (GG.Ctx(o, A) for o in _objects(grid, V(h["view"]))) if geometry_prov(h["expr"], x)}
+    xs = (GG.Ctx(o, A) for o in _objects(grid, V(h["view"])))
+    if h.get("family") == "select":                                     # only the objects its guard selects act
+        from cora_revision_v2 import selection as SEL
+        vals = {tuple(v) if isinstance(v, list) else v for v in h["guard"][1]}
+        xs = (x for x in xs if SEL._feat(x, h["guard"][0]) in vals)
+    return {_feature(x, f) for x in xs if geometry_prov(h["expr"], x)}
 
 
 def table_support(h, train, test_inputs):
@@ -306,14 +315,32 @@ def _fold_detail(fh, npos, ranked, ok, held, test_inputs):
             "missing_keys": sorted({k for _p, k in missing}), "test_needs_missing_key": test_needs}
 
 
-def reason(train, test_inputs):
-    """train: [(input, output)], test_inputs: [input]. Returns a decision record (no answers read)."""
-    by_view = {}
-    hyps, npos = version_space(train, stats=by_view)
-    rec = {"n_hypotheses": len(hyps), "n_positional": npos, "n_positional_by_view": by_view,
+def _hypotheses(pairs, families, select_cpu, stats=None, sel=None):
+    """The union of the enabled families' version spaces. `sel` (a dict) receives the selection family's counts."""
+    hyps, npos = version_space(pairs, stats=stats)
+    if "select" in families:
+        from cora_revision_v2 import selection as SEL
+        sh, nsel, complete = SEL.version_space(pairs, deadline=time.process_time() + select_cpu)
+        hyps = hyps + sh
+        if sel is not None:
+            sel["n_selective"] = sel.get("n_selective", 0) + nsel
+            sel["complete"] = sel.get("complete", True) and complete
+    return hyps, npos
+
+
+def reason(train, test_inputs, families=("grow",), select_cpu=120.0):
+    """train: [(input, output)], test_inputs: [input]. Returns a decision record (no answers read).
+    families: "grow" (one geometry for every object) and optionally "select" (a feature guard chooses the acting
+    objects; `selection.py`). The same families are searched again inside every fold."""
+    by_view, sel = {}, {}
+    hyps, npos = _hypotheses(train, families, select_cpu, stats=by_view, sel=sel)
+    rec = {"families": list(families), "n_hypotheses": len(hyps), "n_positional": npos, "n_positional_by_view": by_view,
            "cap_hit_views": sorted(v for v, n in by_view.items() if n >= GEOM_CAP)}
+    if "select" in families:
+        rec["n_selective"], rec["select_complete"] = sel.get("n_selective", 0), sel.get("complete", True)
     if not hyps:
-        rec["diagnosis"] = "NO_CONSISTENT_HYPOTHESIS:" + ("COLOUR_POLICY_GAP" if npos else "GEOMETRY_GAP")
+        geom = npos or rec.get("n_selective")
+        rec["diagnosis"] = "NO_CONSISTENT_HYPOTHESIS:" + ("COLOUR_POLICY_GAP" if geom else "GEOMETRY_GAP")
         return rec
     attempts, unique = [], True
     for t in test_inputs:
@@ -327,14 +354,17 @@ def reason(train, test_inputs):
                                                  "complexity": list(d["first"]["complexity"])} for d in ranked])
     rec["attempts"] = attempts
     rec["top"] = {k: (v if k != "expr" else GG.pretty(v)) for k, v in sorted(hyps, key=lambda h: h["complexity"])[0].items()
-                  if k in ("view", "expr", "policy")}
+                  if k in ("view", "expr", "policy", "guard", "family")}
     if not unique:
         rec["diagnosis"] = "MANY_CONSISTENT_DISAGREE"
         return rec
     folds, detail = [], []
     for i in range(len(train)):
         rest = [p for j, p in enumerate(train) if j != i]
-        fh, fn = version_space(rest)
+        fsel = {}
+        fh, fn = _hypotheses(rest, families, select_cpu, sel=fsel)
+        if "select" in families and not fsel.get("complete", True):
+            rec["select_complete"] = False
         r = _decide(fh, train[i][0]) if fh else []
         ok = len(r) == 1 and np.array_equal(np.asarray(r[0]["pred"]), np.asarray(train[i][1]))
         folds.append("SUCCESS" if ok else ("ABSTAIN_TIE" if len(r) > 1 else "LOO_FAILURE"))

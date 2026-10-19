@@ -43,13 +43,14 @@ def blind_bundle(corpus):
     return {k: {"train": _pairs(t["train"]), "test_inputs": _inputs(t["test"])} for k, t in sorted(tasks.items())}
 
 
-def one(bundle_path, key, out_path):
+def one(bundle_path, key, out_path, families="grow"):
     from cora_funnel import run as FR                                  # noqa: F401  (sealed flags)
     from cora_revision_v2 import scene_reasoner as SR
     from cora_revision_v2 import diagnosis as DG
     t = json.load(open(bundle_path))[key]
     t0 = time.process_time()
-    rec = SR.reason(t["train"], t["test_inputs"])
+    fam = tuple(families.split(","))
+    rec = SR.reason(t["train"], t["test_inputs"], families=fam)
     t1 = time.process_time()
     diags = DG.diagnose(t["train"], t["test_inputs"], rec)
     dec = DG.decision(rec, diags)
@@ -57,12 +58,13 @@ def one(bundle_path, key, out_path):
            "tier": dec["tier"], "attempts": dec["attempts"], "top": rec.get("top"), "folds": rec.get("folds"),
            "fold_detail": rec.get("fold_detail"), "test_table_support": rec.get("test_table_support"),
            "n_hypotheses": rec.get("n_hypotheses"), "n_positional": rec.get("n_positional"),
-           "cap_hit_views": rec.get("cap_hit_views"), "distinct": rec.get("distinct"),
+           "cap_hit_views": rec.get("cap_hit_views"), "distinct": rec.get("distinct"), "families": list(fam),
+           "n_selective": rec.get("n_selective"), "select_complete": rec.get("select_complete"),
            "diagnoses": diags, "cpu_reason_s": round(t1 - t0, 1), "cpu_diagnose_s": round(time.process_time() - t1, 1)}
     json.dump(row, open(out_path, "w"))
 
 
-def run(corpus, workers, cpu, tag):
+def run(corpus, workers, cpu, tag, families="grow"):
     os.makedirs(OUT, exist_ok=True)
     tmp = os.path.join(OUT, f"tmp_{corpus}_{tag}")
     os.makedirs(tmp, exist_ok=True)
@@ -85,7 +87,7 @@ def run(corpus, workers, cpu, tag):
                 k = todo.pop(0)
                 op = os.path.join(tmp, f"{k}.json")
                 ep = open(os.path.join(tmp, f"{k}.err"), "w")
-                p = subprocess.Popen([sys.executable, "-m", "cora_revision_v2.run_v2", "--one", bpath, k, op],
+                p = subprocess.Popen([sys.executable, "-m", "cora_revision_v2.run_v2", "--one", bpath, k, op, families],
                                      cwd=HERE, preexec_fn=limit, stdout=subprocess.DEVNULL, stderr=ep)
                 ep.close()
                 running[k] = (p, op, time.time())
@@ -141,17 +143,18 @@ def evaluate(corpus, tag):
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     if argv and argv[0] == "--one":
-        return one(*argv[1:4])
+        return one(*argv[1:5])
     ap = argparse.ArgumentParser()
     ap.add_argument("--corpus", required=True, choices=ENGINEERING)
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--cpu", type=int, default=900)
     ap.add_argument("--tag", default="eng")
     ap.add_argument("--evaluate", action="store_true")
+    ap.add_argument("--families", default="grow", help="comma-separated: grow[,select]")
     a = ap.parse_args(argv)
     if a.evaluate:
         return evaluate(a.corpus, a.tag)
-    run(a.corpus, min(a.workers, 2), a.cpu, a.tag)
+    run(a.corpus, min(a.workers, 2), a.cpu, a.tag, a.families)
 
 
 if __name__ == "__main__":

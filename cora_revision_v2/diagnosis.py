@@ -97,23 +97,25 @@ def colour_probe(train, views=None, k=50):
 
 
 def per_demo_geometry(train, views=None, budget_s=60.0):
-    """Does each demonstration ALONE admit a single expression in some view? (cap 1 per view; CPU-time bounded.)"""
+    """Does each demonstration ALONE admit a single expression in some view, acting on a SUBSET of its objects
+    (objects whose additions would overreach left out)? A uniform fit is a special case. CPU-time bounded."""
     from geocat_arc.object_reasoning.types import SegmentationVariant as V
-    from cora_fhr.oracle_expressibility import _fits
+    from cora_revision_v2.selection import demo_fits_selectively
     t0, fit, complete = time.process_time(), [], True
     for a, b in train:
         ok = False
         for view in (views or list(V)):
-            if time.process_time() - t0 > budget_s:
+            r = demo_fits_selectively((a, b), view, deadline=t0 + budget_s)
+            if r is None:
                 complete = False
                 break
-            if _fits([(a, b)], view, cap=1):
+            if r:
                 ok = True
                 break
         fit.append(ok if complete or ok else None)
         if not complete:
             break
-    return {"demo_fits": fit, "complete": complete, "cpu_s": round(time.process_time() - t0, 1)}
+    return {"demo_fits_selectively": fit, "complete": complete, "cpu_s": round(time.process_time() - t0, 1)}
 
 
 # ---------------------------------------------------------------- the diagnosis
@@ -134,9 +136,10 @@ def diagnose(train, test_inputs, rec, budget_s=60.0):
 
     if diag == "NO_CONSISTENT_HYPOTHESIS:GEOMETRY_GAP":
         causes = ["the demonstrations also delete or recolour cells, or change size: outside this additive class",
-                  "additions only, but the rule differs across demonstrations (needs a guard or a composition)",
-                  "additions only, and no single expression fits even one demonstration in these views "
-                  "(geometry or representation outside this class)"]
+                  "additions only, but only some objects act, or the rule differs across demonstrations "
+                  "(needs a selection guard or a composition)",
+                  "additions only, and no single expression fits even one demonstration on any subset of its "
+                  "objects in these views (geometry or representation outside this class)"]
         if not additive:
             mixed = lab.startswith("mixed:")
             label = "MULTIPLE_ACTIONS_NEEDED" if mixed else "GEOMETRY_GAP"
@@ -147,9 +150,10 @@ def diagnose(train, test_inputs, rec, budget_s=60.0):
                           "TYPED_SCENE_TRANSFORM"))
         else:
             pd = per_demo_geometry(train, budget_s=budget_s)
-            if pd["complete"] and all(pd["demo_fits"]):
+            if pd["complete"] and all(pd["demo_fits_selectively"]):
                 sup, act = causes[1], "GUARDED_GEOMETRY"
-                unc = "a guard that separates the demonstrations may not exist, or may not be supported by them"
+                unc = ("a guard over the available features may not exist" + (
+                    "; the selection family was searched and found none" if "select" in rec.get("families", []) else ""))
             elif pd["complete"]:
                 sup, act = causes[2], "ABSTAIN"
                 unc = ("this class does not express it; a guarded, deeper or re-segmented program was not tried. "
@@ -162,7 +166,8 @@ def diagnose(train, test_inputs, rec, budget_s=60.0):
                               f"per-demonstration fit, budget {budget_s} s CPU", pd, "undetermined", "untested",
                               "WIDEN_SEARCH"))
             out.append(_d("GEOMETRY_GAP", "no single expression reproduces the added positions in any view", causes,
-                          "fit each demonstration alone (cap 1 per view)", pd, sup, unc, act))
+                          "fit each demonstration alone, on any subset of its objects (first fit per view)", pd, sup,
+                          unc, act))
 
     elif diag == "NO_CONSISTENT_HYPOTHESIS:COLOUR_POLICY_GAP":
         causes = ["an object's added cells carry several colours that its source cells do not explain",

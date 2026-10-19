@@ -368,3 +368,33 @@ def test_v2_fold_detail_and_diagnosis_tiers():
     assert g[0]["next_action"] == "TYPED_SCENE_TRANSFORM" and "recolour" in g[0]["supports"]
     import inspect
     assert "answer" not in inspect.signature(DG.diagnose).parameters
+
+
+def test_v2_selection_family_guards_which_objects_act():
+    """Typed scene transformation, first slice: a feature guard selects which objects a geometry acts on. The
+    unguarded class cannot fit a task where only colour-1 objects grow; the selection family fits it, predicts the
+    test, and the per-demonstration probe reports a selective fit. Only training pairs and test inputs are read."""
+    from cora_revision_v2 import scene_reasoner as SR
+    from cora_revision_v2 import selection as SEL
+    from geocat_arc.object_reasoning.types import SegmentationVariant as V
+
+    def mk(objs, H=8, W=10):
+        A = np.zeros((H, W), int)
+        for (r, c), v in objs:
+            A[r, c] = v
+        B = A.copy()
+        for (r, c), v in objs:
+            if v == 1:
+                B[r, c + 1:] = np.where(B[r, c + 1:] == 0, v, B[r, c + 1:])
+        return A.tolist(), B.tolist()
+    train = [mk([((1, 2), 1), ((4, 5), 2), ((6, 1), 1)]), mk([((2, 4), 2), ((5, 3), 1)])]
+    test_in, test_out = mk([((0, 1), 1), ((3, 6), 2), ((7, 2), 1)])
+    assert SEL.demo_fits_selectively(train[0], V("S1"))
+    base = SR.reason(train, [test_in])
+    assert base["diagnosis"].startswith("NO_CONSISTENT_HYPOTHESIS") or test_out not in base["attempts"][0]
+    rec = SR.reason(train, [test_in], families=("grow", "select"))
+    assert rec["n_selective"] > 0 and rec["attempts"] and rec["attempts"][0][0] == test_out
+    assert rec["n_hypotheses"] > base.get("n_hypotheses", 0)
+    # the union can create disagreement: a base-family hypothesis that fits the demonstrations may predict differently,
+    # which is why a revision family is applied where the diagnosis asks for it, not everywhere
+    assert rec["diagnosis"] in ("MANY_CONSISTENT_DISAGREE", "FOLD_FRAGILITY", "CERTIFIED")
