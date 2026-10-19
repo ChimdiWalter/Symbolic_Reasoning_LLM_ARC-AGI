@@ -18,6 +18,8 @@ submission without fresh explicit authorization). Progress:
 - [x] BROAD SUMMIT REVIEW DRAFTS (2026-10-18): docs/summit_20261023_reframe/{poster_review.tex,.pdf,.pptx; explainer_review.tex,.pdf (8 p);
       PITCH_2MIN.md}; new figure docs/summit_poster/figures/fig_fhr_real_witness_ka95aa62f67d9.png (7 existing figures unchanged);
       originals untouched. Awaiting Toni/Chris/Pierce by Oct 20; print freeze Oct 21
+- [x] FORENSIC CEILING (2026-10-19): 56/58 need operations outside G-grow, so language reach is the bottleneck
+      (records/CORA_FHR_ORACLE_CEILING_20261019.md). Step B advanced to 475/497 (read-only)
 - [x] GENERALIZATION TEST DONE 22:18Z: NEGATIVE, 0 of 58 constructed solves in every arm (0 wrong, 0 lost; native 1); no discordant
       pairs, so the version STOPPED; no relabelling (nothing certified). Was: (user-authorized 17:40Z): records/CORA_FHR_GUARD_GENERALIZATION_PROTOCOL_20261018.md (frozen ad4127a);
       outputs/cora_fhr/followup_gen.sh (script PID 1108821), log followup_gen.log, status gen_status.json, rows rows_standin58_gen.jsonl

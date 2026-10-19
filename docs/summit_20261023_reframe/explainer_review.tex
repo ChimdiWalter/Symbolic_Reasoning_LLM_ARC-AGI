@@ -219,7 +219,9 @@ either; the original solver alone got 1. So the real-puzzle success did not gene
 failure showed no advantage. Construction rarely even proposed a rule (at most 6 of the 58), and the
 solver usually rejected what was proposed. The bottleneck is upstream: CORA rarely has the right evidence,
 or a rich enough language, to build the missing rule. Choosing the revision cannot help until that is
-fixed.
+fixed. A forensic check that is allowed to read the answers confirms it: even knowing the answer, 56 of the
+58 puzzles need an operation my building-block list cannot express. So the next frontier is learning the
+language itself: grammar induction, which is exactly one of the three questions in Part 1.
 
 \panel{13. From puzzles to science (proposed, not tested)}
 \cue{column 3, ``Scientific prediction''}

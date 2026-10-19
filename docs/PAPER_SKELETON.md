@@ -1640,6 +1640,11 @@ construction. H3 is therefore untestable on this corpus; mixed-coverage families
 - The real-task guarded solve (ka95aa62f67d9) did not generalize. The bottleneck is evidence and the
   language's reach.
 
+**Forensic expressibility ceiling** (evaluator-only; `records/CORA_FHR_ORACLE_CEILING_20261019.md`). Given the true
+answers, 56 of the 58 pool tasks need operations outside G-grow (50 inexpressible; 6 need multi-colour growth).
+Of the 2 expressible tasks, 1 lost its evidence in the folds and 1 lacked failure evidence. The language's
+reach is the bottleneck.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
