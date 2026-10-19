@@ -219,8 +219,9 @@ def fit_policies(data, expr):
     return found
 
 
-def version_space(pairs, views=None, geom_cap=GEOM_CAP):
-    """All (view, expr, policy) hypotheses reproducing every pair exactly. Returns (hyps, n_positional)."""
+def version_space(pairs, views=None, geom_cap=GEOM_CAP, stats=None):
+    """All (view, expr, policy) hypotheses reproducing every pair exactly. Returns (hyps, n_positional).
+    If `stats` is a dict, it receives the number of positional fits per view (a view at geom_cap may be truncated)."""
     from geocat_arc.object_reasoning.types import SegmentationVariant as V
     from cora_fhr.oracle_expressibility import _fits
     hyps, npos = [], 0
@@ -228,7 +229,10 @@ def version_space(pairs, views=None, geom_cap=GEOM_CAP):
         data = _scene(pairs, view)
         if data is None:
             return [], 0
-        for expr in _fits(pairs, view, cap=geom_cap):
+        fits = _fits(pairs, view, cap=geom_cap)
+        if stats is not None:
+            stats[view.value] = len(fits)
+        for expr in fits:
             npos += 1
             for pol, table, const in fit_policies(data, expr):
                 hyps.append({"view": view.value, "expr": expr, "policy": pol, "table": table, "const": const,
@@ -250,15 +254,64 @@ def _decide(hyps, test_input):
         p = predict(h, test_input)
         if p is None:
             continue
-        preds.setdefault(str(p), {"pred": p, "support": 0, "first": h})["support"] += 1
+        d = preds.setdefault(str(p), {"pred": p, "support": 0, "first": h, "views": set()})
+        d["support"] += 1
+        d["views"].add(h["view"])
     ranked = sorted(preds.values(), key=lambda d: (-d["support"], d["first"]["complexity"]))
     return ranked
 
 
+# ---------------------------------------------------------------- why a hypothesis is not enough (observable)
+def _required_keys(h, grid):
+    """Table keys a TABLE hypothesis needs on `grid`: the feature of every object its geometry adds cells to."""
+    from geocat_arc.object_reasoning.types import SegmentationVariant as V
+    if not h["policy"].startswith("TABLE:"):
+        return set()
+    A = np.asarray(grid)
+    f = h["policy"].split(":")[1]
+    return {_feature(x, f) for x in (GG.Ctx(o, A) for o in _objects(grid, V(h["view"]))) if geometry_prov(h["expr"], x)}
+
+
+def table_support(h, train, test_inputs):
+    """For a TABLE hypothesis: each table key the TEST inputs need -> how many demonstrations use that entry.
+    An entry used by one demonstration cannot survive leave-one-out: the fold that omits it has no such entry."""
+    if not h["policy"].startswith("TABLE:"):
+        return {}
+    need = set().union(*[_required_keys(h, t) for t in test_inputs])
+    per_demo = [_required_keys(h, a) for a, _b in train]
+    return {str(k): sum(k in s for s in per_demo) for k in sorted(need, key=str)}
+
+
+def _fold_detail(fh, npos, ranked, ok, held, test_inputs):
+    """Why one omitted-demonstration fold failed. Reads the fold's hypotheses, the held-out DEMONSTRATION (a training
+    pair) and the test INPUTS; never a test answer."""
+    if ok:
+        return {"outcome": "SUCCESS"}
+    if not fh:
+        return {"outcome": "EMPTY_VERSION_SPACE", "n_positional": npos}
+    if len(ranked) > 1:
+        return {"outcome": "TIE", "n_distinct": len(ranked),
+                "truth_among": any(np.array_equal(np.asarray(d["pred"]), np.asarray(held[1])) for d in ranked)}
+    if ranked:
+        return {"outcome": "WRONG_UNIQUE"}
+    missing, other, test_needs = set(), 0, False
+    for h in fh:
+        m = _required_keys(h, held[0]) - set(h["table"] or {})
+        if not m:
+            other += 1
+            continue
+        missing |= {(h["policy"], str(k)) for k in m}
+        test_needs = test_needs or any(_required_keys(h, t) & m for t in test_inputs)
+    return {"outcome": "UNPREDICTABLE", "cause": "UNSEEN_TABLE_KEY" if missing and not other else "POLICY_UNDEFINED",
+            "missing_keys": sorted({k for _p, k in missing}), "test_needs_missing_key": test_needs}
+
+
 def reason(train, test_inputs):
     """train: [(input, output)], test_inputs: [input]. Returns a decision record (no answers read)."""
-    hyps, npos = version_space(train)
-    rec = {"n_hypotheses": len(hyps), "n_positional": npos}
+    by_view = {}
+    hyps, npos = version_space(train, stats=by_view)
+    rec = {"n_hypotheses": len(hyps), "n_positional": npos, "n_positional_by_view": by_view,
+           "cap_hit_views": sorted(v for v, n in by_view.items() if n >= GEOM_CAP)}
     if not hyps:
         rec["diagnosis"] = "NO_CONSISTENT_HYPOTHESIS:" + ("COLOUR_POLICY_GAP" if npos else "GEOMETRY_GAP")
         return rec
@@ -270,20 +323,27 @@ def reason(train, test_inputs):
             return rec
         unique = unique and len(ranked) == 1
         attempts.append([d["pred"] for d in ranked[:2]])
+        rec.setdefault("distinct", []).append([{"support": d["support"], "views": sorted(d["views"]),
+                                                 "complexity": list(d["first"]["complexity"])} for d in ranked])
     rec["attempts"] = attempts
     rec["top"] = {k: (v if k != "expr" else GG.pretty(v)) for k, v in sorted(hyps, key=lambda h: h["complexity"])[0].items()
                   if k in ("view", "expr", "policy")}
     if not unique:
         rec["diagnosis"] = "MANY_CONSISTENT_DISAGREE"
         return rec
-    folds = []
+    folds, detail = [], []
     for i in range(len(train)):
         rest = [p for j, p in enumerate(train) if j != i]
-        fh, _n = version_space(rest)
+        fh, fn = version_space(rest)
         r = _decide(fh, train[i][0]) if fh else []
         ok = len(r) == 1 and np.array_equal(np.asarray(r[0]["pred"]), np.asarray(train[i][1]))
         folds.append("SUCCESS" if ok else ("ABSTAIN_TIE" if len(r) > 1 else "LOO_FAILURE"))
+        detail.append(_fold_detail(fh, fn, r, ok, train[i], test_inputs))
     rec["folds"] = folds
+    rec["fold_detail"] = detail
+    top = sorted(hyps, key=lambda h: h["complexity"])[0]
+    if top["policy"].startswith("TABLE:"):
+        rec["test_table_support"] = table_support(top, train, test_inputs)
     rec["diagnosis"] = "CERTIFIED" if all(f == "SUCCESS" for f in folds) else "FOLD_FRAGILITY"
     rec["certified"] = rec["diagnosis"] == "CERTIFIED"
     return rec

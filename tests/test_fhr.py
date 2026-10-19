@@ -331,3 +331,40 @@ def test_v2_scene_reasoner_geometry_colour_and_ambiguity():
     assert rec["n_hypotheses"] > 0 and rec.get("attempts")
     assert any(h_pol in ("ORIGIN", "OBJ_MAJ", "NEAREST") for h_pol in [rec["top"]["policy"]])   # colour from the object, not a constant
     assert any(p == [[0] * 5, [0] * 5, [0] * 5, [0, 0, 9, 9, 9], [0] * 5] for p in rec["attempts"][0])
+
+
+def test_v2_fold_detail_and_diagnosis_tiers():
+    """Reasoning v2 diagnosis: a fold that fails only because the held-out demonstration needs a table entry no other
+    demonstration shows is UNSEEN_TABLE_KEY (evidence), reported with its test relevance and per-entry support; it
+    leads to an EXPLORATORY (uncertified) attempt, while a fold that rebuilds a different unique answer is
+    DISCOURAGED. Non-additive demonstrations route to the typed scene transformation. No answer is read."""
+    from cora_revision_v2 import scene_reasoner as SR
+    from cora_revision_v2 import diagnosis as DG
+    from geocat_arc.object_reasoning.types import SegmentationVariant as V
+    A = np.zeros((7, 7), int)
+    A[1, 1] = 5
+    A[4, 1] = A[4, 2] = 5
+    A2 = np.zeros((7, 7), int)
+    A2[2, 3] = 5
+    objs = [GG.Ctx(o, A) for o in SR._objects(A.tolist(), V("S1"))]
+    expr = next(e for e in GG.expressions() if all(SR.geometry_prov(e, x) for x in objs))
+    h = {"view": "S1", "expr": expr, "policy": "TABLE:size", "table": {1: 2}, "const": None}
+    assert SR._required_keys(h, A.tolist()) == {1, 2}
+    det = SR._fold_detail([h], 1, [], False, (A.tolist(), A.tolist()), [A.tolist()])
+    assert det["outcome"] == "UNPREDICTABLE" and det["cause"] == "UNSEEN_TABLE_KEY"
+    assert det["missing_keys"] == ["2"] and det["test_needs_missing_key"]
+    assert SR.table_support(h, [(A.tolist(), A.tolist()), (A2.tolist(), A2.tolist())], [A.tolist()]) == {"1": 2, "2": 1}
+    rec = {"diagnosis": "FOLD_FRAGILITY", "attempts": [[A.tolist()]], "fold_detail": [det, {"outcome": "SUCCESS"}],
+           "test_table_support": {"1": 2, "2": 1}}
+    tr = [(A.tolist(), A.tolist()), (A2.tolist(), A2.tolist())]
+    d = DG.diagnose(tr, [A.tolist()], rec)
+    assert [x["label"] for x in d] == ["FOLD_FRAGILITY"] and d[0]["next_action"] == "EXPLORATORY_ATTEMPT"
+    assert DG.decision(rec, d)["tier"] == "EXPLORATORY"
+    rec["fold_detail"] = [{"outcome": "WRONG_UNIQUE"}, {"outcome": "SUCCESS"}]
+    assert DG.decision(rec, DG.diagnose(tr, [A.tolist()], rec))["tier"] == "DISCOURAGED"
+    B = A.copy()
+    B[1, 1] = 3                                                       # a recolour: outside the additive class
+    g = DG.diagnose([(A.tolist(), B.tolist())], [A.tolist()], {"diagnosis": "NO_CONSISTENT_HYPOTHESIS:GEOMETRY_GAP"})
+    assert g[0]["next_action"] == "TYPED_SCENE_TRANSFORM" and "recolour" in g[0]["supports"]
+    import inspect
+    assert "answer" not in inspect.signature(DG.diagnose).parameters
