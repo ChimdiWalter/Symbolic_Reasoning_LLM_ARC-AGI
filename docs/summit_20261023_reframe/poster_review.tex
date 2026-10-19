@@ -54,7 +54,7 @@
 \graphicspath{{../summit_poster/}}
 \title{\parbox{0.94\linewidth}{\centering Learning What to Change: From Visual Reasoning\\ to Scientific Hypothesis Revision}}
 \author{Chimdi Walter Ndubuisi \quad University of Missouri}
-\institute{Executable reasoning, failure diagnosis and generalization across semantic domains \,$\cdot$\, {\color{critical}REVIEW DRAFT, 18 October}}
+\institute{Executable reasoning, failure diagnosis and generalization across semantic domains \,$\cdot$\, {\color{critical}REVIEW DRAFT, 19 October}}
 
 \tikzset{
   stage/.style={rounded corners=8pt, draw=accent, line width=2.2pt, fill=white, align=center,
@@ -97,23 +97,26 @@
 }
 \block{\bt{Where this sits}}{\bodyfont
   \begin{itemize}
-    \item \textbf{Popper} (Cropper \& Morel): program induction that learns from failed hypotheses.
-    \item \textbf{DreamCoder} (Ellis et al.), \textbf{LILO} (Grand et al.): growing reusable program libraries.
-    \item \textbf{Model Discovery Agent} (Murphy): model inadequacy driving hypothesis revision and experiment design.
+    \item \textbf{Popper} (Cropper \& Morel 2021): program induction that learns from failed hypotheses.
+    \item \textbf{DreamCoder} (Ellis et al.\ 2021), \textbf{LILO} (Grand et al.\ 2024): growing reusable program libraries.
+    \item \textbf{Model Discovery Agent} (Murphy 2026): model inadequacy driving hypothesis revision and experiment design.
     \item Frontier neural reasoners are strong; they are comparisons, not straw men.
   \end{itemize}
   \secfont The narrower question here: choosing \emph{which component} to revise, and showing that this choice
   beats an equally equipped system that does not use the diagnosis.
 }
-\block{\bt{Four achievements, four statuses}}{\bodyfont\secfont
-  \renewcommand{\arraystretch}{1.25}
-  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.56\linewidth}>{\raggedright\arraybackslash}p{0.40\linewidth}@{}}
+\block{\bt{Seven capabilities, seven statuses}}{\bodyfont\secfont
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.47\linewidth}>{\raggedright\arraybackslash}p{0.49\linewidth}@{}}
   \toprule
-  achievement & status \\ \midrule
-  detect certain reasoning failures & built, with limits \\
-  construct and verify an executable correction & one synthetic and one exposed real task; 0 of 58 on an independent set \\
-  learn to choose better revisions from failures & \textbf{not established} \\
-  transfer a revision policy to biology & \textbf{not tested} \\ \bottomrule
+  capability & status \\ \midrule
+  failure diagnosis & built, with limits \\
+  independent verification & built: engine gate, rebuilt folds, removal test \\
+  program construction & 1 synthetic + 1 exposed real task; \textbf{0 of 58} independent \\
+  revision selection & \textbf{not established} \\
+  representation induction & \textbf{not built} \\
+  grammar induction & \textbf{not built}; Step B is testing a route (running) \\
+  transfer to biology & \textbf{not tested} \\ \bottomrule
   \end{tabular}
 }
 \block{\bt{The message}}{\bodyfont
@@ -181,8 +184,11 @@
   produced a certified answer: learning from the failure, failure-blind, shuffled, and a new arm that learns
   \emph{where} from the boundary between explained and memorized objects all scored 0 of 58, with 0 wrong.
   Frozen CORA solved 1. The real-task solve did not generalize, and the failure record showed no advantage.
-  A forensic check that reads the answers shows why: 56 of the 58 need operations the grammar cannot
-  express. The language's reach is the bottleneck, which is the grammar-induction question.
+  An evaluator-only check that reads the answers suggests why. For 50 of the 58, no single grammar
+  expression fits the changed cells in any of seven object views, and 5 more need colour rules it lacks.
+  Guarded or deeper programs were not tested. This is an expressivity hypothesis, which points to grammar
+  induction. \textbf{Step B}, a separate experiment that extends the language itself, is still running, with
+  no verdict.
 }
 \block{\bt{Scientific prediction \;{\color{critical}PROPOSED, NOT TESTED}}}{\bodyfont\secfont
   With molecular measurements, should the system revise its representation, revise its hypothesis, or ask

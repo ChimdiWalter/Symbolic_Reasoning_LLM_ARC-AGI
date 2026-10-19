@@ -40,7 +40,7 @@ def _objects(grid, view):
     return [{(int(r), int(c)): int(v) for (r, c), v in cell_colors_of(o).items()} for o in S.segment(g, view, S.background_for(g, view))]
 
 
-def _fits(pairs, view):
+def _fits(pairs, view, cap=3):
     """Canonical-first G-grow expressions whose per-object union equals each pair's changed cells (cached)."""
     from cora_fhr import ggrow as GG
     data = []
@@ -79,7 +79,7 @@ def _fits(pairs, view):
                 break
         if ok:
             found.append(e)
-            if len(found) >= 3:
+            if cap is not None and len(found) >= cap:
                 break
     return found
 
@@ -133,3 +133,45 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
+
+
+def colour_audit(corpus="standin58"):
+    """Exhaustive colour check (2026-10-19 audit). For each position-expressible task, test EVERY fitting single
+    expression in EVERY view, not just the first. Passing means the true added cells have one colour per object in
+    every pair (what a single-colour growth action can produce). Also records whether that colour is constant
+    across the task or equals the object's own (majority) colour. Evaluator-only."""
+    from cora_funnel import run as FR                                  # noqa: F401
+    from cora_fhr import ggrow as GG
+    from geocat_arc.object_reasoning.types import SegmentationVariant as V
+    ox = {r["key"]: r for r in json.load(open(os.path.join(OUT, f"oracle_expressibility_{corpus}.json")))["tasks"]}
+    tasks = json.load(open(os.path.join(OUT, f"{corpus}.json")))["tasks"]
+    out = {}
+    for k, r in sorted(ox.items()):
+        if r["class"] == "INEXPRESSIBLE":
+            continue
+        pairs = [(a, b) for a, b in tasks[k]["train"] + tasks[k]["test"]]
+        res = {"fitting_examined": 0, "one_colour_per_object": 0, "constant_colour": 0, "object_colour": 0, "examples": []}
+        for view in V:
+            for e in _fits(pairs, view, cap=None):
+                res["fitting_examined"] += 1
+                single, cols, own = True, set(), True
+                for a, b in pairs:
+                    A, B = np.asarray(a), np.asarray(b)
+                    for o in [o for o in _objects(a, view) if o]:
+                        cells = GG.evaluate(e, GG.Ctx(o, A))
+                        cs = {int(B[p]) for p in cells}
+                        if len(cs) > 1:
+                            single = False
+                        cols |= cs
+                        if cs and cs != {GG.Ctx(o, A).majority}:
+                            own = False
+                if single:
+                    res["one_colour_per_object"] += 1
+                    res["constant_colour"] += len(cols) == 1
+                    res["object_colour"] += own
+                    if len(res["examples"]) < 3:
+                        res["examples"].append(f"{view.value}: {GG.pretty(e)}")
+        out[k] = res
+        print(k, res, flush=True)
+    json.dump({"label": "FORENSIC colour audit: every fitting single expression in every view", "tasks": out},
+              open(os.path.join(OUT, f"oracle_colour_audit_{corpus}.json"), "w"), indent=1)

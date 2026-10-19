@@ -25,7 +25,11 @@ Here is the honest part. A version that ignores the failure record finds the sam
 book that picks which fix to try missed the one puzzle that extra search had solved.
 
 So building a rule and learning what to change are different capabilities, and only the first is shown.
-The second is my research question. A 58-puzzle test is running now.
+Then the decisive test: on 58 puzzles chosen by a fixed rule in advance, every rule-building version scored 0,
+with 0 wrong. A check that reads the answers suggests why. For 50 of the 58, no single rule in my language
+fits the changes in any of seven ways of seeing the objects. That is a hypothesis, not a proof, but it
+points to the real problem: the system has to grow its own language. That is grammar induction, and a
+separate experiment on it is running now.
 
 The longer goal is to see whether that skill, the policy for deciding what to revise, transfers to
 science: deciding whether a molecular model needs a new representation, a revised hypothesis or a new
@@ -33,5 +37,5 @@ experiment. That is a proposal; nothing in biology has been tested.
 
 ---
 
-*Benchmark line, if asked:* native CORA scores 0.00 on Kaggle. A reproduction of the published NVARC model
+*Benchmark line, if asked:* native CORA and the CORA-FHR entry both score 0.00 on Kaggle. A reproduction of the published NVARC model
 scores 27.64, and it is not CORA.

@@ -3,7 +3,7 @@
 **Files to review (drafts; the originals in `docs/summit_poster/` are unchanged):**
 - `poster_review.pdf`: the A0 draft, with editable `poster_review.pptx` and source `poster_review.tex`;
 - `explainer_review.pdf`: an 8-page spoken explainer around the broader question (source `explainer_review.tex`);
-- `PITCH_2MIN.md`: the two-minute pitch;
+- `PITCH_2MIN.md`, `PITCH_90S.md`: the two-minute pitch and the 90-second explanation for Chollet and Knoop;
 - `CONTENT_PROPOSAL.md`, `BIO_PROBLEM_CONTRACT_DRAFT.md`.
 
 ## Five decisions we need from you

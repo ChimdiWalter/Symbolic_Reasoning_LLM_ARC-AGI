@@ -29,7 +29,7 @@
 \begin{document}
 {\LARGE\bfseries Learning what to change: the poster, explained\par}
 \vspace{0.3em}
-{\raggedright\color{ink2} REVIEW DRAFT, 18 October; for Toni, Chris and Pierce before anything is printed. Read the plain
+{\raggedright\color{ink2} REVIEW DRAFT, 19 October; for Toni, Chris and Pierce before anything is printed. Read the plain
 text aloud. Grey lines in brackets are notes to you. Every number is in
 \texttt{records/CORA\_SUMMIT\_CLAIM\_LEDGER\_20261017.md}, with its scope.\par}
 
@@ -88,19 +88,23 @@ checking is much harder.
 
 \bigpart{Part 3. What CORA actually demonstrates}
 
-\panel{4. Four achievements, four different statuses}
+\panel{4. Seven capabilities, seven different statuses}
 \cue{the table in column 1}
 \begin{center}
-\begin{tabular}{@{}p{0.55\linewidth}p{0.36\linewidth}@{}}
+\begin{tabular}{@{}p{0.30\linewidth}p{0.36\linewidth}p{0.28\linewidth}@{}}
 \toprule
-achievement & status today \\ \midrule
-detect certain reasoning failures & built, with limits \\
-construct and verify an executable correction & one synthetic and one exposed real puzzle; 0 of 58 on an independent set \\
-learn to choose better revisions from failures & \textbf{not established} \\
-transfer a revision policy to biology & \textbf{not tested} \\ \bottomrule
+capability & what it means & status today \\ \midrule
+failure diagnosis & noticing what went wrong (here: memorizing) & built, with limits \\
+independent verification & rebuilding a rule with each example hidden; removal test & built \\
+program construction & building a new executable rule & 1 practice + 1 real puzzle; 0 of 58 independent \\
+revision selection & choosing which part to change & \textbf{not established} \\
+representation induction & finding the right objects in new data & \textbf{not built} \\
+grammar induction & growing the language rules are written in & \textbf{not built}; Step B tests a route \\
+transfer & the same revision policy helping in biology & \textbf{not tested} \\ \bottomrule
 \end{tabular}
 \end{center}
-Keeping these four apart is what makes the larger idea credible.
+Keeping these apart is what makes the larger idea credible: today CORA diagnoses, verifies and sometimes
+constructs; it does not yet learn representations, learn its language, or choose revisions well.
 
 \needspace{26\baselineskip}\panel{5. Where CORA fails on real puzzles}
 \cue{the bar chart in column 2}
@@ -219,9 +223,13 @@ either; the original solver alone got 1. So the real-puzzle success did not gene
 failure showed no advantage. Construction rarely even proposed a rule (at most 6 of the 58), and the
 solver usually rejected what was proposed. The bottleneck is upstream: CORA rarely has the right evidence,
 or a rich enough language, to build the missing rule. Choosing the revision cannot help until that is
-fixed. A forensic check that is allowed to read the answers confirms it: even knowing the answer, 56 of the
-58 puzzles need an operation my building-block list cannot express. So the next frontier is learning the
-language itself: grammar induction, which is exactly one of the three questions in Part 1.
+fixed. A check that is allowed to read the answers, used only to diagnose and never shown to CORA, points the
+same way. For 50 of the 58 puzzles, no single rule from the building-block list fits the changed cells in
+any of seven ways of cutting the grid into objects. For 5 more, the rule would need colours the list cannot
+produce. I did not test combinations of rules, rules with conditions, or new ways of seeing objects, so
+this is a strong hint, not a proof, that the language itself is too small. That points to grammar
+induction, one of the three questions in Part 1. My separate Step B experiment tests one way to let the
+system extend its own language; it is still running and has no result yet.
 
 \panel{13. From puzzles to science (proposed, not tested)}
 \cue{column 3, ``Scientific prediction''}
