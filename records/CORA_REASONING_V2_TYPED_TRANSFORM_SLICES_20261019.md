@@ -90,3 +90,23 @@ composition. Two slices were built, one limitation at a time.
 
 Selection adds in-sample candidate answers and doubles cost. It has not produced a certified answer, and has not added
 a merged two-attempt gain. These are exposed tasks, so this is not evidence of generalization.
+
+## 5. Characterization of partial-object changes (engineering; training pairs only; no result claimed)
+
+**Question.** On the 22 routed dev60 tasks where no whole-object stage-1 rule exists, is the changed part of each
+partly changed object a part native's G-grow sources already define? The sources are self, part_minority,
+part_majority, the four edges, corners, centre and bbox, each intersected with the object. Or is the changed part a
+part that touches another object, or neither? The best view per task is taken.
+
+- **Script and output:** `outputs/cora_revision_v2/characterization/partial_parts.{py,json}`.
+
+| changed parts | tasks |
+|---|---|
+| all native-source parts, with one common source (edge:E; part_majority) | 2 |
+| some native-source parts | 8 |
+| no native-source part (in 3 of them the part mostly touches another object) | 7 |
+| no partly changed object in any view (whole-object multicolour changes or table conflicts) | 5 |
+
+**Implication, for planning only.** A part-aware stage 1 built from native sources would fully explain the in-place
+changes of at most 2 of these 22 tasks, and some of 8 more. Relational parts that touch other objects are the next
+most frequent. Neither figure is a prediction result.
