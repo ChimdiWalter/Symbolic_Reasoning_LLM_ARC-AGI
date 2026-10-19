@@ -93,20 +93,21 @@ def build():
 
 
 # ---------------------------------------------------------------- one native arm (child process)
-def native_one(arm, key, out_path):
+def native_one(arm, key, out_path, bundle_path=None):
     import numpy as np
     from cora_funnel import run as FR
     FR.cpu_clock()
     from cora_fhr import measure as M
     from cora_pilot import native as N
-    t = json.load(open(os.path.join(OUT, "bundle.json")))["tasks"][key]
+    bundle_path = bundle_path or os.path.join(OUT, "bundle.json")
+    t = json.load(open(bundle_path))["tasks"][key]
     train = [(np.asarray(p["input"], dtype=int), np.asarray(p["output"], dtype=int)) for p in t["train"]]
     tests = [np.asarray(p["input"], dtype=int) for p in t["test"]]
-    d = N.prepare_object_dir(os.path.join(OUT, "engines", key, arm))
+    d = N.prepare_object_dir(os.path.join(os.path.dirname(out_path), "engines", key, arm))
     rec, _prog = M.object_run(key, train, tests, d, budget_s=M.BUDGET_S * (F_B if arm == "B" else 1.0))
     json.dump({"key": key, "arm": arm, "committed": rec["predictions"] if rec["accepted"] else None,
                "certified": rec["accepted"], "run": rec, "f_B": F_B if arm == "B" else 1.0,
-               "bundle_sha256": _sha(os.path.join(OUT, "bundle.json"))}, open(out_path, "w"))
+               "bundle_sha256": _sha(bundle_path)}, open(out_path, "w"))
 
 
 # ---------------------------------------------------------------- preflight
@@ -135,6 +136,7 @@ def preflight(skip_slow=False):
         checks["tests_pass"] = t.returncode == 0
         checks["tests_summary"] = t.stdout.strip().splitlines()[-1] if t.stdout.strip() else t.stderr[-200:]
         checks["v_regression_identical"] = _v_regression()
+        checks["native_A_regression_identical"] = _native_regression()
     ok = all(v for k, v in checks.items() if k != "tests_summary")
     freeze = {"protocol_sha256": _sha(PROTOCOL), "commit": head, "f_B": F_B, "cpu_V": CPU_V, "workers": WORKERS,
               "wall_cap_s": WALL_CAP_S, "nice": NICE, "bundle_sha256": km["bundle_sha256"],
@@ -148,6 +150,24 @@ def preflight(skip_slow=False):
     json.dump(freeze, open(os.path.join(OUT, "freeze.json"), "w"), indent=1)
     print(json.dumps({"PREFLIGHT": freeze["PREFLIGHT"], "checks": checks}, indent=1))
     return ok
+
+
+def _native_regression():
+    """Arm A through this driver must reproduce a recorded arm-A certified answer on an engineering task (dev60)."""
+    import tempfile
+    from cora_funnel import run as FR
+    rec = next(json.loads(l) for l in open(os.path.join(HERE, "outputs", "cora_fhr", "rows_dev60.jsonl"))
+               if json.loads(l)["arms"]["A"]["certified"])
+    view = dict(FR.load("dev60"))[rec["key"]]
+    with tempfile.TemporaryDirectory() as td:
+        bp = os.path.join(td, "bundle.json")
+        json.dump({"tasks": {rec["key"]: {"train": view["train"], "test": [{"input": p["input"]} for p in view["test"]]}}},
+                  open(bp, "w"))
+        op = os.path.join(td, "A.json")
+        subprocess.run([sys.executable, "-m", "cora_revision_v2.phase2a", "native", "A", rec["key"], op, bp], cwd=HERE,
+                       check=True, preexec_fn=lambda: os.nice(NICE))
+        r = json.load(open(op))
+    return r["certified"] == rec["arms"]["A"]["certified"] and r["committed"] == rec["arms"]["A"]["committed"]
 
 
 def _v_regression():
@@ -299,7 +319,7 @@ def main(argv=None):
     elif cmd == "evaluate":
         evaluate()
     elif cmd == "native":
-        native_one(argv[1], argv[2], argv[3])
+        native_one(argv[1], argv[2], argv[3], argv[4] if len(argv) > 4 else None)
     else:
         raise SystemExit(f"unknown command {cmd}")
 
