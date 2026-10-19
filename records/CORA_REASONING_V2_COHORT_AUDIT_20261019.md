@@ -1,6 +1,8 @@
 # CORA reasoning v2: cohort-eligibility audit (2026-10-19)
 
-**Status: proposed evaluation cohort UNVERIFIED. Phase 2 is not launched.** The cohort is independent of all v2 and
+**Status (updated 2026-10-19, after the user-authorized check): 44 of the 100 candidates are ELIGIBLE (outside Lockbox, Promotion and E_transfer); the Phase 2a cohort is the first 40 eligible.** See section 7. The original status follows.
+
+**Original status: proposed evaluation cohort UNVERIFIED. Phase 2 is not launched.** The cohort is independent of all v2 and
 CORA-FHR development, which is checked, with 0 overlaps. It is very probably **not** independent of Step B's protected
 splits, which cannot be checked without protected material (section 4).
 
@@ -90,3 +92,17 @@ splits, which cannot be checked without protected material (section 4).
 - **Membership:** dev60 (60), standin58 (58) and the 8 forensic tasks (a subset of standin58).
 - **Used for:** geometry, colour policies, hypothesis generation, diagnosis and revision.
 - Results on it are in-sample engineering evidence only.
+
+## 7. Eligibility check result (2026-10-19, user-authorized, one isolated run)
+
+- **Checker:** `tools/stepb_eligibility/check_eligibility.py` (5c5401a).
+- **Read:** Step B's split manifest only (`task_id` and `split`, after a sha256 match), with E_transfer derived by
+  Step B's frozen public rule. The firewall and its secret were not opened.
+- **Result:** PASS, **44 of 100 eligible**; eligible-list sha256 6b4ce11f52ee7353.
+  - Of the 40 proposed earlier, 22 are eligible. The other 18 are in a protected split, which one is not recorded.
+- **Phase 2a cohort:** the first 40 eligible; listed in `records/CORA_REASONING_V2_PHASE2A_EXECUTION_20261019.md`.
+- **Independence:**
+  - from v2 and FHR development: verified (0 overlaps);
+  - from Step B's protected splits: verified (E_invent only).
+  - These are still reused public training tasks that the v23 baseline saw. Results are a development evaluation,
+    not a blind prospective test.
