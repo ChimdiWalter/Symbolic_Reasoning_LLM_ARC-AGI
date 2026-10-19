@@ -366,7 +366,7 @@ Step B's code is \textbf{not integrated} into CORA-v2 or any Kaggle entry, and n
 read for this poster.
 
 %------------------------------------------------------------------------------------------------- page 9
-\page{8. Why NVARC, and where deep learning could fit}
+\page{8. What the neural baseline taught us, and what fusion would test}
 \cue{poster bottom band, ``Two approaches to ARC''}
 \textbf{What I reproduced.} NVARC is a published neural ARC approach. I deployed it from the public NVARC notebook
 (originality audit, \texttt{records/KAGGLE\_NEURAL\_V1\_ORIGINALITY\_AUDIT\_20261014.md}).
@@ -394,6 +394,28 @@ construction, diagnosis, revision and verification. That pipeline is untested.
 
 \textbf{The open question.} Can learned neural representations and proposals help an executable reasoner find which
 part of a hypothesis needs revision?
+
+\textbf{What a real fusion would do} (PROPOSED: no part of it is implemented or run).
+\begin{center}
+\begin{tikzpicture}[node distance=0.35cm and 0.45cm]
+  \node[stage, text width=2.6cm] (d) {demonstrations + new input};
+  \node[stage, right=of d, text width=2.6cm] (n) {NVARC: adapted Qwen3-4B candidates};
+  \node[pstage, right=of n, text width=2.8cm] (p) {proposals: objects, relations, rules};
+  \node[stage, right=of p, text width=2.6cm] (c) {CORA: execute on the demonstrations};
+  \node[pstage, below=of c, text width=2.6cm] (g) {diagnose; bounded revision};
+  \node[pstage, left=of g, text width=2.8cm] (s) {fixed two-attempt selection};
+  \draw[flow] (d) -- (n); \draw[flow, dashed] (n) -- (p); \draw[flow, dashed] (p) -- (c); \draw[flow, dashed] (c) -- (g);
+  \draw[flow, dashed] (g) -- (s);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+  \item \textbf{Verification.} A neural candidate grid, or a confident score, is a proposal, not a verification. CORA
+        would accept a proposed rule only if it executes and reproduces every demonstration, and certify it only under
+        the unchanged checks.
+  \item \textbf{Fallback.} If no proposal helps, the output stays NVARC's unchanged.
+  \item \textbf{Status.} The saved NVARC run kept only its final answers, so a fusion first needs an instrumented run
+        that records the candidates and their scores (\texttt{records/CORA\_QWEN\_FUSION\_FEASIBILITY\_20261019.md}).
+\end{itemize}
 
 \textbf{A first experiment after the summit} (a design idea, not authorized, not run). It would use exposed engineering
 tasks, with four conditions:

@@ -87,8 +87,11 @@ Checked, not assumed.
   - a prize-structure discrepancy exists between ARC Prize pages.
 - **Runtime:** the 12-hour cap is from NVARC's notebook guard and last year's rules, and was not found on the pages
   retrieved. **Confirm on the Kaggle rules page before packaging.**
-- **Our submissions** so far are 57144804, 57160429 and 57354496. Daily quota and final-selection limits must be
-  re-read on Kaggle before any upload.
+- **Verified with the Kaggle CLI** (19 October):
+  - `arc-prize-2026-arc-agi-2` deadline 2026-11-02 23:59; 3,060 teams; our current rank 1838;
+  - submission limits: 1 remaining today, 4 lifetime submissions (57354496, 57160429, 57144804 and an earlier
+    54617562 from 2026-07-12).
+  - Final selections: 2, per the earlier notes; re-check at selection time.
 
 ## 7. Information-boundary risks
 
