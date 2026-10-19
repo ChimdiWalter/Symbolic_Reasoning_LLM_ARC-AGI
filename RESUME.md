@@ -11,6 +11,28 @@ no Kaggle, no push, no protected data, no Step B changes). Progress:
 - [x] Phase 1 cora_revision_v2/scene_reasoner.py (geometry x colour policy version space, ambiguity, fold-local re-search);
       smoke on 8 in-sample tasks: 3 correct unique predictions (1 new: 00dbd492), 0 certified (fold fragility), 0 wrong
 - [ ] Phase 2 GO pilot: needs a USER-DESIGNATED fresh non-autopsy real cohort (permitted pools exhausted); not run
+- [x] 2026-10-19 (session d176233f, after "CLARIFICATION ON ARC TASKS AND PHASE 2" + "dont block -- use the 1000 training set"):
+      COHORT AUDIT records/CORA_REASONING_V2_COHORT_AUDIT_20261019.md (cora_revision_v2/cohort_audit.py; output sha 7c2f807d):
+      548 in scope -> exclude dev60/frozen-120-by-rule/stand-ins/used -> 288 -> additions-only (train pairs) 100 -> first 40 in
+      the published order; overlaps 0. BUT Step B's LOCKBOX_PROTOCOL.md partitions THIS SAME FILE (Experience 600 / Promotion 200
+      / Lockbox 200; E_transfer 150 inside Experience): ~55% of any cohort is expected protected, membership not checkable
+      without Step B's manifest/firewall -> cohort UNVERIFIED, Phase 2 NOT launched. Needed: user-authorized membership-only check
+      (one clear/not-clear bit per candidate) -> cohort = first 40 clear (declared fallbacks in the record)
+- [x] 00dbd492 fold fragility DIAGNOSED records/CORA_REASONING_V2_FOLD_FRAGILITY_00dbd492_20261019.md: the test needs the
+      size-32 -> colour 3 table entry that ONE demonstration supports (support 16:3, 24:2, 32:1); fold 0 abstains
+      (UNSEEN_TABLE_KEY), folds 1-3 correct; not ambiguity/representation/defect; failure-blind reasoner gives the same answer
+      (diagnosis changes explanation + tier, not the answer). Certification unchanged -> EXPLORATORY (uncertified)
+- [x] code 4c4c30d: scene_reasoner fold_detail (UNSEEN_TABLE_KEY / POLICY_UNDEFINED / WRONG_UNIQUE / TIE / EMPTY) +
+      table_support + per-view cap stats; cora_revision_v2/diagnosis.py (8 labels; causes / probe / result / uncertainty /
+      next action; tiers CERTIFIED / EXPLORATORY / DISCOURAGED / NONE); cora_revision_v2/run_v2.py (blind engineering runner,
+      RLIMIT_CPU per task, engineering corpora only); tests/test_fhr.py 19 pass
+- [x] Phase 2 protocol DESIGN FROZEN, NOT AUTHORIZED: records/CORA_REASONING_V2_PHASE2_PROTOCOL_20261019.md (2a: A native, B
+      matched search, V v2; 2b: D diagnosis-selected revision, C strong blind, Cm matched-compute blind, E shuffled; F forensic)
+- [x] paper outline docs/PAPER_OUTLINE_REVISION_20261019.md (construct / diagnose / revise)
+- [ ] RUNNING (detached): engineering run outputs/cora_revision_v2/eng_run.sh (log eng_run.log; rows rows_{standin58,dev60}_eng.jsonl;
+      eval eval_*_eng.json). Resumable: rerun the same script, it skips finished keys. Check: ENG_RUN_FINISHED + RUN_RC 0 + coverage.
+      NEXT: numbers -> v2 figure (00dbd492 panel, pinned) -> summit supplement + review-poster insert -> ledger rows 18-19, README,
+      paper 8.21 -> commit -> ask user to authorize the membership check + Phase 2a
 
 **PREVIOUS DIRECTIVES (2026-10-18): "EVIDENCE-FIRST SUMMIT REFRAME" (pkg docs/research_package_20261017/) and "AUTOMATIC FAILURE
 DIAGNOSIS AND VERIFIED REVISION SPRINT"** (Phase 0 autopsy first; Gate 0 before any new constructor; no external push; no new Kaggle

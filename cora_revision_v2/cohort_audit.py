@@ -16,8 +16,10 @@
 - the 240 stand-in tasks, which include standin58;
 - any task ID appearing in a CORA-FHR or v2 output or record.
 
-**Not checkable here: E_transfer.** It is Step B's held-out split, its membership is protected, and it is not
-read. Every earlier arc2026 cohort (dev60, stand-in) has the same status.
+**Not checkable here: Step B's protected splits.** Step B's frozen protocol (`docs/LOCKBOX_PROTOCOL.md`) partitions
+this same file into Experience 600 / Promotion 200 / Lockbox 200, with E_transfer (150, keyed hash) inside
+Experience. Membership needs Step B's manifest and firewall, which are protected and not read, so the proposed
+cohort is UNVERIFIED. Every earlier arc2026 cohort (dev60, stand-in) has the same status.
 
 **Cohorts:**
 - **ENGINEERING (exposed):** dev60 + standin58 + the 8 forensic tasks.
@@ -88,7 +90,7 @@ def main(k_eval=40):
            "remaining_in_scope": len(remaining), "remaining_additions_only": len(growth),
            "proposed_eval_cohort": eval_cohort, "eval_rule": f"first {k_eval} of the remaining additions-only tasks in the pilot's published order",
            "exposure": "public ARC-AGI-2 training tasks; seen by the sealed v23 1000-task baseline run; not in dev60, the frozen 120 pilot "
-                       "(by rule, N=120), the 240 stand-in tasks, or any CORA-FHR/v2 output or record; E_transfer membership NOT checkable (protected)",
+                       "(by rule, N=120), the 240 stand-in tasks, or any CORA-FHR/v2 output or record; Step B Lockbox/Promotion/E_transfer membership NOT checkable (protected; expected ~55% of any cohort from this file)",
            "overlap_checks": {"eval_vs_dev60": len(set(eval_cohort) & dev), "eval_vs_pilot": len(set(eval_cohort) & pilot),
                               "eval_vs_standin": len(set(eval_cohort) & standin), "eval_vs_used": len(set(eval_cohort) & used)},
            "engineering_cohort": {"dev60": len(dev), "standin58": 58, "forensic8": 8}}
