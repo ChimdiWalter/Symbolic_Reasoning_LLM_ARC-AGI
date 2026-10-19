@@ -35,7 +35,7 @@ research problem.
 | path | contents |
 |---|---|
 | `cora_funnel/` | the instrumented failure funnel (categories, CPU-clock budgets, evaluator) |
-| `cora_fhr/` | CORA-FHR: G-grow grammar (`ggrow.py`), construction, reversible bridge, measurement arms, evaluator, audits |
+| `cora_fhr/` | CORA-FHR (failure-conditioned hypothesis revision): G-grow grammar (`ggrow.py`), construction, reversible bridge, measurement arms, evaluator, audits |
 | `cora_reach/` | the earlier constructor and its instance extraction (the failure evidence) |
 | `kaggle/` | Kaggle notebooks and builders: `native_v1/`, `neural_v1/` (NVARC reproduction), `cora_fhr_v1/` (research entry), `ops/` (gated pipelines) |
 | `records/` | protocols, results, audits, logs and the stage ledger (`STAGE_LEDGER.json`) |
