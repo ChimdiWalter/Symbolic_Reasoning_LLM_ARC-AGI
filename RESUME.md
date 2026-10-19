@@ -4,7 +4,15 @@ Last updated 2026-09-28. Read this first.
 
 ## State
 
-**NEWEST DIRECTIVES (2026-10-18): "EVIDENCE-FIRST SUMMIT REFRAME" (pkg docs/research_package_20261017/) and "AUTOMATIC FAILURE
+**NEWEST DIRECTIVE (2026-10-19): "CORA | Learning when a hypothesis is not enough"** (Phases 0-4; ONE bounded DEV pilot;
+no Kaggle, no push, no protected data, no Step B changes). Progress:
+- [x] Phase 0 gap audit records/CORA_REASONING_V2_GAP_AUDIT_20261019.md (9fd65ed): G-grow covers 13% of task types; native's
+      correct candidate is absent on >=48 of 60 dev tasks (coverage, not selection, binds)
+- [x] Phase 1 cora_revision_v2/scene_reasoner.py (geometry x colour policy version space, ambiguity, fold-local re-search);
+      smoke on 8 in-sample tasks: 3 correct unique predictions (1 new: 00dbd492), 0 certified (fold fragility), 0 wrong
+- [ ] Phase 2 GO pilot: needs a USER-DESIGNATED fresh non-autopsy real cohort (permitted pools exhausted); not run
+
+**PREVIOUS DIRECTIVES (2026-10-18): "EVIDENCE-FIRST SUMMIT REFRAME" (pkg docs/research_package_20261017/) and "AUTOMATIC FAILURE
 DIAGNOSIS AND VERIFIED REVISION SPRINT"** (Phase 0 autopsy first; Gate 0 before any new constructor; no external push; no new Kaggle
 submission without fresh explicit authorization). Progress:
 - [x] user-requested GitHub push 2026-10-18: arc2026-sprint -> 367a09c (this repo + new README.md); main README -> bc4a617.

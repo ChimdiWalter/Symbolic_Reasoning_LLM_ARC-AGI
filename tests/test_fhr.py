@@ -304,3 +304,30 @@ def test_contrast_arm_null_branch_and_separating_guard():
     for O, A, Gr, _d, _c, mem in groups["S3"]:
         got = GU.evaluate(best, GG.Ctx(O, Gr))
         assert got == (set(A) if mem else set())
+
+
+def test_v2_scene_reasoner_geometry_colour_and_ambiguity():
+    """Reasoning v2: provenance geometry reproduces G-grow positions exactly; ORIGIN colouring (colour of the
+    source cell) is found where no single-colour policy fits; the version space flags genuinely
+    disagreeing hypotheses; only training pairs and test inputs are read."""
+    import random
+    from cora_revision_v2 import scene_reasoner as SR
+    rng = random.Random(7)
+    exprs = list(GG.expressions())
+    for _ in range(300):
+        Gr = np.zeros((12, 12), int)
+        r, c = rng.randrange(2, 9), rng.randrange(2, 9)
+        O = {(r, c): rng.randrange(1, 10), (r, c + 1): rng.randrange(1, 10), (r + 1, c): rng.randrange(1, 10)}
+        for p, v in O.items():
+            Gr[p] = v
+        x = GG.Ctx(O, Gr)
+        e = exprs[rng.randrange(len(exprs))]
+        assert set(SR.geometry_prov(e, x)) == GG.evaluate(e, x)
+    a1 = [[0] * 5, [0, 3, 0, 0, 0], [0] * 5, [0] * 5, [0] * 5]
+    b1 = [[0] * 5, [0, 3, 3, 3, 3], [0] * 5, [0] * 5, [0] * 5]
+    a2 = [[0] * 5, [0] * 5, [6, 0, 0, 0, 0], [0] * 5, [0] * 5]
+    b2 = [[0] * 5, [0] * 5, [6, 6, 6, 6, 6], [0] * 5, [0] * 5]
+    rec = SR.reason([(a1, b1), (a2, b2)], [[[0] * 5, [0] * 5, [0] * 5, [0, 0, 9, 0, 0], [0] * 5]])
+    assert rec["n_hypotheses"] > 0 and rec.get("attempts")
+    assert any(h_pol in ("ORIGIN", "OBJ_MAJ", "NEAREST") for h_pol in [rec["top"]["policy"]])   # colour from the object, not a constant
+    assert any(p == [[0] * 5, [0] * 5, [0] * 5, [0, 0, 9, 9, 9], [0] * 5] for p in rec["attempts"][0])

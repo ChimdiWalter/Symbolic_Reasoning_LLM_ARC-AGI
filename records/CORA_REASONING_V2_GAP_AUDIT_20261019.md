@@ -133,3 +133,46 @@ the language.
   growth-shaped stand-in task is in the forensic pool or already native-certified. Choosing other ARC-AGI-2
   training tasks risks E_transfer or HOLDOUT membership, which I may not inspect. **The user must designate
   the cohort.**
+
+## 7. Phase 1 built: v2 scene reasoner, with geometry and colour separated (researcher-designed language expansion)
+
+**Module and tests.** `cora_revision_v2/scene_reasoner.py`; `tests/test_fhr.py::test_v2_scene_reasoner_geometry_colour_and_ambiguity`.
+All 18 tests pass.
+
+**What it does:**
+- **Hypothesis:** (one of native's 7 views, one G-grow geometry, one of 9 colour policies). The policies are
+  CONST, the object's majority or minority colour, ORIGIN (the colour of the source cell, tracked through
+  every transform), NEAREST, and a learned table from size, colour set, h or w to colour.
+- **Search:** it keeps the full **version space** of hypotheses reproducing every training output exactly as
+  full grids.
+- **Decisions:** it abstains when hypotheses disagree on the test, offering the two best-supported distinct
+  predictions as attempts. It re-runs the whole search in every omitted-demonstration fold, and certifies
+  only a unique, fold-robust prediction.
+- **Inputs:** training pairs and test inputs only.
+
+**Smoke test** (8 in-sample pool tasks, selected by the forensic analysis; ENGINEERING, not the GO test;
+`outputs/cora_revision_v2/smoke_8_20261019.json`):
+
+| task | diagnosis | unique test prediction (evaluator) | native |
+|---|---|---|---|
+| 00dbd492 | FOLD_FRAGILITY (1 of 4 folds: the held-out size is absent from the table) | **correct**: `hull[self]`, coloured by a size-to-colour table | fails (object branch, search, whole harness) → **new, uncertified** |
+| 22eb0ac0 | FOLD_FRAGILITY (2 of 3 folds tie) | correct: `hull[edge:N]`, object colour | the whole harness already solves it |
+| 3aa6fb7a | FOLD_FRAGILITY (2 demonstrations, so both folds tie) | correct: `reflect(H)[self]`, constant colour | the object branch already certifies it |
+| 070dd51e, 17b80ad2, 29c11459, 2e65ae53, 3bd67248 | NO_CONSISTENT_HYPOTHESIS: COLOUR_POLICY_GAP | — | — |
+
+0 wrong predictions offered.
+
+**Reading:**
+- Separating geometry from colour makes CORA's prediction correct on 3 of 8 in-sample cases, 1 of them new.
+- Its strict fold-local check certifies **none**, because with one demonstration removed the evidence
+  becomes ambiguous. The check is not relaxed.
+- That leaves two open questions:
+  - **science:** whether certified solves appear on a fresh cohort;
+  - **competition:** whether uncertified unique predictions may lawfully fill attempt slots, as native's
+    harness already does with its partials. That needs the user's authorization for any submission.
+
+## 8. Phase 2 status: the cohort needs the user's designation
+
+The GO gate needs a fresh, predeclared, non-autopsy cohort of real tasks. There is none left in the
+permitted pools for this transformation class (section 6). The pilot is frozen-ready (arms A–F as in the
+directive) but **not run**.
