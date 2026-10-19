@@ -47,6 +47,11 @@ no Kaggle, no push, no protected data, no Step B changes). Progress:
       derive D (select only where the eng diagnosis says GUARDED_GEOMETRY) and E (shuffled) in-sample; record; then the next slice
       (recolour/delete + composition for the 32 dev60 MULTIPLE_ACTIONS/non-additive tasks).
       WAITING ON USER: authorize (1) the Step B membership-only check and (2) Phase 2a.
+- [x] TST slice 2 (cora_revision_v2/tst.py: whole-object keep/delete/recolour by table or decision list with a default,
+      then growth): synthetic test passes; dev60 probe on the 32 routed tasks: stage 1 explains 10, residual additions fit 0,
+      0 predictions (outputs/cora_revision_v2/tst_probe_dev60/). Record records/CORA_REASONING_V2_TYPED_TRANSFORM_SLICES_20261019.md.
+      NOT yet integrated into reason(): apply cora_revision_v2/_pending_tst_integration.py ONLY after eng_sel_run.sh finishes
+      (it edits scene_reasoner.py, which the running job imports), then run tests.
 
 **PREVIOUS DIRECTIVES (2026-10-18): "EVIDENCE-FIRST SUMMIT REFRAME" (pkg docs/research_package_20261017/) and "AUTOMATIC FAILURE
 DIAGNOSIS AND VERIFIED REVISION SPRINT"** (Phase 0 autopsy first; Gate 0 before any new constructor; no external push; no new Kaggle

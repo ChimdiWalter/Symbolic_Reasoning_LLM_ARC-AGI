@@ -398,3 +398,33 @@ def test_v2_selection_family_guards_which_objects_act():
     # the union can create disagreement: a base-family hypothesis that fits the demonstrations may predict differently,
     # which is why a revision family is applied where the diagnosis asks for it, not everywhere
     assert rec["diagnosis"] in ("MANY_CONSISTENT_DISAGREE", "FOLD_FRAGILITY", "CERTIFIED")
+
+
+def test_v2_typed_scene_transformation_two_stage_decision_list():
+    """Typed scene transformation, slice 2: stage 1 keeps, deletes or recolours whole objects by an ordered decision
+    list with a default action (a value no rule names takes the default, so unseen colours do not block a
+    prediction), and stage 2 is v2's growth on the stage-1 result. Here stage 2 is the identity."""
+    from cora_revision_v2 import tst as T
+
+    def mk(objs, H=8, W=8):
+        A = np.zeros((H, W), int)
+        B = np.zeros((H, W), int)
+        for cells, v in objs:
+            for c in cells:
+                A[c] = v
+        sizes = [len(c) for c, v in objs]
+        for cells, v in objs:
+            nv = 0 if v == 3 else (1 if len(cells) == max(sizes) else v)
+            for c in cells:
+                B[c] = nv
+        return A.tolist(), B.tolist()
+    train = [mk([([(0, 0), (0, 1), (0, 2)], 5), ([(3, 3)], 3), ([(6, 1), (6, 2)], 5)]),
+             mk([([(1, 1), (2, 1), (3, 1), (4, 1)], 4), ([(5, 5), (5, 6)], 3), ([(7, 7)], 4)]),
+             mk([([(2, 2), (2, 3)], 6), ([(0, 6)], 3), ([(5, 0), (5, 1), (5, 2)], 6)])]
+    hyps, info = T.version_space(train)
+    assert info["stage2"] == "identity" and hyps
+    ti, to = mk([([(1, 4), (2, 4), (3, 4)], 2), ([(6, 6)], 3), ([(7, 0), (7, 1)], 2)])   # colour 2 never seen
+    preds = {str(p) for p in (T.predict(h, ti) for h in hyps) if p is not None}
+    assert preds == {str(to)}
+    assert all(h["rule"]["feature"] == "decision_list" for h in hyps if T.predict(h, ti) is not None)
+    assert T.version_space([(train[0][0], train[0][0])])[0] == []                       # no change: not this family
