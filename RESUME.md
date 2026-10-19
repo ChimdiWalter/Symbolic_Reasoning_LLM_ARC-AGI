@@ -90,3 +90,11 @@ no Kaggle, no push, no protected data, no Step B changes). Progress:
       Ndubuisi + Christian Fluharty) + /home/cnptp/ARC-AGI code; NO scores, NO division of labour recorded; Chris = Christian
       Fluharty TO CONFIRM. Pierce project = pipeline/sb_class_project (user-confirmed), continues in _nature_program (read-only).
       Org export validated with emacs (rc 0). NEXT: user circulates the .org after confirming Chris's identity.
+- [x] 12:35 poster neural box = "Two approaches to ARC" (NVARC reproduction 27.64% not CORA | CORA 0.00%) + open neural-symbolic
+      question (a3d04b4); explainer p.8 rewritten from the originality audit (5cbda8a). Paths: docs/summit_20261023_reframe/
+      poster_visual_final_review.{pdf,pptx}, explainer_visual_review.pdf.
+- [ ] PHASE 2a WHEN DONE: python -m cora_revision_v2.phase2a evaluate  ->  python -m cora_revision_v2.phase2a_report  ->
+      records (execution record section 3-4; ledger row; README; explainer p.10) -> GO: Phase 2b protocol for approval (do not
+      launch) | NO-GO: close version; run the staged residual-geometry probe (scratchpad copy: outputs/cora_revision_v2/
+      characterization/ will hold it), compare limitations A part representation / B relational ops / C composition-colour,
+      choose ONE intervention, draft its protocol.
