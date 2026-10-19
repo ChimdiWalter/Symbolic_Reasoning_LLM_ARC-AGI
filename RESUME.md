@@ -29,10 +29,24 @@ no Kaggle, no push, no protected data, no Step B changes). Progress:
 - [x] Phase 2 protocol DESIGN FROZEN, NOT AUTHORIZED: records/CORA_REASONING_V2_PHASE2_PROTOCOL_20261019.md (2a: A native, B
       matched search, V v2; 2b: D diagnosis-selected revision, C strong blind, Cm matched-compute blind, E shuffled; F forensic)
 - [x] paper outline docs/PAPER_OUTLINE_REVISION_20261019.md (construct / diagnose / revise)
-- [ ] RUNNING (detached): engineering run outputs/cora_revision_v2/eng_run.sh (log eng_run.log; rows rows_{standin58,dev60}_eng.jsonl;
-      eval eval_*_eng.json). Resumable: rerun the same script, it skips finished keys. Check: ENG_RUN_FINISHED + RUN_RC 0 + coverage.
-      NEXT: numbers -> v2 figure (00dbd492 panel, pinned) -> summit supplement + review-poster insert -> ledger rows 18-19, README,
-      paper 8.21 -> commit -> ask user to authorize the membership check + Phase 2a
+- [x] ENGINEERING RUN DONE (eng_run.sh; rc 0; coverage 58/58 + 60/60): 0 certified on 118 exposed tasks; exploratory pool 3 correct
+      (00dbd492, 22eb0ac0, 3aa6fb7a) + 1 wrong (2546ccf6); dev60 1 correct (kf892487f1049, native already right). Primary diagnoses
+      pool: 46 GEOMETRY_GAP->ABSTAIN, 3 ->GUARDED, 5 COLOUR_POLICY_GAP, 3 FOLD_FRAGILITY, 1 DISAGREE; dev60: 25 MULTIPLE_ACTIONS + 7
+      non-additive (->TYPED_SCENE_TRANSFORM), 23 ->ABSTAIN, 3 ->GUARDED, 1 colour, 1 disagree.
+      TWO-ATTEMPT STUDY (cora_revision_v2/two_attempt_study.py, evaluator-side, NO submission): native attempt 2 duplicates attempt 1
+      in 50/58 and 59/60 outputs; pool 7 -> 8 (FILL) / 9 (REPLACE2), 0 lost; dev60 12 -> 12. In-sample only.
+- [x] summit supplement docs/summit_20261023_reframe/supplement_v2.{tex,pdf} (1 page) + figure
+      docs/summit_poster/figures/fig_v2_uncertified_00dbd492.png (pinned bundle docs/summit_demo_20261023/data/v2_witness_00dbd492.json,
+      builder build_v2_bundle.py; scripts/summit_figures.py). Review poster NOT changed (awaiting collaborators; freeze Oct 21).
+      Ledger rows 18-21, README rows, paper section 8.21, STAGE_LEDGER entry.
+- [x] selection family (typed scene transformation slice 1): cora_revision_v2/selection.py + reason(families=("grow","select")) +
+      selection-aware per-demo probe (3e5f1d4; 20 tests pass). NOTE: the union can CREATE disagreement (a base hypothesis that fits
+      the demos may predict differently) -> apply revision where diagnosed, not everywhere (Phase 2b D vs C)
+- [ ] RUNNING (detached): outputs/cora_revision_v2/eng_sel_run.sh (grow+select everywhere = blind arm C; log eng_sel_run.log; rows
+      rows_*_sel.jsonl). Resumable. Done at SEL_RUN_FINISHED. NEXT: compare eng vs sel per task (gains, losses, new disagreements);
+      derive D (select only where the eng diagnosis says GUARDED_GEOMETRY) and E (shuffled) in-sample; record; then the next slice
+      (recolour/delete + composition for the 32 dev60 MULTIPLE_ACTIONS/non-additive tasks).
+      WAITING ON USER: authorize (1) the Step B membership-only check and (2) Phase 2a.
 
 **PREVIOUS DIRECTIVES (2026-10-18): "EVIDENCE-FIRST SUMMIT REFRAME" (pkg docs/research_package_20261017/) and "AUTOMATIC FAILURE
 DIAGNOSIS AND VERIFIED REVISION SPRINT"** (Phase 0 autopsy first; Gate 0 before any new constructor; no external push; no new Kaggle

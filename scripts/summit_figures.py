@@ -60,6 +60,8 @@ SOURCES = {
     "fhr_witness": ("docs/summit_demo_20261023/data/witness.json", "ab525368012278b85fb1bd3d19aef4d249ae6e2363546b837382e799c76f30a0"),
     "real_task": ("docs/summit_demo_20261023/data/real_task.json", "b06073a7fd35d203875e673aaec4b550d0069cdc43631afd2cafdb9d3b362f45"),
     "real_witness": ("docs/summit_demo_20261023/data/real_witness.json", "f0da3a8df23bbab61b9a39360480651bebda765ec302ede1b2d842a1a190b73f"),
+    "v2_witness": ("docs/summit_demo_20261023/data/v2_witness_00dbd492.json",
+                   "bc25278203700e28bdf429ceaf97ac33cf3fec504a1f8d0b7a3c29b4f9fac283"),
 }
 USED, DRAWN = {}, {}
 
@@ -439,6 +441,45 @@ def fhr_real_witness():
     _save(fig, "fig_fhr_real_witness_ka95aa62f67d9.png", ("real_task", "real_witness"))
 
 
+def _fit_grid(fig, g, x0, y0, box):
+    """A grid scaled to fit a box x box inch square, centred in it."""
+    H, Wg = len(g), len(g[0])
+    cell = box / max(H, Wg)
+    _grid(fig, g, x0 + (box - Wg * cell) / 2, y0 + (box - H * cell) / 2, cell)
+
+
+def v2_uncertified():
+    """Reasoning v2's correct but UNCERTIFIED prediction on 00dbd492 (an exposed ARC-AGI-2 training task): the four
+    demonstrations, the test input and v2's prediction (scored correct by the evaluator), with why leave-one-out cannot
+    certify it. From the pinned v2 witness bundle."""
+    w = json.load(open(src("v2_witness")))
+    assert w["evaluator_correct"] and w["tier_v2"] == "EXPLORATORY" and w["n_distinct_predictions"] == 1
+    assert w["fold_detail"][0]["cause"] == "UNSEEN_TABLE_KEY" and w["folds"][1:] == ["SUCCESS"] * 3
+    assert not any(w["controls"].values())
+    names = {3: "green", 4: "yellow", 8: "azure"}
+    fig = _new(6.5)
+    _tag(fig, f"REAL ARC-AGI-2 TRAINING TASK (exposed) · {w['key']}\n"
+              f"v2: correct but UNCERTIFIED · {w['top']['expr']}, fill by size")
+    box, step, x0 = 1.55, 1.78, 0.60
+    cols = [(p[0], p[1], f"demo {i}") for i, p in enumerate(w["train"])] + [(w["test_input"], w["v2_prediction"], "test → v2")]
+    for i, (gin, gout, name) in enumerate(cols):
+        x = x0 + i * step
+        _fit_grid(fig, gin, x, 3.50, box)
+        _fit_grid(fig, gout, x, 1.75, box)
+        _text(fig, x + box / 2, 5.15, name, ha="center", va="bottom", fontsize=FS_LAB, color=INK)
+    for label, y in (("in", 4.27), ("out", 2.52)):
+        _text(fig, 0.05, y, label, ha="left", va="center", fontsize=FS_MIN, color=INK2)
+    sup, tab = w["test_table_support"], w["size_to_colour"]
+    ks = sorted(sup, key=int)
+    lines = ["fill by size: " + ", ".join(f"{k}→{names[tab[k]]} ({sup[k]}{' demos' if k == ks[0] else ''})" for k in ks),
+             "fold without demo 0: no size-32 entry → abstains",
+             "the other 3 folds rebuilt it and predicted correctly",
+             "frozen native and matched search: no certified answer"]
+    for j, line in enumerate(lines):
+        _text(fig, 0.35, 1.39 - 0.38 * j, line, ha="left", va="center", fontsize=FS_MIN, color=INK)
+    _save(fig, "fig_v2_uncertified_00dbd492.png", ("v2_witness",))
+
+
 def main():
     os.makedirs(FIG, exist_ok=True)
     synthetic()
@@ -449,6 +490,7 @@ def main():
     failure_funnel_dev60()
     fhr_witness()
     fhr_real_witness()
+    v2_uncertified()
     prov = {"script": "scripts/summit_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
             "printed_width_in": W, "block_text_width_pt": 686.80643, "negative_controls": neg, "figures": {}}
     for name, meta in sorted(DRAWN.items()):

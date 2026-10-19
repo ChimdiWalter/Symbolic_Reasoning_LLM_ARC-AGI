@@ -782,6 +782,11 @@
    "id": "reasoning_v2_phase0_1",
    "status": "Phase 0 audit done; Phase 1 v2 scene reasoner built; in-sample smoke: 3/8 correct unique predictions (1 new), 0 certified (fold fragility), 0 wrong; Phase 2 pilot awaiting a user-designated cohort",
    "evidence": "records/CORA_REASONING_V2_GAP_AUDIT_20261019.md; outputs/cora_revision_v2/smoke_8_20261019.json"
+  },
+  {
+   "id": "reasoning_v2_diagnosis_cohort_20261019",
+   "status": "00dbd492 fold fragility diagnosed (a test-needed table entry supported by one demonstration: insufficient evidence); typed diagnosis interface + prediction tiers; engineering runs on 118 exposed tasks: 0 certified, exploratory 3 correct + 1 wrong (pool 58), 1 correct (dev60, already native); two-attempt study 7->8 (FILL) or 9 (REPLACE2) on the pool, 12->12 on dev60, 0 lost; selection family (typed scene transformation slice 1) built, engineering run started; cohort of 40 proposed but UNVERIFIED (Step B Lockbox/Promotion/E_transfer partition the same file); Phase 2 designed and frozen, NOT authorized",
+   "evidence": "records/CORA_REASONING_V2_COHORT_AUDIT_20261019.md; records/CORA_REASONING_V2_FOLD_FRAGILITY_00dbd492_20261019.md; records/CORA_REASONING_V2_PHASE2_PROTOCOL_20261019.md; outputs/cora_revision_v2/eval_{standin58,dev60}_eng.json; outputs/cora_revision_v2/two_attempt_study_eng.json; ledger rows 18-21"
   }
  ],
  "recovered_definitions": {

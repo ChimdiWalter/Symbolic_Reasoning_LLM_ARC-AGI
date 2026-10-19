@@ -1648,6 +1648,59 @@ construction. H3 is therefore untestable on this corpus; mixed-coverage families
 - Guarded programs, deeper compositions, other representations and exact colour generation were not tested.
 - This supports an expressivity hypothesis, not a claim that the tasks need fundamentally new semantics.
 
+## 8.21 When a fitting hypothesis is not enough: the v2 version-space reasoner
+
+**Tier: REAL DEVELOPMENT (exposed training tasks, in-sample). Nothing is certified.**
+- **Code:** `cora_revision_v2/` (`scene_reasoner.py`, `diagnosis.py`, `run_v2.py`, `two_attempt_study.py`).
+- **Records:** `records/CORA_REASONING_V2_GAP_AUDIT_20261019.md`,
+  `records/CORA_REASONING_V2_FOLD_FRAGILITY_00dbd492_20261019.md`.
+
+**Design.**
+- A hypothesis is (segmentation view, G-grow geometry, colour policy). The policies are: constant, object majority or
+  minority, the colour of the source cell (tracked through each transform), nearest object cell, and a learned table
+  from an object feature.
+- v2 keeps the whole version space of hypotheses that reproduce every training output exactly. It abstains when they
+  disagree, offering the two best-supported predictions as attempts.
+- It reruns the whole search in every omitted-demonstration fold, and certifies only a unique prediction that every
+  fold rebuilds.
+
+**Typed diagnoses.** Eight symptom labels:
+- GEOMETRY_GAP, COLOUR_POLICY_GAP, REPRESENTATION_AMBIGUITY, MULTIPLE_ACTIONS_NEEDED, HYPOTHESIS_DISAGREEMENT,
+  FOLD_FRAGILITY, ENGINE_REJECTION and RESOURCE_LIMIT.
+
+Each records the competing causes, a bounded probe on the demonstrations, its result, the remaining uncertainty and
+the next action. No test answer is read.
+
+**Case: 00dbd492.**
+- 1,365 consistent hypotheses agree on a prediction that is correct. Frozen native and matched search fail the task.
+- The fold without demonstration 0 abstains: the test needs the size-32 → green entry, and only that demonstration
+  shows it (support: 16 → 3 demonstrations, 24 → 2, 32 → 1).
+- The probes reject ambiguity (one distinct prediction everywhere), representation (geometry fits in every fold) and a
+  defect (designed behaviour).
+- A failure-blind reasoner with the same language gives the same answer. The diagnosis changes the explanation and
+  the tier, not the answer.
+
+**Engineering runs** (blind rows, then a separate evaluator):
+- **58 pool tasks:** 0 certified; 3 correct and 1 wrong exploratory predictions; 54 without a consistent hypothesis.
+  Of those, 49 have no single expression fitting the changed positions and 5 have no colour policy.
+- **60 development tasks:** 0 certified; 1 correct exploratory prediction, on a task native already solves.
+  - The primary diagnoses: 25 MULTIPLE_ACTIONS_NEEDED and 7 non-additive GEOMETRY_GAP, both pointing to a typed
+    scene transformation.
+  - 26 additive GEOMETRY_GAP: in 23, some demonstration fits no single expression even alone; 3 point to guarded
+    geometry.
+  - 1 COLOUR_POLICY_GAP and 1 HYPOTHESIS_DISAGREEMENT.
+  - Adding the exploratory answer to native's attempts leaves the two-attempt count at 12.
+- **Native's attempt 2 duplicates attempt 1** in 50 of 58 and 59 of 60 test outputs, so a second hypothesis almost
+  always has a free slot.
+
+**Two attempts** (evaluator-side; no submission), adding v2's exploratory answers to native's recorded Kaggle-path
+attempts on the 58:
+- native alone: 7;
+- exploratory answers only in duplicate or placeholder attempt-2 slots: 8, with 0 lost;
+- exploratory answers always in attempt 2: 9, with 0 lost.
+
+In-sample on tasks examined during development, so not evidence for an entry.
+
 ## 9. Ablations and Failure Analysis
 
 ### 9.1 Diagnosis categories
