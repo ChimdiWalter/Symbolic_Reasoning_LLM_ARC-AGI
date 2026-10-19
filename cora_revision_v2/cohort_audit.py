@@ -89,6 +89,8 @@ def main(k_eval=40):
            "standin240_in_scope": len(in_scope & standin), "cora_fhr_or_v2_used_in_scope": len(in_scope & used - dev - pilot - standin)},
            "remaining_in_scope": len(remaining), "remaining_additions_only": len(growth),
            "proposed_eval_cohort": eval_cohort, "eval_rule": f"first {k_eval} of the remaining additions-only tasks in the pilot's published order",
+           "candidates_additions_only_ordered": growth,
+           "candidates_sha256": hashlib.sha256(json.dumps(growth).encode()).hexdigest(),
            "exposure": "public ARC-AGI-2 training tasks; seen by the sealed v23 1000-task baseline run; not in dev60, the frozen 120 pilot "
                        "(by rule, N=120), the 240 stand-in tasks, or any CORA-FHR/v2 output or record; Step B Lockbox/Promotion/E_transfer membership NOT checkable (protected; expected ~55% of any cohort from this file)",
            "overlap_checks": {"eval_vs_dev60": len(set(eval_cohort) & dev), "eval_vs_pilot": len(set(eval_cohort) & pilot),
@@ -96,7 +98,7 @@ def main(k_eval=40):
            "engineering_cohort": {"dev60": len(dev), "standin58": 58, "forensic8": 8}}
     os.makedirs(OUT, exist_ok=True)
     json.dump(res, open(os.path.join(OUT, "cohort_audit_20261019.json"), "w"), indent=1)
-    print(json.dumps({k: v for k, v in res.items() if k != "proposed_eval_cohort"}, indent=1))
+    print(json.dumps({k: v for k, v in res.items() if k not in ("proposed_eval_cohort", "candidates_additions_only_ordered")}, indent=1))
     print("proposed eval cohort:", " ".join(eval_cohort))
 
 
