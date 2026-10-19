@@ -42,8 +42,22 @@ no Kaggle, no push, no protected data, no Step B changes). Progress:
 - [x] selection family (typed scene transformation slice 1): cora_revision_v2/selection.py + reason(families=("grow","select")) +
       selection-aware per-demo probe (3e5f1d4; 20 tests pass). NOTE: the union can CREATE disagreement (a base hypothesis that fits
       the demos may predict differently) -> apply revision where diagnosed, not everywhere (Phase 2b D vs C)
-- [ ] RUNNING (detached): outputs/cora_revision_v2/eng_sel_run.sh (grow+select everywhere = blind arm C; log eng_sel_run.log; rows
-      rows_*_sel.jsonl). Resumable. Done at SEL_RUN_FINISHED. NEXT: compare eng vs sel per task (gains, losses, new disagreements);
+- [x] SELECTION RUN DONE (eng_sel_run.sh, rc 0, 58/58 + 60/60, no errors): 0 certified; exploratory pool 4 correct / 0 wrong
+      (2546ccf6 wrong->correct, 2nd attempt only, support tie), dev 2 correct (kcc459b523a80 new, native harness already solves);
+      0 lost; 2x CPU; 22eb0ac0 unique -> disagreement (union effect). Two-attempt replay unchanged. Ledger row 22.
+- [x] 2026-10-19 USER AUTHORIZED ("FINISH ENGINEERING AND TEST REAL-TASK GAINS"): ONE isolated eligibility check + ONE Phase 2a run.
+      ELIGIBILITY: tools/stepb_eligibility/check_eligibility.py (5c5401a; python -I; Step B lockbox manifest task_id+split only,
+      sha-verified; E_transfer by Step B's frozen public salt rule; firewall NOT opened) -> PASS, 44/100 eligible
+      (outputs/cora_revision_v2/eligibility/eligible_ids_20261019.json, sha 8637ac65). Cohort = first 40 eligible.
+      PHASE 2a: cora_revision_v2/phase2a.py; bundle built (opaque keys; keymap in phase2a_evaluator/); preflight PASS
+      (freeze.json; commit 4b95e86; 21 tests; V + native regressions identical); f_B 1.053.
+- [ ] RUNNING (detached, started 15:03Z): python -m cora_revision_v2.phase2a run (log outputs/cora_revision_v2/phase2a/run.log;
+      rows phase2a/rows_{V,A,B}.jsonl; 2 workers; 6 h wall cap from phase2a/start_time.txt). Resumable: rerun the same command (skips
+      finished arm-task rows; the wall cap counts from the original start). NEVER rebuild the bundle (opaque keys would change).
+      WHEN DONE: python -m cora_revision_v2.phase2a evaluate (FIRST read of answers) -> GO/NO-GO -> records (execution record
+      section 4, ledger, README, supplement, paper) -> if NO-GO: close this version, propose ONE part-aware intervention; if GO:
+      prepare Phase 2b. No retuning on the cohort.
+- [x] (superseded) eng_sel_run.sh launch note: grow+select everywhere = blind arm C; rows rows_*_sel.jsonl. NEXT: compare eng vs sel per task (gains, losses, new disagreements);
       derive D (select only where the eng diagnosis says GUARDED_GEOMETRY) and E (shuffled) in-sample; record; then the next slice
       (recolour/delete + composition for the 32 dev60 MULTIPLE_ACTIONS/non-additive tasks).
       WAITING ON USER: authorize (1) the Step B membership-only check and (2) Phase 2a.
