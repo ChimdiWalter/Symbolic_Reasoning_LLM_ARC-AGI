@@ -77,5 +77,13 @@ is 475 of 497 proposal units in, with no verdict."
 third-party neural method, scores 27.64. That is a baseline, not CORA. What might transfer to biology is the
 revision policy: proteins, single-cell data, maize lesion phenotypes. That is future work, untested."
 
+> **Q: Why not just use the neural model?** "I reproduced the NVARC Qwen3-4B approach and obtained 27.64 on the
+> public ARC-AGI-2 board. That is not my algorithm, but it gives me a strong neural baseline. My own work, CORA, uses
+> executable programs to investigate why hypotheses fail and what needs to change. My experiments point to limited
+> representation and program expressivity as major obstacles. More search, or adding symbolic answers to the neural
+> model's, has not fixed that. I am now interested in whether neural models can propose better representations and
+> candidate rules, while the executable reasoner diagnoses what is inadequate and independently tests each revision.
+> The combination is a question, not something I have built."
+
 **Close:** "Building a rule is not the same as learning which revision improves an unseen prediction. That is what I am
 testing."

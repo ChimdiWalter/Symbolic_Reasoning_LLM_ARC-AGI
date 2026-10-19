@@ -366,25 +366,53 @@ Step B's code is \textbf{not integrated} into CORA-v2 or any Kaggle entry, and n
 read for this poster.
 
 %------------------------------------------------------------------------------------------------- page 9
-\page{8. Why NVARC, and why not only large language models}
-\cue{poster bottom band, ``Neural baseline''}
-\textbf{NVARC} is a published neural ARC approach: Qwen3-4B with test-time adaptation. I reproduced it faithfully as a
-reference point.
+\page{8. Why NVARC, and where deep learning could fit}
+\cue{poster bottom band, ``Two approaches to ARC''}
+\textbf{What I reproduced.} NVARC is a published neural ARC approach. I deployed it from the public NVARC notebook
+(originality audit, \texttt{records/KAGGLE\_NEURAL\_V1\_ORIGINALITY\_AUDIT\_20261014.md}).
 \begin{itemize}
-  \item \textbf{Scores.} On the official ARC-AGI-2 public board it scored 27.64 (Kaggle 57160429). Native CORA scored
-        0.00 (57144804), and CORA with rule construction (CORA-FHR-v1) 0.00 (57354496).
-  \item \textbf{Attribution.} The 27.64 is a reproduced third-party method, \textbf{not a CORA result}.
+  \item \textbf{Unchanged:} the Qwen3-4B checkpoint, which the NVARC team pretrained on their synthetic data; their
+        per-task LoRA test-time training; their decoding, candidate scoring and selection.
+  \item \textbf{My six changes} were compatibility, coverage, diagnostics, provenance and robustness, not new
+        algorithms.
+  \item \textbf{Score.} It scored 27.64 on the official public board (Kaggle 57160429). It is a strong baseline,
+        \textbf{not CORA}.
+  \item \textbf{It does learn on each task:} its inference adapts the model to each puzzle's demonstrations. I did not
+        invent or change that learning method.
 \end{itemize}
+For comparison, native CORA scored 0.00 (57144804), and CORA with rule construction 0.00 (57354496).
 
-\textbf{Combining them did not help.} A local complementarity audit filled NVARC's empty second attempts with CORA's
-answers on 240 stand-in training tasks. It gained nothing and lost one task: a 1$\times$1 placeholder answer
-\texttt{[[0]]} that had been correct. On those tasks CORA solved nothing that NVARC missed.
+\textbf{What the gap means, and what it does not.} The tested neural system produces many more correct ARC predictions
+than the tested symbolic system. That does not show that neural networks reason and programs cannot. It does suggest
+asking what learned models could contribute \emph{inside} CORA: representation proposals, program proposals, search
+guidance, uncertainty, and revision choice.
 
-\textbf{Why not only LLMs?} Modern neural models generate useful answers, programs and hypotheses. They can reason, use
-tools and check their work. I do not claim otherwise. CORA asks a narrower question: can an \emph{inspectable,
-reversible, component-level} choice of what to revise, between representation, rule, search or evidence, cause a
-measurable gain against matched controls? An LLM could be a strong proposer inside such a system. The scores above do
-not show that either approach is inferior.
+\textbf{What combining them tested, and what it did not.} A local audit filled NVARC's empty second attempts with
+CORA's answers on 240 exposed stand-in tasks. It gained nothing and lost one task: a correct 1$\times$1 placeholder
+\texttt{[[0]]}. That tested \emph{answer combination}. It did not test neural \emph{proposals} feeding symbolic
+construction, diagnosis, revision and verification. That pipeline is untested.
+
+\textbf{The open question.} Can learned neural representations and proposals help an executable reasoner find which
+part of a hypothesis needs revision?
+
+\textbf{A first experiment after the summit} (a design idea, not authorized, not run). It would use exposed engineering
+tasks, with four conditions:
+\begin{itemize}
+  \item CORA-v2;
+  \item CORA-v2 with matched extra symbolic search;
+  \item CORA-v2 with neural proposals (objects, parts, candidate rules);
+  \item neural proposals chosen by observable diagnostic evidence.
+\end{itemize}
+Rules for the experiment:
+\begin{itemize}
+  \item measure \emph{candidate coverage} (is a correct hypothesis proposed?) separately from correct final
+        predictions;
+  \item neural outputs stay untrusted proposals until verified;
+  \item if the neural model is adapted to a task's demonstrations, leave-one-out checks must repeat that adaptation
+        without the held-out demonstration.
+\end{itemize}
+Modern LLMs can reason, use tools and check their work, and I do not claim otherwise. CORA asks a narrower question
+about inspectable, reversible, component-level revision.
 
 %------------------------------------------------------------------------------------------------- page 10
 \page{9. Where this sits in prior work}
