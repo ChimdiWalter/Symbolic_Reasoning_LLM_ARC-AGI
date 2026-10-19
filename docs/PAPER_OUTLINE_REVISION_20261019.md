@@ -1,6 +1,6 @@
 # Paper outline: reorganized around construct, diagnose, revise (DRAFT 2026-10-19)
 
-- **For:** the ARC Prize paper award (deadline 2026-11-09 23:59 UTC, per the Kaggle listing). It reorganizes `docs/PAPER_SKELETON.md`; it does not
+- **For:** the ARC Prize paper award (deadline 2026-11-08 per arcprize.org, re-checked 19 October; the Kaggle listing says 2026-11-09 23:59 UTC; plan for the 8th). It reorganizes `docs/PAPER_SKELETON.md`; it does not
   replace it.
 - **Rule:** every number comes from `records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md`, cited by row.
 

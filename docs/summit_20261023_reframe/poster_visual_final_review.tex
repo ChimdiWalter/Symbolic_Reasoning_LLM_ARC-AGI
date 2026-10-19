@@ -109,12 +109,16 @@
   \begin{tikzpicture}
     \node[stage, text width=6.6cm, font=\diagsub] (a) at (0,0) {ARC examples};
     \node[stage, text width=6.6cm, font=\diagsub] (b) at (8,0) {find objects and relations};
-    \node[stage, text width=6.6cm, font=\diagsub] (c) at (16,0) {construct executable rules};
+    \node[stage, text width=6.6cm, font=\diagsub] (c) at (16,0) {construct\\ executable rules};
     \node[stage, text width=6.6cm, font=\diagsub] (d) at (16,-3.0) {check the rules against the examples};
     \node[stage, text width=6.6cm, font=\diagsub] (e) at (8,-3.0) {predict a new grid};
+    \node[pstage, text width=6.6cm, font=\diagsub] (n) at (0,-3.0) {neural candidates (Qwen3-4B)};
     \draw[flow] (a) -- (b); \draw[flow] (b) -- (c); \draw[flow] (c) -- (d); \draw[flow] (d) -- (e);
+    \draw[flow, dashed] (n) -- (e);
   \end{tikzpicture}
   \end{tikzfigure}
+  \secfont\color{ink2} \textbf{Being tested} (dashed): neural candidates, checked by CORA's executable rules. No result
+  yet.
 }
 \block{\bt{Fitting is not enough}\chip{good}{DONE}}{\bodyfont
   \begin{tikzpicture}

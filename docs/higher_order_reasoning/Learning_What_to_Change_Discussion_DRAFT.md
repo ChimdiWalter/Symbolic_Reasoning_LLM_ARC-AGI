@@ -147,6 +147,26 @@ Hiding one example and rebuilding the rule probes fragility. It does not prove t
 That is why I want to study the boundary between what a reasoner currently explains and what it cannot yet explain.
 CORA is one laboratory for that choice, and an ARC score alone would not demonstrate the larger capacity.
 
+### A neural solver as a partner, not only a rival
+
+**[Established]** I also reproduced a published neural ARC solver as a baseline. It is a language model that adapts
+itself to each puzzle from that puzzle's examples. I used the authors' model and method; my changes concerned
+deployment, not the learning. It predicts far more ARC answers correctly than my program-synthesis system, without
+producing an explicit, executable explanation. Simply adding my system's answers to its unused answer slots did not
+help.
+
+**[In progress]** I am now building a different kind of combination.
+- The neural model proposes candidate answers.
+- My system looks for executable rules that reproduce every example and would produce one of those candidates. It
+  uses that as evidence when choosing between answers.
+- It keeps the neural answers whenever it finds no explanation.
+
+The idea is that learned intuition proposes and executable reasoning checks. It is not yet a result.
+
+**[My interpretation]** This is a small version of the larger question. A learned system may be better at proposing,
+and an explicit reasoner at checking and deciding what to revise. Whether the combination can learn what to change is
+open.
+
 ## 6. Pierce's setting: when observations and explanations are not simple grids
 
 **[From the discussion]** Toni connected the question to my work with Pierce: "numerical data representing molecular
@@ -259,6 +279,8 @@ A failure at any stage is informative and will be reported as such.
 - What experiment would convince you that a failure-aware reasoner adds something beyond a capable LLM, a stronger DSL
   or ordinary search?
 - Which baseline is fairest? I would especially value your skepticism.
+- I am now testing whether a neural solver's candidate answers can be checked by executable rules. Is the answer
+  the right interface, or should a neural model propose objects or rules directly?
 
 **For Pierce: failure, revision and verification in biology.**
 - If a system reasoned over transcriptomic, proteomic or protein-related observations, how would we know its

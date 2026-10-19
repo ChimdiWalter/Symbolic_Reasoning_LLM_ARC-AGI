@@ -201,8 +201,10 @@ Solid outlines: implemented and tested. Dashed: proposed, or not yet validated.
           \item It labels why it is unsure, with observable \emph{diagnoses}, and offers exploratory guesses
                 separately from certified answers.
         \end{itemize}
+  \item \textbf{Being built: a neural partner.} Candidate answers from the reproduced NVARC solver, checked by CORA's
+        executable hypotheses before they are combined (page 9). No result yet.
   \item \textbf{What is a goal, not a result.} Choosing the revision from the diagnosis (dashed). Revising the object
-        representation (dashed). Transfer to science (page 12).
+        representation (dashed). Transfer to science (page 13).
 \end{itemize}
 
 %------------------------------------------------------------------------------------------------- page 5
@@ -395,7 +397,7 @@ construction, diagnosis, revision and verification. That pipeline is untested.
 \textbf{The open question.} Can learned neural representations and proposals help an executable reasoner find which
 part of a hypothesis needs revision?
 
-\textbf{What a real fusion would do} (PROPOSED: no part of it is implemented or run).
+\textbf{The combination being tested} (dashed on the poster: being built, not validated).
 \begin{center}
 \begin{tikzpicture}[node distance=0.35cm and 0.45cm]
   \node[stage, text width=2.6cm] (d) {demonstrations + new input};
@@ -413,8 +415,15 @@ part of a hypothesis needs revision?
         would accept a proposed rule only if it executes and reproduces every demonstration, and certify it only under
         the unchanged checks.
   \item \textbf{Fallback.} If no proposal helps, the output stays NVARC's unchanged.
-  \item \textbf{Status.} The saved NVARC run kept only its final answers, so a fusion first needs an instrumented run
-        that records the candidates and their scores (\texttt{records/CORA\_QWEN\_FUSION\_FEASIBILITY\_20261019.md}).
+  \item \textbf{Status, 19 October.}
+        \begin{itemize}
+          \item The CORA side is built and unit-tested (\texttt{cora\_neural\_fusion/}): a typed proposal record; the
+                check of which neural candidates CORA's executable hypotheses explain; fixed two-attempt policies with
+                an exact no-op switch.
+          \item It has \textbf{not yet run on real NVARC outputs}, and there is no result. The saved NVARC run kept only
+                its final answers, so an instrumented run that records the candidates and their scores comes first
+                (\texttt{records/CORA\_QWEN\_FUSION\_FEASIBILITY\_20261019.md}).
+        \end{itemize}
 \end{itemize}
 
 \textbf{A first experiment after the summit} (a design idea, not authorized, not run). It would use exposed engineering

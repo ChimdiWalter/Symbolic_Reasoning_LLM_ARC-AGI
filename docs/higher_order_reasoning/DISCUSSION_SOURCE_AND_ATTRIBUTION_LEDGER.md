@@ -59,6 +59,15 @@ Full detail is in `ARC_2025_CHRIS_SOURCE_NOTES.md`.
 |---|---|---|
 | a plausible hypothesis can fit the examples and still be unstable; adding rules can create ambiguity; equally equipped controls that ignored the diagnosis sometimes constructed the same operation | `records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md` rows 9, 12c, 12f, 19, 22 | VERIFIED. No scores, task identifiers or Step B detail appear in the draft, as directed |
 
+## D2. The neural solver and the combination (draft §5, "A neural solver as a partner")
+
+| statement | source | status |
+|---|---|---|
+| a published neural ARC solver was reproduced as a baseline, using the authors' model and method; my changes were deployment only | `records/KAGGLE_NEURAL_V1_ORIGINALITY_AUDIT_20261014.md` (NVARC Qwen3-4B checkpoint, per-task LoRA test-time training and selection unchanged; six deployment changes) | VERIFIED |
+| it predicts far more ARC answers correctly than the program-synthesis system | ledger rows 13–15 (official public ARC-AGI-2: NVARC reproduction 27.64; native CORA 0.00; CORA-FHR-v1 0.00) | VERIFIED. No scores appear in the draft, as directed |
+| adding CORA's answers to its unused slots did not help | ledger row 16 (0 gained, 1 lost on exposed stand-ins) | VERIFIED |
+| a combination is being built: neural candidates checked by executable rules that reproduce the examples, with neural answers kept when unexplained | `cora_neural_fusion/` (commit 99a8147): typed proposal contract, explanation check, fixed policies; 5 unit tests | **IN PROGRESS**. Not yet run on real neural outputs; no result |
+
 ## E. Related work named in the draft
 
 - Popper (Cropper and Morel 2021).
