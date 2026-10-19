@@ -57,7 +57,26 @@ no Kaggle, no push, no protected data, no Step B changes). Progress:
       WHEN DONE: python -m cora_revision_v2.phase2a evaluate (FIRST read of answers) -> GO/NO-GO -> records (execution record
       section 4, ledger, README, supplement, paper) -> if NO-GO: close this version, propose ONE part-aware intervention; if GO:
       prepare Phase 2b. No retuning on the cohort.
-- [x] (superseded) eng_sel_run.sh launch note: grow+select everywhere = blind arm C; rows rows_*_sel.jsonl. NEXT: compare eng vs sel per task (gains, losses, new disagreements);
+- [x] (superseded) eng_sel_run.sh launch note: grow+select everywhere = blind arm C; rows rows_*_sel.jsonl.
+- [ ] 2026-10-19 ~11:45 local: POSTER DIRECTIVES (two pastes: "VISUAL-FIRST ARC SUMMIT POSTER AND CLEAR EXPLAINERS" and the newer
+      "FINAL ARC PRIZE RESEARCH SUMMIT POSTER, VISUAL-FIRST REDESIGN"; the newer one governs file names). Presentation work only:
+      no new experiments, no Kaggle, no push, original docs/summit_poster/ untouched, no authorship change.
+      DELIVERABLES (docs/summit_20261023_reframe/): poster_visual_final_review.{tex,pdf,pptx}; POSTER_VISUAL_CONTENT.md;
+      POSTER_CLAIM_AUDIT.md; POSTER_FIGURE_PROVENANCE.json (+ figures/PROVENANCE.json); POSTER_90_SECOND_SCRIPT.md;
+      POSTER_3_MINUTE_WALKTHROUGH.md; REVIEW_CHECKLIST.md; explainer_visual_review.{tex,pdf} (8-12 pages, every figure explained,
+      demo commands); figures in docs/summit_20261023_reframe/figures/.
+      VERIFIED SO FAR: ka95aa62f67d9 bundle (real_task b06073a7, real_witness f0da3a8d): colour 1 = BLUE objects -> ray up-left,
+      colour 2 = RED objects -> ray down-right, rays in the object's own colour, 10x10 grids, 3/3 folds, answer == evaluator,
+      failure-blind found the same rule. The directive's "red/colour-1" is WRONG (colour 1 is blue): use blue/red.
+      dev60 asset-loaded audit = outputs/funnel_v0/eval_dev60_native_assets.json (54d8d744). PPTX converter scripts/poster_to_pptx.py
+      (PDF -> editable text boxes + original PNGs; hardcoded to docs/summit_poster; needs a path option). 52-page deep explainer:
+      NOT found on Athe (narrow search) -> say so, do not claim access.
+      PLAN: col 1 = real 00dbd492 intro grids (from pinned v2_witness bundle) + ILLUSTRATIVE A-D inadequacy panels; col 2 = CORA
+      pipeline (solid), 60-task audit (6 / 26, asset-loaded object branch), real ka95aa62f67d9 witness, 0/58 negative, small NVARC box;
+      col 3 = proposed revision loop (solid = implemented, dashed = not validated), v2 00dbd492 "CORRECT DEVELOPMENT PREDICTION - NOT
+      CERTIFIED", automatic rule-language extension (Step B, 475/497 last recorded, no verdict, not integrated), transfer schematic
+      (FUTURE, NOT TESTED), bottom line. Phase 2a only if complete AND validated (otherwise explainer says RUNNING/PENDING).
+      Phase 2a at save time: 11:36 local, still running (A/B/V rows growing; ~4.6 h projected, cap 6 h). NEXT: compare eng vs sel per task (gains, losses, new disagreements);
       derive D (select only where the eng diagnosis says GUARDED_GEOMETRY) and E (shuffled) in-sample; record; then the next slice
       (recolour/delete + composition for the 32 dev60 MULTIPLE_ACTIONS/non-additive tasks).
       WAITING ON USER: authorize (1) the Step B membership-only check and (2) Phase 2a.
