@@ -822,6 +822,11 @@
    "id": "neural_cora_v1_pilot_20261019",
    "status": "DONE: G1 NO-GO (LEARNED_OVER_PLAIN_SEARCH_ONLY) under the frozen protocol 081c1d3. Primary held-out 395: L1@500 198, C+@1000 104, L0 30, L0s 51, L1h@500 235, C+H@1000 358 (L1 < L1h p=0.0009; L1 < C+H). 4,680 real optimizer steps; dev60 atlas: the v1 language fits 1/60 exposed same-shape real tasks. Stopped; next = G2 ncv1-g1 (needs approval); no Kaggle submission",
    "evidence": "records/NEURAL_CORA_V1_PILOT_REPORT.md; records/NEURAL_CORA_V1_EXPRESSIVITY_AND_FAILURE_ATLAS.md; outputs/neural_cora_v1/evaluator/pilot_v1_eval.json (6cb9f097)"
+  },
+  {
+   "id": "neural_cora_v2_g2_frozen_20261020",
+   "status": "FROZEN, not run: ncv2-g1 typed relational AST + native bridge + sound constraints + pairing-aware search (cora_neural_v2/); G2a 58 passed 1 skipped, native sha 18060dbc unchanged; G2 dev60 ceiling protocol frozen at 3677d0f (g1 vs g0 1/60, native 35/60 fits as reference; GO iff fits>=6, pass@2>=4, gains>=3, losses<=1; NO_GO_STOP iff pass@2<=1); runner locked behind the manifest and --authorized; awaiting the user's authorization; no training, no Kaggle, no poster change",
+   "evidence": "records/NEURAL_CORA_V2_G2_PROTOCOL_20261020.md; records/NEURAL_CORA_V2_G2_FREEZE_MANIFEST.json; records/NEURAL_CORA_V2_G1_FAILURE_ANALYSIS_20261020.md; records/NEURAL_CORA_V2_PRIOR_ART_AND_GAP_20261020.md; docs/NEURAL_CORA_V2_TO_27P64_DECISION_TREE.md"
   }
  ],
  "recovered_definitions": {

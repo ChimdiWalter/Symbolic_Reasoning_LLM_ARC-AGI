@@ -1,8 +1,47 @@
 # ARC-2026 delivery sprint: resume
 
-Last updated 2026-10-19. Read this first.
+Last updated 2026-10-20. Read this first.
 
 ## State
+
+**NEWEST (2026-10-20 13:50Z): NEURAL-CORA V2. The G2 protocol was FROZEN at commit 3677d0f. STOPPED: the scored G2 run
+needs the user's authorization. Nothing is running for v2.**
+- **Built, in `cora_neural_v2/`:**
+  - ncv2-g1, the typed relational AST (`rast.py`);
+  - the bridge to native (`bridge.py`);
+  - typed hygienic macros;
+  - the native inventory check;
+  - sound constraints: only P1 and P2, plus the Occam firing filter;
+  - the pairing-aware search G1-CH, with a CPU cap and an exhaustive single-rule diagnostic.
+- **G2a:** 58 passed, 1 skipped (`tests/test_neural_cora_v2_ast.py`, `tests/test_neural_cora_v2_search.py`). Native
+  aggregate sha 18060dbc is unchanged.
+- **Runner:** `scripts/neural_cora_v2_g2.py`. Selftest PASS on synthetic tasks only. `solve` and `diag` refuse to run
+  without the committed manifest and `--authorized`.
+- **Known before the run:**
+  - g0 fits 1/60;
+  - native fits 35/60 (30 through ObjectProgram or ComposedProgram), has a correct candidate on 8 and is certified
+    correct on 6;
+  - dev60 has no size-change task.
+- **Frozen G2b rule:**
+  - NO_GO_STOP if g1 pass@2 ≤ 1;
+  - GO if fits ≥ 6, pass@2 ≥ 4, paired gains ≥ 3 and losses ≤ 1;
+  - otherwise WEAK.
+  - Worst case 3.7 CPU-hours, 2 workers at nice 10.
+- **Records:**
+  - `records/NEURAL_CORA_V2_{G2_PROTOCOL_20261020, G1_FAILURE_ANALYSIS_20261020, PRIOR_ART_AND_GAP_20261020, QWEN_JOINT_PROGRAM_ADAPTER_DESIGN}.md`;
+  - `docs/NEURAL_CORA_V2_{RELATIONAL_AST_AND_LOOP, TO_27P64_DECISION_TREE}.md`.
+- **Stale lines corrected:** the roadmap's G1 row (now NO-GO) and its G2 row; the old "PILOT RUNNING" block below.
+- **To run, ONLY after authorization** (resumable; it appends missing rows):
+
+  ```
+  mkdir -p outputs/neural_cora_v2/g2 && setsid nohup sh -c 'P=$HOME/.venvs/lesegenv/bin/python; $P scripts/neural_cora_v2_g2.py solve --authorized && $P scripts/neural_cora_v2_g2.py diag --authorized && $P scripts/neural_cora_v2_g2.py score' > outputs/neural_cora_v2/g2/run.log 2>&1 &
+  ```
+
+  Then write `records/NEURAL_CORA_V2_G2_REPORT.md`, whatever the outcome.
+- **Poster:** unchanged. Open question to the user: keep or revert the column-3 pilot line ("Pilot: beats plain
+  search, not hand-designed search.")? The v2 directive says no new scoring claims on the poster.
+- **After a reboot:** nothing to restart for v2. If a G2 run was in progress, rerun the same command; `run_pool`
+  resumes.
 
 **NEWEST (2026-10-20 01:30Z): NEURAL-CORA V1 PILOT FINISHED. G1 = NO-GO (LEARNED_OVER_PLAIN_SEARCH_ONLY).**
 - **Primary held-out synthetic compositions (395 tasks), pass@2:**
@@ -27,7 +66,7 @@ Last updated 2026-10-19. Read this first.
 - **STOPPED as the directive requires.** Next justified experiment: G2 `ncv1-g1`, which exposes existing native
   primitives in the typed IR. It needs the user's approval of a frozen protocol. No Kaggle submission.
 
-**NEWEST (2026-10-19 22:40Z): NEURAL-CORA V1 PILOT RUNNING. The protocol was FROZEN at commit 081c1d3 before any
+**EARLIER (2026-10-19 22:40Z; superseded: the pilot FINISHED, G1 = NO-GO, see above): NEURAL-CORA V1 PILOT RUNNING. The protocol was FROZEN at commit 081c1d3 before any
 training.**
 - **Two detached drivers:**
   - prep: scripts/neural_cora_v1_prep.sh, PID 3709079 (status in outputs/neural_cora_v1/logs/prep.status);

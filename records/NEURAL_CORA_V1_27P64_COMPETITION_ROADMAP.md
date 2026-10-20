@@ -25,8 +25,8 @@ not a promised result.
 
 | gate | it requires | status |
 |---|---|---|
-| G1, learning | the trained guide with Qwen features beats C+, C+H, L1h, L0 and L0s on frozen held-out synthetic compositions | **see the pilot report** |
-| G2, expressivity | the typed language covers independently held-out transformation families, without task-specific operators | not tested; the dev60 atlas measures today's coverage |
+| G1, learning | the trained guide with Qwen features beats C+, C+H, L1h, L0 and L0s on frozen held-out synthetic compositions | **NO-GO** (20 Oct; `LEARNED_OVER_PLAIN_SEARCH_ONLY`; section 5 and the pilot report) |
+| G2, expressivity | the typed language covers independently held-out transformation families, without task-specific operators | 20 Oct: ncv2-g1 built and parity-tested; the dev60 G2 protocol is frozen (`records/NEURAL_CORA_V2_G2_PROTOCOL_20261020.md`); **not yet measured** |
 | G3, diagnosis | authentic observable traces lead to better revision choices than strong failure-blind and shuffled controls, under equal access and compute | not tested (earlier negatives: L9, L10, L12d, L12e) |
 | G4, reusable capability | new abstractions transfer to held-out families and survive the removal, semantic-identity and baseline-reach tests | not tested |
 | G5, real ARC | extra exact correct predictions on a predeclared, eligible real development cohort, with no unacceptable harmed outputs | not tested |
