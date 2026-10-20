@@ -90,8 +90,8 @@ search limits. Bottleneck two is open: choosing the revision that helps has not 
 failure.
 \item \emph{[ka95aa62f67d9, then 0 / 58.]} Here CORA built a new rule and rebuilt it with each example hidden, but the
 failure-ignoring version found it too. On 58 more tasks, building rules verified nothing new.
-\item \emph{[The dashed box.]} Next is a trained guide that would rank what CORA tries first. It is proposed; there is no result
-yet.
+\item \emph{[The dashed box.]} Next, a trained guide ranks what CORA tries first. Its first pilot beat plain search, but not
+hand-designed search.
 \end{itemize}
 
 \section{A real medical observation: seeing, outlining, diagnosing, explaining}
@@ -439,8 +439,11 @@ attempts for every arm. No neural grid reaches an attempt.
 neural-assisted unless the adaptation is repeated without the held-out demonstration.
 \item \textbf{Status, 19 October:} the typed language compiles to native programs and runs through the native interpreter; CORA's
 own synthetic task generator (execution-validated, no third-party data) and the arms are implemented, with unit tests.
-Development smoke tests have run on synthetic tasks; training has not started. \textbf{There is no result.} The pilot
-protocol is frozen before any scored run.
+the first frozen pilot has run (protocol commit 081c1d3; \texttt{records/NEURAL\_CORA\_V1\_PILOT\_REPORT.md}). With 1,560 real
+gradient steps, the guide solved 198 of 395 held-out synthetic compositions, against 104 for plain search and 30
+untrained. That is fewer than the same heads on hand-crafted features (235) or the hand-designed search (358).
+\textbf{G1 is NO-GO:} training changed CORA's search, but the Qwen features added nothing. On 60 exposed real ARC tasks
+the v1 language fits only 1, so on real tasks the bottleneck is expressivity, not ranking.
 \end{itemize}
 
 \section{How the idea could be falsified}

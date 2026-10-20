@@ -4,6 +4,29 @@ Last updated 2026-10-19. Read this first.
 
 ## State
 
+**NEWEST (2026-10-20 01:30Z): NEURAL-CORA V1 PILOT FINISHED. G1 = NO-GO (LEARNED_OVER_PLAIN_SEARCH_ONLY).**
+- **Primary held-out synthetic compositions (395 tasks), pass@2:**
+  - L1@500 (trained Qwen-feature guide): 198;
+  - C+@1000 (plain search): 104;
+  - L0 (untrained): 30; L0s (shuffled labels): 51;
+  - L1h@500 (hand features): 235 (L1 vs L1h: 41 vs 78, p = 0.0009);
+  - C+H@1000 (hand-designed search): 358.
+
+  Training changes CORA's search, but the Qwen features add nothing. The language covers 394/395 here, so the order
+  is the binding constraint.
+- **dev60 atlas** (exposed, same-shape real ARC tasks): the v1 language fits 1/60. On real tasks the bottleneck is
+  expressivity (G2).
+- **Records:**
+  - NEURAL_CORA_V1_PILOT_REPORT.md;
+  - NEURAL_CORA_V1_EXPRESSIVITY_AND_FAILURE_ATLAS.md;
+  - NEURAL_CORA_V1_27P64_COMPETITION_ROADMAP.md (section 5 decision);
+  - the capability audit (updated);
+  - claim ledger row 24.
+- **Poster and explainer V2:** "No result yet" became the pilot result (poster prose 349; selftest PASS; pixel-identical).
+- **Also updated:** the poster abstract (one sentence, still 1 page) and the paper outline section 6b.
+- **STOPPED as the directive requires.** Next justified experiment: G2 `ncv1-g1`, which exposes existing native
+  primitives in the typed IR. It needs the user's approval of a frozen protocol. No Kaggle submission.
+
 **NEWEST (2026-10-19 22:40Z): NEURAL-CORA V1 PILOT RUNNING. The protocol was FROZEN at commit 081c1d3 before any
 training.**
 - **Two detached drivers:**

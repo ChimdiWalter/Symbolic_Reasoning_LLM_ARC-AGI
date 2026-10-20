@@ -68,9 +68,36 @@ A neural ranker cannot discover a program outside the language it ranks.
 - Kaggle's limit was last documented at 12 h. The current rules must be checked before any notebook is engineered.
 - v1 measured Qwen features at 0.30 s per task on a 2080 Ti, and typed search at about 0.55 ms of CPU per candidate.
 
-## 5. The decision after the v1 pilot
+## 5. The decision after the v1 pilot (20 October 2026)
 
-This section is completed from the pilot report.
+**G1 = NO-GO** (`LEARNED_OVER_PLAIN_SEARCH_ONLY`; `records/NEURAL_CORA_V1_PILOT_REPORT.md`).
+- On held-out synthetic compositions, the trained Qwen-feature guide solved 198/395. That beats plain search (104),
+  an untrained guide (30) and a shuffled-label guide (51).
+- It lost to the hand-feature guide (235, p = 0.0009) and to strong symbolic search (358).
+- So training changes CORA's search, but the Qwen features add nothing over hand features here.
+
+**The dev60 atlas** (`records/NEURAL_CORA_V1_EXPRESSIVITY_AND_FAILURE_ATLAS.md`). On 60 exposed, same-shape, real ARC
+training tasks, the v1 language admits a fitting program for **1**, even under its best order. On real ARC the binding
+constraint is expressivity (G2), not search order.
+
+**So:**
+1. **No Kaggle candidate is justified.** G1, G2 and G5 have not passed, and there is no Neural-CORA notebook.
+   `kaggle/neural_cora_v1/` stays a scaffold.
+2. **The single next justified experiment is G2 (`ncv1-g1`):**
+   - Expose native CORA's existing primitives in the typed IR: copy, move_until_adjacent, connect, grow,
+     crop_to / extract_part, and relational guards.
+   - Measure compile and correct-output coverage on dev60 (expressivity only), then on a fresh, predeclared eligible
+     cohort.
+   - This is researcher-designed, not invention. It needs the user's approval of a frozen protocol.
+3. **Only after G2:**
+   - a pairing-aware learned guide over the larger language;
+   - then the revision policy pi_phi (G3).
+4. **A realistic note.** Reaching 27.64% needs broad coverage of real ARC transformations.
+   - The v1 language covers about 2% of a same-shape exposed cohort.
+   - Native CORA's richer languages solved 12 of those 60 tasks over two attempts.
+
+   A competitive Neural-CORA by 2 November is **unlikely**. The honest near-term competition outcome is "an original
+   CORA-family solver with a non-zero score", if any later stage passes its gates, with 27.64% as the stretch goal.
 
 ## 6. Schedule
 

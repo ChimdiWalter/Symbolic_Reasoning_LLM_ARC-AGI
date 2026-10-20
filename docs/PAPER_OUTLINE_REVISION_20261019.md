@@ -80,6 +80,17 @@ The paper reports where it is not.
   - CORA-FHR 0.00;
   - the NVARC reproduction, 27.64, is not CORA (ledger 13–16).
 
+## 6b. Learned search guidance inside CORA (Neural-CORA v1 pilot, NO-GO)
+
+- One CORA-owned algorithm. A frozen NVARC Qwen3-4B encoder feeds trained heads that only order CORA's typed search;
+  CORA's interpreter and checker decide everything (protocol 081c1d3).
+- Held-out synthetic compositions, 395 tasks:
+  - the trained guide solved 198;
+  - plain search 104, untrained 30, shuffled labels 51;
+  - hand features 235, hand-designed search 358.
+- So training works, but the Qwen features add nothing (ledger row 24; records/NEURAL_CORA_V1_PILOT_REPORT.md).
+- Expressivity on 60 exposed real tasks: the v1 language fits 1 (records/NEURAL_CORA_V1_EXPRESSIVITY_AND_FAILURE_ATLAS.md).
+
 ## 7. Transfer across semantic domains (proposed)
 
 - What could transfer: the revision policy and the verification interface, not ARC operators (ledger 17).

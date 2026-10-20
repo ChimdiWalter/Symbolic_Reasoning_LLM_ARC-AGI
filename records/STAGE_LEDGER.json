@@ -820,8 +820,8 @@
   },
   {
    "id": "neural_cora_v1_pilot_20261019",
-   "status": "IN PROGRESS: v1 pilot machinery committed (template-alias data audit, typed reasoning state with observable diagnoses, exact budget truncation, training evidence logging, preregistered G1 evaluator; 15 tests pass; dev smoke test on TRAIN families only). Data prep running (scripts/neural_cora_v1_prep.sh, PID 3709079). Protocol to be frozen and committed BEFORE training. No scored result yet.",
-   "evidence": "cora_neural_v1/; tests/test_neural_cora_v1_pilot.py; outputs/neural_cora_v1/logs/"
+   "status": "DONE: G1 NO-GO (LEARNED_OVER_PLAIN_SEARCH_ONLY) under the frozen protocol 081c1d3. Primary held-out 395: L1@500 198, C+@1000 104, L0 30, L0s 51, L1h@500 235, C+H@1000 358 (L1 < L1h p=0.0009; L1 < C+H). 4,680 real optimizer steps; dev60 atlas: the v1 language fits 1/60 exposed same-shape real tasks. Stopped; next = G2 ncv1-g1 (needs approval); no Kaggle submission",
+   "evidence": "records/NEURAL_CORA_V1_PILOT_REPORT.md; records/NEURAL_CORA_V1_EXPRESSIVITY_AND_FAILURE_ATLAS.md; outputs/neural_cora_v1/evaluator/pilot_v1_eval.json (6cb9f097)"
   }
  ],
  "recovered_definitions": {

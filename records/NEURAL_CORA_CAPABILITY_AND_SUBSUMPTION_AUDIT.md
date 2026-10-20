@@ -155,11 +155,11 @@ Evidence references are rows of `records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md` (
 |---|---|
 | implementation | a frozen Qwen3-4B encoder plus trainable heads that order CORA's typed search (`cora_neural_v1/prior.py`) |
 | executable test | `test_neural_cora_v1_pilot.py` |
-| trained weights | **YES: this pilot** (see the pilot report) |
-| development demonstration | dev smoke test, TRAIN families: 12/12 at 500 candidates, matching C+ and C+H at 1000 (engineering only) |
-| independent generalization | **pending:** `records/NEURAL_CORA_V1_PILOT_REPORT.md` |
-| causal evidence | pending (G1) |
-| limitation | ranks a fixed, small language. It cannot propose outside it |
+| trained weights | **YES.** 1,560 optimizer steps; the weight hashes changed (`974dc51c…` → `2aa5af84…`) |
+| development demonstration | the v1 pilot (`records/NEURAL_CORA_V1_PILOT_REPORT.md`) |
+| independent generalization | held-out synthetic compositions: L1 198/395 |
+| causal evidence | **G1 NO-GO.** Learning helps over plain, untrained and shuffled search: L1 198/395 vs C+ 104, L0 30, L0s 51. It is **worse** than hand features (L1h 235, p = 0.0009) and strong symbolic search (C+H 358) |
+| limitation | ranks a fixed, small language. It cannot propose outside it. The factorized heads cannot express selector–action pairing |
 
 ### Learning from failure (a revision policy learned from experience)
 

@@ -43,7 +43,8 @@ rebuilt differently by each leave-one-out fold. Neither the reasoner's own relat
 times the search budget repaired any of them, and the view-admission failure we had first traced by
 hand explains only 7 of 76 failed folds. Two obvious view repairs, tested on synthetic controls first, harmed
 more tasks than they gained and were not adopted. Frozen neural guides chose views
-no better than the fixed order (Qwen2.5-1.5B 19 of 35, I-JEPA 3 of 35, pre-registered).
+no better than the fixed order (Qwen2.5-1.5B 19 of 35, I-JEPA 3 of 35, pre-registered). A trained guide on frozen
+Qwen3-4B features later beat plain search (198 vs 104 of 395 synthetic tasks), not hand-crafted features (235).
 
 We then implemented the construction step (CORA-FHR): a declared grammar of typed growth operators, the
 reasoner's own memorized-growth record as evidence, reversible installation into the unchanged engine, and

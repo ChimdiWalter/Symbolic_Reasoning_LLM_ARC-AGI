@@ -63,6 +63,10 @@ are unchanged.
 The V2 prose is at the top of the requested 250–350 words, which exclude short figure labels and references. Text inside
 the PNG figures is not counted.
 
+**Update, 20 October, after the Neural-CORA v1 pilot.** Column 3's "No result yet" became "Pilot: beats plain search,
+not hand-designed search." (records/NEURAL_CORA_V1_PILOT_REPORT.md). The explainer's section 9 status and its 90-second
+script were updated to match. Prose is now 349 words.
+
 ## Explainer
 
 1. **Opening paragraph:** the addendum's exact text, followed by one-line definitions of ARC and CORA.
