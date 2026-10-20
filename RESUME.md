@@ -4,7 +4,37 @@ Last updated 2026-10-20. Read this first.
 
 ## State
 
-**NEWEST (2026-10-20 ~15:30Z): WINNING-PATH ADDENDUM explored, within its authority. G2 is STILL NOT RUN: it needs the
+**NEWEST (2026-10-20 ~15:10Z): G2 RAN ONCE (the user's "authorize G2") — FINAL: NO_GO_STOP. STOPPED. Nothing is running
+for v2.**
+- **The run:**
+  - one detached driver (PID 836449) from HEAD 86bab95; lock verified at solve and at diag;
+  - STARTED 14:18:37Z, EXIT 0 at 14:40:54Z;
+  - 2 workers at nice 10, CPU only, 0.67 CPU-hours; 0 errors, 0 truncations;
+  - logs in `outputs/neural_cora_v2/g2/`.
+- **Result:**
+  - ncv2-g1 (G1-CH @3000) fits 1/60, correct coverage 1, pass@2 1: the SAME task as g0 (k553a7e98f13d), 0 gains,
+    0 losses;
+  - native fits 35, correct coverage 8, certified 6;
+  - diagnostics on 20 no-fit tasks: 16 NO_SINGLE_RULE in the search's candidate space, 4 inconclusive, 0 search
+    misses;
+  - forensic: 0 / 0 / 0.
+- **Post hoc** (answer-free): of native's 6 certified answers, 4 need unexposed program classes (2 reduction,
+  2 generative). kc8866e481747 is expressible in ncv2-g1 and fits every demonstration, but its selector and
+  reference are not in G1-CH's candidate set.
+- **Record:** `records/NEURAL_CORA_V2_G2_REPORT.md`. Under the frozen rule there is NO neural training; G1b and G1c
+  are not opened.
+- **Proposed next step** (NOT started; needs a new grammar version, a protocol and authorization): ncv2-g2, "reach
+  what native already certifies" (report §6).
+- **README** updated: definitions, architecture diagram, status table, G2 FINAL.
+- **GitHub push HELD:**
+  - the remote repository is PUBLIC (branch arc2026-sprint, 49+ commits behind local master);
+  - the outgoing commits contain the user's UNPUBLISHED annotated maize tile (`figures/fig_maize_annotated_DSC_0042_crop_x2.png`
+    and the cancer-lesion poster and explainer PDFs), whose provenance record asks for owner (Toni) confirmation
+    before public display;
+  - everything else passed the audit. The push needs the user's decision.
+- `voice_note/` and the research ZIP are excluded locally (`.git/info/exclude`) and never staged.
+
+**EARLIER (2026-10-20 ~15:30Z, before G2 ran): WINNING-PATH ADDENDUM explored, within its authority. G2 is STILL NOT RUN: it needs the
 user's explicit authorization. Nothing is running for v2.**
 - **Hub record:** `records/NEURAL_CORA_V2_COMPETITIVE_PATH_ADDENDUM_20261020.md` (the ten decisions).
 - **New records and docs:**
