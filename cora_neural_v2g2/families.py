@@ -58,6 +58,14 @@ def scene_lines_and_blobs(rng):
     return scene_parts(rng, [(lines[0], cols[0]), (lines[1], cols[1])] + [(b, cols[2 + i % 2]) for i, b in enumerate(blobs)], (11, 11))
 
 
+def scene_one_line_and_blobs(rng):
+    """Exactly one line, so that `(unique (test is_line == #t))` is defined."""
+    cols = [int(c) for c in rng.permutation([1, 2, 3, 4, 6, 7])[:3]]
+    line = str(rng.choice(["hbar3", "vbar3", "hbar4", "vbar4"]))
+    blobs = [str(rng.choice(["square", "ell", "tee"])) for _ in range(int(rng.integers(2, 4)))]
+    return scene_parts(rng, [(line, cols[0])] + [(b, cols[1 + i % 2]) for i, b in enumerate(blobs)], (11, 11))
+
+
 def scene_rect_and_others(rng):
     cols = [int(c) for c in rng.permutation([1, 2, 3, 4, 6, 7])[:4]]
     return scene_parts(rng, [("square", cols[0]), ("ring", cols[1]), ("ell", cols[2]), ("tee", cols[3])], (11, 11))
@@ -158,7 +166,7 @@ FAMILIES = {
                               lambda rng: scene_dots(rng, (2, 3))),
     "h_panel_select_most": ("heldout", "(panel_reduction (split_separator 5) (select_panel most_nonbg))", scene_two_panels),
     "h_bind_unique": ("heldout", P("(rule_with (list (?t (unique (test is_line == #t)))) (test is_line == #f) "
-                                   "(composite (list (translate (step_toward (var ?t))) (recolor (color_of (var ?t))))))"), scene_lines_and_blobs),
+                                   "(composite (list (translate (step_toward (var ?t))) (recolor (color_of (var ?t))))))"), scene_one_line_and_blobs),
 }
 
 
