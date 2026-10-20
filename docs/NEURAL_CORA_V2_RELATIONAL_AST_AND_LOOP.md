@@ -92,6 +92,14 @@ copy-offset, move-toward, pure crop, relational guard) on native-generated tasks
 One parametrized case is skipped; the dedicated relational test covers it. The two suites together give 58 passed
 and 1 skipped (the G2a record in `records/NEURAL_CORA_V2_G2_FREEZE_MANIFEST.json`).
 
+**Part 2, added after the freeze in separate files (20 October):**
+- `tests/test_neural_cora_v2_parity.py` (61 tests): 39 more programs covering every exposed native op, plus the
+  execution semantics (first match, guard vs action, occlusion order, composite order, multicolour, dimensions,
+  stages, rejected constructs).
+- `scripts/neural_cora_v2_parity_bench.py`: 14,200 real-grid executions on dev60 demonstration inputs, with 0
+  mismatches.
+- The full inventory is `records/NEURAL_CORA_G2_NATIVE_COVERAGE_INVENTORY.md`.
+
 ## 3. The reasoning loop: implemented vs proposed
 
 ```

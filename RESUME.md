@@ -4,7 +4,35 @@ Last updated 2026-10-20. Read this first.
 
 ## State
 
-**NEWEST (2026-10-20 13:50Z): NEURAL-CORA V2. The G2 protocol was FROZEN at commit 3677d0f. STOPPED: the scored G2 run
+**NEWEST (2026-10-20 ~15:30Z): WINNING-PATH ADDENDUM explored, within its authority. G2 is STILL NOT RUN: it needs the
+user's explicit authorization. Nothing is running for v2.**
+- **Hub record:** `records/NEURAL_CORA_V2_COMPETITIVE_PATH_ADDENDUM_20261020.md` (the ten decisions).
+- **New records and docs:**
+  - `records/NEURAL_CORA_G2_NATIVE_COVERAGE_INVENTORY.md`;
+  - `records/NEURAL_CORA_V2_LICENSE_AND_PRETRAINING_AUDIT.md`;
+  - `records/NEURAL_CORA_V2_CONTROLS_AND_GO_GATES.md` (G1b, G1c, G3 and G5 thresholds pre-registered BEFORE G2;
+    §0 is the G2 forensic step);
+  - `records/NEURAL_CORA_27P64_RISK_AND_RUNTIME_PLAN.md`;
+  - `docs/NEURAL_CORA_V2_JOINT_SKETCH_AND_FEEDBACK_SPEC.md`.
+- **New code** (outside the frozen G2 files; the G2 lock was re-checked and is valid):
+  - `tests/test_neural_cora_v2_parity.py`: 61 pass;
+  - `tests/test_neural_cora_v2_forensic.py`: 1 pass;
+  - `scripts/neural_cora_v2_parity_bench.py`: 14,200 real-grid executions, 0 mismatches;
+  - `scripts/neural_cora_v2_g2_forensic.py`: runs only after the G2 score stage.
+- **Verified today:**
+  - the tokenizer gives one token per grid cell (300 prompts, 0 misaligned; no BOS; causal-context caveat);
+  - ARC-AGI-2 data is Apache-2.0;
+  - the 2026 page still says limits "will be announced";
+  - the Kaggle rules (12 Oct) say notebooks ≤ 12 h;
+  - Kaggle deadlines: code 2 Nov 23:59, paper track 9 Nov 23:59;
+  - no peft or bitsandbytes is installed;
+  - native occlusion follows object order.
+- **Not done, deliberately:** no GPU smoke test; no repair controller; no grammar extension; no installs; poster
+  unchanged.
+- **After G2 is authorized:** run the G2 command in the block below, then `python scripts/neural_cora_v2_g2_forensic.py`,
+  then write the G2 report.
+
+**EARLIER (2026-10-20 13:50Z): NEURAL-CORA V2. The G2 protocol was FROZEN at commit 3677d0f. STOPPED: the scored G2 run
 needs the user's authorization. Nothing is running for v2.**
 - **Built, in `cora_neural_v2/`:**
   - ncv2-g1, the typed relational AST (`rast.py`);
