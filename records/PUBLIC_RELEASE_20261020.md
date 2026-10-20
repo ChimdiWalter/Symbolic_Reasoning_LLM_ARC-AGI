@@ -34,3 +34,12 @@ sh scripts/make_public_release.sh
 git push origin publish-arc2026-sprint:arc2026-sprint
 ```
 Never use `--force`.
+
+## Sync log
+
+Each entry is a fast-forward of `arc2026-sprint`, built by `scripts/make_public_release.sh`, with no force.
+
+| push | range | what |
+|---|---|---|
+| 1 | `a1a59f7..ea48725` | the 18–20 October work, 51 commits, maize crop excluded |
+| 2 | `ea48725..36bf5bb` | ncv2-g2 capability recovery; the frozen synthetic protocol; RESUME and ledger (3 commits; 0 new binaries; every check above repeated) |

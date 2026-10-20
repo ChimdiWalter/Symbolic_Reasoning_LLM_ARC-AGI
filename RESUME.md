@@ -38,8 +38,8 @@ without the maize crop. STOPPED before the next scored study. Nothing is running
 - **FROZEN at 6b6dc37, NOT RUN:** `records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20261020.md` with its manifest
   (200 HELDOUT tasks, sha 976f2a33), ncv2-g1 vs ncv2-g2. 202 tests pass across the v2 and v2g2 suites. Run it only after authorization:
   `python scripts/neural_cora_v2g2_synthetic_eval.py solve --authorized && python scripts/neural_cora_v2g2_synthetic_eval.py score`.
-- **GitHub:** pushed `a1a59f7..ea48725` to `arc2026-sprint`, a fast-forward that excludes the maize crop and its 2
-  PDFs. Re-sync with `sh scripts/make_public_release.sh` and push `publish-arc2026-sprint:arc2026-sprint`; never push
+- **GitHub:** `arc2026-sprint` synced by fast-forward pushes that exclude the maize crop and its 2 PDFs
+  (`a1a59f7..ea48725`, then `ea48725..36bf5bb`; the log is in `records/PUBLIC_RELEASE_20261020.md`). Re-sync with `sh scripts/make_public_release.sh` and push `publish-arc2026-sprint:arc2026-sprint`; never push
   master. Open: the public NVARC notebook copy's licence.
 
 **EARLIER (2026-10-20 ~15:10Z): G2 RAN ONCE (the user's "authorize G2") — FINAL: NO_GO_STOP. STOPPED. Nothing is running
