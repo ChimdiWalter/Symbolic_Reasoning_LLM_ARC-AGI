@@ -35,8 +35,8 @@ without the maize crop. STOPPED before the next scored study. Nothing is running
   - `docs/NEURAL_CORA_V2_TO_27P64_DECISION_TREE.md` (rewritten after G2: Path A vs B);
   - `records/PUBLIC_RELEASE_20261020.md`.
   - The Kaggle hardware statements were corrected: L4x4 with 96 GB, from the rules saved on 12 October.
-- **FROZEN, NOT RUN:** `records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20261020.md` with its manifest, ncv2-g1 vs
-  ncv2-g2 on HELDOUT families. Run it only after authorization:
+- **FROZEN at 6b6dc37, NOT RUN:** `records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20261020.md` with its manifest
+  (200 HELDOUT tasks, sha 976f2a33), ncv2-g1 vs ncv2-g2. 202 tests pass across the v2 and v2g2 suites. Run it only after authorization:
   `python scripts/neural_cora_v2g2_synthetic_eval.py solve --authorized && python scripts/neural_cora_v2g2_synthetic_eval.py score`.
 - **GitHub:** pushed `a1a59f7..ea48725` to `arc2026-sprint`, a fast-forward that excludes the maize crop and its 2
   PDFs. Re-sync with `sh scripts/make_public_release.sh` and push `publish-arc2026-sprint:arc2026-sprint`; never push
