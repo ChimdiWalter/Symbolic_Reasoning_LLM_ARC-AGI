@@ -31,7 +31,10 @@ objects in 7 native views; features, relations, correspondences ........ impleme
    |
    v
 proposals over whole rules: symbolic C+H order (G1-CH) ................. implemented, tested
+                            generator completed over compiled constructs  implemented, unit-tested (ncv2-g2)
                             learned joint proposer over Qwen states .... proposed (design only)
+native program classes (symmetry, pixel rules, counting, panels,
+                        generative) as typed program forms .............. implemented, parity-tested (ncv2-g2)
    |
    v
 typed relational program (ncv2-g1: guards, bindings, holes, macros) .... implemented, parity-tested
@@ -49,8 +52,9 @@ two attempts -> blind evaluator, the only reader of answers ............ impleme
 
 | status | components |
 |---|---|
-| **implemented and tested** | native CORA v23 and its failure funnel; CORA-FHR (construction, reversible bridge, folds); the reasoning v2 version space; Neural-CORA v1 (typed language, generator, learned guide, frozen pilot); Neural-CORA v2: the ncv2-g1 AST, its compiler to native (71 programs; 14,200 real-grid executions, 0 mismatches), macros, sound constraints, pairing-aware search, the locked G2 runner |
-| **proposed (designed, not built or trained)** | a joint Qwen–CORA rule and sketch proposer; neural-to-symbolic use of Qwen grids as untrusted hints; the failure-guided revision controller; library learning; more native exposure (grow, matched templates, other program classes) |
+| **implemented and tested** | native CORA v23 and its failure funnel; CORA-FHR (construction, reversible bridge, folds); the reasoning v2 version space; Neural-CORA v1 (typed language, generator, learned guide, frozen pilot); Neural-CORA v2: the ncv2-g1 AST, its compiler to native (71 programs; 14,200 real-grid executions, 0 mismatches), macros, sound constraints, pairing-aware search, the locked G2 runner; **ncv2-g2** (after G2): native reduction and generative program classes as typed forms (parity with all 6 saved native certificates), an object decompiler, and a candidate generator completed over compiled constructs (82 unit tests; on DEV synthetic families 10/10 correct within two attempts vs ncv2-g1's 1/10, engineering only) |
+| **proposed (designed, not built or trained)** | Qwen interface A (joint proposals of references, parameters and program classes beyond the symbolic candidates) and interface B (Qwen grids as untrusted evidence turned into CORA sketches, with causal ablations); the failure-guided revision controller; library learning; the remaining native exposure (grow, matched templates, framed / overlay classes) |
+| **frozen, not run** | the ncv2-g2 synthetic coverage study on held-out families (`records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20261020.md`) |
 | **failed or NO-GO under frozen rules** | the G1 learned guide (198 vs 358 of 395); the G2 language-ceiling check (ncv2-g1 1 of 60, the same as v1); CORA-FHR on real tasks (+0); guarded construction (0 of 58); reasoning v2 Phase 2a (0 certified); the NVARC + CORA hybrid (+0, −1); official Kaggle scores of native CORA and CORA-FHR (0.00) |
 | **not shown** | that failure information beats an equally equipped failure-blind control; autonomous invention of new semantics (ncv2-g1 surfaces existing native operations, and its macros are researcher-written); transfer to biology |
 
@@ -82,6 +86,7 @@ two attempts -> blind evaluator, the only reader of answers ............ impleme
 | How much of real ARC can the v1 typed language express? | **1 of 60** exposed development tasks has a demonstration-fitting program under its best search order | 60 training tasks (exposed) | `records/NEURAL_CORA_V1_EXPRESSIVITY_AND_FAILURE_ATLAS.md` |
 | Neural-CORA v2: a typed relational program language over native CORA (ncv2-g1) | **Built and parity-tested.** S-expression / JSON programs with relational guards, object references and binding, copies, parts, multicolour paint, composite and staged programs, compiled one-to-one onto the unchanged native interpreter. 71 programs match hand-written native programs; 14,200 executions on real grids give 0 mismatches. Not exposed yet: grow, synthesized copies, matched templates, six native program classes | hand-built grids and 200 dev60 demonstration inputs (no answers) | `records/NEURAL_CORA_G2_NATIVE_COVERAGE_INVENTORY.md`, `docs/NEURAL_CORA_V2_RELATIONAL_AST_AND_LOOP.md` |
 | G2: does ncv2-g1 fit and answer more real tasks than the v1 language? (frozen protocol 3677d0f, one authorized run) | **FINAL: NO-GO (NO_GO_STOP).** Under its symbolic search, ncv2-g1 fits 1 of 60 and answers 1 of 60: the same task as the v1 language, with 0 gains and 0 losses. Native CORA fits 35. Of 20 checked no-fit tasks, 16 have no single-rule program in the search's candidate space, and 4 are inconclusive. Of native's 6 certified answers, 4 use program classes ncv2-g1 does not expose (reduction, generative), and 1 is expressible in ncv2-g1 but outside the search's candidates. No neural training follows | 60 exposed dev60 training tasks; CPU only, 0.67 CPU-hours | `records/NEURAL_CORA_V2_G2_REPORT.md` |
+| After G2: can CORA's new search generate what native CORA already executes? (ncv2-g2, capability recovery) | **Engineering result, not a score.** ncv2-g2 adds native reduction and generative program classes, and completes the candidate generator over constructs ncv2-g1 already compiled. All 6 saved native certificates round-trip exactly. On 10 DEV synthetic families ncv2-g2 answers 10, ncv2-g1 1 (budget 3000). The frozen held-out study has not run | DEV synthetic families written by the same author; no real ARC | `records/NEURAL_CORA_V2G2_CAPABILITY_RECOVERY_REPORT_20261020.md` |
 | Official Kaggle, ARC-AGI-2 public leaderboard | native CORA v23: **0.00** (57144804). NEURAL_TTT_BASELINE: **27.64** (57160429). The latter is a faithful reproduction of the public NVARC Qwen3-4B pipeline, **not CORA**; it equals NVARC's own 2025 public score | Kaggle code competition | `records/KAGGLE_NEURAL_V1_LOG_20261013.md`, `records/KAGGLE_NEURAL_V1_ORIGINALITY_AUDIT_20261014.md` |
 | The CORA-FHR research entry on Kaggle | **CORA_FHR_V1 (57354496): official public score 0.00.** Native v23 runs unchanged, then FHR runs on growth-shaped tasks that native did not certify. In the committed run FHR ran on 62 of 240 stand-in tasks and committed 0, and the official score of 0.00 confirms this. The entry documents a runnable implementation, not unseen accuracy | `kaggle/cora_fhr_v1/` | `records/KAGGLE_CORA_FHR_V1_LOG_20261015.md` |
 | NVARC plus CORA hybrid | **NO-GO.** On the stand-in tasks CORA solves nothing NVARC misses. Filling NVARC's empty second attempts with CORA adds 0 and loses 1, because a 1×1 `[[0]]` answer was correct | 240 stand-in training tasks (contaminated) | `records/NVARC_CORA_COMPLEMENTARITY_AUDIT_20261014.md` |
@@ -102,6 +107,7 @@ research problem.
 | `cora_revision_v2/` | reasoning v2: the version space over (segmentation, geometry, colour policy), diagnoses, the Phase 2a runner and evaluator |
 | `cora_neural_v1/` | Neural-CORA v1: the typed language ncv1-g0, its generator, the learned proposal guide, the frozen pilot and its evaluator |
 | `cora_neural_v2/` | Neural-CORA v2: the ncv2-g1 typed relational AST (`rast.py`), the compiler to native (`bridge.py`), typed hygienic macros, the native inventory, sound constraints, and the pairing-aware search with an exhaustive single-rule diagnostic |
+| `cora_neural_v2g2/` | ncv2-g2: native program classes as typed forms (`classes.py`), the object decompiler, the grammar facade, the completed candidate generator and agenda (`search.py`), and the synthetic families (DEV / HELDOUT) |
 | `tools/stepb_eligibility/` | the metadata-only cohort eligibility checker (reads only the split manifest's task ids and splits) |
 | `kaggle/` | Kaggle notebooks and builders: `native_v1/`, `neural_v1/` (NVARC reproduction), `cora_fhr_v1/` (research entry), `ops/` (gated pipelines), `neural_cora_v1/` (scaffold only) |
 | `records/` | protocols, results, audits, logs and the stage ledger (`STAGE_LEDGER.json`) |
@@ -120,6 +126,9 @@ research problem.
   parity: `python scripts/neural_cora_v2_parity_bench.py`.
 - Neural-CORA v2 G2: `python scripts/neural_cora_v2_g2.py {freeze,selftest,solve,diag,score}`. The solver stages
   refuse to run unless the frozen protocol and manifest are committed unchanged and `--authorized` is given.
+- ncv2-g2: `pytest tests/test_neural_cora_v2g2.py`; the three-space coverage matrix:
+  `python scripts/neural_cora_v2g2_coverage_matrix.py`; the synthetic study (frozen, needs authorization):
+  `python scripts/neural_cora_v2g2_synthetic_eval.py {selftest,solve,score}`.
 - The sealed 80-task prospective final, the frozen 120-task pilot and every protected split stay unopened.
 
 ## Authorship and assistance

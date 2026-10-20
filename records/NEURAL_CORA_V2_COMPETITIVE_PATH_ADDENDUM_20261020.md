@@ -82,7 +82,7 @@ recommends.
 | real-grid parity, 71 programs × 200 dev60 demonstration inputs | 14,200 executions; **0 mismatches**; 4,247 changes; 1,582 identical EvalErrors; 25.8 CPU-s | `outputs/neural_cora_v2/parity_bench/dev60_demo_inputs_parity.json` |
 | native semantics, characterized | occlusion follows object order; composite parts are sequential; first match; colour frequency counts objects | inventory §3 |
 | tokenizer | 16-token WordLevel vocabulary, digits isolated, no BOS; 300 prompts, 0 misaligned | licence audit §2 |
-| licences and rules | ARC-AGI-2 data Apache-2.0; the 2026 ARC-AGI-2 page: limits "will be announced"; Kaggle rules (12 Oct): notebooks ≤ 12 h; deadlines 2 Nov 23:59 (code), 9 Nov 23:59 (Kaggle paper track) | licence audit §5–6 |
+| licences and rules | ARC-AGI-2 data Apache-2.0; the 2026 arcprize.org page: limits "will be announced"; Kaggle rules (12 Oct): notebooks ≤ 12 h and L4x4 machines with 96 GB of GPU memory (corrected 20 Oct); deadlines 2 Nov 23:59 (code), 9 Nov 23:59 (Kaggle paper track) | licence audit §5–6 |
 | SOAR (ICML 2025) | an evolutionary search ↔ hindsight fine-tuning loop; "52% of the public test set" (the version is not stated on the PMLR page); no code link on that page | the prior-art record, row added |
 | local ML stack | torch 2.11, transformers 4.57, accelerate 1.13; **no peft or bitsandbytes** | licence audit §5 |
 

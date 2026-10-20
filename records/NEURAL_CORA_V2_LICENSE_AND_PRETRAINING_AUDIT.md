@@ -85,7 +85,8 @@ The tokenizer was audited because the joint design pools Qwen states per CORA ob
 |---|---|
 | exactly 2 predicted outputs per test input; a task scores 1 if either matches; the score averages over test outputs | arcprize.org ARC-AGI-2 page, fetched today |
 | no internet during evaluation | the same page |
-| hardware and compute limits "will be announced with the competition launch" | the same page (not updated) |
+| hardware and compute limits "will be announced with the competition launch" | the arcprize.org page (not updated) |
+| **L4x4 machines, 96 GB of GPU memory, for this competition**; quota at twice the T4x2/P100 rate; internet disabled; restricted to competition notebooks | the Kaggle "Upgraded Accelerators" rules page, fetched 2026-10-12 (`outputs/kaggle_deploy/rules_20261012/Upgraded_Accelerators.txt`). **Correction (20 Oct): an earlier version of this audit said the 2026 hardware was unannounced** |
 | CPU notebook ≤ 12 h; GPU notebook ≤ 12 h; pre-trained models allowed; `submission.json` | the Kaggle rules pages, fetched 2026-10-12 (`records/KAGGLE_NATIVE_V1_DEPLOYMENT_LOG_20261012.md` §7) |
 | code deadline 2026-11-02 23:59 | Kaggle CLI listing, today |
 | paper track deadline 2026-11-09 23:59 (arcprize.org says papers are due 8 November; plan for the 8th) | the same |
@@ -112,4 +113,4 @@ The tokenizer was audited because the joint design pools Qwen states per CORA ob
 - record peak memory and step time;
 - about 10 minutes.
 
-**On Kaggle:** the 2025 setup was 4 × L4 (Ada, bf16-capable) [L10]. The 2026 hardware is not yet announced.
+**On Kaggle:** L4x4 (Ada, bf16-capable, 96 GB in total) is available to this competition (the saved rules page above). Usable capacity must still be checked inside an actual notebook.

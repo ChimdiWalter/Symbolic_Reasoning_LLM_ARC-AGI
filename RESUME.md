@@ -4,7 +4,45 @@ Last updated 2026-10-20. Read this first.
 
 ## State
 
-**NEWEST (2026-10-20 ~15:10Z): G2 RAN ONCE (the user's "authorize G2") — FINAL: NO_GO_STOP. STOPPED. Nothing is running
+**NEWEST (2026-10-20, evening): POST-G2 CAPABILITY RECOVERY (ncv2-g2) BUILT AND UNIT-TESTED; public GitHub synced
+without the maize crop. STOPPED before the next scored study. Nothing is running.**
+- **What it combines:** all of the user's prompts (the recovery directive phases A–G, both strategy papers, the
+  handoff).
+- **Code:** `cora_neural_v2g2/` (new; ncv2-g1 and native unchanged):
+  - `classes.py`: native reduction (symmetry / pixel rules / counting / panels) and generative program classes as
+    typed forms, with exact native parity;
+  - `decompile.py`: native object programs → typed AST;
+  - `grammar.py`: the facade;
+  - `search.py`: the generator completed over compiled constructs, plus program-class candidates from native's own
+    inducers (sealed v23 flags), a bounded generator enumeration and `evidence2` (moved-and-recoloured);
+  - `families.py`: 10 DEV and 10 HELDOUT families.
+- **Tests:** `tests/test_neural_cora_v2g2.py`, 82 passed:
+  - parity, including all 6 native certificates (EXPOSED ENGINEERING fixtures);
+  - type-safety rejections;
+  - decompiler round trips;
+  - the four checks per DEV family;
+  - representable-but-absent-from-g1;
+  - no regression on g1 cases.
+- **DEV families:** ncv2-g2 gets 10/10 correct within two attempts, ncv2-g1 1/10 (engineering only, the same author
+  designed the families).
+- **Phase A matrix:** `records/NEURAL_CORA_V2G2_COVERAGE_MATRIX.{json,md}`, built by
+  `scripts/neural_cora_v2g2_coverage_matrix.py`. Native 186 constructs; g1 compiles 120 and generates 64; g2 compiles
+  172 and generates 102.
+- **Records:**
+  - `records/NEURAL_CORA_V2G2_CAPABILITY_RECOVERY_REPORT_20261020.md` (strongest bottleneck: combinatorial
+    generation of compositions);
+  - `docs/NEURAL_CORA_V2_QWEN_EVIDENCE_TO_PROGRAM_SPEC.md` (interfaces A and B, causal ablations);
+  - `docs/NEURAL_CORA_V2_TO_27P64_DECISION_TREE.md` (rewritten after G2: Path A vs B);
+  - `records/PUBLIC_RELEASE_20261020.md`.
+  - The Kaggle hardware statements were corrected: L4x4 with 96 GB, from the rules saved on 12 October.
+- **FROZEN, NOT RUN:** `records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20261020.md` with its manifest, ncv2-g1 vs
+  ncv2-g2 on HELDOUT families. Run it only after authorization:
+  `python scripts/neural_cora_v2g2_synthetic_eval.py solve --authorized && python scripts/neural_cora_v2g2_synthetic_eval.py score`.
+- **GitHub:** pushed `a1a59f7..ea48725` to `arc2026-sprint`, a fast-forward that excludes the maize crop and its 2
+  PDFs. Re-sync with `sh scripts/make_public_release.sh` and push `publish-arc2026-sprint:arc2026-sprint`; never push
+  master. Open: the public NVARC notebook copy's licence.
+
+**EARLIER (2026-10-20 ~15:10Z): G2 RAN ONCE (the user's "authorize G2") — FINAL: NO_GO_STOP. STOPPED. Nothing is running
 for v2.**
 - **The run:**
   - one detached driver (PID 836449) from HEAD 86bab95; lock verified at solve and at diag;

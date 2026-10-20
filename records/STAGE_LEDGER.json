@@ -837,6 +837,11 @@
    "id": "neural_cora_v2_g2_run_20261020",
    "status": "DONE, FINAL NO_GO_STOP under the frozen rule (3677d0f; one user-authorized run from 86bab95, 14:18-14:41Z, 0.67 CPU-h, 2 nice-10 workers, 0 errors): ncv2-g1 fits 1/60, correct 1, pass@2 1 = the same task as ncv1-g0 (0 gains, 0 losses); native 35 fits / 8 correct coverage / 6 certified; diag 16 NO_SINGLE_RULE (candidate space) + 4 inconclusive + 0 search misses; post hoc: 4 of native's 6 certificates need unexposed reduction/generative classes, 1 (kc8866e481747) is expressible but outside the candidate set. No neural training; G1b/G1c not opened",
    "evidence": "records/NEURAL_CORA_V2_G2_REPORT.md; outputs/neural_cora_v2/g2/g2_score.json (007863d28de6190a)"
+  },
+  {
+   "id": "neural_cora_v2g2_capability_recovery_20261020",
+   "status": "BUILT and unit-tested (engineering, no scored study): ncv2-g2 = native reduction/generative program classes as typed forms (exact parity incl. all 6 native certificates), object decompiler, generator completed over compiled constructs + native-inducer class candidates + evidence2; 82 tests pass; DEV synthetic families 10/10 vs ncv2-g1 1/10; three-space coverage matrix; synthetic HELDOUT protocol FROZEN, NOT RUN (needs authorization); Qwen evidence-to-program spec; decision tree rewritten; public GitHub synced without the maize crop (a1a59f7..ea48725)",
+   "evidence": "records/NEURAL_CORA_V2G2_CAPABILITY_RECOVERY_REPORT_20261020.md; records/NEURAL_CORA_V2G2_COVERAGE_MATRIX.json; records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20261020.md; records/PUBLIC_RELEASE_20261020.md"
   }
  ],
  "recovered_definitions": {

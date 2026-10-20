@@ -1,0 +1,1867 @@
+{
+ "note": "generator support measured on the DEV families and ncv2-g1's search-test tasks; see the script docstring",
+ "summary": {
+  "native": 186,
+  "g1_compile": 120,
+  "g1_generate": 64,
+  "g2_compile": 172,
+  "g2_generate": 102
+ },
+ "compile_but_not_generate": {
+  "g1": [
+   "delta:composite",
+   "delta:copy_part",
+   "delta:extract_part",
+   "delta:move_to",
+   "delta:paint",
+   "expr:ColorExpr.feature_affine",
+   "expr:ColorExpr.feature_map",
+   "expr:ColorExpr.least_common_color",
+   "expr:ColorExpr.most_common_color",
+   "expr:PredExpr.and2",
+   "expr:PredExpr.in_set",
+   "expr:RefExpr.contained",
+   "expr:RefExpr.container",
+   "expr:RefExpr.nearest_shape_twin",
+   "expr:RefExpr.self",
+   "expr:RegionExpr.separator_block_self",
+   "expr:RegionExpr.separator_cell",
+   "expr:ScalarExpr.count",
+   "expr:ScalarExpr.feature",
+   "expr:ScalarExpr.hole_count",
+   "expr:ScalarExpr.size",
+   "expr:VecExpr.reflect_across",
+   "expr:VecExpr.scaled_unit",
+   "expr:VecExpr.vector_to",
+   "feature:aligned_col_count",
+   "feature:aligned_row_count",
+   "feature:aspect_ratio",
+   "feature:bbox",
+   "feature:bbox_height",
+   "feature:bbox_width",
+   "feature:centroid",
+   "feature:color_frequency_rank",
+   "feature:containment_depth",
+   "feature:count_of_same_color",
+   "feature:count_of_same_shape",
+   "feature:density",
+   "feature:enclosed_region_count",
+   "feature:gap_to_nearest_col",
+   "feature:gap_to_nearest_row",
+   "feature:has_enclosed_region",
+   "feature:hole_count",
+   "feature:is_majority_shape",
+   "feature:is_unique_shape",
+   "feature:nearest_object_color",
+   "feature:shape_sig",
+   "feature:shape_sig_normalized",
+   "feature:vector_to_nearest",
+   "relation:above",
+   "relation:below",
+   "relation:left_of",
+   "relation:overlaps",
+   "relation:right_of",
+   "relation:same_color",
+   "relation:same_shape",
+   "relation:same_shape_normalized",
+   "relation:same_size"
+  ],
+  "g2": [
+   "class:composed",
+   "class:reduction/equal/cellwise",
+   "class:reduction/equal/cellwise_color",
+   "class:reduction/equal/overlay_first",
+   "class:reduction/equal/overlay_last",
+   "class:reduction/equal/overlay_max",
+   "class:reduction/equal/overlay_min_nonbg",
+   "class:reduction/equal/select_panel",
+   "class:reduction/pixel_rule/neighbor_pattern",
+   "class:reduction/separator/overlay_last",
+   "class:reduction/separator/overlay_max",
+   "class:reduction/separator/select_panel",
+   "delta:copy_part",
+   "expr:ColorExpr.feature_affine",
+   "expr:PredExpr.and2",
+   "expr:PredExpr.in_set",
+   "expr:RefExpr.self",
+   "expr:RegionExpr.separator_block_self",
+   "expr:ScalarExpr.count",
+   "expr:ScalarExpr.feature",
+   "expr:ScalarExpr.hole_count",
+   "expr:ScalarExpr.size",
+   "expr:VecExpr.reflect_across",
+   "expr:VecExpr.scaled_unit",
+   "feature:aligned_col_count",
+   "feature:aligned_row_count",
+   "feature:aspect_ratio",
+   "feature:bbox",
+   "feature:bbox_height",
+   "feature:bbox_width",
+   "feature:centroid",
+   "feature:color_frequency_rank",
+   "feature:containment_depth",
+   "feature:count_of_same_color",
+   "feature:count_of_same_shape",
+   "feature:density",
+   "feature:enclosed_region_count",
+   "feature:gap_to_nearest_col",
+   "feature:gap_to_nearest_row",
+   "feature:has_enclosed_region",
+   "feature:hole_count",
+   "feature:is_majority_shape",
+   "feature:is_unique_shape",
+   "feature:nearest_object_color",
+   "feature:shape_sig",
+   "feature:shape_sig_normalized",
+   "feature:vector_to_nearest",
+   "gen_selector:min_size",
+   "gen_selector:not_background",
+   "generator:cavity_leak",
+   "generator:cross_center",
+   "generator:frame_minority",
+   "generator:line_periodic",
+   "generator:mirror_edge",
+   "generator:path_two_anchor",
+   "generator:periodic_bbox",
+   "generator:periodic_self",
+   "generator:ray_deflect",
+   "generator:ray_through_absorbed",
+   "generator:ray_until_obstacle",
+   "generator:symmetry_complete",
+   "relation:above",
+   "relation:below",
+   "relation:left_of",
+   "relation:overlaps",
+   "relation:right_of",
+   "relation:same_color",
+   "relation:same_shape",
+   "relation:same_shape_normalized",
+   "relation:same_size"
+  ]
+ },
+ "native_not_compiled_by_g2": [
+  "class:computed_pattern",
+  "class:erase_patch",
+  "class:framed",
+  "class:overlay",
+  "delta:grow",
+  "delta:synth_copy",
+  "expr:FreeSlotExpr.free_slot",
+  "expr:GrowModeExpr.const",
+  "expr:PatternExpr.const",
+  "expr:PatternExpr.enclosed_holes",
+  "expr:PatternExpr.hole_map",
+  "expr:RefExpr.matched_template",
+  "generator:learned_generator",
+  "generator:ray_relational"
+ ],
+ "parameter_domains": {
+  "g2": "selectors: colours in the inputs, sizes 1-12, size ranks, 9 boolean features in both polarities, exists adjacent/inside/contains by colour; references: nearest/unique of colour tests and both boolean polarities, largest, container, contained, shape twin; vectors: observed displacements + 8 units + relational vectors; colours: observed outputs, induced maps, object-frequency colours; program classes: 6 symmetries, 5 counting modes, native-induced pixel rules / panel reductions / generative programs, and a bounded single-generator enumeration"
+ },
+ "certificate_fixtures_EXPOSED_ENGINEERING": {
+  "k328b173af636": {
+   "form": "symmetry_completion",
+   "in_g2_candidates": true,
+   "execution_equivalent_on_demos": true
+  },
+  "k553a7e98f13d": {
+   "form": "object program",
+   "in_g2_candidates": false
+  },
+  "k68319709c614": {
+   "form": "generative",
+   "in_g2_candidates": true,
+   "execution_equivalent_on_demos": true
+  },
+  "k781e60eda1b3": {
+   "form": "generative",
+   "in_g2_candidates": true,
+   "execution_equivalent_on_demos": true
+  },
+  "kc8866e481747": {
+   "form": "object program",
+   "in_g2_candidates": true
+  },
+  "kf105d51e18c5": {
+   "form": "pixel_rule",
+   "in_g2_candidates": true,
+   "execution_equivalent_on_demos": true
+  }
+ },
+ "rows": [
+  {
+   "construct": "class:composed",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:computed_pattern",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "meta-induction class: not exposed"
+  },
+  {
+   "construct": "class:erase_patch",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "graduation class: not exposed"
+  },
+  {
+   "construct": "class:framed",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "dihedral-frame wrapper: not exposed"
+  },
+  {
+   "construct": "class:generative",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:object",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:overlay",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "base + patch overlay: not exposed"
+  },
+  {
+   "construct": "class:reduction",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/counting/color_count_row",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/counting/color_histogram_col",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/counting/majority_color",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/counting/surrounding_of_unique",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/counting/unique_color",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/cellwise",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/cellwise_color",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/overlay_first",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/overlay_last",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/overlay_max",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/overlay_min_nonbg",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/equal/select_panel",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/pixel_rule/color_swap",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/pixel_rule/neighbor_count",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/pixel_rule/neighbor_pattern",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/cellwise",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/cellwise_color",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/overlay_first",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/overlay_last",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/overlay_max",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/overlay_min_nonbg",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/separator/select_panel",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/symmetry/4fold",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/symmetry/d4",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/symmetry/horizontal",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/symmetry/rot180",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/symmetry/rot90",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "class:reduction/symmetry/vertical",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:composite",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:connect",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:copy",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:copy_part",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:crop_to",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:delete",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:extract_part",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:fill_line",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:grow",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "native GROW modes: not exposed (many mode-specific parameters); the generative class covers its generator vocabulary"
+  },
+  {
+   "construct": "delta:keep",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:move_to",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:move_until_adjacent",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:paint",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:recolor",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:reflect",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:rotate",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:scale",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "delta:synth_copy",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "learned-verb asset: not exposed"
+  },
+  {
+   "construct": "delta:translate",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:AlignExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:AngleExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:AxisExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.color_map",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.color_of",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.feature_affine",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.feature_map",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.least_common_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ColorExpr.most_common_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:DirectionExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:FreeSlotExpr.free_slot",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:GrowModeExpr.const",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PatternExpr.const",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PatternExpr.enclosed_holes",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PatternExpr.hole_map",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PredExpr.and2",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PredExpr.in_set",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PredExpr.relation_exists",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PredExpr.test",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:PredExpr.true",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.contained",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.container",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.largest",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.matched_template",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "needs a correspondence-bound template: not exposed"
+  },
+  {
+   "construct": "expr:RefExpr.nearest_object",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.nearest_object_of_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.nearest_shape_twin",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.self",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RefExpr.unique",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RegionExpr.bbox",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RegionExpr.bbox_self",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RegionExpr.grid_quadrant",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RegionExpr.separator_block_self",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:RegionExpr.separator_cell",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ScalarExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ScalarExpr.count",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ScalarExpr.feature",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ScalarExpr.hole_count",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:ScalarExpr.size",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.align_vector",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.const",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.gap_closing_vector",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.mirror_vector",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.reflect_across",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.scaled_unit",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.slide_vector",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.step_toward",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.vector_to",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "expr:VecExpr.vector_to_border",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:aligned_col_count",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:aligned_row_count",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:aspect_ratio",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:bbox",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:bbox_height",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:bbox_width",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:centroid",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:color_frequency_rank",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:containment_depth",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:count_of_same_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:count_of_same_shape",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:density",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:enclosed_region_count",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:gap_to_nearest_col",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:gap_to_nearest_row",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:has_enclosed_region",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:has_hole",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:hole_count",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_contained",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_container",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_line",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_majority_shape",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_multicolor",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_rectangle",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_unique_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_unique_shape",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:is_unique_size",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:nearest_object_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:shape_sig",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:shape_sig_normalized",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:size",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:size_rank",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:size_rank_reversed",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:touches_border",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "feature:vector_to_nearest",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "gen_selector:color",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "gen_selector:min_size",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "gen_selector:not_background",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:cavity_leak",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:col_line",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:cross_center",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:cross_line",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:fill_interior",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:frame_minority",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:halo",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:learned_generator",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "frozen learned-generator asset: refused"
+  },
+  {
+   "construct": "generator:line_periodic",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:mirror_edge",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:path_two_anchor",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:periodic_bbox",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:periodic_self",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:ray",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:ray_deflect",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:ray_relational",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": false,
+   "g2_generate": false,
+   "limitation": "untyped relational payload: refused"
+  },
+  {
+   "construct": "generator:ray_through_absorbed",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:ray_until_obstacle",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:row_line",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "generator:symmetry_complete",
+   "native": true,
+   "g1_compile": false,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "output:constant_shape",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "output:crop",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "output:same_as_input",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:above",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:adjacent",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:below",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:contains",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:inside",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:left_of",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:overlaps",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:right_of",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:same_color",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:same_shape",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:same_shape_normalized",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "relation:same_size",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": false,
+   "g2_compile": true,
+   "g2_generate": false,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S1",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S2",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S3",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S4",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S5",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S6",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  },
+  {
+   "construct": "view:S7",
+   "native": true,
+   "g1_compile": true,
+   "g1_generate": true,
+   "g2_compile": true,
+   "g2_generate": true,
+   "limitation": ""
+  }
+ ]
+}

@@ -9,7 +9,7 @@ record adds the arithmetic, the runtime budget and the risk register.
 **The target:**
 - Two attempts per test output; the score is the mean over test outputs (arcprize.org, today).
 - Exceeding 27.64% means more than about 28% of hidden test outputs exactly right.
-- The 2025 hidden run covered 240 tasks in 12 h on 4 × L4 [NVARC paper]. The 2026 hardware is not yet announced.
+- The 2025 hidden run covered 240 tasks in 12 h on 4 × L4 [NVARC paper]. For 2026, Kaggle offers L4x4 machines with 96 GB of GPU memory to this competition, at twice the GPU-quota rate (the official rules page saved on 12 October; corrected 20 October).
 
 **Where CORA stands:**
 
