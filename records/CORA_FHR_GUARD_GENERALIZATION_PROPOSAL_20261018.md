@@ -1,6 +1,6 @@
 # PROPOSED (not frozen, not run): an independently selected generalization test of guarded construction
 
-**Status: PROPOSAL ONLY.** It needs a frozen protocol, a confirmed permitted pool and the user's go-ahead
+**Status: PROPOSAL ONLY.** It needs a frozen protocol, a confirmed permitted pool and the author's go-ahead
 before any run. No protected split is used (E_transfer, HOLDOUT, ARC-1000, the frozen 120 pilot and the
 sealed C4 final are excluded).
 

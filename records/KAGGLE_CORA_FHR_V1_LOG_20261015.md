@@ -1,6 +1,6 @@
 # CORA_FHR_V1 Kaggle research entry: gates and log (opened 2026-10-15, 00:40Z)
 
-**Authorization.** The user's directive "BUILD AND SUBMIT OUR FIRST GENUINE CORA-FHR KAGGLE RESEARCH
+**Authorization.** The author's directive "BUILD AND SUBMIT OUR FIRST GENUINE CORA-FHR KAGGLE RESEARCH
 ENTRY" (2026-10-14) authorizes ONE CORA-specific submission, if the real-development and notebook
 integrity gates pass.
 
@@ -139,4 +139,4 @@ Submission **57354496**: `SubmissionStatus.COMPLETE`, **public score 0.00**.
 - The entry documents a runnable implementation of the CORA-FHR loop on Kaggle. It shows no unseen
   accuracy.
 - The guarded rule (18 October) is **not** part of this entry.
-- Final selections are the user's; none was made automatically.
+- Final selections are the author's; none was made automatically.

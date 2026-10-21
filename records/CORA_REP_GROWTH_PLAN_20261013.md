@@ -199,7 +199,7 @@ job, so they never compete.
 
 ## Amendment 1 (2026-10-13T19:00Z): CORA-RG under the post-Kaggle addendum. Before any final-split run
 
-**Scope.** The user's "post-Kaggle zero-score research addendum" supersedes
+**Scope.** The author's "post-Kaggle zero-score research addendum" supersedes
 sections 4-8 where they differ.
 - Only development rows (arm A on 8 development tasks) existed at this
   point. No final-split task had been run.

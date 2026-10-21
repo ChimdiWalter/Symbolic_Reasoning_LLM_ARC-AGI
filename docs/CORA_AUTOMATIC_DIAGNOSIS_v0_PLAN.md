@@ -1,6 +1,6 @@
 # Automatic failure diagnosis v0: development plan (2026-10-12)
 
-**Status: PLAN.** Nothing is implemented or run. The user's Kaggle-delivery
+**Status: PLAN.** Nothing is implemented or run. The author's Kaggle-delivery
 directive of 2026-10-12, Phase 5, asks for this plan only.
 
 It builds on:

@@ -84,7 +84,7 @@ row's test in B is run.
 
 **C2. Synthetic data and the checkpoint.**
 - README: "103k synthetic puzzles" and "3.2M augmented puzzles" as Kaggle datasets. No checkpoint is named [L2].
-- Paper pipeline (mostly gpt-oss-120b, plus two Claude models): 3,268 summaries → 266,593 mixed summaries →
+- Paper pipeline (mostly gpt-oss-120b, plus two commercial language models): 3,268 summaries → 266,593 mixed summaries →
   126,901 input programs → "After filtering we had 103253 puzzles", each with about 30 pairs [L10].
 - Table 1: 3,255,481 samples from 104,539 puzzles [L10].
 - **Seeding** [L10]:

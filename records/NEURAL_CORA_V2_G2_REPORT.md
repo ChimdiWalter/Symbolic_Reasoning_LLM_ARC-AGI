@@ -14,7 +14,7 @@ gains and 0 losses. By the frozen rule there is **no new neural training**. The 
 
 | item | value |
 |---|---|
-| authorization | the user's message "authorize G2" (20 October), one run |
+| authorization | the author's message "authorize G2" (20 October), one run |
 | commit at start | `86bab95`; freeze manifest sha256 `aee7f1ff…` |
 | lock | verified at the start of `solve` and of `diag` (protocol and manifest committed unchanged; code, input and native hashes as frozen) |
 | driver | one detached `sh` driver (PID 836449): `solve --authorized` → `diag --authorized` → `score` → the pre-registered forensic step |

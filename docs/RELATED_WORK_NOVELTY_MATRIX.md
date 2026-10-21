@@ -92,7 +92,7 @@ No level may be claimed from evidence belonging to a lower one.
   in behaviour, not by correlation. Imported as the swapped-identity and
   replaced-frontier controls.
 
-## Deadlines (official pages, per the user 2026-10-02)
+## Deadlines (official pages, per the author 2026-10-02)
 
 Kaggle entry and team merger 26 October 2026; competition submission 2
 November 2026; Paper Track 8 November 2026.

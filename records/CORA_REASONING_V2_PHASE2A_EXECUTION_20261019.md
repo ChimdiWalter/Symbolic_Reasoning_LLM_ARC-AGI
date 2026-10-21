@@ -1,7 +1,7 @@
 # CORA reasoning v2, Phase 2a: execution record (2026-10-19)
 
 - **Protocol:** `records/CORA_REASONING_V2_PHASE2_PROTOCOL_20261019.md`, unchanged (sha256 0172ec8d2bf12518).
-- **Authorization:** the user, 2026-10-19 ("FINISH ENGINEERING AND TEST REAL-TASK GAINS"). It covers one isolated
+- **Authorization:** the author, 2026-10-19 ("FINISH ENGINEERING AND TEST REAL-TASK GAINS"). It covers one isolated
   eligibility check and the one Phase 2a run.
 
 ## 1. Eligibility (one isolated metadata-only check)
@@ -108,7 +108,7 @@ Its primary actions were ABSTAIN 24, WIDEN_SEARCH 9, GUARDED_GEOMETRY 6, TWO_ATT
 - **Scope.** These are reused public training tasks, so this is a development evaluation, not an unseen-task score.
   The NVARC-derived checkpoint saw this training file (`records/CORA_NVARC_SUBSUMPTION_AUDIT_20261019.md` section 5).
 
-**Next** (the user's newest directives, 19 October): Neural-CORA v0.1.
+**Next** (the author's newest directives, 19 October): Neural-CORA v0.1.
 - Its first experiment is a learned program prior that must beat compute-matched symbolic search on held-out
   synthetic transformation families.
 - It targets the same coverage bottleneck, with additive and non-additive programs.

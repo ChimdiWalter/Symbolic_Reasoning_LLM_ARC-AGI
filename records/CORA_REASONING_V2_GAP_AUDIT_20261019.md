@@ -131,7 +131,7 @@ the language.
 - **A GO-gate-valid test needs a fresh, predeclared, non-autopsy real cohort of growth-type tasks.** The
   permitted pools used so far (dev60 and the stand-in tasks) are exhausted for that class: every
   growth-shaped stand-in task is in the forensic pool or already native-certified. Choosing other ARC-AGI-2
-  training tasks risks E_transfer or HOLDOUT membership, which I may not inspect. **The user must designate
+  training tasks risks E_transfer or HOLDOUT membership, which I may not inspect. **The author must designate
   the cohort.**
 
 ## 7. Phase 1 built: v2 scene reasoner, with geometry and colour separated (researcher-designed language expansion)
@@ -169,9 +169,9 @@ All 18 tests pass.
 - That leaves two open questions:
   - **science:** whether certified solves appear on a fresh cohort;
   - **competition:** whether uncertified unique predictions may lawfully fill attempt slots, as native's
-    harness already does with its partials. That needs the user's authorization for any submission.
+    harness already does with its partials. That needs the author's authorization for any submission.
 
-## 8. Phase 2 status: the cohort needs the user's designation
+## 8. Phase 2 status: the cohort needs the author's designation
 
 The GO gate needs a fresh, predeclared, non-autopsy cohort of real tasks. There is none left in the
 permitted pools for this transformation class (section 6). The pilot is frozen-ready (arms A–F as in the

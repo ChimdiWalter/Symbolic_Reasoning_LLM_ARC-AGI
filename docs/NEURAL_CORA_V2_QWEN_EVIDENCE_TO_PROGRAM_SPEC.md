@@ -1,7 +1,7 @@
 # Neural-CORA: how Qwen evidence becomes CORA programs (specification, 20 October 2026)
 
 **Status:** a specification. Nothing here is implemented or trained, and no run is authorized. Any interface below
-needs its own frozen protocol and the user's authorization.
+needs its own frozen protocol and the author's authorization.
 
 ## 1. What G2 changed
 

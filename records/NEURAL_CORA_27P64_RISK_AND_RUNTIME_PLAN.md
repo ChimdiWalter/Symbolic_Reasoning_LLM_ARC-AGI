@@ -53,7 +53,7 @@ native's correct-candidate rate on *easier, seen* tasks, and native's hidden rat
 | **contamination**: no clean local real-ARC validation of Qwen arms | certain | local real-ARC numbers prove nothing for Qwen | synthetic held-out families; the hidden score is the only clean real test | never call local results "unseen" |
 | **licence**: NVARC notebook and repo code unlicensed or unverified | high, if reused | prize ineligibility | write own decode and adaptation code; reuse only the Apache-2.0 checkpoint | no NVARC code in a CORA prize entry until cleared |
 | **hardware**: bf16 unsupported locally; no bitsandbytes or peft | certain | local adaptation needs fp16 or NF4 setup | separate venv; a 10-minute NF4 smoke test after 21 October | stop if the smoke test exceeds 10 GB |
-| **schedule**: 13 days to the code deadline | certain | gates may not finish | one gate at a time, in order | no submission without G6 and the user's approval |
+| **schedule**: 13 days to the code deadline | certain | gates may not finish | one gate at a time, in order | no submission without G6 and the author's approval |
 | **Kaggle quota**: 1 submission per day; L4x4 counts double against the 30 h weekly GPU quota | certain | few full rehearsals | CPU-only rehearsals where possible | — |
 | **deadline mismatch** for the paper (arcprize.org 8 Nov; Kaggle paper track 9 Nov 23:59) | — | — | plan for 8 November | — |
 
@@ -62,7 +62,7 @@ native's correct-candidate rate on *easier, seen* tasks, and native's hidden rat
 1. **Most likely:** CORA's paper reports the gates honestly. The linked Kaggle code submission "need not achieve a
    high score" (2026 paper rules). A non-zero hidden score from an original CORA-family solver would be a real step
    (today 0.00%).
-2. **If G2 and G1b both pass early:** an N2-A-guided CORA notebook could be rehearsed (G6) and, with the user's
+2. **If G2 and G1b both pass early:** an N2-A-guided CORA notebook could be rehearsed (G6) and, with the author's
    approval, submitted. Its expected hidden score is low single digits at best, from the dev60 rates above.
 3. **Exceeding 27.64%:** only through an official public score. Any NVARC-model involvement would be credited, and
    it is not expected this cycle.

@@ -237,7 +237,7 @@ task id or an answer.
    unchanged: the outer adaptive leave-one-out rebuilt per fold, replay,
    attribution, support and unanimity. But this is still a change to the
    reasoner's acceptance procedure. Whether it counts as weakening the
-   acceptance criteria is the user's decision.
+   acceptance criteria is the author's decision.
 2. Anchoring. The parent chose v* using the inner held-out pair. The inner
    leave-one-out then tests whether the rule is stable given the
    representation, not whether the representation is re-selected. The

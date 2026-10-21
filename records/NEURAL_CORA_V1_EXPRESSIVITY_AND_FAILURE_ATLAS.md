@@ -106,7 +106,7 @@ So `ncv1-g0` is far narrower than native CORA, and both are far below what a com
    - and, by construction, relational guards, part-wise rules and size changes.
 3. **The highest-value next experiment** is therefore the expressivity gate G2, not more search tuning (section 5).
 
-## 5. Proposed next experiment (not run; needs the user's approval)
+## 5. Proposed next experiment (not run; needs the author's approval)
 
 **`ncv1-g1`.** Expose native CORA's **existing**, already-implemented primitives in the typed IR:
 - `copy` with vectors;

@@ -52,7 +52,7 @@ source, and match:
 
 ## Post-generation order
 
-Set by the user on 2026-09-28:
+Set by the author on 2026-09-28:
 1. integrity only;
 2. the three-valued verification diagnostic;
 3. the sealed evaluation twice with a byte comparison

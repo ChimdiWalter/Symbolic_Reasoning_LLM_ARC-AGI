@@ -34,7 +34,7 @@ next block, to be designed and frozen under its own protocol.
   5c543236-c905-416e-9e7f-af441c8fc4b5; HEAD df6340c; load 50 at launch and
   44 at the end on 24 CPUs. Launch record `logs/v19/prospective_launch.json`.
 - 3,159.8 s (52.7 minutes). Marker at 19:01:05Z; the detached watcher (v2,
-  pid 1371476, installed at 18:13:28Z on the user's instruction to run even
+  pid 1371476, installed at 18:13:28Z on the author's instruction to run even
   when interrupted) ran the verifier (exit 0, 19:01:56Z) and removed its
   `@reboot` hook.
 - No resume, no interruption, worker exit codes 0, 0, 0, 0, no unparsable

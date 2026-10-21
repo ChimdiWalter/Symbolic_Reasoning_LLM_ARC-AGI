@@ -1,6 +1,6 @@
 # CORA architectural autonomy audit (2026-10-13)
 
-**First deliverable** of the user's directive "Architectural autonomy audit
+**First deliverable** of the author's directive "Architectural autonomy audit
 and failure-driven representation growth".
 
 - **Method.** A read-only code audit of the default native path, delegated;

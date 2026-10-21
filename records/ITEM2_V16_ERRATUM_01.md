@@ -49,4 +49,4 @@ hybrid everywhere.
 The manifest is rewritten by `scripts/freeze_v16.py outputs/tti/v16_caps.json`
 after the power record; the new identities are in the manifest, its hash
 file, RESUME.md and the stage ledger. The order after the re-freeze is
-unchanged: STOP and return to the user before any prospective data.
+unchanged: STOP and return to the author before any prospective data.

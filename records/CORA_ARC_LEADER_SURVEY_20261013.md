@@ -85,7 +85,7 @@ Evidence labels:
 | | NVARC [S5, S6, S18] | ARChitects 2025 [S7, S22, S23] |
 |---|---|---|
 | Base model | Qwen3-4B-Thinking-2507, embeddings cut to 16 tokens; full SFT with NeMo-RL/Megatron, 1 epoch of 12,716 steps × 256 | LLaDA-8B-Base with 2D RoPE and a 32×32 pad; rank-512 LoRA for 175K steps; Kaggle file is 4-bit, 3.6 GB, MIT |
-| Synthetic data | H-ARC and BARC descriptions → 3,268 summaries (Claude Opus 4, Sonnet 4.5, gpt-oss-120b) → 266,593 mixed summaries → 126,901 input programs (unit-tested, ≥30 grids) → 103,253 puzzles whose output programs agree (e.g. 15 of 20) | 150 Qwen-Coder "game" tasks were tried and not used |
+| Synthetic data | H-ARC and BARC descriptions → 3,268 summaries (commercial language models, gpt-oss-120b) → 266,593 mixed summaries → 126,901 input programs (unit-tested, ≥30 grids) → 103,253 puzzles whose output programs agree (e.g. 15 of 20) | 150 Qwen-Coder "game" tasks were tried and not used |
 | TTT | Per task: LoRA r=256, α=32, rsLoRA on q/k/v/o/gate/up/down + embed + lm_head; lr 5e-5, cosine, 1 epoch, batch 1, 8,192 tokens; ~128 augmented copies, so about 128 steps (INF) | Per task: 128 steps, batch 1, r=32 per the page (r=64 in the Kaggle copy) |
 | Augmentation | D8 × 16 colour permutations, with example order shuffled | Random D8, colour and example order at every step |
 | Sampling and scoring | "Turbo" DFS with max NLL = −ln 0.2, 16 views per test input, 9-min cap; NLL rescoring under 8 shared augmentations | Soft-mask recursive sampling |

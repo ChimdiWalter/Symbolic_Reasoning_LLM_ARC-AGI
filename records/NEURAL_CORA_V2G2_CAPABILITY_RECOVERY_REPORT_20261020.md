@@ -147,4 +147,4 @@ Whether ncv2-g2's recovered generation transfers beyond its own designer's famil
 - `scripts/neural_cora_v2g2_synthetic_eval.py solve --authorized`, then `score`.
 
 It decides whether capability recovery generalizes beyond the families it was developed on. Only a GO_ENGINEERING
-licenses proposing the permitted real-ARC cohort (protocol §7). **It needs the user's authorization.**
+licenses proposing the permitted real-ARC cohort (protocol §7). **It needs the author's authorization.**

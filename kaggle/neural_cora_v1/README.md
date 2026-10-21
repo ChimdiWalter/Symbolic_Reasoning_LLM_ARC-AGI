@@ -21,7 +21,7 @@ All of these must pass first (records/NEURAL_CORA_V1_27P64_COMPETITION_ROADMAP.m
    - pinned weights and licences;
    - a memory audit.
 
-Then the user is shown the exact frozen model, the notebook hash, the expected contribution and the risk. The user
+Then the author is shown the exact frozen model, the notebook hash, the expected contribution and the risk. The author
 alone authorizes a submission.
 
 ## Fixed constraints

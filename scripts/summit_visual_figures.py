@@ -3,6 +3,8 @@
   python scripts/summit_visual_figures.py
       -> docs/summit_20261023_reframe/figures/*.png
       -> docs/summit_20261023_reframe/figures/PROVENANCE.json and docs/summit_20261023_reframe/POSTER_FIGURE_PROVENANCE.json
+  python scripts/summit_visual_figures.py --only construction_58 v2_uncertified
+      -> redraws only the figures those functions make, and updates only their provenance entries
 
 **Real figures** are drawn ONLY from recorded, hash-pinned inputs. A sha256 mismatch stops the script before
 anything is drawn. Real grids are drawn cell for cell with the standard ARC colours; nothing is edited.
@@ -32,7 +34,7 @@ FS_MIN, FS_LAB, FS_BIG = 20, 23, 27
 INK, INK2, MUTED, SURF = "#0b0b0b", "#52514e", "#898781", "#fcfcfb"
 GOOD, CRITICAL, ACCENT, NEUTRAL = "#0ca30c", "#d03b3b", "#2a78d6", "#f0efec"
 ARC = ["#000000", "#0074D9", "#FF4136", "#2ECC40", "#FFDC00", "#AAAAAA", "#F012BE", "#FF851B", "#7FDBFF", "#870C25"]
-ARC_NAME = {1: "blue", 2: "red", 3: "green", 4: "yellow", 8: "azure"}
+ARC_NAME = {1: "blue", 2: "red", 3: "green", 4: "yellow", 8: "light blue"}
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": FS_LAB, "figure.facecolor": SURF,
                      "savefig.facecolor": SURF})
 
@@ -488,7 +490,7 @@ def construction_58():
     assert (n_none, n_fail) == (55, 3) and n_none + n_fail == 58
     H = 2.75
     fig = _new(H)
-    _tag(fig, "REAL · 58 separately selected, exposed training tasks")
+    _tag(fig, "REAL · 58 separately selected training tasks")
     cell, pitch, ncol = 0.31, 0.355, 10
     x0, ytop = 0.20, H - 0.55
     light, warm = "#d9d8d4", "#eb6834"
@@ -529,7 +531,7 @@ def real_rule(box=2.62, H=7.2, fname="fig_real_rule_ka95aa62f67d9.png", xout=5.3
     assert w["rule"] == "if colours == (1,): ray(NW,border)[centre] else ray(SE,border)[centre]"
     assert w["controls"]["C2G_same_rule"] is True and not w["controls"]["A_frozen_native_certified"]
     fig = _new(H)
-    _tag(fig, f"REAL ARC-AGI-2 TRAINING TASK {t['key']} · recorded run")
+    _tag(fig, f"REAL ARC-AGI-2 TRAINING TASK · our key {t['key']}")
     rows = [("Training example", t["train"][0][0], t["train"][0][1], "target output"),
             ("New input", t["test_input"], w["committed"], "CORA's output ✓ correct")]
     for i, (name, gin, gout, olab) in enumerate(rows):
@@ -551,13 +553,13 @@ def v2_uncertified(box=2.30, H=4.2, fname="fig_v2_uncertified_00dbd492_poster.pn
     w = json.load(open(src("v2_witness")))
     assert w["evaluator_correct"] and w["tier_v2"] == "EXPLORATORY" and not any(w["controls"].values())
     fig = _new(H)
-    _tag(fig, "REAL TASK 00dbd492 · CORA-v2 development run\nCORRECT DEVELOPMENT PREDICTION — NOT CERTIFIED", color=INK2)
+    _tag(fig, "REAL ARC-AGI-2 TRAINING TASK 00dbd492 (public)\nCORRECT GUESS, NOT CERTIFIED", color=INK2)
     y = 0.58
     _grid(fig, w["test_input"], xin, y, box)
     _arrow(fig, xin + box + 0.08, y + box / 2, xout - 0.08)
     _grid(fig, w["v2_prediction"], xout, y, box)
     _text(fig, xin + box / 2, y - 0.40, "new input", fontsize=FS_MIN, color=INK2, ha="center")
-    _text(fig, xout + box / 2, y - 0.40, "v2's guess (correct)", fontsize=FS_MIN, color=INK2, ha="center")
+    _text(fig, xout + box / 2, y - 0.40, "CORA's guess (correct)", fontsize=FS_MIN, color=INK2, ha="center")
     sup, tab = w["test_table_support"], w["size_to_colour"]
     yt = y + box + 0.05
     _text(fig, xt, yt, "fill colour, by size:", fontsize=FS_MIN, color=INK2, va="top")
@@ -600,28 +602,37 @@ def dev60_audit():
           "attempts); not evidence of generalization.")
 
 
-def main():
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    only = set(argv[argv.index("--only") + 1:]) if "--only" in argv else None
+    calls = [(arc_intro, {}), (four_reasons, {}), (real_rule, {}),
+             # the Qwen-architecture review poster: larger real grids, three failures, the 58 outcomes
+             (arc_intro, dict(box=3.0, H=11.65, fname="fig_arc_intro_00dbd492_large.png", xin=0.45, xout=5.9, step=3.67)),
+             (three_failures, {}), (three_causes_row, {}),
+             (real_rule, dict(box=3.7, H=9.3, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.7,
+                              label_right=True, xin=0.3)),
+             (construction_58, {}), (skin_lesion, {}), (maize_tile, {}), (v2_uncertified, {}),
+             (v2_uncertified, dict(box=2.6, H=4.5, fname="fig_v2_uncertified_00dbd492_large.png", xout=3.25, xt=6.1,
+                                   xin=0.25)),          # room for "light blue: 3 examples" at 20 pt
+             (dev60_audit, {})]
+    unknown = (only or set()) - {f.__name__ for f, _ in calls}
+    if unknown:
+        raise SystemExit(f"--only: unknown figure functions {sorted(unknown)}")
     os.makedirs(FIG, exist_ok=True)
-    arc_intro()
-    four_reasons()
-    real_rule()
-    # the Qwen-architecture review poster: larger real grids, three failures, the 58 outcomes
-    arc_intro(box=3.0, H=11.65, fname="fig_arc_intro_00dbd492_large.png", xin=0.45, xout=5.9, step=3.67)
-    three_failures()
-    three_causes_row()
-    real_rule(box=3.7, H=9.3, fname="fig_real_rule_ka95aa62f67d9_large.png", xout=W - 0.25 - 3.7, label_right=True,
-              xin=0.3)
-    construction_58()
-    skin_lesion()
-    maize_tile()
-    v2_uncertified()
-    v2_uncertified(box=2.75, H=4.65, fname="fig_v2_uncertified_00dbd492_large.png", xout=3.45, xt=6.45, xin=0.3)
-    dev60_audit()
-    prov = {"script": "scripts/summit_visual_figures.py", "script_sha256": _sha(os.path.abspath(__file__)),
-            "printed_width_in": W, "rule": "REAL figures come only from hash-pinned recorded inputs; ILLUSTRATIVE figures say so",
-            "figures": {}}
+    for f, kw in calls:
+        if only is None or f.__name__ in only:
+            f(**kw)
+    script_sha = _sha(os.path.abspath(__file__))
+    if only is None:
+        prov = {"script": "scripts/summit_visual_figures.py", "script_sha256": script_sha, "printed_width_in": W,
+                "rule": "REAL figures come only from hash-pinned recorded inputs; ILLUSTRATIVE figures say so",
+                "figures": {}}
+    else:                                   # keep the other entries; the top-level hash stays the last full run's
+        prov = json.load(open(os.path.join(FIG, "PROVENANCE.json")))
     for name, meta in sorted(DRAWN.items()):
         meta["sha256"] = _sha(os.path.join(FIG, name))
+        if only is not None:
+            meta["script_sha256"] = script_sha
         prov["figures"][name] = meta
     for p in (os.path.join(FIG, "PROVENANCE.json"),
               os.path.join(HERE, "docs", "summit_20261023_reframe", "POSTER_FIGURE_PROVENANCE.json")):

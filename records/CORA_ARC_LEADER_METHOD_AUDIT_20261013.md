@@ -2,7 +2,7 @@
 
 **Status: COMPLETE (audit and plan).** Nothing was implemented or submitted.
 
-The audit follows the user's directive of 2026-10-13. Nothing here changed
+The audit follows the author's directive of 2026-10-13. Nothing here changed
 native_v1, the Kaggle submission, Step B, VDCG, the frozen pilot or any
 historical P2/P3 result.
 

@@ -63,7 +63,7 @@ from another family, finds nothing, as a shuffled control should.
 **Matched search.** f_B recalibrated on v2 is 1.33. Arm B results: pending
 (section 6).
 
-## 3. The E-versus-C' confound (the user's integrity point 1)
+## 3. The E-versus-C' confound (the author's integrity point 1)
 
 **Control C'** observes the same identity-frame native induction as E and
 keeps every growth correspondence native built. It therefore has the same

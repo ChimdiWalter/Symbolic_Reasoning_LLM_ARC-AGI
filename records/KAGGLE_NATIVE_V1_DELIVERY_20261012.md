@@ -8,7 +8,7 @@ training characterization, not a leaderboard prediction.
 
 | item | value |
 |---|---|
-| notebook | `arc-certified-solver`, version 334601009 (from the user) |
+| notebook | `arc-certified-solver`, version 334601009 (from the author) |
 | submitted | 2026-07-12 |
 | engine | the v10/v11 era (153 of 1,000 training), not v23 |
 | commit run | completed cleanly in 41 min on a 240-task placeholder set |

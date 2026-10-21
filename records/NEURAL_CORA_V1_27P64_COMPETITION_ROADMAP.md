@@ -19,7 +19,7 @@ not a promised result.
    - Public training tasks may overlap the Qwen checkpoint's pretraining, so they are never "unseen" for NVARC
      comparisons.
 3. **Official Kaggle hidden scoring.** The only comparison with 27.64%. It needs a legal, offline, fully rehearsed
-   notebook and the user's approval of the exact version.
+   notebook and the author's approval of the exact version.
 
 ## 2. The gates (failing one is never repackaged as success at a later one)
 
@@ -30,7 +30,7 @@ not a promised result.
 | G3, diagnosis | authentic observable traces lead to better revision choices than strong failure-blind and shuffled controls, under equal access and compute | not tested (earlier negatives: L9, L10, L12d, L12e) |
 | G4, reusable capability | new abstractions transfer to held-out families and survive the removal, semantic-identity and baseline-reach tests | not tested |
 | G5, real ARC | extra exact correct predictions on a predeclared, eligible real development cohort, with no unacceptable harmed outputs | not tested |
-| G6, Kaggle candidate | a full offline rehearsal: runtime, integrity, licences, accuracy | not tested. **No submission without the user's approval** |
+| G6, Kaggle candidate | a full offline rehearsal: runtime, integrity, licences, accuracy | not tested. **No submission without the author's approval** |
 
 ## 3. Why a ranker alone will not reach 27.64%
 
@@ -88,7 +88,7 @@ constraint is expressivity (G2), not search order.
      crop_to / extract_part, and relational guards.
    - Measure compile and correct-output coverage on dev60 (expressivity only), then on a fresh, predeclared eligible
      cohort.
-   - This is researcher-designed, not invention. It needs the user's approval of a frozen protocol.
+   - This is researcher-designed, not invention. It needs the author's approval of a frozen protocol.
 3. **Only after G2:**
    - a pairing-aware learned guide over the larger language;
    - then the revision policy pi_phi (G3).

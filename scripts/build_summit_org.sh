@@ -93,10 +93,13 @@ case "${1:-all}" in
   explainer) build explainer_science_first_review "10 11 12" "595.276 x 841.89" ;;
   all) build poster_science_first_review "1" "2383.94 x 3370.39"
        build explainer_science_first_review "10 11 12" "595.276 x 841.89" ;;
-  poster_cancer) build poster_cancer_lesion_review "1" "2383.94 x 3370.39" ;;
+  # the cancer-lesion poster is also written at the summit's print sizes (A1, 24 x 36 in) by exact vector scaling
+  poster_cancer) build poster_cancer_lesion_review "1" "2383.94 x 3370.39"
+                 sh "$(dirname "$0")/scale_summit_poster.sh" ;;
   # the V2 explainer adds the medical-image section (about 1.5 pages), so its expected range is 11-13
   explainer_cancer) build explainer_cancer_lesion_review "11 12 13" "595.276 x 841.89" ;;
   cancer) build poster_cancer_lesion_review "1" "2383.94 x 3370.39"
+          sh "$(dirname "$0")/scale_summit_poster.sh"
           build explainer_cancer_lesion_review "11 12 13" "595.276 x 841.89" ;;
   selftest) selftest ;;
   *) echo "usage: $0 poster|explainer|all|poster_cancer|explainer_cancer|cancer|selftest"; exit 2 ;;

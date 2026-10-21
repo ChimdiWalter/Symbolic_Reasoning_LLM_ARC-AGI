@@ -53,7 +53,7 @@ Synthetic coverage study (FROZEN: records/NEURAL_CORA_V2G2_SYNTHETIC_PROTOCOL_20
       G3: observable-failure revision vs failure-blind, shuffled, try-all and matched-compute controls
         |
         v
-      G5 (fresh eligible cohort) -> G6 (full offline Kaggle rehearsal) -> the user approves the exact notebook
+      G5 (fresh eligible cohort) -> G6 (full offline Kaggle rehearsal) -> the author approves the exact notebook
 ```
 
 ## 3. Which mechanism could answer what current CORA and strong symbolic search both miss?

@@ -77,7 +77,7 @@ The tokenizer was audited because the joint design pools Qwen states per CORA ob
 | NVARC Kaggle notebook and datasets | **unknown** | NOT VERIFIED [L14, L16] |
 | local Python stack | torch 2.11.0 (BSD-3-Clause); transformers 4.57.0 (Apache 2.0); accelerate 1.13.0 (Apache) | package metadata, today |
 | peft, bitsandbytes, unsloth | **not installed** in `~/.venvs/lesegenv` | checked today |
-| CORA code | the user's; ARC Prize 2026: "All code and methods must be open sourced to be eligible for prizes" | arcprize.org/competitions/2026/arc-agi-2, today |
+| CORA code | the author's; ARC Prize 2026: "All code and methods must be open sourced to be eligible for prizes" | arcprize.org/competitions/2026/arc-agi-2, today |
 
 ## 6. Competition facts relevant to feasibility
 

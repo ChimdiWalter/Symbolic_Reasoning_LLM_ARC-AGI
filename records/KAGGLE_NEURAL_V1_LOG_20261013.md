@@ -1,6 +1,6 @@
 # Kaggle neural track log: NEURAL_TTT_BASELINE (2026-10-13)
 
-**Track A** of the user's directive "Strong second Kaggle submission" of
+**Track A** of the author's directive "Strong second Kaggle submission" of
 2026-10-13.
 - This reproduces the public NVARC Qwen3-4B test-time-training pipeline. It
   is not CORA, and not capability invention.
@@ -222,7 +222,7 @@ use is not explicitly logged, and the notebook licences remain UNVERIFIED
 2. Verify the schema against the stand-in file.
 3. Record the measured runtime, per-task times, timeouts and memory.
 4. Then, if every gate passes, submit this version as **NEURAL_TTT_BASELINE**
-   under the user's one-entry authorization, at most 1 submission per UTC
+   under the author's one-entry authorization, at most 1 submission per UTC
    day. The native submission 57144804 is not replaced.
 
 ## 7. Licensing gate (2026-10-13)
@@ -372,7 +372,7 @@ after 00:00Z, then record the official score in
 
 ## 11. Official submission (2026-10-14, 00:08Z)
 
-**Submitted** by the detached watcher under the user's one-entry
+**Submitted** by the detached watcher under the author's one-entry
 authorization of 2026-10-13. Every gate passed (section 10), and the daily
 slot reopened at 00:00Z.
 
@@ -415,7 +415,7 @@ capability construction.
 **Actions.**
 - No cancellation and no resubmission: neither would tell us anything, and a resubmission would use a daily slot.
 - The watcher is left running.
-- If the submission is still `PENDING` at 24 h (2026-10-15 00:08Z), the user posts
+- If the submission is still `PENDING` at 24 h (2026-10-15 00:08Z), the author posts
   `records/KAGGLE_NEURAL_V1_PENDING_INQUIRY_DRAFT_20261014.md` to the competition discussion.
 - If it is `ERROR`, read the error category in the Kaggle UI before spending another submission.
 

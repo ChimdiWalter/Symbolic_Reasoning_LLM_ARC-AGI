@@ -1,7 +1,7 @@
 # CORA-FHR mixed-coverage causal pilot: design and stop rule (2026-10-14; DEVELOPMENT ONLY)
 
 **Status.** Frozen before any run. It is development-only: no final split, no prospective claim. A
-prospective version would need its own frozen protocol and the user's authorization.
+prospective version would need its own frozen protocol and the author's authorization.
 
 **Why.** On C4, E's evidence equals C′'s by construction: every growth correspondence in a G-family task
 is a memorized `pattern` fallback. So H3 (that failure evidence causes the gain) cannot be tested there.

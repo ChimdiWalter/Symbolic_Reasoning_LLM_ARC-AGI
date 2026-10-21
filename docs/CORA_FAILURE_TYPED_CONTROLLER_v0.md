@@ -95,7 +95,7 @@ never D.
 
 **What it cannot do.** It cannot add a verified real reconstruction now:
 1 of 14 folds is affected, and that fold also fails verification. Its claim
-is therefore kind B only. If the user wants only D-relevant work, the honest
+is therefore kind B only. If the author wants only D-relevant work, the honest
 alternative is NONE: no D-relevant intervention is justified by current
 evidence.
 

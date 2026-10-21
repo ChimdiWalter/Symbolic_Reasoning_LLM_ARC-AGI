@@ -6,7 +6,7 @@
 **Execution needs, in order:**
 1. G2 = GO (`records/NEURAL_CORA_V2_G2_PROTOCOL_20261020.md`);
 2. the exact G1b protocol (code, data and budgets) frozen at its own commit;
-3. the user's authorization.
+3. the author's authorization.
 
 A change to any threshold after G2 makes a new version, labelled as such.
 
@@ -127,10 +127,10 @@ real-ARC or general reasoning claim.
 
 ## 7. G5 on real ARC (later)
 
-**The proposed cohort. Not opened; needs the user's authorization.**
+**The proposed cohort. Not opened; needs the author's authorization.**
 - Pool: the next 100 in-scope candidates of the 1,000-task ARC-AGI-2 training file, in the published hash order
   (`records/CORA_REASONING_V2_COHORT_AUDIT_20261019.md`), after the 100 already checked.
-- Eligibility: checked by the same user-authorized checker (`tools/stepb_eligibility/check_eligibility.py`, which
+- Eligibility: checked by the same author-authorized checker (`tools/stepb_eligibility/check_eligibility.py`, which
   reads only Step B's task-id/split manifest). About 44 eligible are expected.
 - The 4 eligible tasks not used by Phase 2a are added.
 

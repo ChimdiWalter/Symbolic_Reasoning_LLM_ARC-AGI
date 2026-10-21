@@ -73,7 +73,7 @@ Checked, not assumed.
   - Step B's protocol keeps the public evaluation untouched until its Lockbox evaluation.
   - Whether NVARC's own training data includes the public evaluation is undocumented here and must be checked in the
     NVARC write-up.
-- **Using DEV 60 for fusion development needs the user's explicit decision** (it consumes that set).
+- **Using DEV 60 for fusion development needs the author's explicit decision** (it consumes that set).
 - **Without it,** the only clean tests are the hidden Kaggle set (one submission a day, and official) or new synthetic
   tasks (not ARC).
 

@@ -1,12 +1,12 @@
 # Kaggle manifests: original CORA and competitive hybrid (2026-10-18)
 
 **Authorization state.** No new submission is authorized.
-- The user's directives of 2026-10-17 and 2026-10-18 require four things before any further submission:
+- The author's directives of 2026-10-17 and 2026-10-18 require four things before any further submission:
   - a finished valid rehearsal;
   - clean paired evidence of a CORA-derived benefit;
   - integrity and contamination checks;
   - fresh explicit authorization for that exact method and version.
-- Final selections are the user's and are untouched.
+- Final selections are the author's and are untouched.
 - Neither existing submission is overwritten.
 
 ## Rules rechecked (2026-10-18; `outputs/kaggle_deploy/rules_20261018/`, beside the 2026-10-12 copy)
@@ -25,7 +25,7 @@
 - **Open source:** prize-eligible solutions must be open-sourced and attached to a solution writeup.
   Winning submissions are licensed CC BY 4.0, and an open-source system, model and weights are required.
 - **Paper Prize** (user's note, 2026-10-18): it needs a corresponding code submission, not a high score,
-  plus a writeup. Making the notebook public is the user's decision.
+  plus a writeup. Making the notebook public is the author's decision.
 
 ## A. Original-CORA manifest
 
