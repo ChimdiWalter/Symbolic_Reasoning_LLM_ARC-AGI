@@ -9,36 +9,55 @@ rule quickly; machines find it hard. Every guess can be checked exactly, which m
 
 **CORA** is the system built here. It does not guess the answer grid directly. It writes an explanation as a small
 program ("recolour every object that touches the border", "draw a line from each red square to the edge"), runs that
-program on every example, and keeps it only if it reproduces the examples exactly. Status: 21 October 2026.
+program on every example, and keeps it only if it reproduces the examples exactly. Status: 22 October 2026.
 
 ## The short version
 
 - CORA's explanations are checkable, and its strictest check is usually right: answers it certified were correct
-  6 of 6 times on 60 practice puzzles and 5 of 6 times on 40 others.
-- But CORA rarely finds an explanation for new puzzles. Its score on the official hidden ARC-AGI-2 test is **0.00%**.
-- Most of the progress so far is on puzzles we generated ourselves, which are easier than real ARC puzzles. Those gains
-  have not yet carried over to real puzzles.
-- The real failures point to one main cause: CORA describes puzzles in terms of whole objects, but many puzzles change
-  only part of an object (its border, its corners, the hole inside it) or add new lines. The newest version targets
-  exactly that, and is being tested now.
+  6 of 6 times on 60 practice puzzles, 5 of 6 times on 40 others, and 3 of 3 on 34 more.
+- Each new version of its rule language made a large, measured gain on puzzles we generated (see the table).
+- None of those gains has yet carried over to real puzzles: on the official hidden ARC-AGI-2 test CORA scores
+  **0.00%**, and on the 120 public evaluation puzzles every CORA-only configuration we tried solved 0.
+- The real failures point to the cause: CORA describes puzzles in terms of whole objects, while many puzzles change
+  only part of an object or need operations its language does not have. That is where the work goes next.
+
+## What is new here, and what is not
+
+Not new: checking candidate programs by running them, refining a guess after a failure, and guiding program search
+with a neural network are all established ideas (for example DreamCoder, LILO, Popper, SOAR and ARCANA). What this
+work adds, each one measured:
+
+1. **Rules built from what went wrong.** CORA compares a candidate's output with each example cell by cell (cells it
+   fixed, cells it broke, cells still wrong) and builds both halves of a rule, which objects and what to do with them,
+   together from those differences (rule language version 3).
+2. **Rules over parts of objects.** Borders, interiors, corners, endpoints, holes, the background inside an object's
+   box, and lines drawn from objects. The objects a rule should pick are found from the evidence, allowing objects
+   on which the rule would change nothing, and every choice is confirmed by CORA's own interpreter; programs are
+   assembled to cover exactly the cells that change (version 4).
+3. **A precise frame for "what to reconsider".** Failures are described at separate levels (the description of the
+   puzzle, the rule, the evidence, the search effort, the confidence), and the question of whether a policy for
+   choosing among them transfers to other kinds of data is stated as a test at equal compute.
+4. **Evidence that cannot be tuned after the fact.** Every result comes from a study whose puzzles, code and pass
+   criteria were fixed and fingerprinted before it ran once, at matched budgets, and the negative results are kept.
 
 ## Results so far
 
 Results of different kinds are never mixed. "Generated puzzles" are puzzles we wrote with our own rule language, so
-they measure engineering progress, not ARC ability. "Real public puzzles" are ARC-AGI-2 training puzzles that are
-public; CORA's development has seen many of them, so they are practice evidence, not a clean test. Only the official
-Kaggle leaderboard uses hidden puzzles. "Solved" means one of two allowed attempts is exactly right.
+they measure engineering progress, not ARC ability. "Real public puzzles" are ARC-AGI-2 training puzzles; CORA's
+development has seen many of them, so they are practice evidence, not a clean test. Only the official Kaggle
+leaderboard uses hidden puzzles. "Solved" means one of two allowed attempts is exactly right.
 
 | what was tested | on what | result | what it means |
 |---|---|---|---|
 | the original CORA, on the official leaderboard (three entries, July to October 2026) | hidden ARC-AGI-2 puzzles | 0.00% | it does not yet solve unseen ARC puzzles |
 | a published neural method by another team (NVARC), rerun unchanged for comparison; **not ours** | hidden ARC-AGI-2 puzzles | 27.64% | the reference point for neural methods |
 | a trained neural guide that tells CORA's search what to try first | 395 generated puzzles | 198 solved; 104 without the guide; 358 with a hand-designed order | learning helped, but did not beat careful hand design |
-| CORA's rule language, version 2 (CORA's built-in program types rewritten in one typed, checkable language) against version 1 | 200 generated puzzles | 162 vs 43 solved | a large gain on generated puzzles |
-| the same two versions | 40 real public puzzles | 2 vs 1 solved (the original CORA: 4 certified) | below the 3-puzzle gain we required in advance: no real gain |
-| version 3 (builds both halves of a rule, which objects and what to do with them, from where its output is wrong; picks its two answers by the strength of the evidence) against version 2 | 296 generated puzzles | 271 vs 166 solved (106 gained, 1 lost) | passed every criterion set in advance; generated puzzles only |
-| version 4 (rules over parts of objects and lines drawn from objects) | code tests | 39 tests pass | built and checked, not yet evaluated |
-| **running now:** version 4 on 210 new generated puzzles; then all versions, and the original CORA, on 34 real public puzzles not used in any of our earlier tests | | no results yet | the first real test of version 3 and version 4 |
+| rule language version 2 (CORA's built-in program types in one typed, checkable language) against version 1 | 200 generated puzzles | 162 vs 43 solved | a large gain on generated puzzles |
+| the same two versions | 40 real public puzzles | 2 vs 1 solved (the original CORA: 4 certified) | below the 3-puzzle gain we required in advance |
+| version 3 (rules built from what went wrong; answers chosen by the strength of the evidence) against version 2 | 296 generated puzzles | 271 vs 166 solved (106 gained, 1 lost) | passed every criterion set in advance |
+| version 4 (rules over parts of objects and lines) against version 3 | 110 generated target puzzles | 97% vs 15% solved (across all 210 generated puzzles: 104 gained, 0 lost) | passed every criterion set in advance; the puzzles are written in version 4's own language |
+| versions 2, 3 and 4, and the original CORA | 34 real public puzzles not used in earlier tests | 1, 3 and 3 solved; the original CORA 3 (all certified) | no gain beyond the original CORA on real puzzles |
+| the CORA-only competition notebook, every configuration | 120 public evaluation puzzles | 0 solved | the next problem to solve |
 
 Still unproven: that learning from failures beats an equal amount of plain search; that any trained model helps
 inside CORA; that the approach transfers to other kinds of data, such as biological measurements.
@@ -52,7 +71,7 @@ flowchart LR
   G --> E[Run each rule on every example]
   E --> D[Compare cell by cell: what it got right, what it broke, what is still wrong]
   D -->|reproduces every example| S[Pick two answers by the strength of the evidence]
-  D -->|fails| R[Revise the rule and try again]
+  D -->|fails| R[Build new rules from the differences, or revise]
   R --> G
   S --> C[Check: rebuild the rule with each example hidden in turn]
   C --> A[Answer: certified, uncertified, or abstain]
@@ -64,7 +83,7 @@ flowchart LR
 2. **Propose rules.** A rule has two halves: *which objects* (for example "objects touching the border", "the largest
    object") and *what to do* (recolour, move, delete, draw a line, fill a hole). A program is a short list of rules.
 3. **Run and compare.** Every candidate runs on every example. CORA records exactly which cells it fixed, which it
-   broke and which are still wrong, and uses that to build the next candidates.
+   broke and which are still wrong, and builds the next candidates from that.
 4. **Choose and check.** Among the rules that reproduce every example, CORA prefers the simplest and best-supported,
    and submits two different answers. An answer is **certified** only if the rule, rebuilt with each example hidden
    in turn, still predicts the hidden example. If the evidence is too thin, CORA can abstain.

@@ -892,6 +892,23 @@
    "protocol": "records/NEURAL_CORA_REALARC_G2G3G4_PROTOCOL_20261021.md",
    "manifest": "records/NEURAL_CORA_REALARC_G2G3G4_FREEZE_MANIFEST.json",
    "runner": "scripts/neural_cora_realarc_g2g3g4_eval.py"
+  },
+  {
+   "id": "ncv2g4_synthetic_study_run_20261022",
+   "status": "DONE: FINAL GO_ENGINEERING (frozen rule; all 9 gates): target pass@2 version 4 97.3% vs version 3 15.4% (110 target tasks), paired gains 104, losses 0; caveat: 9 of 11 target families are written in version 4's own language",
+   "record": "records/RESULTS_SYNV4_REALCHECK_KAGGLE_DEV_20261022.md",
+   "outputs": "outputs/neural_cora_v2g4/synthetic_eval/"
+  },
+  {
+   "id": "realarc_g2g3g4_run_20261022",
+   "status": "DONE: FINAL NO_REAL_GAIN_G3 and NO_REAL_GAIN_G4 (frozen rule): 34 public training puzzles, pass@2 (all outputs) g2 1, g3 3, g4 3; g3 vs g2 +2/-0 (gate +3); g4 vs g3 +0/-0; neither beyond native (native certified 3, all correct); arm E not run",
+   "record": "records/RESULTS_SYNV4_REALCHECK_KAGGLE_DEV_20261022.md",
+   "outputs": "outputs/neural_cora_realarc_g2g3g4/"
+  },
+  {
+   "id": "kaggle_cora_only_g3_dev_20261022",
+   "status": "DESCRIPTIVE (exposed public evaluation, not a competition score): every CORA-only configuration 0 of 120 (G3 precision and search_first, native only, C1 more search, C2 version 4); native fitted 33 puzzles, all wrong; version 3 found no fit; rehearsal valid in 16,291 s",
+   "record": "records/RESULTS_SYNV4_REALCHECK_KAGGLE_DEV_20261022.md"
   }
  ],
  "recovered_definitions": {
