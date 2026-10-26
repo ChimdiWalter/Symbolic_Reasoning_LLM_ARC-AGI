@@ -9,7 +9,7 @@ rule quickly; machines find it hard. Every guess can be checked exactly, which m
 
 **CORA** is the system built here. It does not guess the answer grid directly. It writes an explanation as a small
 program ("recolour every object that touches the border", "draw a line from each red square to the edge"), runs that
-program on every example, and keeps it only if it reproduces the examples exactly. Status: 22 October 2026.
+program on every example, and keeps it only if it reproduces the examples exactly. Status: 26 October 2026.
 
 ## The short version
 
@@ -17,9 +17,11 @@ program on every example, and keeps it only if it reproduces the examples exactl
   6 of 6 times on 60 practice puzzles, 5 of 6 times on 40 others, and 3 of 3 on 34 more.
 - Each new version of its rule language made a large, measured gain on puzzles we generated (see the table).
 - None of those gains has yet carried over to real puzzles: on the official hidden ARC-AGI-2 test CORA scores
-  **0.00%**, and on the 120 public evaluation puzzles every CORA-only configuration we tried solved 0.
+  **0.00%**, and on the 120 public evaluation puzzles every CORA-only configuration we tried solved 0, including the
+  newest version of the rule language.
 - The real failures point to the cause: CORA describes puzzles in terms of whole objects, while many puzzles change
-  only part of an object or need operations its language does not have. That is where the work goes next.
+  only part of an object or need operations its language does not have. Adding hand-written operations, five times
+  now, has not closed that gap, so the work now tests whether a language model can write the missing programs.
 
 ## What is new here, and what is not
 
@@ -57,10 +59,17 @@ leaderboard uses hidden puzzles. "Solved" means one of two allowed attempts is e
 | version 3 (rules built from what went wrong; answers chosen by the strength of the evidence) against version 2 | 296 generated puzzles | 271 vs 166 solved (106 gained, 1 lost) | passed every criterion set in advance |
 | version 4 (rules over parts of objects and lines) against version 3 | 110 generated target puzzles | 97% vs 15% solved (across all 210 generated puzzles: 104 gained, 0 lost) | passed every criterion set in advance; the puzzles are written in version 4's own language |
 | versions 2, 3 and 4, and the original CORA | 34 real public puzzles not used in earlier tests | 1, 3 and 3 solved; the original CORA 3 (all certified) | no gain beyond the original CORA on real puzzles |
-| the CORA-only competition notebook, every configuration | 120 public evaluation puzzles | 0 solved | the next problem to solve |
+| version 5 (copies of a pattern at anchor points; lines that stop at, turn at or recolour obstacles; segments between objects; fills defined by relations) against version 4 | 40 generated target puzzles | 40 vs 20 solved (20 gained, 0 lost); version 4 found none of the 20 even with ten times the search | the new operations work where they apply; the puzzles are written in version 5's own language |
+| the CORA-only competition notebook, every configuration, including version 5 | 120 public evaluation puzzles | 0 solved (on one puzzle, 64 version 5 programs reproduced the examples and none was right on the new input) | the next problem to solve |
+| skipping candidates that earlier failures already rule out (the idea behind Popper), on and off at the same candidate budget | 170 generated puzzles | the first correct candidate came earlier on 53 of 127 puzzles and never later; 0 correct programs lost; no CPU saving | sound, but no speed-up: checking costs about as much as running the skipped candidates |
+| Popper, an established system that learns logic programs from failures, on the puzzles it can encode | 5 real public puzzles; 24 and 59 generated puzzles | Popper 1, 9 and 25 solved; CORA 3, 15 and 54 | a description, not a matched test: budgets differ and Popper gives one answer where CORA gives two |
 
 Still unproven: that learning from failures beats an equal amount of plain search; that any trained model helps
 inside CORA; that the approach transfers to other kinds of data, such as biological measurements.
+
+Being tested now: whether a public pretrained language model that writes CORA programs finds correct programs that
+CORA's own search misses, and whether CORA's cell-by-cell feedback on where a program fails helps the model fix it
+better than plain retries at the same cost. No result yet.
 
 ## How it works
 
@@ -88,9 +97,10 @@ flowchart LR
    and submits two different answers. An answer is **certified** only if the rule, rebuilt with each example hidden
    in turn, still predicts the hidden example. If the evidence is too thin, CORA can abstain.
 
-The four versions of the rule language add, in order: a typed language that CORA can check before running anything
+The five versions of the rule language add, in order: a typed language that CORA can check before running anything
 (version 1); CORA's own built-in program types in that language (version 2); building rules from where their output
-is wrong (version 3); and rules over parts of objects and lines (version 4).
+is wrong (version 3); rules over parts of objects and lines (version 4); and copies of a pattern at anchor points,
+lines that react to obstacles, segments between objects and fills defined by relations (version 5).
 
 ## Words used here
 
@@ -114,6 +124,9 @@ Folder and file names keep the project's internal labels. This table says what e
 | `cora_neural_v2g3/` | rule language version 3 (ncv2-g3), including the answer picker and a rule-revision step |
 | `cora_neural_v2g4/` | rule language version 4 (ncv2-g4): parts of objects, regions and lines |
 | `cora_neural_v2g4_eval/` | the generated puzzles for version 4's test |
+| `cora_neural_v2g5/` | rule language version 5 (ncv2-g5): pattern copies, obstacle-aware lines, segments, relational fills |
+| `cora_neural_prune/` | skipping candidates that earlier failures already rule out |
+| `baselines/popper/` | the comparison with Popper (Popper itself is installed separately) |
 | `cora_neural_v1/` | the trained search guide |
 | `cora_revision_v2/`, `cora_fhr/`, `cora_funnel/`, `cora_reach/` | earlier experiments: keeping every rival explanation, building missing operations from failures, failure analysis |
 | `kaggle/` | the competition notebooks (CORA's own code only) |
@@ -132,6 +145,7 @@ Folder and file names keep the project's internal labels. This table says what e
 
 NVARC's method and model belong to their authors; the 27.64% is their method, rerun as a baseline, and is not a CORA
 result. NVARC's notebook code is not included here. ARC-AGI-2 puzzles are the ARC Prize Foundation's public data.
+Popper (Cropper and Morel; MIT licence) is used as an external baseline and is not included here.
 
 The research, design decisions, claims and authorship are Chimdi Walter Ndubuisi's. AI coding assistance was used for
 parts of the implementation and documentation.

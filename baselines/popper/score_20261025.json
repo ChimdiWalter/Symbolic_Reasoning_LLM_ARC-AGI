@@ -1,0 +1,3550 @@
+{
+ "real": {
+  "tasks": 34,
+  "encodable": 5,
+  "not_encodable": {
+   "background cells change": 11,
+   "part of an object changes": 18
+  },
+  "families_tasks_encodable": {},
+  "popper_ran": 5,
+  "popper_fits_train": 4,
+  "popper_solved": 1,
+  "cora_solved_same_tasks": {
+   "g2": 1,
+   "g3": 3,
+   "g4": 3,
+   "native": 3
+  },
+  "popper_not_cora": [],
+  "cora_not_popper": [
+   "9720b24f",
+   "6df30ad6"
+  ],
+  "wall_s_median": 59.8,
+  "cpu_s_median": 59.6,
+  "cpu_s_total": 193.9,
+  "cora_cpu_s_median_same_tasks": {
+   "g2": 3.381,
+   "g3": 8.572,
+   "g4": 27.748,
+   "native": 23.86
+  },
+  "per_task": [
+   {
+    "task_id": "85c4e7cd",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "native": false,
+     "g2": false,
+     "g3": false,
+     "g4": false
+    },
+    "wall_s": 59.9,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- c1(V1),has_color(V0,V2),not_smallest(V0),c3(V2).",
+     "new_color(V0,V1):- n36(V2),not_touches_border(V0),has_size(V0,V2),c5(V1).",
+     "new_color(V0,V1):- has_color(V2,V3),adjacent(V0,V2),c8(V3),c2(V1).",
+     "new_color(V0,V1):- has_color(V2,V1),inside(V2,V0),smallest(V2),largest(V0).",
+     "new_color(V0,V1):- has_color(V2,V1),smallest(V0),inside(V0,V2),largest(V2).",
+     "new_color(V0,V1):- has_width(V0,V3),n8(V3),inside(V0,V2),inside(V2,V4),c3(V1).",
+     "new_color(V0,V1):- has_color(V3,V2),adjacent(V0,V3),c3(V2),smallest(V3),c2(V1).",
+     "new_color(V0,V1):- c4(V2),has_color(V3,V2),c1(V1),adjacent(V0,V3),inside(V3,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "9720b24f",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "native": true,
+     "g2": false,
+     "g3": true,
+     "g4": true
+    },
+    "wall_s": 13.8,
+    "cpu_s": 13.8,
+    "program": [
+     "new_color(V0,V1):- left_of(V3,V0),left_of(V0,V2),c0(V1).",
+     "new_color(V0,V1):- adjacent(V0,V3),has_height(V3,V2),c0(V1),n3(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "e681b708",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "native": false,
+     "g2": false,
+     "g3": false,
+     "g4": false
+    },
+    "wall_s": 59.8,
+    "cpu_s": 59.6,
+    "program": [
+     "new_color(V0,V1):- has_width(V2,V3),n11(V3),c2(V1),above(V0,V2).",
+     "new_color(V0,V1):- c2(V1),has_height(V2,V3),left_of(V0,V2),n4(V3).",
+     "new_color(V0,V1):- n2(V3),c2(V1),left_of(V2,V0),has_height(V2,V3).",
+     "new_color(V0,V1):- c3(V1),left_of(V2,V0),has_height(V2,V3),n6(V3).",
+     "new_color(V0,V1):- n2(V3),c2(V1),left_of(V0,V2),has_size(V2,V3).",
+     "new_color(V0,V1):- left_of(V2,V3),c2(V1),left_of(V0,V2),touches_border(V2).",
+     "new_color(V0,V1):- left_of(V3,V0),c2(V1),touches_border(V0),left_of(V0,V2).",
+     "new_color(V0,V1):- n11(V3),c2(V1),has_height(V2,V3),left_of(V0,V2).",
+     "new_color(V0,V1):- c2(V1),left_of(V2,V0),has_height(V2,V3),n4(V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "ea32f347",
+    "family": null,
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "native": true,
+     "g2": true,
+     "g3": true,
+     "g4": true
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- c2(V1),smallest(V0).",
+     "new_color(V0,V1):- largest(V0),c1(V1).",
+     "new_color(V0,V1):- not_smallest(V0),not_largest(V0),c4(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "6df30ad6",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "native": true,
+     "g2": false,
+     "g3": true,
+     "g4": true
+    },
+    "wall_s": 59.8,
+    "cpu_s": 59.8,
+    "program": [
+     "new_color(V0,V1):- not_largest(V0),c0(V1).",
+     "new_color(V0,V1):- has_height(V0,V2),c4(V1),n2(V2).",
+     "new_color(V0,V1):- above(V0,V2),not_smallest(V0),c6(V1).",
+     "new_color(V0,V1):- c9(V1),n3(V2),has_height(V0,V2).",
+     "new_color(V0,V1):- n5(V2),c4(V1),has_size(V0,V2)."
+    ],
+    "status": "ok"
+   }
+  ]
+ },
+ "synv2": {
+  "tasks": 200,
+  "encodable": 80,
+  "not_encodable": {
+   "part of an object changes": 35,
+   "background cells change": 45,
+   "output size differs": 40
+  },
+  "families_tasks_encodable": {
+   "h_rect_relational_recolour": [
+    20,
+    20
+   ],
+   "h_border_relational_move": [
+    20,
+    0
+   ],
+   "h_two_rule_features": [
+    20,
+    20
+   ],
+   "h_least_common_recolour": [
+    20,
+    20
+   ],
+   "h_symmetry_lr": [
+    20,
+    0
+   ],
+   "h_pixel_color_swap": [
+    20,
+    20
+   ],
+   "h_counting_unique": [
+    20,
+    0
+   ],
+   "h_generative_row_line": [
+    20,
+    0
+   ],
+   "h_panel_select_most": [
+    20,
+    0
+   ],
+   "h_bind_unique": [
+    20,
+    0
+   ]
+  },
+  "popper_ran": 24,
+  "popper_fits_train": 22,
+  "popper_solved": 9,
+  "cora_solved_same_tasks": {
+   "g1": 8,
+   "g2": 15
+  },
+  "popper_not_cora": [
+   "h_two_rule_features#1",
+   "h_two_rule_features#3",
+   "h_two_rule_features#2",
+   "h_two_rule_features#6"
+  ],
+  "cora_not_popper": [
+   "h_rect_relational_recolour#2",
+   "h_rect_relational_recolour#1",
+   "h_rect_relational_recolour#3",
+   "h_rect_relational_recolour#5",
+   "h_rect_relational_recolour#4",
+   "h_rect_relational_recolour#6",
+   "h_pixel_color_swap#3",
+   "h_pixel_color_swap#2",
+   "h_pixel_color_swap#4",
+   "h_pixel_color_swap#5"
+  ],
+  "wall_s_median": 32.75,
+  "cpu_s_median": 32.65,
+  "cpu_s_total": 791.5,
+  "cora_cpu_s_median_same_tasks": {
+   "g1": 2.574,
+   "g2": 4.7135
+  },
+  "per_task": [
+   {
+    "task_id": "h_rect_relational_recolour#2",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.1,
+    "program": [
+     "new_color(V0,V1):- rect(V2),c7(V1),left_of(V0,V2).",
+     "new_color(V0,V1):- above(V0,V2),smallest(V2),c3(V1).",
+     "new_color(V0,V1):- c4(V1),left_of(V0,V3),above(V2,V3).",
+     "new_color(V0,V1):- c4(V1),above(V0,V3),left_of(V2,V3).",
+     "new_color(V0,V1):- above(V2,V0),smallest(V0),c3(V1).",
+     "new_color(V0,V1):- c4(V1),not_touches_border(V2),left_of(V2,V0).",
+     "new_color(V0,V1):- has_color(V0,V2),not_smallest(V0),c6(V2),c7(V1).",
+     "new_color(V0,V1):- above(V2,V0),not_smallest(V0),largest(V2),c7(V1).",
+     "new_color(V0,V1):- c7(V2),has_color(V0,V2),not_largest(V0),c3(V1),not_rect(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#1",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 60.2,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- left_of(V3,V0),c1(V1),above(V0,V2).",
+     "new_color(V0,V1):- has_color(V0,V2),c1(V1),c7(V2).",
+     "new_color(V0,V1):- has_color(V2,V1),above(V3,V0),left_of(V2,V3).",
+     "new_color(V0,V1):- has_color(V0,V2),largest(V0),c2(V1),c4(V2).",
+     "new_color(V0,V1):- has_color(V3,V4),c2(V1),above(V2,V3),has_color(V0,V4),not_touches_border(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#3",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- above(V0,V3),has_color(V2,V1),above(V3,V2).",
+     "new_color(V0,V1):- c4(V1),above(V0,V2),smallest(V2).",
+     "new_color(V0,V1):- above(V2,V3),left_of(V2,V0),has_color(V3,V1).",
+     "new_color(V0,V1):- c4(V1),above(V2,V0),smallest(V0).",
+     "new_color(V0,V1):- c4(V1),left_of(V2,V0),has_color(V2,V1).",
+     "new_color(V0,V1):- has_color(V3,V1),above(V0,V3),above(V2,V0).",
+     "new_color(V0,V1):- largest(V0),c3(V1),above(V0,V2).",
+     "new_color(V0,V1):- c3(V1),c6(V2),smallest(V0),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#5",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 59.9,
+    "cpu_s": 60.0,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V1),rect(V2),above(V0,V2).",
+     "new_color(V0,V1):- left_of(V0,V2),rect(V2),has_color(V2,V1).",
+     "new_color(V0,V1):- c3(V1),left_of(V2,V0),not_smallest(V2).",
+     "new_color(V0,V1):- has_color(V2,V1),left_of(V3,V2),above(V3,V0).",
+     "new_color(V0,V1):- touches_border(V2),c6(V1),above(V0,V2).",
+     "new_color(V0,V1):- left_of(V0,V2),c3(V1),above(V2,V3).",
+     "new_color(V0,V1):- hole(V0),c2(V2),has_color(V0,V2),c7(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#4",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.1,
+    "program": [
+     "new_color(V0,V1):- hole(V0),not_touches_border(V0),c4(V1).",
+     "new_color(V0,V1):- left_of(V2,V3),above(V0,V2),c3(V1).",
+     "new_color(V0,V1):- rect(V2),left_of(V2,V0),has_color(V2,V1).",
+     "new_color(V0,V1):- c3(V1),not_rect(V0),touches_border(V0).",
+     "new_color(V0,V1):- has_color(V3,V2),above(V0,V3),c2(V2),c4(V1).",
+     "new_color(V0,V1):- has_color(V2,V4),has_color(V0,V4),not_largest(V0),above(V3,V2),c3(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#6",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V1),rect(V2),above(V0,V2).",
+     "new_color(V0,V1):- left_of(V0,V2),above(V2,V3),has_color(V3,V1).",
+     "new_color(V0,V1):- c1(V1),left_of(V3,V2),above(V3,V0).",
+     "new_color(V0,V1):- not_touches_border(V0),has_color(V0,V2),c7(V1),c6(V2).",
+     "new_color(V0,V1):- c1(V1),not_rect(V0),not_largest(V0),touches_border(V0).",
+     "new_color(V0,V1):- hole(V2),has_color(V2,V3),c6(V1),touches_border(V2),has_color(V0,V3),not_largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#1",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c4(V1),hole(V0).",
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#3",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c4(V1),hole(V0).",
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#2",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c4(V1).",
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#4",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#5",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#6",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1).",
+     "new_color(V0,V1):- c4(V1),hole(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#1",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- c4(V1),left_of(V2,V0),smallest(V0).",
+     "new_color(V0,V1):- has_color(V2,V1),above(V0,V2),smallest(V0).",
+     "new_color(V0,V1):- c1(V1),left_of(V0,V2),touches_border(V2).",
+     "new_color(V0,V1):- left_of(V3,V0),not_largest(V3),c3(V1),above(V3,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#2",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 59.8,
+    "cpu_s": 59.8,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c1(V1).",
+     "new_color(V0,V1):- c2(V1),left_of(V0,V2),rect(V0).",
+     "new_color(V0,V1):- not_touches_border(V2),c1(V1),above(V0,V2).",
+     "new_color(V0,V1):- has_color(V2,V1),smallest(V2),above(V0,V2).",
+     "new_color(V0,V1):- above(V0,V3),left_of(V2,V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#4",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 60.0,
+    "cpu_s": 59.9,
+    "program": [
+     "new_color(V0,V1):- left_of(V2,V0),c1(V1).",
+     "new_color(V0,V1):- c1(V1),above(V2,V0),hole(V0).",
+     "new_color(V0,V1):- not_largest(V0),above(V2,V0),c3(V1).",
+     "new_color(V0,V1):- not_hole(V0),largest(V0),c3(V1).",
+     "new_color(V0,V1):- above(V0,V3),has_color(V3,V2),c1(V1),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#3",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.7,
+    "program": [
+     "new_color(V0,V1):- c1(V1),has_color(V0,V2),c5(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#6",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 21.4,
+    "cpu_s": 21.3,
+    "program": [
+     "new_color(V0,V1):- largest(V2),left_of(V0,V2),c2(V1).",
+     "new_color(V0,V1):- has_height(V0,V2),c1(V1),has_width(V0,V2),rect(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#5",
+    "family": "h_least_common_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 33.5,
+    "cpu_s": 33.4,
+    "program": [
+     "new_color(V0,V1):- above(V2,V0),c4(V1),single(V0).",
+     "new_color(V0,V1):- c5(V2),c1(V1),has_color(V0,V2),not_single(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#1",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 31.7,
+    "cpu_s": 31.7,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V4),has_color(V0,V4),adjacent(V3,V2),above(V3,V2),has_color(V3,V1),not_touches_border(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#3",
+    "family": "h_pixel_color_swap",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 18.0,
+    "cpu_s": 18.0,
+    "program": [
+     "new_color(V0,V1):- above(V2,V3),line(V2),has_color(V3,V4),has_color(V2,V1),has_color(V0,V4),adjacent(V2,V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#2",
+    "family": "h_pixel_color_swap",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 32.0,
+    "cpu_s": 31.9,
+    "program": [
+     "new_color(V0,V1):- not_single(V2),has_color(V2,V3),has_color(V0,V3),has_color(V4,V1),adjacent(V2,V4),above(V4,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#4",
+    "family": "h_pixel_color_swap",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 2.5,
+    "cpu_s": 2.5,
+    "program": [
+     "new_color(V0,V1):- has_color(V4,V2),has_color(V0,V2),not_line(V4),adjacent(V3,V4),has_color(V3,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#5",
+    "family": "h_pixel_color_swap",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 49.1,
+    "cpu_s": 48.9,
+    "program": [
+     "new_color(V0,V1):- has_color(V4,V1),adjacent(V2,V4),has_color(V2,V3),has_color(V0,V3),not_single(V2),above(V2,V4)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#6",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 59.8,
+    "cpu_s": 59.7,
+    "program": [
+     "new_color(V0,V1):- has_color(V0,V2),c2(V2),c1(V1).",
+     "new_color(V0,V1):- has_color(V0,V2),c2(V1),c1(V2)."
+    ],
+    "status": "ok"
+   }
+  ]
+ },
+ "synv3": {
+  "tasks": 296,
+  "encodable": 196,
+  "not_encodable": {
+   "background cells change": 45,
+   "part of an object changes": 55
+  },
+  "families_tasks_encodable": {
+   "v3h_comp_line_move_ring_recolour": [
+    20,
+    0
+   ],
+   "v3h_comp_unique_delete_nonrect_recolour": [
+    20,
+    20
+   ],
+   "v3h_comp_three_rules": [
+    20,
+    20
+   ],
+   "v3h_comp_largest_delete_line_recolour": [
+    20,
+    20
+   ],
+   "v3h_bind_rect_step_adopt": [
+    20,
+    0
+   ],
+   "v3h_bind_largest_colour": [
+    20,
+    20
+   ],
+   "v3h_bind_toward_unique_ring": [
+    20,
+    0
+   ],
+   "v3h_trap_ring_most_common": [
+    20,
+    20
+   ],
+   "v3h_trap_border_relational": [
+    16,
+    16
+   ],
+   "v3h_amb_line_or_rect": [
+    20,
+    20
+   ],
+   "v3h_amb_hole_or_size8": [
+    20,
+    20
+   ],
+   "v3h_ctrl_border_recolour": [
+    20,
+    20
+   ],
+   "v3h_ctrl_unique_size_delete": [
+    20,
+    20
+   ],
+   "v3h_add_copy_line_recolour_ring": [
+    20,
+    0
+   ],
+   "v3h_add_fill_line_unique": [
+    20,
+    0
+   ]
+  },
+  "popper_ran": 59,
+  "popper_fits_train": 59,
+  "popper_solved": 25,
+  "cora_solved_same_tasks": {
+   "g2": 32,
+   "g3": 54
+  },
+  "popper_not_cora": [],
+  "cora_not_popper": [
+   "syn-v3:v3h_comp_three_rules#5",
+   "syn-v3:v3h_comp_three_rules#4",
+   "syn-v3:v3h_comp_three_rules#6",
+   "syn-v3:v3h_comp_largest_delete_line_recolour#3",
+   "syn-v3:v3h_bind_largest_colour#1",
+   "syn-v3:v3h_bind_largest_colour#2",
+   "syn-v3:v3h_bind_largest_colour#4",
+   "syn-v3:v3h_bind_largest_colour#3",
+   "syn-v3:v3h_bind_largest_colour#5",
+   "syn-v3:v3h_bind_largest_colour#6",
+   "syn-v3:v3h_trap_ring_most_common#4",
+   "syn-v3:v3h_trap_ring_most_common#5",
+   "syn-v3:v3h_trap_border_relational#1",
+   "syn-v3:v3h_trap_border_relational#2",
+   "syn-v3:v3h_trap_border_relational#5",
+   "syn-v3:v3h_trap_border_relational#4",
+   "syn-v3:v3h_trap_border_relational#6",
+   "syn-v3:v3h_amb_line_or_rect#3",
+   "syn-v3:v3h_amb_hole_or_size8#1",
+   "syn-v3:v3h_amb_hole_or_size8#3",
+   "syn-v3:v3h_amb_hole_or_size8#4",
+   "syn-v3:v3h_amb_hole_or_size8#5",
+   "syn-v3:v3h_amb_hole_or_size8#6",
+   "syn-v3:v3h_ctrl_unique_size_delete#2",
+   "syn-v3:v3h_ctrl_unique_size_delete#1",
+   "syn-v3:v3h_ctrl_unique_size_delete#3",
+   "syn-v3:v3h_ctrl_unique_size_delete#4",
+   "syn-v3:v3h_ctrl_unique_size_delete#6",
+   "syn-v3:v3h_ctrl_unique_size_delete#5"
+  ],
+  "wall_s_median": 0.7,
+  "cpu_s_median": 0.7,
+  "cpu_s_total": 1011.9,
+  "cora_cpu_s_median_same_tasks": {
+   "g2": 4.457,
+   "g3": 8.298
+  },
+  "per_task": [
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#2",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.7,
+    "program": [
+     "new_color(V0,V1):- c0(V1),unique_color(V0).",
+     "new_color(V0,V1):- c9(V1),not_unique_color(V0),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#1",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.9,
+    "cpu_s": 0.9,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c0(V1).",
+     "new_color(V0,V1):- not_unique_color(V0),not_rect(V0),c9(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#4",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c0(V1).",
+     "new_color(V0,V1):- c9(V1),hole(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#5",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.6,
+    "program": [
+     "new_color(V0,V1):- c0(V1),unique_color(V0).",
+     "new_color(V0,V1):- left_of(V2,V0),hole(V2),c9(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#6",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.6,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c0(V1).",
+     "new_color(V0,V1):- above(V3,V2),left_of(V0,V2),c9(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#3",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- c0(V1),unique_color(V0).",
+     "new_color(V0,V1):- c9(V1),not_rect(V0),not_unique_color(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#1",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 8.8,
+    "cpu_s": 8.8,
+    "program": [
+     "new_color(V0,V1):- c0(V1),hole(V0).",
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- rect(V0),c8(V1),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#2",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.7,
+    "program": [
+     "new_color(V0,V1):- c0(V1),hole(V0).",
+     "new_color(V0,V1):- c6(V1),line(V0).",
+     "new_color(V0,V1):- not_line(V0),rect(V0),c8(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#3",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 4.6,
+    "cpu_s": 4.6,
+    "program": [
+     "new_color(V0,V1):- c0(V1),hole(V0).",
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- left_of(V0,V2),above(V3,V0),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#5",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 10.7,
+    "cpu_s": 10.7,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c0(V1).",
+     "new_color(V0,V1):- c6(V1),line(V0).",
+     "new_color(V0,V1):- c8(V1),c3(V2),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#4",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 2.2,
+    "cpu_s": 2.2,
+    "program": [
+     "new_color(V0,V1):- c0(V1),largest(V0).",
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- c8(V1),rect(V0),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#6",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 6.7,
+    "cpu_s": 6.7,
+    "program": [
+     "new_color(V0,V1):- c6(V1),line(V0).",
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- c8(V1),rect(V0),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#2",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.6,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- not_largest(V0),c5(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#3",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c5(V1).",
+     "new_color(V0,V1):- c0(V1),largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#1",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- line(V0),c5(V1).",
+     "new_color(V0,V1):- largest(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#5",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- c5(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#4",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c5(V1),line(V0).",
+     "new_color(V0,V1):- largest(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#6",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),largest(V0).",
+     "new_color(V0,V1):- line(V0),c5(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#1",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.2,
+    "cpu_s": 60.4,
+    "program": [
+     "new_color(V0,V1):- left_of(V0,V2),not_touches_border(V0),c1(V1).",
+     "new_color(V0,V1):- c2(V1),above(V2,V0),left_of(V3,V2).",
+     "new_color(V0,V1):- unique_color(V0),line(V0),c5(V1).",
+     "new_color(V0,V1):- not_touches_border(V2),c1(V1),above(V2,V0).",
+     "new_color(V0,V1):- has_color(V0,V2),c2(V1),not_unique_color(V0),c3(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#2",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- not_smallest(V0),c8(V1),rect(V0).",
+     "new_color(V0,V1):- c5(V1),not_unique_color(V0),n3(V2),has_size(V0,V2).",
+     "new_color(V0,V1):- left_of(V0,V2),not_rect(V3),above(V3,V2),has_color(V3,V1).",
+     "new_color(V0,V1):- largest(V4),has_color(V4,V1),left_of(V2,V3),above(V4,V3),left_of(V2,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#4",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.0,
+    "program": [
+     "new_color(V0,V1):- c1(V1),single(V0).",
+     "new_color(V0,V1):- has_size(V0,V2),c9(V1),n5(V2).",
+     "new_color(V0,V1):- c7(V1),above(V2,V0),left_of(V3,V0).",
+     "new_color(V0,V1):- c1(V1),has_size(V0,V2),n4(V2).",
+     "new_color(V0,V1):- left_of(V2,V0),largest(V2),has_color(V2,V1).",
+     "new_color(V0,V1):- c7(V1),left_of(V2,V3),above(V0,V3).",
+     "new_color(V0,V1):- c1(V1),not_rect(V2),above(V2,V0).",
+     "new_color(V0,V1):- c9(V1),has_color(V0,V2),c3(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#3",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.1,
+    "program": [
+     "new_color(V0,V1):- has_color(V0,V2),c9(V2),c4(V1).",
+     "new_color(V0,V1):- has_color(V3,V1),left_of(V0,V2),above(V3,V2).",
+     "new_color(V0,V1):- above(V0,V3),c7(V1),left_of(V3,V2).",
+     "new_color(V0,V1):- left_of(V2,V0),c3(V1),line(V2).",
+     "new_color(V0,V1):- not_touches_border(V0),above(V2,V0),c4(V1).",
+     "new_color(V0,V1):- c3(V1),line(V0),left_of(V0,V2).",
+     "new_color(V0,V1):- hole(V2),c7(V1),left_of(V0,V2).",
+     "new_color(V0,V1):- above(V2,V0),hole(V2),touches_border(V2),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#5",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.2,
+    "cpu_s": 60.4,
+    "program": [
+     "new_color(V0,V1):- not_unique_color(V0),not_line(V0),c3(V1).",
+     "new_color(V0,V1):- smallest(V0),unique_color(V0),c6(V1).",
+     "new_color(V0,V1):- has_color(V0,V2),c6(V1),c9(V2).",
+     "new_color(V0,V1):- c1(V2),has_color(V0,V2),c6(V1).",
+     "new_color(V0,V1):- not_unique_color(V0),c6(V2),has_color(V0,V2),c4(V1).",
+     "new_color(V0,V1):- left_of(V4,V3),above(V3,V2),left_of(V0,V2),has_color(V4,V1).",
+     "new_color(V0,V1):- left_of(V4,V0),has_color(V3,V1),above(V3,V2),above(V4,V2),largest(V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#6",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.1,
+    "program": [
+     "new_color(V0,V1):- c1(V1),not_unique_color(V0).",
+     "new_color(V0,V1):- c1(V1),left_of(V0,V2),not_largest(V0).",
+     "new_color(V0,V1):- c5(V1),line(V0),above(V2,V0).",
+     "new_color(V0,V1):- c4(V1),has_color(V0,V2),c8(V2).",
+     "new_color(V0,V1):- hole(V2),left_of(V2,V0),has_color(V2,V1).",
+     "new_color(V0,V1):- c4(V1),c6(V2),has_color(V0,V2).",
+     "new_color(V0,V1):- c5(V1),left_of(V0,V2),has_height(V0,V3),has_size(V2,V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#1",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 58.7,
+    "cpu_s": 58.7,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V1),left_of(V0,V2).",
+     "new_color(V0,V1):- above(V0,V3),has_color(V2,V1),above(V3,V2).",
+     "new_color(V0,V1):- c7(V2),c2(V1),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#2",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 41.1,
+    "cpu_s": 41.1,
+    "program": [
+     "new_color(V0,V1):- c5(V2),has_color(V0,V2),c3(V1).",
+     "new_color(V0,V1):- above(V2,V0),c6(V1),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#4",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 6.4,
+    "cpu_s": 6.4,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V1),left_of(V0,V2).",
+     "new_color(V0,V1):- above(V3,V2),has_color(V2,V1),above(V2,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#3",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 56.7,
+    "cpu_s": 56.7,
+    "program": [
+     "new_color(V0,V1):- above(V0,V2),c1(V1),largest(V0).",
+     "new_color(V0,V1):- not_unique_color(V4),has_size(V4,V2),touches_border(V4),has_color(V4,V1),has_size(V3,V2),left_of(V0,V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#5",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c1(V1),hole(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#6",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 43.5,
+    "cpu_s": 43.4,
+    "program": [
+     "new_color(V0,V1):- above(V0,V2),above(V3,V0),has_color(V3,V1).",
+     "new_color(V0,V1):- left_of(V0,V2),above(V3,V2),has_color(V2,V1).",
+     "new_color(V0,V1):- not_hole(V2),has_color(V2,V1),left_of(V2,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#1",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.5,
+    "program": [
+     "new_color(V0,V1):- left_of(V2,V0),has_color(V3,V1),above(V0,V3).",
+     "new_color(V0,V1):- c3(V1),c5(V2),has_color(V0,V2).",
+     "new_color(V0,V1):- c9(V1),unique_color(V0),not_rect(V0).",
+     "new_color(V0,V1):- has_size(V0,V4),c2(V1),has_color(V3,V2),not_line(V3),has_color(V0,V2),has_height(V0,V4)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#2",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- left_of(V2,V0),unique_color(V2),c9(V1).",
+     "new_color(V0,V1):- above(V2,V0),not_rect(V0),c3(V1).",
+     "new_color(V0,V1):- touches_border(V2),has_color(V2,V1),left_of(V0,V2).",
+     "new_color(V0,V1):- c5(V1),left_of(V2,V0),not_unique_color(V0).",
+     "new_color(V0,V1):- has_color(V0,V2),not_touches_border(V0),c5(V2),c9(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#5",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.0,
+    "program": [
+     "new_color(V0,V1):- c9(V1),above(V2,V0),not_unique_color(V2).",
+     "new_color(V0,V1):- c8(V2),c6(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- has_color(V3,V2),not_touches_border(V0),smallest(V3),c7(V1),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#4",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- c1(V1),above(V0,V3),left_of(V2,V3).",
+     "new_color(V0,V1):- c9(V1),left_of(V3,V2),above(V0,V3),largest(V3).",
+     "new_color(V0,V1):- c4(V1),left_of(V0,V2),not_largest(V0),not_single(V0).",
+     "new_color(V0,V1):- c6(V1),not_rect(V2),not_hole(V2),left_of(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#6",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.0,
+    "cpu_s": 59.9,
+    "program": [
+     "new_color(V0,V1):- not_rect(V0),c8(V1).",
+     "new_color(V0,V1):- c1(V2),c5(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c5(V1),not_touches_border(V0),single(V0).",
+     "new_color(V0,V1):- c2(V2),c7(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c5(V1),largest(V0),c3(V2),has_color(V0,V2).",
+     "new_color(V0,V1):- left_of(V3,V4),left_of(V2,V3),rect(V2),above(V0,V3),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#1",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#2",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#4",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#3",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- rect(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#5",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#6",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.3,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#1",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.3,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- left_of(V2,V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#3",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.3,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#2",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.3,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- c6(V1),hole(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#4",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.3,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#5",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c6(V1),unique_color(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#6",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#1",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#2",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#4",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c1(V1),touches_border(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#3",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#5",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c1(V1),touches_border(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#6",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#2",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 8.0,
+    "cpu_s": 8.0,
+    "program": [
+     "new_color(V0,V1):- has_size(V0,V2),c0(V1),has_height(V3,V2).",
+     "new_color(V0,V1):- largest(V2),left_of(V2,V0),c0(V1).",
+     "new_color(V0,V1):- unique_color(V2),c0(V1),above(V2,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#1",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 54.5,
+    "cpu_s": 54.6,
+    "program": [
+     "new_color(V0,V1):- has_size(V0,V2),n2(V2),c0(V1).",
+     "new_color(V0,V1):- c0(V1),unique_color(V0),left_of(V0,V2).",
+     "new_color(V0,V1):- above(V0,V2),c0(V1),unique_color(V2).",
+     "new_color(V0,V1):- left_of(V2,V0),c0(V1),not_rect(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#3",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 7.6,
+    "cpu_s": 7.6,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- smallest(V0),c0(V1).",
+     "new_color(V0,V1):- left_of(V3,V2),c0(V1),above(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#4",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 3.9,
+    "cpu_s": 3.9,
+    "program": [
+     "new_color(V0,V1):- not_smallest(V0),c0(V1).",
+     "new_color(V0,V1):- c0(V1),has_height(V3,V2),has_size(V0,V2),smallest(V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#6",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 12.2,
+    "cpu_s": 12.2,
+    "program": [
+     "new_color(V0,V1):- not_smallest(V0),not_touches_border(V0),c0(V1).",
+     "new_color(V0,V1):- above(V0,V2),c0(V1),unique_color(V2).",
+     "new_color(V0,V1):- above(V2,V0),not_touches_border(V0),c0(V1),hole(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#5",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 10.2,
+    "cpu_s": 10.2,
+    "program": [
+     "new_color(V0,V1):- largest(V0),unique_color(V0),c0(V1).",
+     "new_color(V0,V1):- c0(V1),left_of(V3,V4),line(V4),has_size(V4,V2),has_size(V0,V2)."
+    ],
+    "status": "ok"
+   }
+  ]
+ },
+ "real_samegrid": {
+  "tasks": 34,
+  "encodable": 5,
+  "not_encodable": {
+   "background cells change": 11,
+   "part of an object changes": 18
+  },
+  "families_tasks_encodable": {},
+  "popper_ran": 5,
+  "popper_fits_train": 3,
+  "popper_solved": 1,
+  "cora_solved_same_tasks": {
+   "g2": 1,
+   "g3": 3,
+   "g4": 3,
+   "native": 3
+  },
+  "popper_not_cora": [],
+  "cora_not_popper": [
+   "9720b24f",
+   "6df30ad6"
+  ],
+  "wall_s_median": 59.7,
+  "cpu_s_median": 59.5,
+  "cpu_s_total": 227.1,
+  "cora_cpu_s_median_same_tasks": {
+   "g2": 3.381,
+   "g3": 8.572,
+   "g4": 27.748,
+   "native": 23.86
+  },
+  "per_task": [
+   {
+    "task_id": "85c4e7cd",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "native": false,
+     "g2": false,
+     "g3": false,
+     "g4": false
+    },
+    "wall_s": 59.9,
+    "cpu_s": 60.1,
+    "program": [
+     "new_color(V0,V1):- c8(V2),c4(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c8(V1),has_height(V0,V2),n12(V2).",
+     "new_color(V0,V1):- c7(V2),c3(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c5(V2),has_color(V0,V2),c2(V1).",
+     "new_color(V0,V1):- has_color(V0,V2),c2(V1),c6(V2).",
+     "new_color(V0,V1):- c6(V1),c2(V2),touches_border(V0),has_color(V0,V2).",
+     "new_color(V0,V1):- c5(V1),has_size(V0,V2),inside(V0,V3),n36(V2).",
+     "new_color(V0,V1):- c8(V2),adjacent(V3,V0),c2(V1),has_color(V3,V2).",
+     "new_color(V0,V1):- not_rect(V0),c3(V2),c1(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- smallest(V0),c3(V2),c7(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c7(V2),c1(V1),adjacent(V3,V0),has_color(V3,V2).",
+     "new_color(V0,V1):- smallest(V0),c8(V1),has_color(V0,V2),c4(V2).",
+     "new_color(V0,V1):- c3(V1),n8(V3),has_height(V0,V3),c1(V2),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "9720b24f",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "native": true,
+     "g2": false,
+     "g3": true,
+     "g4": true
+    },
+    "wall_s": 47.4,
+    "cpu_s": 47.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),left_of(V0,V3),left_of(V2,V0).",
+     "new_color(V0,V1):- adjacent(V0,V2),c0(V1),has_height(V2,V3),n3(V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "e681b708",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "native": false,
+     "g2": false,
+     "g3": false,
+     "g4": false
+    },
+    "wall_s": 59.8,
+    "cpu_s": 59.6,
+    "program": [
+     "new_color(V0,V1):- c2(V1),has_height(V2,V3),n2(V3),left_of(V0,V2).",
+     "new_color(V0,V1):- c2(V1),left_of(V2,V0),n4(V3),has_height(V2,V3).",
+     "new_color(V0,V1):- c2(V1),left_of(V3,V0),left_of(V2,V3),touches_border(V3).",
+     "new_color(V0,V1):- c2(V1),n11(V3),has_width(V2,V3),above(V0,V2).",
+     "new_color(V0,V1):- c2(V1),touches_border(V2),left_of(V2,V3),left_of(V0,V2).",
+     "new_color(V0,V1):- c2(V1),has_height(V2,V3),n11(V3),left_of(V0,V2).",
+     "new_color(V0,V1):- c2(V1),has_height(V2,V3),n4(V3),left_of(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "ea32f347",
+    "family": null,
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "native": true,
+     "g2": true,
+     "g3": true,
+     "g4": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- c1(V1),largest(V0).",
+     "new_color(V0,V1):- c2(V1),smallest(V0).",
+     "new_color(V0,V1):- not_largest(V0),not_smallest(V0),c4(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "6df30ad6",
+    "family": null,
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "native": true,
+     "g2": false,
+     "g3": true,
+     "g4": true
+    },
+    "wall_s": 59.7,
+    "cpu_s": 59.5,
+    "program": [
+     "new_color(V0,V1):- c0(V1),not_largest(V0).",
+     "new_color(V0,V1):- has_size(V0,V2),c4(V1),n5(V2).",
+     "new_color(V0,V1):- has_size(V0,V2),c4(V1),n6(V2).",
+     "new_color(V0,V1):- c6(V1),not_smallest(V0),above(V0,V2).",
+     "new_color(V0,V1):- c9(V1),has_size(V0,V2),n9(V2)."
+    ],
+    "status": "ok"
+   }
+  ]
+ },
+ "synv2_samegrid": {
+  "tasks": 200,
+  "encodable": 80,
+  "not_encodable": {
+   "part of an object changes": 35,
+   "background cells change": 45,
+   "output size differs": 40
+  },
+  "families_tasks_encodable": {
+   "h_rect_relational_recolour": [
+    20,
+    20
+   ],
+   "h_border_relational_move": [
+    20,
+    0
+   ],
+   "h_two_rule_features": [
+    20,
+    20
+   ],
+   "h_least_common_recolour": [
+    20,
+    20
+   ],
+   "h_symmetry_lr": [
+    20,
+    0
+   ],
+   "h_pixel_color_swap": [
+    20,
+    20
+   ],
+   "h_counting_unique": [
+    20,
+    0
+   ],
+   "h_generative_row_line": [
+    20,
+    0
+   ],
+   "h_panel_select_most": [
+    20,
+    0
+   ],
+   "h_bind_unique": [
+    20,
+    0
+   ]
+  },
+  "popper_ran": 24,
+  "popper_fits_train": 23,
+  "popper_solved": 18,
+  "cora_solved_same_tasks": {
+   "g1": 8,
+   "g2": 15
+  },
+  "popper_not_cora": [
+   "h_two_rule_features#1",
+   "h_two_rule_features#3",
+   "h_two_rule_features#2",
+   "h_two_rule_features#6"
+  ],
+  "cora_not_popper": [
+   "h_pixel_color_swap#4"
+  ],
+  "wall_s_median": 0.75,
+  "cpu_s_median": 0.75,
+  "cpu_s_total": 649.9,
+  "cora_cpu_s_median_same_tasks": {
+   "g1": 2.574,
+   "g2": 4.7135
+  },
+  "per_task": [
+   {
+    "task_id": "h_rect_relational_recolour#2",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- same_grid(V2,V0),rect(V2),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#1",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V1),same_grid(V2,V0),rect(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#3",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.7,
+    "program": [
+     "new_color(V0,V1):- rect(V2),has_color(V2,V1),same_grid(V2,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#5",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.6,
+    "program": [
+     "new_color(V0,V1):- same_grid(V2,V0),has_color(V2,V1),rect(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#4",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- has_color(V2,V1),same_grid(V2,V0),rect(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_rect_relational_recolour#6",
+    "family": "h_rect_relational_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.7,
+    "program": [
+     "new_color(V0,V1):- rect(V2),has_color(V2,V1),same_grid(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#1",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c4(V1).",
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#3",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c4(V1),hole(V0).",
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#2",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),line(V0).",
+     "new_color(V0,V1):- hole(V0),c4(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#4",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#5",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_two_rule_features#6",
+    "family": "h_two_rule_features",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.4,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c4(V1),hole(V0).",
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#1",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 60.0,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- c4(V1),same_grid(V2,V0),rect(V2),smallest(V0).",
+     "new_color(V0,V1):- touches_border(V3),same_grid(V0,V2),above(V2,V3),has_color(V3,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#2",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.6,
+    "program": [
+     "new_color(V0,V1):- c1(V1),hole(V0).",
+     "new_color(V0,V1):- above(V0,V3),left_of(V2,V0),c1(V1).",
+     "new_color(V0,V1):- c2(V1),line(V0),above(V2,V0).",
+     "new_color(V0,V1):- above(V0,V2),c1(V1),not_touches_border(V2).",
+     "new_color(V0,V1):- above(V0,V2),has_color(V2,V1),single(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#4",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 60.3,
+    "cpu_s": 60.4,
+    "program": [
+     "new_color(V0,V1):- same_grid(V0,V4),above(V4,V2),c1(V1),left_of(V2,V3).",
+     "new_color(V0,V1):- c3(V1),same_grid(V2,V0),not_largest(V2),above(V3,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#3",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 0.8,
+    "cpu_s": 0.8,
+    "program": [
+     "new_color(V0,V1):- c1(V1),has_color(V0,V2),c5(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#6",
+    "family": "h_least_common_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": false
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.4,
+    "program": [
+     "new_color(V0,V1):- largest(V2),left_of(V0,V2),c2(V1).",
+     "new_color(V0,V1):- c5(V2),c1(V1),rect(V0),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_least_common_recolour#5",
+    "family": "h_least_common_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": false,
+     "g2": true
+    },
+    "wall_s": 59.9,
+    "cpu_s": 59.7,
+    "program": [
+     "new_color(V0,V1):- single(V0),c4(V1),above(V2,V0).",
+     "new_color(V0,V1):- c1(V1),has_color(V0,V2),c5(V2),not_single(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#1",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 59.8,
+    "cpu_s": 59.5,
+    "program": [
+     "new_color(V0,V1):- has_color(V0,V2),c1(V1),c2(V2).",
+     "new_color(V0,V1):- has_color(V0,V2),c1(V2),c2(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#3",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 59.9,
+    "cpu_s": 59.6,
+    "program": [
+     "new_color(V0,V1):- c2(V2),has_color(V0,V2),c1(V1).",
+     "new_color(V0,V1):- c2(V1),c1(V2),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#2",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 59.9,
+    "cpu_s": 59.7,
+    "program": [
+     "new_color(V0,V1):- c1(V2),has_color(V0,V2),c2(V1).",
+     "new_color(V0,V1):- c1(V1),has_color(V0,V2),c2(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#4",
+    "family": "h_pixel_color_swap",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 44.3,
+    "cpu_s": 43.9,
+    "program": [
+     "new_color(V0,V1):- adjacent(V2,V4),has_color(V4,V3),not_line(V2),has_color(V0,V3),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#5",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 59.9,
+    "cpu_s": 59.4,
+    "program": [
+     "new_color(V0,V1):- c1(V2),c2(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c1(V1),has_color(V0,V2),c2(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "h_pixel_color_swap#6",
+    "family": "h_pixel_color_swap",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g1": true,
+     "g2": true
+    },
+    "wall_s": 60.5,
+    "cpu_s": 59.7,
+    "program": [
+     "new_color(V0,V1):- c2(V2),c1(V1),has_color(V0,V2).",
+     "new_color(V0,V1):- c1(V2),c2(V1),has_color(V0,V2)."
+    ],
+    "status": "ok"
+   }
+  ]
+ },
+ "synv3_samegrid": {
+  "tasks": 296,
+  "encodable": 196,
+  "not_encodable": {
+   "background cells change": 45,
+   "part of an object changes": 55
+  },
+  "families_tasks_encodable": {
+   "v3h_comp_line_move_ring_recolour": [
+    20,
+    0
+   ],
+   "v3h_comp_unique_delete_nonrect_recolour": [
+    20,
+    20
+   ],
+   "v3h_comp_three_rules": [
+    20,
+    20
+   ],
+   "v3h_comp_largest_delete_line_recolour": [
+    20,
+    20
+   ],
+   "v3h_bind_rect_step_adopt": [
+    20,
+    0
+   ],
+   "v3h_bind_largest_colour": [
+    20,
+    20
+   ],
+   "v3h_bind_toward_unique_ring": [
+    20,
+    0
+   ],
+   "v3h_trap_ring_most_common": [
+    20,
+    20
+   ],
+   "v3h_trap_border_relational": [
+    16,
+    16
+   ],
+   "v3h_amb_line_or_rect": [
+    20,
+    20
+   ],
+   "v3h_amb_hole_or_size8": [
+    20,
+    20
+   ],
+   "v3h_ctrl_border_recolour": [
+    20,
+    20
+   ],
+   "v3h_ctrl_unique_size_delete": [
+    20,
+    20
+   ],
+   "v3h_add_copy_line_recolour_ring": [
+    20,
+    0
+   ],
+   "v3h_add_fill_line_unique": [
+    20,
+    0
+   ]
+  },
+  "popper_ran": 59,
+  "popper_fits_train": 57,
+  "popper_solved": 26,
+  "cora_solved_same_tasks": {
+   "g2": 32,
+   "g3": 54
+  },
+  "popper_not_cora": [],
+  "cora_not_popper": [
+   "syn-v3:v3h_comp_three_rules#5",
+   "syn-v3:v3h_comp_largest_delete_line_recolour#3",
+   "syn-v3:v3h_bind_largest_colour#2",
+   "syn-v3:v3h_bind_largest_colour#3",
+   "syn-v3:v3h_bind_largest_colour#5",
+   "syn-v3:v3h_bind_largest_colour#6",
+   "syn-v3:v3h_trap_ring_most_common#5",
+   "syn-v3:v3h_trap_border_relational#1",
+   "syn-v3:v3h_trap_border_relational#2",
+   "syn-v3:v3h_trap_border_relational#5",
+   "syn-v3:v3h_trap_border_relational#4",
+   "syn-v3:v3h_trap_border_relational#6",
+   "syn-v3:v3h_amb_line_or_rect#1",
+   "syn-v3:v3h_amb_line_or_rect#2",
+   "syn-v3:v3h_amb_line_or_rect#4",
+   "syn-v3:v3h_amb_line_or_rect#5",
+   "syn-v3:v3h_amb_line_or_rect#6",
+   "syn-v3:v3h_amb_hole_or_size8#1",
+   "syn-v3:v3h_amb_hole_or_size8#3",
+   "syn-v3:v3h_amb_hole_or_size8#2",
+   "syn-v3:v3h_amb_hole_or_size8#4",
+   "syn-v3:v3h_amb_hole_or_size8#5",
+   "syn-v3:v3h_ctrl_unique_size_delete#2",
+   "syn-v3:v3h_ctrl_unique_size_delete#1",
+   "syn-v3:v3h_ctrl_unique_size_delete#3",
+   "syn-v3:v3h_ctrl_unique_size_delete#4",
+   "syn-v3:v3h_ctrl_unique_size_delete#6",
+   "syn-v3:v3h_ctrl_unique_size_delete#5"
+  ],
+  "wall_s_median": 0.9,
+  "cpu_s_median": 0.6,
+  "cpu_s_total": 1004.2,
+  "cora_cpu_s_median_same_tasks": {
+   "g2": 4.457,
+   "g3": 8.298
+  },
+  "per_task": [
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#2",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 1.0,
+    "cpu_s": 0.8,
+    "program": [
+     "new_color(V0,V1):- c0(V1),unique_color(V0).",
+     "new_color(V0,V1):- not_unique_color(V0),c9(V1),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#1",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 1.1,
+    "cpu_s": 0.9,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c0(V1).",
+     "new_color(V0,V1):- not_line(V0),not_unique_color(V0),c9(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#4",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c9(V1),hole(V0).",
+     "new_color(V0,V1):- c0(V1),unique_color(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#5",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c0(V1).",
+     "new_color(V0,V1):- n5(V2),c9(V1),has_size(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#6",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.9,
+    "cpu_s": 0.7,
+    "program": [
+     "new_color(V0,V1):- c0(V1),unique_color(V0).",
+     "new_color(V0,V1):- left_of(V0,V2),c9(V1),above(V3,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_unique_delete_nonrect_recolour#3",
+    "family": "v3h_comp_unique_delete_nonrect_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.9,
+    "cpu_s": 0.6,
+    "program": [
+     "new_color(V0,V1):- c0(V1),unique_color(V0).",
+     "new_color(V0,V1):- c9(V1),not_unique_color(V0),not_rect(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#1",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 40.1,
+    "cpu_s": 40.0,
+    "program": [
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- c0(V1),hole(V0).",
+     "new_color(V0,V1):- rect(V0),c8(V1),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#2",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.8,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c0(V1).",
+     "new_color(V0,V1):- c6(V1),line(V0).",
+     "new_color(V0,V1):- not_line(V0),rect(V0),c8(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#3",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 28.6,
+    "cpu_s": 28.4,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c0(V1).",
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- above(V3,V0),has_color(V2,V1),left_of(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#5",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 37.2,
+    "cpu_s": 37.0,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c0(V1).",
+     "new_color(V0,V1):- c6(V1),line(V0).",
+     "new_color(V0,V1):- has_color(V0,V2),c3(V2),c8(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#4",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 15.4,
+    "cpu_s": 15.2,
+    "program": [
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- c0(V1),hole(V0).",
+     "new_color(V0,V1):- not_line(V0),c8(V1),rect(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_three_rules#6",
+    "family": "v3h_comp_three_rules",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 31.6,
+    "cpu_s": 31.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),hole(V0).",
+     "new_color(V0,V1):- line(V0),c6(V1).",
+     "new_color(V0,V1):- rect(V0),c8(V1),not_line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#2",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 1.0,
+    "cpu_s": 0.6,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- rect(V0),not_largest(V0),c5(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#3",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c0(V1),largest(V0).",
+     "new_color(V0,V1):- line(V0),c5(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#1",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- c5(V1),line(V0).",
+     "new_color(V0,V1):- largest(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#5",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- c5(V1),line(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#4",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c5(V1).",
+     "new_color(V0,V1):- c0(V1),largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_comp_largest_delete_line_recolour#6",
+    "family": "v3h_comp_largest_delete_line_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c5(V1),line(V0).",
+     "new_color(V0,V1):- c0(V1),largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#1",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.8,
+    "cpu_s": 0.5,
+    "program": [
+     "new_color(V0,V1):- same_grid(V2,V0),has_color(V2,V1),hole(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#2",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 19.7,
+    "cpu_s": 19.4,
+    "program": [
+     "new_color(V0,V1):- same_grid(V0,V4),has_width(V3,V2),has_color(V4,V1),has_width(V4,V2),above(V4,V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#4",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 5.8,
+    "cpu_s": 5.6,
+    "program": [
+     "new_color(V0,V1):- left_of(V4,V2),smallest(V3),has_color(V4,V1),same_grid(V0,V4),same_grid(V2,V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#3",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 4.2,
+    "cpu_s": 4.0,
+    "program": [
+     "new_color(V0,V1):- same_grid(V0,V2),has_color(V2,V1),hole(V2),touches_border(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#5",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 6.3,
+    "cpu_s": 6.0,
+    "program": [
+     "new_color(V0,V1):- unique_color(V2),same_grid(V2,V0),largest(V2),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_bind_largest_colour#6",
+    "family": "v3h_bind_largest_colour",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 55.6,
+    "cpu_s": 55.5,
+    "program": [
+     "new_color(V0,V1):- largest(V2),has_color(V2,V1),not_rect(V3),same_grid(V2,V0),not_touches_border(V3),same_grid(V2,V3)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#1",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 60.5,
+    "cpu_s": 60.6,
+    "program": [
+     "new_color(V0,V1):- c2(V1),has_color(V0,V2),c7(V2).",
+     "new_color(V0,V1):- left_of(V3,V2),has_color(V2,V1),same_grid(V0,V2),touches_border(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#2",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 9.4,
+    "cpu_s": 9.3,
+    "program": [
+     "new_color(V0,V1):- same_grid(V0,V2),above(V3,V2),has_color(V2,V1),not_line(V0),line(V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#4",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 2.4,
+    "cpu_s": 2.3,
+    "program": [
+     "new_color(V0,V1):- smallest(V2),same_grid(V0,V2),hole(V0),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#3",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 21.4,
+    "cpu_s": 21.3,
+    "program": [
+     "new_color(V0,V1):- not_unique_color(V3),same_grid(V0,V2),has_color(V2,V1),has_color(V3,V1),hole(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#5",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_ring_most_common#6",
+    "family": "v3h_trap_ring_most_common",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": false
+    },
+    "wall_s": 3.1,
+    "cpu_s": 2.9,
+    "program": [
+     "new_color(V0,V1):- not_touches_border(V2),same_grid(V0,V2),hole(V0),has_color(V2,V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#1",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.2,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- above(V2,V3),c2(V1),above(V0,V2).",
+     "new_color(V0,V1):- c9(V1),unique_color(V0),not_rect(V0).",
+     "new_color(V0,V1):- above(V2,V3),c2(V1),not_largest(V0),left_of(V3,V0).",
+     "new_color(V0,V1):- left_of(V2,V0),same_grid(V2,V4),above(V4,V3),has_color(V3,V1),not_line(V4)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#2",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.1,
+    "cpu_s": 60.2,
+    "program": [
+     "new_color(V0,V1):- above(V2,V0),not_rect(V0),c3(V1).",
+     "new_color(V0,V1):- c5(V1),same_grid(V2,V0),not_touches_border(V0),hole(V2).",
+     "new_color(V0,V1):- not_touches_border(V0),same_grid(V0,V3),has_color(V3,V2),c1(V2),c9(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#5",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.5,
+    "cpu_s": 60.4,
+    "program": [],
+    "status": "exit 1:      ^^^^^^^^^^^^^\n  File \"/home/cnptp/.venvs/popper_env/lib/python3.11/site-packages/janus_swi/janus.py\", line 245, in query_once\n    return _swipl.call(query, inputs, keep)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSystemError: <built-in function call> returned NULL without setting an exception\n"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#4",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.3,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- c1(V1),left_of(V3,V2),left_of(V2,V0).",
+     "new_color(V0,V1):- not_hole(V2),left_of(V0,V2),not_line(V2),c6(V1).",
+     "new_color(V0,V1):- c9(V1),above(V3,V2),above(V2,V4),above(V0,V4).",
+     "new_color(V0,V1):- not_smallest(V0),left_of(V0,V2),c4(V1),not_largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_trap_border_relational#6",
+    "family": "v3h_trap_border_relational",
+    "popper_solved": false,
+    "fits_train": false,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.7,
+    "cpu_s": 59.5,
+    "program": [],
+    "status": "exit -11: r(V0,V1):- c8(V1),not_rect(V0).\n17:01:29 new_color(V0,V1):- same_grid(V0,V2),c5(V1),has_color(V2,V1).\n17:01:29 new_color(V0,V1):- has_color(V0,V2),c7(V1),c2(V2).\n17:01:29 new_color(V0,V1):- above(V0,V3),touches_border(V4),left_of(V3,V2),left_of(V4,V3),has_color(V4,V1).\n17:01:29 ********************\n"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#1",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- c0(V1),rect(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#2",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- c0(V1),rect(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#4",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- rect(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#3",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- line(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#5",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- rect(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_line_or_rect#6",
+    "family": "v3h_amb_line_or_rect",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- rect(V0),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#1",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- left_of(V2,V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#3",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c6(V1),largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#2",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.9,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- c6(V1),unique_color(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#4",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.5,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- c6(V1),largest(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#5",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": false,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- unique_color(V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_amb_hole_or_size8#6",
+    "family": "v3h_amb_hole_or_size8",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- hole(V0),c6(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#1",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.8,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- c1(V1),touches_border(V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#2",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#4",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.4,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#3",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#5",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.6,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_border_recolour#6",
+    "family": "v3h_ctrl_border_recolour",
+    "popper_solved": true,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 0.7,
+    "cpu_s": 0.3,
+    "program": [
+     "new_color(V0,V1):- touches_border(V0),c1(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#2",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.4,
+    "cpu_s": 60.5,
+    "program": [
+     "new_color(V0,V1):- has_color(V0,V2),c8(V2),c0(V1).",
+     "new_color(V0,V1):- has_height(V3,V2),has_size(V0,V2),c0(V1).",
+     "new_color(V0,V1):- left_of(V2,V0),largest(V2),c0(V1)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#1",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.5,
+    "cpu_s": 60.5,
+    "program": [
+     "new_color(V0,V1):- above(V0,V2),unique_color(V2),c0(V1).",
+     "new_color(V0,V1):- left_of(V2,V0),c0(V1),not_rect(V2).",
+     "new_color(V0,V1):- unique_color(V0),same_grid(V2,V0),c0(V1),above(V2,V3),left_of(V4,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#3",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.3,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- c0(V1),smallest(V0).",
+     "new_color(V0,V1):- c0(V1),above(V0,V2),left_of(V3,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#4",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 48.4,
+    "cpu_s": 48.2,
+    "program": [
+     "new_color(V0,V1):- not_hole(V3),line(V2),c0(V1),not_rect(V3),same_grid(V2,V0),same_grid(V3,V0)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#6",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.3,
+    "cpu_s": 60.5,
+    "program": [
+     "new_color(V0,V1):- largest(V0),c0(V1).",
+     "new_color(V0,V1):- c0(V1),not_unique_color(V0).",
+     "new_color(V0,V1):- not_touches_border(V0),hole(V2),c0(V1),same_grid(V0,V2)."
+    ],
+    "status": "ok"
+   },
+   {
+    "task_id": "syn-v3:v3h_ctrl_unique_size_delete#5",
+    "family": "v3h_ctrl_unique_size_delete",
+    "popper_solved": false,
+    "fits_train": true,
+    "cora": {
+     "g2": true,
+     "g3": true
+    },
+    "wall_s": 60.2,
+    "cpu_s": 60.3,
+    "program": [
+     "new_color(V0,V1):- c0(V1),single(V0).",
+     "new_color(V0,V1):- c0(V1),unique_color(V0),left_of(V2,V0).",
+     "new_color(V0,V1):- above(V2,V0),line(V2),c0(V1)."
+    ],
+    "status": "ok"
+   }
+  ]
+ }
+}

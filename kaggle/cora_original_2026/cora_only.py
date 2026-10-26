@@ -41,7 +41,9 @@ ASSETS = {"library.json": "cdacd018da0bd9a3fa460c23beeff89fd5b0c5a85d70ecca276fe
 #: search variants (CONFIG.md): G3 is CORA-ONLY-G3; C1 and C2 are the pre-written development changes
 VARIANTS = {"G3": {"search": "g3", "budget": 3000, "soft_cpu": 120, "hard_cpu": 300, "wall": 600},
             "C1": {"search": "g3", "budget": 10000, "soft_cpu": 300, "hard_cpu": 600, "wall": 1200},
-            "C2": {"search": "g4", "budget": 3000, "soft_cpu": 120, "hard_cpu": 300, "wall": 600}}
+            "C2": {"search": "g4", "budget": 3000, "soft_cpu": 120, "hard_cpu": 300, "wall": 600},
+            # G5: rule-language version 5 (cora_neural_v2g5), a development variant; never the default
+            "G5": {"search": "g5", "budget": 3000, "soft_cpu": 120, "hard_cpu": 300, "wall": 600}}
 POLICIES = {"precision": ("NATIVE_CERTIFIED", "NATIVE_CLAIMED_ON_CERTIFIED_TASK", "G3_FIT_1", "NATIVE_CLAIMED",
                           "G3_FIT_2", "NATIVE_PARTIAL", "FALLBACK"),
             "search_first": ("NATIVE_CERTIFIED", "NATIVE_CLAIMED_ON_CERTIFIED_TASK", "G3_FIT_1", "G3_FIT_2",
@@ -203,6 +205,8 @@ def _child(task, variant, path):
     try:
         if variant["search"] == "g4":
             from cora_neural_v2g4 import search as S
+        elif variant["search"] == "g5":
+            from cora_neural_v2g5 import search as S
         else:
             from cora_neural_v2g3 import search as S
         r = S.search(task, variant["budget"], cpu_cap_s=variant["soft_cpu"])
@@ -227,6 +231,8 @@ def run_search(code, challenges, native_rows, vname, deadline, workers, out_dir)
     import cora_neural_v2g3.search                            # noqa: F401  (loaded once, inherited by every fork)
     if variant["search"] == "g4":
         import cora_neural_v2g4.search                        # noqa: F401
+    if variant["search"] == "g5":
+        import cora_neural_v2g5.search                        # noqa: F401
     ctx = mp.get_context("fork")
     d = os.path.join(out_dir, vname)
     os.makedirs(d, exist_ok=True)

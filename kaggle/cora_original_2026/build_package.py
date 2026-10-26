@@ -50,14 +50,14 @@ def sha(path):
     return hashlib.sha256(open(path, "rb").read()).hexdigest()
 
 
-def stage_tree(dest):
+def stage_tree(dest, packages=PACKAGES):
     if sha(NATIVE_TAR) != NATIVE_TAR_SHA:
         raise SystemExit("the frozen native_v1 archive changed")
     with tarfile.open(NATIVE_TAR) as t:
         t.extractall(dest)
     native_files = sorted(os.path.relpath(os.path.join(d, f), dest) for d, _, fs in os.walk(dest) for f in fs)
     added = []
-    for pkg in PACKAGES:
+    for pkg in packages:
         os.makedirs(os.path.join(dest, pkg))
         for f in sorted(os.listdir(os.path.join(REPO, pkg))):
             if f.endswith(".py") and f not in EXCLUDE.get(pkg, set()):
@@ -103,27 +103,37 @@ def notebook(env, dev):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=os.path.join(REPO, "outputs", "kaggle_deploy", "cora_original_2026"))
+    ap.add_argument("--out", default=None)
+    ap.add_argument("--g5", action="store_true",
+                    help="build the separate G5 development package (own dataset, one dev kernel); the G3 build is unchanged")
     a = ap.parse_args()
+    global DATASET, KERNELS
+    packages, label = PACKAGES, "CORA-ONLY-G3"
+    if a.g5:
+        packages, label = PACKAGES + ("cora_neural_v2g5",), "CORA-ONLY-G5 (development)"
+        DATASET = "cora-only-g5-solver-2026"
+        KERNELS = {"dev_g5": ("cora-only-g5-dev-eval", "CORA-ONLY-G5 dev eval", {"K_MODE": "dev", "K_VARIANTS": "G5"}, True)}
+    a.out = a.out or os.path.join(REPO, "outputs", "kaggle_deploy", "cora_original_2026" + ("_g5" if a.g5 else ""))
     shutil.rmtree(a.out, ignore_errors=True)
     tmp = tempfile.mkdtemp()
-    tree = os.path.join(tmp, "cora_only_g3_solver")
+    name = "cora_only_g5_solver" if a.g5 else "cora_only_g3_solver"
+    tree = os.path.join(tmp, name)
     os.makedirs(tree)
-    native_files, added = stage_tree(tree)
+    native_files, added = stage_tree(tree, packages)
     probs = audit(tree, added)
     if probs:
         raise SystemExit(f"provenance audit failed: {probs}")
     files = sorted(os.path.relpath(os.path.join(d, f), tree) for d, _, fs in os.walk(tree) for f in fs)
-    manifest = {"label": "CORA-ONLY-G3", "version": "cora_original_2026_v1", "native_archive_sha256": NATIVE_TAR_SHA,
+    manifest = {"label": label, "version": "cora_original_2026_v1" + ("_g5" if a.g5 else ""), "native_archive_sha256": NATIVE_TAR_SHA,
                 "native_files": len(native_files), "cora_files": added,
                 "files": {f: sha(os.path.join(tree, f)) for f in files}}
     json.dump(manifest, open(os.path.join(tree, "PACKAGE_MANIFEST.json"), "w"), indent=1, sort_keys=True)
     ds = os.path.join(a.out, "dataset")
     os.makedirs(ds)
-    tar_path = os.path.join(ds, "cora_only_g3_solver.tar.gz")
+    tar_path = os.path.join(ds, f"{name}.tar.gz")
     with tarfile.open(tar_path, "w:gz") as t:
-        t.add(tree, arcname="cora_only_g3_solver", filter=lambda ti: ti if "__pycache__" not in ti.name else None)
-    json.dump({"title": "CORA-ONLY-G3 solver 2026", "id": f"{OWNER}/{DATASET}", "licenses": [{"name": "other"}],
+        t.add(tree, arcname=name, filter=lambda ti: ti if "__pycache__" not in ti.name else None)
+    json.dump({"title": "CORA-ONLY-G5 solver 2026" if a.g5 else "CORA-ONLY-G3 solver 2026", "id": f"{OWNER}/{DATASET}", "licenses": [{"name": "other"}],
                "description": "Private research package: the author's own CORA engine (native v23 + typed packages). "
                               "All rights reserved by the author; if a prize were awarded, the competition's CC BY 4.0 "
                               "winner licence would apply."}, open(os.path.join(ds, "dataset-metadata.json"), "w"), indent=1)

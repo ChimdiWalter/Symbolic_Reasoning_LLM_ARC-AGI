@@ -150,3 +150,69 @@ def test_search_child_is_killed_at_its_wall_limit(tmp_path):
     finally:
         del CO.VARIANTS["T_KILL"]
     assert res["t"]["status"] in ("timeout", "ok")                     # killed, unless it finished in 0.5 s
+
+
+# ------------------------------------------------------------------ answer separation, dev scoring, determinism, arm E
+def _comp(tmp_path, with_solutions=True):
+    comp = tmp_path / "comp"
+    comp.mkdir()
+    ch = {"t1": {"train": [{"input": [[1]], "output": [[2]]}], "test": [{"input": [[1]]}, {"input": [[3]]}]},
+          "t2": {"train": [{"input": [[5]], "output": [[5]]}], "test": [{"input": [[7]]}]}}
+    json.dump(ch, open(comp / "arc-agi_evaluation_challenges.json", "w"))
+    json.dump(ch, open(comp / "arc-agi_test_challenges.json", "w"))
+    if with_solutions:
+        json.dump({"t1": [[[2]], [[4]]], "t2": [[[7]]]}, open(comp / "arc-agi_evaluation_solutions.json", "w"))
+    return comp, ch
+
+
+def test_dev_staging_never_copies_the_evaluation_solutions(tmp_path):
+    comp, ch = _comp(tmp_path)
+    code = tmp_path / "solver"
+    got, name, _ = CO.stage_inputs(str(code), str(comp), "dev")
+    data = code / "data" / "arc"
+    assert name == "arc-agi_evaluation_challenges.json" and list(got) == list(ch)
+    assert json.load(open(data / "arc-agi_evaluation_solutions.json")) == {}
+    assert sorted(os.listdir(data)) == ["arc-agi_evaluation_challenges.json", "arc-agi_evaluation_solutions.json"]
+
+
+def test_score_dev_scores_each_variant_and_policy_by_test_output(tmp_path, monkeypatch):
+    comp, ch = _comp(tmp_path)
+    work = tmp_path / "work"
+    (work / "solver" / "data" / "arc").mkdir(parents=True)
+    json.dump(ch, open(work / "solver" / "data" / "arc" / "arc-agi_evaluation_challenges.json", "w"))
+    rows = {"native": {}, "search": {"G3": {"t1": g3_row([[[2]]], [[[9]]]), "t2": g3_row([[[7]]])}}}
+    json.dump(rows, open(work / "cora_rows.json", "w"))
+    monkeypatch.setattr(CO, "WORK", str(work))
+    monkeypatch.setenv("K_COMP", str(comp))
+    rep = CO.score_dev()
+    # t1: first output right, second wrong -> 0.5; t2 right -> 1.0; mean 75%
+    assert rep["G3/precision"]["score_pct"] == 75.0 and rep["G3/precision"]["tasks_with_a_correct_output"] == 2
+    assert rep["label"].startswith("exposed public evaluation")
+    # native alone has nothing but the fallback: t2's fallback (the input [[7]]) happens to be right
+    assert rep["NATIVE_ONLY"]["score_pct"] == 50.0
+
+
+def test_merge_is_deterministic_and_keeps_test_order():
+    ch = {"b": TASK, "a": TASK}
+    nat = {"a": native_row("pipeline", a1=[G1, G2])}
+    srch = {"b": g3_row([G3, G4], [G4]), "a": g3_row([G3], [G4])}
+    s1, p1 = CO.merge(ch, nat, srch)
+    s2, p2 = CO.merge(ch, nat, srch)
+    assert s1 == s2 and p1 == p2 and list(s1) == ["b", "a"]
+    assert s1["b"][0]["attempt_1"] == G3 and s1["b"][1]["attempt_1"] == G4      # per test input, in order
+    assert [a["source"] for a in p1["a"][0]] == ["G3_FIT_1", "NATIVE_CLAIMED"]
+
+
+def test_arm_e_returns_the_runner_contract_on_every_test_input(monkeypatch):
+    """Native forced to fail (emulation switch) keeps this fast; the search runs for real on a tiny recolour task."""
+    monkeypatch.setenv("K_FORCE_NATIVE_FAIL", "1")
+    arm_e = _load("arm_e")
+    task = {"task_id": "fx_arm_e", "train": [[[[1, 0], [0, 1]], [[5, 0], [0, 5]]], [[[0, 1], [1, 1]], [[0, 5], [5, 5]]]],
+            "test_inputs": [[[1, 1], [0, 0]], [[0, 0], [1, 0]]]}
+    r = arm_e.cora_only_g3(task, 3000, 120)
+    for k in ("attempts_by_test", "predictions", "n_consistent", "n_candidates", "cpu_s", "provenance"):
+        assert k in r
+    assert len(r["attempts_by_test"]) == 2 and all(len(p) == 2 for p in r["attempts_by_test"])
+    assert r["native_status"] == "failed" and not r["native_object_certified"]
+    assert r["attempts_by_test"][0][0] == [[5, 5], [0, 0]] and r["attempts_by_test"][1][0] == [[0, 0], [5, 0]]
+    assert not any(a["certified"] for pair in r["provenance"] for a in pair)
