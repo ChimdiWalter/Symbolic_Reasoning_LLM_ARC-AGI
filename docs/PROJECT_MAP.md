@@ -1,6 +1,6 @@
 # Project map: symbolic reasoning for ARC-AGI-2, December 2025 to 7 October 2026
 
-Current pointer, 30 October 2026: this map records the layout and evidence as of 7 October. Later independent executable-abstraction and construction work is documented in the [research checkpoint](codex_research_20261030/README.md) and [synthetic audit package](../research/cora_synthetic_audit_20261030/README.md). The [branch README](../README.md) and [claim ledger](../records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md) give later status. Historical numbers, dates and boundaries below retain their original scope.
+Current pointer, 30 October 2026: this map records the layout and evidence as of 7 October. Later independent executable-abstraction and construction work is documented in the [research checkpoint](research_checkpoint_20261030/README.md) and [synthetic audit package](../research/cora_synthetic_audit_20261030/README.md). The [branch README](../README.md) and [claim ledger](../records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md) give later status. Historical numbers, dates and boundaries below retain their original scope.
 
 Written 2026-10-07 from the four local project trees, their git histories,
 the run history (kept from 18 April 2026), the CORA-TTI evidence documents

@@ -45,7 +45,7 @@ Status correction, 30 October 2026: the native CORA submissions and CORA-FHR res
 (`57354496`) have public scores of **0.00**. A separate reproduction of NVARC scored **27.64**;
 that result belongs to NVARC's method and is not a CORA grammar-learning gain. Exact hosted
 session runtimes were not exposed in the later metadata audit and remain unverified here.
-The [later independent synthetic research](../docs/codex_research_20261030/README.md) is
+The [later independent synthetic research](../docs/research_checkpoint_20261030/README.md) is
 separate from this submitted symbolic system and does not change these official results.
 
 Because scoring credits the better of two attempts, we measure the second

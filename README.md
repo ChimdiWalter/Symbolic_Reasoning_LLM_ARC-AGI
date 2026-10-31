@@ -15,14 +15,14 @@ program on every example, and keeps it only if it reproduces the examples exactl
 
 Native CORA and the CORA-FHR research entry (`57354496`) have official public scores of **0.00**. The separate NVARC reproduction scored **27.64** and remains attributed to NVARC's authors. No later grammar-learning study has established a new real-ARC gain.
 
-The [research checkpoint](docs/codex_research_20261030/README.md) records automatic executable abstraction and bounded construction:
+The [research checkpoint](docs/research_checkpoint_20261030/README.md) records automatic executable abstraction and bounded construction:
 
 | study | result | limit |
 | --- | --- | --- |
 | R16 call-prior and failure-routing audit | One automatically learned macro; all eleven arms **0/8** on new development-synthetic compositions | Changed ordering produced no held fit; authentic and placebo routing were identical, so no causal failure benefit is established |
 | R17 demonstration-constrained constructor | All four arms **6/6** under raw ceilings; matched-prefix static **5/6**, learned **4/6**, shuffled and neutral **6/6** | Working synthetic construction, with no learned-priority advantage, controlled flat-search comparison, independent ARC confirmation or universality claim |
 
-The [standalone R16 synthetic audit](research/cora_synthetic_audit_20261030/README.md) provides exact pinned sources and a verification command. Its portable full run was not rerun for publication. The [R17 aggregate](docs/codex_research_20261030/R17_RESULT.json) preserves its distinct query-audit and resource limitations; R17 code is not part of the R16 export.
+The [standalone R16 synthetic audit](research/cora_synthetic_audit_20261030/README.md) provides exact pinned sources and a verification command. Its portable full run was not rerun for publication. The [R17 aggregate](docs/research_checkpoint_20261030/R17_RESULT.json) preserves its distinct query-audit and resource limitations; R17 code is not part of the R16 export.
 
 The local two-GPU run is being checked for completion, recovery, memory and adapter reset. A separate source-development accuracy check waits for its final prediction freeze; evaluation answers stay closed. Frozen C4 awaits a private four-L4 rehearsal after local review. These operational checks are not new correctness scores or eligibility decisions.
 
