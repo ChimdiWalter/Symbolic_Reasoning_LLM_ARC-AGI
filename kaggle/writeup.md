@@ -41,9 +41,12 @@ is not part of this system, and no leaderboard result may be attributed to it.
 
 ## Accuracy and the two attempts
 
-Leaderboard results are pending: submission id, notebook version, scores and
-measured runtime. We do not substitute training, synthetic or development
-accuracy for the leaderboard score, and no hypothetical number appears here.
+Status correction, 30 October 2026: the native CORA submissions and CORA-FHR research entry
+(`57354496`) have public scores of **0.00**. A separate reproduction of NVARC scored **27.64**;
+that result belongs to NVARC's method and is not a CORA grammar-learning gain. Exact hosted
+session runtimes were not exposed in the later metadata audit and remain unverified here.
+The [later independent synthetic research](../docs/codex_research_20261030/README.md) is
+separate from this submitted symbolic system and does not change these official results.
 
 Because scoring credits the better of two attempts, we measure the second
 attempt as rescue rather than as diversity. Differing predictions are not a

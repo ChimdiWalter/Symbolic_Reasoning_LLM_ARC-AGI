@@ -22,6 +22,16 @@ The [standalone R16 package](../../research/cora_synthetic_audit_20261030/README
 
 The original R16 controlled run charged 7.349 CPU seconds and 15.089 active wall seconds, including declared preparation and reserves; queue time was reported separately. Its full resource envelope was 30 CPU seconds / 60 active wall seconds. Per-arm CPU cutoffs can make a reproduction hardware-sensitive; compare semantic and budget receipts as well as scores.
 
+## Subsequent construction pilot (R17)
+
+A new typed top-down constructor propagated demonstration shape, palette and ink constraints into partial program holes. It used the same 685-program expanded language and shared constraints for all four priorities: strong static, learned, shuffled and neutral. The six new development-synthetic composition tasks used queries distinct in canvas and foreground structure from their retained demonstrations.
+
+All four arms constructed correct programs on **6/6** queries under the raw per-arm ceilings, with no COPY fallback or invalid query program. Under the joint cost-prefix comparison, static scored **5/6**, learned **4/6**, and shuffled and neutral **6/6**. **The learned priority added no gain.** All arms correctly reused an earlier automatically learned macro on four tasks; the macro was fixed before this experiment.
+
+Independent review checked 1,079 constructor paths, 81 selected-program parity replays, all scores and the freeze chain. Whole cost was 10.193 CPU / 17.696 active wall seconds within 30/60 limits, with a clean exit and file-descriptor cleanup. Search coverage remained bounded: 19 searches reached a CPU cap and five a validation cap, even though correct selected programs were found.
+
+This supports executable construction on these synthetic cases. It does not isolate the constructor against flat search, establish a learned-priority benefit, or show ARC accuracy or universality. Raw retained-input hash artifacts were not saved; the query-distinctness audit uses the frozen generator and actual saved-query geometry/topology. The [aggregate result](R17_RESULT.json) preserves that limitation. The branch is closed without retuning or an automatic source-data extension.
+
 ## Competition and local validation
 
 The public 27.64 result belongs to the external NVARC neural-baseline reproduction. It is not a newly established CORA grammar-learning gain. The native CORA submission record and this independent research must be described separately.
@@ -34,6 +44,6 @@ One private offline four-L4 C4 rehearsal is authorized after the local finalizat
 
 ## Next controlled question
 
-Can demonstrations constrain partial executable programs strongly enough to reach useful candidates within the same bounded budget? The next preparation uses a typed top-down constructor with backward behavioral constraints. Learned priorities must be compared with strong static constraints, neutral priorities and shuffled controls on fresh compositions. No positive result is claimed before execution and review.
+Can demonstrations constrain partial executable programs strongly enough to reach useful candidates within the same bounded budget? The R17 pilot above implements that constructor and comparison. Its neutral and shuffled controls matched or beat the learned priority. The next research question is source-development transfer of useful construction constraints under a separately frozen protocol, after competition readiness; no such transfer result is claimed here.
 
 The supported contribution is an auditable implementation and a specific diagnosis of construction and transfer failures. Novel autonomous capability growth, real-ARC improvement, expressivity expansion and universality remain research goals.

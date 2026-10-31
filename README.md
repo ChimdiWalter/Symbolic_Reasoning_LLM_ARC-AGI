@@ -9,7 +9,24 @@ rule quickly; machines find it hard. Every guess can be checked exactly, which m
 
 **CORA** is the system built here. It does not guess the answer grid directly. It writes an explanation as a small
 program ("recolour every object that touches the border", "draw a line from each red square to the edge"), runs that
-program on every example, and keeps it only if it reproduces the examples exactly. Status: 26 October 2026.
+program on every example, and keeps it only if it reproduces the examples exactly. Status: 30 October 2026. Historical results retain their original study scope.
+
+## Latest independent research — 30 October 2026
+
+Native CORA and the CORA-FHR research entry (`57354496`) have official public scores of **0.00**. The separate NVARC reproduction scored **27.64** and remains attributed to NVARC's authors. No later grammar-learning study has established a new real-ARC gain.
+
+The [research checkpoint](docs/codex_research_20261030/README.md) records automatic executable abstraction and bounded construction:
+
+| study | result | limit |
+| --- | --- | --- |
+| R16 call-prior and failure-routing audit | One automatically learned macro; all eleven arms **0/8** on new development-synthetic compositions | Changed ordering produced no held fit; authentic and placebo routing were identical, so no causal failure benefit is established |
+| R17 demonstration-constrained constructor | All four arms **6/6** under raw ceilings; matched-prefix static **5/6**, learned **4/6**, shuffled and neutral **6/6** | Working synthetic construction, with no learned-priority advantage, controlled flat-search comparison, independent ARC confirmation or universality claim |
+
+The [standalone R16 synthetic audit](research/cora_synthetic_audit_20261030/README.md) provides exact pinned sources and a verification command. Its portable full run was not rerun for publication. The [R17 aggregate](docs/codex_research_20261030/R17_RESULT.json) preserves its distinct query-audit and resource limitations; R17 code is not part of the R16 export.
+
+The local two-GPU run is being checked for completion, recovery, memory and adapter reset. A separate source-development accuracy check waits for its final prediction freeze; evaluation answers stay closed. Frozen C4 awaits a private four-L4 rehearsal after local review. These operational checks are not new correctness scores or eligibility decisions.
+
+For the submitted symbolic system, see the [competition writeup](kaggle/writeup.md); for study-specific claims, the [claim ledger](records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md). The [7 October project map](docs/PROJECT_MAP.md) and [main paper drafts](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/tree/main/paper) are historical records with their own configurations.
 
 ## The short version
 
@@ -64,12 +81,12 @@ leaderboard uses hidden puzzles. "Solved" means one of two allowed attempts is e
 | skipping candidates that earlier failures already rule out (the idea behind Popper), on and off at the same candidate budget | 170 generated puzzles | the first correct candidate came earlier on 53 of 127 puzzles and never later; 0 correct programs lost; no CPU saving | sound, but no speed-up: checking costs about as much as running the skipped candidates |
 | Popper, an established system that learns logic programs from failures, on the puzzles it can encode | 5 real public puzzles; 24 and 59 generated puzzles | Popper 1, 9 and 25 solved; CORA 3, 15 and 54 | a description, not a matched test: budgets differ and Popper gives one answer where CORA gives two |
 
-Still unproven: that learning from failures beats an equal amount of plain search; that any trained model helps
-inside CORA; that the approach transfers to other kinds of data, such as biological measurements.
+Still unproven: a reproducible benefit from authentic failure evidence beyond matched controls; a learned guide
+that reliably beats strong static search on real ARC; and autonomous executable growth that transfers beyond the
+development construction. Synthetic gains and narrow in-sample witnesses remain separately scoped in the claim ledger.
 
-Being tested now: whether a public pretrained language model that writes CORA programs finds correct programs that
-CORA's own search misses, and whether CORA's cell-by-cell feedback on where a program fails helps the model fix it
-better than plain retries at the same cost. No result yet.
+The earlier whole-program neural-proposal work and the later independent abstraction/construction studies are
+separate mechanisms. The latest measured outcomes are linked above; they do not establish an end-to-end real-ARC gain.
 
 ## How it works
 
