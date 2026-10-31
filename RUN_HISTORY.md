@@ -12098,3 +12098,19 @@ conservativity holds (scoped fitter matches the v1.1 learner on all 200 baseline
 zero new-success cases), and the symmetry break is demonstrated on controls (a two-block
 target with different partitions per block is fitted exactly while the base search using
 the same fitter finds 0/200). Feasibility manifest frozen d0cef126; census running.
+
+
+### Public evidence integration — 30 October 2026
+
+Updated the main README's official CORA-FHR submission `57354496` to public **0.00**, separated external NVARC **27.64**, replaced the absent sprint `docs/PAPER_SKELETON.md` pointer with the actual competition writeup, and marked older main claims as historical. The sealed August v23 **185/1,000** result, original engine code, manuscripts and study-specific counts were retained. Main receives documentation only; the delivery branch contains the additive research package.
+
+Delivery commit `e9634d36ad467cbc37ba9c130ac84f3e00add23a` includes the [research checkpoint](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/docs/research_checkpoint_20261030/README.md), [R17 aggregate](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/docs/research_checkpoint_20261030/R17_RESULT.json), and [standalone R16 package](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/tree/arc2026-sprint/research/cora_synthetic_audit_20261030). R16: every arm 0/8. R17: all four arms raw 6/6; matched-prefix static 5/6, learned 4/6, shuffled and neutral 6/6. No learned-priority increment, new real-ARC gain, independent confirmation or universality is claimed. R17's missing retained-input hash artifact remains disclosed.
+
+Publication validation on the delivery branch:
+
+```sh
+python3 -B research/cora_synthetic_audit_20261030/reproduce.py --verify-only
+git diff --check
+```
+
+Export verification passed all nine pinned files, with syntax checked and the closed study **not executed**. Reviewed local and cross-branch Markdown targets, aggregate claim values, explicit staged-file scope and author trailers. The portable runner's full execution was not tested by publication. No datasets, neural outputs, notebooks, weights or credentials were exported; no Step-B artifact was inspected. The current [NVARC notice](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/kaggle/NVARC_NOTICE.md) and redistribution exclusions are retained. Competition readiness and future capability-transfer results remain separate work.

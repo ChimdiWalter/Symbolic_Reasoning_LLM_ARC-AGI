@@ -1,5 +1,7 @@
 # Claims and Limitations
 
+Historical prototype document. Results and claims below belong to the configurations and artifacts named here; they are provisional research records, not current competition scores or evidence of universal capability growth. See the [current delivery overview](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/README.md), [study-specific claim ledger](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md), and [independent research checkpoint](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/docs/research_checkpoint_20261030/README.md) for later, separately scoped evidence. This archival banner does not validate the older scaling, transfer or reproducibility assertions below.
+
 This document states what we claim, what we do not claim, the specific limitations of the current system, and how to verify every assertion. It is intended to be read alongside `claim_traceability.md` and `limitations.md` in the project root.
 
 ---

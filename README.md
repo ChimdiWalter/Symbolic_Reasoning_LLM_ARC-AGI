@@ -5,6 +5,20 @@
 procedure-level certificates (v23, sealed 19 August 2026). Its official Kaggle ARC-AGI-2 public score is
 **0.00**.
 
+## Independent research update — 30 October 2026
+
+The official native CORA and CORA-FHR public scores remain **0.00**. The separate **27.64** result is a reproduction of NVARC's neural pipeline, not a CORA grammar-learning gain. The sealed v23 **185/1,000** result above belongs to its August configuration; the later studies do not replace or extend that score.
+
+The delivery branch now contains a [reviewed research checkpoint](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/docs/research_checkpoint_20261030/README.md) and a [standalone synthetic audit](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/tree/arc2026-sprint/research/cora_synthetic_audit_20261030). R16 automatically learned an executable macro, but all eleven search arms scored **0/8** on development-synthetic compositions. Changing the call prior altered ordering without finding a fitting program; authentic and placebo failure policies chose the same view. No causal failure benefit was established.
+
+The separate R17 constructor used demonstration constraints over a shared 685-program language. All four priorities solved **6/6** development-synthetic queries under raw ceilings; under the matched cost prefix, strong static scored **5/6**, learned **4/6**, and shuffled and neutral **6/6**. This is working bounded construction. It does not establish learned-priority gain, an isolated constructor-versus-flat-search effect, independent ARC confirmation or universality. Its [aggregate result](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/docs/research_checkpoint_20261030/R17_RESULT.json) discloses the missing retained-input hash artifact and query-audit limitations. R17 code is not included in the R16 export.
+
+The synthetic export's nine hashes and Python syntax were verified without rerunning the closed study. Its opt-in portable full runner remains untested at this checkpoint. No model weights, ARC datasets or account artifacts were added. Local GPU operational checks and the planned private C4 rehearsal are separately scoped; completion counts do not establish correctness or model eligibility.
+
+See the delivery branch's [current overview](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/README.md), [competition writeup](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/kaggle/writeup.md), and [study-specific claim ledger](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_SUMMIT_CLAIM_LEDGER_20261017.md). The [7 October project map][map], [main paper drafts](paper/), and findings below retain their historical configurations and scopes. There is no single new publication-ready manuscript implied by this update.
+
+## Historical overview — 18 October 2026
+
 Since 7 October the work has followed two lines:
 - **Measuring** where the reasoner fails on real tasks: it memorizes demonstration-fitting programs.
 - **Building the missing rule** with CORA-FHR, a typed grammar of executable growth operators, installed
@@ -14,8 +28,8 @@ What that shows so far:
 - CORA-FHR constructs and verifies a missing single-step operator on a synthetic task.
 - **Failure-blind controls do just as well.** On 60 real training tasks it adds no certified answer.
 - A separately labelled reproduction of the public NVARC neural pipeline (not CORA) scores **27.64**.
-- A CORA-FHR research entry was submitted on 18 October; its score is pending.
-- **No real ARC task has yet been solved by a constructed rule.**
+- The CORA-FHR research entry (`57354496`) submitted on 18 October has a public score of **0.00**.
+- **No new independently confirmed real-ARC gain from learned or constructed grammar has been established.** A narrowly selected in-sample witness and its failed generalization follow-up are separately recorded in the sprint claim ledger.
 
 | | result | when | evidence |
 |---|---|---|---|
@@ -25,7 +39,7 @@ What that shows so far:
 | failure funnel, 60 real training tasks (object branch, frozen assets) | 6 certified, all correct; 26 memorized fits (27 without assets); with the check off, 8 correct and 25 wrong | 2026-10-14 | [funnel][funnel] |
 | CORA-FHR, synthetic witness | `ring(8)[part_minority]` built, 3 of 3 folds, correct, removal ablation; failure-blind controls match it; a mixed-coverage pilot failed its frozen stop rule | 2026-10-14/15 | [FHR results][fhr] |
 | CORA-FHR on 60 real training tasks | 0 new certificates (failure-blind 0; frozen native 6; matched extra search 7); 0 wrong, 0 lost | 2026-10-15 | [entry log][fhrlog] |
-| Kaggle official, public board | native v23 0.00; NVARC Qwen3-4B reproduction (NEURAL_TTT_BASELINE, not CORA) 27.64; CORA_FHR_V1 (57354496) pending | Oct 2026 | [neural log][nlog], [entry log][fhrlog] |
+| Kaggle official, public board | native v23 0.00; NVARC Qwen3-4B reproduction (NEURAL_TTT_BASELINE, not CORA) 27.64; CORA_FHR_V1 (57354496) 0.00 | Oct 2026 | [neural log][nlog], [entry log][fhrlog] |
 | real ARC causal pilot (120 tasks) | frozen; not run | | [data audit][pilot] |
 | new 1,000-task training run | not started; blocked until the pilot produces a real witness | | [project map][map] |
 | Step B, durable semantic invention | running since 2026-08-25; no verdict | | `level4_stepB/` |
@@ -64,11 +78,11 @@ Everything below lives on the [`arc2026-sprint`][sprint] branch, which has its o
 | FHR on real tasks | does it add answers on the 60 real tasks? | no | 0 certificates; matched search +1 over frozen native |
 | NVARC complementarity | does adding CORA to the NVARC baseline help? | no | CORA solves nothing NVARC misses; filling empty slots adds 0 and loses 1 ([audit][comp]) |
 | guarded construction | can a rule that says *where* it applies solve a real task? | yes, once (in-sample) | ka95aa62f67d9 solved: colour-1 objects ray north-west, others south-east; 3 of 3 folds; a failure-blind constructor found the same rule; a 10-case frozen pilot gives failure record 2 vs blind 1 (+1 abstention), not a causal result |
-| Kaggle research entry | does the full CORA-FHR loop run on unseen tasks? | runs; score pending | committed run 5.9 h; FHR ran on 62 of 240 stand-in tasks and committed 0; submitted as 57354496 |
+| Kaggle research entry | does the full CORA-FHR loop run on unseen tasks? | runs; public score 0.00 | committed run 5.9 h; FHR ran on 62 of 240 stand-in tasks and committed 0; submitted as 57354496 |
 
 **Not shown:**
 - that failure evidence causes a correctness gain over an equally equipped failure-blind control;
-- any real ARC task solved by a constructed rule;
+- any independently confirmed real-ARC gain from a learned or constructed rule;
 - biological transfer, which remains a proposal.
 
 ## Latest findings: the delivery sprint (23 September to 7 October 2026)
@@ -150,7 +164,7 @@ not the artifact: a lucky program cannot pass, because luck does not re-run.
 |---|---|
 | `main` | the v23 certified engine (`geocat_arc/`), the engine paper (`paper/`), the Kaggle package, the frozen Step-B substrate, and the full chronology `RUN_HISTORY.md` |
 | [`cora-tti-dev`][tti] | the CORA-TTI program (31 August to 15 September): runtime emulator, typed failure graph, test-time invention attempts, transfer and abstraction studies, and the frozen Capability-Growth Gate protocol for Step B. Commit `e5ef8b5` is the snapshot under which its v2 census was reconstructed. |
-| [`arc2026-sprint`][sprint] | the ARC Prize 2026 delivery workspace (23 September onward): the v1.2 to v1.9 experiment chain with every protocol, result, review and erratum, the authoritative manuscript `docs/PAPER_SKELETON.md`, the Kaggle writeup, the real ARC pilot design, and the [project map][map]. Its code imports `cora_tti` and `cora_parent` from `cora-tti-dev` at `98d71a7`. |
+| [`arc2026-sprint`][sprint] | the ARC Prize 2026 delivery workspace (23 September onward): the v1.2 to v1.9 experiment chain with every protocol, result, review and erratum, the [competition writeup](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/kaggle/writeup.md), claim ledger, real ARC pilot design, independent research checkpoint, and the [historical project map][map]. Its code imports `cora_tti` and `cora_parent` from `cora-tti-dev` at `98d71a7`. |
 
 ## Timeline
 
