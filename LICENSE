@@ -1,0 +1,25 @@
+Licences
+
+Released by the author, Chimdi Walter Ndubuisi, for the two submitted ARC Prize 2026 entries in `kaggle_entries/`, the front page `README.md` and the results page `docs/RESULTS.md`:
+
+- Code (.py files, the notebooks and the code embedded in them): MIT No Attribution (MIT-0), the text in
+  `kaggle_entries/LICENSE-MIT-0.txt`.
+- Text and data (.md, .json and .txt files): CC0 1.0 Universal, the text in `kaggle_entries/LICENSE-CC0-1.0.txt`.
+- Images in `docs/img/`: each keeps the licence listed in `docs/img/LICENSES.md`; our own drawing
+  `pipeline.svg` is CC0 1.0.
+
+Third-party components that the entries load at run time (the model checkpoint, the peft library and
+the packages of Kaggle's image) are not part of this repository and keep their own licences; see
+`kaggle_entries/README.md`. Some executed files carry notes written before this release (for example
+`r29_cpu_package_20261101/LICENSE_STATUS.md`); they are kept byte for byte, and this notice applies.
+
+The two files in `kaggle_entries/expected_predictions/` hold answer grids only:
+- Their right answers (44 distinct test outputs: 43 in the file of H, the neural entry with CORA on
+  attempt 2 (submission 57867631), and 3 in the file of O+ v2, the CORA-only entry (submission 57902131)) are
+  public ARC-AGI-2 evaluation answers. The test inputs that fallback attempts copy come from the same
+  public evaluation puzzles. Both are published by ARC Prize in https://github.com/arcprize/ARC-AGI-2
+  (Copyright 2019 ARC Prize Foundation) under the Apache License 2.0, whose text is in
+  `kaggle_entries/LICENSE-APACHE-2.0.txt`. Those grids keep that licence; this notice does not relicense them.
+- H's grids are outputs of the third-party checkpoint, produced by the code in `kaggle_entries/`.
+
+Other files outside `kaggle_entries/` are not covered by this notice.

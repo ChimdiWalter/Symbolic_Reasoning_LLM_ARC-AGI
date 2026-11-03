@@ -1,0 +1,41 @@
+{
+ "package": "cast_selective_v2",
+ "version": "cast-selective-v2-1",
+ "frozen_utc": "2026-11-01T05:52:11Z",
+ "entry_points": [
+  "insert_attempt2(task, neural, policy='tier0', cpu_s=15.0, wall_s=30.0)",
+  "evaluate(task, cpu_s, wall_s, fold_cpu_s=None)"
+ ],
+ "deployment_policy": {
+  "default": "tier0",
+  "tier1": "ENABLED with policy B1",
+  "decision_file": "results/reliability/B5_decision.json"
+ },
+ "inherits_confirmation_claim": false,
+ "cast_v1_unchanged_tree_sha256": "a64d73b023914e4161ea74e8bba65cb80feb53211ecb1671c45106ae84e98fc3",
+ "dependencies": {
+  "required": [
+   "numpy"
+  ],
+  "optional": [
+   "scipy"
+  ],
+  "python_tested": "3.12.3",
+  "python_3_13": "untested"
+ },
+ "tests": "tests/test_validation.py: 8 passed (1 Nov 2026)",
+ "files": {
+  "README.md": "040f4bbeccf21ab655422c0efc99084eb2ffff0ea4f84f94606f0dd838d2cce5",
+  "cast_selective_v2/__init__.py": "9773129899fdb148b7ea3837228a123373e1f37cc58504b03787ccd230a3e28b",
+  "cast_selective_v2/_nd.py": "18e53fa3cbbc6ddae32211ef99d2bb5b1dffec10bc5e4e8dae1422cdf999826f",
+  "cast_selective_v2/absdom.py": "7a7664b78481a6c7301e329536c36ed109462157303c128207e0db97182394d6",
+  "cast_selective_v2/api.py": "2454441f4dca916bde3dc3f2f1bb4fe49a2853c5f5da2787406ab8fffa80f355",
+  "cast_selective_v2/candidates.py": "792825e4b6f067494ace0eceff766f9c78788e35a651d254ef22c1f925c200aa",
+  "cast_selective_v2/grids.py": "42c349f4c672bc506e3bfec30ff40c63fa86056c561a2b7ea33f32dec931a7f0",
+  "cast_selective_v2/ops.py": "380102ef6cac9196bfc8c8713326196533ed83ccb1d292df459799fc9e80a18e",
+  "cast_selective_v2/rewrite.py": "86381a6ae3f37215d4919621c3be1a3393c4943174f568b8e27159f1330eb88b",
+  "cast_selective_v2/search.py": "a6b6261906ed1be03a823912546df486cd2ea9cacc3a4cca05f06ad0cc27e48d",
+  "cast_selective_v2/symmetry.py": "0040c861706b6ecf173bb2acb48c0d6aacad64c77fb8e73a90412ee28668b04c",
+  "tests/test_validation.py": "939a7504864d4e8fc778c3127c2706b9978cd1a5e227d0535bef4dacde00e298"
+ }
+}

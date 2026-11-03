@@ -1,0 +1,58 @@
+{
+  "status": "BUILT_LOCAL_PENDING_INTEGRATION_REVIEW",
+  "build_name": "candidate_c4_supervision",
+  "baseline_manifest_sha256": "26e3730c4d5f975c28e71c7b3a7235a081e51b167c3fb6bd1e1646c470be69d4",
+  "baseline_notebook_sha256": "595622df046853d094e79aee671ff13ed0823c3dacc3fe70bec830c3730d1a64",
+  "signal_proposal_path": "signal_guard/proposed_guard.py",
+  "signal_proposal_sha256": "ec83812273217299140fa626ab8dd9b73b99e3df4542e68f89272a416ae0600b",
+  "guard_sha256": "0d6bd8caac9813c72ba12d7cb70d56e026f5091eae154940e78543e447aa7771",
+  "driver_sha256": "cb0c2837bc91b4aed26aca3833a5902542b2b72a75065f7ba5067c537d667c58",
+  "builder_sha256": "ba49251fedef80c2ad5b72b66726fd145aed8c50af1a57cee13c096381341a42",
+  "notebook_sha256": "b571233a9afae5a6374cd569d448285e3f6006bddd3e5e9d013f5f8dcb2409bc",
+  "source_files": {
+    "sf/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sf/grids.py": "017174a6b53efa0da62308787fdd278155677d0aca460e59e893518866a2a883",
+    "sf/textfmt.py": "189c73c7db17a3e58f743f2eebae7a79a94369ddf9c4899cfa60ed00d2774f26",
+    "sf/lm.py": "ba0af15fc78e51b8a916ca728382d245c53c2f08a1534af3714467cf7d1f594e",
+    "sf/predict.py": "d3e111db6472743cef3e964b51dba77b4ed6173ade08264234b58dbf0ab1fc78",
+    "sf/select.py": "114615fbe5e167034c057e8f921e8e8c2ed48adea322966eedfa9c1457c7ba93",
+    "sf/runner.py": "4d18fd80b7cd42123ca3a097ca6f844f45036541d405295c0867b5c73f1787a8",
+    "sf/ttt.py": "235ea4c0bd96381dc1ca1bc5b153556106e97545fcd8ade70f5780a7ac4a2d9d",
+    "sf/pilot.py": "c9d8d7dbc5e1d3ca2ce8c8efd526db2400195978b8613ea918c82c275d4cc61c",
+    "tools/build_kernel.py": "feeb98e7430f3846991798391df987722876ad26081f0a6e77b0edf5008b9ea2"
+  },
+  "neural_env": {
+    "SF_TTT_STEPS": "48",
+    "SF_TTT_RANK": "64",
+    "SF_TTT_ALPHA": "64",
+    "SF_TTT_LR": "1e-4",
+    "SF_TTT_MAX_TOKENS": "8192",
+    "SF_TTT_FRAC": "0.7",
+    "SF_N_GEN": "8",
+    "SF_N_SCORE": "8",
+    "SF_METHOD": "score",
+    "SF_TASK_CAP_S": "900",
+    "SF_DEADLINE_S": "41400",
+    "SF_COMMIT_TASKS": "8"
+  },
+  "changed_source_paths": [
+    "tools/build_kernel.py"
+  ],
+  "changes": [
+    "Scoped cooperative parent SIGTERM handling",
+    "Canonical child driver writes private run submission; parent alone publishes public submission"
+  ],
+  "model_TTT_selector_prediction_modules_unchanged_from_C3": true,
+  "snapshot_cache_or_CAST_or_constructor_included": false,
+  "remote_or_GPU_actions": false,
+  "unverified": [
+    "SIGKILL recovery",
+    "Native/filesystem responsiveness",
+    "Foundation-model/PEFT",
+    "Kaggle Python3.13 and4xL4",
+    "Full12h runtime",
+    "ARC accuracy",
+    "Model/data eligibility"
+  ],
+  "packaging_note": "This direct patcher is canonical; inherited source builder alone does not reproduce the guarded notebook"
+}

@@ -1,0 +1,36 @@
+{
+ "package": "cast_v1",
+ "version": "cast-v1-core-1",
+ "built_utc": "2026-10-27T18:32:41Z",
+ "entry_point": "cast_v1.cast_candidates(task, cpu_s=15.0, wall_s=30.0, details=False)",
+ "frozen_sources": {
+  "m4_l0_shared": "experiments/cora_cast_20261026/runs/chain_v1/code/cast",
+  "m2": "experiments/cora_cast_20261026/runs/chain_v2/code/cast/rewrite.py",
+  "changes": "package-relative imports; scipy calls routed through _nd.py (numpy, scipy optional)"
+ },
+ "dependencies": {
+  "required": [
+   "numpy"
+  ],
+  "optional": [
+   "scipy"
+  ],
+  "python_tested": "3.12.3",
+  "python_3_13": "untested"
+ },
+ "tests": "tests/test_pkg.py: 7 passed (27 Oct 2026)",
+ "files": {
+  "README.md": "8b996690a622d6bdf5386247308330d6984f5af82973f4477f50cb631649d0bc",
+  "cast_v1/__init__.py": "cc04c63281a2205d741e48d5e1571739ca737ce8518cc6f2953a08990d7e52dd",
+  "cast_v1/_nd.py": "18e53fa3cbbc6ddae32211ef99d2bb5b1dffec10bc5e4e8dae1422cdf999826f",
+  "cast_v1/absdom.py": "7a7664b78481a6c7301e329536c36ed109462157303c128207e0db97182394d6",
+  "cast_v1/api.py": "5c27592033998c799bf9abf5e478efcaf86133d9c234167a65e9e448e1c0f87d",
+  "cast_v1/candidates.py": "792825e4b6f067494ace0eceff766f9c78788e35a651d254ef22c1f925c200aa",
+  "cast_v1/grids.py": "42c349f4c672bc506e3bfec30ff40c63fa86056c561a2b7ea33f32dec931a7f0",
+  "cast_v1/ops.py": "380102ef6cac9196bfc8c8713326196533ed83ccb1d292df459799fc9e80a18e",
+  "cast_v1/rewrite.py": "86381a6ae3f37215d4919621c3be1a3393c4943174f568b8e27159f1330eb88b",
+  "cast_v1/search.py": "a6b6261906ed1be03a823912546df486cd2ea9cacc3a4cca05f06ad0cc27e48d",
+  "cast_v1/symmetry.py": "0040c861706b6ecf173bb2acb48c0d6aacad64c77fb8e73a90412ee28668b04c",
+  "tests/test_pkg.py": "c508c609445aca2c38a1f86f3cb9eb3967e5c1b5ef0c2c6c77fe8c3f020e8dd2"
+ }
+}
