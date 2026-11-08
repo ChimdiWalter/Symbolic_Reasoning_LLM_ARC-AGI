@@ -1,0 +1,102 @@
+{
+ "operator": "symcomplete",
+ "class": "SymComplete",
+ "impl_sha256": "b840e49203b1ec4beb57ce022bc3ca9f99e88d61f4ab6d6a0dbb3366e83dcbb8",
+ "level": "full",
+ "seed": 0,
+ "n_theta": 6,
+ "n_theta_domain": 6,
+ "theta_subsampled": false,
+ "scope": {
+  "palette": [
+   0,
+   1,
+   2
+  ],
+  "shapes": [
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    3,
+    3
+   ]
+  ],
+  "binary_4x4": true,
+  "random_cases": 300,
+  "random_max_shape": [
+   20,
+   20
+  ]
+ },
+ "checks": {
+  "fwd_concrete": {
+   "cases": 337900,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "bwd": {
+   "cases": 337900,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "fwd_abstract": {
+   "cases": 7398,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd": {
+   "cases": 49,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_bwd": {
+   "cases": 49,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd_abstract": {
+   "cases": 30,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  }
+ },
+ "cpu_s": 247.99,
+ "verdict": "PASS",
+ "evidence": "EXHAUSTIVE_FINITE_SCOPE_PLUS_RANDOMIZED (not a general proof)"
+}

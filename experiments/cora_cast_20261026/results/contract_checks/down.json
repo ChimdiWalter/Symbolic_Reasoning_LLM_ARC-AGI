@@ -1,0 +1,102 @@
+{
+ "operator": "down",
+ "class": "Downscale",
+ "impl_sha256": "e4538c5cc2fc1b61327ec640e970662c26cb8dca72d6eb30bb5c4428898513bb",
+ "level": "full",
+ "seed": 0,
+ "n_theta": 4,
+ "n_theta_domain": 4,
+ "theta_subsampled": false,
+ "scope": {
+  "palette": [
+   0,
+   1,
+   2
+  ],
+  "shapes": [
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    3,
+    2
+   ],
+   [
+    3,
+    3
+   ]
+  ],
+  "binary_4x4": true,
+  "random_cases": 300,
+  "random_max_shape": [
+   20,
+   20
+  ]
+ },
+ "checks": {
+  "fwd_concrete": {
+   "cases": 24,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "bwd": {
+   "cases": 24,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "fwd_abstract": {
+   "cases": 2,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd": {
+   "cases": 40,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_bwd": {
+   "cases": 40,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd_abstract": {
+   "cases": 8,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  }
+ },
+ "cpu_s": 5.61,
+ "verdict": "PASS",
+ "evidence": "EXHAUSTIVE_FINITE_SCOPE_PLUS_RANDOMIZED (not a general proof)"
+}

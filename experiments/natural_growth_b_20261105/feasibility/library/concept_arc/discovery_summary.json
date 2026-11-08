@@ -1,0 +1,35 @@
+{
+ "bench": "concept_arc",
+ "disagreements_with_study_a": [],
+ "discovery_cpu_s": 638.906,
+ "solutions": {
+  "co0009": {
+   "family": "AboveBelow",
+   "found_at": "x4",
+   "program": "fill(I, ZERO, argmax(objects(I, T, T, T), size))"
+  },
+  "co0030": {
+   "family": "CompleteShape",
+   "found_at": "x4",
+   "program": "paint(I, mapply(dmirror, fgpartition(I)))"
+  },
+  "co0071": {
+   "family": "ExtractObjects",
+   "found_at": "x4",
+   "program": "subgrid(first(objects(I, F, F, T)), I)"
+  },
+  "co0126": {
+   "family": "Order",
+   "found_at": "base",
+   "program": "order(I, hmirror)"
+  },
+  "co0142": {
+   "family": "TopBottom2D",
+   "found_at": "x4",
+   "program": "subgrid(argmax(fgpartition(I), ulcorner), I)"
+  }
+ },
+ "solved_4x": 5,
+ "solved_base": 1,
+ "source_tasks": 80
+}

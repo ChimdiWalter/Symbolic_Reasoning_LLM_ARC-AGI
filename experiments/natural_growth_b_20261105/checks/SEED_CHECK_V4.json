@@ -1,0 +1,392 @@
+{
+ "construction_results": {
+  "seed0": {
+   "hash_seed_witness": 697972098,
+   "ignore_environment": 0,
+   "tasks": {
+    "1d0143": {
+     "candidates": 7,
+     "candidates_loo": 1,
+     "fit": true,
+     "op": "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"colour\",3],[\"shift\",0,12]],[[\"colour_mostcommon\"],[\"shift\",0,9]]],\"view\":\"cell\"}",
+     "preds_sha256": "52d93cf38faf44466a0fcb7f53f9cbed402b5b4b3537caee56daf2f796981314",
+     "retries": [
+      "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"colour\",3],[\"shift\",0,12]],[[\"colour_mostcommon\"],[\"shift\",0,9]]],\"view\":\"cell\"}"
+     ],
+     "stage": "construction"
+    },
+    "co0003": {
+     "candidates": 8,
+     "candidates_loo": 8,
+     "fit": true,
+     "op": "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"topmost\"],[\"move\",\"D\",\"blocked\"]]],\"view\":\"m4\"}",
+     "preds_sha256": "06606d2554a984bbdd90e135ad77195517b211f166d7bdcbb853ee59ef1e7a58",
+     "retries": [
+      "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"topmost\"],[\"move\",\"D\",\"blocked\"]]],\"view\":\"m4\"}"
+     ],
+     "stage": "construction"
+    },
+    "mi0002": {
+     "candidates": 0,
+     "candidates_loo": 0,
+     "fit": false,
+     "op": null,
+     "preds_sha256": null,
+     "retries": [],
+     "stage": "base"
+    }
+   }
+  },
+  "seed1": {
+   "hash_seed_witness": 2656331210,
+   "ignore_environment": 0,
+   "tasks": {
+    "1d0143": {
+     "candidates": 7,
+     "candidates_loo": 1,
+     "fit": true,
+     "op": "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"colour\",3],[\"shift\",0,12]],[[\"colour_mostcommon\"],[\"shift\",0,9]]],\"view\":\"cell\"}",
+     "preds_sha256": "52d93cf38faf44466a0fcb7f53f9cbed402b5b4b3537caee56daf2f796981314",
+     "retries": [
+      "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"colour\",3],[\"shift\",0,12]],[[\"colour_mostcommon\"],[\"shift\",0,9]]],\"view\":\"cell\"}"
+     ],
+     "stage": "construction"
+    },
+    "co0003": {
+     "candidates": 8,
+     "candidates_loo": 8,
+     "fit": true,
+     "op": "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"topmost\"],[\"move\",\"D\",\"blocked\"]]],\"view\":\"m4\"}",
+     "preds_sha256": "06606d2554a984bbdd90e135ad77195517b211f166d7bdcbb853ee59ef1e7a58",
+     "retries": [
+      "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"topmost\"],[\"move\",\"D\",\"blocked\"]]],\"view\":\"m4\"}"
+     ],
+     "stage": "construction"
+    },
+    "mi0002": {
+     "candidates": 0,
+     "candidates_loo": 0,
+     "fit": false,
+     "op": null,
+     "preds_sha256": null,
+     "retries": [],
+     "stage": "base"
+    }
+   }
+  },
+  "seed2": {
+   "hash_seed_witness": 3945933308,
+   "ignore_environment": 0,
+   "tasks": {
+    "1d0143": {
+     "candidates": 7,
+     "candidates_loo": 1,
+     "fit": true,
+     "op": "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"colour\",3],[\"shift\",0,12]],[[\"colour_mostcommon\"],[\"shift\",0,9]]],\"view\":\"cell\"}",
+     "preds_sha256": "52d93cf38faf44466a0fcb7f53f9cbed402b5b4b3537caee56daf2f796981314",
+     "retries": [
+      "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"colour\",3],[\"shift\",0,12]],[[\"colour_mostcommon\"],[\"shift\",0,9]]],\"view\":\"cell\"}"
+     ],
+     "stage": "construction"
+    },
+    "co0003": {
+     "candidates": 8,
+     "candidates_loo": 8,
+     "fit": true,
+     "op": "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"topmost\"],[\"move\",\"D\",\"blocked\"]]],\"view\":\"m4\"}",
+     "preds_sha256": "06606d2554a984bbdd90e135ad77195517b211f166d7bdcbb853ee59ef1e7a58",
+     "retries": [
+      "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"topmost\"],[\"move\",\"D\",\"blocked\"]]],\"view\":\"m4\"}"
+     ],
+     "stage": "construction"
+    },
+    "mi0002": {
+     "candidates": 0,
+     "candidates_loo": 0,
+     "fit": false,
+     "op": null,
+     "preds_sha256": null,
+     "retries": [],
+     "stage": "base"
+    }
+   }
+  }
+ },
+ "probes": [
+  "mini_arc:mi0048",
+  "concept_arc:co0126",
+  "1d_arc:1d0053"
+ ],
+ "results": {
+  "plain/seed0": {
+   "PYTHONHASHSEED": "0",
+   "hash_seed_witness": 697972098,
+   "ignore_environment": 0,
+   "mode": "plain",
+   "tasks": {
+    "1d0053": {
+     "calls": 600000,
+     "closest": null,
+     "fit": true,
+     "found_at": "x4",
+     "level_complete": 11,
+     "preds_sha256": "1d19e8a3c7feade30a599b3c9a78fd305dc15557ebd5db9e2b808fa679e40df8",
+     "program": "paint(I, vmirror(merge(fgpartition(I))))",
+     "stop": "budget"
+    },
+    "co0126": {
+     "calls": 150004,
+     "closest": "order(I, last)",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "704404146da56fc5698be76f9bfe22b0c122fd24439fb688cfb0b50f6bbd366c",
+     "program": "order(I, hmirror)",
+     "stop": "budget"
+    },
+    "mi0048": {
+     "calls": 150000,
+     "closest": "apply(last, repeat(I, FIVE))",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "51c54e52847a562f6756dde852efe9cd2340a0811cb8a8add14d50b3cc6c1eb0",
+     "program": "cover(I, asobject(I))",
+     "stop": "budget"
+    }
+   }
+  },
+  "plain/seed1": {
+   "PYTHONHASHSEED": "1",
+   "hash_seed_witness": 2656331210,
+   "ignore_environment": 0,
+   "mode": "plain",
+   "tasks": {
+    "1d0053": {
+     "calls": 600000,
+     "closest": null,
+     "fit": true,
+     "found_at": "x4",
+     "level_complete": 11,
+     "preds_sha256": "1d19e8a3c7feade30a599b3c9a78fd305dc15557ebd5db9e2b808fa679e40df8",
+     "program": "paint(I, vmirror(merge(fgpartition(I))))",
+     "stop": "budget"
+    },
+    "co0126": {
+     "calls": 150000,
+     "closest": "order(I, last)",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "704404146da56fc5698be76f9bfe22b0c122fd24439fb688cfb0b50f6bbd366c",
+     "program": "order(I, hmirror)",
+     "stop": "budget"
+    },
+    "mi0048": {
+     "calls": 150000,
+     "closest": "apply(last, repeat(I, FIVE))",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "51c54e52847a562f6756dde852efe9cd2340a0811cb8a8add14d50b3cc6c1eb0",
+     "program": "cover(I, asindices(I))",
+     "stop": "budget"
+    }
+   }
+  },
+  "plain/seed2": {
+   "PYTHONHASHSEED": "2",
+   "hash_seed_witness": 3945933308,
+   "ignore_environment": 0,
+   "mode": "plain",
+   "tasks": {
+    "1d0053": {
+     "calls": 600002,
+     "closest": null,
+     "fit": true,
+     "found_at": "x4",
+     "level_complete": 11,
+     "preds_sha256": "1d19e8a3c7feade30a599b3c9a78fd305dc15557ebd5db9e2b808fa679e40df8",
+     "program": "paint(I, vmirror(merge(fgpartition(I))))",
+     "stop": "budget"
+    },
+    "co0126": {
+     "calls": 150004,
+     "closest": "order(I, last)",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "704404146da56fc5698be76f9bfe22b0c122fd24439fb688cfb0b50f6bbd366c",
+     "program": "order(I, hmirror)",
+     "stop": "budget"
+    },
+    "mi0048": {
+     "calls": 150000,
+     "closest": "apply(last, repeat(I, FIVE))",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "51c54e52847a562f6756dde852efe9cd2340a0811cb8a8add14d50b3cc6c1eb0",
+     "program": "cover(I, asobject(I))",
+     "stop": "budget"
+    }
+   }
+  },
+  "sorted/seed0": {
+   "PYTHONHASHSEED": "0",
+   "hash_seed_witness": 697972098,
+   "ignore_environment": 0,
+   "mode": "sorted",
+   "tasks": {
+    "1d0053": {
+     "calls": 600000,
+     "closest": null,
+     "fit": true,
+     "found_at": "x4",
+     "level_complete": 11,
+     "preds_sha256": "1d19e8a3c7feade30a599b3c9a78fd305dc15557ebd5db9e2b808fa679e40df8",
+     "program": "paint(I, vmirror(merge(fgpartition(I))))",
+     "stop": "budget"
+    },
+    "co0126": {
+     "calls": 150004,
+     "closest": "order(I, last)",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "704404146da56fc5698be76f9bfe22b0c122fd24439fb688cfb0b50f6bbd366c",
+     "program": "order(I, hmirror)",
+     "stop": "budget"
+    },
+    "mi0048": {
+     "calls": 150003,
+     "closest": "apply(last, repeat(I, FIVE))",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "51c54e52847a562f6756dde852efe9cd2340a0811cb8a8add14d50b3cc6c1eb0",
+     "program": "cover(I, asobject(I))",
+     "stop": "budget"
+    }
+   }
+  },
+  "sorted/seed1": {
+   "PYTHONHASHSEED": "1",
+   "hash_seed_witness": 2656331210,
+   "ignore_environment": 0,
+   "mode": "sorted",
+   "tasks": {
+    "1d0053": {
+     "calls": 600000,
+     "closest": null,
+     "fit": true,
+     "found_at": "x4",
+     "level_complete": 11,
+     "preds_sha256": "1d19e8a3c7feade30a599b3c9a78fd305dc15557ebd5db9e2b808fa679e40df8",
+     "program": "paint(I, vmirror(merge(fgpartition(I))))",
+     "stop": "budget"
+    },
+    "co0126": {
+     "calls": 150004,
+     "closest": "order(I, last)",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "704404146da56fc5698be76f9bfe22b0c122fd24439fb688cfb0b50f6bbd366c",
+     "program": "order(I, hmirror)",
+     "stop": "budget"
+    },
+    "mi0048": {
+     "calls": 150003,
+     "closest": "apply(last, repeat(I, FIVE))",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "51c54e52847a562f6756dde852efe9cd2340a0811cb8a8add14d50b3cc6c1eb0",
+     "program": "cover(I, asobject(I))",
+     "stop": "budget"
+    }
+   }
+  },
+  "sorted/seed2": {
+   "PYTHONHASHSEED": "2",
+   "hash_seed_witness": 3945933308,
+   "ignore_environment": 0,
+   "mode": "sorted",
+   "tasks": {
+    "1d0053": {
+     "calls": 600000,
+     "closest": null,
+     "fit": true,
+     "found_at": "x4",
+     "level_complete": 11,
+     "preds_sha256": "1d19e8a3c7feade30a599b3c9a78fd305dc15557ebd5db9e2b808fa679e40df8",
+     "program": "paint(I, vmirror(merge(fgpartition(I))))",
+     "stop": "budget"
+    },
+    "co0126": {
+     "calls": 150004,
+     "closest": "order(I, last)",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "704404146da56fc5698be76f9bfe22b0c122fd24439fb688cfb0b50f6bbd366c",
+     "program": "order(I, hmirror)",
+     "stop": "budget"
+    },
+    "mi0048": {
+     "calls": 150003,
+     "closest": "apply(last, repeat(I, FIVE))",
+     "fit": true,
+     "found_at": "base",
+     "level_complete": 9,
+     "preds_sha256": "51c54e52847a562f6756dde852efe9cd2340a0811cb8a8add14d50b3cc6c1eb0",
+     "program": "cover(I, asobject(I))",
+     "stop": "budget"
+    }
+   }
+  }
+ },
+ "summary": {
+  "construction_identical_across_seeds": true,
+  "construction_probes": [
+   "concept_arc:co0003",
+   "mini_arc:mi0002",
+   "1d_arc:1d0143"
+  ],
+  "construction_reached": {
+   "1d0143": "construction",
+   "co0003": "construction",
+   "mi0002": "base"
+  },
+  "construction_seeds_differ": true,
+  "ignore_environment_in_probes": [
+   0,
+   0,
+   0
+  ],
+  "pass": true,
+  "plain_identical_across_seeds": {
+   "calls": false,
+   "closest": true,
+   "fit": true,
+   "found_at": true,
+   "level_complete": true,
+   "preds_sha256": true,
+   "program": false,
+   "stop": true
+  },
+  "seeds_differ": true,
+  "sorted_identical_across_seeds": {
+   "calls": true,
+   "closest": true,
+   "fit": true,
+   "found_at": true,
+   "level_complete": true,
+   "preds_sha256": true,
+   "program": true,
+   "stop": true
+  },
+  "sorted_vs_plain_fits_and_predictions_agree": true
+ }
+}

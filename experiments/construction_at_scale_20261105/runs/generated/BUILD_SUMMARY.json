@@ -1,0 +1,106 @@
+{
+ "W1": {
+  "counts": {
+   "-:D": 4,
+   "-:U": 14,
+   "compress:E": 6,
+   "compress:M": 9,
+   "compress:V": 2,
+   "downscale:E": 6,
+   "downscale:M": 9,
+   "downscale:V": 2,
+   "trim:E": 6,
+   "trim:M": 9,
+   "trim:V": 2,
+   "upscale:E": 4,
+   "upscale:M": 8,
+   "upscale:V": 2
+  },
+  "cpu_s": 287.1,
+  "unfilled": [
+   {
+    "family": "upscale",
+    "kind": "T3",
+    "partition": "M",
+    "slot": 8
+   },
+   {
+    "family": "upscale",
+    "kind": "T2",
+    "partition": "E",
+    "slot": 2
+   },
+   {
+    "family": "upscale",
+    "kind": "T3",
+    "partition": "E",
+    "slot": 5
+   }
+  ]
+ },
+ "W2": {
+  "counts": {
+   "-:D": 4,
+   "-:U": 11,
+   "cmirror:E": 6,
+   "cmirror:M": 9,
+   "cmirror:V": 2,
+   "dmirror:E": 6,
+   "dmirror:M": 9,
+   "dmirror:V": 2,
+   "rot270:E": 6,
+   "rot270:M": 9,
+   "rot270:V": 2,
+   "rot90:E": 6,
+   "rot90:M": 9,
+   "rot90:V": 2
+  },
+  "cpu_s": 176.0,
+  "unfilled": []
+ },
+ "W3": {
+  "counts": {
+   "-:D": 4,
+   "-:U": 13,
+   "hupscale:E": 6,
+   "hupscale:M": 9,
+   "hupscale:V": 2,
+   "switch:E": 3,
+   "switch:M": 9,
+   "switch:V": 2,
+   "vupscale:E": 5,
+   "vupscale:M": 9,
+   "vupscale:V": 2
+  },
+  "cpu_s": 1133.3,
+  "unfilled": [
+   {
+    "family": "vupscale",
+    "kind": "T2",
+    "partition": "E",
+    "slot": 3
+   },
+   {
+    "family": "switch",
+    "kind": "T2",
+    "partition": "E",
+    "slot": 3
+   },
+   {
+    "family": "switch",
+    "kind": "T3",
+    "partition": "E",
+    "slot": 4
+   },
+   {
+    "family": "switch",
+    "kind": "T3",
+    "partition": "E",
+    "slot": 5
+   }
+  ]
+ },
+ "motivating_sources_disjoint_across_worlds": true,
+ "pool": "main",
+ "process_cpu_s": 1638.6
+}

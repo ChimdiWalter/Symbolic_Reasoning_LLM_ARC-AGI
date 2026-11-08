@@ -1,0 +1,98 @@
+{
+ "operator": "bind_glyphs",
+ "class": "GlyphLegendRecolor",
+ "impl_sha256": "5613bbf65f150668f07e3f198b4db6879d3b19bf76cb2a020d0f73e6cc5a088b",
+ "level": "quick",
+ "seed": 0,
+ "n_theta": 40,
+ "n_theta_domain": 240,
+ "theta_subsampled": true,
+ "scope": {
+  "palette": [
+   0,
+   1,
+   2
+  ],
+  "shapes": [
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    3,
+    2
+   ]
+  ],
+  "binary_4x4": false,
+  "random_cases": 100,
+  "random_max_shape": [
+   20,
+   20
+  ]
+ },
+ "checks": {
+  "fwd_concrete": {
+   "cases": 18720,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "bwd": {
+   "cases": 18720,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "fwd_abstract": {
+   "cases": 1367,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd": {
+   "cases": 7,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_bwd": {
+   "cases": 7,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd_abstract": {
+   "cases": 2,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  }
+ },
+ "cpu_s": 4.19,
+ "verdict": "PASS",
+ "evidence": "EXHAUSTIVE_FINITE_SCOPE_PLUS_RANDOMIZED (not a general proof)"
+}

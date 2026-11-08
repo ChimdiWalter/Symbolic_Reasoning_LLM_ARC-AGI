@@ -1,0 +1,171 @@
+{
+ "study": "construction_at_scale_20261105",
+ "pools_file": "config/POOLS.json",
+ "world_order": [
+  "W1",
+  "W2",
+  "W3"
+ ],
+ "worlds": {
+  "W1": {
+   "label": "S1's world: crop and resize operations",
+   "removed": [
+    "compress",
+    "downscale",
+    "trim",
+    "upscale"
+   ],
+   "families": [
+    "upscale",
+    "downscale",
+    "compress",
+    "trim"
+   ],
+   "params": {
+    "compress": [
+     []
+    ],
+    "trim": [
+     []
+    ],
+    "downscale": [
+     [
+      2
+     ],
+     [
+      3
+     ]
+    ],
+    "upscale": [
+     [
+      2
+     ],
+     [
+      3
+     ]
+    ]
+   },
+   "salt": "cas-W1-20261105"
+  },
+  "W2": {
+   "label": "quarter-turn and diagonal-reflection world (horizontal reflection kept)",
+   "removed": [
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot270"
+   ],
+   "families": [
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot270"
+   ],
+   "params": {
+    "dmirror": [
+     []
+    ],
+    "cmirror": [
+     []
+    ],
+    "rot90": [
+     []
+    ],
+    "rot270": [
+     []
+    ]
+   },
+   "salt": "cas-W2b-20261105"
+  },
+  "W3": {
+   "label": "one-axis stretch and colour-exchange world",
+   "removed": [
+    "hupscale",
+    "vupscale",
+    "switch"
+   ],
+   "families": [
+    "vupscale",
+    "hupscale",
+    "switch"
+   ],
+   "params": {
+    "hupscale": [
+     [
+      2
+     ],
+     [
+      3
+     ]
+    ],
+    "vupscale": [
+     [
+      3
+     ]
+    ],
+    "switch": "source_colours"
+   },
+   "salt": "cas-W3-20261105"
+  }
+ },
+ "quota": {
+  "M": [
+   "T1",
+   "T2",
+   "T3",
+   "T1",
+   "T2",
+   "T3",
+   "T1",
+   "T2",
+   "T3"
+  ],
+  "V": [
+   "T2",
+   "T3"
+  ],
+  "E": [
+   "T1",
+   "T1",
+   "T2",
+   "T2",
+   "T3",
+   "T3"
+  ]
+ },
+ "pilot_quota": [
+  "T1",
+  "T2",
+  "T3"
+ ],
+ "n_u_real": 6,
+ "n_u_derived": 8,
+ "n_d": 4,
+ "max_tries": 60,
+ "bench_reference_cpu_s": 1.281,
+ "size_caps": {
+  "max_side_in": 12,
+  "max_side_out": 16,
+  "note": "S1's caps (cgrow/tasks.py MAX_SIDE_IN, MAX_SIDE_OUT)"
+ },
+ "boundary": {
+  "agreed_with": "companion study, inbox note 0135, widened later on 5 Nov 2026; relayed by the coordinator",
+  "kept_in_every_G0": [
+   "hmirror",
+   "vmirror",
+   "rot180"
+  ],
+  "rules": [
+   "horizontal reflection (hmirror, top to bottom; vmirror, left to right) is never removed and no family is built on it",
+   "no object-selection-by-attribute family (the seven named semantics, or any max/min attribute selection followed by cropping); only whole-grid transformations",
+   "the companion study's outcomes, including ConceptARC, Mini-ARC and 1D-ARC results, are not read; its 128 authored tasks are not used",
+   "experiments/natural_growth_20261105/ is never edited"
+  ]
+ },
+ "m_build_order": [
+  "W3",
+  "W1",
+  "W2"
+ ],
+ "motivating_sources": "disjoint across worlds (revision 3): a source used by a motivating task of one world is excluded from every task of the other worlds"
+}

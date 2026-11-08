@@ -1,0 +1,99 @@
+{
+ "arms_arc2": [
+  [
+   "hand",
+   500
+  ],
+  [
+   "hand",
+   20000
+  ],
+  [
+   "guide",
+   500
+  ],
+  [
+   "guide",
+   20000
+  ]
+ ],
+ "arms_held": [
+  [
+   "hand",
+   125
+  ],
+  [
+   "hand",
+   500
+  ],
+  [
+   "hand",
+   2000
+  ],
+  [
+   "hand",
+   20000
+  ],
+  [
+   "guide",
+   125
+  ],
+  [
+   "guide",
+   500
+  ],
+  [
+   "guide",
+   2000
+  ],
+  [
+   "guide",
+   20000
+  ],
+  [
+   "linear",
+   500
+  ],
+  [
+   "frequency",
+   500
+  ],
+  [
+   "hand_rule",
+   500
+  ],
+  [
+   "donor",
+   500
+  ],
+  [
+   "lobo",
+   500
+  ]
+ ],
+ "budgets": {
+  "four_times": 2000,
+  "full": 20000,
+  "quarter": 125,
+  "test": 500
+ },
+ "models": {
+  "frequency": "models/full.json#frequency",
+  "guide": "models/full.json#guide",
+  "linear": "models/full.json#linear",
+  "lobo": {
+   "1d_arc": "models/lobo_1d_arc.json",
+   "concept_arc": "models/lobo_concept_arc.json",
+   "mini_arc": "models/lobo_mini_arc.json"
+  }
+ },
+ "retries": 3,
+ "source": {
+  "budget_rule": "dev/curves.json#budget_rule",
+  "stop_rule": "dev/curves.json#stop_rule",
+  "verdict": "GO"
+ },
+ "test_budget": 500,
+ "wall_limit_s": 27000,
+ "workers_per_kernel": 4
+}

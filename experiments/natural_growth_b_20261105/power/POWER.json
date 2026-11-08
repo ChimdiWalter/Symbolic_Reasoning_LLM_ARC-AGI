@@ -1,0 +1,172 @@
+{
+ "bootstrap_draws_in_simulation": 2000,
+ "expected_held_library_beats_G0": 28.05,
+ "expected_held_library_beats_static": 5.05,
+ "expected_held_static_beats_library": 5.05,
+ "libraries": {
+  "1d_arc": {
+   "cpu_s": {
+    "combined_regression": 0.001,
+    "construction": 25.278,
+    "discovery": 972.795,
+    "gates_charged": 25.277,
+    "gates_process": 25.315,
+    "total_charged": 998.073
+   },
+   "operations": [
+    "paint(I, vmirror(merge(fgpartition(I))))",
+    "fill(I, TWO, argmax(objects(I, T, T, F), size))",
+    "fill(I, #0, argmax(objects(I, T, T, F), size))"
+   ],
+   "size": 3
+  },
+  "concept_arc": {
+   "cpu_s": {
+    "combined_regression": 2.548,
+    "construction": 40.623,
+    "discovery": 638.906,
+    "gates_charged": 38.075,
+    "gates_process": 40.667,
+    "total_charged": 679.529
+   },
+   "operations": [
+    "fill(I, ZERO, argmax(objects(I, T, T, T), size))",
+    "fill(I, #0, argmax(objects(I, T, T, T), size))",
+    "paint(I, mapply(dmirror, fgpartition(I)))",
+    "subgrid(first(objects(I, F, F, T)), I)",
+    "subgrid(argmax(fgpartition(I), ulcorner), I)"
+   ],
+   "size": 5
+  },
+  "mini_arc": {
+   "cpu_s": {
+    "combined_regression": 0,
+    "construction": 0.808,
+    "discovery": 297.307,
+    "gates_charged": 0.808,
+    "gates_process": 0.81,
+    "total_charged": 298.115
+   },
+   "operations": [],
+   "size": 0
+  }
+ },
+ "min_discordant_tasks_for_p_below_0.05": 6,
+ "per_family": [
+  {
+   "bench": "concept_arc",
+   "expected_held_library_beats_G0": 0.0,
+   "expected_held_library_beats_static": 0.0,
+   "expected_held_static_beats_library": 1.0,
+   "family": "AboveBelow",
+   "held_tasks": 5,
+   "scale": 1.0,
+   "source_library_beats_G0": 0,
+   "source_library_beats_static": 0,
+   "source_static_beats_library": 1,
+   "source_tasks": 5
+  },
+  {
+   "bench": "concept_arc",
+   "expected_held_library_beats_G0": 0.0,
+   "expected_held_library_beats_static": 0.0,
+   "expected_held_static_beats_library": 1.0,
+   "family": "CompleteShape",
+   "held_tasks": 5,
+   "scale": 1.0,
+   "source_library_beats_G0": 0,
+   "source_library_beats_static": 0,
+   "source_static_beats_library": 1,
+   "source_tasks": 5
+  },
+  {
+   "bench": "concept_arc",
+   "expected_held_library_beats_G0": 1.0,
+   "expected_held_library_beats_static": 1.0,
+   "expected_held_static_beats_library": 1.0,
+   "family": "ExtractObjects",
+   "held_tasks": 5,
+   "scale": 1.0,
+   "source_library_beats_G0": 1,
+   "source_library_beats_static": 1,
+   "source_static_beats_library": 1,
+   "source_tasks": 5
+  },
+  {
+   "bench": "concept_arc",
+   "expected_held_library_beats_G0": 1.0,
+   "expected_held_library_beats_static": 1.0,
+   "expected_held_static_beats_library": 0.0,
+   "family": "FilledNotFilled",
+   "held_tasks": 5,
+   "scale": 1.0,
+   "source_library_beats_G0": 1,
+   "source_library_beats_static": 1,
+   "source_static_beats_library": 0,
+   "source_tasks": 5
+  },
+  {
+   "bench": "concept_arc",
+   "expected_held_library_beats_G0": 1.0,
+   "expected_held_library_beats_static": 0.0,
+   "expected_held_static_beats_library": 1.0,
+   "family": "TopBottom2D",
+   "held_tasks": 5,
+   "scale": 1.0,
+   "source_library_beats_G0": 1,
+   "source_library_beats_static": 0,
+   "source_static_beats_library": 1,
+   "source_tasks": 5
+  },
+  {
+   "bench": "1d_arc",
+   "expected_held_library_beats_G0": 2.0,
+   "expected_held_library_beats_static": 2.0,
+   "expected_held_static_beats_library": 0.0,
+   "family": "1d_fill",
+   "held_tasks": 24,
+   "scale": 1.0,
+   "source_library_beats_G0": 2,
+   "source_library_beats_static": 2,
+   "source_static_beats_library": 0,
+   "source_tasks": 24
+  },
+  {
+   "bench": "1d_arc",
+   "expected_held_library_beats_G0": 22.0,
+   "expected_held_library_beats_static": 0.0,
+   "expected_held_static_beats_library": 0.0,
+   "family": "1d_flip",
+   "held_tasks": 22,
+   "scale": 1.0,
+   "source_library_beats_G0": 22,
+   "source_library_beats_static": 0,
+   "source_static_beats_library": 0,
+   "source_tasks": 22
+  },
+  {
+   "bench": "1d_arc",
+   "expected_held_library_beats_G0": 1.05,
+   "expected_held_library_beats_static": 1.05,
+   "expected_held_static_beats_library": 1.05,
+   "family": "1d_recolor_cmp",
+   "held_tasks": 20,
+   "scale": 1.053,
+   "source_library_beats_G0": 1,
+   "source_library_beats_static": 1,
+   "source_static_beats_library": 1,
+   "source_tasks": 19
+  }
+ ],
+ "simulated_decisions_library_vs_G0": {
+  "A beats B": 0.787,
+  "inconclusive": 0.213
+ },
+ "simulated_decisions_library_vs_matched_static": {
+  "A beats B": 0.003,
+  "B beats A": 0.01,
+  "inconclusive": 0.847,
+  "tie": 0.14
+ },
+ "simulations": 300
+}

@@ -1,0 +1,424 @@
+{
+ "cases": {
+  "copied_receipt": {
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: the invariant receipt does not bind to the current rows, GO and freeze: rows_sha256"
+  },
+  "forged_receipt": {
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: the checks fail on the current rows (1 failures); nothing is scored"
+  },
+  "missing_receipt": {
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: no invariant receipt (INVARIANTS.json); run verify first"
+  },
+  "positive_control": {
+   "marker_call_reached": true,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: rehearsal mode never scores"
+  },
+  "sentinel_current_rows": {
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: the invariant receipt does not bind to the current rows, GO and freeze: rows_sha256, identity_sha256, kernel_receipts_sha256, go_sha256, freeze_sha256, protocol_sha256, config_sha256, mode"
+  },
+  "sentinel_mutated_rows": {
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: the checks fail on the current rows (1 failures); nothing is scored"
+  },
+  "stale_receipt": {
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "refused": true,
+   "solution_calls": 0,
+   "status": "refused: the invariant receipt does not bind to the current rows, GO and freeze: rows_sha256"
+  }
+ },
+ "donor_total_case": {
+  "got": 134,
+  "ok": true,
+  "real_marker_exists": false,
+  "scope_label": "cache delta: the donor's crop-precondition content comparisons, recorded on the task that first computes the donor's holes, so the sum is the total",
+  "status": "scored with fake outputs",
+  "want": 134
+ },
+ "donor_total_case_passed": true,
+ "freeze_sha256": "d876eeded96c1c6f9672bc292bfe5a479d40c6175c0bf43cb51e628ac11b1cdf",
+ "kernel_cases": {
+  "archive_changed": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "archive digest"
+   ],
+   "ok": true
+  },
+  "extra_row_file": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "row files differ from the returned ones"
+   ],
+   "ok": true
+  },
+  "fetch_receipt_missing": {
+   "bound_files": 16,
+   "failures": 2,
+   "first": [
+    "runs/held_run/GCCM_meta/KAGGLE_FETCH.json",
+    "fetch receipt"
+   ],
+   "ok": true
+  },
+  "kernel_gpu_on": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "metadata: private, CPU only, internet off"
+   ],
+   "ok": true
+  },
+  "kernel_internet_on": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "metadata: private, CPU only, internet off"
+   ],
+   "ok": true
+  },
+  "kernel_not_private": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "metadata: private, CPU only, internet off"
+   ],
+   "ok": true
+  },
+  "kernel_role_substitution": {
+   "bound_files": 13,
+   "failures": 2,
+   "first": [
+    "identity or sets differ",
+    "a set has no kernel"
+   ],
+   "ok": true
+  },
+  "kernel_run_edited_stale_digest": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "kernel driver record differs from the returned file (fetch digest)"
+   ],
+   "ok": true
+  },
+  "kernel_run_entry_missing": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "kernel driver record differs from the returned file (fetch digest)"
+   ],
+   "ok": true
+  },
+  "metadata_changed_after_manifest": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "metadata digest"
+   ],
+   "ok": true
+  },
+  "missing_one_kernel": {
+   "bound_files": 13,
+   "failures": 3,
+   "first": [
+    "the manifest's kernels are not the expected three",
+    "identity or sets differ",
+    "a set has no kernel"
+   ],
+   "ok": true
+  },
+  "no_receipts_at_all": {
+   "bound_files": 0,
+   "failures": 1,
+   "first": [
+    "runs/kaggle/PACKAGE_MANIFEST_final.json"
+   ],
+   "ok": true
+  },
+  "package_go_differs": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "the package's runs/GO is not the current one"
+   ],
+   "ok": true
+  },
+  "push_failed": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "push receipt"
+   ],
+   "ok": true
+  },
+  "push_receipt_missing": {
+   "bound_files": 18,
+   "failures": 2,
+   "first": [
+    "runs/kaggle/GC1D/PUSHED.json",
+    "push receipt"
+   ],
+   "ok": true
+  },
+  "rehearsal_kernel_record": {
+   "bound_files": 19,
+   "failures": 2,
+   "first": [
+    "kernel driver record differs from the returned file (fetch digest)",
+    "kernel driver record"
+   ],
+   "ok": true
+  },
+  "row_file_not_returned_by_kernel": {
+   "bound_files": 19,
+   "failures": 1,
+   "first": [
+    "row files differ from the returned ones"
+   ],
+   "ok": true
+  },
+  "valid_receipts": {
+   "bound_files": 19,
+   "failures": 0,
+   "first": [],
+   "ok": true
+  },
+  "worker_failed": {
+   "bound_files": 19,
+   "failures": 2,
+   "first": [
+    "kernel driver record differs from the returned file (fetch digest)",
+    "kernel driver record"
+   ],
+   "ok": true
+  }
+ },
+ "kernel_receipt_cases_passed": true,
+ "package_sha256": "e5d2d77c0cb751d52cdb74aa68d83595d6d05a3f119ce3ed4efba7ac1b06f6f8",
+ "passed": true,
+ "return_code": 0,
+ "scorer_boundary_passed": true,
+ "verify_cases": {
+  "arm_fit_without_construction_stage": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "base_fit_without_base_stage": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "base_fit_without_fit": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "benchmark_mutant": {
+   "failures": [
+    "identity (benchmark, family, demonstrations, tests)"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "demonstration_count_mutant": {
+   "failures": [
+    "identity (benchmark, family, demonstrations, tests)"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "empty_ref_error": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "false_ref_error": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "family_mutant": {
+   "failures": [
+    "identity (benchmark, family, demonstrations, tests)"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "positive_base_fit_branch": {
+   "failures": [],
+   "marker_call_reached": true,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: rehearsal mode never scores",
+   "solution_calls": 0,
+   "verify_verdict": "PASS"
+  },
+  "positive_reference_error_branch": {
+   "failures": [],
+   "marker_call_reached": true,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: rehearsal mode never scores",
+   "solution_calls": 0,
+   "verify_verdict": "PASS"
+  },
+  "ref_error_plus_answer_and_arms": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "reference_stage_mutant": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "row_without_n_demos": {
+   "failures": [
+    "row without its demonstration count (n_demos)"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "stage_mutant_hand_20000": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "string_ref_error_old_format": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "test_count_mutant": {
+   "failures": [
+    "identity (benchmark, family, demonstrations, tests)"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "under_two_with_trusted_demonstrations": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  },
+  "unknown_shared_branch": {
+   "failures": [
+    "branch"
+   ],
+   "marker_call_reached": false,
+   "marker_exists": false,
+   "ok": true,
+   "score_status": "refused: the checks fail on the current rows (1 failures); nothing is scored",
+   "solution_calls": 0,
+   "verify_verdict": "INVALID"
+  }
+ },
+ "verify_sentinels_passed": true
+}

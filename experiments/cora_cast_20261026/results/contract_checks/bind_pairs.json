@@ -1,0 +1,98 @@
+{
+ "operator": "bind_pairs",
+ "class": "PairLegendRecolor",
+ "impl_sha256": "7420d1a802821206d28262941bffdc304b21f2baa6d0061f90b5ea4f92416a83",
+ "level": "quick",
+ "seed": 0,
+ "n_theta": 4,
+ "n_theta_domain": 4,
+ "theta_subsampled": false,
+ "scope": {
+  "palette": [
+   0,
+   1,
+   2
+  ],
+  "shapes": [
+   [
+    1,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    1
+   ],
+   [
+    2,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    3,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    3,
+    2
+   ]
+  ],
+  "binary_4x4": false,
+  "random_cases": 100,
+  "random_max_shape": [
+   20,
+   20
+  ]
+ },
+ "checks": {
+  "fwd_concrete": {
+   "cases": 1312,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "bwd": {
+   "cases": 1312,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "fwd_abstract": {
+   "cases": 76,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd": {
+   "cases": 4,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_bwd": {
+   "cases": 4,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  },
+  "random_fwd_abstract": {
+   "cases": 16,
+   "violations": 0,
+   "first_violations": [],
+   "timeouts": 0
+  }
+ },
+ "cpu_s": 0.67,
+ "verdict": "PASS",
+ "evidence": "EXHAUSTIVE_FINITE_SCOPE_PLUS_RANDOMIZED (not a general proof)"
+}

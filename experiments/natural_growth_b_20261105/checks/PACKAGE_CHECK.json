@@ -1,0 +1,119 @@
+{
+ "archive_bytes": 310205,
+ "archive_members": 100,
+ "archive_sha256_without_GO": "8c3d63e70c50738960f0a79eab6e329366f2dee0538d60bd5466f9b664437eb2",
+ "freeze_sha256": "9d9d2248c511ee8b729694e9c25231bdbfe26e0c10d3037f774d745ca83cfa21",
+ "modules_loaded_in_package": 43,
+ "ok": true,
+ "problems": [],
+ "required_files": 93,
+ "smoke": {
+  "arm_registries": {
+   "1d_arc/construct": 19,
+   "1d_arc/lib": 3,
+   "1d_arc/obj": 19,
+   "1d_arc/obj_shuf": 2,
+   "1d_arc/shuf": 3,
+   "concept_arc/construct": 2,
+   "concept_arc/lib": 5,
+   "concept_arc/obj": 2,
+   "concept_arc/obj_shuf": 2,
+   "concept_arc/shuf": 3,
+   "mini_arc/construct": 0,
+   "mini_arc/lib": 0,
+   "mini_arc/obj": 0,
+   "mini_arc/obj_shuf": 0,
+   "mini_arc/shuf": 0
+  },
+  "builder_calls": {
+   "1d_arc": {
+    "construct": {
+     "cpu_s": 0.169,
+     "fit": true,
+     "stage": "base"
+    },
+    "reuse": {
+     "cpu_s": 0.168,
+     "fit": true,
+     "stage": "base"
+    },
+    "task": "1d0001"
+   },
+   "concept_arc": {
+    "construct": {
+     "cpu_s": 3.801,
+     "fit": false,
+     "stage": "base"
+    },
+    "reuse": {
+     "cpu_s": 1.956,
+     "fit": false,
+     "stage": "base"
+    },
+    "task": "co0002"
+   },
+   "mini_arc": {
+    "construct": {
+     "cpu_s": 0.846,
+     "fit": false,
+     "stage": "base"
+    },
+    "reuse": {
+     "cpu_s": 0.624,
+     "fit": false,
+     "stage": "base"
+    },
+    "task": "mi0002"
+   }
+  },
+  "builder_module": "experiments/object_growth_20261105/objgrow/arm.py",
+  "freeze_check": "ok (110 files)",
+  "gate_without_go": "refused",
+  "grammar": {
+   "productions": 140,
+   "sorted_tags": true
+  },
+  "imports": {
+   "a2.bus": "ok",
+   "cgrow.controller": "ok",
+   "cgrow.search": "ok",
+   "cgrow.selfext_core": "ok",
+   "ngb.arc2": "ok",
+   "ngb.bench_probe": "ok",
+   "ngb.env": "ok",
+   "ngb.gate": "ok",
+   "ngb.held": "ok",
+   "ngb.object_arm": "ok",
+   "ngb.ops": "ok",
+   "ngb.phase2": "ok",
+   "ngb.score": "ok",
+   "ngrow.bench": "ok",
+   "ngrow.data": "ok",
+   "ngrow.plugin": "ok"
+  },
+  "library_bound_1d_arc": true,
+  "library_bound_concept_arc": true,
+  "library_bound_mini_arc": true,
+  "object_contract_available": true,
+  "object_registry_sizes": {
+   "1d_arc": 19,
+   "concept_arc": 2,
+   "mini_arc": 0
+  },
+  "ok": true,
+  "problems": [],
+  "returncode": 0,
+  "solution_files_in_package": [],
+  "source_costs": {
+   "1d_arc/construct": 10109.178,
+   "1d_arc/lib": 998.073,
+   "1d_arc/obj": 10109.178,
+   "concept_arc/construct": 6617.248,
+   "concept_arc/lib": 679.529,
+   "concept_arc/obj": 6617.248,
+   "mini_arc/construct": 1408.857,
+   "mini_arc/lib": 298.115,
+   "mini_arc/obj": 1408.857
+  }
+ }
+}

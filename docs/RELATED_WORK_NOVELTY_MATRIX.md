@@ -87,10 +87,9 @@ No level may be claimed from evidence belonging to a lower one.
   rather than a richer description. Imported as the CandidateFailureProbe:
   the held-out demonstration is the smallest legal internal probe, identical
   for both candidates, with a demonstration-visible comparison value.
-- From the counterfactual-intervention methodology (e.g. Anthropic's 2026
-  CHIVE work, VERIFY): infer relevance by intervening and observing a change
-  in behaviour, not by correlation. Imported as the swapped-identity and
-  replaced-frontier controls.
+- From the counterfactual-intervention methodology: infer relevance by
+  intervening and observing a change in behaviour, not by correlation.
+  Imported as the swapped-identity and replaced-frontier controls.
 
 ## Deadlines (official pages, per the author 2026-10-02)
 

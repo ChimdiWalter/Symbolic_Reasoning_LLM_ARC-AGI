@@ -1,0 +1,133 @@
+{
+ "study": "natural_growth_b_20261105",
+ "split": {
+  "file": "experiments/natural_growth_20261105/split/SPLIT.json",
+  "sha256": "0bce7bc1f6372e3fd44f97da64ecb3a70d2c36fe5d11bb623a0f42aed0d67e0d",
+  "note": "study A's split, reused: same source and held halves"
+ },
+ "g0": "A2 base grammar on the project's training-split arc-dsl solvers, nothing removed; digest 63215cce7d07fceba6bf6930cb20d02a438c1dc836683072d4153f1a23eaddaa",
+ "search": {
+  "base_budget_executions": 150000,
+  "base_cpu_cap_s": 20.0,
+  "attempts": 2,
+  "max_cost_level": 24,
+  "closure_cap": 400,
+  "discovery_factor": 4
+ },
+ "library": {
+  "candidates": "whole solution tree; grid-valued proper subtrees containing the input; one-integer-constant abstractions of each",
+  "added_cost": 3,
+  "added_charge": 1,
+  "parameter_values": [
+   -2,
+   -1,
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "gates": [
+   "novelty: no G0 program within 200,000 executions on 12 probe grids reproduces it at every defined parameter value",
+   "redundancy: behaviour on the probe grids and the sources' inputs differs from every promoted operation's",
+   "regression: every source task G0 solves at base keeps its fit and first prediction"
+  ],
+  "validation_required": false,
+  "combined_regression": "drop the most recent entry while G0 plus the library loses a fit or changes a first prediction on U"
+ },
+ "shuffled_library": "per benchmark, the first |L(b)| operations of the other benchmarks' libraries in sha256('shuffle:'+b+'|'+sid) order; shortfall recorded",
+ "object_growth": {
+  "folder": "experiments/object_growth_20261105",
+  "builder_freeze_sha256": "f6218c3eaca22e808870e8542eba48b82e74f0563f37cdbedc05097b1cefbd9e",
+  "builder_commit": "d5ac3f1d",
+  "module": "objgrow.arm",
+  "functions": {
+   "ops": "ops_from_registry",
+   "reuse": "reuse_answers",
+   "construction": "construction_answers"
+  },
+  "registries": {
+   "concept_arc": "experiments/object_growth_20261105/runs/v2/concept_arc/registry.json",
+   "mini_arc": "experiments/object_growth_20261105/runs/v2/mini_arc/registry.json",
+   "1d_arc": "experiments/object_growth_20261105/runs/v2/1d_arc/registry.json"
+  },
+  "cost": "per benchmark: study A's controller CPU on every source task (the holes) + the registry's construction_cpu_s + gate_cpu_s_distinct + combined_regression_cpu_s (builder-recorded), scaled by the kernel's speed factor",
+  "shuffled_registry": "the first |R(b)| operations of the other benchmarks' registries in sha256('obj-shuffle:'+b+'|'+sid) order; shortfall recorded",
+  "donor_demonstrations": "arm 8: the next held task in sha256('obj-donor:'+id) order from another family (Mini-ARC: the next task)",
+  "note": "filled by amendment 2: the builder's version-2 freeze (documentation-only contract amendment 1; code, registries and arm.py unchanged), 6 Nov 2026",
+  "builder_freeze_file": "FREEZE_V2.json",
+  "builder_prior_freezes": [
+   {
+    "path": "experiments/object_growth_20261105/FREEZE.json",
+    "sha256": "7b80302ef502acd795664d39a79781d6a3cdbb9e87a3ad8d4d8f59f630fd3de3"
+   }
+  ],
+  "contract_amendment": {
+   "path": "experiments/object_growth_20261105/CONTRACT_AMENDMENT_1.md",
+   "sha256": "d6181a1e682d0f1d29bb003d551193c5b635eaf6ababcb1359ee62f83251462a"
+  }
+ },
+ "arms_held": {
+  "1": "G0",
+  "2": "lib",
+  "3": "shuf",
+  "4a": "static_lib",
+  "4b": "static_obj",
+  "4c": "static_construct",
+  "5": "obj",
+  "6": "obj_shuf",
+  "7": "construct",
+  "8": "construct_shuf"
+ },
+ "static": {
+  "budget_executions": 1000000000,
+  "memory_limit_gb": 12,
+  "allowance": "per benchmark and matched arm: (the arm's source-half cost, Athe-measured, times the kernel's speed factor + the arm's held base-search CPU) / held tasks"
+ },
+ "arc_agi_2_check": {
+  "challenges": "outputs/score_first/data/arc-agi_evaluation_challenges.json",
+  "challenges_sha256": "e7c62a4bd211867c6b538f66b8013b81f299663c82ca062f49a52bf439d6e4e8",
+  "solutions": "outputs/score_first/data/arc-agi_evaluation_solutions.json",
+  "solutions_sha256": "84be4f4f39b79e82c36d565fc878830988b094917f052ee7069aef30b33ca8f1",
+  "tasks": 120,
+  "test_outputs": 172,
+  "arms": [
+   "G0",
+   "lib (union of the three libraries)",
+   "obj (reuse with the union of the three object registries)",
+   "construct (construction with that union)",
+   "static_lib",
+   "static_obj",
+   "static_construct"
+  ]
+ },
+ "primary_rule": "arm5_vs_arm4 (the builder's funnel reported promotions on ConceptARC and 1D-ARC before 6 Nov 12:00Z), else arm2_vs_arm1; the coordinator writes the applied rule as the GO's third line",
+ "analysis": {
+  "alpha": 0.05,
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 20261105,
+  "population": "all held tasks",
+  "clusters": "families (ConceptARC concepts, 1D-ARC types); Mini-ARC tasks are single-task clusters"
+ },
+ "cpu_speed": {
+  "bench": "experiments/natural_growth_20261105/ngrow/bench.py",
+  "bench_reference_cpu_s": 1.432,
+  "factor_clip": [
+   0.5,
+   2.0
+  ],
+  "scales": "the Athe-measured source-half costs inside the static allowances"
+ },
+ "phase2_cpu_ceiling_h": 30.0,
+ "python": {
+  "athe": "python3 (3.12.3)",
+  "flags": "-I",
+  "PYTHONHASHSEED": "0"
+ }
+}

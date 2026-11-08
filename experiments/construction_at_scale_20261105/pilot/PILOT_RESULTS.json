@@ -1,0 +1,1373 @@
+{
+ "finished_utc": "2026-11-05T22:25:46Z",
+ "pool": "pilot",
+ "pool_size": 100,
+ "quota": [
+  "T1",
+  "T2",
+  "T3"
+ ],
+ "started_utc": "2026-11-05T22:20:12Z",
+ "worlds": {
+  "W1": {
+   "controller": [
+    {
+     "base_level": 9,
+     "cpu_s": 2.74,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "upscale",
+     "n_sketches": 3,
+     "op": null,
+     "params": [
+      2
+     ],
+     "program": "upscale(I, TWO)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "cmirror"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "dmirror"
+      ]
+     ],
+     "source": "d13f3404",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 3.08,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "upscale",
+     "n_sketches": 3,
+     "op": "tophalf",
+     "params": [
+      3
+     ],
+     "program": "upscale(tophalf(I), THREE)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ]
+     ],
+     "source": "59341089",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 2.68,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "upscale",
+     "n_sketches": 3,
+     "op": "tophalf",
+     "params": [
+      3
+     ],
+     "program": "tophalf(upscale(I, THREE))",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ]
+     ],
+     "source": "7fe24cdd",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 2.94,
+     "decision": "CONTINUE_PROGRAM_SEARCH",
+     "deeper_fit": true,
+     "deeper_level": 11,
+     "family": "downscale",
+     "n_sketches": 3,
+     "op": null,
+     "params": [
+      2
+     ],
+     "program": "downscale(I, TWO)",
+     "sketch_forms": [
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "B(?(I))",
+       "rot90",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "c9e6f938",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 6.79,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "downscale",
+     "n_sketches": 3,
+     "op": "rot270",
+     "params": [
+      2
+     ],
+     "program": "downscale(rot270(I), TWO)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "rot270"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "94414823",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 4.96,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "downscale",
+     "n_sketches": 3,
+     "op": "vmirror",
+     "params": [
+      2
+     ],
+     "program": "vmirror(downscale(I, TWO))",
+     "sketch_forms": [
+      [
+       "B(?(I))",
+       "rot90",
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot90"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "d23f8c26",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 6.72,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "compress",
+     "n_sketches": 3,
+     "op": null,
+     "params": [],
+     "program": "compress(I)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "dmirror"
+      ],
+      [
+       "B(?(I))",
+       "cmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "2204b7a8",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 5.48,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "compress",
+     "n_sketches": 3,
+     "op": "rot90",
+     "params": [],
+     "program": "compress(rot90(I))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "rot90"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "321b1fc6",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 3.55,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "compress",
+     "n_sketches": 3,
+     "op": "vmirror",
+     "params": [],
+     "program": "vmirror(compress(I))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "B(?(I))",
+       "vmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "be03b35f",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 5.05,
+     "decision": "CONTINUE_PROGRAM_SEARCH",
+     "deeper_fit": true,
+     "deeper_level": 11,
+     "family": "trim",
+     "n_sketches": 3,
+     "op": null,
+     "params": [],
+     "program": "trim(I)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "B(?(I))",
+       "vmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "27a77e38",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 7.82,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "trim",
+     "n_sketches": 3,
+     "op": "bottomhalf",
+     "params": [],
+     "program": "trim(bottomhalf(I))",
+     "sketch_forms": [
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "137eaa0f",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 8.25,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "trim",
+     "n_sketches": 3,
+     "op": "rot90",
+     "params": [],
+     "program": "rot90(trim(I))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot90"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "29623171",
+     "template": "T3"
+    }
+   ],
+   "controller_cpu_s": 60.1,
+   "families": [
+    "upscale",
+    "downscale",
+    "compress",
+    "trim"
+   ],
+   "family_filter_cpu_s": {
+    "compress": 5.08,
+    "downscale": 11.0,
+    "trim": 6.71,
+    "upscale": 17.53
+   },
+   "filter_log": {
+    "by_slot": {
+     "compress:T1": {
+      "kept": 1,
+      "too_large": 2
+     },
+     "compress:T2": {
+      "kept": 1,
+      "too_large": 7,
+      "x_degenerate": 1
+     },
+     "compress:T3": {
+      "kept": 1,
+      "too_large": 4,
+      "x_degenerate": 1
+     },
+     "downscale:T1": {
+      "kept": 1,
+      "too_large": 2
+     },
+     "downscale:T2": {
+      "kept": 1,
+      "reference_misses": 7,
+      "too_large": 16
+     },
+     "downscale:T3": {
+      "kept": 1,
+      "too_large": 4
+     },
+     "trim:T1": {
+      "kept": 1,
+      "too_large": 2
+     },
+     "trim:T2": {
+      "does_not_run": 3,
+      "kept": 1,
+      "too_large": 3
+     },
+     "trim:T3": {
+      "kept": 1
+     },
+     "upscale:T1": {
+      "does_not_run": 7,
+      "kept": 1,
+      "too_large": 13
+     },
+     "upscale:T2": {
+      "does_not_run": 93,
+      "kept": 1,
+      "reference_misses": 10,
+      "too_large": 26
+     },
+     "upscale:T3": {
+      "does_not_run": 146,
+      "kept": 1,
+      "reference_misses": 11,
+      "too_large": 44
+     }
+    },
+    "candidates": 414,
+    "cpu_s": 40.3,
+    "filtered": {
+     "does_not_run": 249,
+     "kept": 12,
+     "reference_misses": 28,
+     "too_large": 123,
+     "x_degenerate": 2
+    },
+    "searches": 52,
+    "unfilled": []
+   },
+   "generation_process_cpu_s": 41.5,
+   "invent_share": 0.833,
+   "kept": 12,
+   "removed": [
+    "compress",
+    "downscale",
+    "trim",
+    "upscale"
+   ],
+   "unary_ops": [
+    "hmirror",
+    "vmirror",
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot180",
+    "rot270",
+    "tophalf",
+    "bottomhalf",
+    "lefthalf",
+    "righthalf"
+   ]
+  },
+  "W2": {
+   "controller": [
+    {
+     "base_level": 9,
+     "cpu_s": 3.84,
+     "decision": "CONTINUE_PROGRAM_SEARCH",
+     "deeper_fit": true,
+     "deeper_level": 11,
+     "family": "dmirror",
+     "n_sketches": 3,
+     "op": null,
+     "params": [],
+     "program": "dmirror(I)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot180"
+      ],
+      [
+       "B(?(I))",
+       "rot180",
+       null
+      ]
+     ],
+     "source": "62c24649",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 2.96,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "dmirror",
+     "n_sketches": 3,
+     "op": "trim",
+     "params": [],
+     "program": "dmirror(trim(I))",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ]
+     ],
+     "source": "a9f96cdd",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 4.61,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "dmirror",
+     "n_sketches": 3,
+     "op": "rot180",
+     "params": [],
+     "program": "rot180(dmirror(I))",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot180"
+      ],
+      [
+       "B(?(I))",
+       "rot180",
+       null
+      ]
+     ],
+     "source": "8fff9e47",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 6.2,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "cmirror",
+     "n_sketches": 3,
+     "op": null,
+     "params": [],
+     "program": "cmirror(I)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "rot180"
+      ],
+      [
+       "B(?(I))",
+       "rot180",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "75b8110e",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 6.09,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "cmirror",
+     "n_sketches": 3,
+     "op": "tophalf",
+     "params": [],
+     "program": "cmirror(tophalf(I))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "B(?(I))",
+       "vmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "321b1fc6",
+     "template": "T2"
+    },
+    {
+     "base_level": 10,
+     "cpu_s": 5.96,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "cmirror",
+     "n_sketches": 3,
+     "op": "tophalf",
+     "params": [],
+     "program": "tophalf(cmirror(I))",
+     "sketch_forms": [
+      [
+       "B(?(I))",
+       "rot180",
+       null
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "f0100645",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 7.69,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "rot90",
+     "n_sketches": 3,
+     "op": null,
+     "params": [],
+     "program": "rot90(I)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "2a28add5",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 4.5,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "rot90",
+     "n_sketches": 3,
+     "op": "vmirror",
+     "params": [],
+     "program": "rot90(vmirror(I))",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot180"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ]
+     ],
+     "source": "94f9d214",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 8.02,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "rot90",
+     "n_sketches": 3,
+     "op": "trim",
+     "params": [],
+     "program": "trim(rot90(I))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "29623171",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 3.23,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "rot270",
+     "n_sketches": 3,
+     "op": null,
+     "params": [],
+     "program": "rot270(I)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "7fe24cdd",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 4.39,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "rot270",
+     "n_sketches": 3,
+     "op": "trim",
+     "params": [],
+     "program": "rot270(trim(I))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "vmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "3b4c2228",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 5.41,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "rot270",
+     "n_sketches": 3,
+     "op": "righthalf",
+     "params": [],
+     "program": "righthalf(rot270(I))",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "B(?(I))",
+       "vmirror",
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot180"
+      ]
+     ],
+     "source": "9344f635",
+     "template": "T3"
+    }
+   ],
+   "controller_cpu_s": 62.9,
+   "families": [
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot270"
+   ],
+   "family_filter_cpu_s": {
+    "cmirror": 6.38,
+    "dmirror": 3.97,
+    "rot270": 4.67,
+    "rot90": 5.76
+   },
+   "filter_log": {
+    "by_slot": {
+     "cmirror:T1": {
+      "kept": 1,
+      "too_large": 2
+     },
+     "cmirror:T2": {
+      "kept": 1
+     },
+     "cmirror:T3": {
+      "kept": 1
+     },
+     "dmirror:T1": {
+      "kept": 1
+     },
+     "dmirror:T2": {
+      "kept": 1,
+      "too_large": 6
+     },
+     "dmirror:T3": {
+      "kept": 1
+     },
+     "rot270:T1": {
+      "kept": 1,
+      "too_large": 2
+     },
+     "rot270:T2": {
+      "kept": 1
+     },
+     "rot270:T3": {
+      "kept": 1
+     },
+     "rot90:T1": {
+      "kept": 1
+     },
+     "rot90:T2": {
+      "kept": 1,
+      "too_large": 2
+     },
+     "rot90:T3": {
+      "kept": 1,
+      "too_large": 5
+     }
+    },
+    "candidates": 29,
+    "cpu_s": 20.8,
+    "filtered": {
+     "kept": 12,
+     "too_large": 17
+    },
+    "searches": 24,
+    "unfilled": []
+   },
+   "generation_process_cpu_s": 21.5,
+   "invent_share": 0.917,
+   "kept": 12,
+   "removed": [
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot270"
+   ],
+   "unary_ops": [
+    "hmirror",
+    "vmirror",
+    "rot180",
+    "tophalf",
+    "bottomhalf",
+    "lefthalf",
+    "righthalf",
+    "compress",
+    "trim"
+   ]
+  },
+  "W3": {
+   "controller": [
+    {
+     "base_level": 9,
+     "cpu_s": 3.1,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "vupscale",
+     "n_sketches": 3,
+     "op": null,
+     "params": [
+      3
+     ],
+     "program": "vupscale(I, THREE)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ]
+     ],
+     "source": "c9e6f938",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 3.26,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "vupscale",
+     "n_sketches": 3,
+     "op": "vmirror",
+     "params": [
+      3
+     ],
+     "program": "vupscale(vmirror(I), THREE)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "vmirror"
+      ],
+      [
+       "B(?(I))",
+       "vmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "7fe24cdd",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 5.12,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "vupscale",
+     "n_sketches": 3,
+     "op": "compress",
+     "params": [
+      3
+     ],
+     "program": "compress(vupscale(I, THREE))",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "cmirror"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "dmirror"
+      ]
+     ],
+     "source": "8403a5d5",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 3.8,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "hupscale",
+     "n_sketches": 3,
+     "op": null,
+     "params": [
+      2
+     ],
+     "program": "hupscale(I, TWO)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "cmirror"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ]
+     ],
+     "source": "8fff9e47",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 4.39,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "hupscale",
+     "n_sketches": 3,
+     "op": "tophalf",
+     "params": [
+      2
+     ],
+     "program": "hupscale(tophalf(I), TWO)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "B(?(I))",
+       "cmirror",
+       null
+      ],
+      [
+       "B(?(I))",
+       "rot180",
+       null
+      ]
+     ],
+     "source": "ff28f65a",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 4.07,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "hupscale",
+     "n_sketches": 3,
+     "op": "hmirror",
+     "params": [
+      2
+     ],
+     "program": "hmirror(hupscale(I, TWO))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "hmirror"
+      ],
+      [
+       "B(?(I))",
+       "hmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "94f9d214",
+     "template": "T3"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 3.88,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "switch",
+     "n_sketches": 3,
+     "op": null,
+     "params": [
+      0,
+      2
+     ],
+     "program": "switch(I, ZERO, TWO)",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "dmirror"
+      ],
+      [
+       "B(?(I))",
+       "dmirror",
+       null
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "d90796e8",
+     "template": "T1"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 5.54,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "switch",
+     "n_sketches": 3,
+     "op": "compress",
+     "params": [
+      0,
+      9
+     ],
+     "program": "switch(compress(I), ZERO, NINE)",
+     "sketch_forms": [
+      [
+       "?(I)",
+       null,
+       null
+      ],
+      [
+       "?(A(I))",
+       null,
+       "cmirror"
+      ],
+      [
+       "B(?(I))",
+       "cmirror",
+       null
+      ]
+     ],
+     "source": "75b8110e",
+     "template": "T2"
+    },
+    {
+     "base_level": 9,
+     "cpu_s": 8.74,
+     "decision": "INVENT_NEW_OPERATION",
+     "deeper_fit": false,
+     "deeper_level": 11,
+     "family": "switch",
+     "n_sketches": 3,
+     "op": "compress",
+     "params": [
+      0,
+      8
+     ],
+     "program": "compress(switch(I, ZERO, EIGHT))",
+     "sketch_forms": [
+      [
+       "?(A(I))",
+       null,
+       "rot270"
+      ],
+      [
+       "?(A(I))",
+       null,
+       "rot90"
+      ],
+      [
+       "?(I)",
+       null,
+       null
+      ]
+     ],
+     "source": "7e02026e",
+     "template": "T3"
+    }
+   ],
+   "controller_cpu_s": 41.9,
+   "families": [
+    "vupscale",
+    "hupscale",
+    "switch"
+   ],
+   "family_filter_cpu_s": {
+    "hupscale": 41.78,
+    "switch": 48.61,
+    "vupscale": 12.52
+   },
+   "filter_log": {
+    "by_slot": {
+     "hupscale:T1": {
+      "kept": 1,
+      "too_large": 1
+     },
+     "hupscale:T2": {
+      "does_not_run": 44,
+      "kept": 1,
+      "reference_misses": 20,
+      "too_large": 56
+     },
+     "hupscale:T3": {
+      "does_not_run": 64,
+      "g0_fits": 1,
+      "kept": 1,
+      "reference_misses": 11,
+      "too_large": 55
+     },
+     "switch:T1": {
+      "kept": 1,
+      "reference_misses": 2,
+      "too_large": 6
+     },
+     "switch:T2": {
+      "kept": 1,
+      "reference_misses": 26,
+      "too_large": 48
+     },
+     "switch:T3": {
+      "does_not_run": 1,
+      "kept": 1,
+      "reference_misses": 5,
+      "too_large": 14,
+      "trivial_outputs": 1
+     },
+     "vupscale:T1": {
+      "does_not_run": 1,
+      "kept": 1
+     },
+     "vupscale:T2": {
+      "does_not_run": 18,
+      "kept": 1,
+      "too_large": 10
+     },
+     "vupscale:T3": {
+      "does_not_run": 202,
+      "kept": 1,
+      "reference_misses": 13,
+      "too_large": 79,
+      "trivial_outputs": 1
+     }
+    },
+    "candidates": 688,
+    "cpu_s": 102.9,
+    "filtered": {
+     "does_not_run": 330,
+     "g0_fits": 1,
+     "kept": 9,
+     "reference_misses": 77,
+     "too_large": 269,
+     "trivial_outputs": 2
+    },
+    "searches": 97,
+    "unfilled": []
+   },
+   "generation_process_cpu_s": 105.4,
+   "invent_share": 1.0,
+   "kept": 9,
+   "removed": [
+    "hupscale",
+    "vupscale",
+    "switch"
+   ],
+   "unary_ops": [
+    "hmirror",
+    "vmirror",
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot180",
+    "rot270",
+    "tophalf",
+    "bottomhalf",
+    "lefthalf",
+    "righthalf",
+    "compress",
+    "trim"
+   ]
+  }
+ }
+}
