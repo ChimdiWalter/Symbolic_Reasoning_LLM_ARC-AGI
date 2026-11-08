@@ -1,0 +1,64 @@
+{
+  "schema": "independent_safe_addendum_review_v2",
+  "author": "Chimdi Walter Ndubuisi",
+  "reviewed_utc": "2026-11-08T12:54:45.790984+00:00",
+  "status": "PASS_FOR_COUNT_ONLY_ADDENDUM_WITH_EXPLICIT_LIMITATIONS",
+  "manifest_sha256": "d5181054c148d2001ed484a88d7bc3a917e084c58fe73b5abc1da3307d498cc8",
+  "payload_files_verified": 9,
+  "payload_sha256": {
+    "ADDENDUM.json": "827c9282c712f4b071ea3332ae07aa38a36a9ea164cd9d057f378802e2e2e35f",
+    "ADDENDUM_PROVENANCE.json": "ad50564b8d40dac98b4c1558610f8fc4fcd4051d7b29001ee997ba13cc31e184",
+    "COVERAGE.json": "80f22001611611287c264ffcc07a357607d5fd109cc0dfb8a27009a9f1baebc2",
+    "REQUEST_MAP_EXTRACT.json": "53f0d81ec53d80f6597d41e34e41cc4ce30fd37899618e197e052fe6e35e9d7f",
+    "README.md": "4e609b3589c84da611304d62dd8f1517d7b0ad5cc717c7a2ec0a4584b2268757",
+    "ARC_FREEZE_CANDIDATE.json": "37fc1cebff0d4c6d6f566ba7581d12b796d4823d5f67133543b4788fadfb45b4",
+    "ARC_FREEZE_PROVENANCE.json": "9b4ad350ce98fb363c29b86ce35480b574aafc77e1669287d20d2137e449dd01",
+    "BIOLOGY_CANDIDATE.json": "6ad981431afcbb262eb8993e2e3830817148b33fcc3bf8fb20da5ff4f4e64ad1",
+    "BIOLOGY_PROVENANCE.json": "c49b6e1b248a463a0da81baad8c53ea6afc01afcf555e3d626ca4febd200385a"
+  },
+  "request_coverage": {
+    "claim_groups": 17,
+    "requested_occurrences": 56,
+    "current_direct_gap_occurrences_verified": 54,
+    "historical_requested_supplements": 2,
+    "current_csv_rows": 862,
+    "current_csv_sha256": "7b147ec11efc5ae5372ab2d03cf9c65a37d712e96132cea97366cf4d66faeaa9",
+    "historical_complete_csv_reverified": false,
+    "occurrence_comparison": "Full multiset; repeated manuscript row labels are preserved."
+  },
+  "batch_evidence": {
+    "arc_and_freeze_claims": 11,
+    "biology_claims": 6,
+    "biology_numeric_count_leaves": 23,
+    "biology_primary_count_bindings": 23,
+    "biology_supplementary_definition_bindings": 2,
+    "actual_freeze_files_hashed_opaquely": 3,
+    "freeze_ids_prose_reported_only": 2
+  },
+  "validation_check_count": 2535,
+  "checks_note": "Count includes repetitive schema, source/address, field, hash and occurrence assertions; these are documentation checks, not scientific tests.",
+  "qualifications": [
+    "54 direct current-gap occurrences plus2 explicitly historical requested supplements; not56 current CSV gaps and not recertification of REG1205.",
+    "The original complete historical CSV was not copied; only its old hash/extract were retained. Earlier later-file comparisons cannot establish an extraction rewrite.",
+    "One state-to-binary-update example is a qualified observation-unit definition, not proof of a whole-network transition or measured biological discovery.",
+    "Strict microscopy zero is an edit count with an unspecified opportunity denominator.",
+    "Spatial neighbor-only positive counts remain a predeclared ablation, with one correlated exposed donor, failed primary and no matched neighbor-only shuffled counterpart.",
+    "Ordering retains all comparators and negative corrected conclusion. Public ARC construction is exposed and inconclusive, not an official Kaggle gain.",
+    "BIO/VOTE freeze identities and biology underlying artifact identifiers remain prose-reported; opaque source-freeze hashes alone do not validate science or full reproducibility.",
+    "Old batch map hashes are historical request context, not present frozen scientific evidence.",
+    "This audit authorizes no publication, push, manuscript change, new experiment or scoring."
+  ],
+  "scope": {
+    "raw_or_private_scientific_rows_read": false,
+    "program_or_solver_execution": false,
+    "model_or_inference": false,
+    "scoring_or_replay": false,
+    "actual_go_or_grant_read": false,
+    "source_or_candidate_modified": false
+  },
+  "preparation_correction": "An early metadata check assumed globally unique row labels and stopped; a later comparison used live CSV bytes without revalidating their hash and exposed map drift. The unsupported extraction-rewrite attribution was explicitly withdrawn. The final review parses and hashes the same refreshed CSV bytes, uses full occurrence multisets and verifies the preserved history. No scientific source or result changed.",
+  "audit_cost_scope": "This successful final safe-payload/source-hash/line/multiset validation and certificate assembly before serialization only. Excludes earlier reading, tools, stopped metadata checks and the separately saved biology batch check; not project compute.",
+  "cpu_seconds_before_serialization": 0.048203918,
+  "wall_seconds_before_serialization": 0.07783483306411654,
+  "gpu_seconds": 0
+}
