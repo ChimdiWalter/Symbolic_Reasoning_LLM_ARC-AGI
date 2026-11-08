@@ -1,25 +1,40 @@
 Licences
 
-Released by the author, Chimdi Walter Ndubuisi, for the two submitted ARC Prize 2026 entries in `kaggle_entries/`, the front page `README.md` and the results page `docs/RESULTS.md`:
+Copyright 2026 Chimdi Walter Ndubuisi.
 
-- Code (.py files, the notebooks and the code embedded in them): MIT No Attribution (MIT-0), the text in
-  `kaggle_entries/LICENSE-MIT-0.txt`.
-- Text and data (.md, .json and .txt files): CC0 1.0 Universal, the text in `kaggle_entries/LICENSE-CC0-1.0.txt`.
-- Images in `docs/img/`: each keeps the licence listed in `docs/img/LICENSES.md`; our own drawing
-  `pipeline.svg` is CC0 1.0.
+The author's own work in this repository is released under two licences:
 
-Third-party components that the entries load at run time (the model checkpoint, the peft library and
-the packages of Kaggle's image) are not part of this repository and keep their own licences; see
-`kaggle_entries/README.md`. Some executed files carry notes written before this release (for example
-`r29_cpu_package_20261101/LICENSE_STATUS.md`); they are kept byte for byte, and this notice applies.
+- Code: the MIT License, whose text is in `LICENSE-MIT.txt`. Code means .py, .sh, .el and .ipynb files, and code
+  embedded in notebooks.
+- Documents and records: Creative Commons Attribution 4.0 International (CC BY 4.0), whose text is in
+  `LICENSE-CC-BY-4.0.txt`. Documents and records means protocols, amendments, freeze records, manifests, reports,
+  reviews, audits, result files, tables, papers, and the figures the author drew from recorded results: .md, .json,
+  .jsonl, .txt, .csv, .org, .tex, .pdf, .png and .svg files.
 
-The two files in `kaggle_entries/expected_predictions/` hold answer grids only:
-- Their right answers (44 distinct test outputs: 43 in the file of H, the neural entry with CORA on
-  attempt 2 (submission 57867631), and 3 in the file of O+ v2, the CORA-only entry (submission 57902131)) are
-  public ARC-AGI-2 evaluation answers. The test inputs that fallback attempts copy come from the same
-  public evaluation puzzles. Both are published by ARC Prize in https://github.com/arcprize/ARC-AGI-2
-  (Copyright 2019 ARC Prize Foundation) under the Apache License 2.0, whose text is in
-  `kaggle_entries/LICENSE-APACHE-2.0.txt`. Those grids keep that licence; this notice does not relicense them.
-- H's grids are outputs of the third-party checkpoint, produced by the code in `kaggle_entries/`.
+To credit this work under CC BY 4.0, cite: Chimdi Walter Ndubuisi, CORA (ARC Prize 2026),
+https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI.
 
-Other files outside `kaggle_entries/` are not covered by this notice.
+The grants above cover what the author wrote. They do not cover the following, which keep their own terms:
+
+1. The two submitted Kaggle entries in `kaggle_entries/`. They were released on 2 November 2026 under MIT No
+   Attribution for code and CC0 1.0 for text and data, with the texts in `kaggle_entries/`. Those grants stand.
+2. ARC-AGI-2 grids, wherever they appear. Examples are the answer grids in `kaggle_entries/expected_predictions/` and
+   the training tasks in some development files. They are published by ARC Prize (Copyright 2019 ARC Prize
+   Foundation) under the Apache License 2.0, whose text is in `kaggle_entries/LICENSE-APACHE-2.0.txt`.
+3. The outside benchmarks: 1D-ARC (MIT), Mini-ARC (Apache 2.0) and ConceptARC (MIT). Their files are not
+   redistributed here. `experiments/universality_similar_problems_20261102/scripts/download_benchmarks.py` fetches them
+   from their authors' repositories, under the authors' own terms, at the commits recorded in that study's
+   `DATA_MANIFEST.json`. The manifest also records each benchmark's licence.
+4. Images made from public datasets, in `docs/img/`. Each keeps the licence listed in `docs/img/LICENSES.md`.
+5. NVARC, the ARC Prize 2025 method of Ivan Sorokin and Jean-François Puget. The builder scripts in `kaggle/neural_v1/`
+   and `kaggle/neural_v1_smoke/` contain short excerpts of NVARC's notebook, used as patch anchors. Those excerpts are
+   NVARC's work; see `kaggle/NVARC_NOTICE.md`.
+6. Third-party components that the entries load at run time: the model checkpoint, the peft library and the packages
+   of Kaggle's image. They are not part of this repository; see `kaggle_entries/README.md`.
+
+Some files carry notes on licences or provenance that were written before this notice, for example
+`r29_cpu_package_20261101/LICENSE_STATUS.md`. They are kept byte for byte, and this notice applies to the author's
+work in them.
+
+No full third-party review has been made of the files published before 8 November 2026. If one of them is not the
+author's own work, this notice does not cover it.

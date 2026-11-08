@@ -1,0 +1,23 @@
+# Sanitised public copies, stage 2 (licences; the final paper PDFs and Writeup follow after their review)
+
+These files are published as copies. Their originals, which ran and which the freeze records hash,
+stay unchanged in the author's private repository. Each copy differs from its original only in the
+replacements listed: private absolute folders, private Python environments and tools, temporary and
+job folders, the companion study's folder names and a reserved data folder's name. A copy marked
+'wording' also has the standard wording neutralization of this branch's text files. No other byte
+differs. The same map is in
+`SANITISED_COPIES.json`, and `MANIFEST.json` gives the sha256 of every file this release adds or
+replaces.
+
+| file | sha256 of the original | sha256 of the public copy | what was replaced |
+|---|---|---|---|
+| `experiments/architecture_sweep_20261026/a2/arcdsl.py` | `43af5635400a80ddfc420ddfb9ff7868321f3f8a7f560057ac779c1a91267f0a` | `2204c998b6ffa2ee84327e1b6ae110f34f04a52d9ccf2efd4f711fcc498a7880` | the repository's absolute folder on the study machine (now `/path/to/repository`, 1x) |
+| `experiments/architecture_sweep_20261026/a2/run_a2.py` | `e9e7c7ccb9af437dd7cec20db23c479196aa7f0f26a1b187049cb028414293df` | `1b0562c3367fc7421090fece8f25440f3fdad825ef1235421715a541578d45e3` | the interpreter of another private Python environment, by absolute path (now `python3`, 1x) |
+| `experiments/architecture_sweep_20261026/a2/score.py` | `1cafb56bd213a17b866e60fb9a984720712be3a1bc50d9a93f114e38b5c1fd13` | `e1dd3ac3051f367ec1aa498d29c780a222b94136022177e4813f28901eb09a24` | the interpreter of another private Python environment, by absolute path (now `python3`, 1x) |
+| `experiments/architecture_sweep_20261026/harness/paths.py` | `8bd0bd31eba2f6320ba28450a4932d9605a54876a766c6dd158f013a9b8aacdb` | `c856480e4ef9ac66cdb505c9589fee851e013fc14c1277966c26d9231c75d53e` | the repository's absolute folder on the study machine (now `/path/to/repository`, 1x); the interpreter of another private Python environment, by absolute path (now `python3`, 1x); another project's job folder under /tmp, in guard lists (now `/tmp/reserved`, 1x); the folder that holds the ARC-AGI-2 files on the study machine (now `<ARC data folder>`, 1x) |
+| `experiments/capability_growth_20261027/cgrow/paths.py` | `0ad875c06fbaa830bde0ce8fd8a85bfaff09dc3b5526782691f1c8e674659114` | `e71d5a4f2c372e4719debb1949f56873ef88fa6971eb57f60facda535b37ba95` | the repository's absolute folder on the study machine (now `/path/to/repository`, 1x); the interpreter of the study's private Python environment, by absolute path (now `python3`, 1x); the interpreter of another private Python environment, by absolute path (now `python3`, 1x); another project's job folder under /tmp, in guard lists (now `/tmp/reserved`, 1x); the name of a reserved private data folder, in guard lists (now `/reserved(/|$)`, 1x) |
+| `experiments/natural_growth_20261105/ngrow/env.py` | `425dc793916c75b4a5ac49a46660e41b20e0477a02d9c06171ea635160c82248` | `6060a75d4a334a769e9ca29bc52ff9a9cb477a6c78b2daae743f47d7725a0847` | the repository's absolute folder on the study machine (now `/path/to/repository`, 1x); the benchmark data folder on the study machine (now `/path/to/benchmark_data`, 1x); the companion study's folder (now `<companion study folder>`, 1x); another project's job folder under /tmp, in guard lists (now `/tmp/reserved`, 1x); the name of a reserved private data folder, in guard lists (now `/reserved(/|$)`, 1x) |
+| `experiments/natural_growth_20261105/ngrow/freeze.py` | `46393db0fa8c37daeb318ebb44a690b0dbe09ae6de3bf49ad34cf628aa708340` | `51fee011c572fbc870183d35943004eb0e8fc719d0ef1c89520c98ab102fa8ff` | the benchmark data folder on the study machine (now `/path/to/benchmark_data`, 1x) |
+| `experiments/natural_growth_20261105/ngrow/kaggle_build.py` | `c4585d3cf684c4184a468a5688ca667faf6031a879508141a5e7dd64f69f9fb4` | `65d7d54f1726f849293b97803c5b2f52eba9c95b7d88ad9277931eeea7cd9ea8` | the benchmark data folder on the study machine (now `/path/to/benchmark_data`, 1x) |
+| `kaggle/hybrid_2026/llm_writer/search/prolog.py` | `43004d57443a6dbab3730f76711aaebff988e48d24c65a1d7ce8bc9fc50d4ef6` | `83a9bd155715139ac4da01034af1d993dc3694b0b3ea924ccd478a846a14963a` | the private install of SWI-Prolog (now `swipl`, 1x) |
+| `experiments/construction_at_scale_20261105/checks/strict_fixture.py` | `6e534577bf4c851b50113fec50e53b2168f3a29f89306bf8cd6fb307fc222cb3` | `a19f1a3f13e3bf0381dc745357e71167e2b7bab908601bcf244e2e27eb4184c2` | the interpreter of another private Python environment, by absolute path (now `python3`, 1x) |
