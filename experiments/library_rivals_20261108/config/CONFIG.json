@@ -1,0 +1,93 @@
+{
+ "budget_executions": 150000,
+ "cpu_safety_cap_s": 120.0,
+ "want_attempts": 2,
+ "added_cost": 3,
+ "arms": [
+  "G0",
+  "failure_kept",
+  "compression",
+  "random_1",
+  "random_2"
+ ],
+ "primary": [
+  "failure_kept",
+  "compression",
+  "all held tasks"
+ ],
+ "secondaries": [
+  [
+   "S1_failure_kept_vs_random_1",
+   "failure_kept",
+   "random_1",
+   "held"
+  ],
+  [
+   "S2_failure_kept_vs_random_2",
+   "failure_kept",
+   "random_2",
+   "held"
+  ],
+  [
+   "S3_concept_arc_failure_kept_vs_compression",
+   "failure_kept",
+   "compression",
+   "concept_arc"
+  ],
+  [
+   "S4_mini_arc_failure_kept_vs_compression",
+   "failure_kept",
+   "compression",
+   "mini_arc"
+  ],
+  [
+   "S5_1d_arc_failure_kept_vs_compression",
+   "failure_kept",
+   "compression",
+   "1d_arc"
+  ]
+ ],
+ "descriptive": [
+  [
+   "failure_kept",
+   "G0"
+  ],
+  [
+   "compression",
+   "G0"
+  ],
+  [
+   "random_1",
+   "G0"
+  ],
+  [
+   "random_2",
+   "G0"
+  ],
+  [
+   "compression",
+   "random_1"
+  ]
+ ],
+ "alpha": 0.05,
+ "scorer_only_sha256_from_study_b_freeze_9d9d2248": {
+  "1d_arc/solutions_scorer_only/solutions.json": "a5e06a271fbbec4ec977685f7be77c5e9f200b89be1c61455f6b505ea2ca0e6f",
+  "concept_arc/solutions_scorer_only/solutions.json": "bd89a9a43612f94e44c82146067457c0dc5f6d6734ebdd90a2416d807e13fa8e",
+  "mini_arc/solutions_scorer_only/solutions.json": "6d03f96287975176b61819021daf4fe6a1c2501b1a7a8ef4d6d2b68ec6de5767"
+ },
+ "study_b_object_reuse_rows": {
+  "concept_arc": {
+   "path": "<companion runtime folder>/experiments/natural_growth_b_20261105/runs/A/held/concept_arc/obj.jsonl",
+   "sha256": "f47436f2e29c3037ca7ce5e2198bb61b0b3c5739eedf4418c577f399a39ce21f"
+  },
+  "mini_arc": {
+   "path": "<companion runtime folder>/experiments/natural_growth_b_20261105/runs/A/held/mini_arc/obj.jsonl",
+   "sha256": "9eb5fdf13daf0500f6385e1224116a3ffa9c3af3908f5b9a5ea0069f2ab0d243"
+  },
+  "1d_arc": {
+   "path": "<companion runtime folder>/experiments/natural_growth_b_20261105/runs/B/held/1d_arc/obj.jsonl",
+   "sha256": "ed7ac172ffb2f87a2b37e664a6ccadff2ce6cf58f8e7688d52ff3fbd9a467979"
+  }
+ },
+ "study_b_object_reuse_note": "study B held run (local takeover, GO 9ca6e0a8...): the object-reuse rows, predictions only; digests from that run's output manifests; read after the seal for a descriptive agreement count"
+}

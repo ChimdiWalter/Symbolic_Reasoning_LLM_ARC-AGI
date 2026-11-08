@@ -1,0 +1,125 @@
+{
+ "C_replay_equals_committed_C": true,
+ "C_static_order": "construct/search/view",
+ "best_fixed_order_correct": 44,
+ "best_fixed_orders": [
+  "construct/view/search"
+ ],
+ "budget_calls": 3000000,
+ "committed_at_T_STAR": {
+  "C": 29,
+  "F": 55,
+  "H": 55
+ },
+ "fixed_orders": {
+  "construct/search/view": {
+   "F_against_this_order": {
+    "family_ci95": [
+     0.1183,
+     0.5522
+    ],
+    "mcnemar_p": 2.9802322387695312e-08,
+    "only_F": 26,
+    "only_O": 0
+   },
+   "by_cause": {
+    "operation": 10,
+    "search": 17,
+    "view": 2
+   },
+   "correct": 29
+  },
+  "construct/view/search": {
+   "F_against_this_order": {
+    "family_ci95": [
+     0.0,
+     0.2614
+    ],
+    "mcnemar_p": 0.0009765625,
+    "only_F": 11,
+    "only_O": 0
+   },
+   "by_cause": {
+    "operation": 10,
+    "search": 6,
+    "view": 28
+   },
+   "correct": 44
+  },
+  "search/construct/view": {
+   "F_against_this_order": {
+    "family_ci95": [
+     0.1579,
+     0.6167
+    ],
+    "mcnemar_p": 7.84157236921601e-07,
+    "only_F": 36,
+    "only_O": 5
+   },
+   "by_cause": {
+    "operation": 5,
+    "search": 17,
+    "view": 2
+   },
+   "correct": 24
+  },
+  "search/view/construct": {
+   "F_against_this_order": {
+    "family_ci95": [
+     0.1579,
+     0.6167
+    ],
+    "mcnemar_p": 7.84157236921601e-07,
+    "only_F": 36,
+    "only_O": 5
+   },
+   "by_cause": {
+    "operation": 5,
+    "search": 17,
+    "view": 2
+   },
+   "correct": 24
+  },
+  "view/construct/search": {
+   "F_against_this_order": {
+    "family_ci95": [
+     0.0429,
+     0.3418
+    ],
+    "mcnemar_p": 0.0009105205535888672,
+    "only_F": 21,
+    "only_O": 4
+   },
+   "by_cause": {
+    "operation": 4,
+    "search": 6,
+    "view": 28
+   },
+   "correct": 38
+  },
+  "view/search/construct": {
+   "F_against_this_order": {
+    "family_ci95": [
+     0.0429,
+     0.3418
+    ],
+    "mcnemar_p": 0.0009105205535888672,
+    "only_F": 21,
+    "only_O": 4
+   },
+   "by_cause": {
+    "operation": 4,
+    "search": 6,
+    "view": 28
+   },
+   "correct": 38
+  }
+ },
+ "note": "descriptive only (PROTOCOL.md section 7); not part of the decision rule",
+ "tasks": 84,
+ "tasks_by_cause": {
+  "operation": 32,
+  "search": 24,
+  "view": 28
+ }
+}

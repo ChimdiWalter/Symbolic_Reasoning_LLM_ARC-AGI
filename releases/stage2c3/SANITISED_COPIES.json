@@ -1,0 +1,199 @@
+{
+ "note": "Sanitised public copies. Each original stays unchanged in the author's private repository; its sha256 is the one the freeze records cite. A public copy differs from its original only in what its entry lists: replacements of private folder names, environment names and paths; one whole line (the entry with a line number) rewritten as a general description, with the line count unchanged, where it quoted an instruction; and, where wording_neutralized is true, the standard wording neutralization of this branch's text files.",
+ "copies": [
+  {
+   "path": "experiments/failure_choice_r2_20261108/FREEZE.json",
+   "original_sha256": "fae62f8842bebc68baee8927051bcceb89fb75bef30ac7a3715df7fb7ee53e92",
+   "public_sha256": "464075a3c596e2579bd5068de1437611999cbebce81ed612531be06208e6791a",
+   "changes": [
+    {
+     "what": "the folder that holds the ARC-AGI-2 files on the study machine",
+     "now": "<ARC data folder>/",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/failure_choice_r2_20261108/fgc/freeze.py",
+   "original_sha256": "66b8422de030202dd7debb0821125c3a21ac378ef772e74ea90a64e3410b9ff2",
+   "public_sha256": "ae090ed80f1f6186d841f23dc33172608682d1cce025c09fdb5fc233471fb04d",
+   "changes": [
+    {
+     "what": "the folder that holds the ARC-AGI-2 files on the study machine",
+     "now": "<ARC data folder>/",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/failure_choice_r2_20261108/fgc/kaggle_build.py",
+   "original_sha256": "28b668fdcf9df4c843be3cfd93f58b8296cebefd2479f93a7b5db3d1c7c1fc01",
+   "public_sha256": "6896b58e340e7306dbf2af2d2ca7e4fd6e76ffd3ad119c90080b3bb5f9a31523",
+   "changes": [
+    {
+     "what": "the folder that holds the ARC-AGI-2 files on the study machine",
+     "now": "<ARC data folder>/",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/failure_choice_r2_20261108/launch/poll_kaggle.sh",
+   "original_sha256": "e7912643b18a47bc6fb650c3629adf5452aa556626dc49655b8b17b1c45eef62",
+   "public_sha256": "8fb6d560b5ffa6e682f97af178e78837a09d179e574276b76fe55eaefffb8940",
+   "changes": [
+    {
+     "what": "the repository's absolute folder on the study machine",
+     "now": "/path/to/repository",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/failure_choice_r2_20261108/launch/push_when_free.sh",
+   "original_sha256": "1d1422102c68635b2efab3ea4c5de790a90cfb753ef0c21b6320e4f11b30b407",
+   "public_sha256": "a190ae46715184b8dda0918730ce46ea0455cc61cd302d9d9b6e4eab12067a90",
+   "changes": [
+    {
+     "what": "the repository's absolute folder on the study machine",
+     "now": "/path/to/repository",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/failure_choice_r2_20261108/launch/run_job.sh",
+   "original_sha256": "6689599d55bf0837ffdd93f3edc96abfd54900682c15b5f3cbbad7eb4eeb2462",
+   "public_sha256": "5c124aa112b980b708f4fcb5a888daea251089c69867ec7c0ce7eef0c4c2f388",
+   "changes": [
+    {
+     "what": "a quoted instruction (now paraphrased)",
+     "line": 2,
+     "now": "# Detached job runner of the failure-guided choice test (the author asks that long jobs run detached)."
+    },
+    {
+     "what": "the repository's absolute folder on the study machine",
+     "now": "/path/to/repository",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/failure_choice_r2_20261108/reviews/PRE_RUN_REVIEW.md",
+   "original_sha256": "a490564d302abbeffd565c703d91a262c7320068c2c77be286c1c1e2657f5eac",
+   "public_sha256": "64997318b3d39d92c49a656a8355e742553f979047c407ddf8eb484e5aa6c8df",
+   "changes": [
+    {
+     "what": "the interpreter of another private Python environment, by absolute path",
+     "now": "python3",
+     "places": 3
+    },
+    {
+     "what": "the folder that holds the ARC-AGI-2 files on the study machine",
+     "now": "<ARC data folder>/",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/library_rivals_20261108/FREEZE.json",
+   "original_sha256": "0ce263495c9b9c4de80360bff2682b3435c259e0f82f4327af5dcfcdee456911",
+   "public_sha256": "21665dcef7f3e10cf8839d81ca33171956c2cb666a2b2980a8ad76a0b0457fad",
+   "changes": [
+    {
+     "what": "the benchmark data folder on the study machine",
+     "now": "/path/to/benchmark_data",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/library_rivals_20261108/config/CONFIG.json",
+   "original_sha256": "e2b690c4e9209ef9308434e783afccfb0eb43b7a0b395ecb3efbe7276147e9f0",
+   "public_sha256": "7650ca233d62a6b4460c1347e81748c3d0f7266cefa977f1363b95cba2461d0b",
+   "changes": [
+    {
+     "what": "the companion study's runtime folder, by absolute path",
+     "now": "<companion runtime folder>",
+     "places": 3
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/library_rivals_20261108/launch/run_dry_twice.sh",
+   "original_sha256": "a16ac6a21bbe7e72b9194f77887350811787849180cc39e30df46325d6086473",
+   "public_sha256": "a5827806b1c754d57a285b332b3f1368b6d0462db81fc690e8922071ee781516",
+   "changes": [
+    {
+     "what": "the repository's absolute folder on the study machine",
+     "now": "/path/to/repository",
+     "places": 1
+    },
+    {
+     "what": "the interpreter of another private Python environment, by absolute path",
+     "now": "python3",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/library_rivals_20261108/launch/run_main.sh",
+   "original_sha256": "7fff308b057434a3f17c77b14f07395da971a72e951b6a59f6a2c285117a8098",
+   "public_sha256": "aafefdd980573ea638e7d16aece358e2af770886de34dce488d12cdb2843adf9",
+   "changes": [
+    {
+     "what": "the repository's absolute folder on the study machine",
+     "now": "/path/to/repository",
+     "places": 1
+    },
+    {
+     "what": "the interpreter of another private Python environment, by absolute path",
+     "now": "python3",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "experiments/library_rivals_20261108/lr/env.py",
+   "original_sha256": "8710f46da3394cef26c7af5e857e8dbe88dae9467c9f07c0f4464425ac004350",
+   "public_sha256": "6e2a06cbfca9666f08cf40baed693ab74c7f3abc1cb77d136c3a008c4be28484",
+   "changes": [
+    {
+     "what": "the repository's absolute folder on the study machine",
+     "now": "/path/to/repository",
+     "places": 1
+    },
+    {
+     "what": "the benchmark data folder on the study machine",
+     "now": "/path/to/benchmark_data",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  },
+  {
+   "path": "records/boolean_selection_review_20261108/V2_PRECHECK_CHECK.md",
+   "original_sha256": "cba9460ff50f97795811980bc36a509316dae733b966a3ebffffb0182651c769",
+   "public_sha256": "5cf36deab06f18704fae10d0435f43d0ed46919158b95086b47742742a2ae3c1",
+   "changes": [
+    {
+     "what": "another project's job folder under /tmp, in guard lists",
+     "now": "/tmp/reserved",
+     "places": 1
+    }
+   ],
+   "wording_neutralized": false
+  }
+ ]
+}

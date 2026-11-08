@@ -1,0 +1,179 @@
+{
+ "all_pass": true,
+ "literal": {
+  "arm B: search gets every remaining call": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "search",
+    900
+   ],
+   "ok": true
+  },
+  "base fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "base",
+    100
+   ],
+   "ok": true
+  },
+  "construct first, cut off": {
+   "got": [
+    false,
+    null,
+    1000
+   ],
+   "ok": true
+  },
+  "construct first, enough budget": {
+   "got": [
+    [
+     [
+      [
+       [
+        2
+       ]
+      ]
+     ]
+    ],
+    "construct",
+    2100
+   ],
+   "ok": true
+  },
+  "descriptor charged before the bank": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "search",
+    650
+   ],
+   "ok": true
+  },
+  "descriptor pushes search past the budget": {
+   "got": [
+    false,
+    null,
+    640
+   ],
+   "ok": true
+  },
+  "no intervention (arm A)": {
+   "got": [
+    false,
+    null,
+    100
+   ],
+   "ok": true
+  },
+  "search fails at its cap, view fails, construct fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        2
+       ]
+      ]
+     ]
+    ],
+    "construct",
+    3100
+   ],
+   "ok": true
+  },
+  "search first, search fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "search",
+    600
+   ],
+   "ok": true
+  },
+  "view first fails at its cap, then search fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "search",
+    1000
+   ],
+   "ok": true
+  },
+  "view first fails, search cut off": {
+   "got": [
+    false,
+    null,
+    900
+   ],
+   "ok": true
+  },
+  "view fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        3
+       ]
+      ]
+     ]
+    ],
+    "view",
+    400
+   ],
+   "ok": true
+  }
+ },
+ "properties": {
+  "descriptor_charged_alike": true,
+  "descriptor_paid_by_every_reading_arm": true,
+  "donor_only_indexes_descriptors": true,
+  "every_arm_runs_on_the_current_task": true,
+  "every_intervention_reachable": true,
+  "no_execution_outside_the_contract": true,
+  "one_bank_current_task": true,
+  "one_meter_same_budget": true,
+  "same_order_same_result": true,
+  "shuffled_is_router_on_donor_descriptor": true,
+  "shuffled_with_own_descriptor_equals_router": true,
+  "static_and_router_arms_share_execute": true
+ }
+}
