@@ -1,0 +1,51 @@
+{
+ "study": "transfer_logic_20261108",
+ "probe_seed": "T1-probes-v1",
+ "budget": {
+  "circuit": {
+   "fraction": 0.25
+  },
+  "policy": {
+   "fraction": 0.25
+  }
+ },
+ "active_committee": 4,
+ "circuit": {
+  "archive": "data/raw/espresso_logic/espresso-logic-85265139e9598852f9388d293658a1977a829a01.tar.gz",
+  "n_min": 6,
+  "n_max": 12,
+  "held_cap_per_file": 8,
+  "arms": [
+   "static",
+   "grown",
+   "shuffled",
+   "espresso_like",
+   "cart"
+  ]
+ },
+ "policy": {
+  "archive": "data/raw/classbench/parameter_files.tar.gz",
+  "m_min": 4,
+  "m_max": 12,
+  "dev_per_seed": 4,
+  "held_per_seed": 10,
+  "arms": [
+   "static",
+   "grown",
+   "shuffled",
+   "full",
+   "cart"
+  ]
+ },
+ "scored": {
+  "primary_fraction": 0.25,
+  "circuit_fractions": [
+   0.125,
+   0.25,
+   0.5
+  ],
+  "policy_fractions": [
+   0.25
+  ]
+ }
+}

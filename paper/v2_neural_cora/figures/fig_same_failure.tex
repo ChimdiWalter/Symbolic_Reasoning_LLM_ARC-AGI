@@ -1,0 +1,70 @@
+% Figure: one observed failure, four candidate causes, four interventions (public evaluation puzzle 62593bfd).
+% Grids: figures/make_same_failure_grids.py (puzzle file and CORA-CAST's recorded decisions); text: the cited records.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  lab/.style={font=\scriptsize, align=center, inner sep=1pt},
+  arr/.style={-{Latex[length=1.5mm]}, draw=black!55, semithick},
+  cause/.style={draw=black!60, rounded corners=2pt, fill=black!3, align=left, font=\scriptsize, inner sep=3pt,
+    text width=3.62cm, minimum height=3.05cm},
+  act/.style={draw=tested!85!black, rounded corners=2pt, fill=tested!9, align=left, font=\scriptsize, inner sep=3pt,
+    text width=3.62cm, minimum height=1.05cm},
+  obs/.style={draw=pending!85!black, rounded corners=2pt, fill=pending!6, align=center, font=\footnotesize,
+    inner sep=4pt, text width=15.6cm}]
+% the puzzle: two demonstrations and the first test input with CORA's recorded answer
+\node[inner sep=0] (d1i) at (0,0) {\includegraphics[scale=1.0]{sf_demo1_in.pdf}};
+\node[inner sep=0, right=0.42cm of d1i] (d1o) {\includegraphics[scale=1.0]{sf_demo1_out.pdf}};
+\node[inner sep=0, right=0.85cm of d1o] (d2i) {\includegraphics[scale=1.0]{sf_demo2_in.pdf}};
+\node[inner sep=0, right=0.42cm of d2i] (d2o) {\includegraphics[scale=1.0]{sf_demo2_out.pdf}};
+\node[inner sep=0, right=0.85cm of d2o] (ti) {\includegraphics[scale=1.0]{sf_test1_in.pdf}};
+\node[inner sep=0, right=0.42cm of ti] (to) {\includegraphics[scale=1.0]{sf_test1_cora.pdf}};
+\draw[arr] (d1i) -- (d1o); \draw[arr] (d2i) -- (d2o); \draw[arr] (ti) -- (to);
+\node[lab, above=1pt of $(d1i.north)!0.5!(d1o.north)$] {demonstration 1 (background colour 0)};
+\node[lab, above=1pt of $(d2i.north)!0.5!(d2o.north)$] {demonstration 2 (background colour 5)};
+\node[lab, above=1pt of $(ti.north)!0.5!(to.north)$] {test input 1 and CORA's answer (exact)};
+% the one observation
+\node[obs, below=0.32cm of d2o.south west, anchor=north] (obs) {\textbf{One observation, in five states of the
+  system:} no program that reproduces both demonstrations and answers the test. (CORA's original engine: its fit was
+  wrong; the original engine with the background fixed; CORA-CAST with one fixed view, with every guard set to true,
+  and with its plain typed language: no fit.)};
+% four candidate causes, each with the evidence that identified it
+\node[cause, below=0.42cm of obs.south west, anchor=north west] (c1) {\textbf{Missing representation.} Six of the
+  seven original views took colour 0 as background. The needed rule fits demonstration 1 in three views and
+  demonstration 2 only in a 4-connected view that splits demonstration 1's diagonal pieces: no view fits both. One
+  fixed view (single-colour, 4-connected): no fit.};
+\node[cause, right=0.25cm of c1] (c2) {\textbf{Search failure.} With each grid's majority colour as background the
+  rule is expressible and fits both demonstrations, but the original enumerator ranks its two rules 1,332nd and 84th of
+  4,320, and no program containing both is among its first 200,000 candidates.};
+\node[cause, right=0.25cm of c2] (c3) {\textbf{Wrong binding.} The same views and moves with every guard set to
+  true, so that every object takes the same action: no fit, the search exhausted.};
+\node[cause, right=0.25cm of c3] (c4) {\textbf{Missing operation.} CORA-CAST's plain typed language, which has no
+  guarded move by destination: no fit.};
+\foreach \c in {c1,c2,c3,c4} {\draw[arr] (obs.south -| \c.north) -- (\c.north);}
+% the intervention each cause calls for
+\node[act, below=0.3cm of c1] (a1) {\textbf{Change the representation:} the majority colour as background;
+  single-colour 8-connected objects.};
+\node[act, below=0.3cm of c2] (a2) {\textbf{Construct instead of enumerating:} build the rule from each object's
+  fate in the demonstrations.};
+\node[act, below=0.3cm of c3] (a3) {\textbf{Revise the binding:} partition the objects by a feature, whether another
+  object has the same size.};
+\node[act, below=0.3cm of c4] (a4) {\textbf{Build the operation:} sequential moves until blocked and to the border.};
+\foreach \i in {1,2,3,4} {\draw[arr] (c\i) -- (a\i);}
+% the resolution
+\node[obs, draw=tested!85!black, fill=tested!5, below=0.38cm of $(a2.south)!0.5!(a3.south)$, anchor=north] (res)
+  {\textbf{With all four:} \texttt{(rewrite view=mono8 [size\_unique == False -> MOVE up until\_blocked] [TRUE -> MOVE
+  down to\_border])}: 8 fitting programs with one behaviour; both test outputs exact.};
+\foreach \i in {1,2,3,4} {\draw[arr] (a\i.south) -- (a\i.south |- res.north);}
+\end{tikzpicture}
+\caption[]{Why the same observed failure can need different interventions: a real case from CORA's records. In
+public evaluation puzzle 62593bfd of ARC-AGI-2, objects whose size another object shares move up until blocked and the
+others move down to the border. In every state of the system the outcome was the same, no correct program, and the failure
+record (no fit, or a fit that is wrong on the test) did not say why; the four causes were told apart only by different
+controls: a change of view, a ranking analysis, a guard ablation and an operator ablation. The puzzle was inspected while building and shaped the move constructor, so this is
+development evidence, not accuracy. Grids are drawn from the puzzle file and from CORA-CAST's recorded first attempt by
+\protect\rec{paper/v2_neural_cora/figures/make_same_failure_grids.py}; the controls' exhausted searches (0 fits each)
+are in \protect\rec{experiments/cora_cast_20261026/runs/chain_v2/m2/ARC_eval_dev/decisions.jsonl} and the plain typed
+language's in \protect\rec{experiments/cora_cast_20261026/M2_REWRITE_REPORT.md}; the original engine's views and
+enumeration ranks are the independent review's analysis (\protect\rec{records/CORA_SYNTHESIS_REVIEW_20261027.md},
+sections 2.3 and 3). Puzzle data: ARC Prize Foundation.}
+\label{fig:samefailure}
+\end{figure}

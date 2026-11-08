@@ -1,0 +1,1881 @@
+{
+ "dataset": "fnc",
+ "licence": "CC BY 4.0 (AMS Acta eprint 7347, Fluorescent Neuronal Cells v2)",
+ "segmenter": "stardist_2D_versatile_fluo",
+ "parent_rule": "tissue section (animal_id, sample_id, sample_row, sample_col) of metadata_v2.xlsx",
+ "n_listed": 282,
+ "n_parents": 117,
+ "quota_per_parent": null,
+ "parents": {
+  "calibration": [
+   "20b|2|2|3",
+   "23b|1|2|5",
+   "20b|1|3|4",
+   "22b|1|3|1",
+   "20b|2|3|2",
+   "19b|1|2|1",
+   "20b|1|2|3",
+   "19b|1|2|3",
+   "21b|2|1|1",
+   "19b|1|1|4",
+   "19b|1|2|4",
+   "26b|1|4|1",
+   "31b|2|4|3",
+   "23b|1|1|6",
+   "23b|1|3|2",
+   "26b|2|2|1",
+   "19b|1|3|5",
+   "27b|1|3|1",
+   "52|2|3|1",
+   "20b|2|1|3",
+   "21b|1|2|1",
+   "42|2|2|2",
+   "22b|1|2|3",
+   "42|2|2|4",
+   "20b|2|1|2",
+   "33b|1|2|4",
+   "40|1|2|2",
+   "55|3|2|2",
+   "22b|1|3|4",
+   "21b|1|2|4",
+   "37|1|1|2",
+   "22b|2|1|1",
+   "55|1|3|5",
+   "23b|1|3|5",
+   "21b|1|3|2",
+   "43|2|1|3",
+   "26b|2|2|2",
+   "20b|2|2|1",
+   "21b|1|2|2",
+   "19b|1|2|5",
+   "21b|2|1|2",
+   "33b|2|1|1",
+   "38|1|1|3",
+   "20b|2|2|2",
+   "41|3|1|1",
+   "19b|2|1|2",
+   "20b|1|1|4"
+  ],
+  "evaluation": [
+   "27b|1|1|2",
+   "22b|1|4|2",
+   "26b|1|2|2",
+   "23b|1|4|1",
+   "19b|1|1|5",
+   "32b|2|2|2",
+   "24b|1|1|2",
+   "19b|2|1|1",
+   "23b|1|3|6",
+   "21b|2|3|1",
+   "41|3|3|3",
+   "20b|1|3|2",
+   "21b|2|2|2",
+   "22b|1|2|4",
+   "31b|2|2|1",
+   "19b|1|2|2",
+   "23b|1|2|2",
+   "20b|1|1|3",
+   "26b|2|1|3",
+   "21b|2|3|2",
+   "20b|1|3|1",
+   "24b|1|1|1",
+   "20b|2|3|1",
+   "26b|1|2|4",
+   "26b|2|1|2",
+   "24b|2|3|2",
+   "27b|1|3|2",
+   "24b|1|2|2",
+   "27b|1|2|2",
+   "26b|1|1|2",
+   "27b|1|1|3",
+   "22b|1|1|2",
+   "40|3|2|4",
+   "23b|2|1|1",
+   "26b|2|1|1",
+   "26b|1|3|2",
+   "23b|1|2|6",
+   "24b|1|1|3",
+   "24b|1|3|2",
+   "19b|1|3|3",
+   "36b|1|2|6",
+   "20b|1|2|2",
+   "26b|1|3|4",
+   "23b|1|4|2",
+   "21b|2|2|1",
+   "26b|1|3|1",
+   "23b|1|1|2",
+   "24b|2|3|1",
+   "21b|1|1|2",
+   "21b|1|3|1",
+   "19b|1|1|3",
+   "22b|1|1|3",
+   "39|2|2|2",
+   "20b|1|1|2",
+   "22b|1|1|5",
+   "20b|2|1|1",
+   "26b|2|3|2",
+   "19b|1|3|4",
+   "24b|2|3|4",
+   "24b|1|2|3",
+   "24b|2|2|2",
+   "19b|2|2|1",
+   "24b|1|2|1",
+   "44|4|2|3",
+   "21b|2|2|3",
+   "19b|1|3|2",
+   "43|1|3|5",
+   "22b|1|1|4",
+   "19b|1|3|1",
+   "22b|1|3|3"
+  ],
+  "induction": [
+   "19b|1|2|4",
+   "20b|2|2|2",
+   "20b|2|3|2",
+   "40|1|2|2",
+   "23b|1|2|5",
+   "41|3|1|1",
+   "19b|1|3|5",
+   "19b|1|2|1",
+   "21b|2|1|1",
+   "43|2|1|3",
+   "20b|2|2|3",
+   "20b|1|2|3",
+   "20b|1|3|4",
+   "23b|1|1|6",
+   "21b|2|1|2",
+   "26b|2|2|1",
+   "21b|1|2|1",
+   "21b|1|3|2",
+   "22b|1|2|3",
+   "22b|2|1|1",
+   "22b|1|3|1",
+   "42|2|2|4",
+   "26b|2|2|2"
+  ],
+  "validation": [
+   "20b|2|1|2",
+   "55|3|2|2",
+   "33b|1|2|4",
+   "20b|1|1|4",
+   "38|1|1|3",
+   "26b|1|4|1",
+   "55|1|3|5",
+   "37|1|1|2",
+   "19b|2|1|2",
+   "19b|1|1|4",
+   "23b|1|3|5",
+   "31b|2|4|3",
+   "21b|1|2|4",
+   "19b|1|2|3",
+   "19b|1|2|5",
+   "52|2|3|1",
+   "23b|1|3|2",
+   "22b|1|3|4",
+   "21b|1|2|2",
+   "20b|2|1|3",
+   "27b|1|3|1",
+   "20b|2|2|1",
+   "33b|2|1|1",
+   "42|2|2|2"
+  ]
+ },
+ "n_images": {
+  "calibration": 117,
+  "evaluation": 165
+ },
+ "images": {
+  "0": {
+   "member": "green/test/images/0.png",
+   "parent": "22b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1": {
+   "member": "green/test/images/1.png",
+   "parent": "19b|1|1|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "89": {
+   "member": "green/trainval/images/89.png",
+   "parent": "19b|1|1|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "10": {
+   "member": "green/test/images/10.png",
+   "parent": "20b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "259": {
+   "member": "green/trainval/images/259.png",
+   "parent": "20b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "185": {
+   "member": "green/test/images/185.png",
+   "parent": "19b|1|2|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "100": {
+   "member": "green/test/images/100.png",
+   "parent": "19b|1|2|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "102": {
+   "member": "green/trainval/images/102.png",
+   "parent": "26b|2|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "72": {
+   "member": "green/trainval/images/72.png",
+   "parent": "26b|2|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "77": {
+   "member": "green/trainval/images/77.png",
+   "parent": "26b|2|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "269": {
+   "member": "green/trainval/images/269.png",
+   "parent": "26b|2|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "246": {
+   "member": "green/trainval/images/246.png",
+   "parent": "19b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "104": {
+   "member": "green/trainval/images/104.png",
+   "parent": "19b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "290": {
+   "member": "green/trainval/images/290.png",
+   "parent": "23b|1|3|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "136": {
+   "member": "green/trainval/images/136.png",
+   "parent": "23b|1|3|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "106": {
+   "member": "green/trainval/images/106.png",
+   "parent": "23b|1|3|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "296": {
+   "member": "green/trainval/images/296.png",
+   "parent": "23b|1|3|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "282": {
+   "member": "green/trainval/images/282.png",
+   "parent": "22b|1|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "273": {
+   "member": "green/trainval/images/273.png",
+   "parent": "22b|1|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "107": {
+   "member": "green/trainval/images/107.png",
+   "parent": "22b|1|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "121": {
+   "member": "green/trainval/images/121.png",
+   "parent": "22b|1|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "26": {
+   "member": "green/trainval/images/26.png",
+   "parent": "24b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "232": {
+   "member": "green/test/images/232.png",
+   "parent": "24b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "108": {
+   "member": "green/trainval/images/108.png",
+   "parent": "24b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "284": {
+   "member": "green/test/images/284.png",
+   "parent": "21b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "11": {
+   "member": "green/trainval/images/11.png",
+   "parent": "21b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "7": {
+   "member": "green/trainval/images/7.png",
+   "parent": "21b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "293": {
+   "member": "green/trainval/images/293.png",
+   "parent": "21b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "199": {
+   "member": "green/trainval/images/199.png",
+   "parent": "19b|1|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "112": {
+   "member": "green/trainval/images/112.png",
+   "parent": "19b|1|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "113": {
+   "member": "green/trainval/images/113.png",
+   "parent": "19b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "93": {
+   "member": "green/trainval/images/93.png",
+   "parent": "19b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "16": {
+   "member": "green/trainval/images/16.png",
+   "parent": "19b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "57": {
+   "member": "green/trainval/images/57.png",
+   "parent": "19b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "115": {
+   "member": "green/test/images/115.png",
+   "parent": "24b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "66": {
+   "member": "green/trainval/images/66.png",
+   "parent": "24b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "257": {
+   "member": "green/trainval/images/257.png",
+   "parent": "24b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "153": {
+   "member": "green/trainval/images/153.png",
+   "parent": "24b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "61": {
+   "member": "green/trainval/images/61.png",
+   "parent": "23b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "116": {
+   "member": "green/test/images/116.png",
+   "parent": "23b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "117": {
+   "member": "green/trainval/images/117.png",
+   "parent": "20b|2|2|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "279": {
+   "member": "green/trainval/images/279.png",
+   "parent": "20b|2|2|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "118": {
+   "member": "green/trainval/images/118.png",
+   "parent": "20b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "15": {
+   "member": "green/test/images/15.png",
+   "parent": "20b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "216": {
+   "member": "green/trainval/images/216.png",
+   "parent": "23b|1|2|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "119": {
+   "member": "green/trainval/images/119.png",
+   "parent": "23b|1|2|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "43": {
+   "member": "green/trainval/images/43.png",
+   "parent": "23b|1|2|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "233": {
+   "member": "green/trainval/images/233.png",
+   "parent": "23b|1|2|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "30": {
+   "member": "green/test/images/30.png",
+   "parent": "23b|1|1|6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "12": {
+   "member": "green/trainval/images/12.png",
+   "parent": "23b|1|1|6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "191": {
+   "member": "green/trainval/images/191.png",
+   "parent": "23b|1|1|6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "202": {
+   "member": "green/trainval/images/202.png",
+   "parent": "23b|1|1|6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "120": {
+   "member": "green/trainval/images/120.png",
+   "parent": "24b|1|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "228": {
+   "member": "green/trainval/images/228.png",
+   "parent": "24b|1|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "2": {
+   "member": "green/test/images/2.png",
+   "parent": "24b|1|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "122": {
+   "member": "green/test/images/122.png",
+   "parent": "20b|2|3|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "160": {
+   "member": "green/test/images/160.png",
+   "parent": "20b|2|3|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "123": {
+   "member": "green/trainval/images/123.png",
+   "parent": "21b|2|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "64": {
+   "member": "green/test/images/64.png",
+   "parent": "21b|2|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "124": {
+   "member": "green/trainval/images/124.png",
+   "parent": "19b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "132": {
+   "member": "green/test/images/132.png",
+   "parent": "19b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "125": {
+   "member": "green/test/images/125.png",
+   "parent": "26b|2|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "180": {
+   "member": "green/trainval/images/180.png",
+   "parent": "26b|2|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "287": {
+   "member": "green/trainval/images/287.png",
+   "parent": "26b|2|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "126": {
+   "member": "green/test/images/126.png",
+   "parent": "20b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "251": {
+   "member": "green/trainval/images/251.png",
+   "parent": "20b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "49": {
+   "member": "green/trainval/images/49.png",
+   "parent": "22b|1|2|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "127": {
+   "member": "green/test/images/127.png",
+   "parent": "22b|1|2|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "60": {
+   "member": "green/trainval/images/60.png",
+   "parent": "23b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "129": {
+   "member": "green/trainval/images/129.png",
+   "parent": "23b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "13": {
+   "member": "green/trainval/images/13.png",
+   "parent": "26b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "170": {
+   "member": "green/test/images/170.png",
+   "parent": "26b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "241": {
+   "member": "green/test/images/241.png",
+   "parent": "26b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "295": {
+   "member": "green/trainval/images/295.png",
+   "parent": "26b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "130": {
+   "member": "green/trainval/images/130.png",
+   "parent": "26b|1|4|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "38": {
+   "member": "green/trainval/images/38.png",
+   "parent": "26b|1|4|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "45": {
+   "member": "green/trainval/images/45.png",
+   "parent": "23b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "131": {
+   "member": "green/trainval/images/131.png",
+   "parent": "23b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "135": {
+   "member": "green/trainval/images/135.png",
+   "parent": "26b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "188": {
+   "member": "green/trainval/images/188.png",
+   "parent": "26b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "253": {
+   "member": "green/test/images/253.png",
+   "parent": "26b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "237": {
+   "member": "green/trainval/images/237.png",
+   "parent": "26b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "161": {
+   "member": "green/test/images/161.png",
+   "parent": "21b|2|1|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "137": {
+   "member": "green/trainval/images/137.png",
+   "parent": "21b|2|1|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "265": {
+   "member": "green/test/images/265.png",
+   "parent": "19b|1|2|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "139": {
+   "member": "green/trainval/images/139.png",
+   "parent": "19b|1|2|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "150": {
+   "member": "green/trainval/images/150.png",
+   "parent": "19b|1|2|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "5": {
+   "member": "green/trainval/images/5.png",
+   "parent": "19b|1|2|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "14": {
+   "member": "green/trainval/images/14.png",
+   "parent": "21b|2|1|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "222": {
+   "member": "green/trainval/images/222.png",
+   "parent": "21b|2|1|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "140": {
+   "member": "green/trainval/images/140.png",
+   "parent": "21b|2|1|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "94": {
+   "member": "green/trainval/images/94.png",
+   "parent": "21b|2|1|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "156": {
+   "member": "green/trainval/images/156.png",
+   "parent": "22b|1|3|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "174": {
+   "member": "green/trainval/images/174.png",
+   "parent": "22b|1|3|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "86": {
+   "member": "green/trainval/images/86.png",
+   "parent": "22b|1|3|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "142": {
+   "member": "green/trainval/images/142.png",
+   "parent": "22b|1|3|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "193": {
+   "member": "green/trainval/images/193.png",
+   "parent": "20b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "208": {
+   "member": "green/trainval/images/208.png",
+   "parent": "20b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "24": {
+   "member": "green/test/images/24.png",
+   "parent": "20b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "143": {
+   "member": "green/trainval/images/143.png",
+   "parent": "20b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "144": {
+   "member": "green/trainval/images/144.png",
+   "parent": "19b|1|1|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "58": {
+   "member": "green/trainval/images/58.png",
+   "parent": "19b|1|1|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "276": {
+   "member": "green/trainval/images/276.png",
+   "parent": "19b|1|1|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "227": {
+   "member": "green/trainval/images/227.png",
+   "parent": "19b|1|1|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1445": {
+   "member": "green/trainval/images/1445.png",
+   "parent": "43|1|3|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1447": {
+   "member": "green/trainval/images/1447.png",
+   "parent": "43|2|1|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "1448": {
+   "member": "green/trainval/images/1448.png",
+   "parent": "43|2|1|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "145": {
+   "member": "green/trainval/images/145.png",
+   "parent": "20b|2|1|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "148": {
+   "member": "green/trainval/images/148.png",
+   "parent": "20b|2|1|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "146": {
+   "member": "green/trainval/images/146.png",
+   "parent": "20b|2|2|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "234": {
+   "member": "green/trainval/images/234.png",
+   "parent": "20b|2|2|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "19": {
+   "member": "green/trainval/images/19.png",
+   "parent": "20b|2|2|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "76": {
+   "member": "green/trainval/images/76.png",
+   "parent": "20b|2|2|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "147": {
+   "member": "green/trainval/images/147.png",
+   "parent": "24b|2|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "167": {
+   "member": "green/trainval/images/167.png",
+   "parent": "24b|2|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "88": {
+   "member": "green/trainval/images/88.png",
+   "parent": "24b|2|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "226": {
+   "member": "green/test/images/226.png",
+   "parent": "24b|2|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1478": {
+   "member": "green/test/images/1478.png",
+   "parent": "31b|2|4|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1501": {
+   "member": "green/test/images/1501.png",
+   "parent": "31b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "151": {
+   "member": "green/trainval/images/151.png",
+   "parent": "20b|2|1|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "266": {
+   "member": "green/trainval/images/266.png",
+   "parent": "20b|2|1|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1517": {
+   "member": "green/test/images/1517.png",
+   "parent": "55|1|3|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1518": {
+   "member": "green/trainval/images/1518.png",
+   "parent": "55|3|2|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1521": {
+   "member": "green/trainval/images/1521.png",
+   "parent": "55|3|2|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "152": {
+   "member": "green/test/images/152.png",
+   "parent": "19b|1|2|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "39": {
+   "member": "green/trainval/images/39.png",
+   "parent": "19b|1|2|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "225": {
+   "member": "green/test/images/225.png",
+   "parent": "19b|1|2|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "158": {
+   "member": "green/test/images/158.png",
+   "parent": "19b|1|2|5",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1524": {
+   "member": "green/trainval/images/1524.png",
+   "parent": "40|1|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "1525": {
+   "member": "green/trainval/images/1525.png",
+   "parent": "40|1|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "1527": {
+   "member": "green/trainval/images/1527.png",
+   "parent": "40|3|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1533": {
+   "member": "green/test/images/1533.png",
+   "parent": "44|4|2|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "154": {
+   "member": "green/trainval/images/154.png",
+   "parent": "21b|1|2|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "173": {
+   "member": "green/test/images/173.png",
+   "parent": "21b|1|2|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "155": {
+   "member": "green/test/images/155.png",
+   "parent": "24b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "271": {
+   "member": "green/trainval/images/271.png",
+   "parent": "24b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "250": {
+   "member": "green/trainval/images/250.png",
+   "parent": "24b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "157": {
+   "member": "green/trainval/images/157.png",
+   "parent": "24b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "159": {
+   "member": "green/trainval/images/159.png",
+   "parent": "27b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1607": {
+   "member": "green/test/images/1607.png",
+   "parent": "42|2|2|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1609": {
+   "member": "green/test/images/1609.png",
+   "parent": "42|2|2|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "51": {
+   "member": "green/trainval/images/51.png",
+   "parent": "23b|1|2|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "41": {
+   "member": "green/trainval/images/41.png",
+   "parent": "23b|1|2|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "162": {
+   "member": "green/trainval/images/162.png",
+   "parent": "23b|1|2|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1627": {
+   "member": "green/test/images/1627.png",
+   "parent": "33b|2|1|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "220": {
+   "member": "green/trainval/images/220.png",
+   "parent": "19b|1|3|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "163": {
+   "member": "green/test/images/163.png",
+   "parent": "19b|1|3|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "206": {
+   "member": "green/test/images/206.png",
+   "parent": "19b|1|3|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "168": {
+   "member": "green/trainval/images/168.png",
+   "parent": "19b|1|3|5",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "178": {
+   "member": "green/test/images/178.png",
+   "parent": "21b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "275": {
+   "member": "green/trainval/images/275.png",
+   "parent": "21b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "164": {
+   "member": "green/trainval/images/164.png",
+   "parent": "21b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "52": {
+   "member": "green/trainval/images/52.png",
+   "parent": "21b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1641": {
+   "member": "green/trainval/images/1641.png",
+   "parent": "33b|1|2|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1640": {
+   "member": "green/test/images/1640.png",
+   "parent": "33b|1|2|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1645": {
+   "member": "green/test/images/1645.png",
+   "parent": "38|1|1|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1647": {
+   "member": "green/trainval/images/1647.png",
+   "parent": "38|1|1|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1646": {
+   "member": "green/trainval/images/1646.png",
+   "parent": "38|1|1|3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "165": {
+   "member": "green/trainval/images/165.png",
+   "parent": "26b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "32": {
+   "member": "green/trainval/images/32.png",
+   "parent": "26b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "172": {
+   "member": "green/trainval/images/172.png",
+   "parent": "20b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "189": {
+   "member": "green/trainval/images/189.png",
+   "parent": "20b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "44": {
+   "member": "green/trainval/images/44.png",
+   "parent": "20b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "304": {
+   "member": "green/trainval/images/304.png",
+   "parent": "20b|2|2|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "1737": {
+   "member": "green/trainval/images/1737.png",
+   "parent": "37|1|1|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1732": {
+   "member": "green/trainval/images/1732.png",
+   "parent": "37|1|1|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "247": {
+   "member": "green/trainval/images/247.png",
+   "parent": "20b|1|1|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "244": {
+   "member": "green/test/images/244.png",
+   "parent": "20b|1|1|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "175": {
+   "member": "green/test/images/175.png",
+   "parent": "20b|1|1|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "74": {
+   "member": "green/trainval/images/74.png",
+   "parent": "20b|1|1|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1753": {
+   "member": "green/trainval/images/1753.png",
+   "parent": "36b|1|2|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1775": {
+   "member": "green/test/images/1775.png",
+   "parent": "36b|1|2|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "176": {
+   "member": "green/trainval/images/176.png",
+   "parent": "27b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "28": {
+   "member": "green/trainval/images/28.png",
+   "parent": "26b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "92": {
+   "member": "green/test/images/92.png",
+   "parent": "26b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "209": {
+   "member": "green/trainval/images/209.png",
+   "parent": "26b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "177": {
+   "member": "green/trainval/images/177.png",
+   "parent": "26b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1784": {
+   "member": "green/trainval/images/1784.png",
+   "parent": "52|2|3|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "1792": {
+   "member": "green/trainval/images/1792.png",
+   "parent": "41|3|1|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "1787": {
+   "member": "green/trainval/images/1787.png",
+   "parent": "41|3|1|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "179": {
+   "member": "green/trainval/images/179.png",
+   "parent": "23b|1|3|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "27": {
+   "member": "green/trainval/images/27.png",
+   "parent": "23b|1|3|6",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1791": {
+   "member": "green/trainval/images/1791.png",
+   "parent": "41|3|3|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "217": {
+   "member": "green/trainval/images/217.png",
+   "parent": "21b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "18": {
+   "member": "green/trainval/images/18.png",
+   "parent": "21b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "184": {
+   "member": "green/trainval/images/184.png",
+   "parent": "21b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "36": {
+   "member": "green/trainval/images/36.png",
+   "parent": "21b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "181": {
+   "member": "green/trainval/images/181.png",
+   "parent": "23b|1|3|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "37": {
+   "member": "green/trainval/images/37.png",
+   "parent": "23b|1|3|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "221": {
+   "member": "green/trainval/images/221.png",
+   "parent": "19b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "183": {
+   "member": "green/test/images/183.png",
+   "parent": "19b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "229": {
+   "member": "green/trainval/images/229.png",
+   "parent": "22b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "186": {
+   "member": "green/trainval/images/186.png",
+   "parent": "22b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "254": {
+   "member": "green/trainval/images/254.png",
+   "parent": "22b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "289": {
+   "member": "green/test/images/289.png",
+   "parent": "22b|1|2|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "9": {
+   "member": "green/trainval/images/9.png",
+   "parent": "20b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "187": {
+   "member": "green/trainval/images/187.png",
+   "parent": "20b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "196": {
+   "member": "green/test/images/196.png",
+   "parent": "20b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "215": {
+   "member": "green/trainval/images/215.png",
+   "parent": "20b|2|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1882": {
+   "member": "green/test/images/1882.png",
+   "parent": "32b|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "190": {
+   "member": "green/trainval/images/190.png",
+   "parent": "20b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "236": {
+   "member": "green/trainval/images/236.png",
+   "parent": "20b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1903": {
+   "member": "green/trainval/images/1903.png",
+   "parent": "39|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "1906": {
+   "member": "green/trainval/images/1906.png",
+   "parent": "39|2|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "210": {
+   "member": "green/trainval/images/210.png",
+   "parent": "19b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "192": {
+   "member": "green/trainval/images/192.png",
+   "parent": "19b|2|2|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "65": {
+   "member": "green/test/images/65.png",
+   "parent": "26b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "21": {
+   "member": "green/trainval/images/21.png",
+   "parent": "26b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "194": {
+   "member": "green/trainval/images/194.png",
+   "parent": "26b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "238": {
+   "member": "green/trainval/images/238.png",
+   "parent": "26b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "195": {
+   "member": "green/trainval/images/195.png",
+   "parent": "21b|1|3|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "280": {
+   "member": "green/test/images/280.png",
+   "parent": "21b|1|3|2",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "90": {
+   "member": "green/trainval/images/90.png",
+   "parent": "26b|2|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "197": {
+   "member": "green/trainval/images/197.png",
+   "parent": "26b|2|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "201": {
+   "member": "green/trainval/images/201.png",
+   "parent": "21b|1|2|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "268": {
+   "member": "green/trainval/images/268.png",
+   "parent": "21b|1|2|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "198": {
+   "member": "green/trainval/images/198.png",
+   "parent": "21b|1|2|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "87": {
+   "member": "green/trainval/images/87.png",
+   "parent": "21b|1|2|4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "200": {
+   "member": "green/trainval/images/200.png",
+   "parent": "19b|2|1|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "277": {
+   "member": "green/trainval/images/277.png",
+   "parent": "19b|2|1|2",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "286": {
+   "member": "green/trainval/images/286.png",
+   "parent": "20b|1|3|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "203": {
+   "member": "green/trainval/images/203.png",
+   "parent": "20b|1|3|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "80": {
+   "member": "green/test/images/80.png",
+   "parent": "20b|1|3|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "243": {
+   "member": "green/test/images/243.png",
+   "parent": "20b|1|3|4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "224": {
+   "member": "green/trainval/images/224.png",
+   "parent": "23b|1|4|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "204": {
+   "member": "green/trainval/images/204.png",
+   "parent": "23b|1|4|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "97": {
+   "member": "green/trainval/images/97.png",
+   "parent": "22b|1|4|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "205": {
+   "member": "green/trainval/images/205.png",
+   "parent": "22b|1|4|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "245": {
+   "member": "green/trainval/images/245.png",
+   "parent": "22b|1|1|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "211": {
+   "member": "green/trainval/images/211.png",
+   "parent": "22b|1|1|5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "47": {
+   "member": "green/trainval/images/47.png",
+   "parent": "24b|1|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "23": {
+   "member": "green/trainval/images/23.png",
+   "parent": "24b|1|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "264": {
+   "member": "green/test/images/264.png",
+   "parent": "24b|1|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "213": {
+   "member": "green/trainval/images/213.png",
+   "parent": "24b|1|1|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "288": {
+   "member": "green/test/images/288.png",
+   "parent": "19b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "3": {
+   "member": "green/trainval/images/3.png",
+   "parent": "19b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "214": {
+   "member": "green/trainval/images/214.png",
+   "parent": "19b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "278": {
+   "member": "green/test/images/278.png",
+   "parent": "19b|1|3|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "84": {
+   "member": "green/trainval/images/84.png",
+   "parent": "24b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "223": {
+   "member": "green/trainval/images/223.png",
+   "parent": "24b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "73": {
+   "member": "green/trainval/images/73.png",
+   "parent": "24b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "249": {
+   "member": "green/trainval/images/249.png",
+   "parent": "24b|1|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "291": {
+   "member": "green/trainval/images/291.png",
+   "parent": "24b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "230": {
+   "member": "green/trainval/images/230.png",
+   "parent": "24b|2|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "231": {
+   "member": "green/trainval/images/231.png",
+   "parent": "26b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "248": {
+   "member": "green/trainval/images/248.png",
+   "parent": "26b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "235": {
+   "member": "green/trainval/images/235.png",
+   "parent": "23b|1|4|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "239": {
+   "member": "green/test/images/239.png",
+   "parent": "23b|1|4|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "67": {
+   "member": "green/test/images/67.png",
+   "parent": "21b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "240": {
+   "member": "green/trainval/images/240.png",
+   "parent": "21b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "267": {
+   "member": "green/trainval/images/267.png",
+   "parent": "26b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "25": {
+   "member": "green/trainval/images/25.png",
+   "parent": "26b|1|2|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "256": {
+   "member": "green/test/images/256.png",
+   "parent": "19b|1|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "56": {
+   "member": "green/trainval/images/56.png",
+   "parent": "20b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "262": {
+   "member": "green/test/images/262.png",
+   "parent": "20b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "270": {
+   "member": "green/trainval/images/270.png",
+   "parent": "27b|1|3|1",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "274": {
+   "member": "green/trainval/images/274.png",
+   "parent": "20b|1|2|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "71": {
+   "member": "green/test/images/71.png",
+   "parent": "20b|1|2|3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "281": {
+   "member": "green/test/images/281.png",
+   "parent": "27b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "69": {
+   "member": "green/trainval/images/69.png",
+   "parent": "27b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "285": {
+   "member": "green/trainval/images/285.png",
+   "parent": "26b|1|3|1",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "8": {
+   "member": "green/trainval/images/8.png",
+   "parent": "22b|2|1|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "29": {
+   "member": "green/test/images/29.png",
+   "parent": "22b|2|1|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "292": {
+   "member": "green/trainval/images/292.png",
+   "parent": "21b|2|2|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "85": {
+   "member": "green/trainval/images/85.png",
+   "parent": "21b|2|2|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "50": {
+   "member": "green/test/images/50.png",
+   "parent": "22b|1|1|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "294": {
+   "member": "green/trainval/images/294.png",
+   "parent": "22b|1|1|4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "298": {
+   "member": "green/trainval/images/298.png",
+   "parent": "21b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "75": {
+   "member": "green/test/images/75.png",
+   "parent": "21b|1|1|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "33": {
+   "member": "green/trainval/images/33.png",
+   "parent": "21b|1|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "63": {
+   "member": "green/trainval/images/63.png",
+   "parent": "21b|1|2|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "42": {
+   "member": "green/trainval/images/42.png",
+   "parent": "22b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "53": {
+   "member": "green/trainval/images/53.png",
+   "parent": "27b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "6": {
+   "member": "green/test/images/6.png",
+   "parent": "27b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "54": {
+   "member": "green/trainval/images/54.png",
+   "parent": "22b|1|3|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "81": {
+   "member": "green/trainval/images/81.png",
+   "parent": "22b|1|3|1",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "78": {
+   "member": "green/trainval/images/78.png",
+   "parent": "26b|2|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "59": {
+   "member": "green/trainval/images/59.png",
+   "parent": "26b|2|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "68": {
+   "member": "green/test/images/68.png",
+   "parent": "24b|1|2|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "96": {
+   "member": "green/test/images/96.png",
+   "parent": "24b|2|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "79": {
+   "member": "green/trainval/images/79.png",
+   "parent": "24b|2|3|2",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "82": {
+   "member": "green/trainval/images/82.png",
+   "parent": "19b|1|1|3",
+   "side": "evaluation",
+   "role": "evaluation"
+  }
+ }
+}

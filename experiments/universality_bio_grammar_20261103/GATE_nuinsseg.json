@@ -1,0 +1,34 @@
+{
+ "dataset": "nuinsseg",
+ "calibration_images": 236,
+ "objects": 5425,
+ "error_share": 0.39188940092165897,
+ "class_counts": {
+  "SPLIT": 577,
+  "MERGE": 210,
+  "FILL": 0,
+  "GROW": 287,
+  "SHRINK": 322,
+  "DELETE": 1019,
+  "ADD": 2837
+ },
+ "baseline_pooled_f1": 0.5032031726662599,
+ "oracle_pooled_f1": 0.7923076923076923,
+ "oracle_gain": 0.28910451964143236,
+ "induction_baseline_pooled_f1": 0.49492840095465396,
+ "induction_class_oracle_gain": {
+  "SPLIT": 0.11570235737277335,
+  "MERGE": 0.022135930063165388,
+  "FILL": 0.0,
+  "GROW": 0.04564439140811449,
+  "SHRINK": 0.03848448687350836,
+  "DELETE": 0.05853281672674726,
+  "ADD": 0.23983597111541755
+ },
+ "criteria": {
+  "error_share_min": 0.05,
+  "oracle_gain_min": 0.01
+ },
+ "cpu_s": 18.2,
+ "PASS": true
+}

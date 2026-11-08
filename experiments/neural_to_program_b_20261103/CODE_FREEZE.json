@@ -1,0 +1,132 @@
+{
+ "check_inputs": {
+  "attempt_mismatch_tasks": [],
+  "development": {
+   "cohort_tasks": 4,
+   "matched_rule_1": 4,
+   "matched_rule_2": 0,
+   "random_degenerate": 0,
+   "tasks": 8,
+   "units": 8,
+   "unmatched": 4
+  },
+  "pins": "all pinned non-answer inputs and the construction code verify",
+  "planned_arms": {
+   "development": 28,
+   "pool": 881,
+   "primary": 631
+  },
+  "pool_skipped": 172,
+  "pool_units": 881,
+  "primary": {
+   "cohort_tasks": 86,
+   "matched_rule_1": 104,
+   "matched_rule_2": 11,
+   "random_degenerate": 8,
+   "tasks": 120,
+   "units": 172,
+   "unmatched": 57
+  },
+  "subgroup": {
+   "outputs": 169,
+   "tasks": 118
+  }
+ },
+ "construction_code": "38 files pinned in PROTOCOL_FREEZE.json (commit 63d85732); all verified at this freeze",
+ "construction_data": {
+  "experiments/architecture_sweep_20261026/a2/out/corpus.json": "5debd445d22b231cc90f6a60f217da644c7e0168bc07ac860f2036acb53ab062"
+ },
+ "construction_data_note": "read by lang0.build_g0 (the grammar's cost estimates); not among the 38 files pinned by the protocol freeze, so pinned here and checked before a run",
+ "environment": {
+  "blas_threads": 1,
+  "cpu": "scripts/with_cpu_slot.sh (nice 19, ionice idle), one slot",
+  "python": "python3 -I (Python 3.12.3)"
+ },
+ "files": {
+  "experiments/neural_to_program_b_20261103/scripts/freeze_code.py": "de79f47d3e4bfca93d8b428f38f490f42013fabbc388ed14c7a58f9d853c0905",
+  "experiments/neural_to_program_b_20261103/scripts/launch_testb.sh": "6adbf11f65e23e7d9b34095814842a550f26441b9a358cca68ed3024605708bb",
+  "experiments/neural_to_program_b_20261103/testb/__init__.py": "19492707677f906590e72eda6ea37885336cf178e2cc390847c2dcceca98ee0f",
+  "experiments/neural_to_program_b_20261103/testb/arm_guard.py": "b01516dce094cc8d72032f1263d10891d6a59a01147f1d3090bacefcc5b80aff",
+  "experiments/neural_to_program_b_20261103/testb/arm_worker.py": "a0c2cbd745de08b40ad13975784b9d002635452ff3713f5a6e3c0beb63405eee",
+  "experiments/neural_to_program_b_20261103/testb/assign.py": "b54f4feb3b5f9903ec85aab73ba2d973af4276ec53179ce2c15b7ea70a3921dc",
+  "experiments/neural_to_program_b_20261103/testb/common.py": "03d22b4a4723cccf27079248a7f3f0644ad96fc56c429eea4ab7e93bb92d2781",
+  "experiments/neural_to_program_b_20261103/testb/driver.py": "464f5d29e5eb977fd42e0408004043cdad288dc6dbf6921841ce99a221f7de67",
+  "experiments/neural_to_program_b_20261103/testb/labels.py": "23d0ec85a7bc8ce8ed1e13126a230a9cb8b37bc91d3a9b88387cb423e5d6b3ab",
+  "experiments/neural_to_program_b_20261103/testb/release_check.py": "76c67a33dece9579230fdc4e5cd6125e02360dff518dd2971a8ade872b9eabc0",
+  "experiments/neural_to_program_b_20261103/testb/scorer.py": "154afca24a0f9e7dd0431efed4e503b57d6861a61219650e274eae1196338b94",
+  "experiments/neural_to_program_b_20261103/tests/BENCH_ARM_COST.json": "0f3a22597daf522aa7722c7409071e9672590855e1a96d1dac18815d8b94f67f",
+  "experiments/neural_to_program_b_20261103/tests/TEST_LOG.txt": "2607d1c0b6ab7e1a8ed49f65ce41ae6150039496b440a3f3ef03580f2a7f148b",
+  "experiments/neural_to_program_b_20261103/tests/bench_arm_cost.py": "d22f3bdf2cf63a30085a5981b32bbcd01c2bdb54c0a0b53157ab729e826ad3c6",
+  "experiments/neural_to_program_b_20261103/tests/run_driver.py": "d797145f1223dd6a07d664c9c52c071067ec71f338286b446f4325da673b3389",
+  "experiments/neural_to_program_b_20261103/tests/run_scorer.py": "2b466d7902d7973b81644dab6bfcb2877bc30bfb0079c9b7a23bd797bed30d6c",
+  "experiments/neural_to_program_b_20261103/tests/synthetic_worker.py": "ab318cac8909e5ea4f34c53ee0ab23cb1c68db4b92cbcff002877fa233d56e9a",
+  "experiments/neural_to_program_b_20261103/tests/test_adversarial.py": "1b049b99748d4bc95da2dc5bdfdb97ef695ce10cf67891f541dbebd593763414",
+  "experiments/neural_to_program_b_20261103/tests/world.py": "1186bc367b193324faab2d11ac7a630d740245ca5d94c50dc8cd500ba72ce583"
+ },
+ "frozen_utc": "2026-11-03T11:33:38Z",
+ "implementation_rules": [
+  "Donor order: other tasks of the same set by sha256('donor:' + task id). Rule 1: first task with an attempt-1 grid of the unit's shape, lowest such output index. Rule 2: first task with a pool candidate of that shape, lowest output index, then lowest pool position. Otherwise unmatched (no shuffled arm).",
+  "Seed: int.from_bytes(sha256(UTF-8 text).digest(), 'big') (= int(hexdigest, 16)); random.Random(seed); text 'random:' + task id + ':' + decimal output index; palette = sorted distinct colours of attempt 1; one draw = a whole grid, row by row, rng.choice(palette); at most 100 draws; fallback top-left (c + 1) mod 10.",
+  "Run order: sha256('taskB:' + task id) for the evaluation and the development sets; then the pool stage in pool order (each valid candidate that differs from attempt 1 and from earlier candidates of its output).",
+  "Per-arm guard: a guard process per arm; the worker under RLIMIT_CPU soft 100 CPU-s (SIGXCPU ends it) and hard 101 CPU-s; PR_SET_PDEATHSIG ties the worker to its guard (SIGKILL) and the guard to the driver (SIGTERM); 400 s wall backstop; own process group; core dumps off. CPU_GUARD covers SIGXCPU, a hard-limit SIGKILL and the wall backstop (recorded as trigger), with the label NO_FIT_IN_BOUNDED_PROPOSAL and cpu_limit_stop.",
+  "Child-inclusive limit: the worker runs under RLIMIT_NPROC 0 (soft and hard), set by the guard before exec and again by the worker before any import, so the kernel refuses every process and thread it tries to create (subprocess, os.fork, posix_spawn, os.system, multiprocessing, libc calls through ctypes) and the limit cannot be raised; an audit hook refuses the audited creation events with a clear error; the worker also sets one BLAS thread itself. The worker is the arm's only process, so RLIMIT_CPU bounds all of the arm's compute.",
+  "Closest right-shaped program: every search of an arm (base and retries) runs with track_partial=True at the base budget; the record gives each search's best non-fitting right-shaped program and the arm's best over all of them (most correct cells, the earliest search on a tie); a guard-stopped arm gives it over the searches it finished.",
+  "Receipt: getrusage(RUSAGE_CHILDREN) delta around the guard in the driver (guard plus reaped worker), cross-checked with os.wait4; the guard's own receipt (worker getrusage(RUSAGE_CHILDREN) plus guard CPU) recovers it when the driver died; with no receipt at all, the hard limit plus 1 s is charged as an upper bound.",
+  "Unfinished (makes a primary run INCOMPLETE): NOT_STARTED, INTERRUPTED, KILLED (any other signal), WORKER_ERROR (non-zero exit, missing or invalid result, or a process left behind).",
+  "Whole-run guard: an arm starts only if its full 100 CPU-s limit fits under 10 CPU-h counting driver CPU, every reaped child and every unrecovered upper bound; otherwise the run stops there.",
+  "GO_B lines: protocol_sha256, protocol_freeze_sha256, code_freeze_sha256. GO_SCORE lines: outputs_freeze_sha256, scorer_sha256 (equal to its CODE_FREEZE entry), output_chain_review_sha256; the review must contain the line 'TEST_B_OUTPUT_CHAIN_REVIEW: PASS' and the outputs-freeze sha256.",
+  "CORA-only correct outputs: the score-record result whose file is the pinned CORA-only submission.",
+  "Bootstrap: tasks in sorted id order, numpy.random.default_rng(0), 10,000 resamples, one integers() draw per resample shared by every statistic, percentile 2.5 and 97.5; Holm adjusted p <= 0.05."
+ ],
+ "limits": {
+  "arm_cpu_s": 100,
+  "arm_wall_s": 400.0,
+  "run_cpu_s": 36000.0
+ },
+ "protocol_freeze_sha256": "81d58a1e3a5a3b3be9bf17f2bbea8ed6042279fa1a311789ba04550c802960b6",
+ "protocol_review": "INDEPENDENT_PROTOCOL_REVIEW_V3.md sha256 426ad0ad78e973e2344ef348eb496b7316e7cd59d2ef7c7a4b5f51530b6b6381 (PASS_TEXT_ONLY)",
+ "protocol_sha256": "f5d06798ae9be46acbd74d2523b892fbe1a45ff9d888ae05290529867ddefb88",
+ "roles": {
+  "inference": [
+   "testb/common.py",
+   "testb/assign.py",
+   "testb/labels.py",
+   "testb/arm_worker.py",
+   "testb/arm_guard.py",
+   "testb/driver.py"
+  ],
+  "launcher": "scripts/launch_testb.sh",
+  "release_check": "testb/release_check.py",
+  "scorer": "experiments/neural_to_program_b_20261103/testb/scorer.py"
+ },
+ "schema": "TESTB_CODE_FREEZE_V1",
+ "state": "no GO_B, no RUN_CLAIM, no Test B run, no answer file opened or hashed",
+ "supersedes": {
+  "changes": [
+   "blocking: the worker can create no process or thread (RLIMIT_NPROC 0 from the guard before exec and from the worker before any import, plus an audit hook), so the 100 CPU-s RLIMIT_CPU bounds the whole arm; two-child and every-route tests added",
+   "secondary: retries also run with track_partial=True and the arm's closest right-shaped program is the best over all of its searches; a frozen-code witness where a retry improves on the base search added"
+  ],
+  "code_freeze_sha256": "862d6a7a424524f7fada8eeb193c6a2ca14a9d0fced3ad0fd35297d92234901a",
+  "review": "INDEPENDENT_EXACT_CODE_REVIEW_V1_20261103.md sha256 2a80e9cb5300235c302298532ff8bef8f96bbfc78278ac1bf9abc5a6a7d5904b (HOLD)"
+ },
+ "tests": {
+  "conditions": {
+   "1 within-donor output-index tie-break": "C1TieBreak (6 tests)",
+   "2 exact hash-to-seed conversion": "C2Seed (4 tests)",
+   "3 transitive release chain: outputs to GO_B, the full code and the assignment": "C3Chain (20 tests)",
+   "4 child-inclusive CPU limit, receipts and recovery on forced interruption": "C4Guards (7 tests, including the two-child case), C4ProductionWorker (1 test), C4Recovery (6 tests)",
+   "answer blindness of the inference processes": "AnswerBlindness (6 tests)",
+   "frozen construction code on synthetic tasks": "RealWorker, RealWorkerRetry, RealWorkerClosest",
+   "repaired point 1, no-fit label, flags and closest program": "test_r1_* (3 tests), RealWorker, RealWorkerClosest",
+   "repaired point 2, random fallback": "test_r2_* (2 tests), test_c2_*",
+   "repaired point 3, same-shape shuffled cohort": "test_r3_*, test_c1_*",
+   "repaired point 4, child-inclusive CPU guards and INCOMPLETE": "C4Guards, C4Recovery",
+   "repaired point 5, score gate": "test_r5_* (2 tests), test_c3_scorer_refuses_*",
+   "repaired point 6, ARC task-level scoring": "test_r6_* (3 tests)"
+  },
+  "log": "experiments/neural_to_program_b_20261103/tests/TEST_LOG.txt",
+  "passed": 64,
+  "suite": "experiments/neural_to_program_b_20261103/tests/test_adversarial.py",
+  "synthetic_only": true
+ }
+}

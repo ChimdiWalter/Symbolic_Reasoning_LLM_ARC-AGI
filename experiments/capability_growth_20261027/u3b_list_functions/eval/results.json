@@ -1,0 +1,674 @@
+{
+ "anytime_curve": {
+  "S-enum": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   2,
+   7
+  ],
+  "S-hole-ext": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "grid_cpu_s": [
+   0.25,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0,
+   16.0,
+   32.0,
+   60.0
+  ]
+ },
+ "auc_per_task": {
+  "c074": [
+   0.6666666666666666,
+   0.4444444444444444
+  ],
+  "c107": [
+   0.8888888888888888,
+   0.1111111111111111
+  ],
+  "c117": [
+   0.5555555555555556,
+   0.2222222222222222
+  ],
+  "c118": [
+   0.0,
+   0.0
+  ],
+  "c174": [
+   0.0,
+   0.1111111111111111
+  ],
+  "c186": [
+   0.0,
+   0.0
+  ],
+  "c198": [
+   0.7777777777777778,
+   0.1111111111111111
+  ],
+  "c221": [
+   0.0,
+   0.1111111111111111
+  ],
+  "c241": [
+   0.0,
+   0.1111111111111111
+  ]
+ },
+ "auc_test": {
+  "exact_sign_flip_p": 0.2031,
+  "mean_auc_enum": 0.1358,
+  "mean_auc_ext": 0.321,
+  "mean_paired_difference": 0.1852
+ },
+ "blind_cpu_incl_overshoot_per_unit": {
+  "S-enum": 48.8445,
+  "S-enum-MATCHED": 3.6752
+ },
+ "comparisons": {
+  "S-demo_vs_S-shuffled-ext": {
+   "any_seed": {
+    "exact_mcnemar_p": 0.25,
+    "first": 3,
+    "only_first": 3,
+    "only_second": 0,
+    "second": 0,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 0.25,
+    "first": 3,
+    "only_first": 3,
+    "only_second": 0,
+    "second": 0,
+    "tasks": 9
+   }
+  },
+  "S-enum_vs_C7m": {
+   "any_seed": {
+    "exact_mcnemar_p": 0.0625,
+    "first": 8,
+    "only_first": 5,
+    "only_second": 0,
+    "second": 3,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 0.125,
+    "first": 7,
+    "only_first": 4,
+    "only_second": 0,
+    "second": 3,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_C7m": {
+   "any_seed": {
+    "exact_mcnemar_p": 1.0,
+    "first": 4,
+    "only_first": 3,
+    "only_second": 2,
+    "second": 3,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 1.0,
+    "first": 4,
+    "only_first": 3,
+    "only_second": 2,
+    "second": 3,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_S-demo": {
+   "any_seed": {
+    "exact_mcnemar_p": 1.0,
+    "first": 4,
+    "only_first": 1,
+    "only_second": 0,
+    "second": 3,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 1.0,
+    "first": 4,
+    "only_first": 1,
+    "only_second": 0,
+    "second": 3,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_S-enum": {
+   "any_seed": {
+    "exact_mcnemar_p": 0.125,
+    "first": 4,
+    "only_first": 0,
+    "only_second": 4,
+    "second": 8,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 0.25,
+    "first": 4,
+    "only_first": 0,
+    "only_second": 3,
+    "second": 7,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_S-enum-MATCHED": {
+   "any_seed": {
+    "exact_mcnemar_p": 0.25,
+    "first": 4,
+    "only_first": 3,
+    "only_second": 0,
+    "second": 1,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 0.25,
+    "first": 4,
+    "only_first": 3,
+    "only_second": 0,
+    "second": 1,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_S-hole": {
+   "any_seed": {
+    "exact_mcnemar_p": 1.0,
+    "first": 4,
+    "only_first": 1,
+    "only_second": 0,
+    "second": 3,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 1.0,
+    "first": 4,
+    "only_first": 1,
+    "only_second": 0,
+    "second": 3,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_S-shuffled": {
+   "any_seed": {
+    "exact_mcnemar_p": 0.125,
+    "first": 4,
+    "only_first": 4,
+    "only_second": 0,
+    "second": 0,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 0.125,
+    "first": 4,
+    "only_first": 4,
+    "only_second": 0,
+    "second": 0,
+    "tasks": 9
+   }
+  },
+  "S-hole-ext_vs_S-shuffled-ext": {
+   "any_seed": {
+    "exact_mcnemar_p": 0.125,
+    "first": 4,
+    "only_first": 4,
+    "only_second": 0,
+    "second": 0,
+    "tasks": 9
+   },
+   "majority": {
+    "exact_mcnemar_p": 0.125,
+    "first": 4,
+    "only_first": 4,
+    "only_second": 0,
+    "second": 0,
+    "tasks": 9
+   }
+  }
+ },
+ "construction": {
+  "full_dsl_solved": 82,
+  "g0_solved": 74,
+  "gap_log": [
+   {
+    "defined_values": 1,
+    "gap": false,
+    "op": "tail",
+    "reproduced_values": 1,
+    "usage": 17
+   },
+   {
+    "defined_values": 1,
+    "gap": false,
+    "op": "init",
+    "reproduced_values": 1,
+    "usage": 8
+   },
+   {
+    "defined_values": 10,
+    "gap": false,
+    "op": "prepend",
+    "reproduced_values": 10,
+    "usage": 6
+   },
+   {
+    "defined_values": 10,
+    "gap": false,
+    "op": "append",
+    "reproduced_values": 10,
+    "usage": 4
+   },
+   {
+    "defined_values": 1,
+    "gap": true,
+    "op": "dedup",
+    "reproduced_values": 0,
+    "usage": 3
+   },
+   {
+    "defined_values": 1,
+    "gap": true,
+    "op": "filter_even",
+    "reproduced_values": 0,
+    "usage": 3
+   },
+   {
+    "defined_values": 10,
+    "gap": true,
+    "op": "rotate_left",
+    "reproduced_values": 1,
+    "usage": 3
+   },
+   {
+    "defined_values": 1,
+    "gap": false,
+    "op": "sort_asc",
+    "reproduced_values": 1,
+    "usage": 3
+   },
+   {
+    "defined_values": 1,
+    "gap": false,
+    "op": "sort_desc",
+    "reproduced_values": 1,
+    "usage": 3
+   },
+   {
+    "defined_values": 10,
+    "gap": true,
+    "op": "filter_gt",
+    "reproduced_values": 2,
+    "usage": 2
+   }
+  ],
+  "n_concepts": 250,
+  "usage": {
+   "append": 4,
+   "dedup": 3,
+   "filter_even": 3,
+   "filter_gt": 2,
+   "filter_lt": 0,
+   "filter_odd": 1,
+   "init": 8,
+   "map_add": 1,
+   "map_mul": 1,
+   "prepend": 6,
+   "rotate_left": 3,
+   "sort_asc": 3,
+   "sort_desc": 3,
+   "tail": 17
+  }
+ },
+ "cpu_charged_per_unit": {
+  "C7m": 146.05,
+  "S-demo": 2.2785,
+  "S-enum": 47.4945,
+  "S-enum-MATCHED": 2.1361,
+  "S-hole": 2.2861,
+  "S-hole-ext": 2.5686,
+  "S-shuffled": 0.8187,
+  "S-shuffled-ext": 0.8202
+ },
+ "deleted": [
+  "dedup",
+  "filter_even",
+  "rotate_left",
+  "filter_gt"
+ ],
+ "evaluator_reuse_cpu_s": 0.01,
+ "exploratory_pooled_with_U3": {
+  "U3_ext": 7,
+  "U3_matched": 0,
+  "U3_units": {
+   "c008": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     2.245,
+     2.245,
+     2.245
+    ]
+   },
+   "c011": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     2.202,
+     2.202,
+     2.202
+    ]
+   },
+   "c012": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     2.229,
+     2.229,
+     2.229
+    ]
+   },
+   "c058": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     2.284,
+     2.284,
+     2.284
+    ]
+   },
+   "c080": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     0.472
+    ],
+    "S-hole-ext": [
+     0.472,
+     0.472,
+     0.472
+    ]
+   },
+   "c100": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     0.436
+    ],
+    "S-hole-ext": [
+     0.436,
+     0.436,
+     0.436
+    ]
+   },
+   "c137": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     2.46,
+     2.46,
+     2.46
+    ]
+   },
+   "c138": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     null,
+     null,
+     null
+    ]
+   },
+   "c165": {
+    "S-enum-MATCHED": [
+     null,
+     null,
+     null
+    ],
+    "S-hole-ext": [
+     null,
+     null,
+     null
+    ]
+   }
+  },
+  "label": "EXPLORATORY, post hoc: U3 replayed from its frozen cache (no recomputation)",
+  "unavailable": 0
+ },
+ "matched_overshoots_not_counted": 27,
+ "motivating": [
+  "c107",
+  "c174",
+  "c198",
+  "c221",
+  "c241",
+  "c117",
+  "c118",
+  "c186",
+  "c074"
+ ],
+ "n_motivating": 9,
+ "per_family": {
+  "dedup": {
+   "C7m": 0,
+   "S-demo": 1,
+   "S-enum": 3,
+   "S-enum-MATCHED": 0,
+   "S-hole": 1,
+   "S-hole-ext": 2,
+   "S-shuffled": 0,
+   "S-shuffled-ext": 0,
+   "ext_vs_matched_discordant": [
+    2,
+    0
+   ],
+   "motivating": 3
+  },
+  "filter_even": {
+   "C7m": 2,
+   "S-demo": 0,
+   "S-enum": 2,
+   "S-enum-MATCHED": 0,
+   "S-hole": 0,
+   "S-hole-ext": 0,
+   "S-shuffled": 0,
+   "S-shuffled-ext": 0,
+   "ext_vs_matched_discordant": [
+    0,
+    0
+   ],
+   "motivating": 2
+  },
+  "filter_gt": {
+   "C7m": 0,
+   "S-demo": 1,
+   "S-enum": 1,
+   "S-enum-MATCHED": 1,
+   "S-hole": 1,
+   "S-hole-ext": 1,
+   "S-shuffled": 0,
+   "S-shuffled-ext": 0,
+   "ext_vs_matched_discordant": [
+    0,
+    0
+   ],
+   "motivating": 2
+  },
+  "rotate_left": {
+   "C7m": 1,
+   "S-demo": 1,
+   "S-enum": 1,
+   "S-enum-MATCHED": 0,
+   "S-hole": 1,
+   "S-hole-ext": 1,
+   "S-shuffled": 0,
+   "S-shuffled-ext": 0,
+   "ext_vs_matched_discordant": [
+    1,
+    0
+   ],
+   "motivating": 2
+  }
+ },
+ "pre_E_freeze": {
+  "build_manifest_sha256": "9b5c817e18c488b1ee2f7497aba025fbaff06a0ebd1b46f4a0d2023b2ee29b85",
+  "c7m_json_sha256": "4379eecf2e0129a60491e632670073247191983b3ffa1ea3e3f1e10fd1142082",
+  "frozen_utc": "2026-11-02T18:50:36Z",
+  "units_json_sha256": "b4e1649d1a979cffbaa4663ff524e93f8f4c1540bd97908fd39eeb60d07fe589"
+ },
+ "primary": {
+  "decision": "not confirmed (p >= 0.05)",
+  "exact_mcnemar_p": 0.25,
+  "first": 4,
+  "only_first": 3,
+  "only_second": 0,
+  "second": 1,
+  "tasks": 9
+ },
+ "reuse": {
+  "KEEP:even": {
+   "agreement_with_deleted_ops": {
+    "dedup": 0.083,
+    "filter_even": 1.0,
+    "filter_gt": 0.167,
+    "rotate_left": 0.083
+   },
+   "best_match": "filter_even",
+   "excluded_same_family": [],
+   "excluded_solved": [],
+   "excluded_tasks_of_family": []
+  },
+  "ORDER:dedup": {
+   "agreement_with_deleted_ops": {
+    "dedup": 1.0,
+    "filter_even": 0.083,
+    "filter_gt": 0.333,
+    "rotate_left": 0.5
+   },
+   "best_match": "dedup",
+   "excluded_same_family": [],
+   "excluded_solved": [],
+   "excluded_tasks_of_family": []
+  },
+  "ORDER:rotate_left": {
+   "agreement_with_deleted_ops": {
+    "dedup": 0.5,
+    "filter_even": 0.083,
+    "filter_gt": 0.583,
+    "rotate_left": 1.0
+   },
+   "best_match": "rotate_left",
+   "excluded_same_family": [],
+   "excluded_solved": [],
+   "excluded_tasks_of_family": []
+  }
+ },
+ "secondary_holm_p": {
+  "AUC_S-hole-ext_vs_S-enum": 0.4062,
+  "S-hole-ext_vs_S-demo": 1.0,
+  "S-hole-ext_vs_S-shuffled-ext": 0.375
+ },
+ "secondary_raw_p": {
+  "AUC_S-hole-ext_vs_S-enum": 0.2031,
+  "S-hole-ext_vs_S-demo": 1.0,
+  "S-hole-ext_vs_S-shuffled-ext": 0.125
+ },
+ "stages": {
+  "C7m": {
+   "admitted": null,
+   "promoted": null,
+   "trial_recovery": 3
+  },
+  "S-demo": {
+   "admitted": 3,
+   "promoted": 2,
+   "trial_recovery": 3
+  },
+  "S-enum": {
+   "admitted": 7,
+   "promoted": 5,
+   "trial_recovery": 7
+  },
+  "S-enum-MATCHED": {
+   "admitted": 1,
+   "promoted": 0,
+   "trial_recovery": 1
+  },
+  "S-hole": {
+   "admitted": 3,
+   "promoted": 2,
+   "trial_recovery": 3
+  },
+  "S-hole-ext": {
+   "admitted": 4,
+   "promoted": 3,
+   "trial_recovery": 4
+  },
+  "S-shuffled": {
+   "admitted": 0,
+   "promoted": 0,
+   "trial_recovery": 0
+  },
+  "S-shuffled-ext": {
+   "admitted": 0,
+   "promoted": 0,
+   "trial_recovery": 0
+  }
+ },
+ "vary_by_seed": {
+  "C7m": [],
+  "S-demo": [],
+  "S-enum": [
+   "c107",
+   "c174",
+   "c198",
+   "c221",
+   "c241",
+   "c118"
+  ],
+  "S-enum-MATCHED": [
+   "c074"
+  ],
+  "S-hole": [],
+  "S-hole-ext": [],
+  "S-shuffled": [],
+  "S-shuffled-ext": []
+ }
+}

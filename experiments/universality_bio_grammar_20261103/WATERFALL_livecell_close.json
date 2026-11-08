@@ -1,0 +1,90 @@
+{
+ "dataset": "livecell",
+ "operator": "close",
+ "admitted_before": [],
+ "side": "calibration only",
+ "demonstration_parents": 6,
+ "query_parents": 6,
+ "queries": {
+  "programs": 3081,
+  "conflicted": 0,
+  "harmless": 1067,
+  "positive_pooled_gain": 457,
+  "admissible": 269,
+  "units": 23127,
+  "fit": 152,
+  "top": 705,
+  "selected_by_some_fit": 5139,
+  "near_top_intersection": 6,
+  "folds": 6,
+  "fold_tops_distinct": 2,
+  "fold_tops_outside_fit": 1,
+  "folds_failing_loo": 0,
+  "intersection_with_fold_tops": 0,
+  "after_class_agreement": 0,
+  "top_guard_selected": 111,
+  "top_executed": 111,
+  "top_conflict_abstained": 0,
+  "verify_status": "EVIDENCE",
+  "accepted": 0
+ },
+ "demonstrations": {
+  "programs": 3081,
+  "conflicted": 0,
+  "harmless": 1067,
+  "positive_pooled_gain": 457,
+  "admissible": 269,
+  "units": 54924,
+  "fit": 152,
+  "top": 705,
+  "selected_by_some_fit": 4146,
+  "near_top_intersection": 3,
+  "folds": 6,
+  "fold_tops_distinct": 2,
+  "fold_tops_outside_fit": 1,
+  "folds_failing_loo": 0,
+  "intersection_with_fold_tops": 0,
+  "after_class_agreement": 0,
+  "top_guard_selected": 80,
+  "top_executed": 80,
+  "top_conflict_abstained": 0,
+  "verify_status": "EVIDENCE",
+  "accepted": 0
+ },
+ "applied_edits_on_queries": 0,
+ "applied_edits_on_demonstrations": 0,
+ "recorded_in_induction": [
+  {
+   "op": "close",
+   "status": "EVIDENCE",
+   "fit": 152,
+   "demo_units": 54924,
+   "top": {
+    "theta_index": 0,
+    "guard": [
+     [
+      1,
+      "<",
+      0.7017402670045604
+     ],
+     [
+      2,
+      "<",
+      -0.15718681227284426
+     ]
+    ]
+   },
+   "certification": {
+    "programs": 52,
+    "image_applications": 5500,
+    "all_equal": true
+   },
+   "query_units": 23127,
+   "query_accepted": 0,
+   "query_abstained": 5175,
+   "query_applied": 0,
+   "demo_accepted": 0,
+   "demo_applied": 0
+  }
+ ]
+}

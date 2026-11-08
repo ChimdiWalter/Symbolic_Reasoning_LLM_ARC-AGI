@@ -1,0 +1,63 @@
+{
+ "task": "62593bfd",
+ "record": "experiments/cora_cast_20261026/runs/chain_v2/m2/ARC_eval_dev/decisions.jsonl",
+ "arms": {
+  "rewrite_joint": {
+   "status": "FIT",
+   "n_fits": 8,
+   "n_behaviours": 1,
+   "cpu_s": 2.46
+  },
+  "rewrite_fixed_view": {
+   "status": "NO_FIT_EXHAUSTED",
+   "n_fits": 0,
+   "n_behaviours": 0,
+   "cpu_s": 1.101
+  },
+  "rewrite_true_guard": {
+   "status": "NO_FIT_EXHAUSTED",
+   "n_fits": 0,
+   "n_behaviours": 0,
+   "cpu_s": 0.014
+  }
+ },
+ "program": "(rewrite view=mono8 [('size_unique', False) -> ('move', 'up', 'until_blocked')] [('true',) -> ('move', 'down', 'to_border')])",
+ "first_attempt_exact_per_query": [
+  true,
+  true
+ ],
+ "majority_colour": {
+  "sf_demo1_in.pdf": 0,
+  "sf_demo1_out.pdf": 0,
+  "sf_demo2_in.pdf": 5,
+  "sf_demo2_out.pdf": 5,
+  "sf_test1_in.pdf": 1,
+  "sf_test1_cora.pdf": 1
+ },
+ "shapes": {
+  "sf_demo1_in.pdf": [
+   28,
+   19
+  ],
+  "sf_demo1_out.pdf": [
+   28,
+   19
+  ],
+  "sf_demo2_in.pdf": [
+   30,
+   30
+  ],
+  "sf_demo2_out.pdf": [
+   30,
+   30
+  ],
+  "sf_test1_in.pdf": [
+   25,
+   25
+  ],
+  "sf_test1_cora.pdf": [
+   25,
+   25
+  ]
+ }
+}

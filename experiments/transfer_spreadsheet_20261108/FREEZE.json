@@ -1,0 +1,47 @@
+{
+ "config": {
+  "curve_base_budgets": [
+   20000,
+   160000,
+   640000
+  ],
+  "max_candidates": 3,
+  "max_size": 30,
+  "n_partial": 3,
+  "per_hole": 2,
+  "primary_base_budget": 40000,
+  "run_cpu_cap_s": 1700,
+  "search_cpu_cap": 20.0,
+  "secondary_start_cpu_s": 1200
+ },
+ "data_source": {
+  "commit": "13c8deb68a873635879c9a69bc78caebd340f646",
+  "files_used": 210,
+  "repository": "https://github.com/SyGuS-Org/benchmarks",
+  "tarball_sha256": "0f9fc711bc6e019f59d5938532e61b9d505772811e2fd53b4d9c767611f0a08f"
+ },
+ "development_tasks": 30,
+ "files_sha256": {
+  "DATA_MANIFEST.md": "335d0208c4ea526b477ffc13043713aa9a40349d614272154fe4cb8fd4f3ae8d",
+  "PROTOCOL.md": "99964ac225c7c95e0c53d5503245df002e2d1a30cd8f67e2c7d778825c5b088d",
+  "config/CONFIG.json": "f579cc069f65717ead2a0bece67cc47f3139dcef8567f606d882f9e19cf685c3",
+  "data/SOURCE_FILES_SHA256.json": "7c0e867c0d0ced4d929bba4123f60083b28e5818d5ea7f9a1a7269c00a1014ed",
+  "data/prepared/tasks.json": "f6e68abb0c808231b207863036507c8e4ada4e9e78afe903af3e751000f32fe7",
+  "launch/run_held.sh": "1740e6fcef8216bdee2b26c1c8a4d3585642490cabad51c3f9b48bb4f83f2bb9",
+  "split/DEV_SPLIT.json": "740bb73419f202658ea9b1f746741dd9a32041506c8b7c732df2fcb24f661dc6",
+  "t2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "t2/dsl.py": "6cd4ea601733c0512b69d8d8d5197eac0d1ea46a04ea93f794d63e4503580200",
+  "t2/freeze.py": "fd77cf6ce153c349a9df93a49e4ed2c0be6b7d0068e9a1d2a7b1f07fe279e4b1",
+  "t2/grow.py": "5d6d9e0aacd2e17c9802f6817495b8ead26fec616aecbcb7cdaac78573aaf750",
+  "t2/pieces.py": "106a8c0419efa71f220f1f19fa95978d8c810c0201b20621f1aed135efcc15f4",
+  "t2/prepare.py": "ca79381a68b8904d007678a4d0c2df7ba652ecb467b429d5c3b4da5eea0ad02e",
+  "t2/run.py": "0f14e5118b42e580a5343f949bb8051cea517ecde4f6e1b373b915da5808c5f8",
+  "t2/sl_parse.py": "fd09ba50e0f91485d4823093fef13ed747108644d092a4611a09378141821a89",
+  "t2/stats.py": "8050795c1b86b599ff77d15d6c9b6372adcf4ef9dbf4f8bd880a910e36736eed"
+ },
+ "frozen_utc": "2026-11-08T06:08:37Z",
+ "held_tasks": 53,
+ "salt_rule": "salt = the full 40-hex hash of the git commit that first contains this FREEZE.json; the coordinator writes it into runs/GO_T2 with the sha256 of PROTOCOL.md and of this file",
+ "study": "experiments/transfer_spreadsheet_20261108",
+ "test": "T2 spreadsheet string transformations"
+}

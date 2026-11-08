@@ -1,0 +1,32 @@
+{
+ "study": "transfer_chemistry_20261108",
+ "test": "T3, chemistry: enzyme reaction rules from a few examples",
+ "label": "reconstruction of known enzyme transformations on held substrates (not discovery); real data",
+ "data": {
+  "enzymemap_csv": "data/raw/enzymemap/enzymemap_v2_brenda2023.csv.gz",
+  "compound_names": "data/raw/enzymemap/compound_to_smiles.json",
+  "library_tsv": "data/raw/pickaxe/metacyc_generalized_rules.tsv",
+  "coreactants_tsv": "data/raw/pickaxe/metacyc_coreactants.tsv",
+  "rows_source": ["direct"],
+  "rows_steps": ["single"]
+ },
+ "cofactor_names": ["NAD+", "NADH", "NADP+", "NADPH", "ATP", "ADP", "AMP", "GTP", "GDP", "GMP", "CTP", "CDP",
+  "CMP", "UTP", "UDP", "UMP", "diphosphate", "phosphate", "H2O", "O2", "CO2", "NH3", "NH4+", "H+", "H2O2", "CoA",
+  "acetyl-CoA", "S-adenosyl-L-methionine", "S-adenosyl-L-homocysteine", "FAD", "FADH2", "FMN", "FMNH2",
+  "UDP-alpha-D-glucose", "UDP-glucose", "2-oxoglutarate", "L-glutamate", "succinate",
+  "3'-phosphoadenylyl sulfate", "adenosine 3',5'-bisphosphate", "L-ascorbate", "dehydroascorbate", "sulfate",
+  "hydrogen sulfide", "ubiquinone", "ubiquinol"],
+ "main_product_min_heavy_atoms": 3,
+ "family_definition": "EC number (4 levels) + EnzymeMap rule id; items deduplicated within a family on the no-stereo (main substrate, main product) pair",
+ "k": 3,
+ "held_per_family": 5,
+ "min_items_per_family": 8,
+ "dev": {"salt": "t3chem-dev-20261108", "fraction": 0.15, "max_families_per_run": 60},
+ "score": {"n_families": 40, "salt": "sha256 of the committed bytes of runs/GO, which the coordinator writes and commits alone after the pre-run review (PROTOCOL.md Amendment 1)"},
+ "levels": ["L0", "L1", "L2", "L3", "L4", "L5", "L6"],
+ "level_tie_break": "most_general",
+ "keep_rule": "keep the built piece only if its leave-one-out exact count on the k examples is greater than the static rule's exact count on the k examples",
+ "nn": {"fingerprint": "Morgan radius 2, 2048 bits, Tanimoto", "level": "L4"},
+ "max_products": 500,
+ "bootstrap": {"resamples": 10000, "seed": 20261108}
+}

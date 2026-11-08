@@ -1,0 +1,4349 @@
+{
+ "dataset": "livecell",
+ "licence": "CC BY-NC 4.0 (images and annotations; github.com/sartorius-research/LIVECell)",
+ "segmenter": "cellpose3_cyto2",
+ "parent_rule": "(cell line, well) from <type>_Phase_<well>_<loc>_<time>_<crop>.tif (Amendment 3)",
+ "dropped_rule": "evaluation-side images whose references were decoded under DATA_MANIFEST_v1 (Amendment 3)",
+ "n_listed": 5239,
+ "n_parents": 31,
+ "quota_per_parent": 23,
+ "parents": {
+  "calibration": [
+   "Huh7|A11",
+   "SkBr3|F3",
+   "SHSY5Y|C10",
+   "BV2|C4",
+   "MCF7|E4",
+   "SHSY5Y|A10",
+   "A172|C7",
+   "BV2|D4",
+   "SKOV3|H4",
+   "SkBr3|H3",
+   "A172|D7",
+   "MCF7|F4"
+  ],
+  "evaluation": [
+   "BV2|A4",
+   "A172|B7",
+   "SkBr3|G3",
+   "BV2|B4",
+   "MCF7|H4",
+   "MCF7|G4",
+   "BT474|B3",
+   "SKOV3|G4",
+   "SHSY5Y|D10",
+   "SKOV3|F4",
+   "SHSY5Y|B10",
+   "A172|A7",
+   "Huh7|A12",
+   "SkBr3|E3",
+   "BT474|C3",
+   "SKOV3|E4",
+   "BT474|D3",
+   "BT474|A3",
+   "Huh7|A10"
+  ],
+  "induction": [
+   "SkBr3|H3",
+   "BV2|C4",
+   "A172|D7",
+   "BV2|D4",
+   "Huh7|A11",
+   "SHSY5Y|A10"
+  ],
+  "validation": [
+   "SkBr3|F3",
+   "SHSY5Y|C10",
+   "A172|C7",
+   "SKOV3|H4",
+   "MCF7|F4",
+   "MCF7|E4"
+  ]
+ },
+ "n_images": {
+  "calibration": 276,
+  "evaluation": 288,
+  "dropped": 149
+ },
+ "n_evaluation_parents_with_images": 19,
+ "images": {
+  "A172_Phase_A7_1_03d00h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_03d00h00m_1.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_00d08h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_00d08h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_01d12h00m_1.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_00d20h00m_4.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_00d20h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_00d08h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_00d08h00m_2.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_02d08h00m_1.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_00d00h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_01d12h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_01d12h00m_2.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_02d16h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_02d16h00m_2.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_02d12h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_03d00h00m_4.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_03d00h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_03d00h00m_2.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_00d20h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_01d16h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_00d16h00m_1.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_02d08h00m_1.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_01d00h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_01d00h00m_1.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_00d12h00m_4.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_01d00h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_1_02d20h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_1_02d20h00m_3.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_00d20h00m_2.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_A7_2_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_A7_2_00d00h00m_2.tif",
+   "parent": "A172|A7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_02d16h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_02d04h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_00d20h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_03d00h00m_3.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_01d16h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_01d16h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_01d16h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_01d12h00m_3.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_00d00h00m_3.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_00d08h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_00d08h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_00d16h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_00d16h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_01d00h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_01d00h00m_4.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_03d00h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_03d00h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_02d04h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_02d04h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_01d20h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_01d20h00m_3.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_00d00h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_01d20h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_01d20h00m_4.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_01d08h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_01d08h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_02d12h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_02d12h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_02d20h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_02d20h00m_4.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_01d08h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_01d08h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_03d00h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_03d00h00m_2.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_2_00d04h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_2_00d04h00m_1.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_B7_1_00d16h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_B7_1_00d16h00m_4.tif",
+   "parent": "A172|B7",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "A172_Phase_C7_1_02d04h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_02d04h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_02d20h00m_4": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_02d20h00m_4.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_02d00h00m_3": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_02d00h00m_3.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_00d00h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_00d00h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_01d16h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_01d16h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_01d04h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_01d04h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_02d16h00m_4": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_02d16h00m_4.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_00d20h00m_3": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_00d20h00m_3.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_00d00h00m_3": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_00d00h00m_3.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_02d16h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_02d16h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_02d04h00m_3": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_02d04h00m_3.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_01d04h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_01d04h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_02d16h00m_3": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_02d16h00m_3.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_00d12h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_00d12h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_2_03d00h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_2_03d00h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_02d08h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_02d08h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_02d20h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_02d20h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_01d08h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_01d08h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_01d16h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_01d16h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_02d00h00m_1": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_02d00h00m_1.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_01d20h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_01d20h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_01d12h00m_2": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_01d12h00m_2.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_C7_1_00d16h00m_3": {
+   "member": "images/livecell_test_images/A172_Phase_C7_1_00d16h00m_3.tif",
+   "parent": "A172|C7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "A172_Phase_D7_1_01d08h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_01d08h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_00d00h00m_1.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d00h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d00h00m_1.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d20h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d20h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_03d00h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_02d08h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_02d08h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_01d16h00m_1.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_02d20h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_02d20h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_00d12h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_03d00h00m_3.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_00d12h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d16h00m_1.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_01d20h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_01d20h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d16h00m_3.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_00d16h00m_3": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_00d16h00m_3.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_02d16h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_02d16h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_02d16h00m_1.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d00h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d00h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_03d00h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d00h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_1_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_1_00d20h00m_1.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d04h00m_2.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "A172_Phase_D7_2_01d12h00m_4": {
+   "member": "images/livecell_train_val_images/A172_Phase_D7_2_01d12h00m_4.tif",
+   "parent": "A172|D7",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BT474_Phase_A3_2_00d16h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_00d16h00m_3.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_1_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_01d16h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_02d04h00m_2.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_00d04h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_00d04h00m_2.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_03d00h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_03d00h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_03d04h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_03d04h00m_4.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_03d12h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_03d12h00m_3.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_2_04d16h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_04d16h00m_3.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_2_03d16h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_03d16h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_2_00d04h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_00d04h00m_4.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_2_04d16h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_04d16h00m_2.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_1_00d12h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_00d12h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_02d04h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_02d04h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_2_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_00d00h00m_3.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_1_05d00h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_05d00h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_2_01d12h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_01d12h00m_2.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_2_05d00h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_05d00h00m_2.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_1_04d00h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_04d00h00m_3.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_1_01d00h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_01d00h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_2_04d12h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_04d12h00m_3.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_2_04d00h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_04d00h00m_2.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_A3_1_00d04h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_1_00d04h00m_1.tif",
+   "parent": "BT474|A3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_A3_2_03d04h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_A3_2_03d04h00m_4.tif",
+   "parent": "BT474|A3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_00d00h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_00d00h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_00d00h00m_2.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_01d12h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_01d12h00m_2.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_2_03d16h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_03d16h00m_1.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_00d00h00m_1.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_02d04h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_02d04h00m_3.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_03d16h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_03d16h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_00d12h00m_2.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_1_00d04h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_00d04h00m_1.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_00d04h00m_3.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_2_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_02d12h00m_3.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_01d12h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_01d12h00m_2.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_1_00d04h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_00d04h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_01d00h00m_2.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_2_01d16h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_01d16h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_04d00h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_04d00h00m_3.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_2_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_00d12h00m_3.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_1_02d00h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_02d00h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_00d12h00m_2.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_04d16h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_04d16h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_1_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_01d00h00m_3.tif",
+   "parent": "BT474|B3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_B3_2_02d12h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_2_02d12h00m_4.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_B3_1_04d04h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_B3_1_04d04h00m_1.tif",
+   "parent": "BT474|B3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_00d12h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_00d12h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_2_03d04h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_03d04h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_05d00h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_05d00h00m_4.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_1_01d00h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_01d00h00m_4.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_2_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_01d16h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_1_04d12h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_04d12h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_2_02d16h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_02d16h00m_4.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_02d12h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_1_05d00h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_05d00h00m_4.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_02d04h00m_2.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_00d16h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_03d00h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_2_04d04h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_04d04h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_01d04h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_1_01d16h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_01d16h00m_2.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_2_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_00d12h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_01d04h00m_4": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_01d04h00m_4.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_04d04h00m_2": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_04d04h00m_2.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_02d00h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_02d00h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_C3_2_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_2_01d12h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_03d00h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_03d00h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_04d00h00m_1": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_04d00h00m_1.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_C3_1_03d04h00m_3": {
+   "member": "images/livecell_train_val_images/BT474_Phase_C3_1_03d04h00m_3.tif",
+   "parent": "BT474|C3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_04d04h00m_2": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_04d04h00m_2.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_01d16h00m_1": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_01d16h00m_1.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_03d12h00m_3": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_03d12h00m_3.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_04d12h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_04d12h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_1_04d00h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_1_04d00h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_00d16h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_00d16h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_02d12h00m_3": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_02d12h00m_3.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_04d00h00m_3": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_04d00h00m_3.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_02d04h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_02d04h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_01d16h00m_2": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_01d16h00m_2.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_1_04d12h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_1_04d12h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_03d16h00m_2": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_03d16h00m_2.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_2_02d04h00m_3": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_02d04h00m_3.tif",
+   "parent": "BT474|D3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BT474_Phase_D3_1_02d04h00m_1": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_1_02d04h00m_1.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_01d00h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_01d00h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_04d04h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_04d04h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_02d16h00m_2": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_02d16h00m_2.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_1_04d16h00m_2": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_1_04d16h00m_2.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_00d04h00m_1": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_00d04h00m_1.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_04d16h00m_3": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_04d16h00m_3.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_03d12h00m_4": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_03d12h00m_4.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_1_00d04h00m_1": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_1_00d04h00m_1.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BT474_Phase_D3_2_01d00h00m_1": {
+   "member": "images/livecell_test_images/BT474_Phase_D3_2_01d00h00m_1.tif",
+   "parent": "BT474|D3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_00d08h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_00d08h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_02d20h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_02d20h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_01d04h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_01d04h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_01d08h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_01d08h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_2_01d08h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_01d08h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_1_03d00h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_03d00h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_2_00d20h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_00d20h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_2_01d08h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_01d08h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_2_02d04h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_02d04h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_1_02d00h00m_3": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_02d00h00m_3.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_02d20h00m_3": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_02d20h00m_3.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_2_00d20h00m_3": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_00d20h00m_3.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_2_01d12h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_01d12h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_2_00d12h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_00d12h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_1_02d12h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_02d12h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_2_02d08h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_02d08h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_2_01d20h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_01d20h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_2_02d08h00m_1": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_02d08h00m_1.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_1_02d16h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_02d16h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_01d20h00m_2": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_01d20h00m_2.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_2_02d08h00m_3": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_2_02d08h00m_3.tif",
+   "parent": "BV2|A4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_A4_1_01d04h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_01d04h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_A4_1_00d16h00m_4": {
+   "member": "images/livecell_test_images/BV2_Phase_A4_1_00d16h00m_4.tif",
+   "parent": "BV2|A4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_02d08h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_02d08h00m_3.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_2_01d16h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_01d16h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_2_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_02d00h00m_1.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_02d04h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_02d04h00m_3.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_2_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_03d00h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_01d04h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_01d04h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_2_03d00h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_03d00h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_00d08h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_00d08h00m_1.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_1_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_02d12h00m_3.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_2_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_02d00h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_01d04h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_1_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_00d20h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_2_02d12h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_02d12h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_2_01d08h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_01d08h00m_3.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_2_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_00d12h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_2_01d04h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_01d04h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_02d16h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_02d16h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_1_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_00d20h00m_3.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_1_02d08h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_02d08h00m_4.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_1_01d20h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_01d20h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "BV2_Phase_B4_1_01d04h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_01d04h00m_3.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_1_00d08h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_1_00d08h00m_2.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_B4_2_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_B4_2_01d12h00m_1.tif",
+   "parent": "BV2|B4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "BV2_Phase_C4_1_00d08h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_00d08h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_00d20h00m_4.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_02d00h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_02d00h00m_4.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_00d08h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_00d08h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_01d00h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_01d00h00m_4.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_01d16h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_01d16h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_02d20h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_02d20h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_00d00h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_02d00h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_00d12h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_00d00h00m_1.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_02d12h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_02d04h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_02d04h00m_1.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_02d12h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_02d12h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_01d04h00m_1.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_00d08h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_00d08h00m_1.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_02d04h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_01d16h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_02d20h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_02d20h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_2_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_2_00d00h00m_2.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_00d16h00m_1.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_02d00h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_02d00h00m_3.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_C4_1_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_C4_1_01d04h00m_1.tif",
+   "parent": "BV2|C4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_01d12h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_01d20h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_01d20h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_01d12h00m_3.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_02d20h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_02d20h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_03d00h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d04h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d04h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_01d16h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_01d16h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_01d08h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_01d08h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_01d20h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_01d20h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d04h00m_2.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_02d16h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_02d16h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d00h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d16h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_00d12h00m_2.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_00d16h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_01d12h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_01d12h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_02d00h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_00d12h00m_2.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_02d08h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_02d08h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d16h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d16h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d12h00m_4": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d12h00m_4.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_2_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_2_00d00h00m_1.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "BV2_Phase_D4_1_02d20h00m_2": {
+   "member": "images/livecell_train_val_images/BV2_Phase_D4_1_02d20h00m_2.tif",
+   "parent": "BV2|D4",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A10_2_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_00d12h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_1_00d04h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_00d04h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_2_01d16h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_01d16h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_1_02d04h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_02d04h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_2_03d20h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_03d20h00m_2.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_1_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_00d16h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_03d12h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_03d12h00m_3.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_2_01d08h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_01d08h00m_2.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_2_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_00d04h00m_3.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_1_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_01d12h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_2_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_00d00h00m_2.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_1_01d12h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_01d12h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_01d00h00m_3.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_01d08h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_01d08h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_03d16h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_03d16h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_03d20h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_03d20h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_01d08h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_01d08h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "Huh7_Phase_A10_1_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_01d04h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_2_02d16h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_02d16h00m_2.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_1_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_1_00d00h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_2_01d04h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_01d04h00m_4.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_2_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_00d20h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A10_2_00d12h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A10_2_00d12h00m_1.tif",
+   "parent": "Huh7|A10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A11_2_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_01d00h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_02d12h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_02d12h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_03d12h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_03d12h00m_3.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_03d08h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_03d08h00m_4.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_01d20h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_01d20h00m_1.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_03d08h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_03d08h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_00d20h00m_3.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_01d20h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_01d20h00m_3.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_01d00h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_00d20h00m_4.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_03d16h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_03d16h00m_4.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_03d16h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_03d16h00m_3.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_01d04h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_02d08h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_02d08h00m_3.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_03d20h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_03d20h00m_1.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_02d16h00m_1.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_03d20h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_03d20h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_02d20h00m_3": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_02d20h00m_3.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_00d00h00m_1.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_00d20h00m_4.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_02d04h00m_4": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_02d04h00m_4.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_2_01d20h00m_2": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_2_01d20h00m_2.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A11_1_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/Huh7_Phase_A11_1_02d08h00m_1.tif",
+   "parent": "Huh7|A11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "Huh7_Phase_A12_2_02d16h00m_4": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_02d16h00m_4.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_03d20h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_03d20h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_01d00h00m_4": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_01d00h00m_4.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_02d04h00m_2": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_02d04h00m_2.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_03d12h00m_2": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_03d12h00m_2.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_00d08h00m_3": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_00d08h00m_3.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_03d16h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_03d16h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_03d12h00m_4": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_03d12h00m_4.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_00d04h00m_4": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_00d04h00m_4.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_00d16h00m_3": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_00d16h00m_3.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_00d20h00m_3": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_00d20h00m_3.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_03d20h00m_2": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_03d20h00m_2.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_00d00h00m_2": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_00d00h00m_2.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_00d04h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_00d04h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_01d12h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_01d12h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_03d00h00m_2": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_03d00h00m_2.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_01d00h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_01d00h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_01d20h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_01d20h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_00d20h00m_3": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_00d20h00m_3.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_00d20h00m_2": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_00d20h00m_2.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_1_00d20h00m_1": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_1_00d20h00m_1.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_01d20h00m_3": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_01d20h00m_3.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "Huh7_Phase_A12_2_01d20h00m_4": {
+   "member": "images/livecell_test_images/Huh7_Phase_A12_2_01d20h00m_4.tif",
+   "parent": "Huh7|A12",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_E4_2_03d12h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_03d12h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_00d12h00m_3.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_02d16h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_00d04h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_00d04h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_02d04h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_02d04h00m_3.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_03d00h00m_3.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_01d00h00m_3.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_00d20h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_01d20h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_01d20h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_02d00h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_01d12h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_03d04h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_03d04h00m_2.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_02d20h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_02d20h00m_2.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_02d16h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_00d00h00m_2.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_00d04h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_00d04h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_02d00h00m_2.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_00d20h00m_2.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_03d12h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_03d12h00m_4.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_02d08h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_02d08h00m_3.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_03d00h00m_4.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_1_03d12h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_1_03d12h00m_1.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_E4_2_03d12h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_E4_2_03d12h00m_2.tif",
+   "parent": "MCF7|E4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_00d12h00m_4.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_00d16h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_00d16h00m_3.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_00d00h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_01d00h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_03d16h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_03d16h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_01d12h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_01d12h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_03d16h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_03d16h00m_1.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_00d12h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_01d16h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_01d16h00m_4.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_02d12h00m_1.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_00d04h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_00d04h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_03d00h00m_3.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_00d00h00m_1.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_01d00h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_02d16h00m_1.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_01d04h00m_2.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_03d08h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_03d08h00m_4.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_00d20h00m_3.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_00d20h00m_1.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_01d08h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_01d08h00m_4.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_01d08h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_01d08h00m_1.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_2_01d04h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_2_01d04h00m_3.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_F4_1_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_F4_1_00d04h00m_3.tif",
+   "parent": "MCF7|F4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "MCF7_Phase_G4_2_03d12h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_03d12h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_1_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_01d16h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_1_00d08h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_00d08h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_1_01d20h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_01d20h00m_4.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_2_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_00d00h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_02d20h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_02d20h00m_1.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_02d00h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_00d04h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_00d04h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_1_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_01d04h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_2_02d08h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_02d08h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_1_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_01d04h00m_1.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_2_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_00d20h00m_4.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_03d16h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_03d16h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_00d12h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_1_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_02d12h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_2_03d00h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_03d00h00m_1.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_1_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_00d20h00m_1.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_1_03d12h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_03d12h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_G4_2_00d08h00m_4": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_00d08h00m_4.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_03d00h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_03d00h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_02d08h00m_1.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_2_02d08h00m_2": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_2_02d08h00m_2.tif",
+   "parent": "MCF7|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_G4_1_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/MCF7_Phase_G4_1_00d12h00m_3.tif",
+   "parent": "MCF7|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "MCF7_Phase_H4_1_02d16h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_02d16h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_00d00h00m_3": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_00d00h00m_3.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_02d00h00m_3": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_02d00h00m_3.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_01d20h00m_1": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_01d20h00m_1.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_03d12h00m_1": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_03d12h00m_1.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_02d08h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_02d08h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_03d00h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_03d00h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_00d12h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_00d12h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_00d08h00m_2": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_00d08h00m_2.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_00d16h00m_1": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_00d16h00m_1.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_02d16h00m_2": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_02d16h00m_2.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_03d16h00m_2": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_03d16h00m_2.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_02d00h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_02d00h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_01d20h00m_3": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_01d20h00m_3.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_01d08h00m_1": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_01d08h00m_1.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_01d04h00m_3": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_01d04h00m_3.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_02d16h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_02d16h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_01d00h00m_3": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_01d00h00m_3.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_00d08h00m_1": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_00d08h00m_1.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_2_02d16h00m_1": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_2_02d16h00m_1.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_03d00h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_03d00h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_03d12h00m_2": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_03d12h00m_2.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "MCF7_Phase_H4_1_00d16h00m_4": {
+   "member": "images/livecell_test_images/MCF7_Phase_H4_1_00d16h00m_4.tif",
+   "parent": "MCF7|H4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_A10_1_02d16h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_02d16h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_02d04h00m_3": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_02d04h00m_3.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_00d20h00m_3": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_00d20h00m_3.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_01d12h00m_2": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_01d12h00m_2.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_03d00h00m_2": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_03d00h00m_2.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_02d00h00m_2": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_02d00h00m_2.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_02d08h00m_3": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_02d08h00m_3.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_00d08h00m_3": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_00d08h00m_3.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_00d04h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_00d04h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_03d12h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_03d12h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_03d04h00m_1": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_03d04h00m_1.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_03d00h00m_3": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_03d00h00m_3.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_01d04h00m_1": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_01d04h00m_1.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_02d16h00m_2": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_02d16h00m_2.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_00d08h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_00d08h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_02d12h00m_1": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_02d12h00m_1.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_01d08h00m_1": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_01d08h00m_1.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_00d04h00m_3": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_00d04h00m_3.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_01d20h00m_1": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_01d20h00m_1.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_02d08h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_02d08h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_2_00d08h00m_1": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_2_00d08h00m_1.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_03d04h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_03d04h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_A10_1_00d20h00m_4": {
+   "member": "images/livecell_test_images/SHSY5Y_Phase_A10_1_00d20h00m_4.tif",
+   "parent": "SHSY5Y|A10",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SHSY5Y_Phase_B10_1_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_00d20h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_03d08h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_03d08h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_02d16h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_02d16h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_00d16h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_00d16h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_00d12h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_02d12h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_02d00h00m_1.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_00d04h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_01d08h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_01d08h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_02d12h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_02d12h00m_4.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_01d04h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_00d12h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_01d16h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_01d16h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_01d12h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_03d00h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_03d04h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_03d04h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_02d12h00m_1.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_01d12h00m_1.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_00d04h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_00d04h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_01d08h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_01d08h00m_4.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_02d08h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_02d08h00m_2.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_1_02d20h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_1_02d20h00m_3.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_B10_2_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_B10_2_00d12h00m_4.tif",
+   "parent": "SHSY5Y|B10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_C10_2_03d12h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_03d12h00m_3.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_02d08h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_00d20h00m_3.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_02d00h00m_2.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_01d00h00m_3.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_03d08h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_03d08h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_02d08h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_02d08h00m_2.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_02d16h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_02d16h00m_3.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_02d04h00m_2.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_03d00h00m_3.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_00d00h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_00d12h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_00d12h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_02d00h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_01d20h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_01d20h00m_4.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_01d04h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_02d20h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_02d20h00m_2.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_02d20h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_02d20h00m_3.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_02d12h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_03d00h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_03d00h00m_2.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_03d08h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_03d08h00m_4.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_00d04h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_00d04h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_2_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_2_01d16h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_C10_1_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_C10_1_00d20h00m_1.tif",
+   "parent": "SHSY5Y|C10",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SHSY5Y_Phase_D10_1_01d08h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_01d08h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_2_02d00h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_02d00h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_1_03d12h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_03d12h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_2_03d04h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_03d04h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_2_02d04h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_02d04h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_1_00d00h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_00d00h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_1_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_02d08h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_1_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_03d00h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_1_03d08h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_03d08h00m_3.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_2_02d08h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_02d08h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_1_03d04h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_03d04h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_2_03d08h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_03d08h00m_3.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_1_02d20h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_02d20h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_1_01d08h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_01d08h00m_2.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_1_03d12h00m_2": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_03d12h00m_2.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_2_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_02d08h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_2_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_02d16h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_2_02d00h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_02d00h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_2_00d08h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_00d08h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_2_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_01d12h00m_3.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_1_03d08h00m_4": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_03d08h00m_4.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SHSY5Y_Phase_D10_2_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_2_01d16h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SHSY5Y_Phase_D10_1_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/SHSY5Y_Phase_D10_1_02d16h00m_1.tif",
+   "parent": "SHSY5Y|D10",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_01d16h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_01d16h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_2_00d20h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_00d20h00m_2.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_1_00d20h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_00d20h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_00d20h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_00d20h00m_4.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_01d04h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_01d04h00m_3.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_00d04h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_00d04h00m_4.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_00d00h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_00d00h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_2_00d16h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_00d16h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_2_00d12h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_00d12h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_1_02d04h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_02d04h00m_2.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_2_00d04h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_00d04h00m_2.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_1_01d12h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_01d12h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_00d04h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_00d04h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_01d20h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_01d20h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_2_02d20h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_02d20h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_2_00d12h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_00d12h00m_3.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_2_02d16h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_02d16h00m_1.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_1_01d16h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_01d16h00m_3.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_1_02d00h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_02d00h00m_2.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_2_02d20h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_02d20h00m_4.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_2_02d16h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_02d16h00m_4.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_E4_1_02d08h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_1_02d08h00m_4.tif",
+   "parent": "SKOV3|E4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_E4_2_02d12h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_E4_2_02d12h00m_2.tif",
+   "parent": "SKOV3|E4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_02d08h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_02d08h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_01d04h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_01d04h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_02d16h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_02d16h00m_3.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_00d20h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_00d20h00m_4.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_01d12h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_01d12h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_03d00h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_03d00h00m_2.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_01d16h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_01d16h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_00d12h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_00d12h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_00d04h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_00d04h00m_2.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_00d12h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_00d12h00m_3.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_00d04h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_00d04h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_01d12h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_01d12h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_02d20h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_02d20h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_01d16h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_01d16h00m_2.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_00d08h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_00d08h00m_3.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_01d20h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_01d20h00m_4.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_01d12h00m_2": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_01d12h00m_2.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_02d04h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_02d04h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_00d08h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_00d08h00m_4.tif",
+   "parent": "SKOV3|F4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_F4_2_00d16h00m_4": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_00d16h00m_4.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_02d20h00m_1": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_02d20h00m_1.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_2_00d08h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_2_00d08h00m_3.tif",
+   "parent": "SKOV3|F4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_F4_1_00d00h00m_3": {
+   "member": "images/livecell_test_images/SKOV3_Phase_F4_1_00d00h00m_3.tif",
+   "parent": "SKOV3|F4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_01d12h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_01d12h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_02d16h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_02d16h00m_1.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_2_00d16h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_00d16h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_1_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_03d00h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d04h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_2_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_01d04h00m_2.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_1_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d12h00m_2.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_01d00h00m_2.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_00d08h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d08h00m_1.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d16h00m_1.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_01d16h00m_1.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_2_01d12h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_01d12h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_2_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_01d16h00m_1.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_2_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_00d04h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_1_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d00h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_00d08h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d08h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_2_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_00d20h00m_1.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_2_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_01d12h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_2_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_03d00h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_1_01d04h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_01d04h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_1_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_1_00d20h00m_4.tif",
+   "parent": "SKOV3|G4",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SKOV3_Phase_G4_2_02d16h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_02d16h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_G4_2_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_G4_2_00d20h00m_3.tif",
+   "parent": "SKOV3|G4",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SKOV3_Phase_H4_1_01d12h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_01d12h00m_4.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_00d08h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_00d08h00m_3.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_01d04h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_00d16h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_00d16h00m_4.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_00d16h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_00d16h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_00d04h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_00d04h00m_2.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_01d08h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_01d08h00m_3.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_00d20h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_00d20h00m_4.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_01d12h00m_3.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_00d00h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_00d00h00m_3.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_01d08h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_01d08h00m_2.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_01d04h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_01d04h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_02d04h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_02d04h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_02d08h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_00d08h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_00d08h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_02d04h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_02d04h00m_4.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_00d20h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_00d20h00m_3.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_02d16h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_02d16h00m_4.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_00d12h00m_3.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_02d00h00m_4": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_02d00h00m_4.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_1_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_1_02d00h00m_2.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_02d12h00m_1.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SKOV3_Phase_H4_2_02d04h00m_2": {
+   "member": "images/livecell_train_val_images/SKOV3_Phase_H4_2_02d04h00m_2.tif",
+   "parent": "SKOV3|H4",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_E3_2_02d20h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_02d20h00m_4.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d00h00m_2.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d12h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d12h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d16h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d16h00m_4.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_00d00h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_00d00h00m_2.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d08h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d08h00m_4.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_01d00h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_01d00h00m_2.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d04h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d04h00m_4.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_01d08h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_01d08h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_03d08h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_03d08h00m_1.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_02d12h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_01d12h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_01d12h00m_1.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d20h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d20h00m_1.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_01d00h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_01d12h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_02d12h00m_1.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_03d00h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_03d00h00m_2.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d08h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d08h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_03d00h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_03d00h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_02d16h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_02d16h00m_2.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_00d20h00m_2.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_2_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_2_00d04h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_E3_1_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_E3_1_00d04h00m_3.tif",
+   "parent": "SkBr3|E3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_F3_2_00d04h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_00d04h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_01d08h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_01d08h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_01d20h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_01d20h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_01d00h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_01d00h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_00d08h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_00d08h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_01d00h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_01d00h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_00d16h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_00d16h00m_4.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_03d04h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_03d04h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_02d12h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_02d12h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_02d12h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_00d16h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_00d16h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_01d12h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_01d12h00m_2.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_03d04h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_03d04h00m_2.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_01d20h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_01d20h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_01d16h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_00d12h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_00d12h00m_2.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_01d12h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_01d12h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_00d20h00m_2.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_03d12h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_03d12h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_02d08h00m_1.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_03d00h00m_4.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_1_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_1_01d04h00m_2.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_F3_2_01d04h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_F3_2_01d04h00m_3.tif",
+   "parent": "SkBr3|F3",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "SkBr3_Phase_G3_2_02d20h00m_3": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_02d20h00m_3.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_2_00d12h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_00d12h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_2_02d00h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_02d00h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_1_01d08h00m_2": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_01d08h00m_2.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_2_00d12h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_00d12h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_1_01d00h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_01d00h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_03d12h00m_3": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_03d12h00m_3.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_00d08h00m_3": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_00d08h00m_3.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_01d16h00m_3": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_01d16h00m_3.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_00d12h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_00d12h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_2_03d00h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_03d00h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_2_00d08h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_00d08h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_1_03d00h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_03d00h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_2_02d16h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_02d16h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_1_00d08h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_00d08h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_03d08h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_03d08h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_2_02d12h00m_4": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_02d12h00m_4.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_2_02d04h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_02d04h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_1_02d20h00m_3": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_02d20h00m_3.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_01d12h00m_1": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_01d12h00m_1.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_1_03d08h00m_3": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_1_03d08h00m_3.tif",
+   "parent": "SkBr3|G3",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "SkBr3_Phase_G3_2_01d12h00m_2": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_01d12h00m_2.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_G3_2_01d00h00m_2": {
+   "member": "images/livecell_test_images/SkBr3_Phase_G3_2_01d00h00m_2.tif",
+   "parent": "SkBr3|G3",
+   "side": "dropped",
+   "role": "dropped"
+  },
+  "SkBr3_Phase_H3_2_03d12h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_03d12h00m_3.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_02d00h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_02d00h00m_3.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_02d08h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_02d08h00m_1.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_01d16h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_01d16h00m_3.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_03d00h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_03d00h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_00d12h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_00d20h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_00d20h00m_2.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_02d12h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_02d12h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_00d04h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_00d04h00m_2.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_01d16h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_01d16h00m_2.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_01d16h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_01d16h00m_1.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_01d16h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_01d16h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_00d00h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_00d00h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_00d12h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_00d12h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_02d20h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_02d20h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_02d12h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_02d12h00m_1.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_01d04h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_01d04h00m_2.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_01d08h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_01d08h00m_1.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_00d00h00m_1": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_00d00h00m_1.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_2_01d04h00m_4": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_2_01d04h00m_4.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_03d04h00m_3": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_03d04h00m_3.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_03d08h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_03d08h00m_2.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "SkBr3_Phase_H3_1_02d00h00m_2": {
+   "member": "images/livecell_train_val_images/SkBr3_Phase_H3_1_02d00h00m_2.tif",
+   "parent": "SkBr3|H3",
+   "side": "calibration",
+   "role": "induction"
+  }
+ }
+}

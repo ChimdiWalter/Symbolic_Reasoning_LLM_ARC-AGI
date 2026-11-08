@@ -1,0 +1,13 @@
+{
+ "study": "transfer_worldmodel_20261108",
+ "label": "probe on public ARC-AGI-3 games; world-model induction, not game play; reconstruction of the games' own rules; not a score",
+ "kernel": "chimdiwalter/t4-arc-agi-3-world-model-probe",
+ "packages_in_kernel": {"python": "3.12 (uv-managed)", "arc-agi": "0.9.9", "arcengine": "0.9.3"},
+ "split": {"salt": "989cb0ca9c21811144356d83955cae5ca76ec6c6", "rule": "sort base game ids by sha256(salt|id); first floor(n/2) held, rest development"},
+ "collection": {"episodes_per_game": 6, "episode_seeds": [0, 1, 2, 3, 4, 5], "max_steps": 80, "policy": "uniform over available actions except RESET; ACTION6 click: half uniform pixel, half uniform pixel not of the most common colour", "rng": "numpy default_rng([episode, int(sha256(game)[:8], 16)])"},
+ "items": {"K_observed": 30, "max_test": 50, "min_transitions": 31},
+ "representation": {"block_sizes": [8, 4, 2, 1], "chosen_from": "observed frames only"},
+ "grown_loop": {"pieces_per_round": 3, "max_rounds": 4, "held_checks_per_candidate": 5, "big_colour_cells": 1024, "actor_max_cells": 600, "piece_kinds": 23},
+ "shuffled_partner": "round-0 ranking of the same episode in the next game (sorted order) with a non-empty ranking",
+ "kernel_limits": {"item_wall_seconds": 300, "pool_workers": 4}
+}

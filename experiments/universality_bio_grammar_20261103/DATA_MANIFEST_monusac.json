@@ -1,0 +1,1928 @@
+{
+ "dataset": "monusac",
+ "licence": "CC BY-NC-SA 4.0 (monusac-2020.grand-challenge.org/Data)",
+ "segmenter": "stardist_2D_versatile_he",
+ "parent_rule": "TCGA patient barcode (TCGA-XX-XXXX); patients of the MoNuSeg 2018 training archive excluded (Amendment 4)",
+ "dropped_rule": "evaluation-side images whose references were decoded under DATA_MANIFEST_v1 (Amendment 3)",
+ "n_listed": 301,
+ "n_parents": 67,
+ "quota_per_parent": null,
+ "parents": {
+  "calibration": [
+   "TCGA-YL-A9WY",
+   "TCGA-E2-A154",
+   "TCGA-SX-A7SR",
+   "TCGA-X4-A8KQ",
+   "TCGA-A2-A0ES",
+   "TCGA-P4-AAVK",
+   "TCGA-E9-A22B",
+   "TCGA-69-7760",
+   "TCGA-69-A59K",
+   "TCGA-A2-A04X",
+   "TCGA-G9-6342",
+   "TCGA-MP-A4T7",
+   "TCGA-V1-A8WL",
+   "TCGA-B6-A0WZ",
+   "TCGA-MP-A4SY",
+   "TCGA-E2-A108",
+   "TCGA-J4-A67Q",
+   "TCGA-D8-A3Z6",
+   "TCGA-IZ-A6M9",
+   "TCGA-DW-7963",
+   "TCGA-EJ-5517",
+   "TCGA-G9-6367",
+   "TCGA-S3-AA11",
+   "TCGA-VP-A87H",
+   "TCGA-78-7152",
+   "TCGA-EJ-5505",
+   "TCGA-86-8672"
+  ],
+  "evaluation": [
+   "TCGA-V1-A9O9",
+   "TCGA-55-7573",
+   "TCGA-DW-7838",
+   "TCGA-MH-A55W",
+   "TCGA-55-7570",
+   "TCGA-KK-A6E0",
+   "TCGA-UZ-A9PO",
+   "TCGA-E9-A22G",
+   "TCGA-B9-A8YI",
+   "TCGA-BH-A18T",
+   "TCGA-EV-5903",
+   "TCGA-KK-A7AW",
+   "TCGA-2Z-A9JN",
+   "TCGA-73-4668",
+   "TCGA-X4-A8KS",
+   "TCGA-YL-A9WL",
+   "TCGA-55-1594",
+   "TCGA-G7-A8LD",
+   "TCGA-UZ-A9PU",
+   "TCGA-2Z-A9JG",
+   "TCGA-KK-A59X",
+   "TCGA-MH-A560",
+   "TCGA-J4-A67T",
+   "TCGA-A2-A0CV",
+   "TCGA-G9-6499",
+   "TCGA-5P-A9K0",
+   "TCGA-50-6591",
+   "TCGA-78-7220",
+   "TCGA-VP-A87E",
+   "TCGA-EW-A6SD",
+   "TCGA-L4-A4E5",
+   "TCGA-D8-A1X5",
+   "TCGA-73-4662",
+   "TCGA-EW-A6SB",
+   "TCGA-DW-7841",
+   "TCGA-B9-A44B",
+   "TCGA-86-7713",
+   "TCGA-EJ-5495",
+   "TCGA-49-6743",
+   "TCGA-F9-A97G"
+  ],
+  "induction": [
+   "TCGA-G9-6367",
+   "TCGA-A2-A04X",
+   "TCGA-G9-6342",
+   "TCGA-YL-A9WY",
+   "TCGA-J4-A67Q",
+   "TCGA-V1-A8WL",
+   "TCGA-86-8672",
+   "TCGA-E9-A22B",
+   "TCGA-A2-A0ES",
+   "TCGA-P4-AAVK",
+   "TCGA-D8-A3Z6",
+   "TCGA-78-7152",
+   "TCGA-S3-AA11"
+  ],
+  "validation": [
+   "TCGA-B6-A0WZ",
+   "TCGA-VP-A87H",
+   "TCGA-EJ-5517",
+   "TCGA-IZ-A6M9",
+   "TCGA-MP-A4T7",
+   "TCGA-DW-7963",
+   "TCGA-MP-A4SY",
+   "TCGA-E2-A154",
+   "TCGA-X4-A8KQ",
+   "TCGA-69-A59K",
+   "TCGA-EJ-5505",
+   "TCGA-E2-A108",
+   "TCGA-69-7760",
+   "TCGA-SX-A7SR"
+  ]
+ },
+ "n_images": {
+  "calibration": 132,
+  "evaluation": 169,
+  "dropped": 0
+ },
+ "n_evaluation_parents_with_images": 40,
+ "images": {
+  "TCGA-2Z-A9JG-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JG-01Z-00-DX1/TCGA-2Z-A9JG-01Z-00-DX1_1.tif",
+   "parent": "TCGA-2Z-A9JG",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JG-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JG-01Z-00-DX1/TCGA-2Z-A9JG-01Z-00-DX1_4.tif",
+   "parent": "TCGA-2Z-A9JG",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JG-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JG-01Z-00-DX1/TCGA-2Z-A9JG-01Z-00-DX1_2.tif",
+   "parent": "TCGA-2Z-A9JG",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JG-01Z-00-DX1_5": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JG-01Z-00-DX1/TCGA-2Z-A9JG-01Z-00-DX1_5.tif",
+   "parent": "TCGA-2Z-A9JG",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JG-01Z-00-DX1_6": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JG-01Z-00-DX1/TCGA-2Z-A9JG-01Z-00-DX1_6.tif",
+   "parent": "TCGA-2Z-A9JG",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JG-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JG-01Z-00-DX1/TCGA-2Z-A9JG-01Z-00-DX1_3.tif",
+   "parent": "TCGA-2Z-A9JG",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JN-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JN-01Z-00-DX1/TCGA-2Z-A9JN-01Z-00-DX1_3.tif",
+   "parent": "TCGA-2Z-A9JN",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JN-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JN-01Z-00-DX1/TCGA-2Z-A9JN-01Z-00-DX1_1.tif",
+   "parent": "TCGA-2Z-A9JN",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JN-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JN-01Z-00-DX1/TCGA-2Z-A9JN-01Z-00-DX1_4.tif",
+   "parent": "TCGA-2Z-A9JN",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-2Z-A9JN-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-2Z-A9JN-01Z-00-DX1/TCGA-2Z-A9JN-01Z-00-DX1_2.tif",
+   "parent": "TCGA-2Z-A9JN",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-49-6743-01Z-00-DX2_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-49-6743-01Z-00-DX2/TCGA-49-6743-01Z-00-DX2_002.tif",
+   "parent": "TCGA-49-6743",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-49-6743-01Z-00-DX2_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-49-6743-01Z-00-DX2/TCGA-49-6743-01Z-00-DX2_003.tif",
+   "parent": "TCGA-49-6743",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-49-6743-01Z-00-DX2_005": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-49-6743-01Z-00-DX2/TCGA-49-6743-01Z-00-DX2_005.tif",
+   "parent": "TCGA-49-6743",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-49-6743-01Z-00-DX2_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-49-6743-01Z-00-DX2/TCGA-49-6743-01Z-00-DX2_004.tif",
+   "parent": "TCGA-49-6743",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-49-6743-01Z-00-DX2_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-49-6743-01Z-00-DX2/TCGA-49-6743-01Z-00-DX2_001.tif",
+   "parent": "TCGA-49-6743",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-50-6591-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-50-6591-01Z-00-DX1/TCGA-50-6591-01Z-00-DX1_001.tif",
+   "parent": "TCGA-50-6591",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-1594-01Z-00-DX1_003": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-55-1594-01Z-00-DX1/TCGA-55-1594-01Z-00-DX1_003.tif",
+   "parent": "TCGA-55-1594",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-1594-01Z-00-DX1_004": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-55-1594-01Z-00-DX1/TCGA-55-1594-01Z-00-DX1_004.tif",
+   "parent": "TCGA-55-1594",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-1594-01Z-00-DX1_005": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-55-1594-01Z-00-DX1/TCGA-55-1594-01Z-00-DX1_005.tif",
+   "parent": "TCGA-55-1594",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-1594-01Z-00-DX1_002": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-55-1594-01Z-00-DX1/TCGA-55-1594-01Z-00-DX1_002.tif",
+   "parent": "TCGA-55-1594",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-1594-01Z-00-DX1_001": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-55-1594-01Z-00-DX1/TCGA-55-1594-01Z-00-DX1_001.tif",
+   "parent": "TCGA-55-1594",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-7570-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-55-7570-01Z-00-DX1/TCGA-55-7570-01Z-00-DX1_002.tif",
+   "parent": "TCGA-55-7570",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-7570-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-55-7570-01Z-00-DX1/TCGA-55-7570-01Z-00-DX1_001.tif",
+   "parent": "TCGA-55-7570",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-7573-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-55-7573-01Z-00-DX1/TCGA-55-7573-01Z-00-DX1_003.tif",
+   "parent": "TCGA-55-7573",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-7573-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-55-7573-01Z-00-DX1/TCGA-55-7573-01Z-00-DX1_002.tif",
+   "parent": "TCGA-55-7573",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-7573-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-55-7573-01Z-00-DX1/TCGA-55-7573-01Z-00-DX1_001.tif",
+   "parent": "TCGA-55-7573",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-55-7573-01Z-00-DX1_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-55-7573-01Z-00-DX1/TCGA-55-7573-01Z-00-DX1_004.tif",
+   "parent": "TCGA-55-7573",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-5P-A9K0-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-5P-A9K0-01Z-00-DX1/TCGA-5P-A9K0-01Z-00-DX1_3.tif",
+   "parent": "TCGA-5P-A9K0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-5P-A9K0-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-5P-A9K0-01Z-00-DX1/TCGA-5P-A9K0-01Z-00-DX1_2.tif",
+   "parent": "TCGA-5P-A9K0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-5P-A9K0-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-5P-A9K0-01Z-00-DX1/TCGA-5P-A9K0-01Z-00-DX1_1.tif",
+   "parent": "TCGA-5P-A9K0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-69-7760-01Z-00-DX1_001": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-7760-01Z-00-DX1/TCGA-69-7760-01Z-00-DX1_001.tif",
+   "parent": "TCGA-69-7760",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-7760-01Z-00-DX1_003": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-7760-01Z-00-DX1/TCGA-69-7760-01Z-00-DX1_003.tif",
+   "parent": "TCGA-69-7760",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-7760-01Z-00-DX1_004": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-7760-01Z-00-DX1/TCGA-69-7760-01Z-00-DX1_004.tif",
+   "parent": "TCGA-69-7760",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-7760-01Z-00-DX1_002": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-7760-01Z-00-DX1/TCGA-69-7760-01Z-00-DX1_002.tif",
+   "parent": "TCGA-69-7760",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-A59K-01Z-00-DX1_003": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-A59K-01Z-00-DX1/TCGA-69-A59K-01Z-00-DX1_003.tif",
+   "parent": "TCGA-69-A59K",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-A59K-01Z-00-DX1_004": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-A59K-01Z-00-DX1/TCGA-69-A59K-01Z-00-DX1_004.tif",
+   "parent": "TCGA-69-A59K",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-A59K-01Z-00-DX1_002": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-A59K-01Z-00-DX1/TCGA-69-A59K-01Z-00-DX1_002.tif",
+   "parent": "TCGA-69-A59K",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-69-A59K-01Z-00-DX1_001": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-69-A59K-01Z-00-DX1/TCGA-69-A59K-01Z-00-DX1_001.tif",
+   "parent": "TCGA-69-A59K",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-73-4662-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-73-4662-01Z-00-DX1/TCGA-73-4662-01Z-00-DX1_001.tif",
+   "parent": "TCGA-73-4662",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-73-4662-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-73-4662-01Z-00-DX1/TCGA-73-4662-01Z-00-DX1_002.tif",
+   "parent": "TCGA-73-4662",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-73-4662-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-73-4662-01Z-00-DX1/TCGA-73-4662-01Z-00-DX1_003.tif",
+   "parent": "TCGA-73-4662",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-73-4668-01Z-00-DX1_002": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-73-4668-01Z-00-DX1/TCGA-73-4668-01Z-00-DX1_002.tif",
+   "parent": "TCGA-73-4668",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-73-4668-01Z-00-DX1_003": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-73-4668-01Z-00-DX1/TCGA-73-4668-01Z-00-DX1_003.tif",
+   "parent": "TCGA-73-4668",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-73-4668-01Z-00-DX1_001": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-73-4668-01Z-00-DX1/TCGA-73-4668-01Z-00-DX1_001.tif",
+   "parent": "TCGA-73-4668",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-73-4668-01Z-00-DX1_004": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-73-4668-01Z-00-DX1/TCGA-73-4668-01Z-00-DX1_004.tif",
+   "parent": "TCGA-73-4668",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-78-7152-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-78-7152-01Z-00-DX1/TCGA-78-7152-01Z-00-DX1_001.tif",
+   "parent": "TCGA-78-7152",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-78-7152-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-78-7152-01Z-00-DX1/TCGA-78-7152-01Z-00-DX1_002.tif",
+   "parent": "TCGA-78-7152",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-78-7220-01Z-00-DX1_002": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-78-7220-01Z-00-DX1/TCGA-78-7220-01Z-00-DX1_002.tif",
+   "parent": "TCGA-78-7220",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-78-7220-01Z-00-DX1_001": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-78-7220-01Z-00-DX1/TCGA-78-7220-01Z-00-DX1_001.tif",
+   "parent": "TCGA-78-7220",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-78-7220-01Z-00-DX1_004": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-78-7220-01Z-00-DX1/TCGA-78-7220-01Z-00-DX1_004.tif",
+   "parent": "TCGA-78-7220",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-78-7220-01Z-00-DX1_003": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-78-7220-01Z-00-DX1/TCGA-78-7220-01Z-00-DX1_003.tif",
+   "parent": "TCGA-78-7220",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-86-7713-01Z-00-DX1_003": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-7713-01Z-00-DX1/TCGA-86-7713-01Z-00-DX1_003.tif",
+   "parent": "TCGA-86-7713",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-86-7713-01Z-00-DX1_004": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-7713-01Z-00-DX1/TCGA-86-7713-01Z-00-DX1_004.tif",
+   "parent": "TCGA-86-7713",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-86-7713-01Z-00-DX1_002": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-7713-01Z-00-DX1/TCGA-86-7713-01Z-00-DX1_002.tif",
+   "parent": "TCGA-86-7713",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-86-7713-01Z-00-DX1_001": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-7713-01Z-00-DX1/TCGA-86-7713-01Z-00-DX1_001.tif",
+   "parent": "TCGA-86-7713",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-86-8672-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-8672-01Z-00-DX1/TCGA-86-8672-01Z-00-DX1_1.tif",
+   "parent": "TCGA-86-8672",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-86-8672-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-8672-01Z-00-DX1/TCGA-86-8672-01Z-00-DX1_2.tif",
+   "parent": "TCGA-86-8672",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-86-8672-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-86-8672-01Z-00-DX1/TCGA-86-8672-01Z-00-DX1_3.tif",
+   "parent": "TCGA-86-8672",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A04X-01Z-00-DX1_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A04X-01Z-00-DX1/TCGA-A2-A04X-01Z-00-DX1_004.tif",
+   "parent": "TCGA-A2-A04X",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A04X-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A04X-01Z-00-DX1/TCGA-A2-A04X-01Z-00-DX1_001.tif",
+   "parent": "TCGA-A2-A04X",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A04X-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A04X-01Z-00-DX1/TCGA-A2-A04X-01Z-00-DX1_002.tif",
+   "parent": "TCGA-A2-A04X",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A04X-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A04X-01Z-00-DX1/TCGA-A2-A04X-01Z-00-DX1_003.tif",
+   "parent": "TCGA-A2-A04X",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0CV-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0CV-01Z-00-DX1/TCGA-A2-A0CV-01Z-00-DX1_2.tif",
+   "parent": "TCGA-A2-A0CV",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-A2-A0CV-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0CV-01Z-00-DX1/TCGA-A2-A0CV-01Z-00-DX1_1.tif",
+   "parent": "TCGA-A2-A0CV",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-A2-A0CV-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0CV-01Z-00-DX1/TCGA-A2-A0CV-01Z-00-DX1_3.tif",
+   "parent": "TCGA-A2-A0CV",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-A2-A0CV-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0CV-01Z-00-DX1/TCGA-A2-A0CV-01Z-00-DX1_4.tif",
+   "parent": "TCGA-A2-A0CV",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-A2-A0CV-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0CV-01Z-00-DX1/TCGA-A2-A0CV-01Z-00-DX1_5.tif",
+   "parent": "TCGA-A2-A0CV",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_003.svs",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_001.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_3.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_002.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_5.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_2.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_1.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_4.tif",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-A2-A0ES-01Z-00-DX1_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-A2-A0ES-01Z-00-DX1/TCGA-A2-A0ES-01Z-00-DX1_004.svs",
+   "parent": "TCGA-A2-A0ES",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-B6-A0WZ-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B6-A0WZ-01Z-00-DX1/TCGA-B6-A0WZ-01Z-00-DX1_2.tif",
+   "parent": "TCGA-B6-A0WZ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-B6-A0WZ-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B6-A0WZ-01Z-00-DX1/TCGA-B6-A0WZ-01Z-00-DX1_5.tif",
+   "parent": "TCGA-B6-A0WZ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-B6-A0WZ-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B6-A0WZ-01Z-00-DX1/TCGA-B6-A0WZ-01Z-00-DX1_3.tif",
+   "parent": "TCGA-B6-A0WZ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-B6-A0WZ-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B6-A0WZ-01Z-00-DX1/TCGA-B6-A0WZ-01Z-00-DX1_6.tif",
+   "parent": "TCGA-B6-A0WZ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-B6-A0WZ-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B6-A0WZ-01Z-00-DX1/TCGA-B6-A0WZ-01Z-00-DX1_4.tif",
+   "parent": "TCGA-B6-A0WZ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-B6-A0WZ-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B6-A0WZ-01Z-00-DX1/TCGA-B6-A0WZ-01Z-00-DX1_1.tif",
+   "parent": "TCGA-B6-A0WZ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-B9-A44B-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A44B-01Z-00-DX1/TCGA-B9-A44B-01Z-00-DX1_2.tif",
+   "parent": "TCGA-B9-A44B",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A44B-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A44B-01Z-00-DX1/TCGA-B9-A44B-01Z-00-DX1_3.tif",
+   "parent": "TCGA-B9-A44B",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A44B-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A44B-01Z-00-DX1/TCGA-B9-A44B-01Z-00-DX1_1.tif",
+   "parent": "TCGA-B9-A44B",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A8YI-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A8YI-01Z-00-DX1/TCGA-B9-A8YI-01Z-00-DX1_5.tif",
+   "parent": "TCGA-B9-A8YI",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A8YI-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A8YI-01Z-00-DX1/TCGA-B9-A8YI-01Z-00-DX1_2.tif",
+   "parent": "TCGA-B9-A8YI",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A8YI-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A8YI-01Z-00-DX1/TCGA-B9-A8YI-01Z-00-DX1_3.tif",
+   "parent": "TCGA-B9-A8YI",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A8YI-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A8YI-01Z-00-DX1/TCGA-B9-A8YI-01Z-00-DX1_1.tif",
+   "parent": "TCGA-B9-A8YI",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-B9-A8YI-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-B9-A8YI-01Z-00-DX1/TCGA-B9-A8YI-01Z-00-DX1_4.tif",
+   "parent": "TCGA-B9-A8YI",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-BH-A18T-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-BH-A18T-01Z-00-DX1/TCGA-BH-A18T-01Z-00-DX1_1.tif",
+   "parent": "TCGA-BH-A18T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-BH-A18T-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-BH-A18T-01Z-00-DX1/TCGA-BH-A18T-01Z-00-DX1_6.tif",
+   "parent": "TCGA-BH-A18T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-BH-A18T-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-BH-A18T-01Z-00-DX1/TCGA-BH-A18T-01Z-00-DX1_3.tif",
+   "parent": "TCGA-BH-A18T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-BH-A18T-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-BH-A18T-01Z-00-DX1/TCGA-BH-A18T-01Z-00-DX1_4.tif",
+   "parent": "TCGA-BH-A18T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-BH-A18T-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-BH-A18T-01Z-00-DX1/TCGA-BH-A18T-01Z-00-DX1_5.tif",
+   "parent": "TCGA-BH-A18T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-BH-A18T-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-BH-A18T-01Z-00-DX1/TCGA-BH-A18T-01Z-00-DX1_2.tif",
+   "parent": "TCGA-BH-A18T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-D8-A1X5-01Z-00-DX2_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-D8-A1X5-01Z-00-DX2/TCGA-D8-A1X5-01Z-00-DX2_1.tif",
+   "parent": "TCGA-D8-A1X5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-D8-A1X5-01Z-00-DX2_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-D8-A1X5-01Z-00-DX2/TCGA-D8-A1X5-01Z-00-DX2_3.tif",
+   "parent": "TCGA-D8-A1X5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-D8-A1X5-01Z-00-DX2_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-D8-A1X5-01Z-00-DX2/TCGA-D8-A1X5-01Z-00-DX2_4.tif",
+   "parent": "TCGA-D8-A1X5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-D8-A1X5-01Z-00-DX2_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-D8-A1X5-01Z-00-DX2/TCGA-D8-A1X5-01Z-00-DX2_2.tif",
+   "parent": "TCGA-D8-A1X5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-D8-A3Z6-01Z-00-DX2_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-D8-A3Z6-01Z-00-DX2/TCGA-D8-A3Z6-01Z-00-DX2_001.svs",
+   "parent": "TCGA-D8-A3Z6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-D8-A3Z6-01Z-00-DX2_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-D8-A3Z6-01Z-00-DX2/TCGA-D8-A3Z6-01Z-00-DX2_002.svs",
+   "parent": "TCGA-D8-A3Z6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-D8-A3Z6-01Z-00-DX2_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-D8-A3Z6-01Z-00-DX2/TCGA-D8-A3Z6-01Z-00-DX2_004.svs",
+   "parent": "TCGA-D8-A3Z6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-D8-A3Z6-01Z-00-DX2_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-D8-A3Z6-01Z-00-DX2/TCGA-D8-A3Z6-01Z-00-DX2_003.svs",
+   "parent": "TCGA-D8-A3Z6",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-DW-7838-01Z-00-DX1_5": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7838-01Z-00-DX1/TCGA-DW-7838-01Z-00-DX1_5.tif",
+   "parent": "TCGA-DW-7838",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7838-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7838-01Z-00-DX1/TCGA-DW-7838-01Z-00-DX1_4.tif",
+   "parent": "TCGA-DW-7838",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7838-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7838-01Z-00-DX1/TCGA-DW-7838-01Z-00-DX1_2.tif",
+   "parent": "TCGA-DW-7838",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7838-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7838-01Z-00-DX1/TCGA-DW-7838-01Z-00-DX1_1.tif",
+   "parent": "TCGA-DW-7838",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7838-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7838-01Z-00-DX1/TCGA-DW-7838-01Z-00-DX1_3.tif",
+   "parent": "TCGA-DW-7838",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7841-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-DW-7841-01Z-00-DX1/TCGA-DW-7841-01Z-00-DX1_2.tif",
+   "parent": "TCGA-DW-7841",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7841-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-DW-7841-01Z-00-DX1/TCGA-DW-7841-01Z-00-DX1_3.tif",
+   "parent": "TCGA-DW-7841",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7841-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-DW-7841-01Z-00-DX1/TCGA-DW-7841-01Z-00-DX1_1.tif",
+   "parent": "TCGA-DW-7841",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-DW-7963-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7963-01Z-00-DX1/TCGA-DW-7963-01Z-00-DX1_2.tif",
+   "parent": "TCGA-DW-7963",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-DW-7963-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7963-01Z-00-DX1/TCGA-DW-7963-01Z-00-DX1_4.tif",
+   "parent": "TCGA-DW-7963",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-DW-7963-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7963-01Z-00-DX1/TCGA-DW-7963-01Z-00-DX1_1.tif",
+   "parent": "TCGA-DW-7963",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-DW-7963-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7963-01Z-00-DX1/TCGA-DW-7963-01Z-00-DX1_3.tif",
+   "parent": "TCGA-DW-7963",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-DW-7963-01Z-00-DX1_5": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-DW-7963-01Z-00-DX1/TCGA-DW-7963-01Z-00-DX1_5.tif",
+   "parent": "TCGA-DW-7963",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A108-01Z-00-DX1_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-E2-A108-01Z-00-DX1/TCGA-E2-A108-01Z-00-DX1_004.svs",
+   "parent": "TCGA-E2-A108",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A108-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-E2-A108-01Z-00-DX1/TCGA-E2-A108-01Z-00-DX1_003.svs",
+   "parent": "TCGA-E2-A108",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A108-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-E2-A108-01Z-00-DX1/TCGA-E2-A108-01Z-00-DX1_001.svs",
+   "parent": "TCGA-E2-A108",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A108-01Z-00-DX1_005": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-E2-A108-01Z-00-DX1/TCGA-E2-A108-01Z-00-DX1_005.svs",
+   "parent": "TCGA-E2-A108",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A108-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-E2-A108-01Z-00-DX1/TCGA-E2-A108-01Z-00-DX1_002.svs",
+   "parent": "TCGA-E2-A108",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_8": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_8.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_1.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_3.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_7": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_7.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_5.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_2.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_6.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E2-A154-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E2-A154-01Z-00-DX1/TCGA-E2-A154-01Z-00-DX1_4.tif",
+   "parent": "TCGA-E2-A154",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_7": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_7.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_4.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_5.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_8": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_8.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_2.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_3.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_6.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22B-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22B-01Z-00-DX1/TCGA-E9-A22B-01Z-00-DX1_1.tif",
+   "parent": "TCGA-E9-A22B",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-E9-A22G-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22G-01Z-00-DX1/TCGA-E9-A22G-01Z-00-DX1_5.tif",
+   "parent": "TCGA-E9-A22G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-E9-A22G-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22G-01Z-00-DX1/TCGA-E9-A22G-01Z-00-DX1_4.tif",
+   "parent": "TCGA-E9-A22G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-E9-A22G-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22G-01Z-00-DX1/TCGA-E9-A22G-01Z-00-DX1_3.tif",
+   "parent": "TCGA-E9-A22G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-E9-A22G-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22G-01Z-00-DX1/TCGA-E9-A22G-01Z-00-DX1_2.tif",
+   "parent": "TCGA-E9-A22G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-E9-A22G-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-E9-A22G-01Z-00-DX1/TCGA-E9-A22G-01Z-00-DX1_1.tif",
+   "parent": "TCGA-E9-A22G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EJ-5495-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5495-01Z-00-DX1/TCGA-EJ-5495-01Z-00-DX1-3.tif",
+   "parent": "TCGA-EJ-5495",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EJ-5495-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5495-01Z-00-DX1/TCGA-EJ-5495-01Z-00-DX1-1.tif",
+   "parent": "TCGA-EJ-5495",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EJ-5495-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5495-01Z-00-DX1/TCGA-EJ-5495-01Z-00-DX1-2.tif",
+   "parent": "TCGA-EJ-5495",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EJ-5495-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5495-01Z-00-DX1/TCGA-EJ-5495-01Z-00-DX1-4.tif",
+   "parent": "TCGA-EJ-5495",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EJ-5505-01Z-00-DX1-6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5505-01Z-00-DX1/TCGA-EJ-5505-01Z-00-DX1-6.tif",
+   "parent": "TCGA-EJ-5505",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5505-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5505-01Z-00-DX1/TCGA-EJ-5505-01Z-00-DX1-3.tif",
+   "parent": "TCGA-EJ-5505",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5505-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5505-01Z-00-DX1/TCGA-EJ-5505-01Z-00-DX1-1.tif",
+   "parent": "TCGA-EJ-5505",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5505-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5505-01Z-00-DX1/TCGA-EJ-5505-01Z-00-DX1-2.tif",
+   "parent": "TCGA-EJ-5505",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5505-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5505-01Z-00-DX1/TCGA-EJ-5505-01Z-00-DX1-4.tif",
+   "parent": "TCGA-EJ-5505",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5505-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5505-01Z-00-DX1/TCGA-EJ-5505-01Z-00-DX1-5.tif",
+   "parent": "TCGA-EJ-5505",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5517-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5517-01Z-00-DX1/TCGA-EJ-5517-01Z-00-DX1-4.tif",
+   "parent": "TCGA-EJ-5517",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5517-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5517-01Z-00-DX1/TCGA-EJ-5517-01Z-00-DX1-3.tif",
+   "parent": "TCGA-EJ-5517",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5517-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5517-01Z-00-DX1/TCGA-EJ-5517-01Z-00-DX1-2.tif",
+   "parent": "TCGA-EJ-5517",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EJ-5517-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EJ-5517-01Z-00-DX1/TCGA-EJ-5517-01Z-00-DX1-1.tif",
+   "parent": "TCGA-EJ-5517",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-EV-5903-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EV-5903-01Z-00-DX1/TCGA-EV-5903-01Z-00-DX1_2.tif",
+   "parent": "TCGA-EV-5903",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EV-5903-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EV-5903-01Z-00-DX1/TCGA-EV-5903-01Z-00-DX1_5.tif",
+   "parent": "TCGA-EV-5903",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EV-5903-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EV-5903-01Z-00-DX1/TCGA-EV-5903-01Z-00-DX1_1.tif",
+   "parent": "TCGA-EV-5903",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EV-5903-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EV-5903-01Z-00-DX1/TCGA-EV-5903-01Z-00-DX1_4.tif",
+   "parent": "TCGA-EV-5903",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EV-5903-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EV-5903-01Z-00-DX1/TCGA-EV-5903-01Z-00-DX1_3.tif",
+   "parent": "TCGA-EV-5903",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SB-01Z-00-DX1_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-EW-A6SB-01Z-00-DX1/TCGA-EW-A6SB-01Z-00-DX1_004.svs",
+   "parent": "TCGA-EW-A6SB",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SB-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-EW-A6SB-01Z-00-DX1/TCGA-EW-A6SB-01Z-00-DX1_002.svs",
+   "parent": "TCGA-EW-A6SB",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SB-01Z-00-DX1_005": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-EW-A6SB-01Z-00-DX1/TCGA-EW-A6SB-01Z-00-DX1_005.svs",
+   "parent": "TCGA-EW-A6SB",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SB-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-EW-A6SB-01Z-00-DX1/TCGA-EW-A6SB-01Z-00-DX1_001.svs",
+   "parent": "TCGA-EW-A6SB",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SB-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-EW-A6SB-01Z-00-DX1/TCGA-EW-A6SB-01Z-00-DX1_003.svs",
+   "parent": "TCGA-EW-A6SB",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SD-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EW-A6SD-01Z-00-DX1/TCGA-EW-A6SD-01Z-00-DX1_1.tif",
+   "parent": "TCGA-EW-A6SD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SD-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EW-A6SD-01Z-00-DX1/TCGA-EW-A6SD-01Z-00-DX1_5.tif",
+   "parent": "TCGA-EW-A6SD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SD-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EW-A6SD-01Z-00-DX1/TCGA-EW-A6SD-01Z-00-DX1_4.tif",
+   "parent": "TCGA-EW-A6SD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SD-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EW-A6SD-01Z-00-DX1/TCGA-EW-A6SD-01Z-00-DX1_3.tif",
+   "parent": "TCGA-EW-A6SD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-EW-A6SD-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-EW-A6SD-01Z-00-DX1/TCGA-EW-A6SD-01Z-00-DX1_2.tif",
+   "parent": "TCGA-EW-A6SD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-F9-A97G-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-F9-A97G-01Z-00-DX1/TCGA-F9-A97G-01Z-00-DX1_1.tif",
+   "parent": "TCGA-F9-A97G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-F9-A97G-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-F9-A97G-01Z-00-DX1/TCGA-F9-A97G-01Z-00-DX1_3.tif",
+   "parent": "TCGA-F9-A97G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-F9-A97G-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-F9-A97G-01Z-00-DX1/TCGA-F9-A97G-01Z-00-DX1_4.tif",
+   "parent": "TCGA-F9-A97G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-F9-A97G-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-F9-A97G-01Z-00-DX1/TCGA-F9-A97G-01Z-00-DX1_2.tif",
+   "parent": "TCGA-F9-A97G",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_10": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_10.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_7": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_7.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_1.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_9": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_9.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_4.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_3.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_8": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_8.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_2.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_6.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G7-A8LD-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G7-A8LD-01Z-00-DX1/TCGA-G7-A8LD-01Z-00-DX1_5.tif",
+   "parent": "TCGA-G7-A8LD",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G9-6342-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6342-01Z-00-DX1/TCGA-G9-6342-01Z-00-DX1-2.tif",
+   "parent": "TCGA-G9-6342",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6342-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6342-01Z-00-DX1/TCGA-G9-6342-01Z-00-DX1-1.tif",
+   "parent": "TCGA-G9-6342",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_3.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_1.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_2.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_7": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_7.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_5": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_5.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_6": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_6.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6367-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-G9-6367-01Z-00-DX1/TCGA-G9-6367-01Z-00-DX1_4.tif",
+   "parent": "TCGA-G9-6367",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-G9-6499-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6499-01Z-00-DX1/TCGA-G9-6499-01Z-00-DX1-3.tif",
+   "parent": "TCGA-G9-6499",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G9-6499-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6499-01Z-00-DX1/TCGA-G9-6499-01Z-00-DX1-2.tif",
+   "parent": "TCGA-G9-6499",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G9-6499-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6499-01Z-00-DX1/TCGA-G9-6499-01Z-00-DX1-1.tif",
+   "parent": "TCGA-G9-6499",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G9-6499-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6499-01Z-00-DX1/TCGA-G9-6499-01Z-00-DX1-5.tif",
+   "parent": "TCGA-G9-6499",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-G9-6499-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-G9-6499-01Z-00-DX1/TCGA-G9-6499-01Z-00-DX1-4.tif",
+   "parent": "TCGA-G9-6499",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-IZ-A6M9-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-IZ-A6M9-01Z-00-DX1/TCGA-IZ-A6M9-01Z-00-DX1_3.tif",
+   "parent": "TCGA-IZ-A6M9",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-IZ-A6M9-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-IZ-A6M9-01Z-00-DX1/TCGA-IZ-A6M9-01Z-00-DX1_1.tif",
+   "parent": "TCGA-IZ-A6M9",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-IZ-A6M9-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-IZ-A6M9-01Z-00-DX1/TCGA-IZ-A6M9-01Z-00-DX1_2.tif",
+   "parent": "TCGA-IZ-A6M9",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-J4-A67Q-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67Q-01Z-00-DX1/TCGA-J4-A67Q-01Z-00-DX1-1.tif",
+   "parent": "TCGA-J4-A67Q",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-J4-A67Q-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67Q-01Z-00-DX1/TCGA-J4-A67Q-01Z-00-DX1-3.tif",
+   "parent": "TCGA-J4-A67Q",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-J4-A67Q-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67Q-01Z-00-DX1/TCGA-J4-A67Q-01Z-00-DX1-2.tif",
+   "parent": "TCGA-J4-A67Q",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-J4-A67Q-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67Q-01Z-00-DX1/TCGA-J4-A67Q-01Z-00-DX1-5.tif",
+   "parent": "TCGA-J4-A67Q",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-J4-A67Q-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67Q-01Z-00-DX1/TCGA-J4-A67Q-01Z-00-DX1-4.tif",
+   "parent": "TCGA-J4-A67Q",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-J4-A67T-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67T-01Z-00-DX1/TCGA-J4-A67T-01Z-00-DX1-4.tif",
+   "parent": "TCGA-J4-A67T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-J4-A67T-01Z-00-DX1-6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67T-01Z-00-DX1/TCGA-J4-A67T-01Z-00-DX1-6.tif",
+   "parent": "TCGA-J4-A67T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-J4-A67T-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67T-01Z-00-DX1/TCGA-J4-A67T-01Z-00-DX1-2.tif",
+   "parent": "TCGA-J4-A67T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-J4-A67T-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67T-01Z-00-DX1/TCGA-J4-A67T-01Z-00-DX1-1.tif",
+   "parent": "TCGA-J4-A67T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-J4-A67T-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67T-01Z-00-DX1/TCGA-J4-A67T-01Z-00-DX1-5.tif",
+   "parent": "TCGA-J4-A67T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-J4-A67T-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-J4-A67T-01Z-00-DX1/TCGA-J4-A67T-01Z-00-DX1-3.tif",
+   "parent": "TCGA-J4-A67T",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A59X-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A59X-01Z-00-DX1/TCGA-KK-A59X-01Z-00-DX1-3.tif",
+   "parent": "TCGA-KK-A59X",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A59X-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A59X-01Z-00-DX1/TCGA-KK-A59X-01Z-00-DX1-2.tif",
+   "parent": "TCGA-KK-A59X",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A59X-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A59X-01Z-00-DX1/TCGA-KK-A59X-01Z-00-DX1-1.tif",
+   "parent": "TCGA-KK-A59X",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A6E0-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A6E0-01Z-00-DX1/TCGA-KK-A6E0-01Z-00-DX1-3.tif",
+   "parent": "TCGA-KK-A6E0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A6E0-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A6E0-01Z-00-DX1/TCGA-KK-A6E0-01Z-00-DX1-1.tif",
+   "parent": "TCGA-KK-A6E0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A6E0-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A6E0-01Z-00-DX1/TCGA-KK-A6E0-01Z-00-DX1-2.tif",
+   "parent": "TCGA-KK-A6E0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A6E0-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A6E0-01Z-00-DX1/TCGA-KK-A6E0-01Z-00-DX1-4.tif",
+   "parent": "TCGA-KK-A6E0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A6E0-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A6E0-01Z-00-DX1/TCGA-KK-A6E0-01Z-00-DX1-5.tif",
+   "parent": "TCGA-KK-A6E0",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-KK-A7AW-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-KK-A7AW-01Z-00-DX1/TCGA-KK-A7AW-01Z-00-DX1-1.tif",
+   "parent": "TCGA-KK-A7AW",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-L4-A4E5-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-L4-A4E5-01Z-00-DX1/TCGA-L4-A4E5-01Z-00-DX1_1.tif",
+   "parent": "TCGA-L4-A4E5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-L4-A4E5-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-L4-A4E5-01Z-00-DX1/TCGA-L4-A4E5-01Z-00-DX1_3.tif",
+   "parent": "TCGA-L4-A4E5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-L4-A4E5-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-L4-A4E5-01Z-00-DX1/TCGA-L4-A4E5-01Z-00-DX1_2.tif",
+   "parent": "TCGA-L4-A4E5",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A55W-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MH-A55W-01Z-00-DX1/TCGA-MH-A55W-01Z-00-DX1_3.tif",
+   "parent": "TCGA-MH-A55W",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A55W-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MH-A55W-01Z-00-DX1/TCGA-MH-A55W-01Z-00-DX1_2.tif",
+   "parent": "TCGA-MH-A55W",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A55W-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MH-A55W-01Z-00-DX1/TCGA-MH-A55W-01Z-00-DX1_4.tif",
+   "parent": "TCGA-MH-A55W",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A55W-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MH-A55W-01Z-00-DX1/TCGA-MH-A55W-01Z-00-DX1_1.tif",
+   "parent": "TCGA-MH-A55W",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A560-01Z-00-DX2_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MH-A560-01Z-00-DX2/TCGA-MH-A560-01Z-00-DX2_2.tif",
+   "parent": "TCGA-MH-A560",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A560-01Z-00-DX2_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MH-A560-01Z-00-DX2/TCGA-MH-A560-01Z-00-DX2_3.tif",
+   "parent": "TCGA-MH-A560",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A560-01Z-00-DX2_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MH-A560-01Z-00-DX2/TCGA-MH-A560-01Z-00-DX2_4.tif",
+   "parent": "TCGA-MH-A560",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MH-A560-01Z-00-DX2_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MH-A560-01Z-00-DX2/TCGA-MH-A560-01Z-00-DX2_1.tif",
+   "parent": "TCGA-MH-A560",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-MP-A4SY-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4SY-01Z-00-DX1/TCGA-MP-A4SY-01Z-00-DX1_1.tif",
+   "parent": "TCGA-MP-A4SY",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4SY-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4SY-01Z-00-DX1/TCGA-MP-A4SY-01Z-00-DX1_3.tif",
+   "parent": "TCGA-MP-A4SY",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4SY-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4SY-01Z-00-DX1/TCGA-MP-A4SY-01Z-00-DX1_2.tif",
+   "parent": "TCGA-MP-A4SY",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4SY-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4SY-01Z-00-DX1/TCGA-MP-A4SY-01Z-00-DX1_4.tif",
+   "parent": "TCGA-MP-A4SY",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_1.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_005": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_005.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_2.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_003": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_003.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_4.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_004": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_004.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_001": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_001.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_002": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_002.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-MP-A4T7-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-MP-A4T7-01Z-00-DX1/TCGA-MP-A4T7-01Z-00-DX1_3.tif",
+   "parent": "TCGA-MP-A4T7",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_4.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_3.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_7": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_7.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_6.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_5.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_1.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-P4-AAVK-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-P4-AAVK-01Z-00-DX1/TCGA-P4-AAVK-01Z-00-DX1_2.tif",
+   "parent": "TCGA-P4-AAVK",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-S3-AA11-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-S3-AA11-01Z-00-DX1/TCGA-S3-AA11-01Z-00-DX1_1.tif",
+   "parent": "TCGA-S3-AA11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-S3-AA11-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-S3-AA11-01Z-00-DX1/TCGA-S3-AA11-01Z-00-DX1_6.tif",
+   "parent": "TCGA-S3-AA11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-S3-AA11-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-S3-AA11-01Z-00-DX1/TCGA-S3-AA11-01Z-00-DX1_3.tif",
+   "parent": "TCGA-S3-AA11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-S3-AA11-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-S3-AA11-01Z-00-DX1/TCGA-S3-AA11-01Z-00-DX1_2.tif",
+   "parent": "TCGA-S3-AA11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-S3-AA11-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-S3-AA11-01Z-00-DX1/TCGA-S3-AA11-01Z-00-DX1_4.tif",
+   "parent": "TCGA-S3-AA11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-S3-AA11-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-S3-AA11-01Z-00-DX1/TCGA-S3-AA11-01Z-00-DX1_5.tif",
+   "parent": "TCGA-S3-AA11",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-SX-A7SR-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-SX-A7SR-01Z-00-DX1/TCGA-SX-A7SR-01Z-00-DX1_1.tif",
+   "parent": "TCGA-SX-A7SR",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-SX-A7SR-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-SX-A7SR-01Z-00-DX1/TCGA-SX-A7SR-01Z-00-DX1_2.tif",
+   "parent": "TCGA-SX-A7SR",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_2.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_7": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_7.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_3.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_5.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_6": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_6.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_1.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PO-01Z-00-DX1_4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PO-01Z-00-DX1/TCGA-UZ-A9PO-01Z-00-DX1_4.tif",
+   "parent": "TCGA-UZ-A9PO",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PU-01Z-00-DX1_1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PU-01Z-00-DX1/TCGA-UZ-A9PU-01Z-00-DX1_1.tif",
+   "parent": "TCGA-UZ-A9PU",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-UZ-A9PU-01Z-00-DX1_2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-UZ-A9PU-01Z-00-DX1/TCGA-UZ-A9PU-01Z-00-DX1_2.tif",
+   "parent": "TCGA-UZ-A9PU",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-V1-A8WL-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A8WL-01Z-00-DX1/TCGA-V1-A8WL-01Z-00-DX1-3.tif",
+   "parent": "TCGA-V1-A8WL",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-V1-A8WL-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A8WL-01Z-00-DX1/TCGA-V1-A8WL-01Z-00-DX1-2.tif",
+   "parent": "TCGA-V1-A8WL",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-V1-A8WL-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A8WL-01Z-00-DX1/TCGA-V1-A8WL-01Z-00-DX1-1.tif",
+   "parent": "TCGA-V1-A8WL",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-V1-A9O9-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A9O9-01Z-00-DX1/TCGA-V1-A9O9-01Z-00-DX1-2.tif",
+   "parent": "TCGA-V1-A9O9",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-V1-A9O9-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A9O9-01Z-00-DX1/TCGA-V1-A9O9-01Z-00-DX1-1.tif",
+   "parent": "TCGA-V1-A9O9",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-V1-A9O9-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A9O9-01Z-00-DX1/TCGA-V1-A9O9-01Z-00-DX1-4.tif",
+   "parent": "TCGA-V1-A9O9",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-V1-A9O9-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A9O9-01Z-00-DX1/TCGA-V1-A9O9-01Z-00-DX1-5.tif",
+   "parent": "TCGA-V1-A9O9",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-V1-A9O9-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-V1-A9O9-01Z-00-DX1/TCGA-V1-A9O9-01Z-00-DX1-3.tif",
+   "parent": "TCGA-V1-A9O9",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-VP-A87E-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87E-01Z-00-DX1/TCGA-VP-A87E-01Z-00-DX1_4.tif",
+   "parent": "TCGA-VP-A87E",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-VP-A87E-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87E-01Z-00-DX1/TCGA-VP-A87E-01Z-00-DX1_1.tif",
+   "parent": "TCGA-VP-A87E",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-VP-A87E-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87E-01Z-00-DX1/TCGA-VP-A87E-01Z-00-DX1_3.tif",
+   "parent": "TCGA-VP-A87E",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-VP-A87E-01Z-00-DX1_5": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87E-01Z-00-DX1/TCGA-VP-A87E-01Z-00-DX1_5.tif",
+   "parent": "TCGA-VP-A87E",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-VP-A87E-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87E-01Z-00-DX1/TCGA-VP-A87E-01Z-00-DX1_2.tif",
+   "parent": "TCGA-VP-A87E",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-VP-A87H-01Z-00-DX1_5": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87H-01Z-00-DX1/TCGA-VP-A87H-01Z-00-DX1_5.tif",
+   "parent": "TCGA-VP-A87H",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-VP-A87H-01Z-00-DX1_6": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87H-01Z-00-DX1/TCGA-VP-A87H-01Z-00-DX1_6.tif",
+   "parent": "TCGA-VP-A87H",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-VP-A87H-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87H-01Z-00-DX1/TCGA-VP-A87H-01Z-00-DX1_2.tif",
+   "parent": "TCGA-VP-A87H",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-VP-A87H-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-VP-A87H-01Z-00-DX1/TCGA-VP-A87H-01Z-00-DX1_1.tif",
+   "parent": "TCGA-VP-A87H",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-X4-A8KQ-01Z-00-DX8-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-X4-A8KQ-01Z-00-DX8/TCGA-X4-A8KQ-01Z-00-DX8-3.tif",
+   "parent": "TCGA-X4-A8KQ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-X4-A8KQ-01Z-00-DX8-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-X4-A8KQ-01Z-00-DX8/TCGA-X4-A8KQ-01Z-00-DX8-2.tif",
+   "parent": "TCGA-X4-A8KQ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-X4-A8KQ-01Z-00-DX8-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-X4-A8KQ-01Z-00-DX8/TCGA-X4-A8KQ-01Z-00-DX8-1.tif",
+   "parent": "TCGA-X4-A8KQ",
+   "side": "calibration",
+   "role": "validation"
+  },
+  "TCGA-X4-A8KS-01Z-00-DX3_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-X4-A8KS-01Z-00-DX3/TCGA-X4-A8KS-01Z-00-DX3_1.tif",
+   "parent": "TCGA-X4-A8KS",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-YL-A9WL-01Z-00-DX1_2": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-YL-A9WL-01Z-00-DX1/TCGA-YL-A9WL-01Z-00-DX1_2.tif",
+   "parent": "TCGA-YL-A9WL",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-YL-A9WL-01Z-00-DX1_1": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-YL-A9WL-01Z-00-DX1/TCGA-YL-A9WL-01Z-00-DX1_1.tif",
+   "parent": "TCGA-YL-A9WL",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-YL-A9WL-01Z-00-DX1_3": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-YL-A9WL-01Z-00-DX1/TCGA-YL-A9WL-01Z-00-DX1_3.tif",
+   "parent": "TCGA-YL-A9WL",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-YL-A9WL-01Z-00-DX1_4": {
+   "member": "test::MoNuSAC Testing Data and Annotations/TCGA-YL-A9WL-01Z-00-DX1/TCGA-YL-A9WL-01Z-00-DX1_4.tif",
+   "parent": "TCGA-YL-A9WL",
+   "side": "evaluation",
+   "role": "evaluation"
+  },
+  "TCGA-YL-A9WY-01Z-00-DX1-1": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-YL-A9WY-01Z-00-DX1/TCGA-YL-A9WY-01Z-00-DX1-1.tif",
+   "parent": "TCGA-YL-A9WY",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-YL-A9WY-01Z-00-DX1-2": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-YL-A9WY-01Z-00-DX1/TCGA-YL-A9WY-01Z-00-DX1-2.tif",
+   "parent": "TCGA-YL-A9WY",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-YL-A9WY-01Z-00-DX1-5": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-YL-A9WY-01Z-00-DX1/TCGA-YL-A9WY-01Z-00-DX1-5.tif",
+   "parent": "TCGA-YL-A9WY",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-YL-A9WY-01Z-00-DX1-4": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-YL-A9WY-01Z-00-DX1/TCGA-YL-A9WY-01Z-00-DX1-4.tif",
+   "parent": "TCGA-YL-A9WY",
+   "side": "calibration",
+   "role": "induction"
+  },
+  "TCGA-YL-A9WY-01Z-00-DX1-3": {
+   "member": "train::MoNuSAC_images_and_annotations/TCGA-YL-A9WY-01Z-00-DX1/TCGA-YL-A9WY-01Z-00-DX1-3.tif",
+   "parent": "TCGA-YL-A9WY",
+   "side": "calibration",
+   "role": "induction"
+  }
+ }
+}

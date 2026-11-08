@@ -1,0 +1,35 @@
+{
+ "code_sha256": "1a379909e82c44bd9fb2f166bda1398e9c00b0a4cf7eb6cbf13cf34366dd3a85",
+ "config_sha256": "a17407ce6a2e5186059bc73bfa3d714bb6c546d750f7f5a6f72b9d6e14fee0a5",
+ "environment": {
+  "python": "3.12.3",
+  "rdkit": "2026.03.2"
+ },
+ "files_sha256": {
+  "DATA_MANIFEST.md": "7662812a83f5773eb341a344394ada68783a181d4d8de5bd5c989f161ec88db0",
+  "PROTOCOL.md": "51c0956c49712a6b3513f2a1edc7d20c1cb75cdf920c1166cd33199b5f349adc",
+  "config/T3_CONFIG.json": "521fee07b18351a68515bdb4c35e2d50ce6c564b5ddddec3a05cce8789411ed9",
+  "data/POOL.json": "762af6cac891331c319aae32693f8734c108af45681bf7ea0da402c2eea0e8a3",
+  "data/cache/items.jsonl.gz": "0d2f3fecc9f3571e8a281f157d16ec98117b23cdde0790075fb97caa7c483e90",
+  "data/raw/enzymemap/compound_to_smiles.json": "59f1c90b600d55e818406fb4ab1746614062d459a212cb2a29ba7227ddc8c3b4",
+  "data/raw/enzymemap/enzymemap_v2_brenda2023.csv.gz": "0a70759a7cec5720b6aeb2d63c887a670b9ac2a6ada7c0a1ef3c1740ee3cc2cf",
+  "data/raw/pickaxe/metacyc_coreactants.tsv": "7084d256f59c337bd3f3b2103a4e7d6cb0d518250c02e81a9e8b729d456a1ce4",
+  "data/raw/pickaxe/metacyc_generalized_rules.tsv": "61d9f173f9806ac8a88c96e4886746c9437f8b9c069c2310e3e23b4606876365",
+  "launch/run_score.sh": "46c620dd3db59b3d2cf904b5c24251c12d100c84e193fe830a75de94b1c0ef7d",
+  "t3chem/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "t3chem/arms.py": "eddd27c5655199a1982ddd19901a00f8e9cbff8e5bebc67eb772634f8c45ec8b",
+  "t3chem/build_items.py": "7cd976ccb99225d214ee7b3fcdcdff53e7f4658db2efe7ac3bbab9df3638d82e",
+  "t3chem/chem.py": "81a059177172d989958dfd56f3bae49d92f81256b4e46cd2a6091b882ad2da19",
+  "t3chem/freeze.py": "e78822ff5d6e80dcf3d8f83dddea6e14d711e7138d8e09b009744fde8ea4b8f7",
+  "t3chem/library.py": "c785ce9632b7de12110f3ffe3324ac6b3edbe556d753945f1890eea82830ff10",
+  "t3chem/run.py": "47862a65b2c6e4c0ccefcbd2d8130e74a605395cb6c81608bd651e035a661206",
+  "t3chem/stats.py": "1a6a9e414a0fc665c1a47df25cb5b99c95bbf15d4d561f0fb97f1e741fe202f9"
+ },
+ "frozen_utc": "2026-11-08T07:20:39Z",
+ "label": "real data; reconstruction of known enzyme transformations on held substrates, not discovery",
+ "manifest_sha256": "d9e840941c230b399ae7ce1d00b4f17e4b972e3309affc7d92f7c24ef93cc209",
+ "protocol_sha256": "51c0956c49712a6b3513f2a1edc7d20c1cb75cdf920c1166cd33199b5f349adc",
+ "salt_rule": "salt = sha256 of the committed bytes of the original runs/GO (Amendment 1, unchanged by Amendment 2); runs/GO_AMENDMENT2, written and committed alone by the coordinator after the delta review, names this freeze commit, which must be the last commit on HEAD that changed this file; run.py refuses to score otherwise",
+ "study": "transfer_chemistry_20261108",
+ "test": "T3 chemistry"
+}

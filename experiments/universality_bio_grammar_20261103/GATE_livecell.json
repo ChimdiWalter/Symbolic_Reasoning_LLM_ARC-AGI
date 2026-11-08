@@ -1,0 +1,34 @@
+{
+ "dataset": "livecell",
+ "calibration_images": 276,
+ "objects": 78051,
+ "error_share": 0.27610152336292937,
+ "class_counts": {
+  "SPLIT": 10737,
+  "MERGE": 1052,
+  "FILL": 0,
+  "GROW": 1630,
+  "SHRINK": 1128,
+  "DELETE": 10941,
+  "ADD": 23845
+ },
+ "baseline_pooled_f1": 0.6088404219782114,
+ "oracle_pooled_f1": 0.8803930744033692,
+ "oracle_gain": 0.2715526524251578,
+ "induction_baseline_pooled_f1": 0.7011361042336125,
+ "induction_class_oracle_gain": {
+  "SPLIT": 0.12204923639195553,
+  "MERGE": 0.006661199378911853,
+  "FILL": 0.0,
+  "GROW": 0.012186105303578998,
+  "SHRINK": 0.010835448512337753,
+  "DELETE": 0.06783097359905166,
+  "ADD": 0.06870255774516054
+ },
+ "criteria": {
+  "error_share_min": 0.05,
+  "oracle_gain_min": 0.01
+ },
+ "cpu_s": 37.7,
+ "PASS": true
+}

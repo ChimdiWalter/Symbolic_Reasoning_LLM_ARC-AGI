@@ -1,0 +1,101 @@
+{
+ "archives_and_weights": {
+  "raw/livecell/images.zip": {
+   "bytes": 1241715651,
+   "sha256": "548a2c2853c422b1ccc6519c1fae470ac5945243cbbd50d08ed7fe81196383a6"
+  },
+  "raw/livecell/livecell_coco_train.json": {
+   "bytes": 551131789,
+   "sha256": "6788902479bc0ffd2838fb7160a778078f464ea6034ed76bb5a0e40263cb9e78"
+  },
+  "raw/livecell/livecell_coco_val.json": {
+   "bytes": 97272542,
+   "sha256": "eb72a68f5065d9ade1805b496eecdcd14ca275e5f1bc6aae7e07279bddadfdc7"
+  },
+  "raw/livecell/livecell_coco_test.json": {
+   "bytes": 260794837,
+   "sha256": "9eb5805ca031cebcd70bab4a4aa0c89d98646c206d333803a8d5b10ea7fe9960"
+  },
+  "raw/nuinsseg/NuInsSeg.zip": {
+   "bytes": 1627427342,
+   "sha256": "f606aac71112ea0915d55183d0911b5b66f86cabc265b09dbebbd4abb2a15271"
+  },
+  "raw/fluoecoli/FluoEcoli-Instance.zip": {
+   "bytes": 2422943929,
+   "sha256": "ea3954a1732f4f4525b119d6899c5c09d323c03b883243c2f39af8cf01e4aaf4"
+  },
+  "raw/fnc_v2/green.zip": {
+   "bytes": 1334225455,
+   "sha256": "7760c3c55d236c17f2225a0a63e8e61a86c93d0645c7188bbe9652f22f520517"
+  },
+  "raw/fnc_v2/metadata_v2.xlsx": {
+   "bytes": 117893,
+   "sha256": "e95a3a897563943ce9008faae12b97b274ec866cd08aca07af6e8724926c092c"
+  },
+  "raw/fnc_v2/README.md": {
+   "bytes": 14051,
+   "sha256": "e29d21d44d892bdc601c38f88eb6e2fe558a9ad02d0c0cbc394ca7e1ca37084e"
+  },
+  "raw/fnc_v2/datasheet.md": {
+   "bytes": 27533,
+   "sha256": "2622d1492c6812625504ad3a84f259d7f0fcb1e88309d5a17b7f66bcb9e912ec"
+  },
+  "models/stardist/python_2D_versatile_he.zip": {
+   "bytes": 5294730,
+   "sha256": "f1696ef0631bd7e1c0e5c0d3017e2b4c6a95e284c6aab9c22fc2f08317817b28"
+  },
+  "models/stardist/2D_versatile_he/weights_best.h5": {
+   "bytes": 5774704,
+   "sha256": "ce23a21f09511132c51e2c7b077054355b6b0c1cbece61066dd280054ee7178f"
+  },
+  "models/stardist/2D_versatile_fluo/weights_best.h5": {
+   "bytes": 5771480,
+   "sha256": "42202bd269c8106782316f1a2c75afb3f5ffa65e525c2e155ee0ced3a95da349"
+  },
+  "models/cellpose/cyto2torch_0": {
+   "bytes": 26563614,
+   "sha256": "0c2ff54f8cf38aeccceb119b72ae82285bbda2efb15cc493dde43de917d95d81"
+  },
+  "models/cellpose/size_cyto2torch_0.npy": {
+   "bytes": 3627,
+   "sha256": "c69a3688d61a93eb8da1592ff6f501d89a441b33668b1992170bd119557e0974"
+  },
+  "cellpose_sam_v2 (~/.cellpose/models/cpsam_v2, unused after D3 was found ineligible)": {
+   "sha256": "0f1cc3f7ecdd8a037a57c6c48d9d8921391be4cbce3fa9f13c3e3a2e1253c667"
+  },
+  "raw/monusac/MoNuSAC_images_and_annotations.zip": {
+   "bytes": 545564883,
+   "sha256": "5b7cbeb34817a8f880d3fddc28391e48d3329a91bf3adcbd131ea149a725cd92"
+  },
+  "raw/monusac/MoNuSAC_Testing_Data_and_Annotations.zip": {
+   "bytes": 202746703,
+   "sha256": "bcbc38f6bf8b149230c90c29f3428cc7b2b76f8acd7766ce9fc908fc896c2674"
+  },
+  "raw/monusac/MoNuSAC_Supplementary_material.pdf": {
+   "bytes": 19590377,
+   "sha256": "2e4e7774559595a77ed57387ff47177a1da65ccff6154bc2c5d311c8ef02a878"
+  },
+  "raw/monuseg_names/MoNuSeg_2018_Training_Data.zip": {
+   "bytes": 125778974,
+   "sha256": "25d3d3185bb2970b397cafa72eb664c9b4d24294aee382e7e3df9885affce742"
+  }
+ },
+ "md5_checks": {
+  "NuInsSeg.zip": "08f9a33e23e983d82ee93aa58e69d095 (matches Zenodo)",
+  "FluoEcoli-Instance.zip": "7014ab9749f6d96ae8dcf22efca86db0 (matches Zenodo)"
+ },
+ "licences": {
+  "livecell": "CC BY-NC 4.0 (README of github.com/sartorius-research/LIVECell: images, annotations and models)",
+  "nuinsseg": "CC BY 4.0 (Zenodo record 10518968)",
+  "fluoecoli": "CC BY 4.0 (Zenodo record 23389427)",
+  "fnc": "CC BY 4.0 (AMS Acta eprint 7347)",
+  "monusac": "CC BY-NC-SA 4.0 (monusac-2020.grand-challenge.org/Data); MoNuSeg 2018 training archive read for file names only"
+ },
+ "monusac_exclusions": {
+  "monuseg_training_patients_in_monusac": [
+   "TCGA-F9-A8NY",
+   "TCGA-G9-6356"
+  ],
+  "patients_after_exclusion": 67
+ }
+}

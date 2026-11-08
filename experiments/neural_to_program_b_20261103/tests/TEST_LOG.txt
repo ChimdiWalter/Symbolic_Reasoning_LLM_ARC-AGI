@@ -1,0 +1,78 @@
+Test B synthetic adversarial tests: experiments/neural_to_program_b_20261103/tests/test_adversarial.py
+Started 2026-11-03T11:32:13Z; python3 -I (Python 3.12.3); through scripts/with_cpu_slot.sh
+Synthetic tasks and answers only; no real ARC answer file is opened; no GO_B of the real experiment exists.
+
+test_a_driver_never_opens_answers_even_when_they_are_unreadable (__main__.AnswerBlindness.test_a_driver_never_opens_answers_even_when_they_are_unreadable) ... ok
+test_a_guard_refuses_every_route_to_an_answer_file (__main__.AnswerBlindness.test_a_guard_refuses_every_route_to_an_answer_file) ... ok
+test_a_inference_sources_name_no_answer_file_and_never_import_the_scorer (__main__.AnswerBlindness.test_a_inference_sources_name_no_answer_file_and_never_import_the_scorer) ... ok
+test_a_production_configuration_is_fixed (__main__.AnswerBlindness.test_a_production_configuration_is_fixed) ... ok
+test_a_worker_and_guard_install_the_guard_on_import (__main__.AnswerBlindness.test_a_worker_and_guard_install_the_guard_on_import) ... ok
+test_a_workers_in_a_run_cannot_read_answers (__main__.AnswerBlindness.test_a_workers_in_a_run_cannot_read_answers) ... ok
+test_c1_a_unit_is_never_its_own_donor (__main__.C1TieBreak.test_c1_a_unit_is_never_its_own_donor) ... ok
+test_c1_donor_order_is_the_hash_order_not_names_or_insertion (__main__.C1TieBreak.test_c1_donor_order_is_the_hash_order_not_names_or_insertion) ... ok
+test_c1_rule1_beats_an_earlier_rule2_donor (__main__.C1TieBreak.test_c1_rule1_beats_an_earlier_rule2_donor) ... ok
+test_c1_rule1_lowest_output_index_of_the_first_hashed_donor (__main__.C1TieBreak.test_c1_rule1_lowest_output_index_of_the_first_hashed_donor) ... ok
+test_c1_rule2_lowest_output_then_lowest_candidate (__main__.C1TieBreak.test_c1_rule2_lowest_output_then_lowest_candidate) ... ok
+test_c1_same_assignment_in_separate_processes (__main__.C1TieBreak.test_c1_same_assignment_in_separate_processes) ... ok
+test_c2_other_seed_forms_give_other_grids (__main__.C2Seed.test_c2_other_seed_forms_give_other_grids) ... ok
+test_c2_output_index_is_plain_decimal_text (__main__.C2Seed.test_c2_output_index_is_plain_decimal_text) ... ok
+test_c2_random_target_equals_an_independent_reimplementation (__main__.C2Seed.test_c2_random_target_equals_an_independent_reimplementation) ... ok
+test_c2_seed_is_the_full_digest_as_one_big_endian_integer (__main__.C2Seed.test_c2_seed_is_the_full_digest_as_one_big_endian_integer) ... ok
+test_c3_arm_outcome_forged_consistently (__main__.C3Chain.test_c3_arm_outcome_forged_consistently) ... ok
+test_c3_arm_started_with_another_worker_or_limits (__main__.C3Chain.test_c3_arm_started_with_another_worker_or_limits) ... ok
+test_c3_assignment_target_forged_consistently (__main__.C3Chain.test_c3_assignment_target_forged_consistently) ... ok
+test_c3_clean_chain_verifies (__main__.C3Chain.test_c3_clean_chain_verifies) ... ok
+test_c3_code_file_changed_after_go (__main__.C3Chain.test_c3_code_file_changed_after_go) ... ok
+test_c3_code_freeze_replaced_and_go_b_rewritten (__main__.C3Chain.test_c3_code_freeze_replaced_and_go_b_rewritten) ... ok
+test_c3_completeness_forged_consistently (__main__.C3Chain.test_c3_completeness_forged_consistently) ... ok
+test_c3_construction_code_or_data_changed (__main__.C3Chain.test_c3_construction_code_or_data_changed) ... ok
+test_c3_go_b_replaced_or_malformed (__main__.C3Chain.test_c3_go_b_replaced_or_malformed) ... ok
+test_c3_go_score_for_another_outputs_freeze (__main__.C3Chain.test_c3_go_score_for_another_outputs_freeze) ... ok
+test_c3_outputs_freeze_reforged_but_review_and_go_score_old (__main__.C3Chain.test_c3_outputs_freeze_reforged_but_review_and_go_score_old) ... ok
+test_c3_pinned_input_changed (__main__.C3Chain.test_c3_pinned_input_changed) ... ok
+test_c3_protocol_changed (__main__.C3Chain.test_c3_protocol_changed) ... ok
+test_c3_record_deleted_or_extra_file (__main__.C3Chain.test_c3_record_deleted_or_extra_file) ... ok
+test_c3_result_changed_after_review (__main__.C3Chain.test_c3_result_changed_after_review) ... ok
+test_c3_review_without_pass_or_for_another_freeze (__main__.C3Chain.test_c3_review_without_pass_or_for_another_freeze) ... ok
+test_c3_run_claim_replaced (__main__.C3Chain.test_c3_run_claim_replaced) ... ok
+test_c3_scorer_changed (__main__.C3Chain.test_c3_scorer_changed) ... ok
+test_c3_scorer_refuses_a_broken_chain_without_touching_answers (__main__.C3Chain.test_c3_scorer_refuses_a_broken_chain_without_touching_answers) ... ok
+test_c3_worker_input_forged_consistently (__main__.C3Chain.test_c3_worker_input_forged_consistently) ... ok
+test_c4_guard_covers_interpreter_start_and_imports (__main__.C4Guards.test_c4_guard_covers_interpreter_start_and_imports) ... ok
+test_c4_rlimit_cpu_guard_receipt_and_flags (__main__.C4Guards.test_c4_rlimit_cpu_guard_receipt_and_flags) ... ok
+test_c4_run_finishes_and_is_incomplete_with_every_task_counted (__main__.C4Guards.test_c4_run_finishes_and_is_incomplete_with_every_task_counted) ... ok
+test_c4_two_children_are_refused_so_the_arm_limit_bounds_all_compute (__main__.C4Guards.test_c4_two_children_are_refused_so_the_arm_limit_bounds_all_compute)
+The exact-code review's case: under a 1 CPU-s arm limit, a worker tries to start two children of 0.7 CPU-s ... ok
+test_c4_two_refused_children_then_a_burn_stop_at_the_arm_limit (__main__.C4Guards.test_c4_two_refused_children_then_a_burn_stop_at_the_arm_limit) ... ok
+test_c4_whole_run_cpu_accounts_every_receipt (__main__.C4Guards.test_c4_whole_run_cpu_accounts_every_receipt) ... ok
+test_c4_worker_error_and_straggler_are_unfinished (__main__.C4Guards.test_c4_worker_error_and_straggler_are_unfinished) ... ok
+test_c4_production_worker_refuses_every_process_and_thread_on_import (__main__.C4ProductionWorker.test_c4_production_worker_refuses_every_process_and_thread_on_import)
+Importing the production worker sets RLIMIT_NPROC = 0 (and one BLAS thread) before anything else; with no ... ok
+test_c4_driver_killed_mid_arm_receipt_recovered_and_incomplete (__main__.C4Recovery.test_c4_driver_killed_mid_arm_receipt_recovered_and_incomplete) ... ok
+test_c4_externally_killed_worker_is_unfinished (__main__.C4Recovery.test_c4_externally_killed_worker_is_unfinished) ... ok
+test_c4_unrecoverable_receipt_counts_its_upper_bound (__main__.C4Recovery.test_c4_unrecoverable_receipt_counts_its_upper_bound) ... ok
+test_c4_wall_backstop_is_a_guard_stop (__main__.C4Recovery.test_c4_wall_backstop_is_a_guard_stop) ... ok
+test_c4_whole_run_guard_stops_before_an_arm_could_overrun (__main__.C4Recovery.test_c4_whole_run_guard_stops_before_an_arm_could_overrun) ... ok
+test_c4_whole_tree_killed_receipt_bounded_and_incomplete (__main__.C4Recovery.test_c4_whole_tree_killed_receipt_bounded_and_incomplete) ... ok
+test_real_worker_runs_the_frozen_construction_code (__main__.RealWorker.test_real_worker_runs_the_frozen_construction_code) ... ok
+test_real_worker_closest_program_improved_by_a_retry (__main__.RealWorkerClosest.test_real_worker_closest_program_improved_by_a_retry)
+Witness on the frozen construction code: the base search finds no right-shaped program, the retry with the ... ok
+test_real_worker_retry_path_adds_a_menu_operation (__main__.RealWorkerRetry.test_real_worker_retry_path_adds_a_menu_operation)
+A synthetic task made from one menu operation: the base search finds no fit, the typed holes match menu ... ok
+test_r1_closest_program_is_the_best_over_base_and_retries (__main__.RepairedPoints.test_r1_closest_program_is_the_best_over_base_and_retries) ... ok
+test_r1_no_fit_flags_truth_table (__main__.RepairedPoints.test_r1_no_fit_flags_truth_table) ... ok
+test_r1_no_fit_label_in_records_and_no_language_claim_anywhere (__main__.RepairedPoints.test_r1_no_fit_label_in_records_and_no_language_claim_anywhere) ... ok
+test_r2_at_most_100_draws_even_if_every_draw_repeats_attempt_1 (__main__.RepairedPoints.test_r2_at_most_100_draws_even_if_every_draw_repeats_attempt_1) ... ok
+test_r2_one_colour_attempt_falls_back_and_terminates (__main__.RepairedPoints.test_r2_one_colour_attempt_falls_back_and_terminates) ... ok
+test_r3_shuffled_is_same_shape_or_absent_and_fixed_before_any_arm (__main__.RepairedPoints.test_r3_shuffled_is_same_shape_or_absent_and_fixed_before_any_arm) ... ok
+test_r5_score_gate_claim_before_answers_once_and_fail_closed (__main__.RepairedPoints.test_r5_score_gate_claim_before_answers_once_and_fail_closed) ... ok
+test_r5_tampered_answers_after_release_fail_closed_and_stay_claimed (__main__.RepairedPoints.test_r5_tampered_answers_after_release_fail_closed_and_stay_claimed) ... ok
+test_r6_exact_mcnemar_holm_underpowered_and_decision (__main__.RepairedPoints.test_r6_exact_mcnemar_holm_underpowered_and_decision) ... ok
+test_r6_scored_synthetic_run_follows_arc_task_scoring (__main__.RepairedPoints.test_r6_scored_synthetic_run_follows_arc_task_scoring) ... ok
+test_r6_task_correct_only_when_every_output_is (__main__.RepairedPoints.test_r6_task_correct_only_when_every_output_is) ... ok
+
+----------------------------------------------------------------------
+Ran 64 tests in 54.454s
+
+OK
+Finished 2026-11-03T11:33:16Z; 64 tests; 37.75 CPU-s user and 5.71 CPU-s system for the whole suite.

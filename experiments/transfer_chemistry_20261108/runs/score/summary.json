@@ -1,0 +1,121 @@
+{
+ "label": "held",
+ "status": "DONE",
+ "salt": "8f91d8e54350686fc0ce3ce7da7cb7de5941c911597dc5a0b0955843de9089bf",
+ "families": 40,
+ "families_planned": 40,
+ "held_items": 200,
+ "k": 3,
+ "tie_break": "most_general",
+ "nn_level": "L4",
+ "library": {
+  "published_rules": 1224,
+  "unparsed_rules": 0,
+  "variants": 1789
+ },
+ "cpu_seconds": 737.4,
+ "family_cpu_seconds_sum": 736.6,
+ "salt_rule": "sha256 of the committed bytes of the original runs/GO",
+ "freeze_commit": "cdc493584b8a8eeffa2d150d33d765c87f00a2b5",
+ "go_commit": "190756a6fab499af19b762c4d0cb6046abe49152",
+ "go_amendment2_commit": "849c4b5082c471e3c3943948ea02f8fe7cfeebe4",
+ "static": {
+  "exact": 33,
+  "cover": 132,
+  "of": 200
+ },
+ "grown": {
+  "exact": 76,
+  "cover": 137,
+  "of": 200
+ },
+ "shuffled": {
+  "exact": 33,
+  "cover": 132,
+  "of": 200
+ },
+ "nn": {
+  "exact": 75,
+  "cover": 112,
+  "of": 200
+ },
+ "grown_alt": {
+  "exact": 71,
+  "cover": 130,
+  "of": 200
+ },
+ "grown_status": {
+  "no_piece": 17,
+  "piece_kept": 13,
+  "piece_not_kept": 6,
+  "static_sufficient": 4
+ },
+ "grown_levels": {
+  "L6": 2,
+  "L2": 1,
+  "L5": 2,
+  "L3": 3,
+  "L1": 3,
+  "L4": 2
+ },
+ "shuffled_status": {
+  "no_piece": 36,
+  "static_sufficient": 4
+ },
+ "primary_grown_vs_static": {
+  "arms": "grown minus static",
+  "only_grown": 43,
+  "only_static": 0,
+  "both": 33,
+  "neither": 124,
+  "mcnemar_exact_p": 2.2737367544323206e-13,
+  "difference_in_exact_rate": 0.215,
+  "bootstrap95": [
+   0.115,
+   0.33
+  ],
+  "families": 40
+ },
+ "grown_vs_shuffled": {
+  "arms": "grown minus shuffled",
+  "only_grown": 43,
+  "only_shuffled": 0,
+  "both": 33,
+  "neither": 124,
+  "mcnemar_exact_p": 2.2737367544323206e-13,
+  "difference_in_exact_rate": 0.215,
+  "bootstrap95": [
+   0.115,
+   0.33
+  ],
+  "families": 40
+ },
+ "reference_grown_vs_nn": {
+  "arms": "grown minus nn",
+  "only_grown": 23,
+  "only_nn": 22,
+  "both": 53,
+  "neither": 102,
+  "mcnemar_exact_p": 1.0,
+  "difference_in_exact_rate": 0.005,
+  "bootstrap95": [
+   -0.11,
+   0.115
+  ],
+  "families": 40
+ },
+ "diagnostic_grown_alt_tie_break_vs_static": {
+  "arms": "grown_alt minus static",
+  "only_grown_alt": 38,
+  "only_static": 0,
+  "both": 33,
+  "neither": 129,
+  "mcnemar_exact_p": 7.275957614183426e-12,
+  "difference_in_exact_rate": 0.19,
+  "bootstrap95": [
+   0.1,
+   0.295
+  ],
+  "families": 40
+ }
+}

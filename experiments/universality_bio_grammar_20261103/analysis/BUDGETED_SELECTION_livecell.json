@@ -1,0 +1,267 @@
+{
+ "label": "exploratory, post hoc, calibration only",
+ "dataset": "livecell (calibration parents only)",
+ "computed_utc": "2026-11-02T14:33:13Z",
+ "rules": {
+  "strict": {
+   "rule": "strict",
+   "record": "INDUCTION.json",
+   "cora_order": [
+    "split_dt",
+    "split_int",
+    "add_lowthresh",
+    "delete",
+    "clear_border",
+    "close",
+    "dilate",
+    "open",
+    "erode",
+    "merge_pairs"
+   ],
+   "failure_evidence": {
+    "class_oracle_gain": {
+     "SPLIT": 0.12204923639195553,
+     "MERGE": 0.006661199378911853,
+     "FILL": 0.0,
+     "GROW": 0.012186105303578998,
+     "SHRINK": 0.010835448512337753,
+     "DELETE": 0.06783097359905166,
+     "ADD": 0.06870255774516054
+    },
+    "not_found_within_budget": {
+     "ADD": true,
+     "DELETE": true,
+     "GROW": true,
+     "MERGE": true,
+     "SHRINK": true,
+     "SPLIT": true
+    }
+   },
+   "admitted_with_full_ceiling": [],
+   "measured_admission_cpu_s_for_10_candidates": 804.3,
+   "candidate_validations_recorded": 10,
+   "budgets": {
+    "1": {
+     "cora_order_first_k": [
+      "split_dt"
+     ],
+     "cora_order_admits": [],
+     "cora_order_validation_f1_change": 0.0,
+     "random_all_11_operators": {
+      "p_admitted_operator_within_k_exact": 0.0,
+      "p_admitted_operator_within_k_sampled": 0.0,
+      "expected_validation_f1_change": 0.0,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "random_10_specified_operators": {
+      "p_admitted_operator_within_k_exact": 0.0,
+      "p_admitted_operator_within_k_sampled": 0.0,
+      "expected_validation_f1_change": 0.0,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "cpu_estimate": {
+      "candidates_validated": 1,
+      "estimated_cpu_s": 80.42999999999999,
+      "estimated_cpu_saved_s": 723.87,
+      "basis": "equal cost per candidate; per-candidate CPU was not recorded, and the first candidates of a run pay for unit tables later reused, so the saving is an upper estimate"
+     }
+    },
+    "2": {
+     "cora_order_first_k": [
+      "split_dt",
+      "split_int"
+     ],
+     "cora_order_admits": [],
+     "cora_order_validation_f1_change": 0.0,
+     "random_all_11_operators": {
+      "p_admitted_operator_within_k_exact": 0.0,
+      "p_admitted_operator_within_k_sampled": 0.0,
+      "expected_validation_f1_change": 0.0,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "random_10_specified_operators": {
+      "p_admitted_operator_within_k_exact": 0.0,
+      "p_admitted_operator_within_k_sampled": 0.0,
+      "expected_validation_f1_change": 0.0,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "cpu_estimate": {
+      "candidates_validated": 2,
+      "estimated_cpu_s": 160.85999999999999,
+      "estimated_cpu_saved_s": 643.4399999999999,
+      "basis": "equal cost per candidate; per-candidate CPU was not recorded, and the first candidates of a run pay for unit tables later reused, so the saving is an upper estimate"
+     }
+    },
+    "3": {
+     "cora_order_first_k": [
+      "split_dt",
+      "split_int",
+      "add_lowthresh"
+     ],
+     "cora_order_admits": [],
+     "cora_order_validation_f1_change": 0.0,
+     "random_all_11_operators": {
+      "p_admitted_operator_within_k_exact": 0.0,
+      "p_admitted_operator_within_k_sampled": 0.0,
+      "expected_validation_f1_change": 0.0,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "random_10_specified_operators": {
+      "p_admitted_operator_within_k_exact": 0.0,
+      "p_admitted_operator_within_k_sampled": 0.0,
+      "expected_validation_f1_change": 0.0,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "cpu_estimate": {
+      "candidates_validated": 3,
+      "estimated_cpu_s": 241.28999999999996,
+      "estimated_cpu_saved_s": 563.01,
+      "basis": "equal cost per candidate; per-candidate CPU was not recorded, and the first candidates of a run pay for unit tables later reused, so the saving is an upper estimate"
+     }
+    }
+   },
+   "determinism": "every operator's recorded outcome in every reachable admission context is unique, so each order's result is read from the records without re-running"
+  },
+  "tolerant": {
+   "rule": "tolerant",
+   "record": "INDUCTION_TOLERANT.json",
+   "cora_order": [
+    "split_dt",
+    "split_int",
+    "add_lowthresh",
+    "delete",
+    "clear_border",
+    "close",
+    "dilate",
+    "open",
+    "erode",
+    "merge_pairs"
+   ],
+   "failure_evidence": {
+    "class_oracle_gain": {
+     "SPLIT": 0.12204923639195553,
+     "MERGE": 0.006661199378911853,
+     "FILL": 0.0,
+     "GROW": 0.012186105303578998,
+     "SHRINK": 0.010835448512337753,
+     "DELETE": 0.06783097359905166,
+     "ADD": 0.06870255774516054
+    },
+    "not_found_within_budget": {
+     "ADD": true,
+     "DELETE": true,
+     "GROW": true,
+     "MERGE": true,
+     "SHRINK": true,
+     "SPLIT": true
+    }
+   },
+   "admitted_with_full_ceiling": [
+    "add_lowthresh"
+   ],
+   "measured_admission_cpu_s_for_10_candidates": 800.348164361,
+   "candidate_validations_recorded": 10,
+   "budgets": {
+    "1": {
+     "cora_order_first_k": [
+      "split_dt"
+     ],
+     "cora_order_admits": [],
+     "cora_order_validation_f1_change": 0.0,
+     "random_all_11_operators": {
+      "p_admitted_operator_within_k_exact": 0.09090909090909091,
+      "p_admitted_operator_within_k_sampled": 0.0884,
+      "expected_validation_f1_change": 2.5549456399999993e-05,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "random_10_specified_operators": {
+      "p_admitted_operator_within_k_exact": 0.1,
+      "p_admitted_operator_within_k_sampled": 0.1004,
+      "expected_validation_f1_change": 2.9017708399999997e-05,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "cpu_estimate": {
+      "candidates_validated": 1,
+      "estimated_cpu_s": 80.0348164361,
+      "estimated_cpu_saved_s": 720.3133479249001,
+      "basis": "equal cost per candidate; per-candidate CPU was not recorded, and the first candidates of a run pay for unit tables later reused, so the saving is an upper estimate"
+     }
+    },
+    "2": {
+     "cora_order_first_k": [
+      "split_dt",
+      "split_int"
+     ],
+     "cora_order_admits": [],
+     "cora_order_validation_f1_change": 0.0,
+     "random_all_11_operators": {
+      "p_admitted_operator_within_k_exact": 0.18181818181818182,
+      "p_admitted_operator_within_k_sampled": 0.1814,
+      "expected_validation_f1_change": 5.24284094e-05,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "random_10_specified_operators": {
+      "p_admitted_operator_within_k_exact": 0.2,
+      "p_admitted_operator_within_k_sampled": 0.1992,
+      "expected_validation_f1_change": 5.7572983199999996e-05,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "cpu_estimate": {
+      "candidates_validated": 2,
+      "estimated_cpu_s": 160.0696328722,
+      "estimated_cpu_saved_s": 640.2785314888,
+      "basis": "equal cost per candidate; per-candidate CPU was not recorded, and the first candidates of a run pay for unit tables later reused, so the saving is an upper estimate"
+     }
+    },
+    "3": {
+     "cora_order_first_k": [
+      "split_dt",
+      "split_int",
+      "add_lowthresh"
+     ],
+     "cora_order_admits": [
+      "add_lowthresh"
+     ],
+     "cora_order_validation_f1_change": 0.000289021,
+     "random_all_11_operators": {
+      "p_admitted_operator_within_k_exact": 0.2727272727272727,
+      "p_admitted_operator_within_k_sampled": 0.2777,
+      "expected_validation_f1_change": 8.02611317e-05,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "random_10_specified_operators": {
+      "p_admitted_operator_within_k_exact": 0.3,
+      "p_admitted_operator_within_k_sampled": 0.3029,
+      "expected_validation_f1_change": 8.754446089999998e-05,
+      "orders_sampled": 10000,
+      "orders_not_determined_by_records": 0
+     },
+     "cpu_estimate": {
+      "candidates_validated": 3,
+      "estimated_cpu_s": 240.1044493083,
+      "estimated_cpu_saved_s": 560.2437150527,
+      "basis": "equal cost per candidate; per-candidate CPU was not recorded, and the first candidates of a run pay for unit tables later reused, so the saving is an upper estimate"
+     }
+    }
+   },
+   "rank_of_admitted_operator": {
+    "cora_order": 3,
+    "p_random_11_at_least_as_early": 0.2727272727272727,
+    "p_random_10_specified_at_least_as_early": 0.3,
+    "expected_rank_random_11": 6.0
+   },
+   "determinism": "every operator's recorded outcome in every reachable admission context is unique, so each order's result is read from the records without re-running"
+  }
+ }
+}

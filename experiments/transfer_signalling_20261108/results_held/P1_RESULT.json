@@ -1,0 +1,240 @@
+{
+ "label": "held",
+ "salt": "ef7c8b8e641d14b36c48b37bf907933f1c835e45de846b0dcab063cb6b3055e3",
+ "provenance": {
+  "python": "3.12.3",
+  "numpy": "2.4.3",
+  "salt": "ef7c8b8e641d14b36c48b37bf907933f1c835e45de846b0dcab063cb6b3055e3",
+  "go_json_sha256": "ef7c8b8e641d14b36c48b37bf907933f1c835e45de846b0dcab063cb6b3055e3",
+  "go_commit": "6ae7f578829a9f001142c96ce5ef9b1e3bd4330c",
+  "freeze_commit": "cdd06c763a82fd06d06250c54d65a4289d0b1f12",
+  "freeze_json_sha256": "56640e776b5671c1d17d9028b51c93ed1ca0dab7f81df04a56471f4e630dd670",
+  "git_head_at_start": "413a6e52915dd64780794614dd68e657326f3a73"
+ },
+ "P1": {
+  "tasks": 200,
+  "held_conditions": 1000,
+  "arms": {
+   "static": 731,
+   "grown": 863,
+   "shuffled": 805,
+   "classical": 728
+  },
+  "pairs": {
+   "grown_vs_shuffled": {
+    "tasks_won": 50,
+    "tasks_lost": 11,
+    "tasks_tied": 139,
+    "sign_p": 4.588831219506234e-07,
+    "conditions_won": 84,
+    "conditions_lost": 26,
+    "mcnemar_p": 2.6140393458029338e-08,
+    "difference": 0.05799999999999994,
+    "ci95": [
+     0.03700000000000003,
+     0.07899999999999996
+    ]
+   },
+   "grown_vs_static": {
+    "tasks_won": 62,
+    "tasks_lost": 12,
+    "tasks_tied": 126,
+    "sign_p": 2.8555486161534817e-09,
+    "conditions_won": 158,
+    "conditions_lost": 26,
+    "mcnemar_p": 2.9024672675812567e-24,
+    "difference": 0.132,
+    "ci95": [
+     0.09499999999999997,
+     0.17099999999999993
+    ]
+   },
+   "shuffled_vs_static": {
+    "tasks_won": 28,
+    "tasks_lost": 3,
+    "tasks_tied": 169,
+    "sign_p": 4.649162292480469e-06,
+    "conditions_won": 98,
+    "conditions_lost": 24,
+    "mcnemar_p": 8.341401161083556e-12,
+    "difference": 0.07400000000000007,
+    "ci95": [
+     0.04400000000000004,
+     0.10702499999999973
+    ]
+   },
+   "classical_vs_static": {
+    "tasks_won": 12,
+    "tasks_lost": 21,
+    "tasks_tied": 167,
+    "sign_p": 0.16275565745308995,
+    "conditions_won": 19,
+    "conditions_lost": 22,
+    "mcnemar_p": 0.755228657504631,
+    "difference": -0.0030000000000000027,
+    "ci95": [
+     -0.018000000000000016,
+     0.014000000000000012
+    ]
+   },
+   "grown_vs_classical": {
+    "tasks_won": 76,
+    "tasks_lost": 19,
+    "tasks_tied": 105,
+    "sign_p": 2.9990721379379377e-09,
+    "conditions_won": 177,
+    "conditions_lost": 42,
+    "mcnemar_p": 6.535902118311371e-21,
+    "difference": 0.135,
+    "ci95": [
+     0.09499999999999997,
+     0.17700000000000005
+    ]
+   }
+  },
+  "seeds": {
+   "seeds_tried": 200,
+   "seeds_skipped": 0
+  },
+  "holm": {
+   "H1_grown_vs_shuffled": {
+    "p": 4.588831219506234e-07,
+    "p_holm": 4.588831219506234e-07,
+    "reject": true
+   },
+   "H2_grown_vs_static": {
+    "p": 2.8555486161534817e-09,
+    "p_holm": 5.7110972323069634e-09,
+    "reject": true
+   }
+  },
+  "decision": {
+   "H1_grown_vs_shuffled": {
+    "p_holm": 4.588831219506234e-07,
+    "tasks_won": 50,
+    "tasks_lost": 11,
+    "supported": true
+   },
+   "H2_grown_vs_static": {
+    "p_holm": 5.7110972323069634e-09,
+    "tasks_won": 62,
+    "tasks_lost": 12,
+    "supported": true
+   }
+  },
+  "per_removed_edge": {
+   "map3k1 1 ikk": {
+    "tasks": 25,
+    "held_conditions": 125,
+    "exact_static": 102,
+    "exact_grown": 105,
+    "exact_shuffled": 102,
+    "exact_classical": 98,
+    "H1_won": 5,
+    "H1_lost": 3,
+    "H2_won": 5,
+    "H2_lost": 3
+   },
+   "map3k1 1 mkk4": {
+    "tasks": 26,
+    "held_conditions": 130,
+    "exact_static": 100,
+    "exact_grown": 105,
+    "exact_shuffled": 100,
+    "exact_classical": 105,
+    "H1_won": 4,
+    "H1_lost": 1,
+    "H2_won": 4,
+    "H2_lost": 1
+   },
+   "map3k7 1 mkk4": {
+    "tasks": 17,
+    "held_conditions": 85,
+    "exact_static": 78,
+    "exact_grown": 77,
+    "exact_shuffled": 78,
+    "exact_classical": 75,
+    "H1_won": 0,
+    "H1_lost": 1,
+    "H2_won": 0,
+    "H2_lost": 1
+   },
+   "mek12 1 erk12": {
+    "tasks": 58,
+    "held_conditions": 290,
+    "exact_static": 128,
+    "exact_grown": 246,
+    "exact_shuffled": 202,
+    "exact_classical": 127,
+    "H1_won": 34,
+    "H1_lost": 3,
+    "H2_won": 45,
+    "H2_lost": 3
+   },
+   "mkk4 1 jnk12": {
+    "tasks": 30,
+    "held_conditions": 150,
+    "exact_static": 131,
+    "exact_grown": 131,
+    "exact_shuffled": 131,
+    "exact_classical": 136,
+    "H1_won": 0,
+    "H1_lost": 0,
+    "H2_won": 0,
+    "H2_lost": 0
+   },
+   "mkk4 1 p38": {
+    "tasks": 44,
+    "held_conditions": 220,
+    "exact_static": 192,
+    "exact_grown": 199,
+    "exact_shuffled": 192,
+    "exact_classical": 187,
+    "H1_won": 7,
+    "H1_lost": 3,
+    "H2_won": 8,
+    "H2_lost": 4
+   }
+  },
+  "sensitivity_without_mek12_erk12": {
+   "note": "no gate; tasks whose removed edge is mek12 -> erk12 are excluded",
+   "tasks": 142,
+   "held_conditions": 710,
+   "arms": {
+    "static": 603,
+    "grown": 617,
+    "shuffled": 603,
+    "classical": 601
+   },
+   "H1_grown_vs_shuffled": {
+    "tasks_won": 16,
+    "tasks_lost": 8,
+    "tasks_tied": 118,
+    "sign_p": 0.15158963203430176,
+    "conditions_won": 30,
+    "conditions_lost": 16,
+    "mcnemar_p": 0.054076031858869555,
+    "difference": 0.019718309859154903,
+    "ci95": [
+     0.0028169014084507005,
+     0.03802816901408457
+    ]
+   },
+   "H2_grown_vs_static": {
+    "tasks_won": 17,
+    "tasks_lost": 9,
+    "tasks_tied": 116,
+    "sign_p": 0.16863754391670227,
+    "conditions_won": 31,
+    "conditions_lost": 17,
+    "mcnemar_p": 0.05946337525377032,
+    "difference": 0.019718309859154903,
+    "ci95": [
+     0.0014084507042253502,
+     0.03943661971830981
+    ]
+   }
+  },
+  "cpu_s_at_end": 339.8
+ }
+}

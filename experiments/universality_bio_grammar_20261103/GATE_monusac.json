@@ -1,0 +1,34 @@
+{
+ "dataset": "monusac",
+ "calibration_images": 132,
+ "objects": 16600,
+ "error_share": 0.26608433734939757,
+ "class_counts": {
+  "SPLIT": 98,
+  "MERGE": 100,
+  "FILL": 0,
+  "GROW": 95,
+  "SHRINK": 163,
+  "DELETE": 3991,
+  "ADD": 6336
+ },
+ "baseline_pooled_f1": 0.6869273491020834,
+ "oracle_pooled_f1": 0.8025255409607208,
+ "oracle_gain": 0.1155981918586374,
+ "induction_baseline_pooled_f1": 0.728667827601219,
+ "induction_class_oracle_gain": {
+  "SPLIT": 0.005910799679406553,
+  "MERGE": 0.0025583304369282134,
+  "FILL": 0.0,
+  "GROW": 0.004353504571179778,
+  "SHRINK": 0.0062037440139312006,
+  "DELETE": 0.07437883186861427,
+  "ADD": 0.17702612257671702
+ },
+ "criteria": {
+  "error_share_min": 0.05,
+  "oracle_gain_min": 0.01
+ },
+ "cpu_s": 18.2,
+ "PASS": true
+}

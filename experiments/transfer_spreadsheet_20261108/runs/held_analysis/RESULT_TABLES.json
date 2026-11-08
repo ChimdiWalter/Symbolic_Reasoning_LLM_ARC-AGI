@@ -1,0 +1,890 @@
+{
+ "breakdowns": {
+  "160000": {
+   "benchmark_author_families": {
+    "classical": 1,
+    "grown": 2,
+    "grown_no_loo": 2,
+    "n": 7,
+    "shuffled": 2,
+    "static": 2
+   },
+   "forum": {
+    "classical": 21,
+    "grown": 22,
+    "grown_no_loo": 28,
+    "n": 46,
+    "shuffled": 16,
+    "static": 17
+   },
+   "train_2": {
+    "classical": 14,
+    "grown": 12,
+    "grown_no_loo": 17,
+    "n": 26,
+    "shuffled": 6,
+    "static": 7
+   },
+   "train_3": {
+    "classical": 8,
+    "grown": 12,
+    "grown_no_loo": 13,
+    "n": 27,
+    "shuffled": 12,
+    "static": 12
+   }
+  },
+  "20000": {
+   "benchmark_author_families": {
+    "classical": 1,
+    "grown": 2,
+    "grown_no_loo": 2,
+    "n": 7,
+    "shuffled": 2,
+    "static": 2
+   },
+   "forum": {
+    "classical": 20,
+    "grown": 19,
+    "grown_no_loo": 25,
+    "n": 46,
+    "shuffled": 13,
+    "static": 15
+   },
+   "train_2": {
+    "classical": 13,
+    "grown": 10,
+    "grown_no_loo": 15,
+    "n": 26,
+    "shuffled": 5,
+    "static": 6
+   },
+   "train_3": {
+    "classical": 8,
+    "grown": 11,
+    "grown_no_loo": 12,
+    "n": 27,
+    "shuffled": 10,
+    "static": 11
+   }
+  },
+  "40000": {
+   "benchmark_author_families": {
+    "classical": 1,
+    "grown": 2,
+    "grown_no_loo": 2,
+    "n": 7,
+    "shuffled": 2,
+    "static": 2
+   },
+   "forum": {
+    "classical": 20,
+    "grown": 20,
+    "grown_no_loo": 26,
+    "n": 46,
+    "shuffled": 15,
+    "static": 15
+   },
+   "train_2": {
+    "classical": 13,
+    "grown": 10,
+    "grown_no_loo": 15,
+    "n": 26,
+    "shuffled": 5,
+    "static": 6
+   },
+   "train_3": {
+    "classical": 8,
+    "grown": 12,
+    "grown_no_loo": 13,
+    "n": 27,
+    "shuffled": 12,
+    "static": 11
+   }
+  },
+  "640000": {
+   "benchmark_author_families": {
+    "classical": 1,
+    "grown": 2,
+    "grown_no_loo": 2,
+    "n": 7,
+    "shuffled": 2,
+    "static": 2
+   },
+   "forum": {
+    "classical": 23,
+    "grown": 23,
+    "grown_no_loo": 29,
+    "n": 46,
+    "shuffled": 17,
+    "static": 20
+   },
+   "train_2": {
+    "classical": 16,
+    "grown": 12,
+    "grown_no_loo": 17,
+    "n": 26,
+    "shuffled": 7,
+    "static": 10
+   },
+   "train_3": {
+    "classical": 8,
+    "grown": 13,
+    "grown_no_loo": 14,
+    "n": 27,
+    "shuffled": 12,
+    "static": 12
+   }
+  }
+ },
+ "budgets": [
+  40000,
+  20000,
+  160000,
+  640000
+ ],
+ "complete_passes": {
+  "160000": true,
+  "20000": true,
+  "40000": true,
+  "640000": true
+ },
+ "cpu_cap_stops": {
+  "160000": {
+   "base": 0,
+   "classical": 0,
+   "grown_retries": 0,
+   "retries_total": 60,
+   "shuffled_retries": 0,
+   "static": 0
+  },
+  "20000": {
+   "base": 0,
+   "classical": 0,
+   "grown_retries": 0,
+   "retries_total": 61,
+   "shuffled_retries": 0,
+   "static": 0
+  },
+  "40000": {
+   "base": 0,
+   "classical": 0,
+   "grown_retries": 0,
+   "retries_total": 64,
+   "shuffled_retries": 0,
+   "static": 0
+  },
+  "640000": {
+   "base": 0,
+   "classical": 0,
+   "grown_retries": 0,
+   "retries_total": 53,
+   "shuffled_retries": 0,
+   "static": 0
+  }
+ },
+ "cpu_totals": {
+  "160000": {
+   "classical": 32.43,
+   "grown": 17.53,
+   "shuffled": 26.99,
+   "static": 41.64
+  },
+  "20000": {
+   "classical": 5.41,
+   "grown": 4.38,
+   "shuffled": 5.43,
+   "static": 5.62
+  },
+  "40000": {
+   "classical": 9.8,
+   "grown": 6.75,
+   "shuffled": 9.28,
+   "static": 10.96
+  },
+  "640000": {
+   "classical": 92.3,
+   "grown": 39.03,
+   "shuffled": 65.7,
+   "static": 110.11
+  }
+ },
+ "equal_cpu": [
+  {
+   "grown": 21,
+   "grown_base_budget": 20000,
+   "grown_cpu_s": 4.38,
+   "grown_only": 5,
+   "mcnemar_exact_p": 0.21875,
+   "n": 53,
+   "static": 17,
+   "static_base_budget": 20000,
+   "static_cpu_s": 5.62,
+   "static_executions": 80000,
+   "static_only": 1
+  },
+  {
+   "grown": 22,
+   "grown_base_budget": 40000,
+   "grown_cpu_s": 6.75,
+   "grown_only": 5,
+   "mcnemar_exact_p": 0.0625,
+   "n": 53,
+   "static": 17,
+   "static_base_budget": 20000,
+   "static_cpu_s": 5.62,
+   "static_executions": 80000,
+   "static_only": 0
+  },
+  {
+   "grown": 24,
+   "grown_base_budget": 160000,
+   "grown_cpu_s": 17.53,
+   "grown_only": 7,
+   "mcnemar_exact_p": 0.015625,
+   "n": 53,
+   "static": 17,
+   "static_base_budget": 40000,
+   "static_cpu_s": 10.96,
+   "static_executions": 160000,
+   "static_only": 0
+  },
+  {
+   "grown": 25,
+   "grown_base_budget": 640000,
+   "grown_cpu_s": 39.03,
+   "grown_only": 6,
+   "mcnemar_exact_p": 0.03125,
+   "n": 53,
+   "static": 19,
+   "static_base_budget": 160000,
+   "static_cpu_s": 41.64,
+   "static_executions": 640000,
+   "static_only": 0
+  }
+ ],
+ "grown_primary_not_static_at_any_budget": [
+  "43606446",
+  "clean-and-reformat-telephone-numbers",
+  "remove-text-by-position",
+  "strip-html-from-text-or-numbers"
+ ],
+ "held_checks": {
+  "exactly_one": 40,
+  "max": 16,
+  "one_by_k": {
+   "2": 26,
+   "3": 14
+  },
+  "six_or_more": 7,
+  "tasks": 53,
+  "total_checks": 158,
+  "two_to_five": 6
+ },
+ "pieces_per_held_task": {
+  "above_development_max": [
+   "43120683",
+   "stackoverflow11",
+   "univ_2",
+   "univ_3",
+   "univ_4",
+   "univ_5",
+   "univ_6"
+  ],
+  "development_max": 6794,
+  "max": 37936,
+  "min": 5645
+ },
+ "primary_tasks": [
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "split-text-string-at-specific-character",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "split-numbers-from-units-of-measure_2",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "split-numbers-from-units-of-measure_1",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 16,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "univ_3",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "split-text-and-numbers",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "35744094",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "get-last-name-from-name-with-comma",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "25239569",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "most-frequently-occurring-text",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 16,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "univ_4",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "create-email-address-from-name",
+   "k": 2,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": true,
+   "checks": 6,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "bikes",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "clean-and-reformat-telephone-numbers",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 3,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "38664547",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 0,
+   "grown_no_loo": 1,
+   "id": "remove-leading-and-trailing-spaces-from-text",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "extract-word-that-begins-with-specific-character",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 2,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "19558979",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "get-first-word",
+   "k": 2,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "stackoverflow11",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "44789427",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 16,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "univ_1",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "17212077",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 0,
+   "grown_no_loo": 1,
+   "id": "31753108",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "strip-html-from-text-or-numbers",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "43606446",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 4,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "33619752",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "change-negative-numbers-to-positive",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "remove-text-by-position",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 16,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "univ_5",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 2,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "remove-unwanted-characters",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "exceljet1",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "add-a-line-break-with-a-formula",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "convert-numbers-to-text",
+   "k": 2,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "get-first-name-from-name",
+   "k": 2,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "stackoverflow3",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "get-domain-from-email-address_2",
+   "k": 2,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 3,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "11604909",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "get-first-name-from-name-with-comma",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 0,
+   "grown_no_loo": 1,
+   "id": "strip-non-numeric-characters",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 0,
+   "grown_no_loo": 1,
+   "id": "exceljet4",
+   "k": 3,
+   "shuffled": 1,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "stackoverflow1",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "strip-numeric-characters-from-cell",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "43120683",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 16,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "univ_2",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "remove-file-extension-from-filename",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "stackoverflow4",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "get-middle-name-from-full-name",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": true,
+   "checks": 1,
+   "classical": 0,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "35016216",
+   "k": 3,
+   "shuffled": 1,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 0,
+   "grown_no_loo": 1,
+   "id": "exceljet2",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 0,
+   "grown_no_loo": 1,
+   "id": "get-last-line-in-cell",
+   "k": 2,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 1,
+   "classical": 1,
+   "grown": 1,
+   "grown_no_loo": 1,
+   "id": "get-last-name-from-name",
+   "k": 2,
+   "shuffled": 0,
+   "static": 1
+  },
+  {
+   "base_fit": false,
+   "checks": 16,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "univ_6",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  },
+  {
+   "base_fit": false,
+   "checks": 2,
+   "classical": 0,
+   "grown": 0,
+   "grown_no_loo": 0,
+   "id": "11440431",
+   "k": 3,
+   "shuffled": 0,
+   "static": 0
+  }
+ ],
+ "salt_in_summary": "1d8e4f4aa70cf17cc1dd6aa6b76049b3e8779ef2",
+ "static_budgets_used": [
+  80000,
+  160000,
+  640000,
+  2560000
+ ]
+}

@@ -1,0 +1,11 @@
+{"restarts": 4, "perturb": 4, "k_in": 4, "rounds": 3, "per_failure": 2, "per_round": 6, "bar": 0,
+ "size_fac": 0.0001, "na_fac": 1.0,
+ "ga": {"pop_size": 50, "p_mut": 0.5, "max_gens": 500, "stall_max": 100, "sel_press": 1.2, "elitism": 5},
+ "syn": {"flip": 0.05, "p_edge": 0.5, "min_effect": 2},
+ "threshold": 0.5,
+ "P1": {"network": "LiverDREAM", "n_tasks": 200, "n_held": 5, "max_seeds": 2000},
+ "S1": {"dataset": "LiverDREAM", "n_folds": 5},
+ "S2": {"network": "Toy", "n_tasks": 100, "n_held": 2, "max_seeds": 1000},
+ "cpu_budget_s": 1800,
+ "bootstrap_resamples": 10000,
+ "alpha": 0.05}
