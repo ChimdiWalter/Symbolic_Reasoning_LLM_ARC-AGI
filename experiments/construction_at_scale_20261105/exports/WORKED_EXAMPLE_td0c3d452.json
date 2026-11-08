@@ -1,0 +1,535 @@
+{
+ "task": "td0c3d452",
+ "world": "W3",
+ "content_rule": "process fields only: no predicted grid, no query input, no held query answer and no test output; grids appear by size only (the demonstrations are in the separate DEMOS file); a field missing from the records is written 'not recorded'",
+ "arm_names": {
+  "S-hole": "the task's own typed holes",
+  "S-demo": "the raw demonstrations as the hole",
+  "S-enum": "blind trial of the 211 structures",
+  "S-shuffled": "another task's holes (shuffled specification)",
+  "C7m": "matched static search"
+ },
+ "generator_record": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_eval/world_results.json",
+    "sha256": "f0b644bc4c469ba18609e62601382b7658fc9ea4817fe7197f168f7ebe90d062"
+   }
+  ],
+  "family": "switch",
+  "template": "T3",
+  "op": "vmirror",
+  "params": [
+   0,
+   1
+  ],
+  "partition": "M"
+ },
+ "observe": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/prep_v4/records.pkl",
+    "sha256": "9b6146f7e50fb084fbd46f8cc8743036faa4c377158b3a6bc306df9026ff065f"
+   }
+  ],
+  "n_demos": 3,
+  "shape_relation": "output size equals input size",
+  "closest_program": "replace(vmirror(I), ZERO, ONE)",
+  "closest_cells_correct": [
+   296,
+   300
+  ]
+ },
+ "represent_and_search": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/prep_v4/records.pkl",
+    "sha256": "9b6146f7e50fb084fbd46f8cc8743036faa4c377158b3a6bc306df9026ff065f"
+   }
+  ],
+  "base_search": {
+   "fit": false,
+   "program": null,
+   "level_complete": 9,
+   "stop": "budget",
+   "calls": 150000,
+   "bank": 5241,
+   "closures": 400,
+   "cpu_s": 1.086
+  }
+ },
+ "fail": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/prep_v4/records.pkl",
+    "sha256": "9b6146f7e50fb084fbd46f8cc8743036faa4c377158b3a6bc306df9026ff065f"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/prep_v4/controller_summary.json",
+    "sha256": "8742e8a7818b97f3ef1eb6d37145760498600f00510dd2bc314b356de6ab91c5"
+   }
+  ],
+  "deeper_probe": {
+   "fit": false,
+   "program": null,
+   "level_complete": 11,
+   "stop": "budget",
+   "calls": 600000,
+   "cpu_s": 4.522
+  },
+  "inexpressible_within": {
+   "cost_level": 9,
+   "enumeration_complete": false,
+   "deeper_level": 11,
+   "deeper_complete": false
+  },
+  "hypotheses": [
+   {
+    "level": "search",
+    "claim": "the program exists in the language at a higher cost",
+    "probe": "deeper search at 4x the budget",
+    "verdict": "weakened (no fit up to the deeper search's cost level)"
+   },
+   {
+    "level": "operation",
+    "claim": "an operation the program needs is missing from the language",
+    "probe": "fragment completeness, unreachable sketches",
+    "verdict": "supported"
+   },
+   {
+    "level": "insufficient_evidence",
+    "claim": "the demonstrations do not determine a rule",
+    "probe": "number of demonstrations",
+    "verdict": "not supported"
+   },
+   {
+    "level": "composition",
+    "claim": "operations exist but a control structure is missing",
+    "probe": null,
+    "verdict": "untested in v1"
+   },
+   {
+    "level": "representation",
+    "claim": "the grid is decomposed into the wrong entities",
+    "probe": null,
+    "verdict": "untested in v1"
+   }
+  ],
+  "status": "unresolved",
+  "decision": "INVENT_NEW_OPERATION"
+ },
+ "per_arm_outcomes_by_seed": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_eval/world_results.json",
+    "sha256": "f0b644bc4c469ba18609e62601382b7658fc9ea4817fe7197f168f7ebe90d062"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/units_spec.json",
+    "sha256": "f9125fa7bdd59c27eddf20c50e092f8f3ad0be59e47791dc0fd7e6a6d74ddc5e"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/units_enum_s0.json",
+    "sha256": "420308e6b1e269fdd554d15a6076237373497e4a3b03a0f9b552b8e58c0b7ebf"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/units_enum_s1.json",
+    "sha256": "d194791ddd347367b6c7ee19c3912206227c899566b3a7b03cea73986a73dc6c"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/units_enum_s2.json",
+    "sha256": "926ecb34fe6fcdce8324d002920b3ffa8110ba04d7f596017a3644cf5ab29c3d"
+   }
+  ],
+  "seeds": {
+   "0": {
+    "S-hole": {
+     "promoted": "COLOUR:0:1:1",
+     "committed_kind": "promoted",
+     "committed_structure": "COLOUR:0:1:1",
+     "recovered": true,
+     "reach": true,
+     "retries": 1,
+     "n_candidates": 1,
+     "structures_tried": null,
+     "charged_total_cpu_s": 29.948
+    },
+    "S-demo": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 0,
+     "n_candidates": 0,
+     "structures_tried": null,
+     "charged_total_cpu_s": 5.78,
+     "rows_recorded": 0
+    },
+    "S-enum": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 16,
+     "n_candidates": null,
+     "structures_tried": 16,
+     "charged_total_cpu_s": 98.606,
+     "enum_cap_cpu_s": 87.36,
+     "rows_recorded": 0
+    },
+    "S-shuffled": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 0,
+     "n_candidates": 0,
+     "structures_tried": null,
+     "charged_total_cpu_s": 5.785,
+     "donor": "t7829a953"
+    }
+   },
+   "1": {
+    "S-hole": {
+     "promoted": "COLOUR:0:1:1",
+     "committed_kind": "promoted",
+     "committed_structure": "COLOUR:0:1:1",
+     "recovered": true,
+     "reach": true,
+     "retries": 1,
+     "n_candidates": 1,
+     "structures_tried": null,
+     "charged_total_cpu_s": 29.948
+    },
+    "S-demo": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 0,
+     "n_candidates": 0,
+     "structures_tried": null,
+     "charged_total_cpu_s": 5.78,
+     "rows_recorded": 0
+    },
+    "S-enum": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 15,
+     "n_candidates": null,
+     "structures_tried": 15,
+     "charged_total_cpu_s": 99.686,
+     "enum_cap_cpu_s": 87.36,
+     "rows_recorded": 0
+    },
+    "S-shuffled": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 0,
+     "n_candidates": 0,
+     "structures_tried": null,
+     "charged_total_cpu_s": 5.784,
+     "donor": "t7829a953"
+    }
+   },
+   "2": {
+    "S-hole": {
+     "promoted": "COLOUR:0:1:1",
+     "committed_kind": "promoted",
+     "committed_structure": "COLOUR:0:1:1",
+     "recovered": true,
+     "reach": true,
+     "retries": 1,
+     "n_candidates": 1,
+     "structures_tried": null,
+     "charged_total_cpu_s": 29.954
+    },
+    "S-demo": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 0,
+     "n_candidates": 0,
+     "structures_tried": null,
+     "charged_total_cpu_s": 5.782,
+     "rows_recorded": 0
+    },
+    "S-enum": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 15,
+     "n_candidates": null,
+     "structures_tried": 15,
+     "charged_total_cpu_s": 93.486,
+     "enum_cap_cpu_s": 87.36,
+     "rows_recorded": 0
+    },
+    "S-shuffled": {
+     "promoted": null,
+     "committed_kind": null,
+     "committed_structure": null,
+     "recovered": false,
+     "reach": false,
+     "retries": 0,
+     "n_candidates": 0,
+     "structures_tried": null,
+     "charged_total_cpu_s": 5.789,
+     "donor": "t7829a953"
+    }
+   }
+  }
+ },
+ "matched_static_search": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_c7m/c7m_M.json",
+    "sha256": "5c883cd07a2a57a9f807d3d2c729f0c3076f38566375dce64cf44f7a04a4531f"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_eval/world_results.json",
+    "sha256": "f0b644bc4c469ba18609e62601382b7658fc9ea4817fe7197f168f7ebe90d062"
+   }
+  ],
+  "fit": false,
+  "program": null,
+  "level_complete": 14,
+  "stop": "cpu_cap",
+  "calls": 16871460,
+  "cpu_s": 218.778,
+  "budget_cpu_s": 218.4,
+  "budget_reference_cpu_s": 150.0,
+  "closure_capped": true,
+  "recovered": false
+ },
+ "analysis_summary_by_arm": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/analysis/ANALYSIS.json",
+    "sha256": "0470e2f0d54684837ede7f8d133f6cadca50f3d89ceae2a2aaa9167f532f9c5f"
+   }
+  ],
+  "S-hole": {
+   "all3": true,
+   "any": true,
+   "majority": true,
+   "seeds": 3
+  },
+  "S-demo": {
+   "all3": false,
+   "any": false,
+   "majority": false,
+   "seeds": 0
+  },
+  "S-enum": {
+   "all3": false,
+   "any": false,
+   "majority": false,
+   "seeds": 0
+  },
+  "S-shuffled": {
+   "all3": false,
+   "any": false,
+   "majority": false,
+   "seeds": 0
+  },
+  "C7m": {
+   "recovered": false
+  }
+ },
+ "typed_hole_that_succeeded": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/prep_v4/records.pkl",
+    "sha256": "9b6146f7e50fb084fbd46f8cc8743036faa4c377158b3a6bc306df9026ff065f"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/units_spec.json",
+    "sha256": "f9125fa7bdd59c27eddf20c50e092f8f3ad0be59e47791dc0fd7e6a6d74ddc5e"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/gates_spec.pkl",
+    "sha256": "73ce5e7b4df6690fd4c530885a63de821c87a13ef5372cd283814a9f3c942ea1"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/partitions/TASKS_SYSTEM.json",
+    "sha256": "7526274f81ca385fc63633a911f653a703f796b1723c27619b1c9ec5e24022bc"
+   }
+  ],
+  "ranked_sketches": [
+   {
+    "rank": 0,
+    "form": "?(A(I))",
+    "outer": null,
+    "inner": "vmirror",
+    "score": 0.0433,
+    "pairs": 3
+   },
+   {
+    "rank": 1,
+    "form": "B(?(I))",
+    "outer": "vmirror",
+    "inner": null,
+    "score": 0.0433,
+    "pairs": 3
+   },
+   {
+    "rank": 2,
+    "form": "?(I)",
+    "outer": null,
+    "inner": null,
+    "score": 0.0267,
+    "pairs": 3
+   }
+  ],
+  "succeeded": {
+   "sketch_rank": 0,
+   "sketch_form": "?(A(I))",
+   "inner": "vmirror",
+   "outer": null,
+   "same_on_all_three_seeds": true
+  },
+  "required_of_the_missing_operation": {
+   "pairs": 3,
+   "pair_sizes_input_to_output": [
+    "10x10 -> 10x10",
+    "10x10 -> 10x10",
+    "10x10 -> 10x10"
+   ],
+   "recorded_pair_inputs_equal_the_mirrored_demonstration_inputs": true,
+   "recorded_pair_outputs_equal_the_demonstration_outputs": true
+  },
+  "slot_type": "not recorded",
+  "candidates_from_hole_specification": 1,
+  "admitted": "COLOUR:0:1:1",
+  "rows_by_seed": {
+   "0": [
+    {
+     "sid": "COLOUR:0:1:1",
+     "sketch_rank": 0,
+     "sketch_form": "?(A(I))",
+     "duplicate": false,
+     "fit": true,
+     "program": "vmirror(sig_COLOUR_0_1_1(I))",
+     "promotion": "promoted",
+     "validation": {
+      "tried": 4,
+      "first_new_fit": {
+       "task": "t7a039098",
+       "program": "tophalf(sig_COLOUR_0_1_1(I))"
+      }
+     },
+     "regression": {
+      "lost_fit": [],
+      "changed_prediction": [],
+      "checked": 13
+     },
+     "outcome": "fits_motivating_task"
+    }
+   ],
+   "1": [
+    {
+     "sid": "COLOUR:0:1:1",
+     "sketch_rank": 0,
+     "sketch_form": "?(A(I))",
+     "duplicate": false,
+     "fit": true,
+     "program": "vmirror(sig_COLOUR_0_1_1(I))",
+     "promotion": "promoted",
+     "validation": {
+      "tried": 4,
+      "first_new_fit": {
+       "task": "t7a039098",
+       "program": "tophalf(sig_COLOUR_0_1_1(I))"
+      }
+     },
+     "regression": {
+      "lost_fit": [],
+      "changed_prediction": [],
+      "checked": 13
+     },
+     "outcome": "fits_motivating_task"
+    }
+   ],
+   "2": [
+    {
+     "sid": "COLOUR:0:1:1",
+     "sketch_rank": 0,
+     "sketch_form": "?(A(I))",
+     "duplicate": false,
+     "fit": true,
+     "program": "vmirror(sig_COLOUR_0_1_1(I))",
+     "promotion": "promoted",
+     "validation": {
+      "tried": 4,
+      "first_new_fit": {
+       "task": "t7a039098",
+       "program": "tophalf(sig_COLOUR_0_1_1(I))"
+      }
+     },
+     "regression": {
+      "lost_fit": [],
+      "changed_prediction": [],
+      "checked": 13
+     },
+     "outcome": "fits_motivating_task"
+    }
+   ]
+  },
+  "gate_novelty_record": {
+   "duplicate": false,
+   "witnesses": [],
+   "cpu_s": 2.083
+  },
+  "gate_regression_record": {
+   "lost_fit": [],
+   "changed_prediction": [],
+   "checked": 13,
+   "cpu_s": 15.742
+  }
+ },
+ "why_the_raw_demonstration_hole_failed": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_arms/units_spec.json",
+    "sha256": "f9125fa7bdd59c27eddf20c50e092f8f3ad0be59e47791dc0fd7e6a6d74ddc5e"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W3/runs/cas_eval/world_results.json",
+    "sha256": "f0b644bc4c469ba18609e62601382b7658fc9ea4817fe7197f168f7ebe90d062"
+   }
+  ],
+  "recorded": {
+   "0": {
+    "n_candidates": 0,
+    "retries": 0,
+    "rows_recorded": 0
+   },
+   "1": {
+    "n_candidates": 0,
+    "retries": 0,
+    "rows_recorded": 0
+   },
+   "2": {
+    "n_candidates": 0,
+    "retries": 0,
+    "rows_recorded": 0
+   }
+  },
+  "reason": "not recorded beyond these fields: no candidate structure passed the raw-demonstration specification, so nothing reached the gates"
+ }
+}

@@ -1,0 +1,477 @@
+{
+ "task": "t52073858",
+ "world": "W1",
+ "content_rule": "process fields only: no predicted grid, no held query answer and no test output; demonstration grids appear by size only; a field missing from the records is written 'not recorded'",
+ "observe": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/prep_v4/records.pkl",
+    "sha256": "c9a2db1b3e0d5c553d04736e79929923e7f8e56801fc294c963bca2c935ac1bb"
+   }
+  ],
+  "n_demos": 4,
+  "shape_relation": "output is never larger than the input; the amount removed varies",
+  "demonstration_sizes_input_to_output": [
+   "10x10 -> 2x2",
+   "7x8 -> 3x4",
+   "6x11 -> 2x2",
+   "10x10 -> 4x4"
+  ]
+ },
+ "represent_and_search": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/prep_v4/records.pkl",
+    "sha256": "c9a2db1b3e0d5c553d04736e79929923e7f8e56801fc294c963bca2c935ac1bb"
+   }
+  ],
+  "base_search": {
+   "fit": false,
+   "program": null,
+   "level_complete": 9,
+   "stop": "budget",
+   "calls": 150000,
+   "bank": 4668,
+   "closures": 400,
+   "closure_capped": true,
+   "cpu_s": 1.378
+  }
+ },
+ "fail": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/prep_v4/records.pkl",
+    "sha256": "c9a2db1b3e0d5c553d04736e79929923e7f8e56801fc294c963bca2c935ac1bb"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/prep_v4/controller_summary.json",
+    "sha256": "f79f07a9fb6aea8a546a3cd9e197bafbae87861a43af9062a7d67e8fe1b18110"
+   }
+  ],
+  "deeper_probe": {
+   "fit": false,
+   "program": null,
+   "level_complete": 11,
+   "stop": "budget",
+   "calls": 600000,
+   "closure_capped": true,
+   "cpu_s": 5.831
+  },
+  "inexpressible_within": {
+   "cost_level": 9,
+   "enumeration_complete": false,
+   "deeper_level": 11,
+   "deeper_complete": false
+  },
+  "hypotheses": [
+   {
+    "level": "search",
+    "claim": "the program exists in the language at a higher cost",
+    "probe": "deeper search at 4x the budget",
+    "verdict": "weakened (no fit up to the deeper search's cost level)"
+   },
+   {
+    "level": "operation",
+    "claim": "an operation the program needs is missing from the language",
+    "probe": "fragment completeness, unreachable sketches",
+    "verdict": "supported"
+   },
+   {
+    "level": "insufficient_evidence",
+    "claim": "the demonstrations do not determine a rule",
+    "probe": "number of demonstrations",
+    "verdict": "not supported"
+   },
+   {
+    "level": "composition",
+    "claim": "operations exist but a control structure is missing",
+    "probe": null,
+    "verdict": "untested in v1"
+   },
+   {
+    "level": "representation",
+    "claim": "the grid is decomposed into the wrong entities",
+    "probe": null,
+    "verdict": "untested in v1"
+   }
+  ],
+  "status": "unresolved",
+  "decision": "INVENT_NEW_OPERATION",
+  "analyze_cpu_s": 7.341
+ },
+ "matched_longer_static_run": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_c7m/c7m_M.json",
+    "sha256": "1ad095f91bc37676ca220a7bb10708d688498c7ef77a97e9bb7bae19da9f5903"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_eval/world_results.json",
+    "sha256": "5a65201409054e2c0d02c25b5c732fe99d2d97bf59f44e5d813857ce65fed976"
+   }
+  ],
+  "fit": false,
+  "program": null,
+  "level_complete": 14,
+  "stop": "cpu_cap",
+  "calls": 22868138,
+  "cpu_s": 378.515,
+  "budget_cpu_s": 378.15,
+  "budget_reference_cpu_s": 150.0,
+  "cpu_scale": 2.521,
+  "closure_capped": true,
+  "recovered": false
+ },
+ "typed_hole": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/prep_v4/records.pkl",
+    "sha256": "c9a2db1b3e0d5c553d04736e79929923e7f8e56801fc294c963bca2c935ac1bb"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_arms/units_spec.json",
+    "sha256": "14c5f270a233263a40d35380f602f3f94bd2533e9afd5cbe904ee5be8f6feb5e"
+   }
+  ],
+  "ranked_sketches": [
+   {
+    "rank": 0,
+    "form": "?(I)",
+    "outer": null,
+    "inner": null,
+    "score": 0.6615,
+    "pairs": 4
+   },
+   {
+    "rank": 1,
+    "form": "?(A(I))",
+    "outer": null,
+    "inner": "dmirror",
+    "score": 0.6198,
+    "pairs": 4
+   },
+   {
+    "rank": 2,
+    "form": "B(?(I))",
+    "outer": "dmirror",
+    "inner": null,
+    "score": 0.6198,
+    "pairs": 4
+   }
+  ],
+  "chosen": {
+   "sketch_rank": 0,
+   "sketch_form": "?(I)",
+   "same_on_all_three_seeds": true
+  },
+  "slot": "the ? in the chosen form ?(I)",
+  "slot_type": "not recorded",
+  "required_of_the_slot": "on each of the 4 demonstrations, map the input to the output, sizes 10x10 -> 2x2; 7x8 -> 3x4; 6x11 -> 2x2; 10x10 -> 4x4"
+ },
+ "candidates_and_checks_by_seed": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_arms/units_spec.json",
+    "sha256": "14c5f270a233263a40d35380f602f3f94bd2533e9afd5cbe904ee5be8f6feb5e"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_arms/gates_spec.pkl",
+    "sha256": "7002bcf272aecd252e0138a0e942f48bd63256b4048309ca5f6accdb31616bb0"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_commit/COMMITTED_PREDICTIONS.json",
+    "sha256": "1c692443b68e5978a785a892b13cdc897be8d9fc6ecbee6197079cc70505ceb6"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_eval/world_results.json",
+    "sha256": "5a65201409054e2c0d02c25b5c732fe99d2d97bf59f44e5d813857ce65fed976"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/PROTOCOL.md",
+    "sha256": "01d12e10fd512c832296093a5d3b5e4ebd61dc3a4b207278d76259759c920ee0"
+   }
+  ],
+  "schema_space_size_in_protocol": 211,
+  "seeds": {
+   "0": {
+    "candidates_from_hole_specification": 4,
+    "candidates_sent_to_the_gates": 1,
+    "rows_recorded": 1,
+    "rank_of_admitted_among_candidates": "not recorded as a field; the unit records one row, the first and only candidate sent to the gates, and that row was promoted",
+    "other_candidates_identities": "not recorded",
+    "rows": [
+     {
+      "sid": "SEL:fore:fore",
+      "sketch_rank": 0,
+      "sketch_form": "?(I)",
+      "duplicate": false,
+      "fit": true,
+      "program": "sig_SEL_fore_fore(I)",
+      "promotion": "promoted",
+      "validation": {
+       "tried": 1,
+       "first_new_fit": {
+        "task": "taa19c2e9",
+        "program": "vmirror(sig_SEL_fore_fore(I))"
+       }
+      },
+      "regression": {
+       "lost_fit": [],
+       "changed_prediction": [],
+       "checked": 14
+      },
+      "outcome": "fits_motivating_task"
+     }
+    ],
+    "admitted": "SEL:fore:fore",
+    "gate_novelty_no_short_starting_program_reproduces_it": {
+     "row_duplicate": false,
+     "gate_record": {
+      "duplicate": false,
+      "witnesses": [],
+      "cpu_s": 3.288
+     },
+     "bound_on_program_length": "not recorded in the gate record"
+    },
+    "gate_no_solved_task_breaks": {
+     "lost_fit": [],
+     "changed_prediction": [],
+     "checked": 14,
+     "cpu_s": 34.578
+    },
+    "gate_another_unsolved_task_fits": {
+     "tried": 1,
+     "first_new_fit": {
+      "task": "taa19c2e9",
+      "program": "vmirror(sig_SEL_fore_fore(I))"
+     }
+    },
+    "promotion": "promoted",
+    "costs_cpu_s": {
+     "diagnosis_cpu_s": 7.341,
+     "spec_enum_cpu_s": 0.034,
+     "charged_gates_cpu_s": 41.07,
+     "charged_total_cpu_s": 48.445,
+     "actual_cpu_s": 41.645
+    },
+    "committed_for_this_task": {
+     "kind": "promoted",
+     "structure": "SEL:fore:fore"
+    },
+    "motivating_task_outcome": {
+     "recovered": true,
+     "reach": true
+    }
+   },
+   "1": {
+    "candidates_from_hole_specification": 4,
+    "candidates_sent_to_the_gates": 1,
+    "rows_recorded": 1,
+    "rank_of_admitted_among_candidates": "not recorded as a field; the unit records one row, the first and only candidate sent to the gates, and that row was promoted",
+    "other_candidates_identities": "not recorded",
+    "rows": [
+     {
+      "sid": "SEL:fore:multi",
+      "sketch_rank": 0,
+      "sketch_form": "?(I)",
+      "duplicate": false,
+      "fit": true,
+      "program": "sig_SEL_fore_multi(I)",
+      "promotion": "promoted",
+      "validation": {
+       "tried": 1,
+       "first_new_fit": {
+        "task": "taa19c2e9",
+        "program": "vmirror(sig_SEL_fore_multi(I))"
+       }
+      },
+      "regression": {
+       "lost_fit": [],
+       "changed_prediction": [],
+       "checked": 14
+      },
+      "outcome": "fits_motivating_task"
+     }
+    ],
+    "admitted": "SEL:fore:multi",
+    "gate_novelty_no_short_starting_program_reproduces_it": {
+     "row_duplicate": false,
+     "gate_record": {
+      "duplicate": false,
+      "witnesses": [],
+      "cpu_s": 1.84
+     },
+     "bound_on_program_length": "not recorded in the gate record"
+    },
+    "gate_no_solved_task_breaks": {
+     "lost_fit": [],
+     "changed_prediction": [],
+     "checked": 14,
+     "cpu_s": 40.332
+    },
+    "gate_another_unsolved_task_fits": {
+     "tried": 1,
+     "first_new_fit": {
+      "task": "taa19c2e9",
+      "program": "vmirror(sig_SEL_fore_multi(I))"
+     }
+    },
+    "promotion": "promoted",
+    "costs_cpu_s": {
+     "diagnosis_cpu_s": 7.341,
+     "spec_enum_cpu_s": 0.032,
+     "charged_gates_cpu_s": 45.31,
+     "charged_total_cpu_s": 52.683,
+     "actual_cpu_s": 1.004
+    },
+    "committed_for_this_task": {
+     "kind": "promoted",
+     "structure": "SEL:fore:multi"
+    },
+    "motivating_task_outcome": {
+     "recovered": true,
+     "reach": true
+    }
+   },
+   "2": {
+    "candidates_from_hole_specification": 4,
+    "candidates_sent_to_the_gates": 1,
+    "rows_recorded": 1,
+    "rank_of_admitted_among_candidates": "not recorded as a field; the unit records one row, the first and only candidate sent to the gates, and that row was promoted",
+    "other_candidates_identities": "not recorded",
+    "rows": [
+     {
+      "sid": "SEL:fore:multi",
+      "sketch_rank": 0,
+      "sketch_form": "?(I)",
+      "duplicate": false,
+      "fit": true,
+      "program": "sig_SEL_fore_multi(I)",
+      "promotion": "promoted",
+      "validation": {
+       "tried": 1,
+       "first_new_fit": {
+        "task": "taa19c2e9",
+        "program": "vmirror(sig_SEL_fore_multi(I))"
+       }
+      },
+      "regression": {
+       "lost_fit": [],
+       "changed_prediction": [],
+       "checked": 14
+      },
+      "outcome": "fits_motivating_task"
+     }
+    ],
+    "admitted": "SEL:fore:multi",
+    "gate_novelty_no_short_starting_program_reproduces_it": {
+     "row_duplicate": false,
+     "gate_record": {
+      "duplicate": false,
+      "witnesses": [],
+      "cpu_s": 1.84
+     },
+     "bound_on_program_length": "not recorded in the gate record"
+    },
+    "gate_no_solved_task_breaks": {
+     "lost_fit": [],
+     "changed_prediction": [],
+     "checked": 14,
+     "cpu_s": 40.332
+    },
+    "gate_another_unsolved_task_fits": {
+     "tried": 1,
+     "first_new_fit": {
+      "task": "taa19c2e9",
+      "program": "vmirror(sig_SEL_fore_multi(I))"
+     }
+    },
+    "promotion": "promoted",
+    "costs_cpu_s": {
+     "diagnosis_cpu_s": 7.341,
+     "spec_enum_cpu_s": 0.033,
+     "charged_gates_cpu_s": 45.31,
+     "charged_total_cpu_s": 52.684,
+     "actual_cpu_s": 0.033
+    },
+    "committed_for_this_task": {
+     "kind": "promoted",
+     "structure": "SEL:fore:multi"
+    },
+    "motivating_task_outcome": {
+     "recovered": true,
+     "reach": true
+    }
+   }
+  }
+ },
+ "retained": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_commit/COMMITTED_PREDICTIONS.json",
+    "sha256": "1c692443b68e5978a785a892b13cdc897be8d9fc6ecbee6197079cc70505ceb6"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_eval/world_results.json",
+    "sha256": "5a65201409054e2c0d02c25b5c732fe99d2d97bf59f44e5d813857ce65fed976"
+   }
+  ],
+  "committed_grown_bank_by_family": {
+   "compress": [
+    "SEL:fore:multi",
+    "SEL:multi:all",
+    "SEL:multi:multi"
+   ],
+   "downscale": [
+    "MAP:sample:sample:0"
+   ],
+   "trim": [
+    "MAP:core:core:0"
+   ],
+   "upscale": [
+    "MAP:spread:spread:0"
+   ]
+  },
+  "admitted_structure_in_committed_bank": {
+   "SEL:fore:fore": false,
+   "SEL:fore:multi": true
+  },
+  "why_SEL:fore:fore_is_absent": "not recorded"
+ },
+ "reused": {
+  "source": [
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_commit/COMMITTED_PREDICTIONS.json",
+    "sha256": "1c692443b68e5978a785a892b13cdc897be8d9fc6ecbee6197079cc70505ceb6"
+   },
+   {
+    "path": "experiments/construction_at_scale_20261105/runs/generated/W1/runs/cas_eval/world_results.json",
+    "sha256": "5a65201409054e2c0d02c25b5c732fe99d2d97bf59f44e5d813857ce65fed976"
+   }
+  ],
+  "later_tasks_whose_committed_reuse_program_calls_SEL:fore:multi": [
+   {
+    "task": "t1039746e",
+    "reuse_solved": true
+   },
+   {
+    "task": "t27d7e317",
+    "reuse_solved": true
+   },
+   {
+    "task": "t8fbb99ee",
+    "reuse_solved": true
+   },
+   {
+    "task": "tbb7eb1e5",
+    "reuse_solved": true
+   },
+   {
+    "task": "te56f3b91",
+    "reuse_solved": true
+   }
+  ],
+  "later_tasks_whose_committed_reuse_program_calls_SEL:fore:fore": [],
+  "note": "later tasks are the evaluation partition, scored after the bank was committed"
+ }
+}
