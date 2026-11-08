@@ -1,0 +1,174 @@
+{
+ "study": "failure_choice_20261108",
+ "title": "Does failure evidence help CORA choose which change to make? (controlled generated tasks)",
+ "pools_file": "config/POOLS.json",
+ "max_tries": 60,
+ "worlds": {
+  "W1": {
+   "label": "S1's world: crop and resize operations",
+   "removed": [
+    "compress",
+    "downscale",
+    "trim",
+    "upscale"
+   ],
+   "families": [
+    "upscale",
+    "downscale",
+    "compress",
+    "trim"
+   ],
+   "params": {
+    "compress": [
+     []
+    ],
+    "trim": [
+     []
+    ],
+    "downscale": [
+     [
+      2
+     ],
+     [
+      3
+     ]
+    ],
+    "upscale": [
+     [
+      2
+     ],
+     [
+      3
+     ]
+    ]
+   },
+   "salt": "cas-W1-20261105"
+  },
+  "W2": {
+   "label": "quarter-turn and diagonal-reflection world (horizontal reflection kept)",
+   "removed": [
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot270"
+   ],
+   "families": [
+    "dmirror",
+    "cmirror",
+    "rot90",
+    "rot270"
+   ],
+   "params": {
+    "dmirror": [
+     []
+    ],
+    "cmirror": [
+     []
+    ],
+    "rot90": [
+     []
+    ],
+    "rot270": [
+     []
+    ]
+   },
+   "salt": "cas-W2b-20261105"
+  },
+  "W3": {
+   "label": "one-axis stretch and colour-exchange world",
+   "removed": [
+    "hupscale",
+    "vupscale",
+    "switch"
+   ],
+   "families": [
+    "vupscale",
+    "hupscale",
+    "switch"
+   ],
+   "params": {
+    "hupscale": [
+     [
+      2
+     ],
+     [
+      3
+     ]
+    ],
+    "vupscale": [
+     [
+      3
+     ]
+    ],
+    "switch": "source_colours"
+   },
+   "salt": "cas-W3-20261105"
+  }
+ },
+ "worlds_note": "the three worlds of the construction test at scale (removed sets, families, parameters), copied byte for byte with their task files and controller records into runs/worlds/; the salts listed are the construction test's own",
+ "source_families": {
+  "W1": [
+   "upscale",
+   "downscale"
+  ],
+  "W2": [
+   "dmirror",
+   "rot90"
+  ],
+  "W3": [
+   "vupscale"
+  ]
+ },
+ "test_families": {
+  "W1": [
+   "compress",
+   "trim"
+  ],
+  "W2": [
+   "cmirror",
+   "rot270"
+  ],
+  "W3": [
+   "hupscale",
+   "switch"
+  ]
+ },
+ "depth_templates": {
+  "source": "a(b(c(I))), three different operations of the world's unary list, a a reflection or rotation",
+  "test": "the same with a a crop: a half, compress or trim"
+ },
+ "test_quota": [
+  "T1",
+  "T2",
+  "T3",
+  "T1",
+  "T2",
+  "T3"
+ ],
+ "source_salt": "fgc-source-20261108",
+ "test_salt_rule": "sha256 of the GO file's bytes, first 16 hex digits, prefixed 'fgc-test-' (unknown until the GO exists)",
+ "boundary": {
+  "agreed_with": "companion study, inbox note 0135, widened later on 5 Nov 2026; relayed by the coordinator",
+  "kept_in_every_G0": [
+   "hmirror",
+   "vmirror",
+   "rot180"
+  ],
+  "rules": [
+   "horizontal reflection (hmirror, top to bottom; vmirror, left to right) is never removed and no family is built on it",
+   "no object-selection-by-attribute family (the seven named semantics, or any max/min attribute selection followed by cropping); only whole-grid transformations",
+   "the companion study's outcomes, including ConceptARC, Mini-ARC and 1D-ARC results, are not read; its 128 authored tasks are not used",
+   "experiments/natural_growth_20261105/ is never edited"
+  ]
+ },
+ "n_depth_source_per_world": 9,
+ "n_depth_test_per_world": 6,
+ "depth_window_calls": [
+  150000,
+  4000000
+ ],
+ "size_caps_new_tasks": {
+  "max_side_in": 16,
+  "max_side_out": 16
+ }
+}

@@ -1,0 +1,628 @@
+{
+ "arm": "CALIBRATED",
+ "scope": "final",
+ "rule": "calibrated",
+ "grammar": [
+  "add_lowthresh",
+  "split_dt",
+  "split_int"
+ ],
+ "grammar_info": {
+  "source": "failure evidence (u5induce.specify on NuInsSeg)",
+  "specified": [
+   "add_lowthresh",
+   "split_dt",
+   "split_int",
+   "delete",
+   "clear_border",
+   "close",
+   "dilate",
+   "open",
+   "erode",
+   "merge_pairs"
+  ]
+ },
+ "ops": [
+  {
+   "op": "add_lowthresh",
+   "demo_units": 2097,
+   "programs": 2017,
+   "status": "ACCEPTED",
+   "alpha": 0.6,
+   "lambda_in_fold": 0.4,
+   "K": 3,
+   "mean_gain": 0.01681604286939583,
+   "lcb_gain": 0.0043935888637699795,
+   "se_gain": 0.00691717746942858,
+   "t_quantile": 1.7958848187036691,
+   "organs": 12,
+   "level_one_sided": 0.05,
+   "harmful_rate": 0.4362017804154303,
+   "ucb_harmful_rate": 0.5300426516046999,
+   "se_harmful_rate": 0.05225327939294411,
+   "out_of_fold": {
+    "accepted": 337,
+    "harmful": 147,
+    "beneficial": 153,
+    "images": 236,
+    "organs_with_fold_program": 12
+   },
+   "per_organ": [
+    {
+     "organ_index": 0,
+     "images": 12,
+     "fold_program": 1900,
+     "mean_gain": -0.010995533896785543,
+     "accepted": 22,
+     "harmful": 21,
+     "beneficial": 1
+    },
+    {
+     "organ_index": 1,
+     "images": 11,
+     "fold_program": 1902,
+     "mean_gain": -0.0061517429938482615,
+     "accepted": 6,
+     "harmful": 4,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 2,
+     "images": 10,
+     "fold_program": 1936,
+     "mean_gain": 0.0223353405981437,
+     "accepted": 33,
+     "harmful": 10,
+     "beneficial": 21
+    },
+    {
+     "organ_index": 3,
+     "images": 12,
+     "fold_program": 1902,
+     "mean_gain": 0.005470793452840521,
+     "accepted": 9,
+     "harmful": 3,
+     "beneficial": 4
+    },
+    {
+     "organ_index": 4,
+     "images": 40,
+     "fold_program": 1902,
+     "mean_gain": 0.004363957789768458,
+     "accepted": 22,
+     "harmful": 5,
+     "beneficial": 13
+    },
+    {
+     "organ_index": 5,
+     "images": 12,
+     "fold_program": 1902,
+     "mean_gain": 0.006364453997279737,
+     "accepted": 12,
+     "harmful": 6,
+     "beneficial": 6
+    },
+    {
+     "organ_index": 6,
+     "images": 12,
+     "fold_program": 1900,
+     "mean_gain": -0.006182446936811155,
+     "accepted": 15,
+     "harmful": 13,
+     "beneficial": 2
+    },
+    {
+     "organ_index": 7,
+     "images": 40,
+     "fold_program": 1902,
+     "mean_gain": 0.012155396919264287,
+     "accepted": 28,
+     "harmful": 9,
+     "beneficial": 19
+    },
+    {
+     "organ_index": 8,
+     "images": 11,
+     "fold_program": 1934,
+     "mean_gain": -0.0013787296000734735,
+     "accepted": 6,
+     "harmful": 5,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 9,
+     "images": 42,
+     "fold_program": 1902,
+     "mean_gain": 0.03875379346118459,
+     "accepted": 59,
+     "harmful": 24,
+     "beneficial": 32
+    },
+    {
+     "organ_index": 10,
+     "images": 6,
+     "fold_program": 1938,
+     "mean_gain": 0.02377876436340341,
+     "accepted": 23,
+     "harmful": 3,
+     "beneficial": 12
+    },
+    {
+     "organ_index": 11,
+     "images": 28,
+     "fold_program": 1934,
+     "mean_gain": 0.052181236086405465,
+     "accepted": 102,
+     "harmful": 44,
+     "beneficial": 43
+    }
+   ],
+   "fold_programs": [
+    1900,
+    1902,
+    1936,
+    1902,
+    1902,
+    1902,
+    1900,
+    1902,
+    1934,
+    1902,
+    1938,
+    1934
+   ],
+   "final_program": 1902,
+   "bounds_kind": "t",
+   "bootstrap_bounds_descriptive": {
+    "mean_gain": 0.016816042869395833,
+    "lcb_gain": 0.004768946008953437,
+    "harmful_rate": 0.4362017804154303,
+    "ucb_harmful_rate": 0.5384615384615384,
+    "resamples_without_edits": 0,
+    "level_one_sided": 0.05
+   },
+   "t_bounds": {
+    "mean_gain": 0.01681604286939583,
+    "lcb_gain": 0.0043935888637699795,
+    "se_gain": 0.00691717746942858,
+    "t_quantile": 1.7958848187036691,
+    "organs": 12,
+    "level_one_sided": 0.05,
+    "harmful_rate": 0.4362017804154303,
+    "ucb_harmful_rate": 0.5300426516046999,
+    "se_harmful_rate": 0.05225327939294411
+   },
+   "fold_program_text": [
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9688768606224628
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.737658574082754
+      ],
+      [
+       "solidity",
+       ">",
+       0.9688768606224628
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9688768606224628
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.737658574082754
+      ],
+      [
+       "solidity",
+       ">",
+       0.9628076763494172
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.6348723579296507
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.737658574082754
+      ],
+      [
+       "solidity",
+       ">",
+       0.9730644826871242
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "contrast",
+       ">",
+       0.737658574082754
+      ],
+      [
+       "solidity",
+       ">",
+       0.9628076763494172
+      ]
+     ]
+    }
+   ],
+   "final_program_text": {
+    "theta_index": 0,
+    "theta": 0,
+    "guard": [
+     [
+      "contrast",
+      ">",
+      0.6348723579296507
+     ],
+     [
+      "solidity",
+      ">",
+      0.9730644826871242
+     ]
+    ]
+   },
+   "final_calibration": {
+    "pooled_gain": 0.01244867641853653,
+    "accepted": 314,
+    "harmful": 121,
+    "beneficial": 152
+   },
+   "certification": {
+    "programs": 5,
+    "image_applications": 702,
+    "all_equal": true
+   },
+   "demo_applied": 314,
+   "cpu_s": 29.15
+  },
+  {
+   "op": "split_dt",
+   "demo_units": 6478,
+   "programs": 6489,
+   "status": "NO_OUT_OF_FOLD_EDIT",
+   "alpha": 0.6,
+   "lambda_in_fold": 0.4,
+   "K": 3,
+   "mean_gain": 0.0,
+   "lcb_gain": 0.0,
+   "se_gain": 0.0,
+   "t_quantile": 1.7958848187036691,
+   "organs": 12,
+   "level_one_sided": 0.05,
+   "harmful_rate": null,
+   "ucb_harmful_rate": null,
+   "se_harmful_rate": null,
+   "out_of_fold": {
+    "accepted": 0,
+    "harmful": 0,
+    "beneficial": 0,
+    "images": 236,
+    "organs_with_fold_program": 0
+   },
+   "per_organ": [
+    {
+     "organ_index": 0,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 1,
+     "images": 11,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 2,
+     "images": 10,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 3,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 4,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 5,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 6,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 7,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 8,
+     "images": 11,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 9,
+     "images": 42,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 10,
+     "images": 6,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 11,
+     "images": 28,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    }
+   ],
+   "fold_programs": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "final_program": null,
+   "bounds_kind": "t",
+   "bootstrap_bounds_descriptive": {
+    "mean_gain": 0.0,
+    "lcb_gain": 0.0,
+    "harmful_rate": null,
+    "ucb_harmful_rate": null,
+    "resamples_without_edits": 10000,
+    "level_one_sided": 0.05
+   },
+   "t_bounds": {
+    "mean_gain": 0.0,
+    "lcb_gain": 0.0,
+    "se_gain": 0.0,
+    "t_quantile": 1.7958848187036691,
+    "organs": 12,
+    "level_one_sided": 0.05,
+    "harmful_rate": null,
+    "ucb_harmful_rate": null,
+    "se_harmful_rate": null
+   },
+   "fold_program_text": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "cpu_s": 27.47
+  },
+  {
+   "op": "split_int",
+   "status": "NOT_TESTED_FIXED_SEQUENCE"
+  }
+ ],
+ "cpu_s": 56.63,
+ "cpu_s_exact": 56.625732844000005,
+ "wall_s": 57.7,
+ "work": {
+  "exact_image_matchings": 1079,
+  "unit_tables": 472,
+  "policy_runs": 0,
+  "exact_certified_programs": 5,
+  "policy_spaces": 2,
+  "policy_programs_scored": 8506,
+  "policy_fits": 0,
+  "policy_program_selections": 6
+ },
+ "demo_images": 236,
+ "demo_edits": 314,
+ "query_log": [],
+ "query_stats": {},
+ "demo_f1_after": 0.5156518490847964,
+ "demo_f1_before": 0.5032031726662599
+}

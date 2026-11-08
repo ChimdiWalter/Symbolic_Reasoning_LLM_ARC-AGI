@@ -1,0 +1,144 @@
+{
+ "all_pass": true,
+ "literal": {
+  "arm B: search gets every remaining call": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "search",
+    900
+   ],
+   "ok": true
+  },
+  "bank cap: the same search misses under K_S": {
+   "got": [
+    false,
+    null,
+    1000
+   ],
+   "ok": true
+  },
+  "base fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "base",
+    100
+   ],
+   "ok": true
+  },
+  "construct first, cut off, search gets nothing": {
+   "got": [
+    false,
+    null,
+    1000
+   ],
+   "ok": true
+  },
+  "construct first, enough budget": {
+   "got": [
+    [
+     [
+      [
+       [
+        2
+       ]
+      ]
+     ]
+    ],
+    "construct",
+    2100
+   ],
+   "ok": true
+  },
+  "no intervention (arm A)": {
+   "got": [
+    false,
+    null,
+    100
+   ],
+   "ok": true
+  },
+  "search exhausts its fragment early": {
+   "got": [
+    [
+     [
+      [
+       [
+        2
+       ]
+      ]
+     ]
+    ],
+    "construct",
+    2400
+   ],
+   "ok": true
+  },
+  "search fails at its cap, construct cut off": {
+   "got": [
+    false,
+    null,
+    2500
+   ],
+   "ok": true
+  },
+  "search fails at its cap, construct fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        2
+       ]
+      ]
+     ]
+    ],
+    "construct",
+    2700
+   ],
+   "ok": true
+  },
+  "search first, search fits": {
+   "got": [
+    [
+     [
+      [
+       [
+        1
+       ]
+      ]
+     ]
+    ],
+    "search",
+    600
+   ],
+   "ok": true
+  }
+ },
+ "properties": {
+  "donor_only_indexes_descriptors": true,
+  "every_arm_runs_on_the_current_task": true,
+  "no_execution_outside_the_contract": true,
+  "one_bank_current_task": true,
+  "one_meter_same_budget": true,
+  "same_order_same_result": true,
+  "shuffled_is_router_on_donor_descriptor": true,
+  "shuffled_with_own_descriptor_equals_router": true,
+  "static_and_router_arms_share_execute": true
+ }
+}

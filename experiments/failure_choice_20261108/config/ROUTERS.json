@@ -1,0 +1,189 @@
+{
+ "K_S": 2500000,
+ "T_STAR": 3500000,
+ "constants_rule": "K_S: 90th percentile of the search's calls at its correct first fit over the 27 source depth tasks (2,454,826), rounded up to 250,000; T_STAR: 75th percentile of the oracle arm's spent calls over the 54 source tasks it solves within 20,000,000 calls (3,293,679), rounded up to 250,000; static order: the bank order with more correct source tasks at T_STAR (construction first 45, search first 25 of 71). Evidence: runs/dev/CONSTANTS_EVIDENCE.json.",
+ "fixed": {
+  "default_first": "construct",
+  "description": "Hand-written from the source set's failure records, before the freeze. Construction first by default: its typed-hole specification rejects an inapplicable hole at almost no cost (about 900 calls on the source depth tasks). Search first only for the source depth signature: the base attempt's closest program already reproduces at least 80% of the output cells, the output is at most 35% of the input's area, and the identity typed hole does not explain the output (sketch score below 0.9). On the source set this flags 12 of the 27 depth tasks and none of the 44 missing-operation tasks.",
+  "rules": [
+   {
+    "all": [
+     {
+      "at_least": 0.8,
+      "feature": "closest_fraction"
+     },
+     {
+      "at_most": 0.35,
+      "feature": "area_ratio"
+     },
+     {
+      "below": 0.9,
+      "feature": "identity_sketch"
+     }
+    ],
+    "first": "search"
+   }
+  ]
+ },
+ "learned": {
+  "construct": {
+   "mu": [
+    0.6697943661971831,
+    0.7283718309859155,
+    0.4961047128851707,
+    9.070422535211268,
+    5240.169014084507,
+    3.1690140845070425,
+    1.3526007540874576,
+    3.9859154929577465,
+    3.1373239436619715,
+    0.09859154929577464,
+    0.028169014084507043,
+    0.08450704225352113,
+    0.15492957746478872,
+    0.028169014084507043,
+    0.04225352112676056,
+    0.18309859154929578,
+    0.2535211267605634,
+    0.1267605633802817
+   ],
+   "sd": [
+    0.24647204103206874,
+    0.20463676729867067,
+    0.3765195517432014,
+    0.25585777640260504,
+    519.9678751159048,
+    0.6276698578917523,
+    2.164624541736136,
+    2.071869204908513,
+    1.7080025782836428,
+    0.29811282378192566,
+    0.1654554947108553,
+    0.2781467275793171,
+    0.3618375374271867,
+    0.1654554947108552,
+    0.20116699798712243,
+    0.38674733007735174,
+    0.4350266256755068,
+    0.3327045580568373
+   ],
+   "w": [
+    0.9261653430177852,
+    0.36058100245848457,
+    -0.06588135641409777,
+    -0.24930028578142743,
+    -0.23421052199554224,
+    -0.054496107492035234,
+    1.7371373306937146,
+    -0.08194328939781262,
+    0.40525262362528586,
+    1.1572384756638974,
+    0.6821441547271802,
+    0.15138434153423216,
+    0.46280781492934747,
+    -0.49105950476994625,
+    -0.5181962546169926,
+    -0.5436526602819279,
+    -0.6462757841262018,
+    0.028480039835771506,
+    -0.4246348096610414
+   ]
+  },
+  "features": [
+   "identity_sketch",
+   "best_other_sketch",
+   "closest_fraction",
+   "level_complete",
+   "bank",
+   "n_demos",
+   "area_ratio",
+   "colours_in",
+   "colours_out",
+   "shape=same",
+   "shape=transposed",
+   "shape=scale_up",
+   "shape=scale_down",
+   "shape=trim_fixed",
+   "shape=half",
+   "shape=fixed",
+   "shape=shrink",
+   "shape=none"
+  ],
+  "search": {
+   "mu": [
+    0.6697943661971831,
+    0.7283718309859155,
+    0.4961047128851707,
+    9.070422535211268,
+    5240.169014084507,
+    3.1690140845070425,
+    1.3526007540874576,
+    3.9859154929577465,
+    3.1373239436619715,
+    0.09859154929577464,
+    0.028169014084507043,
+    0.08450704225352113,
+    0.15492957746478872,
+    0.028169014084507043,
+    0.04225352112676056,
+    0.18309859154929578,
+    0.2535211267605634,
+    0.1267605633802817
+   ],
+   "sd": [
+    0.24647204103206874,
+    0.20463676729867067,
+    0.3765195517432014,
+    0.25585777640260504,
+    519.9678751159048,
+    0.6276698578917523,
+    2.164624541736136,
+    2.071869204908513,
+    1.7080025782836428,
+    0.29811282378192566,
+    0.1654554947108553,
+    0.2781467275793171,
+    0.3618375374271867,
+    0.1654554947108552,
+    0.20116699798712243,
+    0.38674733007735174,
+    0.4350266256755068,
+    0.3327045580568373
+   ],
+   "w": [
+    -0.5036278087234781,
+    0.07785792072148404,
+    1.156561768289408,
+    0.28735591472598093,
+    0.3034342624132752,
+    0.12777810381125868,
+    -1.0809550836280921,
+    0.2161208286587046,
+    -0.40288602411822677,
+    -0.8791203372072606,
+    -0.20193076622879036,
+    -0.03896560762629801,
+    -0.35924535561123305,
+    -0.5382293117187299,
+    -0.6064681657415074,
+    0.23253029997129923,
+    0.9955236849913736,
+    0.37378149536750804,
+    -1.3281607716414672
+   ]
+  },
+  "training": {
+   "construct_positive": 30,
+   "iterations": 3000,
+   "l2": 1.0,
+   "learning_rate": 0.1,
+   "search_positive": 25,
+   "target": "the intervention alone commits a correct answer (search within K_S)",
+   "tasks": 71
+  }
+ },
+ "static_order": [
+  "construct",
+  "search"
+ ]
+}

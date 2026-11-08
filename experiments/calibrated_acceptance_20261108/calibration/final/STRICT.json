@@ -1,0 +1,81 @@
+{
+ "arm": "STRICT",
+ "scope": "final",
+ "rule": "strict",
+ "grammar": [
+  "add_lowthresh",
+  "split_dt",
+  "split_int"
+ ],
+ "grammar_info": {
+  "source": "failure evidence (u5induce.specify on NuInsSeg)",
+  "specified": [
+   "add_lowthresh",
+   "split_dt",
+   "split_int",
+   "delete",
+   "clear_border",
+   "close",
+   "dilate",
+   "open",
+   "erode",
+   "merge_pairs"
+  ]
+ },
+ "ops": [
+  {
+   "op": "add_lowthresh",
+   "status": "LOO_FAIL",
+   "fit": 1,
+   "demo_units": 2097,
+   "top": {
+    "theta_index": 0,
+    "guard": [
+     [
+      1,
+      "<",
+      0.715395773691196
+     ],
+     [
+      2,
+      ">",
+      0.8715613428326684
+     ]
+    ]
+   }
+  },
+  {
+   "op": "split_dt",
+   "status": "NO_FIT",
+   "fit": 0,
+   "demo_units": 6164,
+   "top": null
+  },
+  {
+   "op": "split_int",
+   "status": "NO_FIT",
+   "fit": 0,
+   "demo_units": 6164,
+   "top": null
+  }
+ ],
+ "cpu_s": 62.03,
+ "cpu_s_exact": 62.03,
+ "wall_s": 63.1,
+ "work": {
+  "exact_image_matchings": 236,
+  "unit_tables": 708,
+  "policy_runs": 1,
+  "exact_certified_programs": 0,
+  "policy_spaces": 3,
+  "policy_programs_scored": 16893,
+  "policy_fits": 5,
+  "policy_program_selections": 0
+ },
+ "demo_images": 236,
+ "demo_edits": 0,
+ "query_log": [],
+ "query_stats": {},
+ "demo_f1_after": 0.5032031726662599,
+ "demo_f1_before": 0.5032031726662599
+}

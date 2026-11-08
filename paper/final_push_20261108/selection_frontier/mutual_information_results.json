@@ -1,0 +1,1416 @@
+{
+ "block_level": {
+  "ce_base": 0.7064790615446407,
+  "ce_family_only": 0.36366175736172407,
+  "ce_frequency": 0.2909874285772182,
+  "ce_guide": 0.1253960267187235,
+  "ce_linear": 0.15312415561867623,
+  "diff_ci95": {
+   "base_minus_family_only": [
+    0.2866577134828597,
+    0.3951525486597598
+   ],
+   "base_minus_frequency": [
+    0.3490816190935036,
+    0.4774226682962172
+   ],
+   "frequency_minus_guide": [
+    0.09994077092302893,
+    0.22003919504861838
+   ],
+   "frequency_minus_linear": [
+    0.09381808166887744,
+    0.18030136537325822
+   ],
+   "linear_minus_guide": [
+    -0.022322336595656942,
+    0.06909316799910924
+   ]
+  },
+  "diff_mean": {
+   "base_minus_family_only": 0.3428173041829166,
+   "base_minus_frequency": 0.41549163296742253,
+   "frequency_minus_guide": 0.16559140185849466,
+   "frequency_minus_linear": 0.13786327295854195,
+   "linear_minus_guide": 0.02772812889995275
+  },
+  "entropy_bits": 0.7021207235221998,
+  "n": 62109,
+  "success_rate": 0.19031058300729362,
+  "where_the_gain_is": {
+   "before the table's first exact program": {
+    "blocks": 640,
+    "guide_gain_bits_per_block": 0.01587380786586636,
+    "share_of_guide_gain": 0.0009877994356613637,
+    "share_of_linear_gain": 0.0038490866688149473,
+    "successes": 6
+   },
+   "no exact program in the hole": {
+    "blocks": 21402,
+    "guide_gain_bits_per_block": 0.07281900169639897,
+    "share_of_guide_gain": 0.15153283931442407,
+    "share_of_linear_gain": 0.18759908575524997,
+    "successes": 0
+   },
+   "the table's first exact program or later": {
+    "blocks": 40067,
+    "guide_gain_bits_per_block": 0.21753774594276487,
+    "share_of_guide_gain": 0.8474793612499146,
+    "share_of_linear_gain": 0.808551827575935,
+    "successes": 11814
+   }
+  }
+ },
+ "check_against_curves": {
+  "frequency@500": {
+   "fits_curves": 285,
+   "fits_here": 285,
+   "mismatches": 0,
+   "units": 425
+  },
+  "guide@125": {
+   "fits_curves": 284,
+   "fits_here": 284,
+   "mismatches": 0,
+   "units": 425
+  },
+  "guide@2000": {
+   "fits_curves": 286,
+   "fits_here": 286,
+   "mismatches": 0,
+   "units": 425
+  },
+  "guide@20000": {
+   "fits_curves": 295,
+   "fits_here": 295,
+   "mismatches": 0,
+   "units": 425
+  },
+  "guide@500": {
+   "fits_curves": 284,
+   "fits_here": 284,
+   "mismatches": 0,
+   "units": 425
+  },
+  "hand@125": {
+   "fits_curves": 181,
+   "fits_here": 181,
+   "mismatches": 0,
+   "units": 425
+  },
+  "hand@2000": {
+   "fits_curves": 264,
+   "fits_here": 264,
+   "mismatches": 0,
+   "units": 425
+  },
+  "hand@20000": {
+   "fits_curves": 298,
+   "fits_here": 298,
+   "mismatches": 0,
+   "units": 425
+  },
+  "hand@500": {
+   "fits_curves": 213,
+   "fits_here": 213,
+   "mismatches": 0,
+   "units": 425
+  },
+  "linear@500": {
+   "fits_curves": 286,
+   "fits_here": 286,
+   "mismatches": 0,
+   "units": 425
+  }
+ },
+ "cpu_s": 47.1,
+ "early_successes": {
+  "all_successes": {
+   "coverage_top_k": [
+    0.4075829383886256,
+    0.6429699842022117,
+    0.6524486571879937,
+    0.7156398104265402,
+    0.7203791469194313,
+    0.8641390205371248,
+    0.8657187993680885,
+    0.9605055292259084,
+    0.9605055292259084,
+    0.9605055292259084,
+    0.9826224328593997,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "holes": 633,
+   "holes_per_family": {
+    "connect": 149,
+    "delete": 43,
+    "duplicate": 9,
+    "extend": 148,
+    "fill_box": 73,
+    "gravitate": 109,
+    "hollow": 15,
+    "move": 109,
+    "recolor": 91,
+    "recolor_attr": 2,
+    "recolor_table": 60,
+    "shift": 258,
+    "two_rule": 11,
+    "whole_output": 14
+   }
+  },
+  "family_success_where_available": {
+   "connect": {
+    "available_holes": 161,
+    "succeeds_holes": 149
+   },
+   "delete": {
+    "available_holes": 621,
+    "succeeds_holes": 43
+   },
+   "duplicate": {
+    "available_holes": 191,
+    "succeeds_holes": 9
+   },
+   "extend": {
+    "available_holes": 183,
+    "succeeds_holes": 148
+   },
+   "fill_box": {
+    "available_holes": 86,
+    "succeeds_holes": 73
+   },
+   "fill_holes": {
+    "available_holes": 3,
+    "succeeds_holes": 0
+   },
+   "gravitate": {
+    "available_holes": 109,
+    "succeeds_holes": 109
+   },
+   "hollow": {
+    "available_holes": 21,
+    "succeeds_holes": 15
+   },
+   "mirror_copy": {
+    "available_holes": 174,
+    "succeeds_holes": 0
+   },
+   "move": {
+    "available_holes": 185,
+    "succeeds_holes": 109
+   },
+   "outbox": {
+    "available_holes": 133,
+    "succeeds_holes": 0
+   },
+   "outline": {
+    "available_holes": 153,
+    "succeeds_holes": 0
+   },
+   "recolor": {
+    "available_holes": 670,
+    "succeeds_holes": 91
+   },
+   "recolor_attr": {
+    "available_holes": 30,
+    "succeeds_holes": 2
+   },
+   "recolor_table": {
+    "available_holes": 280,
+    "succeeds_holes": 60
+   },
+   "scale": {
+    "available_holes": 8,
+    "succeeds_holes": 0
+   },
+   "shift": {
+    "available_holes": 328,
+    "succeeds_holes": 258
+   },
+   "two_rule": {
+    "available_holes": 1035,
+    "succeeds_holes": 11
+   },
+   "whole_output": {
+    "available_holes": 1275,
+    "succeeds_holes": 14
+   }
+  },
+  "fits_frequency@500": {
+   "coverage": [
+    0.28421052631578947,
+    0.4666666666666667,
+    0.5929824561403508,
+    0.6947368421052632,
+    0.7789473684210526,
+    0.8526315789473684,
+    0.9087719298245615,
+    0.9614035087719298,
+    0.9754385964912281,
+    0.9859649122807017,
+    0.9929824561403509,
+    1.0
+   ],
+   "distinct_programs": 96,
+   "families": {
+    "connect": 29,
+    "delete": 16,
+    "extend": 24,
+    "gravitate": 3,
+    "hollow": 15,
+    "move": 52,
+    "recolor": 21,
+    "recolor_attr": 2,
+    "recolor_table": 36,
+    "shift": 81,
+    "two_rule": 2,
+    "whole_output": 4
+   },
+   "fits": 285,
+   "general_selection_share": 0.8315789473684211,
+   "top8_programs_share": 0.5298245614035088
+  },
+  "fits_guide@500": {
+   "coverage": [
+    0.2852112676056338,
+    0.46830985915492956,
+    0.5950704225352113,
+    0.6866197183098591,
+    0.7746478873239436,
+    0.8485915492957746,
+    0.9084507042253521,
+    0.9612676056338029,
+    0.9753521126760564,
+    0.9859154929577465,
+    0.9929577464788732,
+    1.0
+   ],
+   "distinct_programs": 93,
+   "families": {
+    "connect": 26,
+    "delete": 17,
+    "extend": 25,
+    "gravitate": 3,
+    "hollow": 15,
+    "move": 52,
+    "recolor": 21,
+    "recolor_attr": 2,
+    "recolor_table": 36,
+    "shift": 81,
+    "two_rule": 2,
+    "whole_output": 4
+   },
+   "fits": 284,
+   "general_selection_share": 0.8309859154929577,
+   "top8_programs_share": 0.5563380281690141
+  },
+  "fits_hand@500": {
+   "coverage": [
+    0.3192488262910798,
+    0.5211267605633803,
+    0.647887323943662,
+    0.7511737089201878,
+    0.8169014084507042,
+    0.8779342723004695,
+    0.9248826291079812,
+    0.9436619718309859,
+    0.9624413145539906,
+    0.9765258215962441,
+    0.9859154929577465,
+    0.9953051643192489,
+    1.0
+   ],
+   "distinct_programs": 76,
+   "families": {
+    "connect": 27,
+    "delete": 14,
+    "extend": 13,
+    "fill_box": 1,
+    "gravitate": 3,
+    "hollow": 4,
+    "move": 43,
+    "recolor": 10,
+    "recolor_attr": 2,
+    "recolor_table": 22,
+    "shift": 68,
+    "two_rule": 2,
+    "whole_output": 4
+   },
+   "fits": 213,
+   "general_selection_share": 0.8309859154929577,
+   "top8_programs_share": 0.5915492957746479
+  },
+  "fits_linear@500": {
+   "coverage": [
+    0.28321678321678323,
+    0.46503496503496505,
+    0.5909090909090909,
+    0.6853146853146853,
+    0.7762237762237763,
+    0.8496503496503497,
+    0.9090909090909091,
+    0.9615384615384616,
+    0.9755244755244755,
+    0.986013986013986,
+    0.993006993006993,
+    1.0
+   ],
+   "distinct_programs": 95,
+   "families": {
+    "connect": 27,
+    "delete": 17,
+    "extend": 26,
+    "gravitate": 3,
+    "hollow": 15,
+    "move": 52,
+    "recolor": 21,
+    "recolor_attr": 2,
+    "recolor_table": 36,
+    "shift": 81,
+    "two_rule": 2,
+    "whole_output": 4
+   },
+   "fits": 286,
+   "general_selection_share": 0.8251748251748252,
+   "top8_programs_share": 0.5524475524475524
+  },
+  "frequency": {
+   "coverage": [
+    0.3058252427184466,
+    0.5453074433656958,
+    0.7216828478964401,
+    0.8317152103559871,
+    0.9288025889967637,
+    0.9530744336569579,
+    0.9757281553398058,
+    0.988673139158576,
+    0.9935275080906149,
+    0.9967637540453075,
+    1.0
+   ],
+   "distinct_programs": 104,
+   "families": {
+    "connect": 148,
+    "delete": 8,
+    "extend": 2,
+    "gravitate": 109,
+    "hollow": 15,
+    "move": 3,
+    "recolor": 68,
+    "recolor_table": 60,
+    "shift": 189,
+    "two_rule": 2,
+    "whole_output": 14
+   },
+   "general_selection_share": 0.8462783171521036,
+   "holes": 618,
+   "top5_programs_share": 0.5210355987055016,
+   "top_programs": [
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"gravitate\",\"nearest\"]]],\"view\":\"m4z\"}",
+     105
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"connect\",\"any\"]]],\"view\":\"m4z\"}",
+     78
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"connect\",\"any\"]]],\"view\":\"colz\"}",
+     58
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,2]]],\"view\":\"colz\"}",
+     44
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,1]]],\"view\":\"m4z\"}",
+     37
+    ]
+   ]
+  },
+  "guide": {
+   "coverage": [
+    0.3549432739059968,
+    0.520259319286872,
+    0.6353322528363047,
+    0.7341977309562399,
+    0.8314424635332253,
+    0.8865478119935171,
+    0.9205834683954619,
+    0.9497568881685575,
+    0.9724473257698542,
+    0.9902755267423015,
+    0.9967585089141004,
+    1.0
+   ],
+   "distinct_programs": 178,
+   "families": {
+    "connect": 102,
+    "delete": 18,
+    "extend": 34,
+    "fill_box": 11,
+    "gravitate": 61,
+    "hollow": 4,
+    "move": 21,
+    "recolor": 71,
+    "recolor_table": 60,
+    "shift": 219,
+    "two_rule": 2,
+    "whole_output": 14
+   },
+   "general_selection_share": 0.8184764991896273,
+   "holes": 617,
+   "top5_programs_share": 0.17179902755267423,
+   "top_programs": [
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,1]]],\"view\":\"x4z\"}",
+     33
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"gravitate\",\"nearest\"]]],\"view\":\"m8z\"}",
+     24
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"shift\",0,2]]],\"view\":\"colz\"}",
+     18
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"connect\",\"same\"]]],\"view\":\"cell\"}",
+     16
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,2]]],\"view\":\"x4z\"}",
+     15
+    ]
+   ]
+  },
+  "hand": {
+   "coverage": [
+    0.3468085106382979,
+    0.5574468085106383,
+    0.725531914893617,
+    0.7851063829787234,
+    0.8404255319148937,
+    0.8936170212765957,
+    0.9446808510638298,
+    0.9744680851063829,
+    0.9829787234042553,
+    0.9893617021276596,
+    0.9936170212765958,
+    0.997872340425532,
+    1.0
+   ],
+   "distinct_programs": 78,
+   "families": {
+    "connect": 79,
+    "delete": 25,
+    "extend": 26,
+    "fill_box": 1,
+    "gravitate": 3,
+    "hollow": 4,
+    "move": 99,
+    "recolor": 24,
+    "recolor_attr": 2,
+    "recolor_table": 28,
+    "shift": 163,
+    "two_rule": 2,
+    "whole_output": 14
+   },
+   "general_selection_share": 0.8531914893617021,
+   "holes": 470,
+   "top5_programs_share": 0.5553191489361702,
+   "top_programs": [
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"connect\",\"any\"]]],\"view\":\"m4\"}",
+     78
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"move\",\"R\",\"blocked\"]]],\"view\":\"m4z\"}",
+     68
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,2]]],\"view\":\"m4z\"}",
+     49
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,1]]],\"view\":\"m4z\"}",
+     34
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,3]]],\"view\":\"m4z\"}",
+     32
+    ]
+   ]
+  },
+  "linear": {
+   "coverage": [
+    0.3053311793214863,
+    0.5460420032310178,
+    0.7221324717285945,
+    0.8255250403877221,
+    0.9208400646203554,
+    0.9450726978998385,
+    0.9676898222940227,
+    0.9870759289176091,
+    0.9919224555735057,
+    0.9951534733441034,
+    0.9983844911147012,
+    1.0
+   ],
+   "distinct_programs": 114,
+   "families": {
+    "connect": 149,
+    "delete": 12,
+    "extend": 2,
+    "gravitate": 109,
+    "hollow": 15,
+    "move": 3,
+    "recolor": 64,
+    "recolor_attr": 1,
+    "recolor_table": 59,
+    "shift": 189,
+    "two_rule": 2,
+    "whole_output": 14
+   },
+   "general_selection_share": 0.8416801292407108,
+   "holes": 619,
+   "top5_programs_share": 0.34248788368336025,
+   "top_programs": [
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"shift\",0,1]]],\"view\":\"x8z\"}",
+     55
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"gravitate\",\"nearest\"]]],\"view\":\"x8z\"}",
+     48
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"gravitate\",\"nearest\"]]],\"view\":\"x4z\"}",
+     40
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"true\"],[\"connect\",\"any\"]]],\"view\":\"cell\"}",
+     36
+    ],
+    [
+     "OBJ:{\"form\":\"paint\",\"params\":{},\"rules\":[[[\"hline\"],[\"connect\",\"any\"]]],\"view\":\"x8z\"}",
+     33
+    ]
+   ]
+  },
+  "oracle": {
+   "coverage": [
+    0.30288461538461536,
+    0.4775641025641026,
+    0.6041666666666666,
+    0.7115384615384616,
+    0.8044871794871795,
+    0.8958333333333334,
+    0.9407051282051282,
+    0.9647435897435898,
+    0.9871794871794872,
+    0.9919871794871795,
+    0.9951923076923077,
+    0.9983974358974359,
+    1.0
+   ],
+   "families": {
+    "connect": 79,
+    "delete": 28,
+    "extend": 67,
+    "fill_box": 1,
+    "gravitate": 3,
+    "hollow": 15,
+    "move": 109,
+    "recolor": 57,
+    "recolor_attr": 2,
+    "recolor_table": 58,
+    "shift": 189,
+    "two_rule": 2,
+    "whole_output": 14
+   },
+   "holes": 624
+  }
+ },
+ "hole_level": {
+  "best_availability_only": "linear classifier on availability",
+  "best_with_description": "linear classifier on availability + description + per-family block summaries",
+  "by_benchmark": {
+   "1D-ARC": {
+    "base rate alone": {
+     "accuracy": 0.3219761499148211,
+     "ce_bits": 2.8593585583996406,
+     "hit_rate": 0.4395229982964225
+    },
+    "base rate, available families only": {
+     "accuracy": 0.58603066439523,
+     "ce_bits": 1.3514816686839557,
+     "hit_rate": 0.8620102214650767
+    },
+    "entropy_bits": 2.728539054677596,
+    "first block of the frequency table": {
+     "accuracy": 0.6797274275979557,
+     "hit_rate": 0.9727427597955707
+    },
+    "first block of the guide": {
+     "accuracy": 0.7308347529812607,
+     "hit_rate": 0.9812606473594548
+    },
+    "holes": 587,
+    "linear classifier on availability + description + per-family block summaries": {
+     "accuracy": 1.0,
+     "ce_bits": 0.02475521386901137,
+     "hit_rate": 1.0
+    }
+   },
+   "ConceptARC": {
+    "base rate alone": {
+     "accuracy": 0.0,
+     "ce_bits": 5.128816095537447,
+     "hit_rate": 0.0
+    },
+    "base rate, available families only": {
+     "accuracy": 0.6666666666666666,
+     "ce_bits": 1.1847549402191622,
+     "hit_rate": 0.8484848484848485
+    },
+    "entropy_bits": 2.656129152293805,
+    "first block of the frequency table": {
+     "accuracy": 0.6363636363636364,
+     "hit_rate": 0.8484848484848485
+    },
+    "first block of the guide": {
+     "accuracy": 0.8181818181818182,
+     "hit_rate": 0.9393939393939394
+    },
+    "holes": 33,
+    "linear classifier on availability + description + per-family block summaries": {
+     "accuracy": 0.8484848484848485,
+     "ce_bits": 0.8761531727272651,
+     "hit_rate": 0.8484848484848485
+    }
+   },
+   "Mini-ARC": {
+    "base rate alone": {
+     "accuracy": 0.0,
+     "ce_bits": 4.67189391175938,
+     "hit_rate": 0.0
+    },
+    "base rate, available families only": {
+     "accuracy": 0.6153846153846154,
+     "ce_bits": 2.042784410241759,
+     "hit_rate": 0.8461538461538461
+    },
+    "entropy_bits": 2.5654483718208256,
+    "first block of the frequency table": {
+     "accuracy": 0.38461538461538464,
+     "hit_rate": 0.6153846153846154
+    },
+    "first block of the guide": {
+     "accuracy": 0.7692307692307693,
+     "hit_rate": 0.9230769230769231
+    },
+    "holes": 13,
+    "linear classifier on availability + description + per-family block summaries": {
+     "accuracy": 0.46153846153846156,
+     "ce_bits": 2.0075758739546385,
+     "hit_rate": 0.5384615384615384
+    }
+   }
+  },
+  "components": {
+   "above_max_null_95": 208,
+   "max_null_95": 0.030701366441128815,
+   "n_components": 243,
+   "top": [
+    {
+     "bias_bits": 0.043102070702393955,
+     "bins": 4,
+     "corrected_bits": 1.3487336580598512,
+     "mi_bits": 1.3918357287622452,
+     "name": "edits common to every pair (log), view single cells, background colour 0",
+     "share_of_entropy": 0.4600542452983427
+    },
+    {
+     "bias_bits": 0.0430126331989224,
+     "bins": 4,
+     "corrected_bits": 1.2696942010180512,
+     "mi_bits": 1.3127068342169737,
+     "name": "covering two-part rules (log), view single cells, background colour 0",
+     "share_of_entropy": 0.43309381649843914
+    },
+    {
+     "bias_bits": 0.042978358020355614,
+     "bins": 4,
+     "corrected_bits": 1.1951437115305132,
+     "mi_bits": 1.2381220695508688,
+     "name": "covering selection rules (log), view single cells, background colour 0",
+     "share_of_entropy": 0.40766457850704224
+    },
+    {
+     "bias_bits": 0.04224202118561342,
+     "bins": 4,
+     "corrected_bits": 1.17497521186351,
+     "mi_bits": 1.2172172330491233,
+     "name": "covering two-part rules (log), view one-colour objects, 8-connected, background colour 0",
+     "share_of_entropy": 0.40078508540797453
+    },
+    {
+     "bias_bits": 0.04224202118561342,
+     "bins": 4,
+     "corrected_bits": 1.17497521186351,
+     "mi_bits": 1.2172172330491233,
+     "name": "covering two-part rules (log), view one-colour objects, 4-connected, background colour 0",
+     "share_of_entropy": 0.40078508540797453
+    },
+    {
+     "bias_bits": 0.0422167317166799,
+     "bins": 4,
+     "corrected_bits": 1.1632967445401574,
+     "mi_bits": 1.2055134762568374,
+     "name": "covering two-part rules (log), view any-colour objects, 4-connected, background colour 0",
+     "share_of_entropy": 0.39680154986070054
+    },
+    {
+     "bias_bits": 0.04223387297003255,
+     "bins": 4,
+     "corrected_bits": 1.1626776143656583,
+     "mi_bits": 1.2049114873356908,
+     "name": "covering two-part rules (log), view any-colour objects, 8-connected, background colour 0",
+     "share_of_entropy": 0.39659036400983333
+    },
+    {
+     "bias_bits": 0.04307281626290447,
+     "bins": 4,
+     "corrected_bits": 1.1267358131017629,
+     "mi_bits": 1.1698086293646672,
+     "name": "edits common to every pair (log), view any-colour objects, 4-connected, background colour 0",
+     "share_of_entropy": 0.3843305837661118
+    },
+    {
+     "bias_bits": 0.04363676228133952,
+     "bins": 4,
+     "corrected_bits": 1.122513812258397,
+     "mi_bits": 1.1661505745397367,
+     "name": "covering two-part rules (log), view one object per colour, background colour 0",
+     "share_of_entropy": 0.38289045553913653
+    },
+    {
+     "bias_bits": 0.0431425963994411,
+     "bins": 4,
+     "corrected_bits": 1.1149234597107307,
+     "mi_bits": 1.1580660561101719,
+     "name": "edits common to every pair (log), view one-colour objects, 4-connected, background colour 0",
+     "share_of_entropy": 0.38030137956257326
+    },
+    {
+     "bias_bits": 0.043296937629262434,
+     "bins": 4,
+     "corrected_bits": 1.1077713358666426,
+     "mi_bits": 1.151068273495905,
+     "name": "edits common to every pair (log), view any-colour objects, 8-connected, background colour 0",
+     "share_of_entropy": 0.37786178378492696
+    },
+    {
+     "bias_bits": 0.04386055286660618,
+     "bins": 4,
+     "corrected_bits": 1.1065625900104161,
+     "mi_bits": 1.1504231428770224,
+     "name": "covering two-part rules (log), view one object per colour",
+     "share_of_entropy": 0.37744947950281715
+    }
+   ]
+  },
+  "contrast_ci95": {
+   "acc_base_available": [
+    0.5298010578963646,
+    0.6492948141601012
+   ],
+   "acc_best_description": [
+    0.9667681899136665,
+    0.9921138751583497
+   ],
+   "acc_gain": [
+    0.3305550088436124,
+    0.45095090507313423
+   ],
+   "acc_guide_minus_frequency": [
+    0.023510051952256906,
+    0.10611439894884145
+   ],
+   "hit_gain": [
+    0.08214462595815364,
+    0.165899134136513
+   ],
+   "hit_guide_minus_frequency": [
+    0.003230628178422827,
+    0.037619031215090325
+   ],
+   "info_availability_rule": [
+    1.5295336813262628,
+    1.7960845982023992
+   ],
+   "info_best_description": [
+    2.7862611256229597,
+    3.0254885512985967
+   ],
+   "info_beyond_availability": [
+    1.1438063057339118,
+    1.3473740992213135
+   ]
+  },
+  "contrast_mean": {
+   "acc_base_available": 0.5908372827804107,
+   "acc_best_description": 0.981042654028436,
+   "acc_gain": 0.3902053712480253,
+   "acc_guide_minus_frequency": 0.06477093206951026,
+   "hit_gain": 0.12164296998420221,
+   "hit_guide_minus_frequency": 0.018957345971563982,
+   "info_availability_rule": 1.6579086507240752,
+   "info_best_description": 2.905033450527136,
+   "info_beyond_availability": 1.2471247998030608
+  },
+  "effective_families": 7.630004848837674,
+  "entropy_bits": 2.931683973887046,
+  "entropy_bits_hand_first": 2.931683973887046,
+  "entropy_by_bench": {
+   "1D-ARC": {
+    "entropy_bits": 2.728539054677596,
+    "holes": 587
+   },
+   "ConceptARC": {
+    "entropy_bits": 2.656129152293805,
+    "holes": 33
+   },
+   "Mini-ARC": {
+    "entropy_bits": 2.5654483718208256,
+    "holes": 13
+   }
+  },
+  "families_available_per_hole_mean": 6.064770932069511,
+  "families_succeeding_per_hole": {
+   "1": 349,
+   "2": 113,
+   "3": 168,
+   "4": 3
+  },
+  "family_held_out_folds": {
+   "base rate alone": {
+    "accuracy": 0.11058451816745656,
+    "ce_bits": 4.467241329201456,
+    "hit_rate": 0.11058451816745656,
+    "info_lower_bound_bits": 0.0
+   },
+   "base rate, available families only": {
+    "accuracy": 0.4597156398104265,
+    "ce_bits": 2.312491370680802,
+    "hit_rate": 0.6208530805687204,
+    "info_lower_bound_bits": 0.619192603206244
+   },
+   "forest on everything": {
+    "accuracy": 0.7503949447077409,
+    "ce_bits": 1.1053966222863216,
+    "hit_rate": 0.8278041074249605,
+    "info_lower_bound_bits": 1.8262873516007245
+   },
+   "linear classifier on availability": {
+    "accuracy": 0.7140600315955766,
+    "ce_bits": 1.7465055857291598,
+    "hit_rate": 0.8341232227488151,
+    "info_lower_bound_bits": 1.1851783881578863
+   },
+   "linear classifier on everything": {
+    "accuracy": 0.7804107424960506,
+    "ce_bits": 1.174734285474886,
+    "hit_rate": 0.9304897314375987,
+    "info_lower_bound_bits": 1.7569496884121603
+   },
+   "task_families": 97
+  },
+  "guide_vs_frequency": {
+   "holes_compared": 633,
+   "same_first_block": 0.08530805687203792,
+   "same_first_family": 0.7804107424960506,
+   "spearman_mean": 0.5040276822216074,
+   "spearman_median": 0.564078674791327
+  },
+  "holes_with_success": 633,
+  "label_counts": {
+   "connect": 79,
+   "delete": 28,
+   "extend": 67,
+   "fill_box": 1,
+   "gravitate": 3,
+   "hollow": 15,
+   "move": 109,
+   "recolor": 57,
+   "recolor_attr": 2,
+   "recolor_table": 58,
+   "shift": 189,
+   "two_rule": 11,
+   "whole_output": 14
+  },
+  "label_counts_hand_first": {
+   "connect": 79,
+   "delete": 28,
+   "extend": 67,
+   "fill_box": 1,
+   "gravitate": 3,
+   "hollow": 15,
+   "move": 109,
+   "recolor": 57,
+   "recolor_attr": 2,
+   "recolor_table": 58,
+   "shift": 189,
+   "two_rule": 11,
+   "whole_output": 14
+  },
+  "labels_agree": 1.0,
+  "lr_regularisation_chosen": {
+   "availability": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "availability + description": [
+    1.0,
+    0.3,
+    0.3,
+    1.0,
+    1.0
+   ],
+   "availability + description + per-family block summaries": [
+    1.0,
+    0.1,
+    0.3,
+    0.3,
+    1.0
+   ],
+   "description": [
+    1.0,
+    0.1,
+    0.3,
+    1.0,
+    1.0
+   ]
+  },
+  "mi_bits_benchmark_name": 0.2102692567383652,
+  "predictors": {
+   "base rate alone": {
+    "accuracy": 0.2985781990521327,
+    "ce_bits": 3.0148957753336445,
+    "gain_over_base_rate_bits": 0.0,
+    "hit_rate": 0.4075829383886256,
+    "info_lower_bound_bits": 0.0,
+    "info_share_of_entropy": 0.0
+   },
+   "base rate, available families only": {
+    "accuracy": 0.5908372827804107,
+    "ce_bits": 1.3569871246095693,
+    "gain_over_base_rate_bits": 1.6579086507240752,
+    "hit_rate": 0.8609794628751974,
+    "info_lower_bound_bits": 1.5746968492774769,
+    "info_share_of_entropy": 0.5371304899516934
+   },
+   "first block of the family-only table (post hoc)": {
+    "accuracy": 0.6224328593996841,
+    "ce_bits": null,
+    "first_block_succeeds": 0.6540284360189573,
+    "gain_over_base_rate_bits": null,
+    "hit_rate": 0.9131121642969984,
+    "info_lower_bound_bits": null,
+    "info_share_of_entropy": null
+   },
+   "first block of the frequency table": {
+    "accuracy": 0.6714060031595577,
+    "ce_bits": null,
+    "first_block_succeeds": 0.9557661927330173,
+    "gain_over_base_rate_bits": null,
+    "hit_rate": 0.9589257503949447,
+    "info_lower_bound_bits": null,
+    "info_share_of_entropy": null
+   },
+   "first block of the guide": {
+    "accuracy": 0.7361769352290679,
+    "ce_bits": null,
+    "first_block_succeeds": 0.9383886255924171,
+    "gain_over_base_rate_bits": null,
+    "hit_rate": 0.9778830963665087,
+    "info_lower_bound_bits": null,
+    "info_share_of_entropy": null
+   },
+   "first block of the hand-set order": {
+    "accuracy": 0.4849921011058452,
+    "ce_bits": null,
+    "first_block_succeeds": 0.3617693522906793,
+    "gain_over_base_rate_bits": null,
+    "hit_rate": 0.4849921011058452,
+    "info_lower_bound_bits": null,
+    "info_share_of_entropy": null
+   },
+   "first block of the linear model": {
+    "accuracy": 0.6619273301737757,
+    "ce_bits": null,
+    "first_block_succeeds": 0.8151658767772512,
+    "gain_over_base_rate_bits": null,
+    "hit_rate": 0.9399684044233807,
+    "info_lower_bound_bits": null,
+    "info_share_of_entropy": null
+   },
+   "forest on availability": {
+    "accuracy": 0.9462875197472354,
+    "ce_bits": 0.25085416410505956,
+    "gain_over_base_rate_bits": 2.764041611228585,
+    "hit_rate": 0.9541864139020537,
+    "info_lower_bound_bits": 2.6808298097819865,
+    "info_share_of_entropy": 0.9144334224495355
+   },
+   "forest on availability + description": {
+    "accuracy": 0.9842022116903634,
+    "ce_bits": 0.13940709603819124,
+    "gain_over_base_rate_bits": 2.8754886792954535,
+    "hit_rate": 0.9873617693522907,
+    "info_lower_bound_bits": 2.792276877848855,
+    "info_share_of_entropy": 0.9524481160725674
+   },
+   "forest on availability + description + per-family block summaries": {
+    "accuracy": 0.9873617693522907,
+    "ce_bits": 0.12484734526806257,
+    "gain_over_base_rate_bits": 2.890048430065582,
+    "hit_rate": 0.9889415481832543,
+    "info_lower_bound_bits": 2.8068366286189836,
+    "info_share_of_entropy": 0.9574144599554055
+   },
+   "forest on description": {
+    "accuracy": 0.9842022116903634,
+    "ce_bits": 0.1501369508460134,
+    "gain_over_base_rate_bits": 2.864758824487631,
+    "hit_rate": 0.9873617693522907,
+    "info_lower_bound_bits": 2.781547023041033,
+    "info_share_of_entropy": 0.9487881530944993
+   },
+   "linear classifier on availability": {
+    "accuracy": 0.9510268562401264,
+    "ce_bits": 0.2350263195744239,
+    "gain_over_base_rate_bits": 2.7798694557592207,
+    "hit_rate": 0.9557661927330173,
+    "info_lower_bound_bits": 2.6966576543126224,
+    "info_share_of_entropy": 0.9198323142371965
+   },
+   "linear classifier on availability + description": {
+    "accuracy": 0.981042654028436,
+    "ce_bits": 0.1290554865949433,
+    "gain_over_base_rate_bits": 2.8858402887387014,
+    "hit_rate": 0.9842022116903634,
+    "info_lower_bound_bits": 2.802628487292103,
+    "info_share_of_entropy": 0.9559790592217784
+   },
+   "linear classifier on availability + description + per-family block summaries": {
+    "accuracy": 0.981042654028436,
+    "ce_bits": 0.10986232480650826,
+    "gain_over_base_rate_bits": 2.905033450527136,
+    "hit_rate": 0.9826224328593997,
+    "info_lower_bound_bits": 2.8218216490805377,
+    "info_share_of_entropy": 0.962525863706638
+   },
+   "linear classifier on description": {
+    "accuracy": 0.9747235387045814,
+    "ce_bits": 0.17737545184589368,
+    "gain_over_base_rate_bits": 2.837520323487751,
+    "hit_rate": 0.9778830963665087,
+    "info_lower_bound_bits": 2.7543085220411525,
+    "info_share_of_entropy": 0.939497076279093
+   }
+  },
+  "units_with_success": 306
+ },
+ "holes": 1275,
+ "holes_reaching_a_success": {
+  "by_order": {
+   "family_only@125": 543,
+   "family_only@2000": 622,
+   "family_only@20000": 630,
+   "family_only@500": 576,
+   "frequency@125": 618,
+   "frequency@2000": 620,
+   "frequency@20000": 632,
+   "frequency@500": 618,
+   "guide@125": 617,
+   "guide@2000": 619,
+   "guide@20000": 630,
+   "guide@500": 617,
+   "hand@125": 401,
+   "hand@2000": 575,
+   "hand@20000": 633,
+   "hand@500": 470,
+   "linear@125": 619,
+   "linear@2000": 619,
+   "linear@20000": 624,
+   "linear@500": 619,
+   "oracle@125": 624,
+   "oracle@2000": 625,
+   "oracle@20000": 633,
+   "oracle@500": 624
+  },
+  "holes_with_success": 633,
+  "operations_to_first_exact_program": {
+   "family_only": {
+    "mean_if_found": 289.58730158730157,
+    "median": 3.0,
+    "within_10": 0.8262243285939969
+   },
+   "frequency": {
+    "mean_if_found": 98.48417721518987,
+    "median": 3.0,
+    "within_10": 0.9699842022116903
+   },
+   "guide": {
+    "mean_if_found": 133.23968253968255,
+    "median": 3.0,
+    "within_10": 0.9731437598736177
+   },
+   "hand": {
+    "mean_if_found": 746.7804107424961,
+    "median": 3.0,
+    "within_10": 0.5718799368088467
+   },
+   "linear": {
+    "mean_if_found": 52.12179487179487,
+    "median": 3.0,
+    "within_10": 0.9747235387045814
+   },
+   "oracle": {
+    "mean_if_found": 45.892575039494474,
+    "median": 3.0,
+    "within_10": 0.985781990521327
+   }
+  }
+ },
+ "label": "post hoc, development data",
+ "room": {
+  "125": {
+   "frequency_fits": 279,
+   "guide_fits": 284,
+   "hand_fits": 181,
+   "linear_fits": 284,
+   "reachable_known_fit": 289,
+   "unknown_only": 8
+  },
+  "2000": {
+   "frequency_fits": 283,
+   "guide_fits": 286,
+   "hand_fits": 264,
+   "linear_fits": 285,
+   "reachable_known_fit": 290,
+   "unknown_only": 8
+  },
+  "20000": {
+   "frequency_fits": 296,
+   "guide_fits": 295,
+   "hand_fits": 298,
+   "linear_fits": 289,
+   "reachable_known_fit": 298,
+   "unknown_only": 8
+  },
+  "500": {
+   "frequency_fits": 285,
+   "guide_fits": 284,
+   "hand_fits": 213,
+   "linear_fits": 286,
+   "reachable_known_fit": 289,
+   "unknown_only": 8
+  },
+  "units_with_a_candidate_known_to_fit": 298,
+  "units_with_any_multi_pair_candidate": 306
+ },
+ "trace_blocks": 62109,
+ "trace_successes": 11820,
+ "unit_fits": {
+  "family_only@125": {
+   "by_bench": {
+    "1D-ARC": 208,
+    "ConceptARC": 20,
+    "Mini-ARC": 9
+   },
+   "fit": 237,
+   "unknown": 10
+  },
+  "family_only@2000": {
+   "by_bench": {
+    "1D-ARC": 256,
+    "ConceptARC": 21,
+    "Mini-ARC": 9
+   },
+   "fit": 286,
+   "unknown": 1
+  },
+  "family_only@20000": {
+   "by_bench": {
+    "1D-ARC": 264,
+    "ConceptARC": 22,
+    "Mini-ARC": 9
+   },
+   "fit": 295,
+   "unknown": 0
+  },
+  "family_only@500": {
+   "by_bench": {
+    "1D-ARC": 225,
+    "ConceptARC": 20,
+    "Mini-ARC": 9
+   },
+   "fit": 254,
+   "unknown": 8
+  },
+  "frequency@125": {
+   "by_bench": {
+    "1D-ARC": 253,
+    "ConceptARC": 18,
+    "Mini-ARC": 8
+   },
+   "fit": 279,
+   "unknown": 6
+  },
+  "frequency@2000": {
+   "by_bench": {
+    "1D-ARC": 254,
+    "ConceptARC": 21,
+    "Mini-ARC": 8
+   },
+   "fit": 283,
+   "unknown": 4
+  },
+  "frequency@20000": {
+   "by_bench": {
+    "1D-ARC": 266,
+    "ConceptARC": 21,
+    "Mini-ARC": 9
+   },
+   "fit": 296,
+   "unknown": 1
+  },
+  "frequency@500": {
+   "by_bench": {
+    "1D-ARC": 258,
+    "ConceptARC": 19,
+    "Mini-ARC": 8
+   },
+   "fit": 285,
+   "unknown": 0
+  },
+  "guide@125": {
+   "by_bench": {
+    "1D-ARC": 258,
+    "ConceptARC": 18,
+    "Mini-ARC": 8
+   },
+   "fit": 284,
+   "unknown": 0
+  },
+  "guide@2000": {
+   "by_bench": {
+    "1D-ARC": 258,
+    "ConceptARC": 20,
+    "Mini-ARC": 8
+   },
+   "fit": 286,
+   "unknown": 0
+  },
+  "guide@20000": {
+   "by_bench": {
+    "1D-ARC": 265,
+    "ConceptARC": 21,
+    "Mini-ARC": 9
+   },
+   "fit": 295,
+   "unknown": 0
+  },
+  "guide@500": {
+   "by_bench": {
+    "1D-ARC": 258,
+    "ConceptARC": 18,
+    "Mini-ARC": 8
+   },
+   "fit": 284,
+   "unknown": 0
+  },
+  "hand@125": {
+   "by_bench": {
+    "1D-ARC": 152,
+    "ConceptARC": 20,
+    "Mini-ARC": 9
+   },
+   "fit": 181,
+   "unknown": 0
+  },
+  "hand@2000": {
+   "by_bench": {
+    "1D-ARC": 233,
+    "ConceptARC": 22,
+    "Mini-ARC": 9
+   },
+   "fit": 264,
+   "unknown": 0
+  },
+  "hand@20000": {
+   "by_bench": {
+    "1D-ARC": 266,
+    "ConceptARC": 23,
+    "Mini-ARC": 9
+   },
+   "fit": 298,
+   "unknown": 0
+  },
+  "hand@500": {
+   "by_bench": {
+    "1D-ARC": 183,
+    "ConceptARC": 21,
+    "Mini-ARC": 9
+   },
+   "fit": 213,
+   "unknown": 0
+  },
+  "linear@125": {
+   "by_bench": {
+    "1D-ARC": 256,
+    "ConceptARC": 20,
+    "Mini-ARC": 8
+   },
+   "fit": 284,
+   "unknown": 2
+  },
+  "linear@2000": {
+   "by_bench": {
+    "1D-ARC": 257,
+    "ConceptARC": 20,
+    "Mini-ARC": 8
+   },
+   "fit": 285,
+   "unknown": 1
+  },
+  "linear@20000": {
+   "by_bench": {
+    "1D-ARC": 258,
+    "ConceptARC": 22,
+    "Mini-ARC": 9
+   },
+   "fit": 289,
+   "unknown": 0
+  },
+  "linear@500": {
+   "by_bench": {
+    "1D-ARC": 258,
+    "ConceptARC": 20,
+    "Mini-ARC": 8
+   },
+   "fit": 286,
+   "unknown": 0
+  }
+ },
+ "units": 425,
+ "wall_s": 47.7
+}

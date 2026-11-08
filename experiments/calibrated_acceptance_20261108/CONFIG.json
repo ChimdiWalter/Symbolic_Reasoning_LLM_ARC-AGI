@@ -1,0 +1,21 @@
+{
+ "study": "calibrated_acceptance_20261108",
+ "calibration_dataset": "nuinsseg (U5's 12 calibration organs, 236 images; U5's frozen segmentation S, references and failure records, read-only)",
+ "held_dataset": "puma (Zenodo 10.5281/zenodo.13859989, CC BY 4.0; 206 ROIs; 1 format ROI excluded; 50 primary + 50 metastatic held by the GO salt; the rest reserved, never opened)",
+ "operator_budget_K": 3,
+ "failure_evidence_order": "u5induce.specify('nuinsseg') (U5's failure records and induction-organ class oracle gains), first K",
+ "alpha_harmful_rate": 0.6,
+ "fwer_one_sided": 0.05,
+ "bootstrap_resamples": 10000,
+ "bootstrap_seed": 0,
+ "control_seeds": 5,
+ "control_seed_rule": "held run: integer of the first 8 hex digits of sha256('<salt>:blind:<r>') and sha256('<salt>:shuffled:<r>'), r = 1..5; development: U5's seeds 7000 + r and 8000 + r",
+ "workers": 3,
+ "cpu_cap_after_go_s": 43200,
+ "primary_test_level_holm_one_sided": 0.025,
+ "stardist_thresholds": "U5 work/nuinsseg/seg/THRESHOLDS.json (tuned prob 0.4562, nms 0.3; low prob 0.2281)",
+ "strong_native_rule": "U5 work/nuinsseg/seg/STRONG_NATIVE_RULE.json (contact_ge 3.0)",
+ "lambda_in_fold_harmful_rate": 0.4,
+ "probe_cpu_charged_s": 59.7,
+ "development_history": "version 1 (fixed first): one value, 0.20, served as both the in-fold limit and the certified bound; on the 12 calibration organs it accepted no operator (development/v1_alpha020). The development scan (development/ALPHA_SCAN.json, each operator alone, in-fold limit = bound) showed that only add_lowthresh has an out-of-organ gain, that its out-of-organ harmful rate exceeds the in-fold limit at every setting, and that its gain is certified only at in-fold limits 0.3 and 0.4. Version 2: in-fold limit 0.40 (largest out-of-organ gain lower bound among the scanned settings), certified bound 0.60 (that setting's out-of-organ upper bound 0.581, rounded up to the next tenth). Both chosen on calibration organs only, before any held image."
+}

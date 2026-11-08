@@ -1,0 +1,53 @@
+{
+  "schema": "reviewed_count_aggregate_bundle_v1",
+  "author": "Chimdi Walter Ndubuisi",
+  "utc": "2026-11-08T11:22:36.747735+00:00",
+  "status": "LOCAL_REVIEWED_COPY_FOR_COORDINATOR_CONTENT_CHECK",
+  "files": [
+    {
+      "candidate": "BIOLOGY_AGGREGATES.json",
+      "candidate_sha256": "6a1c7e8bdbf673579f9d9b474a74905e01521cae2b6d7f2060e91fe62d2229ae",
+      "bytes": 16057,
+      "reviewed_source": "cage/safe_biology_aggregate_review_20261108_v1/MINIMAL_AGGREGATES.json"
+    },
+    {
+      "candidate": "BIOLOGY_PROVENANCE.json",
+      "candidate_sha256": "f70bd559e4f45827e42ddd3ab3bb0dbf9603e6c78df027bb73172330fac441d2",
+      "bytes": 41779,
+      "reviewed_source": "cage/safe_biology_aggregate_review_20261108_v1/PROVENANCE_v2.json"
+    },
+    {
+      "candidate": "ARC_STUDY_B_AGGREGATES.json",
+      "candidate_sha256": "f876be775c820c628ea1895d21d8a6d5ff994dcd29ac6cee7589ad601c771e49",
+      "bytes": 23048,
+      "reviewed_source": "cage/safe_arc_study_b_aggregate_review_20261108_v1/MINIMAL_AGGREGATES.json"
+    },
+    {
+      "candidate": "ARC_STUDY_B_PROVENANCE.json",
+      "candidate_sha256": "efabf69aed6b2b37f5780c429348c97a2207f18b5c22954b429d0024cd39ab93",
+      "bytes": 193904,
+      "reviewed_source": "cage/safe_arc_study_b_aggregate_review_20261108_v1/PROVENANCE.json"
+    }
+  ],
+  "review_pins": [
+    {
+      "path": "cage/safe_arc_study_b_aggregate_review_20261108_v1/INDEPENDENT_DISCLOSURE_REVIEW.json",
+      "sha256": "4bf034641176bf841edb7f8172d869c13e5d3d9943bafe0d53b8a60ee20fcda0"
+    },
+    {
+      "path": "cage/safe_biology_aggregate_review_20261108_v1/INDEPENDENT_DISCLOSURE_REVIEW.json",
+      "sha256": "4f118f100a8ccff9d7ea365abe35638cfc84da3b17c2d7297b058d59c647d3aa"
+    },
+    {
+      "path": "cage/safe_biology_aggregate_review_20261108_v1/INDEPENDENT_V2_AMENDMENT_REVIEW.json",
+      "sha256": "7bd40e005ae30a53adf66aed5d6c65229f4eb439c600bd994ee1f24def3b9678"
+    }
+  ],
+  "root_disclosure_checks": "Copied only exact peer-reviewed minimal count/provenance files; denylisted individual-identity/grid/program-AST keys and8hexidentity strings in aggregate bodies. No original whole snapshot or raw case copied.",
+  "original_bindings": "ARC original bfccc68321a5bbd25ab8ac3d8b121ab973fb23c4e11d9179bca7465aac14a958; biology perrecord original/report/freeze bindings inBIOLOGY_PROVENANCE.json.",
+  "limits": [
+    "Count arithmetic is publicly checkable; original held truth, per-target predictions and full statistical reconstruction remain unavailable from counts alone.",
+    "Missing active/R4 exact seal bindings remain explicitly unresolved.",
+    "No external publication/push or new scoring/inference from this copy."
+  ]
+}

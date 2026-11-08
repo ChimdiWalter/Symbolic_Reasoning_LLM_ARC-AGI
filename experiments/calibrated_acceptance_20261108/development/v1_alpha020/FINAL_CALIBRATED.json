@@ -1,0 +1,694 @@
+{
+ "arm": "CALIBRATED",
+ "scope": "final",
+ "rule": "calibrated",
+ "grammar": [
+  "add_lowthresh",
+  "split_dt",
+  "split_int"
+ ],
+ "grammar_info": {
+  "source": "failure evidence (u5induce.specify on NuInsSeg)",
+  "specified": [
+   "add_lowthresh",
+   "split_dt",
+   "split_int",
+   "delete",
+   "clear_border",
+   "close",
+   "dilate",
+   "open",
+   "erode",
+   "merge_pairs"
+  ]
+ },
+ "ops": [
+  {
+   "op": "add_lowthresh",
+   "demo_units": 2097,
+   "programs": 2017,
+   "status": "GAIN_NOT_CERTIFIED",
+   "alpha": 0.2,
+   "K": 3,
+   "mean_gain": 0.00030974872859465167,
+   "lcb_gain": 0.0,
+   "harmful_rate": 0.375,
+   "ucb_harmful_rate": 0.5,
+   "resamples_without_edits": 295,
+   "level_one_sided": 0.016666666666666666,
+   "out_of_fold": {
+    "accepted": 8,
+    "harmful": 3,
+    "beneficial": 4,
+    "images": 236,
+    "organs_with_fold_program": 11
+   },
+   "per_organ": [
+    {
+     "organ_index": 0,
+     "images": 12,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 1,
+     "images": 11,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 1,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 2,
+     "images": 10,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 3,
+     "images": 12,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 4,
+     "images": 40,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 5,
+     "images": 12,
+     "fold_program": 1132,
+     "mean_gain": 0.003801535870399303,
+     "accepted": 6,
+     "harmful": 3,
+     "beneficial": 3
+    },
+    {
+     "organ_index": 6,
+     "images": 12,
+     "fold_program": 1060,
+     "mean_gain": 0.002290189125295513,
+     "accepted": 1,
+     "harmful": 0,
+     "beneficial": 1
+    },
+    {
+     "organ_index": 7,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 8,
+     "images": 11,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 9,
+     "images": 42,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 10,
+     "images": 6,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 11,
+     "images": 28,
+     "fold_program": 1060,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    }
+   ],
+   "fold_programs": [
+    1060,
+    1060,
+    1060,
+    1060,
+    1060,
+    1132,
+    1060,
+    null,
+    1060,
+    1060,
+    1060,
+    1060
+   ],
+   "final_program": 1060,
+   "fold_program_text": [
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.715395773691196
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    null,
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    },
+    {
+     "theta_index": 0,
+     "theta": 0,
+     "guard": [
+      [
+       "intensity_rel",
+       "<",
+       0.642157723062101
+      ],
+      [
+       "contrast",
+       ">",
+       0.8715613428326684
+      ]
+     ]
+    }
+   ],
+   "cpu_s": 9.65
+  },
+  {
+   "op": "split_dt",
+   "demo_units": 6164,
+   "programs": 6489,
+   "status": "NO_OUT_OF_FOLD_EDIT",
+   "alpha": 0.2,
+   "K": 3,
+   "mean_gain": 0.0,
+   "lcb_gain": 0.0,
+   "harmful_rate": null,
+   "ucb_harmful_rate": null,
+   "resamples_without_edits": 10000,
+   "level_one_sided": 0.016666666666666666,
+   "out_of_fold": {
+    "accepted": 0,
+    "harmful": 0,
+    "beneficial": 0,
+    "images": 236,
+    "organs_with_fold_program": 0
+   },
+   "per_organ": [
+    {
+     "organ_index": 0,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 1,
+     "images": 11,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 2,
+     "images": 10,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 3,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 4,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 5,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 6,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 7,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 8,
+     "images": 11,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 9,
+     "images": 42,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 10,
+     "images": 6,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 11,
+     "images": 28,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    }
+   ],
+   "fold_programs": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "final_program": null,
+   "fold_program_text": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "cpu_s": 22.7
+  },
+  {
+   "op": "split_int",
+   "demo_units": 6164,
+   "programs": 8387,
+   "status": "NO_OUT_OF_FOLD_EDIT",
+   "alpha": 0.2,
+   "K": 3,
+   "mean_gain": 0.0,
+   "lcb_gain": 0.0,
+   "harmful_rate": null,
+   "ucb_harmful_rate": null,
+   "resamples_without_edits": 10000,
+   "level_one_sided": 0.016666666666666666,
+   "out_of_fold": {
+    "accepted": 0,
+    "harmful": 0,
+    "beneficial": 0,
+    "images": 236,
+    "organs_with_fold_program": 0
+   },
+   "per_organ": [
+    {
+     "organ_index": 0,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 1,
+     "images": 11,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 2,
+     "images": 10,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 3,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 4,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 5,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 6,
+     "images": 12,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 7,
+     "images": 40,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 8,
+     "images": 11,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 9,
+     "images": 42,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 10,
+     "images": 6,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    },
+    {
+     "organ_index": 11,
+     "images": 28,
+     "fold_program": null,
+     "mean_gain": 0.0,
+     "accepted": 0,
+     "harmful": 0,
+     "beneficial": 0
+    }
+   ],
+   "fold_programs": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "final_program": null,
+   "fold_program_text": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "cpu_s": 27.89
+  }
+ ],
+ "cpu_s": 60.25,
+ "cpu_s_exact": 60.245789017,
+ "wall_s": 62.6,
+ "work": {
+  "exact_image_matchings": 236,
+  "unit_tables": 708,
+  "policy_runs": 0,
+  "exact_certified_programs": 0,
+  "policy_spaces": 3,
+  "policy_programs_scored": 16893,
+  "policy_fits": 0,
+  "policy_program_selections": 0
+ },
+ "demo_images": 236,
+ "demo_edits": 0,
+ "query_log": [],
+ "query_stats": {},
+ "demo_f1_after": 0.5032031726662599,
+ "demo_f1_before": 0.5032031726662599
+}

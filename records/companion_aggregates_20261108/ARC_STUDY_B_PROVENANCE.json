@@ -1,0 +1,4552 @@
+{
+  "S4_semantic_crosswalk": {
+    "candidate_metric": "wrong_query_outputs",
+    "comparison": "S4_wrong_answers_library_vs_matched_static",
+    "count_semantics": "higher metric tasks, not necessarily better outcomes",
+    "source_count_field_names": [
+      "correct_w_a",
+      "correct_w_b"
+    ],
+    "source_prose": "cage/natural_growth_b_terminal_interpretation_20261108_v1/AGGREGATE_INTERPRETATION.md",
+    "source_prose_sha256": "bbd3dfcdd00b5953fda07fe3fa3e6843904bdaf942d07851b5e34aed80dc3a32",
+    "source_w_a": "library wrong outputs",
+    "source_w_b": "static-library wrong outputs"
+  },
+  "author": "Chimdi Walter Ndubuisi",
+  "boundaries": {
+    "Git": false,
+    "PREDICTIONS_SEALED_opened": false,
+    "actual_GO_authorization_or_claim_opened": false,
+    "external_publication": false,
+    "main_checkout_accessed": false,
+    "raw_cases_functions_inputs_outputs_answers_predictions_programs_accessed": false,
+    "recursive_payload_search": false,
+    "science_model_scoring_replay": false
+  },
+  "candidate": {
+    "bytes": 23048,
+    "path": "MINIMAL_AGGREGATES.json",
+    "sha256": "f876be775c820c628ea1895d21d8a6d5ff994dcd29ac6cee7589ad601c771e49"
+  },
+  "excluded_sections": [
+    "go_sha256",
+    "wrapper terminal/source-control/stage/seal metadata",
+    "learned library/object source costs/artifacts",
+    "retry/task diagnostic fields",
+    "localisable_stratum",
+    "answered counts",
+    "Wilson/precision intervals",
+    "per-family inferential statistics"
+  ],
+  "field_map": [
+    {
+      "candidate_pointer": "/related_overall/G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/G0/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/G0/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/G0/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/G0/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/related_overall/construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3c15285c04fff40024bb8714b93e58178bf8d3bebe6943178e1c5412957b7aa1"
+    },
+    {
+      "candidate_pointer": "/related_overall/construct_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/construct_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/construct_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/construct_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/construct_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/construct_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+    },
+    {
+      "candidate_pointer": "/related_overall/lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7a61b53701befdae0eeeffaecc73f14e20b537bb0f8b91ad7c2936dc63562b25"
+    },
+    {
+      "candidate_pointer": "/related_overall/obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "dfe62e836a0a6f2633422230c81287700a56e2639652c73f264e6562220c207a"
+    },
+    {
+      "candidate_pointer": "/related_overall/obj_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/obj_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/obj_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/obj_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/obj_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/obj_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/related_overall/shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "85daaf6f7055cd5736287faed9603d712920092c4f8fd0097ec3b650bf27530e"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7688b6ef52555962d008fff894223582c484517cea7da49ee67800adc7fc8866"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "1b3c33580f2e2094cbde0bfd58f8008ee6e29c06643ca310222045c82fe0ab0e"
+    },
+    {
+      "candidate_pointer": "/related_overall/static_obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals/static_obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "85daaf6f7055cd5736287faed9603d712920092c4f8fd0097ec3b650bf27530e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/G0/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/G0/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/G0/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/G0/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "00328ce57bbc14b33bd6695bc8eb32cdf2fb5f3a7d89ec14a42825e15d39df60"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/construct_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/construct_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/construct_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/construct_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/construct_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/construct_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "0f4121d0ef1df4c86854c7ebb47ae1c93de8aec8f944035eeaa6495dd71a0678"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/obj_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/obj_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/obj_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/obj_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/obj_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/obj_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8b940be7fb78aaa6b6567dd7a3987996947460df1c668e698eb92ca77e425349"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "76a50887d8f1c2e9301755428990ad81479ee21c25b43215cf524541e0503269"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/1d_arc/static_obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/1d_arc/static_obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8b940be7fb78aaa6b6567dd7a3987996947460df1c668e698eb92ca77e425349"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/G0/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/G0/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/G0/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/G0/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "25fc0e7096fc653718202dc30b0c580b8ab87eac11a700cba03a7c021bc35b0c"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/construct_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/construct_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/construct_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/obj_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/obj_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/obj_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6af1f692e9496c6d0b668316eccb93276ae6b6774fa728aac31ff40a38318760"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/concept_arc/static_obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/G0/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/G0/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/G0/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/G0/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/construct_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/construct_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/construct_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/construct_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/construct_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/construct_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/obj_shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/obj_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/obj_shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/obj_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/obj_shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/obj_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/shuf/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/shuf/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/shuf/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/related_by_public_benchmark/mini_arc/static_obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/totals_by_benchmark/mini_arc/static_obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/G0/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/G0/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/G0/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/G0/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_construct/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_construct/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_construct/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_lib/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_lib/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_lib/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_obj/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_obj/outputs",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "68519a9eca55c68c72658a2a1716aac3788c289859d46d6f5c3f14760fa37c9e"
+    },
+    {
+      "candidate_pointer": "/public_arc_agi_2_check/totals/static_obj/correct",
+      "operation": "copy",
+      "source_pointers": [
+        "/arc_agi_2/totals/static_obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/G0/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/G0/tasks",
+        "/totals_by_benchmark/mini_arc/G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/G0/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/G0/outputs",
+        "/totals_by_benchmark/mini_arc/G0/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/G0/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/G0/correct",
+        "/totals_by_benchmark/mini_arc/G0/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/construct/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct/tasks",
+        "/totals_by_benchmark/mini_arc/construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/construct/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct/outputs",
+        "/totals_by_benchmark/mini_arc/construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/construct/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct/correct",
+        "/totals_by_benchmark/mini_arc/construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c837649cce43f2729138e72cc315207057ac82599a59be72765a477f22d14a54"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/construct_shuf/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct_shuf/tasks",
+        "/totals_by_benchmark/mini_arc/construct_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/construct_shuf/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct_shuf/outputs",
+        "/totals_by_benchmark/mini_arc/construct_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/construct_shuf/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/construct_shuf/correct",
+        "/totals_by_benchmark/mini_arc/construct_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/lib/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/lib/tasks",
+        "/totals_by_benchmark/mini_arc/lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/lib/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/lib/outputs",
+        "/totals_by_benchmark/mini_arc/lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/lib/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/lib/correct",
+        "/totals_by_benchmark/mini_arc/lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/obj/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj/tasks",
+        "/totals_by_benchmark/mini_arc/obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/obj/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj/outputs",
+        "/totals_by_benchmark/mini_arc/obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/obj/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj/correct",
+        "/totals_by_benchmark/mini_arc/obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/obj_shuf/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj_shuf/tasks",
+        "/totals_by_benchmark/mini_arc/obj_shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/obj_shuf/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj_shuf/outputs",
+        "/totals_by_benchmark/mini_arc/obj_shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/obj_shuf/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/obj_shuf/correct",
+        "/totals_by_benchmark/mini_arc/obj_shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/shuf/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/shuf/tasks",
+        "/totals_by_benchmark/mini_arc/shuf/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/shuf/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/shuf/outputs",
+        "/totals_by_benchmark/mini_arc/shuf/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/shuf/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/shuf/correct",
+        "/totals_by_benchmark/mini_arc/shuf/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_construct/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_construct/tasks",
+        "/totals_by_benchmark/mini_arc/static_construct/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_construct/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_construct/outputs",
+        "/totals_by_benchmark/mini_arc/static_construct/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_construct/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_construct/correct",
+        "/totals_by_benchmark/mini_arc/static_construct/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_lib/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_lib/tasks",
+        "/totals_by_benchmark/mini_arc/static_lib/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_lib/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_lib/outputs",
+        "/totals_by_benchmark/mini_arc/static_lib/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_lib/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_lib/correct",
+        "/totals_by_benchmark/mini_arc/static_lib/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_obj/tasks",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_obj/tasks",
+        "/totals_by_benchmark/mini_arc/static_obj/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_obj/outputs",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_obj/outputs",
+        "/totals_by_benchmark/mini_arc/static_obj/outputs"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "377adeb4cd4096adc7ca64b533938cffc6294a9b3534f883b2336a26252cda9a"
+    },
+    {
+      "candidate_pointer": "/descriptive_two_related_2d_benchmarks/static_obj/correct",
+      "operation": "sum",
+      "source_pointers": [
+        "/totals_by_benchmark/concept_arc/static_obj/correct",
+        "/totals_by_benchmark/mini_arc/static_obj/correct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_fill/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/0/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_fill/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/0/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_fill/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/0/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_fill/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/0/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_fill/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/0/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_fill/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/1/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_flip/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "785f3ec7eb32f30b90cd0fcf3657d388b5ff4297f2f9716ff66e9b69c05ddd09"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/1/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_flip/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/1/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_flip/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "785f3ec7eb32f30b90cd0fcf3657d388b5ff4297f2f9716ff66e9b69c05ddd09"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/1/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_flip/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "785f3ec7eb32f30b90cd0fcf3657d388b5ff4297f2f9716ff66e9b69c05ddd09"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/1/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_flip/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/1/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_flip/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "785f3ec7eb32f30b90cd0fcf3657d388b5ff4297f2f9716ff66e9b69c05ddd09"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/2/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_hollow/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/2/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_hollow/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/2/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_hollow/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/2/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_hollow/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/2/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_hollow/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/2/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_hollow/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/3/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_mirror/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "535fa30d7e25dd8a49f1536779734ec8286108d115da5045d77f3b4185d8f790"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/3/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_mirror/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/3/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_mirror/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/3/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_mirror/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/3/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_mirror/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/3/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_mirror/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/4/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_1p/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/4/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_1p/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/4/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_1p/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/4/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_move_1p/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/4/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_move_1p/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/4/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_move_1p/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c2356069e9d1e79ca924378153cfbbfb4d4416b1f99d41a2940bfdb66c5319db"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/5/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_2p/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/5/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_2p/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/5/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_2p/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/5/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_move_2p/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/5/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_move_2p/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/5/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_move_2p/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/6/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_2p_dp/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/6/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_2p_dp/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/6/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_2p_dp/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/6/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_move_2p_dp/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/6/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_move_2p_dp/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/6/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_move_2p_dp/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/7/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_3p/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/7/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_3p/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/7/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_3p/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/7/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_move_3p/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/7/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_move_3p/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/7/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_move_3p/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/8/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_dp/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/8/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_dp/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/8/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_move_dp/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/8/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_move_dp/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/8/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_move_dp/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b7a56873cd771f2c446d369b649430b65a756ba278ff97ec81bb6f55b2e73569"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/8/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_move_dp/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/9/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_padded_fill/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/9/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_padded_fill/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/9/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_padded_fill/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/9/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_padded_fill/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/9/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_padded_fill/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/9/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_padded_fill/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/10/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_cmp/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/10/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_cmp/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/10/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_cmp/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/10/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_recolor_cmp/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/10/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_recolor_cmp/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/10/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_recolor_cmp/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/11/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_cnt/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/11/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_cnt/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/11/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_cnt/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/11/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_recolor_cnt/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/11/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_recolor_cnt/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/11/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_recolor_cnt/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/12/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_oe/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6f4b6612125fb3a0daecd2799dfd6c9c299424fd920f9b308110a2c1fbd8f443"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/12/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_oe/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/12/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_recolor_oe/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e629fa6598d732768f7c726b4b621285f9c3b85303900aa912017db7617d8bdb"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/12/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_recolor_oe/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/12/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_recolor_oe/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/12/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_recolor_oe/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/13/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_scale_dp/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/13/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_scale_dp/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/13/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/1d_arc~11d_scale_dp/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/13/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/1d_arc~11d_scale_dp/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/13/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/1d_arc~11d_scale_dp/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/13/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/1d_arc~11d_scale_dp/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/14/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1AboveBelow/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/14/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1AboveBelow/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/14/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1AboveBelow/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/14/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1AboveBelow/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/14/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1AboveBelow/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/14/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1AboveBelow/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/15/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Center/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/15/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Center/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/15/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Center/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/15/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1Center/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/15/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1Center/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/15/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1Center/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/16/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1CleanUp/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/16/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1CleanUp/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/16/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1CleanUp/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/16/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1CleanUp/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/16/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1CleanUp/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/16/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1CleanUp/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/17/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1CompleteShape/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/17/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1CompleteShape/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/17/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1CompleteShape/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/17/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1CompleteShape/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/17/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1CompleteShape/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/17/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1CompleteShape/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/18/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Copy/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/18/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Copy/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/18/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Copy/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/18/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1Copy/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/18/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1Copy/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/18/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1Copy/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/19/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Count/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/19/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Count/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/19/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Count/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/19/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1Count/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/19/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1Count/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/19/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1Count/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/20/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1ExtendToBoundary/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/20/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1ExtendToBoundary/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/20/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1ExtendToBoundary/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/20/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1ExtendToBoundary/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/20/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1ExtendToBoundary/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/20/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1ExtendToBoundary/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/21/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1ExtractObjects/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/21/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1ExtractObjects/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/21/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1ExtractObjects/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/21/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1ExtractObjects/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/21/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1ExtractObjects/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/21/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1ExtractObjects/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/22/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1FilledNotFilled/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/22/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1FilledNotFilled/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/22/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1FilledNotFilled/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/22/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1FilledNotFilled/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/22/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1FilledNotFilled/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/22/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1FilledNotFilled/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/23/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1HorizontalVertical/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/23/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1HorizontalVertical/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/23/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1HorizontalVertical/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/23/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1HorizontalVertical/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/23/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1HorizontalVertical/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/23/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1HorizontalVertical/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/24/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1InsideOutside/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/24/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1InsideOutside/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/24/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1InsideOutside/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/24/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1InsideOutside/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/24/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1InsideOutside/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/24/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1InsideOutside/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/25/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1MoveToBoundary/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/25/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1MoveToBoundary/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/25/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1MoveToBoundary/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/25/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1MoveToBoundary/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/25/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1MoveToBoundary/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/25/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1MoveToBoundary/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/26/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Order/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/26/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Order/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/26/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1Order/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/26/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1Order/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/26/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1Order/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/26/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1Order/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/27/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1SameDifferent/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/27/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1SameDifferent/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/27/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1SameDifferent/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/27/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1SameDifferent/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/27/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1SameDifferent/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/27/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1SameDifferent/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/28/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1TopBottom2D/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/28/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1TopBottom2D/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/28/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1TopBottom2D/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/28/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1TopBottom2D/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/28/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1TopBottom2D/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/28/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1TopBottom2D/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/29/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1TopBottom3D/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/29/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1TopBottom3D/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/29/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/concept_arc~1TopBottom3D/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/29/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/concept_arc~1TopBottom3D/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/29/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/concept_arc~1TopBottom3D/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/29/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/concept_arc~1TopBottom3D/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/30/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/mini_arc~1mini_arc/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/30/correct/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/mini_arc~1mini_arc/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/30/correct/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/construct_vs_G0/mini_arc~1mini_arc/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/30/correct/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/lib_vs_G0/mini_arc~1mini_arc/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/30/correct/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_G0/mini_arc~1mini_arc/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/public_family_aggregates/30/correct/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/descriptive/by_family/obj_vs_static_obj/mini_arc~1mini_arc/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/reported_holm_family_size",
+      "operation": "copy",
+      "source_pointers": [
+        "/holm_family_size"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3fdba35f04dc8c462986c992bcf875546257113072a909c162f7e470e581e278"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/counts/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "dfe62e836a0a6f2633422230c81287700a56e2639652c73f264e6562220c207a"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/counts/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "85daaf6f7055cd5736287faed9603d712920092c4f8fd0097ec3b650bf27530e"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/tasks_only_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "210e3b160c355818509425b9d9e9fd3ea2e287f2c43a13e5be8817140db0b9e6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/tasks_only_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "76a50887d8f1c2e9301755428990ad81479ee21c25b43215cf524541e0503269"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "0fd42b3f73c448b34940b339f87d07adf116b05c0227aad72e8f0ee90533e699"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2889eea6fdb8892ac140494c3e70c6f14b94cb4e13ceb52e49a02c2ec3ed40f0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/PRIMARY_reuse_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/primary/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7a61b53701befdae0eeeffaecc73f14e20b537bb0f8b91ad7c2936dc63562b25"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/counts/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "35135aaa6cc23891b40cb3f378c53a17a1127210ce60e125ccf03efcfdaec458"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/tasks_only_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "eb1e33e8a81b697b75855af6bfcdbcbf7cbbde9f94962ceaec1ed8af21f5a50f"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7ffc14d1734df16386dac7763c898c054f70a787f93d7244246ac2d734881934"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S0_library_vs_G0/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S0_library_vs_G0/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/counts/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/counts/static_construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/correct_static_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/tasks_only_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/tasks_only_static_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "0be4032baca3df6a97fd04e1a86f112edd9c21462b12a068bebd5f6925f18e28"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S10_arc_agi_2_construction_vs_matched_static/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S10_arc_agi_2_construction_vs_matched_static/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7a61b53701befdae0eeeffaecc73f14e20b537bb0f8b91ad7c2936dc63562b25"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/counts/static_lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/correct_static_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7688b6ef52555962d008fff894223582c484517cea7da49ee67800adc7fc8866"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/tasks_only_static_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "127bbd03a000f970f67d416e59fef98d87b2977272b6d079ab62f46806a2acba"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e6c9ac461049686e8fc327f208742e3bbcda405de879d3c871edfaaf1dd6c83d"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b196005e461a0c0e0e39be9af360f72bd236cfd886ecbd78d84039e9a71c7c46"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S1_library_vs_matched_static/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S1_library_vs_matched_static/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2ce878394c2c6a659ce3a6c15fe61a6a91e4fcca3c8281a21664537337cc1b61"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7a61b53701befdae0eeeffaecc73f14e20b537bb0f8b91ad7c2936dc63562b25"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/counts/shuf",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/correct_shuf"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "35135aaa6cc23891b40cb3f378c53a17a1127210ce60e125ccf03efcfdaec458"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/tasks_only_shuf"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "b0f340bfedf295af388e37743784f75355c8ea45ef3ae87b94b8bbf78929a159"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S2_library_vs_shuffled_library/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S2_library_vs_shuffled_library/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/counts/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "dfe62e836a0a6f2633422230c81287700a56e2639652c73f264e6562220c207a"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/counts/obj_shuf",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/correct_obj_shuf"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/tasks_only_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5966abd0cbfc86f98a186531b2b4ee5f6e910120ce13222f98207203dfc9a9a2"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/tasks_only_obj_shuf"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "67e9c3acebb154a282f326d4ff1951cd1f342e58e74d562b556b517da5e56132"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "a881aa1f9eab2e3cd5a67524b9affc55d344958ce5f98dc967464fae06f9042e"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S3_reuse_vs_shuffled_registry/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S3_reuse_vs_shuffled_registry/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/correct_w_a"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/counts/static_lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/correct_w_b"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4523540f1504cd17100c4835e85b7eefd49911580f8efff0599a8f283be6b9e3"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/tasks_only_w_a"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/tasks_only_w_b"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "c171d4ec282b23db89a99880cd624e9ba2940c1d894783602edab5d7481dc1ea"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "51892fb67e10281903ec1f32a353a14105e226bcf91df01c3bfbf616f498566d"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "a8a59ccf2eac5e7baf78532e0d65b0b33c9c62d397884b95e704b51142a1522d"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S4_wrong_answers_library_vs_matched_static/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S4_wrong_answers_library_vs_matched_static/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "80cb41826e3534604ea7958c13c4d5a5b584938d247f68f8742496b76b9aaa95"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/counts/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/tasks_only_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "670671cd97404156226e507973f2ab8330d3022ca96e0c93bdbdb320c41adcaf"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "9ad99611bf28bce1904f3434ba3982adf8ba581cd0ce9ce7fe677baaa5e701e5"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_1d_arc_library_vs_G0/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_1d_arc_library_vs_G0/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/counts/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48449a14a4ff7d79bb7a1b6f3d488eba397c36ef25634c111b49baf362511afc"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/tasks_only_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "578f66d26656a5c93bd67e5a3526ced698162e40763a6a8a2f4121b561305935"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d2cbad71ff333de67d07ec676e352ab7f38248eb69c942950157220607c55e84"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_concept_arc_library_vs_G0/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_concept_arc_library_vs_G0/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/counts/G0",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/correct_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/tasks_only_G0"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3d5812abc84c11768aa73a732c85d75dbed439188f5bb3239e9b762ea31d9862"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S5_mini_arc_library_vs_G0/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S5_mini_arc_library_vs_G0/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/counts/lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/correct_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/counts/static_lib",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/correct_static_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/tasks_only_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/tasks_only_static_lib"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3d5812abc84c11768aa73a732c85d75dbed439188f5bb3239e9b762ea31d9862"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S6_arc_agi_2_library_vs_matched_static/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S6_arc_agi_2_library_vs_matched_static/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/counts/obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/correct_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/counts/static_obj",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/correct_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "2abaca4911e68fa9bfbf3482ee797fd5b9045b841fdff7253557c5fe15de6477"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/tasks_only_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/tasks_only_static_obj"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3d5812abc84c11768aa73a732c85d75dbed439188f5bb3239e9b762ea31d9862"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S7_arc_agi_2_reuse_vs_matched_static/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S7_arc_agi_2_reuse_vs_matched_static/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/counts/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3c15285c04fff40024bb8714b93e58178bf8d3bebe6943178e1c5412957b7aa1"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/counts/static_construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/correct_static_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "85daaf6f7055cd5736287faed9603d712920092c4f8fd0097ec3b650bf27530e"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/tasks_only_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "0e6523810856a138a75dec70a9cf3778a5c70b83ac915f22c33f05db97cb3e68"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/tasks_only_static_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "0e6523810856a138a75dec70a9cf3778a5c70b83ac915f22c33f05db97cb3e68"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "ca4188b20f1570c531bc6bd9c85ca73bc70521664ff7b7c61fb38333113f5fd1"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S8_construction_vs_matched_static/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S8_construction_vs_matched_static/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/counts/construct",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/correct_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "3c15285c04fff40024bb8714b93e58178bf8d3bebe6943178e1c5412957b7aa1"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/counts/construct_shuf",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/correct_construct_shuf"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/tasks",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/tasks"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "88b54564b232405ab2165996517fece1149259cf1ea262a375db0f66039294d0"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/tasks_with_higher_metric_arm_a",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/tasks_only_construct"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "48a1706eca5ee6148f748ca91a0f7db6ebcf59943532044a7bf60bbe44e5b1d2"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/tasks_with_higher_metric_arm_b",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/tasks_only_construct_shuf"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/count_difference",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/sum_difference"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "556d7dc3a115356350f1f9910b1af1ab0e312d4b3e4fc788d2da63668f36d017"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/family_cluster_ci95",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/family_cluster_ci95"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "182f75fc74cc61b46fe7b65ab2fa0f578ee51c8f72675ef5760ed60c20926d2e"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/stored_task_sign_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/exact_mcnemar_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    },
+    {
+      "candidate_pointer": "/reported_comparisons/S9_construction_vs_donor_demonstrations/stored_holm_p",
+      "operation": "copy",
+      "source_pointers": [
+        "/secondary/S9_construction_vs_donor_demonstrations/holm_p"
+      ],
+      "source_record": "original_scientific_aggregate",
+      "value_canonical_sha256": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7"
+    }
+  ],
+  "field_map_semantics": {
+    "copy": "Candidate value equals exactly one source value",
+    "numeric_coverage": "Mapped arrays cover their numeric child leaves; all other numeric leaves map directly",
+    "pointers": "RFC6901; source pointers address original scientific aggregate, not wrapper",
+    "public_labels": "Fixed public arm/benchmark labels and benchmark/family components split from existing group keys; every retained group has at least four tasks",
+    "sum": "Candidate equals sum of the referenced ConceptARC/Mini-ARC source count fields",
+    "value_hash": "SHA256 of compact sorted-key ASCII JSON, separators comma/colon, finite values only"
+  },
+  "output_files_sha256": {
+    "AGENT_RESUME_STATE.md": "938c48526dbcdd28c03847d2db10e4374482445b3bd9707d7c080adf45d79e5b",
+    "DISCLOSURE_REVIEW.md": "99add0e1695c2176b345fd6eda8b2a30fc840726f43bdec5dd00831789c825c2",
+    "MINIMAL_AGGREGATES.json": "f876be775c820c628ea1895d21d8a6d5ff994dcd29ac6cee7589ad601c771e49"
+  },
+  "pending_root_review": [
+    "Public group-label/content and source-map inspection",
+    "Explicit allowlist and separately authorized public snapshot or Git integration",
+    "Other 0221 biology/single-cell requests are outside this Study B candidate"
+  ],
+  "provenance_self_hash": "Excluded to avoid recursive self-hashing; final byte hash supplied to root with the four-file allowlist.",
+  "record_to_candidate_hash_map": [
+    {
+      "candidate_sha256": "f876be775c820c628ea1895d21d8a6d5ff994dcd29ac6cee7589ad601c771e49",
+      "field_map": "field_map; exact copy/sum operations only",
+      "record": "original_scientific_aggregate",
+      "record_sha256": "bfccc68321a5bbd25ab8ac3d8b121ab973fb23c4e11d9179bca7465aac14a958"
+    },
+    {
+      "binding": "Original parsed count aggregate equals embedded final_aggregate.",
+      "candidate_sha256": "f876be775c820c628ea1895d21d8a6d5ff994dcd29ac6cee7589ad601c771e49",
+      "embedded_original_sha256": "bfccc68321a5bbd25ab8ac3d8b121ab973fb23c4e11d9179bca7465aac14a958",
+      "record": "safe_outer_snapshot",
+      "record_sha256": "6f35dbb0dd84280741d14a8d361587092c0d7336be4d89f5c4e178d2847f8224"
+    }
+  ],
+  "records": {
+    "local_execution_freeze": {
+      "access": "opaque_hash_only",
+      "path": "cage/natural_growth_b_local_takeover_20261107_v1/LOCAL_FREEZE.json",
+      "sha256": "085ca9d7449cf6fee349bc8f66e212933fe799176d74aaa3082bd9ce46bea588"
+    },
+    "original_protocol_identity": {
+      "sha256": "7602387708c3ac3487fa96fde50c25c6b6f1d60fbc193cefc0fe2b9acda1e1ac",
+      "source": "LOCAL_EXECUTION_ADDENDUM.md; protocol body not reopened"
+    },
+    "original_science_freeze": {
+      "access": "opaque_hash_only",
+      "path": "<companion runtime folder>/experiments/natural_growth_b_20261105/FREEZE.json",
+      "sha256": "9d9d2248c511ee8b729694e9c25231bdbfe26e0c10d3037f774d745ca83cfa21"
+    },
+    "original_scientific_aggregate": {
+      "access": "Known hash verified before count-level parse",
+      "bytes": 72804,
+      "path": "<companion runtime folder>/experiments/natural_growth_b_20261105/runs/C/RESULTS.json",
+      "sha256": "bfccc68321a5bbd25ab8ac3d8b121ab973fb23c4e11d9179bca7465aac14a958"
+    },
+    "original_scientific_report": {
+      "access": "opaque_hash_only",
+      "path": "<companion runtime folder>/experiments/natural_growth_b_20261105/runs/C/REPORT.md",
+      "sha256": "21070825d5b2738a04e8673cb776fb60b7d4352429741d0d4595d713313f203d"
+    }
+  },
+  "safe_source_pins": {
+    "cage/final_mechanism_20261101/coordination/inbox/0220_request_public_aggregate_for_held_back_half_verification.md": {
+      "bytes": 1721,
+      "sha256": "d549515538034f1662977a1211849b040175f416e579e61cb1f8dc335d2e673a"
+    },
+    "cage/final_mechanism_20261101/coordination/inbox/0221_safe_public_aggregates_so_every_paper_number_is_checkable.md": {
+      "bytes": 2029,
+      "sha256": "c75af325662dbfec1df6d459bbe39138e306d69dae9cfc2d4a46818f3e3175ff"
+    },
+    "cage/natural_growth_b_local_takeover_20261107_v1/FINAL_AGGREGATE_SNAPSHOT.json": {
+      "bytes": 121680,
+      "sha256": "6f35dbb0dd84280741d14a8d361587092c0d7336be4d89f5c4e178d2847f8224"
+    },
+    "cage/natural_growth_b_local_takeover_20261107_v1/LOCAL_EXECUTION_ADDENDUM.md": {
+      "bytes": 8314,
+      "sha256": "ea4caaad40adecbfb7b8d994df6a67e5a32e46642eaccc56a7da73c10ce1a497"
+    },
+    "cage/natural_growth_b_local_takeover_20261107_v1/LOCAL_FREEZE.json": {
+      "bytes": 1002,
+      "sha256": "085ca9d7449cf6fee349bc8f66e212933fe799176d74aaa3082bd9ce46bea588"
+    },
+    "cage/natural_growth_b_local_takeover_20261107_v1/monitor_and_collate.py": {
+      "bytes": 14400,
+      "sha256": "2495eb4be7720ee73688fb51c4c65ee82889d11009286da67750c71d51a5e879"
+    },
+    "cage/natural_growth_b_terminal_independent_review_20261108_v1/REPORT.md": {
+      "bytes": 6438,
+      "sha256": "a61a98b2b032177ffb4d254602dc71c3897850a66016f9a8b126f6d8926845dc"
+    },
+    "cage/natural_growth_b_terminal_interpretation_20261108_v1/AGGREGATE_INTERPRETATION.md": {
+      "bytes": 9575,
+      "sha256": "bbd3dfcdd00b5953fda07fe3fa3e6843904bdaf942d07851b5e34aed80dc3a32"
+    },
+    "cage/natural_growth_b_terminal_interpretation_20261108_v1/SAVED_AGGREGATE_CHECKS.json": {
+      "bytes": 21824,
+      "sha256": "e3592e9d08836363c1fb3581d27755bda269ef4446c23b38d4798fe3ee4eb31c"
+    },
+    "cage/research_workboard_20261108_v1/WORK_INDEX.json": {
+      "bytes": 14796,
+      "sha256": "a15537c5fdb8ac574e25dff2e5498ea8f9e1b0e8c23daf95617a0ce74165488d"
+    },
+    "cage/study_b_terminal_update_20261108_v1/STATUS_FOR_AUTHOR_AND_PAPER.md": {
+      "bytes": 6238,
+      "sha256": "03c845e12fd3b656aeb06d6ae63752121389d648de352db84773fc67440d7b33"
+    }
+  },
+  "schema": "CORA_ARC_STUDY_B_AGGREGATE_PROVENANCE_1",
+  "status": "INTERNAL_REVIEW_CANDIDATE_NOT_RELEASED",
+  "utc": "2026-11-08T11:03:15.097564+00:00",
+  "validation": {
+    "all_mapped_values_verified": true,
+    "all_numeric_leaves_mapped": true,
+    "correctness_recertified": false,
+    "embedded_aggregate_equality": true,
+    "explicit_whitelist": true,
+    "family_groups": 31,
+    "family_groups_by_benchmark": {
+      "1d_arc": 14,
+      "concept_arc": 16,
+      "mini_arc": 1
+    },
+    "known_source_hashes_match": true,
+    "mapped_fields": 483,
+    "minimum_tasks_per_family": 4,
+    "numeric_leaves": 497,
+    "scientific_execution": false,
+    "singleton_or_task_rows": 0,
+    "source_comparisons_retained": 14,
+    "source_holm_secondaries_retained": 13,
+    "statistics_recomputed": false
+  }
+}

@@ -1,0 +1,217 @@
+{
+ "model": "Krumsiek et al. 2011, PLoS ONE 6(8): e22649; rules file sha256 7940413c6832fa82fa252a39e4038297d291952adea5d254033a40cdf39deceb",
+ "genes": 11,
+ "links": 30,
+ "self_links": 4,
+ "activating_links": 15,
+ "inhibiting_links": 15,
+ "update": "asynchronous: one gene switches per transition",
+ "progenitor_state_on": [
+  "GATA-2",
+  "C/EBPα",
+  "PU.1"
+ ],
+ "reachable_states": 160,
+ "transitions": 477,
+ "state_graph_acyclic": true,
+ "stable_states_reached": [
+  [
+   "C/EBPα",
+   "Gfi-1",
+   "PU.1"
+  ],
+  [
+   "C/EBPα",
+   "EgrNab",
+   "cJun",
+   "PU.1"
+  ],
+  [
+   "EKLF",
+   "FOG-1",
+   "GATA-1",
+   "SCL"
+  ],
+  [
+   "Fli-1",
+   "FOG-1",
+   "GATA-1",
+   "SCL"
+  ]
+ ],
+ "stable_states_all_nonzero": [
+  [
+   "Fli-1",
+   "FOG-1",
+   "GATA-1",
+   "SCL"
+  ],
+  [
+   "EKLF",
+   "FOG-1",
+   "GATA-1",
+   "SCL"
+  ],
+  [
+   "EgrNab",
+   "cJun",
+   "PU.1"
+  ],
+  [
+   "C/EBPα",
+   "Gfi-1",
+   "PU.1"
+  ],
+  [
+   "C/EBPα",
+   "EgrNab",
+   "cJun",
+   "PU.1"
+  ]
+ ],
+ "egrnab": {
+  "published_rule": "pu1 and cjun and not gfi1",
+  "inputs": [
+   "PU.1",
+   "cJun",
+   "Gfi-1"
+  ],
+  "patterns": [
+   {
+    "inputs": {
+     "PU.1": 0,
+     "cJun": 0,
+     "Gfi-1": 0
+    },
+    "next": 0,
+    "states": 50
+   },
+   {
+    "inputs": {
+     "PU.1": 0,
+     "cJun": 0,
+     "Gfi-1": 1
+    },
+    "next": 0,
+    "states": 25
+   },
+   {
+    "inputs": {
+     "PU.1": 0,
+     "cJun": 1,
+     "Gfi-1": 0
+    },
+    "next": 0,
+    "states": 50
+   },
+   {
+    "inputs": {
+     "PU.1": 0,
+     "cJun": 1,
+     "Gfi-1": 1
+    },
+    "next": 0,
+    "states": 25
+   },
+   {
+    "inputs": {
+     "PU.1": 1,
+     "cJun": 0,
+     "Gfi-1": 0
+    },
+    "next": 0,
+    "states": 2
+   },
+   {
+    "inputs": {
+     "PU.1": 1,
+     "cJun": 0,
+     "Gfi-1": 1
+    },
+    "next": 0,
+    "states": 2
+   },
+   {
+    "inputs": {
+     "PU.1": 1,
+     "cJun": 1,
+     "Gfi-1": 0
+    },
+    "next": 1,
+    "states": 4
+   },
+   {
+    "inputs": {
+     "PU.1": 1,
+     "cJun": 1,
+     "Gfi-1": 1
+    },
+    "next": 0,
+    "states": 2
+   }
+  ],
+  "two_input_rules": [
+   {
+    "pair": [
+     "PU.1",
+     "cJun"
+    ],
+    "fit_patterns": 7,
+    "fit_states": 158,
+    "clashes": 1
+   },
+   {
+    "pair": [
+     "PU.1",
+     "Gfi-1"
+    ],
+    "fit_patterns": 7,
+    "fit_states": 158,
+    "clashes": 1
+   },
+   {
+    "pair": [
+     "cJun",
+     "Gfi-1"
+    ],
+    "fit_patterns": 7,
+    "fit_states": 156,
+    "clashes": 1
+   }
+  ],
+  "proposed_rule": "pu1 and cjun",
+  "proposed_fit_patterns": 7,
+  "tied_two_input_rules": 2,
+  "clash_differs_only_in": [
+   "Gfi-1"
+  ],
+  "rules_on_all_inputs": 256,
+  "consistent_rules_on_all_inputs": 1,
+  "unique_consistent_rule_is_published": true
+ },
+ "count_check": {
+  "reported_states": 232,
+  "reported_transitions": 789,
+  "listed_states": 160,
+  "listed_transitions": 477,
+  "single_edits_tried": 116,
+  "distinct_single_edits": 93,
+  "edits_matching_both_counts": [
+   {
+    "gene": "C/EBPα",
+    "kind": "gate",
+    "rule": "cebpa and not (gata1 or fog1 or scl)",
+    "acyclic": true,
+    "stable_states_reached": 4,
+    "same_stable_states_as_listed": true
+   }
+  ]
+ },
+ "experiment": {
+  "perturbation": "GATA-1 held on, FOG-1 held off, from the progenitor state",
+  "listed_cebpa_on_in_all_stable": true,
+  "edited_cebpa_off_in_all_stable": true,
+  "listed_stable_states": 4,
+  "edited_stable_states": 4
+ }
+}

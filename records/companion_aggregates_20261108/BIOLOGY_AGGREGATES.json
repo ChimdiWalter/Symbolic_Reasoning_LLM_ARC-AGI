@@ -1,0 +1,477 @@
+{
+  "schema": "safe_biology_minimal_aggregates_v1",
+  "author": "Chimdi Walter Ndubuisi",
+  "status": "INTERNAL_RELEASE_CANDIDATE_NOT_PUBLISHED",
+  "scope": "Saved counts and summary statistics only. No new inference, scoring, truth reconstruction or raw-row projection.",
+  "studies": {
+    "natural_sparse_595": {
+      "domain": "Published Boolean gene-update models; simulated observations",
+      "exposure": "Previously scored reused cohort; not fresh or wet-lab discovery",
+      "counts": {
+        "targets": 595,
+        "models": 75,
+        "source_lineages": 50
+      },
+      "exact_by_budget": [
+        {
+          "label_budget": 20,
+          "conditional_exact": 329,
+          "classical_same_transcript_exact": 329,
+          "TT2_same_transcript_exact": 310,
+          "uniform_TT2_exact": 290
+        },
+        {
+          "label_budget": 40,
+          "conditional_exact": 433,
+          "classical_same_transcript_exact": 433,
+          "TT2_same_transcript_exact": 321,
+          "uniform_TT2_exact": 321
+        },
+        {
+          "label_budget": 60,
+          "conditional_exact": 465,
+          "classical_same_transcript_exact": 465,
+          "TT2_same_transcript_exact": 321,
+          "uniform_TT2_exact": 321
+        }
+      ],
+      "primary_arity": [
+        {
+          "essential_inputs": "1",
+          "targets": 165,
+          "conditional_exact_at_primary": 165,
+          "TT2_exact_at_primary": 165,
+          "conditional_exact_at_larger_budget": 165
+        },
+        {
+          "essential_inputs": "2",
+          "targets": 156,
+          "conditional_exact_at_primary": 156,
+          "TT2_exact_at_primary": 156,
+          "conditional_exact_at_larger_budget": 156
+        },
+        {
+          "essential_inputs": "3",
+          "targets": 90,
+          "conditional_exact_at_primary": 81,
+          "TT2_exact_at_primary": 0,
+          "conditional_exact_at_larger_budget": 89
+        },
+        {
+          "essential_inputs": "4 or more",
+          "targets": 184,
+          "conditional_exact_at_primary": 31,
+          "TT2_exact_at_primary": 0,
+          "conditional_exact_at_larger_budget": 55
+        }
+      ],
+      "limitations": [
+        "Classical same-transcript reconstruction ties; dependent readouts are not independent experiments.",
+        "Uniform TT2 is less expressive than conditional reconstruction.",
+        "No ARC-trained rule, new primitive, learned revision policy or acquisition advantage is established."
+      ],
+      "primary_exact_transitions": {
+        "gains_over_same_evidence_TT2": 112,
+        "losses_over_same_evidence_TT2": 0
+      },
+      "primary_outcomes": {
+        "fitted_programs": 524,
+        "exact_functions": 433,
+        "wrong_fitted_functions": 91,
+        "no_program": 71,
+        "acquisition_aborts": 30,
+        "other_no_fit_or_incomplete": 41,
+        "held_total": 2380,
+        "conditional_and_classical_held_correct": 2070,
+        "TT2_same_transcript_held_correct": 1400,
+        "uniform_TT2_held_correct": 1388
+      },
+      "larger_budget_adverse_secondary": {
+        "exact_functions": 465,
+        "held_correct": 2054,
+        "acquisition_aborts": 68
+      },
+      "all_budget_training_attempts": 141294,
+      "cost": {
+        "whole_accounted_CPU_seconds": 116.648187626,
+        "wall_through_terminal_custody_seconds": 140.316082462,
+        "scope": "Overlapping nested costs must not be added again; later reporting/publication overhead excluded."
+      }
+    },
+    "authored_fixed_boolean_loop": {
+      "domain": "Authored Boolean functions, not natural biology or ARC puzzles",
+      "exposure": "All supplied three-slot functions; fixed router, not trained",
+      "primary_work_tiers": [
+        10000,
+        40000
+      ],
+      "primary_tasks": 256,
+      "primary_held_bits": 1024,
+      "rows": [
+        {
+          "arm": "Baseline TT2",
+          "held_correct": 279,
+          "exact_functions": 38,
+          "covered": 75,
+          "wrong_fitted_functions": 37
+        },
+        {
+          "arm": "Authentic fixed evidence",
+          "held_correct": 1003,
+          "exact_functions": 219,
+          "covered": 256,
+          "wrong_fitted_functions": 37
+        },
+        {
+          "arm": "Static expressive C/E",
+          "held_correct": 1003,
+          "exact_functions": 219,
+          "covered": 256,
+          "wrong_fitted_functions": 37
+        },
+        {
+          "arm": "Random routing",
+          "held_correct": 1003,
+          "exact_functions": 219,
+          "covered": 256,
+          "wrong_fitted_functions": 37
+        },
+        {
+          "arm": "Shuffled failure features",
+          "held_correct": 819,
+          "exact_functions": 173,
+          "covered": 210,
+          "wrong_fitted_functions": 37
+        },
+        {
+          "arm": "Strict abort on evidence exhaustion",
+          "held_correct": 1003,
+          "exact_functions": 219,
+          "covered": 256,
+          "wrong_fitted_functions": 37
+        }
+      ],
+      "limitations": [
+        "Strong static, one random schedule and classical readouts tie primary accuracy.",
+        "Wrong immediate baseline fits persist.",
+        "Shuffled comparison includes an extra conservative donor-prefix debit and is not a pure failure-information causal contrast.",
+        "Readouts are dependent; work is counted once per policy."
+      ],
+      "primary_work_and_attempts_at_larger_tier": [
+        {
+          "arm": "authentic_fixed",
+          "paid_attempts": 181,
+          "native_work": 363390
+        },
+        {
+          "arm": "static_expressive",
+          "paid_attempts": 181,
+          "native_work": 417147
+        },
+        {
+          "arm": "one_random_schedule",
+          "paid_attempts": 362,
+          "native_work": 787678
+        },
+        {
+          "arm": "shuffled_failure",
+          "paid_attempts": 2160,
+          "native_work": 2045763
+        },
+        {
+          "arm": "strict_abort",
+          "paid_attempts": 181,
+          "native_work": 363390
+        },
+        {
+          "arm": "baseline_TT2",
+          "paid_attempts": 0,
+          "native_work": 174174
+        }
+      ],
+      "classical_same_evidence_ties": true,
+      "wrong_baseline_fits_retained": 37,
+      "cost": {
+        "cold_worker_CPU_seconds": 5.263553,
+        "cold_worker_wall_seconds": 5.35848131,
+        "separate_watchdog_CPU_seconds": 0.088326917,
+        "scope": "Entire cold scientific lifetime; teacher CPU nested. Reporting copy and preflight costs separate."
+      }
+    },
+    "authored_efficiency_posthoc": {
+      "domain": "Same completed authored Boolean loop",
+      "status": "Descriptive posthoc saved-aggregate arithmetic; fixed routing",
+      "native_work_authentic": 363390,
+      "native_work_static": 417147,
+      "native_work_one_random": 787678,
+      "native_work_saved_vs_static": 53757,
+      "fraction_less_than_static": 0.12886824069213013,
+      "fraction_less_than_one_random": 0.5386566591932236,
+      "applies_to_both_original_work_tiers": true,
+      "limitations": [
+        "Not first-success work, minimum work, candidate-level accuracy curve, learned control, causal diagnostic advantage or new biological result.",
+        "One frozen random schedule does not estimate average random-policy performance.",
+        "Tiny unrepeated CPU measurements do not establish statistical speedup."
+      ]
+    },
+    "active_TT2_selection_595": {
+      "domain": "Reused published Boolean models; simulated scalar labels",
+      "exposure": "Previously used cohort; fixed supplied TT2 language",
+      "targets": 595,
+      "own_labels_per_primary_arm": 20,
+      "rows": [
+        {
+          "arm": "active",
+          "exact_functions": 320,
+          "held_correct": 1586,
+          "held_answered": 1616,
+          "no_fit": 191,
+          "wrong_fitted_functions": 84
+        },
+        {
+          "arm": "uniform",
+          "exact_functions": 291,
+          "held_correct": 1747,
+          "held_answered": 1876,
+          "no_fit": 126,
+          "wrong_fitted_functions": 178
+        },
+        {
+          "arm": "shuffled_active",
+          "exact_functions": 297,
+          "held_correct": 1643,
+          "held_answered": 1740,
+          "wrong_fitted_functions": null
+        }
+      ],
+      "held_total": 2380,
+      "limitations": [
+        "Active exact recovery improves while full-denominator held accuracy decreases and coverage falls.",
+        "Higher-arity exact recovery is zero under the unchanged language.",
+        "Shuffled active depends on donor labels; not an independent equal-own-label operational control.",
+        "Shuffled wrong-fit count is unavailable in the bounded prose projection and is not inferred."
+      ],
+      "higher_arity_exact": 0,
+      "shuffled_label_dependencies": {
+        "own_relabels": 20,
+        "active_donor_labels": 20,
+        "standalone_dependency": 40,
+        "shared_three_arm_study_dependency_per_target": 60
+      },
+      "cost": {
+        "full_outer_CPU_seconds": 400.536959,
+        "full_outer_wall_seconds": 568.096108667,
+        "separate_monitor_CPU_seconds": 0.009018112,
+        "scope": "Nested phases not added again; monitor wall overlaps."
+      }
+    },
+    "fixed_query_completion_595": {
+      "domain": "Posthoc fixed completion on the same reused biological cohort",
+      "exposure": "Original failed attempt plus separately frozen score-only recovery; partial prior held access unknown",
+      "tasks": 595,
+      "held_positions": 2380,
+      "rows": [
+        {
+          "arm": "active",
+          "readout": "original",
+          "held_correct": 1586,
+          "held_answered": 1616,
+          "exact_functions": 320
+        },
+        {
+          "arm": "active",
+          "readout": "label majority",
+          "held_correct": 2178,
+          "held_answered": 2380,
+          "exact_functions": 320
+        },
+        {
+          "arm": "active",
+          "readout": "minimum-error point",
+          "held_correct": 2194,
+          "held_answered": 2380,
+          "exact_functions": 320
+        },
+        {
+          "arm": "active",
+          "readout": "minimum-error query vote",
+          "held_correct": 2200,
+          "held_answered": 2380,
+          "exact_functions": 320
+        },
+        {
+          "arm": "active",
+          "readout": "fixed zero",
+          "held_correct": 2002,
+          "held_answered": 2380,
+          "exact_functions": 320
+        },
+        {
+          "arm": "uniform",
+          "readout": "original",
+          "held_correct": 1747,
+          "held_answered": 1876,
+          "exact_functions": 291
+        },
+        {
+          "arm": "uniform",
+          "readout": "label majority",
+          "held_correct": 2112,
+          "held_answered": 2380,
+          "exact_functions": 291
+        },
+        {
+          "arm": "uniform",
+          "readout": "minimum-error point",
+          "held_correct": 2149,
+          "held_answered": 2380,
+          "exact_functions": 291
+        },
+        {
+          "arm": "uniform",
+          "readout": "minimum-error query vote",
+          "held_correct": 2153,
+          "held_answered": 2380,
+          "exact_functions": 291
+        },
+        {
+          "arm": "uniform",
+          "readout": "fixed zero",
+          "held_correct": 2028,
+          "held_answered": 2380,
+          "exact_functions": 291
+        },
+        {
+          "arm": "shuffled active",
+          "readout": "original",
+          "held_correct": 1643,
+          "held_answered": 1740,
+          "exact_functions": 297
+        },
+        {
+          "arm": "shuffled active",
+          "readout": "label majority",
+          "held_correct": 2122,
+          "held_answered": 2380,
+          "exact_functions": 297
+        },
+        {
+          "arm": "shuffled active",
+          "readout": "minimum-error point",
+          "held_correct": 2146,
+          "held_answered": 2380,
+          "exact_functions": 297
+        },
+        {
+          "arm": "shuffled active",
+          "readout": "minimum-error query vote",
+          "held_correct": 2156,
+          "held_answered": 2380,
+          "exact_functions": 297
+        },
+        {
+          "arm": "shuffled active",
+          "readout": "fixed zero",
+          "held_correct": 2004,
+          "held_answered": 2380,
+          "exact_functions": 297
+        }
+      ],
+      "limitations": [
+        "Completion changes query coverage and predictions, not exact-function recovery or grammar.",
+        "All fixed readouts retained; full-denominator and conditional answered accuracy differ.",
+        "Recovery did no new training inference, but did reevaluate held truth; not pristine or a single scoring-ever claim."
+      ],
+      "saved_primary_difference_correct_queries": 47,
+      "historical_training_label_dependency": 35700,
+      "recovery_new_training_calls": 0,
+      "recovery_held_truth_evaluations": 2380,
+      "cost": {
+        "original_failed_outer_CPU_seconds": 296.569265,
+        "original_failed_outer_wall_seconds": 737.011812,
+        "recovery_waited_child_CPU_seconds": 19.839388,
+        "recovery_waited_child_wall_seconds": 45.111814,
+        "two_attempts_waited_CPU_seconds": 316.408653,
+        "two_attempts_waited_wall_seconds": 782.123626,
+        "two_attempts_with_monitors_CPU_seconds": 329.157131,
+        "scope": "Execution sums, not source/review/whole-project cost; nested stages and monitor wall not added again."
+      }
+    },
+    "inferred_support_R4_595": {
+      "domain": "Published Boolean rules, demonstrations infer structural prior",
+      "exposure": "Previously parsed models; readmission and late compatibility/cache/bank qualifications",
+      "targets": 595,
+      "models": 75,
+      "source_lineages": 50,
+      "rows": [
+        {
+          "arm": "IW",
+          "exact_functions": 101,
+          "wrong_accepted": 124,
+          "rejected": 370,
+          "not_checkable": 0,
+          "not_built": 0
+        },
+        {
+          "arm": "SIW",
+          "exact_functions": 66,
+          "wrong_accepted": 114,
+          "rejected": 415,
+          "not_checkable": 0,
+          "not_built": 0
+        },
+        {
+          "arm": "NW0",
+          "exact_functions": 66,
+          "wrong_accepted": 112,
+          "rejected": 417,
+          "not_checkable": 0,
+          "not_built": 0
+        },
+        {
+          "arm": "NW1",
+          "exact_functions": 66,
+          "wrong_accepted": 112,
+          "rejected": 417,
+          "not_checkable": 0,
+          "not_built": 0
+        },
+        {
+          "arm": "CW",
+          "exact_functions": 222,
+          "wrong_accepted": 122,
+          "rejected": 251,
+          "not_checkable": 0,
+          "not_built": 0
+        }
+      ],
+      "limitations": [
+        "Correct wiring is a privileged descriptive ceiling.",
+        "More exact rules coexist with more wrong accepted rules.",
+        "Late compatibility checks and incomplete independently pinned prelaunch caches prevent pristine confirmation wording.",
+        "No biological discovery or ARC-learned grammar transfer."
+      ],
+      "arm_explanations": {
+        "IW": "Demonstration-inferred support",
+        "SIW": "Shuffled inferred-support control",
+        "NW0_and_NW1": "Full-prior and empty-prior controls; exact mapping of the abbreviations not inferred here",
+        "CW": "Supplied correct-wiring privileged reference"
+      },
+      "exact_transitions_against_each_nonprivileged_control": {
+        "gains": 35,
+        "losses": 0
+      },
+      "secondary_query_precision": {
+        "inferred_correct": 807,
+        "inferred_answered": 900,
+        "full_or_empty_control_correct": 624,
+        "full_or_empty_control_answered": 687
+      },
+      "cost": {
+        "cumulative_CPU_seconds": 806.631663,
+        "wall_seconds": 823.387913,
+        "scope": "Supervisor cumulative CPU including bookkeeping; wall includes prelaunch idle; stage scopes are not additive."
+      }
+    }
+  }
+}

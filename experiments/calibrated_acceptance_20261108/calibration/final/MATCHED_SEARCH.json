@@ -1,0 +1,70 @@
+{
+ "arm": "MATCHED_SEARCH",
+ "scope": "final",
+ "program": [
+  {
+   "op": "add_lowthresh",
+   "theta_index": 0,
+   "guard": [
+    [
+     2,
+     ">",
+     0.5511017851153068
+    ],
+    [
+     3,
+     ">",
+     0.9063734589166011
+    ]
+   ]
+  }
+ ],
+ "cal_f1": 0.5217014515779591,
+ "baseline_cal_f1": 0.5032031726662599,
+ "candidates_scored": 35133,
+ "eligible_candidates_returned": 1502,
+ "work": {
+  "programs_scored": 35133,
+  "conflicted_excluded": 3018,
+  "eligible_candidates": 1502,
+  "exact_beam_applications": 3,
+  "stopped_inside_step": 0,
+  "partial_step_candidates_discarded": 0,
+  "stages_completed": []
+ },
+ "charged": {
+  "exact_image_matchings": 1544,
+  "unit_tables": 2596,
+  "policy_runs": 0,
+  "exact_certified_programs": 0,
+  "policy_spaces": 11,
+  "policy_programs_scored": 35133,
+  "policy_fits": 0,
+  "policy_program_selections": 0
+ },
+ "cpu_s": 122.6,
+ "cpu_s_exact": 122.558797236,
+ "wall_s": 122.6,
+ "budget_s": 116.32573284400002,
+ "stopped": "budget reached",
+ "schedule": [
+  [
+   3,
+   3
+  ],
+  [
+   3,
+   10
+  ],
+  [
+   3,
+   30
+  ],
+  [
+   5,
+   30
+  ]
+ ],
+ "cpu_over_budget_s": 6.2,
+ "calibrated_cpu_budget_s": 116.32573284400002
+}

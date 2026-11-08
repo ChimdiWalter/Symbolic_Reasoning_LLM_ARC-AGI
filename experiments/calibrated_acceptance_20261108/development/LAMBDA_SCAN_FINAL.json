@@ -1,0 +1,1201 @@
+{
+ "label": "DEVELOPMENT: each operator alone on STRONG_NATIVE of the 12 NuInsSeg calibration organs (236 images); level 0.05/3 one-sided",
+ "alphas": [
+  0.2,
+  0.3,
+  0.4,
+  0.5,
+  0.6,
+  0.75,
+  1.0
+ ],
+ "operators": {
+  "add_lowthresh": {
+   "units": 2097,
+   "programs": 2017,
+   "best_in_sample": {
+    "pooled_gain": 0.018498278911699195,
+    "accepted": 837,
+    "harmful": 422,
+    "beneficial": 313
+   },
+   "by_alpha": {
+    "0.2": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00030974872859465167,
+     "lcb_gain": -0.0001209086239154457,
+     "harmful_rate": 0.375,
+     "ucb_harmful_rate": 0.5903722105348806,
+     "out_of_fold": {
+      "accepted": 8,
+      "harmful": 3,
+      "beneficial": 4,
+      "images": 236,
+      "organs_with_fold_program": 11
+     }
+    },
+    "0.3": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0055352408385453775,
+     "lcb_gain": 0.0006494340119756565,
+     "harmful_rate": 0.41333333333333333,
+     "ucb_harmful_rate": 0.4845778748260011,
+     "out_of_fold": {
+      "accepted": 75,
+      "harmful": 31,
+      "beneficial": 33,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.4": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.01681604286939583,
+     "lcb_gain": 0.0043935888637699795,
+     "harmful_rate": 0.4362017804154303,
+     "ucb_harmful_rate": 0.5300426516046999,
+     "out_of_fold": {
+      "accepted": 337,
+      "harmful": 147,
+      "beneficial": 153,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.5": {
+     "status": "HARM_NOT_CERTIFIED",
+     "mean_gain": 0.019966778210238883,
+     "lcb_gain": 0.004214521838559318,
+     "harmful_rate": 0.5460440985732814,
+     "ucb_harmful_rate": 0.6806347515876259,
+     "out_of_fold": {
+      "accepted": 771,
+      "harmful": 421,
+      "beneficial": 260,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.6": {
+     "status": "HARM_NOT_CERTIFIED",
+     "mean_gain": 0.019807716422327537,
+     "lcb_gain": 0.0041137157681234715,
+     "harmful_rate": 0.5475578406169666,
+     "ucb_harmful_rate": 0.6804598791556726,
+     "out_of_fold": {
+      "accepted": 778,
+      "harmful": 426,
+      "beneficial": 261,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.75": {
+     "status": "HARM_NOT_CERTIFIED",
+     "mean_gain": 0.019807716422327537,
+     "lcb_gain": 0.0041137157681234715,
+     "harmful_rate": 0.5475578406169666,
+     "ucb_harmful_rate": 0.6804598791556726,
+     "out_of_fold": {
+      "accepted": 778,
+      "harmful": 426,
+      "beneficial": 261,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "1.0": {
+     "status": "HARM_NOT_CERTIFIED",
+     "mean_gain": 0.019807716422327537,
+     "lcb_gain": 0.0041137157681234715,
+     "harmful_rate": 0.5475578406169666,
+     "ucb_harmful_rate": 0.6804598791556726,
+     "out_of_fold": {
+      "accepted": 778,
+      "harmful": 426,
+      "beneficial": 261,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    }
+   }
+  },
+  "fill_holes": {
+   "units": 6164,
+   "programs": 870,
+   "best_in_sample": null,
+   "by_alpha": {
+    "0.2": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.3": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.4": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.5": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.6": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.75": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "1.0": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    }
+   }
+  },
+  "split_dt": {
+   "units": 6164,
+   "programs": 6489,
+   "best_in_sample": null,
+   "by_alpha": {
+    "0.2": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.3": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.4": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.5": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.6": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.75": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "1.0": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    }
+   }
+  },
+  "split_int": {
+   "units": 6164,
+   "programs": 8387,
+   "best_in_sample": null,
+   "by_alpha": {
+    "0.2": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.3": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.4": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.5": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.6": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.75": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "1.0": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    }
+   }
+  },
+  "merge_pairs": {
+   "units": 697,
+   "programs": 2017,
+   "best_in_sample": {
+    "pooled_gain": 0.0004643089963317637,
+    "accepted": 30,
+    "harmful": 6,
+    "beneficial": 18
+   },
+   "by_alpha": {
+    "0.2": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.001311895782392921,
+     "lcb_gain": -0.0028909435097540567,
+     "harmful_rate": 0.4722222222222222,
+     "ucb_harmful_rate": 0.6700358437859193,
+     "out_of_fold": {
+      "accepted": 36,
+      "harmful": 17,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.3": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0011715432213281803,
+     "lcb_gain": -0.002689581948337714,
+     "harmful_rate": 0.53125,
+     "ucb_harmful_rate": 0.6805595597457905,
+     "out_of_fold": {
+      "accepted": 32,
+      "harmful": 17,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.4": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.00191706891002028,
+     "lcb_gain": -0.003828516255302051,
+     "harmful_rate": 0.5714285714285714,
+     "ucb_harmful_rate": 0.7083847609988422,
+     "out_of_fold": {
+      "accepted": 35,
+      "harmful": 20,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.5": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.00191706891002028,
+     "lcb_gain": -0.003828516255302051,
+     "harmful_rate": 0.5714285714285714,
+     "ucb_harmful_rate": 0.7083847609988422,
+     "out_of_fold": {
+      "accepted": 35,
+      "harmful": 20,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.6": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.00191706891002028,
+     "lcb_gain": -0.003828516255302051,
+     "harmful_rate": 0.5714285714285714,
+     "ucb_harmful_rate": 0.7083847609988422,
+     "out_of_fold": {
+      "accepted": 35,
+      "harmful": 20,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.75": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.00191706891002028,
+     "lcb_gain": -0.003828516255302051,
+     "harmful_rate": 0.5714285714285714,
+     "ucb_harmful_rate": 0.7083847609988422,
+     "out_of_fold": {
+      "accepted": 35,
+      "harmful": 20,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "1.0": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.00191706891002028,
+     "lcb_gain": -0.003828516255302051,
+     "harmful_rate": 0.5714285714285714,
+     "ucb_harmful_rate": 0.7083847609988422,
+     "out_of_fold": {
+      "accepted": 35,
+      "harmful": 20,
+      "beneficial": 10,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    }
+   }
+  },
+  "close": {
+   "units": 6164,
+   "programs": 3081,
+   "best_in_sample": null,
+   "by_alpha": {
+    "0.2": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.3": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.4": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.5": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.6": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "0.75": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    },
+    "1.0": {
+     "status": "NO_OUT_OF_FOLD_EDIT",
+     "mean_gain": 0.0,
+     "lcb_gain": 0.0,
+     "harmful_rate": null,
+     "ucb_harmful_rate": null,
+     "out_of_fold": {
+      "accepted": 0,
+      "harmful": 0,
+      "beneficial": 0,
+      "images": 236,
+      "organs_with_fold_program": 0
+     }
+    }
+   }
+  },
+  "open": {
+   "units": 6164,
+   "programs": 3081,
+   "best_in_sample": {
+    "pooled_gain": 0.0006101281269066394,
+    "accepted": 3808,
+    "harmful": 1,
+    "beneficial": 5
+   },
+   "by_alpha": {
+    "0.2": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.3": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.4": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.5": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.6": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.75": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "1.0": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 0.00010448192421495358,
+     "lcb_gain": -0.0001374837266400304,
+     "harmful_rate": 0.0002914602156805596,
+     "ucb_harmful_rate": 0.0007207860981653341,
+     "out_of_fold": {
+      "accepted": 3431,
+      "harmful": 1,
+      "beneficial": 2,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    }
+   }
+  },
+  "dilate": {
+   "units": 6164,
+   "programs": 3081,
+   "best_in_sample": {
+    "pooled_gain": 0.0009151921903599591,
+    "accepted": 48,
+    "harmful": 0,
+    "beneficial": 6
+   },
+   "by_alpha": {
+    "0.2": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.3": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.4": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.5": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.6": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.75": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "1.0": {
+     "status": "ACCEPTED",
+     "mean_gain": 0.0006425974470130719,
+     "lcb_gain": 2.6214966089866407e-06,
+     "harmful_rate": 0.0,
+     "ucb_harmful_rate": 0.0,
+     "out_of_fold": {
+      "accepted": 48,
+      "harmful": 0,
+      "beneficial": 6,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    }
+   }
+  },
+  "erode": {
+   "units": 6164,
+   "programs": 2054,
+   "best_in_sample": {
+    "pooled_gain": 0.0022879804758999533,
+    "accepted": 810,
+    "harmful": 9,
+    "beneficial": 24
+   },
+   "by_alpha": {
+    "0.2": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.3": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.4": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.5": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.6": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.75": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "1.0": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.0016717965331443537,
+     "lcb_gain": -0.010292697464024895,
+     "harmful_rate": 0.02629016553067186,
+     "ucb_harmful_rate": 0.050661184799642496,
+     "out_of_fold": {
+      "accepted": 1027,
+      "harmful": 27,
+      "beneficial": 14,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    }
+   }
+  },
+  "delete": {
+   "units": 6164,
+   "programs": 3695,
+   "best_in_sample": {
+    "pooled_gain": 0.003532416306171182,
+    "accepted": 409,
+    "harmful": 64,
+    "beneficial": 280
+   },
+   "by_alpha": {
+    "0.2": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.3": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.4": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.5": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.6": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "0.75": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    },
+    "1.0": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": -0.007156967018626073,
+     "lcb_gain": -0.021661065117135676,
+     "harmful_rate": 0.40632603406326034,
+     "ucb_harmful_rate": 0.672244442393237,
+     "out_of_fold": {
+      "accepted": 411,
+      "harmful": 167,
+      "beneficial": 189,
+      "images": 236,
+      "organs_with_fold_program": 12
+     }
+    }
+   }
+  },
+  "clear_border": {
+   "units": 853,
+   "programs": 361,
+   "best_in_sample": null,
+   "by_alpha": {
+    "0.2": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    },
+    "0.3": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    },
+    "0.4": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    },
+    "0.5": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    },
+    "0.6": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    },
+    "0.75": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    },
+    "1.0": {
+     "status": "GAIN_NOT_CERTIFIED",
+     "mean_gain": 4.538016788394379e-06,
+     "lcb_gain": -2.986200326450553e-06,
+     "harmful_rate": 0.5,
+     "ucb_harmful_rate": 0.5,
+     "out_of_fold": {
+      "accepted": 2,
+      "harmful": 1,
+      "beneficial": 1,
+      "images": 236,
+      "organs_with_fold_program": 1
+     }
+    }
+   }
+  }
+ },
+ "cpu_s": 116.1,
+ "mode": "final"
+}

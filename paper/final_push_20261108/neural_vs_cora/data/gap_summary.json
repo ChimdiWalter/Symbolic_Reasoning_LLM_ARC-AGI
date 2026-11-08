@@ -1,0 +1,237 @@
+{
+ "label": "post hoc, exposed public evaluation, not an official score",
+ "gap_outputs": 41,
+ "gap_tasks": 36,
+ "per_cause": {
+  "scene parsing": {
+   "outputs": 18,
+   "tasks": 14
+  },
+  "missing action": {
+   "outputs": 40,
+   "tasks": 35
+  },
+  "missing guard": {
+   "outputs": 1,
+   "tasks": 1
+  },
+  "program depth": {
+   "outputs": 0,
+   "tasks": 0
+  },
+  "budget": {
+   "outputs": 0,
+   "tasks": 0
+  },
+  "construction missed a short program": {
+   "outputs": 0,
+   "tasks": 0
+  }
+ },
+ "cause_combinations": {
+  "missing action": [
+   "1818057f",
+   "1ae2feb7",
+   "2ba387bc",
+   "31f7f899",
+   "36a08778",
+   "6e453dd6",
+   "7666fa5d",
+   "7b80bb43",
+   "7c66cb00",
+   "7ed72f31",
+   "8b9c3697",
+   "8f3a5a89",
+   "9aaea919",
+   "a395ee82",
+   "aa4ec2a5",
+   "b5ca7ac4",
+   "b6f77b65",
+   "bf45cf4b",
+   "d8e07eb2",
+   "db0c5428",
+   "e8686506"
+  ],
+  "scene parsing + missing action": [
+   "135a2760",
+   "20270e3b",
+   "2d0172a1",
+   "38007db0",
+   "3a25b0d8",
+   "45a5af55",
+   "4c3d4a41",
+   "4c7dc4dd",
+   "58f5dbd5",
+   "65b59efc",
+   "71e489b6",
+   "78332cb0",
+   "a251c730",
+   "de809cff"
+  ],
+  "missing guard": [
+   "d35bdbdc"
+  ]
+ },
+ "language_details": {
+  "missing action: changed cells that no action of any object can write": [
+   "135a2760",
+   "1818057f",
+   "1ae2feb7",
+   "31f7f899",
+   "36a08778",
+   "4c3d4a41",
+   "6e453dd6",
+   "71e489b6",
+   "7666fa5d",
+   "7b80bb43",
+   "7c66cb00",
+   "7ed72f31",
+   "8b9c3697",
+   "8f3a5a89",
+   "9aaea919",
+   "a395ee82",
+   "aa4ec2a5",
+   "b6f77b65",
+   "d8e07eb2",
+   "db0c5428",
+   "de809cff"
+  ],
+  "missing action: the output is built, not cut out of the input": [
+   "20270e3b",
+   "2ba387bc",
+   "2d0172a1",
+   "38007db0",
+   "3a25b0d8",
+   "45a5af55",
+   "4c7dc4dd",
+   "58f5dbd5",
+   "65b59efc",
+   "78332cb0",
+   "a251c730",
+   "bf45cf4b",
+   "e8686506"
+  ],
+  "missing action: objects move by distances that CORA's stopping rules do not produce": [
+   "b5ca7ac4"
+  ],
+  "missing guard: no rule list over CORA's guard atoms assigns the actions": [
+   "d35bdbdc"
+  ]
+ },
+ "missing_pieces": {
+  "arrange copies of input objects in a new grid": [
+   "2ba387bc",
+   "e8686506"
+  ],
+  "arrange input objects and draw new content": [
+   "65b59efc",
+   "bf45cf4b"
+  ],
+  "build the output from pieces of the input": [
+   "20270e3b",
+   "2d0172a1",
+   "38007db0",
+   "3a25b0d8",
+   "45a5af55",
+   "4c7dc4dd",
+   "58f5dbd5",
+   "78332cb0",
+   "a251c730"
+  ],
+  "copy a shape to a new place": [
+   "7ed72f31",
+   "9aaea919"
+  ],
+  "draw a border around an object": [
+   "aa4ec2a5"
+  ],
+  "draw lines or fill regions on the background": [
+   "1ae2feb7",
+   "31f7f899",
+   "36a08778",
+   "6e453dd6",
+   "7666fa5d",
+   "7b80bb43",
+   "8b9c3697",
+   "8f3a5a89",
+   "a395ee82",
+   "b6f77b65",
+   "d8e07eb2",
+   "db0c5428"
+  ],
+  "erase part of an object": [
+   "135a2760",
+   "de809cff"
+  ],
+  "no rule list over CORA's guard atoms assigns the actions": [
+   "d35bdbdc"
+  ],
+  "objects move by distances that CORA's stopping rules do not produce": [
+   "b5ca7ac4"
+  ],
+  "recolour part of an object": [
+   "1818057f",
+   "4c3d4a41",
+   "71e489b6",
+   "7c66cb00"
+  ]
+ },
+ "uncovered_share_same_size": {
+  "135a2760": 0.5,
+  "1818057f": 1.0,
+  "1ae2feb7": 1.0,
+  "31f7f899": 1.0,
+  "36a08778": 0.876,
+  "4c3d4a41": 0.03,
+  "6e453dd6": 0.236,
+  "71e489b6": 0.408,
+  "7666fa5d": 0.739,
+  "7b80bb43": 0.097,
+  "7c66cb00": 0.5,
+  "7ed72f31": 0.889,
+  "8b9c3697": 0.537,
+  "8f3a5a89": 0.517,
+  "9aaea919": 0.272,
+  "a395ee82": 0.703,
+  "aa4ec2a5": 0.285,
+  "b6f77b65": 0.207,
+  "d8e07eb2": 0.403,
+  "db0c5428": 0.868,
+  "de809cff": 0.397
+ },
+ "writable_part_needs_two_actions_tasks": [
+  "aa4ec2a5",
+  "d8e07eb2",
+  "de809cff"
+ ],
+ "partial_fit_tasks": [],
+ "fit_any_budget": [],
+ "object_cap_tasks": [
+  "4c7dc4dd",
+  "a251c730",
+  "d8e07eb2"
+ ],
+ "whole_grid_search": {
+  "1x": {
+   "searched every two-step program, no fit": 32,
+   "stopped at its execution cap, no fit": 4,
+   "fit found": 0
+  },
+  "4x": {
+   "searched every two-step program, no fit": 36,
+   "stopped at its execution cap, no fit": 0,
+   "fit found": 0
+  },
+  "10x": {
+   "searched every two-step program, no fit": 36,
+   "stopped at its execution cap, no fit": 0,
+   "fit found": 0
+  }
+ },
+ "max_task_cpu_s": {
+  "1": 9.44,
+  "4": 8.305,
+  "10": 8.654
+ },
+ "total_rerun_cpu_s": 613.5
+}

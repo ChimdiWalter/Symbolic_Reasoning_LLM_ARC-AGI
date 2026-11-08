@@ -1,0 +1,33 @@
+{
+ "arms": [
+  "hand",
+  "frequency",
+  "linear",
+  "small_guide",
+  "spec_guide",
+  "shuffled_spec"
+ ],
+ "budgets": [
+  125,
+  500,
+  2000
+ ],
+ "gen_limit_s": 10800,
+ "models": {
+  "block_models": "models/block_models.json",
+  "spec_guide": "models/spec_guide.pt"
+ },
+ "per_edit": 60,
+ "primary_budget": 125,
+ "probe": {
+  "folds": 5,
+  "label": "the generating edit type",
+  "random_init_seed": 1
+ },
+ "probe_random_init_seed": 1,
+ "run_limit_s": null,
+ "second_budget": 500,
+ "shuffle_rule": "held task i (task-id order) reads the specification of task (i + n // 2) mod n",
+ "spec_variant": "v2: encoder over the specification's cell tokens with the block head (block features, key and the specification summary); success labels",
+ "workers": 1
+}

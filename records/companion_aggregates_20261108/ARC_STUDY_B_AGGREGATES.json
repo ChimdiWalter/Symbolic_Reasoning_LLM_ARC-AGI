@@ -1,0 +1,994 @@
+{
+  "arm_labels": {
+    "G0": "Original fixed-language solver",
+    "construct": "Task-local object construction",
+    "construct_shuf": "Construction from donor demonstrations",
+    "lib": "Learned program library",
+    "obj": "Reuse of source-grown object operations",
+    "obj_shuf": "Shuffled object registry",
+    "shuf": "Shuffled program library",
+    "static_construct": "Extra-CPU G0 search, construction allowance",
+    "static_lib": "Extra-CPU G0 search, library allowance",
+    "static_obj": "Extra-CPU G0 search, object-reuse allowance"
+  },
+  "author": "Chimdi Walter Ndubuisi",
+  "descriptive_two_related_2d_benchmarks": {
+    "G0": {
+      "correct": 6,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "construct": {
+      "correct": 57,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "construct_shuf": {
+      "correct": 0,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "lib": {
+      "correct": 10,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "obj": {
+      "correct": 11,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "obj_shuf": {
+      "correct": 6,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "shuf": {
+      "correct": 7,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "static_construct": {
+      "correct": 30,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "static_lib": {
+      "correct": 20,
+      "outputs": 315,
+      "tasks": 155
+    },
+    "static_obj": {
+      "correct": 30,
+      "outputs": 315,
+      "tasks": 155
+    }
+  },
+  "limitations": [
+    "Pooled reuse benefit is concentrated in 1D-ARC; related 2D reuse loses to static search.",
+    "ConceptARC plus Mini-ARC is descriptive benchmark arithmetic, not a predeclared confirmatory geometry subgroup.",
+    "Construction uses a fixed controller and typed-hole constructor; its multi-pair gate is not genuine leave-one-out reconstruction.",
+    "Registry shuffle and donor demonstrations do not isolate an otherwise identical failure-only intervention.",
+    "The exposed public ARC check is inconclusive, not an official score or matched improvement over O+ or H.",
+    "No task IDs, structures, input/output grids, answers, predictions, programs, operations, GO files or seals are included.",
+    "Source correctness, prediction execution, statistical independence and complete historical compute are not independently recertified."
+  ],
+  "metric_semantics": {
+    "comparison_task_counts": "Tasks with a higher within-task count for the stated metric, not exclusive fully solved tasks. Higher wrong-output counts are harms.",
+    "correct": "Exact correct query outputs under pass@2 over all planned queries, including abstentions. Not merely answered outputs or fully solved tasks.",
+    "family": "Public benchmark group counts only; all groups contain at least four tasks. Mini-ARC is pooled, not individual task clusters.",
+    "held": "Held from this study development split within shared benchmark families; prior project exposure remains.",
+    "intervals": "Reported source family-cluster intervals, without recomputation; individual Mini-ARC task clusters used by the source bootstrap are not reconstructed here.",
+    "p_values": "Reported two-sided task-sign/binomial values, rounded to six decimals before Holm. A stored zero is rounded, not literal probability zero.",
+    "static": "Extra-CPU G0 search with the declared allowances, not identical expanded-operation-bank access."
+  },
+  "public_arc_agi_2_check": {
+    "exposure_statement": "used in earlier development and gates of the project, and touched by the first dry run of this study (95 tasks' inputs, no solution opened); not a fresh test",
+    "totals": {
+      "G0": {
+        "correct": 0,
+        "outputs": 172,
+        "tasks": 120
+      },
+      "construct": {
+        "correct": 2,
+        "outputs": 172,
+        "tasks": 120
+      },
+      "lib": {
+        "correct": 0,
+        "outputs": 172,
+        "tasks": 120
+      },
+      "obj": {
+        "correct": 0,
+        "outputs": 172,
+        "tasks": 120
+      },
+      "static_construct": {
+        "correct": 0,
+        "outputs": 172,
+        "tasks": 120
+      },
+      "static_lib": {
+        "correct": 0,
+        "outputs": 172,
+        "tasks": 120
+      },
+      "static_obj": {
+        "correct": 0,
+        "outputs": 172,
+        "tasks": 120
+      }
+    }
+  },
+  "public_family_aggregates": [
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 24,
+        "lib": 2,
+        "obj": 24,
+        "static_obj": 24
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_fill",
+      "tasks": 24
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 22,
+        "lib": 22,
+        "obj": 0,
+        "static_obj": 22
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_flip",
+      "tasks": 22
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 24,
+        "lib": 0,
+        "obj": 24,
+        "static_obj": 1
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_hollow",
+      "tasks": 24
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 6,
+        "lib": 0,
+        "obj": 5,
+        "static_obj": 0
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_mirror",
+      "tasks": 23
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 25,
+        "lib": 0,
+        "obj": 25,
+        "static_obj": 24
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_move_1p",
+      "tasks": 25
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 25,
+        "lib": 0,
+        "obj": 25,
+        "static_obj": 6
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_move_2p",
+      "tasks": 25
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 25,
+        "lib": 0,
+        "obj": 25,
+        "static_obj": 0
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_move_2p_dp",
+      "tasks": 25
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 25,
+        "lib": 0,
+        "obj": 25,
+        "static_obj": 4
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_move_3p",
+      "tasks": 25
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 25,
+        "lib": 0,
+        "obj": 25,
+        "static_obj": 1
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_move_dp",
+      "tasks": 25
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 4,
+        "lib": 0,
+        "obj": 4,
+        "static_obj": 0
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_padded_fill",
+      "tasks": 4
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 20,
+        "lib": 3,
+        "obj": 8,
+        "static_obj": 5
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_recolor_cmp",
+      "tasks": 20
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 20,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_recolor_cnt",
+      "tasks": 20
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 15,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_recolor_oe",
+      "tasks": 21
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 26,
+        "lib": 0,
+        "obj": 26,
+        "static_obj": 1
+      },
+      "public_benchmark": "1d_arc",
+      "public_family": "1d_scale_dp",
+      "tasks": 26
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 0,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "AboveBelow",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 0,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 2
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "Center",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 0,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 2
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "CleanUp",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 0,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 4
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "CompleteShape",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 3,
+        "construct": 3,
+        "lib": 3,
+        "obj": 3,
+        "static_obj": 5
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "Copy",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 3,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "Count",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 8,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "ExtendToBoundary",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 3,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 3
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "ExtractObjects",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 3,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 2
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "FilledNotFilled",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 2,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "HorizontalVertical",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 2,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 3
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "InsideOutside",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 6,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "MoveToBoundary",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 0,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "Order",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 6,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 0
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "SameDifferent",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 1,
+        "construct": 7,
+        "lib": 5,
+        "obj": 6,
+        "static_obj": 4
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "TopBottom2D",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 0,
+        "construct": 3,
+        "lib": 0,
+        "obj": 0,
+        "static_obj": 2
+      },
+      "public_benchmark": "concept_arc",
+      "public_family": "TopBottom3D",
+      "tasks": 5
+    },
+    {
+      "correct": {
+        "G0": 2,
+        "construct": 11,
+        "lib": 2,
+        "obj": 2,
+        "static_obj": 3
+      },
+      "public_benchmark": "mini_arc",
+      "public_family": "mini_arc",
+      "tasks": 75
+    }
+  ],
+  "related_by_public_benchmark": {
+    "1d_arc": {
+      "G0": {
+        "correct": 0,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "construct": {
+        "correct": 286,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "construct_shuf": {
+        "correct": 10,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "lib": {
+        "correct": 27,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "obj": {
+        "correct": 216,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "obj_shuf": {
+        "correct": 0,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "shuf": {
+        "correct": 0,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "static_construct": {
+        "correct": 88,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "static_lib": {
+        "correct": 36,
+        "outputs": 309,
+        "tasks": 309
+      },
+      "static_obj": {
+        "correct": 88,
+        "outputs": 309,
+        "tasks": 309
+      }
+    },
+    "concept_arc": {
+      "G0": {
+        "correct": 4,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "construct": {
+        "correct": 46,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "construct_shuf": {
+        "correct": 0,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "lib": {
+        "correct": 8,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "obj": {
+        "correct": 9,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "obj_shuf": {
+        "correct": 4,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "shuf": {
+        "correct": 5,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "static_construct": {
+        "correct": 27,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "static_lib": {
+        "correct": 17,
+        "outputs": 240,
+        "tasks": 80
+      },
+      "static_obj": {
+        "correct": 27,
+        "outputs": 240,
+        "tasks": 80
+      }
+    },
+    "mini_arc": {
+      "G0": {
+        "correct": 2,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "construct": {
+        "correct": 11,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "construct_shuf": {
+        "correct": 0,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "lib": {
+        "correct": 2,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "obj": {
+        "correct": 2,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "obj_shuf": {
+        "correct": 2,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "shuf": {
+        "correct": 2,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "static_construct": {
+        "correct": 3,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "static_lib": {
+        "correct": 3,
+        "outputs": 75,
+        "tasks": 75
+      },
+      "static_obj": {
+        "correct": 3,
+        "outputs": 75,
+        "tasks": 75
+      }
+    }
+  },
+  "related_overall": {
+    "G0": {
+      "correct": 6,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "construct": {
+      "correct": 343,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "construct_shuf": {
+      "correct": 10,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "lib": {
+      "correct": 37,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "obj": {
+      "correct": 227,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "obj_shuf": {
+      "correct": 6,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "shuf": {
+      "correct": 7,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "static_construct": {
+      "correct": 118,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "static_lib": {
+      "correct": 56,
+      "outputs": 624,
+      "tasks": 464
+    },
+    "static_obj": {
+      "correct": 118,
+      "outputs": 624,
+      "tasks": 464
+    }
+  },
+  "reported_comparisons": {
+    "PRIMARY_reuse_vs_matched_static": {
+      "arm_a": "obj",
+      "arm_b": "static_obj",
+      "count_difference": 109,
+      "counts": {
+        "obj": 227,
+        "static_obj": 118
+      },
+      "decision": "obj beats static_obj",
+      "family_cluster_ci95": [
+        7,
+        204
+      ],
+      "metric": "correct_query_outputs",
+      "stored_task_sign_p": 0.0,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 155,
+      "tasks_with_higher_metric_arm_b": 36
+    },
+    "S0_library_vs_G0": {
+      "arm_a": "lib",
+      "arm_b": "G0",
+      "count_difference": 31,
+      "counts": {
+        "G0": 6,
+        "lib": 37
+      },
+      "decision": "lib beats G0",
+      "family_cluster_ci95": [
+        2,
+        79
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.0,
+      "stored_task_sign_p": 0.0,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 29,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S10_arc_agi_2_construction_vs_matched_static": {
+      "arm_a": "construct",
+      "arm_b": "static_construct",
+      "count_difference": 2,
+      "counts": {
+        "construct": 2,
+        "static_construct": 0
+      },
+      "decision": "inconclusive",
+      "family_cluster_ci95": [
+        0,
+        6
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 1.0,
+      "stored_task_sign_p": 1.0,
+      "tasks": 120,
+      "tasks_with_higher_metric_arm_a": 1,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S1_library_vs_matched_static": {
+      "arm_a": "lib",
+      "arm_b": "static_lib",
+      "count_difference": -19,
+      "counts": {
+        "lib": 37,
+        "static_lib": 56
+      },
+      "decision": "static_lib beats lib",
+      "family_cluster_ci95": [
+        -38,
+        -3
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.018039,
+      "stored_task_sign_p": 0.002577,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 3,
+      "tasks_with_higher_metric_arm_b": 17
+    },
+    "S2_library_vs_shuffled_library": {
+      "arm_a": "lib",
+      "arm_b": "shuf",
+      "count_difference": 30,
+      "counts": {
+        "lib": 37,
+        "shuf": 7
+      },
+      "decision": "lib beats shuf",
+      "family_cluster_ci95": [
+        1,
+        78
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.0,
+      "stored_task_sign_p": 0.0,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 29,
+      "tasks_with_higher_metric_arm_b": 1
+    },
+    "S3_reuse_vs_shuffled_registry": {
+      "arm_a": "obj",
+      "arm_b": "obj_shuf",
+      "count_difference": 221,
+      "counts": {
+        "obj": 227,
+        "obj_shuf": 6
+      },
+      "decision": "obj beats obj_shuf",
+      "family_cluster_ci95": [
+        138,
+        300
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.0,
+      "stored_task_sign_p": 0.0,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 218,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S4_wrong_answers_library_vs_matched_static": {
+      "arm_a": "lib",
+      "arm_b": "static_lib",
+      "count_difference": -10,
+      "counts": {
+        "lib": 7,
+        "static_lib": 17
+      },
+      "decision": "inconclusive",
+      "family_cluster_ci95": [
+        -20,
+        -1
+      ],
+      "metric": "wrong_query_outputs",
+      "source_alias_note": "Source w_a/w_b and correct_w_a/correct_w_b are the library/static-library wrong-output count comparison, as established by the source-labelled safe interpretation report.",
+      "stored_holm_p": 0.231444,
+      "stored_task_sign_p": 0.038574,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 2,
+      "tasks_with_higher_metric_arm_b": 10
+    },
+    "S5_1d_arc_library_vs_G0": {
+      "arm_a": "lib",
+      "arm_b": "G0",
+      "count_difference": 27,
+      "counts": {
+        "G0": 0,
+        "lib": 27
+      },
+      "decision": "inconclusive",
+      "family_cluster_ci95": [
+        0,
+        73
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.0,
+      "stored_task_sign_p": 0.0,
+      "tasks": 309,
+      "tasks_with_higher_metric_arm_a": 27,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S5_concept_arc_library_vs_G0": {
+      "arm_a": "lib",
+      "arm_b": "G0",
+      "count_difference": 4,
+      "counts": {
+        "G0": 4,
+        "lib": 8
+      },
+      "decision": "inconclusive",
+      "family_cluster_ci95": [
+        0,
+        12
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 1.0,
+      "stored_task_sign_p": 0.5,
+      "tasks": 80,
+      "tasks_with_higher_metric_arm_a": 2,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S5_mini_arc_library_vs_G0": {
+      "arm_a": "lib",
+      "arm_b": "G0",
+      "count_difference": 0,
+      "counts": {
+        "G0": 2,
+        "lib": 2
+      },
+      "decision": "tie",
+      "family_cluster_ci95": [
+        0,
+        0
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 1.0,
+      "stored_task_sign_p": 1.0,
+      "tasks": 75,
+      "tasks_with_higher_metric_arm_a": 0,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S6_arc_agi_2_library_vs_matched_static": {
+      "arm_a": "lib",
+      "arm_b": "static_lib",
+      "count_difference": 0,
+      "counts": {
+        "lib": 0,
+        "static_lib": 0
+      },
+      "decision": "tie",
+      "family_cluster_ci95": [
+        0,
+        0
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 1.0,
+      "stored_task_sign_p": 1.0,
+      "tasks": 120,
+      "tasks_with_higher_metric_arm_a": 0,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S7_arc_agi_2_reuse_vs_matched_static": {
+      "arm_a": "obj",
+      "arm_b": "static_obj",
+      "count_difference": 0,
+      "counts": {
+        "obj": 0,
+        "static_obj": 0
+      },
+      "decision": "tie",
+      "family_cluster_ci95": [
+        0,
+        0
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 1.0,
+      "stored_task_sign_p": 1.0,
+      "tasks": 120,
+      "tasks_with_higher_metric_arm_a": 0,
+      "tasks_with_higher_metric_arm_b": 0
+    },
+    "S8_construction_vs_matched_static": {
+      "arm_a": "construct",
+      "arm_b": "static_construct",
+      "count_difference": 225,
+      "counts": {
+        "construct": 343,
+        "static_construct": 118
+      },
+      "decision": "construct beats static_construct",
+      "family_cluster_ci95": [
+        150,
+        298
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.0,
+      "stored_task_sign_p": 0.0,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 225,
+      "tasks_with_higher_metric_arm_b": 9
+    },
+    "S9_construction_vs_donor_demonstrations": {
+      "arm_a": "construct",
+      "arm_b": "construct_shuf",
+      "count_difference": 333,
+      "counts": {
+        "construct": 343,
+        "construct_shuf": 10
+      },
+      "decision": "construct beats construct_shuf",
+      "family_cluster_ci95": [
+        276,
+        381
+      ],
+      "metric": "correct_query_outputs",
+      "stored_holm_p": 0.0,
+      "stored_task_sign_p": 0.0,
+      "tasks": 464,
+      "tasks_with_higher_metric_arm_a": 308,
+      "tasks_with_higher_metric_arm_b": 0
+    }
+  },
+  "reported_holm_family_size": 13,
+  "schema": "CORA_ARC_STUDY_B_MINIMAL_AGGREGATES_1",
+  "status": "INTERNAL_REVIEW_CANDIDATE_NOT_RELEASED"
+}
