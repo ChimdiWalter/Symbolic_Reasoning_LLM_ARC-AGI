@@ -1,4 +1,4 @@
-Chimdi Walter Ndubuisi and Toni Kazic, University of Missouri.
+Chimdi Walter Ndubuisi, University of Missouri.
 
 ## 1. The broader question
 
@@ -43,12 +43,12 @@ Prior work refines programs from failures ([counterexample-guided synthesis](htt
 
 ## 7. Progress and the future
 
-A public notebook (version 3) reports 22 matching checks of 26, none differing; it does not recompute every headline result.
+A learned search guide *(pre-registered; audited)*: on 1,128 held-back tasks generated from ARC-AGI-2 public training inputs, at 125 program applications per task, it solved 1,083; a hand-set order solved 953, a frequency table 881 and a linear model 1,018. This is search efficiency, not new reach. Without raw grid pairs: 1,076, not significantly fewer.
 
-A guide learned a search order (pre-registered; audited): on 1,128 held-back tasks generated from ARC-AGI-2 public training inputs, it solved 1,083 at 125 counted operations (candidate program applications) each, beating simple orders (hand-set 953, frequency table 881, linear model 1,018): search efficiency, not new reach; without the raw grid pairs, 1,076, not significantly fewer.
+A public notebook (version 3) runs 26 checks: 22 match and none differ. It does not recompute every headline result.
 
-CORA demonstrates evidence-directed construction within supplied spaces; next, toward open-ended growth: learning which revision to make, and building beyond them under explicit checks.
+CORA builds missing operations from evidence within a supplied space; next, toward open-ended growth: learning which revision to make, and building beyond that space under explicit checks.
 
-**Acknowledgements.** Toni Kazic led discussions on the big problems in science: what AI can and cannot do, grammar induction and program synthesis across domains, and the next big leap. We thank Chris Fluharty, who started the project in last year's hackathon (the LLM route), and Pierce Taylor for discussions on single-cell omics (dispersion versus displacement).
+**Acknowledgements.** We thank Toni Kazic for discussions on the big problems in science: what AI can and cannot do, grammar induction and program synthesis across domains, and the next big leap; Chris Fluharty, who started the project in last year's hackathon (the LLM route); and Pierce Taylor for discussions on single-cell omics (dispersion versus displacement).
 
-**Links.** The [paper](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/paper/final_20261108/CORA_ARC_PAPER.pdf) and its [extended version](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/paper/final_20261108/CORA_ARC_PAPER_EXTENDED.pdf) (proofs of four conditional results); the [CORA-only entry](https://www.kaggle.com/code/chimdiwalter/cora-cast-r29-v2-arc-agi-2?scriptVersionId=364571398), [neural comparison entry](https://www.kaggle.com/code/chimdiwalter/sf-h-c4-cast-arc-agi-2?scriptVersionId=364496615), [verification notebook](https://www.kaggle.com/code/chimdiwalter/cora-verify-the-paper-s-headline-numbers) and [GitHub release](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/tree/arc2026-sprint) (the submitted version, tagged arc2026-paper-20261108; MIT, CC BY 4.0; research kernels private).
+**Links.** The [paper](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/paper/final_20261108/CORA_ARC_PAPER.pdf) and its [extended version](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/paper/final_20261108/CORA_ARC_PAPER_EXTENDED.pdf) (proofs of four conditional results); the [CORA-only entry](https://www.kaggle.com/code/chimdiwalter/cora-cast-r29-v2-arc-agi-2?scriptVersionId=364571398), [neural comparison entry](https://www.kaggle.com/code/chimdiwalter/sf-h-c4-cast-arc-agi-2?scriptVersionId=364496615), [verification notebook](https://www.kaggle.com/code/chimdiwalter/cora-verify-the-paper-s-headline-numbers) and [GitHub release](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/tree/arc2026-sprint) (the submitted version, tagged arc2026-paper-20261109; MIT, CC BY 4.0; research kernels private).
