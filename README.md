@@ -239,3 +239,15 @@ protocol in its `docs/` names its frozen manifest, scripts and verifier.
 [degen]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_FHR_DEGENERACY_AUDIT_20261014.md
 [mix]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/CORA_FHR_MIX_DESIGN_20261014.md
 [comp]: https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/blob/arc2026-sprint/records/NVARC_CORA_COMPLEMENTARITY_AUDIT_20261014.md
+
+## Update, 16 November 2026
+
+This page describes the project as of October 2026 and is kept as written. The current public state is on the
+branch [`arc2026-sprint`](https://github.com/ChimdiWalter/Symbolic_Reasoning_LLM_ARC-AGI/tree/arc2026-sprint):
+
+- the ARC Prize 2026 submission of 9 November 2026 (paper, Kaggle entries and their code), fixed at the tag
+  `arc2026-paper-20261109`;
+- four follow-up studies of 13 to 15 November 2026 on rebuilding removed library operations from examples by
+  plain search, with no neural model. Three of them are comparison studies, and none met its declared benefit
+  criterion. All four are reported in full, with protocols, code, saved outputs and results records. The README
+  of that branch gives the numbers.
