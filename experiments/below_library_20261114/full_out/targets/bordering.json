@@ -1,0 +1,678 @@
+{
+ "control": false,
+ "cpu": {
+  "by_system_s": {
+   "library_only": 102.83,
+   "smaller_blocks": 91.64
+  },
+  "final_checks_s": 0.002,
+  "other_s": 0.85,
+  "searches_s": 194.93
+ },
+ "cpu_s_total": 195.78,
+ "dev": false,
+ "development_control": false,
+ "development_only": false,
+ "family": "bordering",
+ "final_panel": {
+  "formed": true,
+  "generator": 30,
+  "inputs": 430,
+  "pooled": 400,
+  "pooled_discarded": 0,
+  "pooled_not_evaluated": 0,
+  "pooled_short": false,
+  "pooled_slice": {
+   "draws": 400,
+   "evaluated": 400,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 400
+  }
+ },
+ "half": "over_15",
+ "hidden": [
+  "bordering"
+ ],
+ "label": "development comparison on a known constructed benchmark",
+ "memory": [
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator examples",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: pooled sequence",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: usability slice",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: hiding",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "the final panel",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L4-9",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-9",
+   "resident_peak_kb": 2737936
+  }
+ ],
+ "opened_roles": [
+  "pool_source",
+  "fit9",
+  "fit36",
+  "final"
+ ],
+ "presets": {
+  "allowance": 60.0,
+  "arity_rule": true,
+  "cpu_budget_s": 600.0,
+  "max_bank": 1500000,
+  "max_combinations": 1900000,
+  "max_fn": 16000,
+  "size_c": 4,
+  "time_safety_limit_s": 600.0
+ },
+ "seals": {
+  "final_set": "d1ac4bb86b5da130aa795d5ed7a3431ee0a05b442b1ab6d7eb6dc560868e53d7",
+  "first_fits_36": "3fc435ffc91eea9017c5d9b6f86fed2823d08555fb77f6b5683b917e824b8f5b",
+  "first_fits_9": "9fd3e1dec87c3481b4542edb2919b31bbe4ddddb4ab21489db1682749c14fe1c",
+  "selections": "26d89597153ac4b1a2f292b6e901cfff77089d767ef0e1dfb364c97d4e7507bd",
+  "setup_record": "bdb14c131defa10f10306eaaf32a50b7ea41193f534cd6c36d1ef3eab342ecdb"
+ },
+ "searches": {
+  "C-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 22657,
+   "block_set": "C",
+   "coverage": "exhaustive",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 6.896,
+   "enumerator_cpu_s": 6.792,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 64,
+   "function_valued_leaves": 64,
+   "incomplete": false,
+   "leaves": 96,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 75,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 4,
+   "stop": "size_exhausted",
+   "stop_class": "size_limit_completed",
+   "ticks": 247587
+  },
+  "L4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 42985,
+   "block_set": "L",
+   "coverage": "exhaustive",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 23.993,
+   "enumerator_cpu_s": 23.208,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 125,
+   "function_valued_leaves": 125,
+   "incomplete": false,
+   "leaves": 155,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 154,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 1742,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 4,
+   "stop": "size_exhausted",
+   "stop_class": "size_limit_completed",
+   "ticks": 449875
+  },
+  "L4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 606,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.22,
+   "enumerator_cpu_s": 0.013,
+   "error": null,
+   "examples": 9,
+   "expr": "flip(square(x1))",
+   "final": {
+    "agree": 294,
+    "counterexample": {
+     "args": [
+      "s{t(i0,i8),t(i3,i4),t(i5,i6),t(i7,i2),t(i7,i7),t(i8,i6)}",
+      "t(t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,...#560fbbc2"
+     ],
+     "got": "b0",
+     "index": 5,
+     "note": "different value",
+     "want": "b1"
+    },
+    "cpu_s": 0.0012,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     24,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     270,
+     400
+    ],
+    "right": false,
+    "unsupported": 0
+   },
+   "first_fit": "wrong",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 125,
+   "function_valued_leaves": 125,
+   "incomplete": false,
+   "leaves": 155,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 154,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 3607
+  },
+  "L5-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 236558,
+   "block_set": "L",
+   "coverage": "bounded",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 78.841,
+   "enumerator_cpu_s": 77.218,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 10536,
+    "by_operation": {
+     "compose": {
+      "3": {
+       "admitted": 4356,
+       "offered": 15625,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 11269,
+       "refused_by_cap": 0
+      }
+     },
+     "lbind": {
+      "3": {
+       "admitted": 1770,
+       "offered": 3750,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 1980,
+       "refused_by_cap": 0
+      }
+     },
+     "matcher": {
+      "3": {
+       "admitted": 1980,
+       "offered": 3750,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 1770,
+       "refused_by_cap": 0
+      }
+     },
+     "power": {
+      "3": {
+       "admitted": 660,
+       "offered": 1625,
+       "raised_in_the_library": 198,
+       "refused_as_power_duplicate": 767,
+       "refused_by_arity": 0,
+       "refused_by_cap": 0
+      }
+     },
+     "rbind": {
+      "3": {
+       "admitted": 1770,
+       "offered": 3750,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 1980,
+       "refused_by_cap": 0
+      }
+     }
+    },
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 10661,
+   "function_valued_leaves": 125,
+   "incomplete": false,
+   "leaves": 155,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 154,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 1742,
+    "function_making_refused_by_arity": 16999,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 767
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 5,
+   "stop": "budget_ticks",
+   "stop_class": "combination_budget_used_up",
+   "ticks": 1900000
+  },
+  "LC4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 95371,
+   "block_set": "LC",
+   "coverage": "exhaustive",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 84.749,
+   "enumerator_cpu_s": 83.425,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 189,
+   "function_valued_leaves": 189,
+   "incomplete": false,
+   "leaves": 221,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 222,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 1742,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 4,
+   "stop": "size_exhausted",
+   "stop_class": "size_limit_completed",
+   "ticks": 1657175
+  },
+  "LC4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 733,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.228,
+   "enumerator_cpu_s": 0.017,
+   "error": null,
+   "examples": 9,
+   "expr": "flip(square(x1))",
+   "final": {
+    "agree": 294,
+    "counterexample": {
+     "args": [
+      "s{t(i0,i8),t(i3,i4),t(i5,i6),t(i7,i2),t(i7,i7),t(i8,i6)}",
+      "t(t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,...#560fbbc2"
+     ],
+     "got": "b0",
+     "index": 5,
+     "note": "different value",
+     "want": "b1"
+    },
+    "cpu_s": 0.0009,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     24,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     270,
+     400
+    ],
+    "right": false,
+    "unsupported": 0
+   },
+   "first_fit": "wrong",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 189,
+   "function_valued_leaves": 189,
+   "incomplete": false,
+   "leaves": 221,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 222,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 4160
+  }
+ },
+ "selection": {
+  "library_only": {
+   "determined": true,
+   "expr": null,
+   "oracle_union": false,
+   "reason": "neither stage (L4-36, L5-36) found a fit",
+   "rebuilt": false,
+   "search": null,
+   "stage": null
+  },
+  "smaller_blocks": {
+   "determined": true,
+   "expr": null,
+   "oracle_union": false,
+   "reason": "neither stage (LC4-36, C-36) found a fit",
+   "rebuilt": false,
+   "search": null,
+   "stage": null
+  }
+ },
+ "setup": {
+  "generator": {
+   "draws": 74,
+   "examples": 66,
+   "rejected": {
+    "duplicate": 0,
+    "input_too_large": 0,
+    "no_function_works": 0,
+    "output_unusable": 0,
+    "target_raised": 8
+   },
+   "status": "ok"
+  },
+  "hidden_unreachable": {
+   "C": true,
+   "L": true,
+   "LC": true
+  },
+  "opened_roles": [
+   "pool_source",
+   "fit9",
+   "fit36",
+   "final"
+  ],
+  "pooled_sequence": {
+   "drawn": 1600,
+   "dropped_a_container_argument_holds_a_function": 0,
+   "final_slice": 400,
+   "tag": "bl1-seq",
+   "unique_tuples": 1600,
+   "usability_slice": 400
+  },
+  "retained_present": [
+   "compose",
+   "chain",
+   "matcher",
+   "rbind",
+   "lbind",
+   "power",
+   "fork"
+  ],
+  "unusable_generator_examples": {
+   "container_argument_holds_a_function": 0,
+   "output_is_or_holds_a_function": 0
+  },
+  "usability": {
+   "draws": 400,
+   "evaluated": 400,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 400
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "generator": {
+    "draws": 74,
+    "examples": 66,
+    "rejected": {
+     "duplicate": 0,
+     "input_too_large": 0,
+     "no_function_works": 0,
+     "output_unusable": 0,
+     "target_raised": 8
+    },
+    "status": "ok"
+   },
+   "pooled_sequence": {
+    "drawn": 1600,
+    "dropped_a_container_argument_holds_a_function": 0,
+    "final_slice": 400,
+    "tag": "bl1-seq",
+    "unique_tuples": 1600,
+    "usability_slice": 400
+   },
+   "reason": null,
+   "unusable_generator_examples": {
+    "container_argument_holds_a_function": 0,
+    "output_is_or_holds_a_function": 0
+   },
+   "usability": {
+    "draws": 400,
+    "evaluated": 400,
+    "guard_timeout": false,
+    "raised": 0,
+    "too_large": 0,
+    "unsupported": 0,
+    "usable": 400
+   }
+  },
+  "decision": {
+   "control": false,
+   "dev": false,
+   "development_control": false,
+   "half": "over_15",
+   "hidden": [
+    "bordering"
+   ],
+   "hidden_unreachable": {
+    "C": true,
+    "L": true,
+    "LC": true
+   },
+   "reason_kind": null,
+   "retained_present": [
+    "compose",
+    "chain",
+    "matcher",
+    "rbind",
+    "lbind",
+    "power",
+    "fork"
+   ],
+   "status": "eligible",
+   "stratum": "longer",
+   "usability_guard_timeout": false
+  }
+ },
+ "status": "done",
+ "stratum": "longer",
+ "target": "bordering",
+ "witness": {
+  "state": "not a control"
+ }
+}

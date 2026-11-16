@@ -1,0 +1,133 @@
+{
+ "arms": {
+  "1": {
+   "bank": 674,
+   "cpu_s": 0.012,
+   "equal_all_36": false,
+   "expr": "repeat(T, ZERO)",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 7356,
+   "cpu_s": 0.167,
+   "equal_all_36": true,
+   "expr": "merge(sfilter(container, function))",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 7312,
+   "cpu_s": 0.186,
+   "equal_all_36": true,
+   "expr": "merge(sfilter(container, function))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 7349,
+   "cpu_s": 0.225,
+   "equal_all_36": true,
+   "expr": "merge(sfilter(container, function))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 7410,
+   "cpu_s": 0.597,
+   "expr": "merge(sfilter(container, function))",
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "size": 4,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 1.187,
+ "examples_sha": "0ee3cbfa6f8b339c",
+ "expr": "merge(sfilter(container, function))",
+ "family": "filtering",
+ "family_size": 5,
+ "generator": {
+  "draws": 40,
+  "function_pool_excluded": [
+   "colorfilter",
+   "extract",
+   "mfilter",
+   "sfilter",
+   "sizefilter"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 4,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "mfilter"
+ ],
+ "in_pilot_subset": true,
+ "known_definition": {
+  "equals_all_36": true,
+  "expr": "merge(sfilter(container, function))",
+  "found": true,
+  "miss_reason": null,
+  "size": 4
+ },
+ "library_deps": [
+  "merge",
+  "sfilter"
+ ],
+ "max_size": 4,
+ "op": "mfilter",
+ "readings": {
+  "1": "wrong",
+  "2": "right",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 4,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "merge",
+  "sfilter"
+ ]
+}

@@ -1,0 +1,643 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{}"
+   ],
+   [
+    "s{t(i8,t(i1,i1))}"
+   ],
+   [
+    "s{t(i1,i0),t(i2,i8),t(i3,i8),t(i4,i0),t(i4,i6)}"
+   ],
+   [
+    "s{t(i2,t(i3,i1)),t(i2,t(i3,i2)),t(i2,t(i4,i2))}"
+   ],
+   [
+    "s{t(i1,i3),t(i11,i7),t(i4,i0),t(i4,i3),t(i6,i5),t(i8,i2)}"
+   ],
+   [
+    "s{t(i4,t(i0,i0)),t(i4,t(i0,i1)),t(i4,t(i0,i2)),t(i4,t(i0,i3)),t(i4,t(i1,i0)),t(i4,t(i1,i1)),t(i4,t(i1,i2)),t(i4,t(i1,i3)),t(i4,t(i2,i0)),t(i4,t(i2,i1)),t(i4,t(i2,i2)),t(i4,t(i2,i3)),t(i4,t(i3,i0)),t(i4,t(i3,i1)),t(i4,t(i3,i2)),t(i4,t(i3,i3)),t(i4,t(i4,i1)),t(i4,t(i4,i2)),t(i4,t(i4,i3)),t(i4,t(i5,i0)...#f681946c"
+   ],
+   [
+    "t(t(i0,i0,i0,i0,i0,i0,i0,i0,i0,i0,i0,i5),t(i5,i5,i5,i5,i5,i0,i0,i0,i0,i0,i0,i5),t(i5,i0,i5,i0,i0,i0,i0,i0,i0,i0,i0,i5),t(i0,i0,i0,i0,i0,i0,i0,i0,i0,i0,i0,i0),t(i0,i0,i0,i0,i0,i0,i0,i0,i0,i0,i0,i0))"
+   ],
+   [
+    "s{t(i6,t(i7,i9))}"
+   ],
+   [
+    "s{t(i4,t(i1,i2)),t(i4,t(i2,i1)),t(i4,t(i4,i0)),t(i4,t(i4,i3)),t(i4,t(i7,i2))}"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.002,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 2497,
+   "bank_at_first_fit": 2497,
+   "candidates_tested": 2386,
+   "counterexample": {
+    "args": [
+     "t(t(i2,i6),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2))"
+    ],
+    "got": "b1",
+    "index": 0,
+    "want": "b0"
+   },
+   "cpu_s": 0.099,
+   "cpu_to_first_fit": 0.099,
+   "error": null,
+   "expr": "even(size(merge(piece)))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     18,
+     30
+    ],
+    "pooled": [
+     34,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double"
+   ]
+  },
+  "A1x6": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0016,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 2627,
+   "bank_at_first_fit": 2627,
+   "candidates_tested": 2516,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i5,i7))"
+    ],
+    "got": "b0",
+    "index": 43,
+    "want": "b1"
+   },
+   "cpu_s": 0.11,
+   "cpu_to_first_fit": 0.11,
+   "error": null,
+   "expr": "contained(size(piece), DOWN)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0002,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_0a92299d",
+    "path": "library/square__A1x6.json",
+    "sha256": "3418f383ab9575154b1b6cc40b3a6008f1e3784e140a4b707c17a749d855255b"
+   },
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     66,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double"
+   ]
+  },
+  "A1x9": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0013,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 2572,
+   "bank_at_first_fit": 2572,
+   "candidates_tested": 2461,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i5,i7))"
+    ],
+    "got": "b0",
+    "index": 43,
+    "want": "b1"
+   },
+   "cpu_s": 0.12,
+   "cpu_to_first_fit": 0.12,
+   "error": null,
+   "expr": "contained(size(piece), DOWN)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0003,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_653ee814",
+    "path": "library/square__A1x9.json",
+    "sha256": "36275e00e0a2b5a0c07f1b93498ffad5b47823f3c7ad2843b543f34dc161d43c"
+   },
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     66,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0013,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 2627,
+   "bank_at_first_fit": 2627,
+   "candidates_tested": 2516,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i5,i7))"
+    ],
+    "got": "b0",
+    "index": 43,
+    "want": "b1"
+   },
+   "cpu_s": 0.122,
+   "cpu_to_first_fit": 0.122,
+   "error": null,
+   "expr": "contained(size(piece), DOWN)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0003,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_98328097",
+    "path": "library/square__A2x3.json",
+    "sha256": "1440a8dfc81c9ef809affcc6a25ceb3154900da4e263c6df094dd6abca6d0075"
+   },
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     66,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "decrement",
+    "decrement",
+    "decrement"
+   ]
+  },
+  "A3x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0013,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 2572,
+   "bank_at_first_fit": 2572,
+   "candidates_tested": 2461,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i5,i7))"
+    ],
+    "got": "b0",
+    "index": 43,
+    "want": "b1"
+   },
+   "cpu_s": 0.118,
+   "cpu_to_first_fit": 0.118,
+   "error": null,
+   "expr": "contained(size(piece), DOWN)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0003,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_f490de45",
+    "path": "library/square__A3x3.json",
+    "sha256": "e464c8c26261b1fee8bd1d0a16f9f71cdaf340ba090addaf7b7d94b530a75892"
+   },
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     66,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "decrement",
+    "decrement",
+    "decrement",
+    "sign",
+    "sign",
+    "sign"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 5.29,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'square' is not defined",
+  "error_type": "NameError",
+  "missing_name": "square"
+ },
+ "family": "bounding box",
+ "family_size": 16,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 71,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": true,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 461,
+    "candidates_tested": 350,
+    "cpu_s": 0.008,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "contained(UNITY, piece)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 2,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 87848,
+    "candidates_tested": null,
+    "cpu_s": 3.649,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "size(prapply(contained, UNITY, piece))",
+    "fit": true,
+    "function_cap_reached": true,
+    "level_completed": 4,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "e1bc34bea1bedecf176029604c97f7cdda4cb1199f0a79258dde6179873b8c6f",
+  "admission_set": "2167434e70cca0db2dec8dad5231af05dc354bf80ef4a70a7f7eaab852f5d76b",
+  "final_set": "cfb5ee4187ff0adcd18012a395086169974496d029f78bd6f33457b1e780bd32",
+  "first_fit_records": "591f5b75939dfadd07242d72b117ff863cc32e7882c2c42f9a6305ae6a9d59c5",
+  "libraries": "c1d05e207bd4346f269154789a86c5f2a24f9af1e2f6122e531d6aef79fa2e86",
+  "reuse_support_set": "128dc181992bc678b3902b84429c544669d79a102c564dade238fafcfe9c4ec6",
+  "setup_record": "c05fae291bc262d07036b6d429cad7ba05ac70210ad057c494a56c6e1f4feb15"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 57,
+   "B": 71,
+   "R": 28,
+   "UA": 57,
+   "UB": 71,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 285
+  },
+  "preservation_bank_entries": 40,
+  "usability": {
+   "UA_draws": 57,
+   "UA_usable_wrapper_4": 57,
+   "UB_draws": 71,
+   "UB_usable_wrappers_1_to_3": 71,
+   "UB_usable_wrappers_1_to_3_and_5": 71
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "double",
+    "2": "decrement",
+    "3": "sign",
+    "4": "toivec",
+    "5": "increment"
+   },
+   "chosen": [
+    "double",
+    "decrement",
+    "sign",
+    "toivec",
+    "increment"
+   ],
+   "n_candidates": 10,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 285
+   },
+   "preservation_bank_entries": 40,
+   "reason": null,
+   "usability": {
+    "UA_draws": 57,
+    "UA_usable_wrapper_4": 57,
+    "UB_draws": 71,
+    "UB_usable_wrappers_1_to_3": 71,
+    "UB_usable_wrappers_1_to_3_and_5": 71
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "double",
+    "decrement",
+    "sign",
+    "toivec",
+    "increment"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "square"
+}

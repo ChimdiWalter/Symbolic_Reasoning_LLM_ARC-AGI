@@ -1,0 +1,717 @@
+{
+ "control": false,
+ "cpu": {
+  "by_system_s": {
+   "library_only": 70.91,
+   "smaller_blocks": 16.17
+  },
+  "final_checks_s": 0.063,
+  "other_s": 1.92,
+  "searches_s": 95.51
+ },
+ "cpu_s_total": 97.49,
+ "dev": true,
+ "development_control": false,
+ "development_only": true,
+ "family": "mirrors and rotations",
+ "final_panel": {
+  "formed": true,
+  "generator": 30,
+  "inputs": 353,
+  "pooled": 323,
+  "pooled_discarded": 0,
+  "pooled_not_evaluated": 0,
+  "pooled_short": false,
+  "pooled_slice": {
+   "draws": 323,
+   "evaluated": 323,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 323
+  }
+ },
+ "half": "7_to_15",
+ "hidden": [
+  "cmirror",
+  "dmirror",
+  "hmirror",
+  "rot180",
+  "rot270",
+  "rot90",
+  "vmirror"
+ ],
+ "label": "development comparison on a known constructed benchmark",
+ "memory": [
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator examples",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: pooled sequence",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: usability slice",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: hiding",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "the final panel",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-9",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of C-36",
+   "resident_peak_kb": 2737936
+  }
+ ],
+ "opened_roles": [
+  "pool_source",
+  "fit9",
+  "fit36",
+  "final"
+ ],
+ "presets": {
+  "allowance": 60.0,
+  "arity_rule": true,
+  "cpu_budget_s": 600.0,
+  "max_bank": 1500000,
+  "max_combinations": 1900000,
+  "max_fn": 16000,
+  "size_c": 4,
+  "time_safety_limit_s": 600.0
+ },
+ "seals": {
+  "final_set": "99b4d8a9d7f4aa38bf8c0e640eee65e2700a22ad6d20ed9570aa8219ec8b4732",
+  "first_fits_36": "c1f0b8a33d30cc7771dabd6e0f0a468605bf89ed7e4e35b6aeb06f22ac4fd2d5",
+  "first_fits_9": "0cc0b7245f334e975af5a8a1f8787ff5919e7e8ece6a77bb2dbc63c32996dd58",
+  "selections": "f68e6b22cd42b9aab1ccd301ee3f629a6da22e5e1d0f63f13c724272f8cd8477",
+  "setup_record": "fc007ee9f1a3e1baa0c9f7b6b3b2d09f94a690efdc384b8f3d33848cb46b94ea"
+ },
+ "searches": {
+  "C-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 17495,
+   "block_set": "C",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 2.412,
+   "enumerator_cpu_s": 2.349,
+   "error": null,
+   "examples": 36,
+   "expr": "c_reverse(c_map_tuple(c_reverse, x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.0213,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 64,
+   "function_valued_leaves": 64,
+   "incomplete": false,
+   "leaves": 95,
+   "level_completed": 3,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 75,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 4,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 124047
+  },
+  "L4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 26156,
+   "block_set": "L",
+   "coverage": "exhaustive",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 11.284,
+   "enumerator_cpu_s": 10.84,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 121,
+   "function_valued_leaves": 121,
+   "incomplete": false,
+   "leaves": 150,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 148,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 1624,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 4,
+   "stop": "size_exhausted",
+   "stop_class": "size_limit_completed",
+   "ticks": 352256
+  },
+  "L4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 25515,
+   "block_set": "L",
+   "coverage": "exhaustive",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 3.82,
+   "enumerator_cpu_s": 3.491,
+   "error": null,
+   "examples": 9,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 121,
+   "function_valued_leaves": 121,
+   "incomplete": false,
+   "leaves": 150,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 148,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 1624,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": null,
+   "size_limit": 4,
+   "stop": "size_exhausted",
+   "stop_class": "size_limit_completed",
+   "ticks": 352470
+  },
+  "L5-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 145641,
+   "block_set": "L",
+   "coverage": "bounded",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 59.626,
+   "enumerator_cpu_s": 58.677,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 9580,
+    "by_operation": {
+     "compose": {
+      "3": {
+       "admitted": 3721,
+       "offered": 14641,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 10920,
+       "refused_by_cap": 0
+      }
+     },
+     "lbind": {
+      "3": {
+       "admitted": 1740,
+       "offered": 3509,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 1769,
+       "refused_by_cap": 0
+      }
+     },
+     "matcher": {
+      "3": {
+       "admitted": 1769,
+       "offered": 3509,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 1740,
+       "refused_by_cap": 0
+      }
+     },
+     "power": {
+      "3": {
+       "admitted": 610,
+       "offered": 1573,
+       "raised_in_the_library": 183,
+       "refused_as_power_duplicate": 780,
+       "refused_by_arity": 0,
+       "refused_by_cap": 0
+      }
+     },
+     "rbind": {
+      "3": {
+       "admitted": 1740,
+       "offered": 3509,
+       "raised_in_the_library": 0,
+       "refused_as_power_duplicate": 0,
+       "refused_by_arity": 1769,
+       "refused_by_cap": 0
+      }
+     }
+    },
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 9701,
+   "function_valued_leaves": 121,
+   "incomplete": false,
+   "leaves": 150,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 148,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 1624,
+    "function_making_refused_by_arity": 16198,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 780
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 5,
+   "stop": "budget_ticks",
+   "stop_class": "combination_budget_used_up",
+   "ticks": 1900000
+  },
+  "LC4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 27914,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 13.76,
+   "enumerator_cpu_s": 13.367,
+   "error": null,
+   "examples": 36,
+   "expr": "apply(c_reverse, c_reverse(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.0193,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 185,
+   "function_valued_leaves": 185,
+   "incomplete": false,
+   "leaves": 216,
+   "level_completed": 3,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 216,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 4,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 494455
+  },
+  "LC4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 27165,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 4.611,
+   "enumerator_cpu_s": 4.356,
+   "error": null,
+   "examples": 9,
+   "expr": "apply(c_reverse, c_reverse(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.0221,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 185,
+   "function_valued_leaves": 185,
+   "incomplete": false,
+   "leaves": 216,
+   "level_completed": 3,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 216,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 4,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 494310
+  }
+ },
+ "selection": {
+  "library_only": {
+   "determined": true,
+   "expr": null,
+   "oracle_union": false,
+   "reason": "neither stage (L4-36, L5-36) found a fit",
+   "rebuilt": false,
+   "search": null,
+   "stage": null
+  },
+  "smaller_blocks": {
+   "determined": true,
+   "expr": "apply(c_reverse, c_reverse(x0))",
+   "oracle_union": true,
+   "order_of_sets": {
+    "of": 0,
+    "same_order": 0
+   },
+   "reason": "the first stage (LC4-36) found a fit",
+   "rebuilt": true,
+   "search": "LC4-36",
+   "size": 4,
+   "stage": 1,
+   "wrong_only_by_guard_timeout": false
+  }
+ },
+ "setup": {
+  "generator": {
+   "draws": 66,
+   "examples": 66,
+   "rejected": {
+    "duplicate": 0,
+    "input_too_large": 0,
+    "no_function_works": 0,
+    "output_unusable": 0,
+    "target_raised": 0
+   },
+   "status": "ok"
+  },
+  "hidden_unreachable": {
+   "C": true,
+   "L": true,
+   "LC": true
+  },
+  "opened_roles": [
+   "pool_source",
+   "fit9",
+   "fit36",
+   "final"
+  ],
+  "pooled_sequence": {
+   "drawn": 1294,
+   "dropped_a_container_argument_holds_a_function": 0,
+   "final_slice": 323,
+   "tag": "bl1-seq",
+   "unique_tuples": 1294,
+   "usability_slice": 323
+  },
+  "retained_present": [
+   "compose",
+   "chain",
+   "matcher",
+   "rbind",
+   "lbind",
+   "power",
+   "fork"
+  ],
+  "unusable_generator_examples": {
+   "container_argument_holds_a_function": 0,
+   "output_is_or_holds_a_function": 0
+  },
+  "usability": {
+   "draws": 323,
+   "evaluated": 323,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 323
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "generator": {
+    "draws": 66,
+    "examples": 66,
+    "rejected": {
+     "duplicate": 0,
+     "input_too_large": 0,
+     "no_function_works": 0,
+     "output_unusable": 0,
+     "target_raised": 0
+    },
+    "status": "ok"
+   },
+   "pooled_sequence": {
+    "drawn": 1294,
+    "dropped_a_container_argument_holds_a_function": 0,
+    "final_slice": 323,
+    "tag": "bl1-seq",
+    "unique_tuples": 1294,
+    "usability_slice": 323
+   },
+   "reason": null,
+   "unusable_generator_examples": {
+    "container_argument_holds_a_function": 0,
+    "output_is_or_holds_a_function": 0
+   },
+   "usability": {
+    "draws": 323,
+    "evaluated": 323,
+    "guard_timeout": false,
+    "raised": 0,
+    "too_large": 0,
+    "unsupported": 0,
+    "usable": 323
+   }
+  },
+  "decision": {
+   "control": false,
+   "dev": true,
+   "development_control": false,
+   "half": "7_to_15",
+   "hidden": [
+    "cmirror",
+    "dmirror",
+    "hmirror",
+    "rot180",
+    "rot270",
+    "rot90",
+    "vmirror"
+   ],
+   "hidden_unreachable": {
+    "C": true,
+    "L": true,
+    "LC": true
+   },
+   "reason_kind": null,
+   "retained_present": [
+    "compose",
+    "chain",
+    "matcher",
+    "rbind",
+    "lbind",
+    "power",
+    "fork"
+   ],
+   "status": "eligible",
+   "stratum": "longer",
+   "usability_guard_timeout": false
+  }
+ },
+ "status": "done",
+ "stratum": "longer",
+ "target": "rot180",
+ "witness": {
+  "state": "not a control"
+ }
+}

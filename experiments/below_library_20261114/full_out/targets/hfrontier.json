@@ -1,0 +1,164 @@
+{
+ "control": false,
+ "cpu_s_total": 0.14,
+ "dev": false,
+ "development_control": false,
+ "development_only": false,
+ "family": "straight lines",
+ "half": "7_to_15",
+ "hidden": [
+  "connect",
+  "hfrontier",
+  "shoot",
+  "vfrontier"
+ ],
+ "label": "development comparison on a known constructed benchmark",
+ "memory": [
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator examples",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: pooled sequence",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: usability slice",
+   "resident_peak_kb": 2737936
+  }
+ ],
+ "presets": {
+  "allowance": 60.0,
+  "arity_rule": true,
+  "cpu_budget_s": 600.0,
+  "max_bank": 1500000,
+  "max_combinations": 1900000,
+  "max_fn": 16000,
+  "size_c": 4,
+  "time_safety_limit_s": 600.0
+ },
+ "reason": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+ "reason_kind": "too_few_usable_pooled_inputs",
+ "setup": {
+  "generator": {
+   "draws": 94,
+   "examples": 66,
+   "rejected": {
+    "duplicate": 28,
+    "input_too_large": 0,
+    "no_function_works": 0,
+    "output_unusable": 0,
+    "target_raised": 0
+   },
+   "status": "ok"
+  },
+  "opened_roles": [
+   "pool_source"
+  ],
+  "pooled_sequence": {
+   "drawn": 90,
+   "dropped_a_container_argument_holds_a_function": 0,
+   "final_slice": 22,
+   "tag": "bl1-seq",
+   "unique_tuples": 90,
+   "usability_slice": 22
+  },
+  "retained_present": [
+   "compose",
+   "chain",
+   "matcher",
+   "rbind",
+   "lbind",
+   "power",
+   "fork"
+  ],
+  "unusable_generator_examples": {
+   "container_argument_holds_a_function": 0,
+   "output_is_or_holds_a_function": 0
+  },
+  "usability": {
+   "draws": 22,
+   "evaluated": 22,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 22
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "generator": {
+    "draws": 94,
+    "examples": 66,
+    "rejected": {
+     "duplicate": 28,
+     "input_too_large": 0,
+     "no_function_works": 0,
+     "output_unusable": 0,
+     "target_raised": 0
+    },
+    "status": "ok"
+   },
+   "pooled_sequence": {
+    "drawn": 90,
+    "dropped_a_container_argument_holds_a_function": 0,
+    "final_slice": 22,
+    "tag": "bl1-seq",
+    "unique_tuples": 90,
+    "usability_slice": 22
+   },
+   "reason": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+   "unusable_generator_examples": {
+    "container_argument_holds_a_function": 0,
+    "output_is_or_holds_a_function": 0
+   },
+   "usability": {
+    "draws": 22,
+    "evaluated": 22,
+    "guard_timeout": false,
+    "raised": 0,
+    "too_large": 0,
+    "unsupported": 0,
+    "usable": 22
+   }
+  },
+  "decision": {
+   "control": false,
+   "dev": false,
+   "development_control": false,
+   "half": "7_to_15",
+   "hidden": [
+    "connect",
+    "hfrontier",
+    "shoot",
+    "vfrontier"
+   ],
+   "hidden_unreachable": null,
+   "reason_kind": "too_few_usable_pooled_inputs",
+   "retained_present": [
+    "compose",
+    "chain",
+    "matcher",
+    "rbind",
+    "lbind",
+    "power",
+    "fork"
+   ],
+   "status": "excluded",
+   "stratum": "longer",
+   "usability_guard_timeout": false
+  }
+ },
+ "status": "excluded",
+ "stratum": "longer",
+ "target": "hfrontier"
+}

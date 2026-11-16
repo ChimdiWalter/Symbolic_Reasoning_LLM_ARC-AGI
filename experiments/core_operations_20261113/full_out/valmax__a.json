@@ -1,0 +1,108 @@
+{
+ "arms": {
+  "1": {
+   "bank": 1121,
+   "cpu_s": 0.026,
+   "equal_all_36": false,
+   "expr": "increment(leastcommon(container))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 3,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 1,
+   "validation_errors": 16
+  },
+  "2": {
+   "bank": 8964,
+   "cpu_s": 0.251,
+   "equal_all_36": false,
+   "expr": "valmin(bottomhalf(container), compfunc)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 3,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 6,
+   "validation_errors": 16
+  },
+  "3": {
+   "bank": 24439,
+   "cpu_s": 2.024,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 22428,
+   "cpu_s": 2.379,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 21825,
+   "cpu_s": 7.102,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 11.782,
+ "examples_sha": "fe3ef5f928a83830",
+ "expr": null,
+ "family": "largest and smallest of a container",
+ "family_size": 6,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "argmax",
+   "argmin",
+   "maximum",
+   "minimum",
+   "valmax",
+   "valmin"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "valmax"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "valmax",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

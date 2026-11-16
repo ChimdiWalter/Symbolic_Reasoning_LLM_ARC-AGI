@@ -1,0 +1,118 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "mapping",
+ "family_size": 6,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: wrapper 1: intact consumer did not run: StopIteration",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "wrapper 1: intact consumer did not run: StopIteration"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 295,
+   "B": 369,
+   "R": 147,
+   "UA": 295,
+   "UB": 369,
+   "dropped_holding_functions": 122,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1478
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 295,
+   "UA_usable_wrapper_4": 222,
+   "UB_draws": 369,
+   "UB_usable_wrappers_1_to_3": 286,
+   "UB_usable_wrappers_1_to_3_and_5": 286
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "first",
+    "2": "last",
+    "3": "minimum",
+    "4": "maximum",
+    "5": "tojvec"
+   },
+   "chosen": [
+    "first",
+    "last",
+    "minimum",
+    "maximum",
+    "tojvec"
+   ],
+   "n_candidates": 9,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 295,
+    "B": 369,
+    "R": 147,
+    "UA": 295,
+    "UB": 369,
+    "dropped_holding_functions": 122,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1478
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: wrapper 1: intact consumer did not run: StopIteration",
+   "usability": {
+    "UA_draws": 295,
+    "UA_usable_wrapper_4": 222,
+    "UB_draws": 369,
+    "UB_usable_wrappers_1_to_3": 286,
+    "UB_usable_wrappers_1_to_3_and_5": 286
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "first",
+    "last",
+    "minimum",
+    "maximum",
+    "tojvec"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "prapply"
+}

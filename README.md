@@ -98,3 +98,33 @@ None of these has a reviewed result yet.
 - Code is MIT-0 and our text is CC0 1.0; see [LICENSE](LICENSE).
 - The research, design decisions, claims and authorship are Chimdi Walter Ndubuisi's. AI coding assistance was used
   for parts of the implementation and documentation.
+
+## Update, 16 November 2026: four follow-up studies
+
+Everything above this line is as submitted on 9 November 2026 (tag `arc2026-paper-20261109`). Nothing in it was
+changed.
+
+Since the submission, four studies asked a narrower question, with no neural model and no GPU: when an operation
+is removed from the library and is known only through examples of its inputs and outputs, can a plain search
+rebuild it, and what tells a right rebuild from one that merely fits the examples? Each study fixed its protocol
+before its single run, and its saved numbers were then recomputed from the saved records in a separate internal
+check (not external peer review). All four are development comparisons on invented inputs over a known library of
+operations. None is a result on ARC tasks.
+
+| study | folder | what it measured | outcome |
+|---|---|---|---|
+| Operations from the rest of the library (13 November) | `experiments/core_operations_20261113/` | whether an expression of at most 4 nodes over the remaining operations reproduces a hidden operation on 36 examples | 55 of 145 when the operation is hidden alone and 25 of 145 when its whole family is hidden (46 and 21 after a stress check added after the run); with three examples about half of the first expressions that fit were wrong |
+| Repair at a visible failure (13 November) | `experiments/visible_failure_20261113/` | keeping a failing program and searching only for its missing call, against solving the task from scratch | 9 of 102 tasks against 6; no benefit shown |
+| Evidence through several programs (14 November) | `experiments/evidence_across_failures_20261114/` | the same nine inputs read through three surrounding programs instead of one | wrong first answers 14 against 19 of 95, right ones 11 against 10; exact sign test p = 0.18; the declared criterion was not met |
+| Smaller building blocks (15 November) | `experiments/below_library_20261114/` | a search that may also use 68 blocks below the library, against the library alone searched one node deeper, at the same number of candidate combinations | 10 of 80 longer operations rebuilt against 7; exact sign test p = 0.25; the declared criterion was not met |
+
+What they show together. An expression that fits every example it was shown is often wrong. In the last study
+both systems chose the same three wrong expressions; each fits all 36 examples and agrees with the true operation
+on 30 further inputs from the same generator, and only inputs drawn another way expose them. More examples of the
+same kind mostly turned a wrong answer into no answer, not into a right one. And many searches ended with nothing
+found within their limits, which is a limit of what was searched and not evidence that the operation cannot be
+expressed.
+
+Each folder holds its protocol, code, tests, saved outputs and a results record (`RESULTS.md`). What a rerun needs
+is described in [docs/FOLLOW_UP_STUDIES_20261116.md](docs/FOLLOW_UP_STUDIES_20261116.md). Work still in progress
+is not part of this update.

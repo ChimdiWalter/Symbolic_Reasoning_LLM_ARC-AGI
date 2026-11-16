@@ -1,0 +1,112 @@
+{
+ "arms": {
+  "1": {
+   "bank": 975,
+   "cpu_s": 0.02,
+   "equal_all_36": false,
+   "expr": "valmin(patch, increment)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 3,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 1,
+   "validation_errors": 15
+  },
+  "2": {
+   "bank": 9476,
+   "cpu_s": 0.252,
+   "equal_all_36": false,
+   "expr": "valmax(inbox(patch), decrement)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 14,
+   "validation_errors": 1
+  },
+  "3": {
+   "bank": 10265,
+   "cpu_s": 0.295,
+   "equal_all_36": false,
+   "expr": "valmax(inbox(patch), decrement)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 14,
+   "validation_errors": 1
+  },
+  "6": {
+   "bank": 29946,
+   "cpu_s": 3.989,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 25670,
+   "cpu_s": 9.854,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 14.411,
+ "examples_sha": "00e5493442112967",
+ "expr": null,
+ "family": "centerofmass",
+ "family_size": 1,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "centerofmass"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "centerofmass"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "toindices"
+ ],
+ "max_size": 4,
+ "op": "centerofmass",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "same_as_a": "the family has one member, so conditions a and b are the same search",
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

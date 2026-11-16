@@ -1,0 +1,543 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{t(i8,t(i0,i1)),t(i8,t(i2,i10)),t(i8,t(i6,i1))}",
+    "f:totuple"
+   ],
+   [
+    "t(t(i10,i1),t(i3,i13))",
+    "f:crement"
+   ],
+   [
+    "t(t(i9,i6),t(i8,i1))",
+    "f:toivec"
+   ],
+   [
+    "s{t(i1,i0)}",
+    "f:crement"
+   ],
+   [
+    "s{s{t(i2,t(i0,i0)),t(i2,t(i0,i3)),t(i2,t(i0,i4)),t(i2,t(i0,i5)),t(i2,t(i0,i6)),t(i2,t(i1,i0)),t(i2,t(i1,i2)),t(i2,t(i1,i3)),t(i2,t(i1,i4)),t(i2,t(i1,i5)),t(i2,t(i1,i6)),t(i2,t(i1,i7)),t(i2,t(i2,i2)),t(i2,t(i2,i3)),t(i2,t(i2,i4)),t(i2,t(i2,i5)),t(i2,t(i2,i6)),t(i2,t(i2,i7)),t(i2,t(i3,i0)),t(i2,t(i3,i...#38ab9ff7",
+    "f:last"
+   ],
+   [
+    "t(i9,i7)",
+    "f:positive"
+   ],
+   [
+    "t(t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i2,i6,i6),t(i6,i6,i2,i2,i2,i6,i6,i2,i6,i6),t(i6,i6,i2,i6,i6,i6,i6,i6,i2,i6),t(i6,i6,i2,i2,i6,i6,i6,i2,i6,i6),t(i6,i6,i2,i2,i2,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6),t(i6,i2,i6,i6,i6,i6,i6,i6,i2,i6),t...#431fab9a",
+    "f:invert"
+   ],
+   [
+    "t(t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i2),t(i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i7,i3,i3,i3,i3),t(i3,i2,i2,i3,i3,i3,i3,i3,i3),t(i3,i2,i3,i3,i3,i3,i3,i3,i2),t(i3,i2,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3))",
+    "f:double"
+   ],
+   [
+    "s{t(i7,t(i8,i3)),t(i7,t(i8,i4))}",
+    "f:tojvec"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": false,
+  "why": "no fourth eligible wrapper"
+ },
+ "arms": {
+  "A1x3": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 234,
+   "bank_at_first_fit": 234,
+   "candidates_tested": 110,
+   "counterexample": {
+    "args": [
+     "s{i0,i1,i3,i4,i9}",
+     "f:crement"
+    ],
+    "got": "i0",
+    "index": 15,
+    "want": "i1"
+   },
+   "cpu_s": 0.002,
+   "cpu_to_first_fit": 0.002,
+   "error": null,
+   "expr": "first(container)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": null,
+   "right_detail": {
+    "gen": [
+     29,
+     30
+    ],
+    "pooled": [
+     249,
+     263
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 233,
+   "bank_at_first_fit": 233,
+   "candidates_tested": 109,
+   "counterexample": {
+    "args": [
+     "s{i0,i1,i3,i4,i9}",
+     "f:crement"
+    ],
+    "got": "i0",
+    "index": 15,
+    "want": "i1"
+   },
+   "cpu_s": 0.003,
+   "cpu_to_first_fit": 0.003,
+   "error": null,
+   "expr": "first(container)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": null,
+   "right_detail": {
+    "gen": [
+     29,
+     30
+    ],
+    "pooled": [
+     249,
+     263
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 233,
+   "bank_at_first_fit": 233,
+   "candidates_tested": 109,
+   "counterexample": {
+    "args": [
+     "s{i0,i1,i3,i4,i9}",
+     "f:crement"
+    ],
+    "got": "i0",
+    "index": 15,
+    "want": "i1"
+   },
+   "cpu_s": 0.003,
+   "cpu_to_first_fit": 0.003,
+   "error": null,
+   "expr": "first(container)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": null,
+   "right_detail": {
+    "gen": [
+     29,
+     30
+    ],
+    "pooled": [
+     249,
+     263
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 233,
+   "bank_at_first_fit": 233,
+   "candidates_tested": 109,
+   "counterexample": {
+    "args": [
+     "s{i0,i1,i3,i4,i9}",
+     "f:crement"
+    ],
+    "got": "i0",
+    "index": 15,
+    "want": "i1"
+   },
+   "cpu_s": 0.002,
+   "cpu_to_first_fit": 0.002,
+   "error": null,
+   "expr": "first(container)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": null,
+   "right_detail": {
+    "gen": [
+     29,
+     30
+    ],
+    "pooled": [
+     249,
+     263
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "toivec",
+    "toivec",
+    "toivec"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 233,
+   "bank_at_first_fit": 233,
+   "candidates_tested": 109,
+   "counterexample": {
+    "args": [
+     "s{i0,i1,i3,i4,i9}",
+     "f:crement"
+    ],
+    "got": "i0",
+    "index": 15,
+    "want": "i1"
+   },
+   "cpu_s": 0.002,
+   "cpu_to_first_fit": 0.002,
+   "error": null,
+   "expr": "first(container)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": null,
+   "right_detail": {
+    "gen": [
+     29,
+     30
+    ],
+    "pooled": [
+     249,
+     263
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "toivec",
+    "toivec",
+    "toivec",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": false,
+  "construction": true,
+  "reuse": false,
+  "unavailable": {
+   "admission": "no fourth eligible wrapper",
+   "reuse": "no fifth eligible wrapper"
+  }
+ },
+ "cpu_s_total": 0.2,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'extract' is not defined",
+  "error_type": "NameError",
+  "missing_name": "extract"
+ },
+ "family": "filtering",
+ "family_size": 5,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 263,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": false,
+  "why": "no fifth eligible wrapper"
+ },
+ "seals": {
+  "acquisition_record": "56afae9533ce4d00205f610c94acbb81d336ffe5323a81e70c75e490711cbb49",
+  "final_set": "315a73f5a3878b8dd9a3fbbda02db6acae91e455c7316838862ed3c2b523ee7b",
+  "first_fit_records": "2b5eaa01480838a214b3e489bfb28890e3d321b920057fb3229305c12ba4f2df",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "setup_record": "78b2ad033db67ada5e092c4a4497c0bb8cf2a2b9558f68b6181744620812652c"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": false,
+   "construction": true,
+   "reuse": false,
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   }
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 307,
+   "B": 384,
+   "R": 153,
+   "UA": 307,
+   "UB": 384,
+   "dropped_holding_functions": 63,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1537
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UB_draws": 384,
+   "UB_usable_wrappers_1_to_3": 277
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "initset",
+    "2": "toivec",
+    "3": "tojvec"
+   },
+   "chosen": [
+    "initset",
+    "toivec",
+    "tojvec"
+   ],
+   "n_candidates": 3,
+   "n_eligible": 3,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 307,
+    "B": 384,
+    "R": 153,
+    "UA": 307,
+    "UB": 384,
+    "dropped_holding_functions": 63,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1537
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UB_draws": 384,
+    "UB_usable_wrappers_1_to_3": 277
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": false,
+   "cohort_construction": true,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 3,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "wrappers": [
+    "initset",
+    "toivec",
+    "tojvec"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "extract"
+}

@@ -1,0 +1,107 @@
+{
+ "arms": {
+  "1": {
+   "bank": 173,
+   "cpu_s": 0.003,
+   "equal_all_36": false,
+   "expr": "dedupe(grid)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 26131,
+   "cpu_s": 2.567,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "3": {
+   "bank": 27419,
+   "cpu_s": 2.596,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 28447,
+   "cpu_s": 4.51,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 29745,
+   "cpu_s": 18.405,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 28.081,
+ "examples_sha": "a2cbbf966bc42b84",
+ "expr": null,
+ "family": "halves and splits",
+ "family_size": 6,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "bottomhalf",
+   "hsplit",
+   "lefthalf",
+   "righthalf",
+   "tophalf",
+   "vsplit"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "bottomhalf",
+  "hsplit",
+  "lefthalf",
+  "righthalf",
+  "tophalf",
+  "vsplit"
+ ],
+ "in_pilot_subset": true,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "tophalf",
+ "readings": {
+  "1": "wrong",
+  "2": "absent",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

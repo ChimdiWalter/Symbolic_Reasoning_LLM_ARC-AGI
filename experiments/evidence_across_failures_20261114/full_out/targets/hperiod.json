@@ -1,0 +1,491 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{t(i8,t(i0,i2))}"
+   ],
+   [
+    "s{t(i2,t(i0,i0)),t(i2,t(i0,i1)),t(i2,t(i0,i2)),t(i2,t(i0,i3)),t(i2,t(i1,i0)),t(i2,t(i1,i1)),t(i2,t(i1,i2)),t(i2,t(i1,i3)),t(i2,t(i2,i0)),t(i2,t(i2,i1)),t(i2,t(i2,i2)),t(i2,t(i2,i3)),t(i2,t(i3,i0)),t(i2,t(i3,i1)),t(i2,t(i3,i2)),t(i2,t(i3,i3)),t(i2,t(i4,i0)),t(i2,t(i4,i1)),t(i2,t(i4,i2)),t(i2,t(i4,i3)...#ea0a3c35"
+   ],
+   [
+    "s{t(i4,t(i1,i1)),t(i4,t(i1,i2)),t(i4,t(i3,i1)),t(i4,t(i3,i2)),t(i4,t(i3,i3)),t(i4,t(i3,i4)),t(i4,t(i7,i3)),t(i5,t(i4,i3)),t(i5,t(i4,i4)),t(i5,t(i5,i3)),t(i5,t(i5,i4)),t(i5,t(i6,i3)),t(i5,t(i6,i4)),t(i6,t(i0,i0)),t(i6,t(i0,i1)),t(i6,t(i0,i2)),t(i6,t(i0,i3)),t(i6,t(i0,i4)),t(i6,t(i1,i0)),t(i6,t(i1,i3)...#7079c71a"
+   ],
+   [
+    "s{t(i2,t(i1,i0)),t(i2,t(i2,i0)),t(i6,t(i0,i0)),t(i6,t(i0,i1)),t(i6,t(i1,i1)),t(i6,t(i10,i0)),t(i6,t(i10,i1)),t(i6,t(i2,i1)),t(i6,t(i3,i0)),t(i6,t(i3,i1)),t(i6,t(i4,i0)),t(i6,t(i4,i1)),t(i6,t(i5,i0)),t(i6,t(i5,i1)),t(i6,t(i6,i0)),t(i6,t(i6,i1)),t(i6,t(i7,i0)),t(i6,t(i7,i1)),t(i6,t(i8,i0)),t(i6,t(i8,i...#8915dae4"
+   ],
+   [
+    "s{t(i2,t(i10,i1)),t(i2,t(i10,i2)),t(i2,t(i11,i1)),t(i2,t(i11,i2))}"
+   ],
+   [
+    "s{t(i1,t(i7,i10))}"
+   ],
+   [
+    "s{t(i6,t(i8,i0)),t(i6,t(i8,i1)),t(i6,t(i8,i2))}"
+   ],
+   [
+    "s{t(i0,t(i0,i0)),t(i0,t(i1,i2)),t(i0,t(i1,i4))}"
+   ],
+   [
+    "s{t(i7,t(i3,i6)),t(i7,t(i3,i7)),t(i7,t(i3,i8))}"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0023,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 21746,
+   "bank_at_first_fit": 21746,
+   "candidates_tested": 21620,
+   "counterexample": {
+    "args": [
+     "s{t(i4,t(i0,i3)),t(i4,t(i2,i0)),t(i4,t(i2,i8)),t(i4,t(i3,i9)),t(i4,t(i5,i6)),t(i4,t(i7,i2)),t(i4,t(i7,i3))}"
+    ],
+    "got": "i1",
+    "index": 0,
+    "want": "i10"
+   },
+   "cpu_s": 1.852,
+   "cpu_to_first_fit": 1.852,
+   "error": null,
+   "expr": "height(product(UNITY, obj))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     19,
+     30
+    ],
+    "pooled": [
+     27,
+     52
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 30107,
+   "bank_at_first_fit": null,
+   "candidates_tested": 29981,
+   "cpu_s": 3.771,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 31233,
+   "bank_at_first_fit": null,
+   "candidates_tested": 31107,
+   "cpu_s": 4.44,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 30107,
+   "bank_at_first_fit": null,
+   "candidates_tested": 29981,
+   "cpu_s": 4.15,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 31233,
+   "bank_at_first_fit": null,
+   "candidates_tested": 31107,
+   "cpu_s": 4.727,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "initset",
+    "initset",
+    "initset",
+    "decrement",
+    "decrement",
+    "decrement"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 21.3,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'hperiod' is not defined",
+  "error_type": "NameError",
+  "missing_name": "hperiod"
+ },
+ "family": "periods",
+ "family_size": 2,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 52,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 155,
+    "candidates_tested": 2,
+    "cpu_s": 0.0,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "T",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 0,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 155,
+    "candidates_tested": null,
+    "cpu_s": 0.0,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "TWO",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 0,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "3875e796455454dcbbdac0da9e9ef456120177abb54220df088cdbb54faad5d8",
+  "admission_set": "6e7df9b8089c09d4dc49d7573eb425c8dc180bd0c72a00a576cfd10b1e25132f",
+  "final_set": "fa8201763a41dd1fb24fbfda45ed7c375f9b8d05a3499770d317e25fb30c6566",
+  "first_fit_records": "3056a6d66731d834ef1e9916e3f2d57365c9a60b217936d0ed2d828eb4a50d25",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "84fa321d5926939044d25190d264bfe02db6f60c85d0b79fbe11d73e0c0af720",
+  "setup_record": "74a5bbff501eb4d31ecd383df74300a832135ada51f86215606bf6fa87fe3b22"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 42,
+   "B": 52,
+   "R": 21,
+   "UA": 42,
+   "UB": 52,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 210
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 42,
+   "UA_usable_wrapper_4": 42,
+   "UB_draws": 52,
+   "UB_usable_wrappers_1_to_3": 52,
+   "UB_usable_wrappers_1_to_3_and_5": 52
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "tojvec",
+    "2": "initset",
+    "3": "decrement",
+    "4": "toivec",
+    "5": "crement"
+   },
+   "chosen": [
+    "tojvec",
+    "initset",
+    "decrement",
+    "toivec",
+    "crement"
+   ],
+   "n_candidates": 9,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 42,
+    "B": 52,
+    "R": 21,
+    "UA": 42,
+    "UB": 52,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 210
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 42,
+    "UA_usable_wrapper_4": 42,
+    "UB_draws": 52,
+    "UB_usable_wrappers_1_to_3": 52,
+    "UB_usable_wrappers_1_to_3_and_5": 52
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "tojvec",
+    "initset",
+    "decrement",
+    "toivec",
+    "crement"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "hperiod"
+}

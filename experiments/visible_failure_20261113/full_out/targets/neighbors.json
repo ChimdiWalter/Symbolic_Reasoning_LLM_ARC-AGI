@@ -1,0 +1,65 @@
+{
+ "B": 10.0,
+ "consumers": {
+  "chosen": [
+   "mostcolor",
+   "merge",
+   "initset"
+  ],
+  "flags": [],
+  "n_candidates": 28,
+  "n_skipped": 0,
+  "post": {
+   "acq": "mostcolor",
+   "adm": "merge",
+   "reuse": "initset"
+  },
+  "roles": {
+   "acq": {
+    "distinct_final_outputs_on_setup_examples": 8,
+    "post": "mostcolor"
+   },
+   "adm": {
+    "distinct_final_outputs_on_setup_examples": 18,
+    "post": "merge"
+   },
+   "reuse": {
+    "distinct_final_outputs_on_setup_examples": 18,
+    "post": "initset"
+   }
+  },
+  "skipped": [],
+  "skipped_by_reason": {},
+  "text": {
+   "acq": "mostcolor(neighbors(loc))",
+   "adm": "merge(neighbors(loc))",
+   "reuse": "initset(neighbors(loc))"
+  }
+ },
+ "dev": false,
+ "development_only": false,
+ "family": "neighbourhoods",
+ "family_size": 3,
+ "held_out_family": false,
+ "label": "development study (the operations study's outcomes for these operations were known before this protocol was frozen)",
+ "pooled_sequence": {
+  "A": 17,
+  "B": 22,
+  "R": 8,
+  "UA": 17,
+  "UB": 22,
+  "unique_tuples": 89
+ },
+ "preservation_bank": {
+  "successful_entries": 48
+ },
+ "reason": "too few usable pooled inputs (admission consumer: 17 of 17 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+ "setup_pooled_usability": {
+  "acq_and_reuse_draws": 22,
+  "acq_and_reuse_usable": 22,
+  "admission_draws": 17,
+  "admission_usable": 17
+ },
+ "status": "excluded",
+ "target": "neighbors"
+}

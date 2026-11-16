@@ -1,0 +1,119 @@
+{
+ "arms": {
+  "1": {
+   "bank": 978,
+   "cpu_s": 0.027,
+   "equal_all_36": false,
+   "expr": "initset(last(objs))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 10,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 1304,
+   "cpu_s": 0.032,
+   "equal_all_36": false,
+   "expr": "sfilter(objs, leftmost)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 10,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 1321,
+   "cpu_s": 0.034,
+   "equal_all_36": false,
+   "expr": "sfilter(objs, leftmost)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 10,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 1377,
+   "cpu_s": 0.054,
+   "equal_all_36": false,
+   "expr": "sfilter(objs, leftmost)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 10,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 31237,
+   "cpu_s": 9.279,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 9.426,
+ "examples_sha": "10dcfd48edf05076",
+ "expr": null,
+ "family": "filtering",
+ "family_size": 5,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "colorfilter",
+   "extract",
+   "mfilter",
+   "sfilter",
+   "sizefilter"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "colorfilter"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "colorfilter",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "wrong"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

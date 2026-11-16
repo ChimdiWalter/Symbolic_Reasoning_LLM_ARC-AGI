@@ -1,0 +1,124 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "totuple",
+ "family_size": 1,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError; wrapper 3: intact consumer did not run: ValueError",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "wrapper 1: intact consumer did not run: IndexError",
+      "wrapper 3: intact consumer did not run: ValueError"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 32,
+   "B": 40,
+   "R": 16,
+   "UA": 32,
+   "UB": 40,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 162
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 32,
+   "UA_usable_wrapper_4": 32,
+   "UB_draws": 40,
+   "UB_usable_wrappers_1_to_3": 40,
+   "UB_usable_wrappers_1_to_3_and_5": 40
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "hfrontier",
+    "2": "tojvec",
+    "3": "leastcommon",
+    "4": "hmirror",
+    "5": "dedupe"
+   },
+   "chosen": [
+    "hfrontier",
+    "tojvec",
+    "leastcommon",
+    "hmirror",
+    "dedupe"
+   ],
+   "n_candidates": 13,
+   "n_eligible": 5,
+   "n_skipped": 1,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": [
+    {
+     "post": "last",
+     "reason": "trivial repair passes"
+    }
+   ]
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 32,
+    "B": 40,
+    "R": 16,
+    "UA": 32,
+    "UB": 40,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 162
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError; wrapper 3: intact consumer did not run: ValueError",
+   "usability": {
+    "UA_draws": 32,
+    "UA_usable_wrapper_4": 32,
+    "UB_draws": 40,
+    "UB_usable_wrappers_1_to_3": 40,
+    "UB_usable_wrappers_1_to_3_and_5": 40
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "hfrontier",
+    "tojvec",
+    "leastcommon",
+    "hmirror",
+    "dedupe"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "totuple"
+}

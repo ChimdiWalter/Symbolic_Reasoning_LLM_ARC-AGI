@@ -1,0 +1,120 @@
+{
+ "arms": {
+  "1": {
+   "bank": 397,
+   "cpu_s": 0.004,
+   "equal_all_36": true,
+   "expr": "multiply(i, DOWN)",
+   "function_cap_reached": false,
+   "later_fit_equal": 5,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 464,
+   "cpu_s": 0.006,
+   "equal_all_36": true,
+   "expr": "multiply(i, DOWN)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 464,
+   "cpu_s": 0.006,
+   "equal_all_36": true,
+   "expr": "multiply(i, DOWN)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 464,
+   "cpu_s": 0.007,
+   "equal_all_36": true,
+   "expr": "multiply(i, DOWN)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 464,
+   "cpu_s": 0.011,
+   "expr": "multiply(i, DOWN)",
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "size": 3,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 0.034,
+ "examples_sha": "b4f7a22824374083",
+ "expr": "multiply(i, DOWN)",
+ "family": "pairs of integers",
+ "family_size": 3,
+ "generator": {
+  "draws": 86,
+  "function_pool_excluded": [
+   "astuple",
+   "toivec",
+   "tojvec"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 50,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "toivec"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "toivec",
+ "readings": {
+  "1": "right",
+  "2": "right",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 3,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "multiply"
+ ]
+}

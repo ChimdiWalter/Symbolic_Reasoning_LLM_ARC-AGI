@@ -1,0 +1,105 @@
+{
+ "arms": {
+  "1": {
+   "bank": 9709,
+   "cpu_s": 0.215,
+   "equal_all_36": false,
+   "expr": "merge(pair(a, b))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 9,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 35962,
+   "cpu_s": 1.853,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "3": {
+   "bank": 30123,
+   "cpu_s": 1.729,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 25225,
+   "cpu_s": 1.93,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 24852,
+   "cpu_s": 6.83,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 12.557,
+ "examples_sha": "bfb605d390cf4f94",
+ "expr": null,
+ "family": "mapping",
+ "family_size": 6,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "apply",
+   "mapply",
+   "mpapply",
+   "papply",
+   "prapply",
+   "rapply"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "mpapply"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "merge",
+  "papply"
+ ],
+ "max_size": 4,
+ "op": "mpapply",
+ "readings": {
+  "1": "wrong",
+  "2": "absent",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

@@ -1,0 +1,100 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "arithmetic",
+ "family_size": 11,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)",
+ "reason_kind": "too_few_usable_pooled_inputs",
+ "setup": {
+  "cohorts": {
+   "admission": false,
+   "construction": true,
+   "reuse": false,
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   }
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 12,
+   "B": 15,
+   "R": 6,
+   "UA": 12,
+   "UB": 15,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 60
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UB_draws": 15,
+   "UB_usable_wrappers_1_to_3": 15
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "tojvec",
+    "2": "initset",
+    "3": "toivec"
+   },
+   "chosen": [
+    "tojvec",
+    "initset",
+    "toivec"
+   ],
+   "n_candidates": 3,
+   "n_eligible": 3,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 60
+   },
+   "preservation_bank_entries": 48,
+   "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)",
+   "usability": {
+    "UB_draws": 15,
+    "UB_usable_wrappers_1_to_3": 15
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 3,
+   "reason_kind": "too_few_usable_pooled_inputs",
+   "status": "excluded",
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "wrappers": [
+    "tojvec",
+    "initset",
+    "toivec"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "invert"
+}

@@ -1,0 +1,389 @@
+{
+ "B": 10.0,
+ "admission_evidence": {
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "H": {
+   "admitted": false,
+   "allowance": 10.0,
+   "correct": false,
+   "cpu_s": 7.939,
+   "cpu_s_physical": 7.939,
+   "derived_from_arm_runs": true,
+   "fit": false,
+   "half": 5.0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "source": null,
+   "stop": "allowance_split_used_up",
+   "stop_class": "allowance_used_up",
+   "task_acq_exact": false
+  },
+  "S": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 190617,
+   "correct": false,
+   "cpu_s": 10.001,
+   "cpu_s_physical": 10.001,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "fit": false,
+   "function_cap_reached": true,
+   "level_completed": 4,
+   "n_hits": 0,
+   "note": "S is scored at task level only; no capability reading",
+   "reused": false,
+   "size": null,
+   "standin": {
+    "contains_standin": false,
+    "expr": null
+   },
+   "stop": "budget_cpu",
+   "stop_class": "allowance_used_up",
+   "task_acq_exact": false
+  },
+  "T": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 41397,
+   "correct": false,
+   "cpu_s": 4.206,
+   "cpu_s_physical": 4.206,
+   "cpu_to_first_fit": null,
+   "declared": "teacher examples (extra supervision); inputs 0-2 are the acquisition examples, 3-5 are shared with the admission grid, so T's admission is reported apart",
+   "error": null,
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_acq_exact": false
+  },
+  "V": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 38939,
+   "bank_at_first_fit": null,
+   "correct": false,
+   "cpu_s": 2.939,
+   "cpu_s_physical": 2.939,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "fit": false,
+   "fits": [],
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 0,
+   "note": "physical CPU is the whole collecting run; the counterfactual CPU to the first fit is cpu_to_first_fit",
+   "reuse_exact_any": false,
+   "reused": false,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_acq_exact": false
+  }
+ },
+ "consumers": {
+  "chosen": [
+   "rot90",
+   "righthalf",
+   "partition"
+  ],
+  "flags": [],
+  "n_candidates": 39,
+  "n_skipped": 0,
+  "post": {
+   "acq": "rot90",
+   "adm": "righthalf",
+   "reuse": "partition"
+  },
+  "roles": {
+   "acq": {
+    "distinct_final_outputs_on_setup_examples": 17,
+    "post": "rot90"
+   },
+   "adm": {
+    "distinct_final_outputs_on_setup_examples": 10,
+    "post": "righthalf"
+   },
+   "reuse": {
+    "distinct_final_outputs_on_setup_examples": 17,
+    "post": "partition"
+   }
+  },
+  "skipped": [],
+  "skipped_by_reason": {},
+  "text": {
+   "acq": "rot90(subgrid(patch, grid))",
+   "adm": "righthalf(subgrid(patch, grid))",
+   "reuse": "partition(subgrid(patch, grid))"
+  }
+ },
+ "cpu_s_total": 39.24,
+ "decision": {
+  "both_actions_run": true,
+  "chosen": "V",
+  "localised": true,
+  "rule": "construct at the failing step when the failure is localised (a NameError naming the missing operation), else search for a whole program"
+ },
+ "dev": false,
+ "development_only": false,
+ "diagnosis": {
+  "allowance": 1.0,
+  "bank": 13566,
+  "best_examples_matched": 1,
+  "cpu_s": 1.0,
+  "cpu_s_physical": 1.0,
+  "error_kind_when_missing": "NameError",
+  "expr": null,
+  "fit": false,
+  "function_cap_reached": true,
+  "level_completed": 3,
+  "n_hits": 0,
+  "nearly_fitting_candidates": 0,
+  "note": "exploratory; no conclusion is computed from it",
+  "of": 3,
+  "stop": "budget_cpu",
+  "stop_class": "allowance_used_up"
+ },
+ "failure": {
+  "all_examples_fail": true,
+  "argument_tags": [
+   [
+    "O",
+    "G"
+   ],
+   [
+    "X",
+    "G"
+   ],
+   [
+    "X",
+    "G"
+   ]
+  ],
+  "arguments": [
+   [
+    "s{t(i7,t(i1,i0)),t(i7,t(i1,i1)),t(i7,t(i1,i2))}",
+    "t(t(i0,i0,i0,i0,i0,i0,i0),t(i7,i7,i7,i0,i0,i0,i0))"
+   ],
+   [
+    "s{t(i10,i8),t(i2,i5),t(i4,i2),t(i5,i2),t(i7,i4),t(i7,i5),t(i9,i5)}",
+    "t(t(i4,i4,i4,i9,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i0,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i0,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i9,i4,i4,i4,i4),t(i4,i4,i4,i0,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i0,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i0),t(i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4))"
+   ],
+   [
+    "s{t(i0,i10),t(i1,i2),t(i2,i1),t(i3,i9)}",
+    "t(t(i5,i5,i5,i5,i2,i5,i5,i5,i5,i5,i5),t(i5,i5,i5,i5,i5,i5,i5,i5,i5,i5,i5),t(i5,i5,i5,i5,i5,i5,i5,i5,i5,i5,i5),t(i5,i5,i9,i5,i5,i5,i5,i5,i5,i5,i5),t(i5,i2,i5,i5,i5,i5,i5,i5,i5,i5,i5),t(i5,i5,i5,i5,i5,i5,i5,i5,i9,i9,i9),t(i2,i2,i2,i5,i5,i5,i5,i5,i9,i9,i5),t(i5,i9,i5,i5,i5,i5,i5,i5,i9,i9,i9),t(i5,i5,i5,i5,i5,i5,i2,i2,i2,i2,i5),t(i5,i5,i5,i5,i5,i5,i2,i2,i2,i5,i5))"
+   ]
+  ],
+  "error_text": "name 'subgrid' is not defined",
+  "error_type": "NameError",
+  "failing_step": "step 1 of 2: the call of subgrid",
+  "missing_name": "subgrid",
+  "required_outputs": [
+   "t(t(i7),t(i7),t(i7))",
+   "t(t(i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i0,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4),t(i4,i4,i4,i4,i4,i4,i9,i4,i4),t(i4,i4,i4,i4,i4,i4,i4,i4,i4))",
+   "t(t(i5,i5,i5,i5),t(i9,i5,i5,i5),t(i5,i5,i5,i5),t(i5,i5,i5,i2),t(i5,i5,i5,i5),t(i5,i5,i5,i5),t(i5,i5,i5,i5),t(i5,i5,i5,i5),t(i5,i5,i5,i5),t(i5,i5,i5,i5))"
+  ]
+ },
+ "family": "cutting a rectangle",
+ "family_size": 2,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 399,
+  "pooled_short": false
+ },
+ "gate": {
+  "attempts": [
+   {
+    "failed": [],
+    "ok": true,
+    "source": "generator",
+    "trivial_passing": []
+   }
+  ]
+ },
+ "held_out_family": true,
+ "label": "development study (the operations study's outcomes for these operations were known before this protocol was frozen)",
+ "late_gate_flags": {
+  "admission_generator_acq_post": true,
+  "admission_generator_adm_post": true,
+  "admission_pooled_adm_post": true,
+  "final_acq_post": true,
+  "final_reuse_post": true
+ },
+ "pooled_sequence": {
+  "A": 320,
+  "B": 400,
+  "R": 160,
+  "UA": 320,
+  "UB": 400,
+  "unique_tuples": 1600
+ },
+ "preservation_bank": {
+  "successful_entries": 48
+ },
+ "primary": {
+  "acquisition_task": {
+   "S": false,
+   "S_cpu_physical_s": 10.001,
+   "V": false,
+   "V_cpu_counterfactual_s": 2.939,
+   "V_cpu_physical_s": 2.939
+  },
+  "reuse_task_secondary": {
+   "S_fresh": false,
+   "S_fresh_cpu_physical_s": 10.0,
+   "V_admitted": false,
+   "no_retention": false,
+   "no_retention_cpu_physical_s": 9.872,
+   "retained_V": false
+  }
+ },
+ "repair_choice": {
+  "allowance": 20.0,
+  "random": [
+   {
+    "cpu_s": 12.94,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 0
+   },
+   {
+    "cpu_s": 12.94,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 1
+   },
+   {
+    "cpu_s": 12.94,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 2
+   },
+   {
+    "cpu_s": 12.94,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 3
+   },
+   {
+    "cpu_s": 12.94,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 4
+   }
+  ],
+  "rule": {
+   "cpu_s": 12.94,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  },
+  "s_then_v": {
+   "cpu_s": 12.94,
+   "order": [
+    "S",
+    "V"
+   ],
+   "reached": false
+  },
+  "v_then_s": {
+   "cpu_s": 12.94,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  }
+ },
+ "reuse_controls": {
+  "conditional_comparison_fixed_library_10B": null,
+  "costs": {
+   "fixed_library_B_cpu_s": 10.0,
+   "no_retention_per_reuse_cpu_s": 9.872,
+   "retained_available": false,
+   "retained_parts": {
+    "acquisition_to_first_fit_cpu_s": null,
+    "admission_cpu_s": null,
+    "deployment_at_reuse_cpu_s": null,
+    "library_load_cpu_s": null,
+    "library_write_cpu_s": null,
+    "preservation_cpu_s": null
+   },
+   "retained_parts_note": "admission_cpu_s includes preservation_cpu_s (nested); add the parts once, never the inclusive total with its own parts"
+  },
+  "fixed_library_B": {
+   "allowance": 10.0,
+   "bank": 183082,
+   "cpu_s": 10.0,
+   "cpu_s_physical": 10.0,
+   "exact_on_final": false,
+   "expr": null,
+   "fit": false,
+   "function_cap_reached": true,
+   "level_completed": 4,
+   "n_hits": 0,
+   "stop": "budget_cpu",
+   "stop_class": "allowance_used_up"
+  },
+  "no_retention": {
+   "allowance": 10.0,
+   "bank": 37881,
+   "cost_cpu_s": 9.872,
+   "cpu_s": 9.872,
+   "cpu_s_physical": 9.872,
+   "exact_on_final": false,
+   "expr": null,
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 0,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative"
+  }
+ },
+ "reuse_support": {
+  "of": 3,
+  "usable": 3
+ },
+ "selection": {
+  "admitted_among_fits": 0,
+  "correct_among_fits": 0,
+  "distinct_behaviours": 0,
+  "fits": [],
+  "n_fits": 0
+ },
+ "setup_pooled_usability": {
+  "acq_and_reuse_draws": 400,
+  "acq_and_reuse_usable": 400,
+  "admission_draws": 320,
+  "admission_usable": 319
+ },
+ "status": "done",
+ "target": "subgrid"
+}

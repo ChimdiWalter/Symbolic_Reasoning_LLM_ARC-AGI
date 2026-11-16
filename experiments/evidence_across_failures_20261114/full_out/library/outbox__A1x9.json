@@ -1,0 +1,35 @@
+{
+ "acquisition_record_sha256": "4b424b711dcf5d0a9a3623aea5b46cb395ac547228dabfe03c168afa98789769",
+ "admission_record_sha256": "1761c9253a31c997699ae084617cb5800acb97bd183f88bcc42d57b760d1f15b",
+ "constants": [],
+ "expression": "mapply(dneighbors, toindices(patch))",
+ "name": "vf_1527e9e9",
+ "signature": [
+  [
+   "patch",
+   "Patch"
+  ]
+ ],
+ "tree": [
+  "L",
+  "mapply",
+  [
+   "FN",
+   "dneighbors"
+  ],
+  [
+   "L",
+   "toindices",
+   [
+    "P",
+    "patch"
+   ]
+  ]
+ ],
+ "uses": [
+  "dneighbors",
+  "mapply",
+  "toindices"
+ ],
+ "version": 1
+}

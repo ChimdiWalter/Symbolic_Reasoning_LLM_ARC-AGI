@@ -1,0 +1,127 @@
+{
+ "arms": {
+  "1": {
+   "bank": 152,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "TWO",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 2,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 1026,
+   "cpu_s": 0.019,
+   "equal_all_36": false,
+   "expr": "minimum(palette(element))",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 17,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 1030,
+   "cpu_s": 0.015,
+   "equal_all_36": false,
+   "expr": "minimum(palette(element))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 17,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 982,
+   "cpu_s": 0.017,
+   "equal_all_36": false,
+   "expr": "minimum(palette(element))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 17,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 24523,
+   "cpu_s": 8.207,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 8.258,
+ "examples_sha": "d25cbd73fd550e9e",
+ "expr": null,
+ "family": "most and least frequent",
+ "family_size": 4,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "color",
+   "cover",
+   "fgpartition",
+   "leastcolor",
+   "leastcommon",
+   "mostcolor",
+   "move",
+   "objects",
+   "underfill",
+   "underpaint"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "color",
+  "leastcolor",
+  "leastcommon",
+  "mostcolor"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "mostcolor",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "wrong"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

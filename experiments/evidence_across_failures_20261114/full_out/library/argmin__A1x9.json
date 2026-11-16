@@ -1,0 +1,38 @@
+{
+ "acquisition_record_sha256": "aa692059cba130c8a059c0229a3f7db30503530d98fd9c10369cc12fde2b32ce",
+ "admission_record_sha256": "ba44a46a935438daded5c58a74c087645c4c2e10af731147cfb243d732217e4d",
+ "constants": [],
+ "expression": "first(order(container, compfunc))",
+ "name": "vf_909b0ca7",
+ "signature": [
+  [
+   "container",
+   "Container"
+  ],
+  [
+   "compfunc",
+   "Callable"
+  ]
+ ],
+ "tree": [
+  "L",
+  "first",
+  [
+   "L",
+   "order",
+   [
+    "P",
+    "container"
+   ],
+   [
+    "P",
+    "compfunc"
+   ]
+  ]
+ ],
+ "uses": [
+  "first",
+  "order"
+ ],
+ "version": 1
+}

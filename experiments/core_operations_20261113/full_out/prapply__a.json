@@ -1,0 +1,102 @@
+{
+ "arms": {
+  "1": {
+   "bank": 985,
+   "cpu_s": 0.017,
+   "equal_all_36": false,
+   "expr": "merge(initset(a))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 6,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 24079,
+   "cpu_s": 1.409,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "3": {
+   "bank": 23014,
+   "cpu_s": 1.465,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 23318,
+   "cpu_s": 1.823,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 22072,
+   "cpu_s": 5.365,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 10.078,
+ "examples_sha": "72cf3d87c979d6d9",
+ "expr": null,
+ "family": "mapping",
+ "family_size": 6,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "apply",
+   "mapply",
+   "mpapply",
+   "papply",
+   "prapply",
+   "rapply"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "prapply"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "prapply",
+ "readings": {
+  "1": "wrong",
+  "2": "absent",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

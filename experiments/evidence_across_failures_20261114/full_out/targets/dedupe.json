@@ -1,0 +1,152 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "dedupe",
+ "family_size": 1,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: a trivial repair passes: arg:tup",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "a trivial repair passes: arg:tup"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": [
+      "arg:tup"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+     ],
+     "ok": false,
+     "source": "setup_redraw_1",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3",
+      "const:xout:4"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: arg:tup"
+     ],
+     "ok": false,
+     "source": "setup_redraw_2",
+     "trivial_passing": [
+      "arg:tup"
+     ]
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 40,
+   "B": 50,
+   "R": 20,
+   "UA": 40,
+   "UB": 50,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 203
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 40,
+   "UA_usable_wrapper_4": 40,
+   "UB_draws": 50,
+   "UB_usable_wrappers_1_to_3": 50,
+   "UB_usable_wrappers_1_to_3_and_5": 50
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "bottomhalf",
+    "2": "tojvec",
+    "3": "initset",
+    "4": "toivec",
+    "5": "hmirror"
+   },
+   "chosen": [
+    "bottomhalf",
+    "tojvec",
+    "initset",
+    "toivec",
+    "hmirror"
+   ],
+   "n_candidates": 14,
+   "n_eligible": 5,
+   "n_skipped": 2,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": [
+    {
+     "post": "hfrontier",
+     "reason": "trivial repair passes"
+    },
+    {
+     "post": "first",
+     "reason": "trivial repair passes"
+    }
+   ]
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 40,
+    "B": 50,
+    "R": 20,
+    "UA": 40,
+    "UB": 50,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 203
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: a trivial repair passes: arg:tup",
+   "usability": {
+    "UA_draws": 40,
+    "UA_usable_wrapper_4": 40,
+    "UB_draws": 50,
+    "UB_usable_wrappers_1_to_3": 50,
+    "UB_usable_wrappers_1_to_3_and_5": 50
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "bottomhalf",
+    "tojvec",
+    "initset",
+    "toivec",
+    "hmirror"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "dedupe"
+}

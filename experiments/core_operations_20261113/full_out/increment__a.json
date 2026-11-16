@@ -1,0 +1,128 @@
+{
+ "arms": {
+  "1": {
+   "bank": 153,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "FIVE",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 0,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 287,
+   "cpu_s": 0.002,
+   "equal_all_36": true,
+   "expr": "add(x, ONE)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 288,
+   "cpu_s": 0.003,
+   "equal_all_36": true,
+   "expr": "add(x, ONE)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 284,
+   "cpu_s": 0.003,
+   "equal_all_36": true,
+   "expr": "add(ONE, x)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 284,
+   "cpu_s": 0.007,
+   "expr": "add(ONE, x)",
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "size": 3,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 0.014,
+ "examples_sha": "515541d05fdb7855",
+ "expr": "add(ONE, x)",
+ "family": "arithmetic",
+ "family_size": 11,
+ "generator": {
+  "draws": 69,
+  "function_pool_excluded": [
+   "add",
+   "crement",
+   "decrement",
+   "divide",
+   "double",
+   "halve",
+   "increment",
+   "invert",
+   "multiply",
+   "sign",
+   "subtract"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 33,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "increment"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "increment",
+ "readings": {
+  "1": "wrong",
+  "2": "right",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 3,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "add"
+ ]
+}

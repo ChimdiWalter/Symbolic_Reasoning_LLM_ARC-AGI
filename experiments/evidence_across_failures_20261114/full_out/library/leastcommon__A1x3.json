@@ -1,0 +1,35 @@
+{
+ "acquisition_record_sha256": "9c18be411ed552d1211f8cb437eb5329858bc88e3395d4d3f4b15890ba52d930",
+ "admission_record_sha256": "014ce6b96b243035aa0e28c2243ac54fd9662febc03e2bd636771b7f57beb5a5",
+ "constants": [],
+ "expression": "first(merge(initset(container)))",
+ "name": "vf_2ab6afbf",
+ "signature": [
+  [
+   "container",
+   "Container"
+  ]
+ ],
+ "tree": [
+  "L",
+  "first",
+  [
+   "L",
+   "merge",
+   [
+    "L",
+    "initset",
+    [
+     "P",
+     "container"
+    ]
+   ]
+  ]
+ ],
+ "uses": [
+  "first",
+  "initset",
+  "merge"
+ ],
+ "version": 1
+}

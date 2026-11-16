@@ -1,0 +1,35 @@
+{
+ "acquisition_record_sha256": "a5abb8bbeeb365f2ea7281e636e44ada51774604098947f03d34cc726a7ed995",
+ "admission_record_sha256": "d55488074e51aa64aa8472949cb66f85229ab2d040cc3af3b7cbf771d911f342",
+ "constants": [],
+ "expression": "valmax(toindices(patch), first)",
+ "name": "vf_c54c55aa",
+ "signature": [
+  [
+   "patch",
+   "Patch"
+  ]
+ ],
+ "tree": [
+  "L",
+  "valmax",
+  [
+   "L",
+   "toindices",
+   [
+    "P",
+    "patch"
+   ]
+  ],
+  [
+   "FN",
+   "first"
+  ]
+ ],
+ "uses": [
+  "first",
+  "toindices",
+  "valmax"
+ ],
+ "version": 1
+}

@@ -1,0 +1,486 @@
+{
+ "argmax": {
+  "nodes": 3,
+  "note": "source: max(container, key=compfunc)",
+  "tree": [
+   "L",
+   "c_max_key",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "argmin": {
+  "nodes": 3,
+  "note": "source: min(container, key=compfunc)",
+  "tree": [
+   "L",
+   "c_min_key",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "astuple": {
+  "nodes": 3,
+  "note": "source: (a, b)",
+  "tree": [
+   "L",
+   "c_pair",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "branch": {
+  "nodes": 4,
+  "note": "source: a if condition else b",
+  "tree": [
+   "L",
+   "c_if_else",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ],
+   [
+    "P",
+    "x2"
+   ]
+  ]
+ },
+ "color": {
+  "nodes": 3,
+  "note": "source: next(iter(obj))[0]  (development name)",
+  "tree": [
+   "L",
+   "c_item0",
+   [
+    "L",
+    "c_first",
+    [
+     "P",
+     "x0"
+    ]
+   ]
+  ]
+ },
+ "contained": {
+  "nodes": 3,
+  "note": "source: value in container",
+  "tree": [
+   "L",
+   "c_in",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "equality": {
+  "nodes": 3,
+  "note": "source: a == b",
+  "tree": [
+   "L",
+   "c_eq",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "even": {
+  "nodes": 5,
+  "note": "source: n % 2 == 0",
+  "tree": [
+   "L",
+   "c_eq",
+   [
+    "L",
+    "c_mod",
+    [
+     "P",
+     "x0"
+    ],
+    [
+     "C",
+     "TWO"
+    ]
+   ],
+   [
+    "C",
+    "ZERO"
+   ]
+  ]
+ },
+ "first": {
+  "nodes": 2,
+  "note": "source: next(iter(container))",
+  "tree": [
+   "L",
+   "c_first",
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "greater": {
+  "nodes": 3,
+  "note": "source: a > b",
+  "tree": [
+   "L",
+   "c_gt",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "identity": {
+  "nodes": 1,
+  "note": "source: x",
+  "tree": [
+   "P",
+   "x0"
+  ]
+ },
+ "initset": {
+  "nodes": 2,
+  "note": "source: frozenset({value})",
+  "tree": [
+   "L",
+   "c_set1",
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "insert": {
+  "nodes": 4,
+  "note": "source: container.union(frozenset({value}))",
+  "tree": [
+   "L",
+   "c_union",
+   [
+    "P",
+    "x1"
+   ],
+   [
+    "L",
+    "c_set1",
+    [
+     "P",
+     "x0"
+    ]
+   ]
+  ]
+ },
+ "intersection": {
+  "nodes": 3,
+  "note": "source: a & b",
+  "tree": [
+   "L",
+   "c_intersection",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "interval": {
+  "nodes": 4,
+  "note": "source: tuple(range(start, stop, step))",
+  "tree": [
+   "L",
+   "c_range3",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ],
+   [
+    "P",
+    "x2"
+   ]
+  ]
+ },
+ "last": {
+  "nodes": 4,
+  "note": "source: max(enumerate(container))[1]",
+  "tree": [
+   "L",
+   "c_item1",
+   [
+    "L",
+    "c_max",
+    [
+     "L",
+     "c_enumerate",
+     [
+      "P",
+      "x0"
+     ]
+    ]
+   ]
+  ]
+ },
+ "leastcommon": {
+  "nodes": 6,
+  "note": "source: min(set(container), key=container.count); the key is formed with the retained operation lbind",
+  "tree": [
+   "L",
+   "c_min_key",
+   [
+    "L",
+    "c_frozenset",
+    [
+     "P",
+     "x0"
+    ]
+   ],
+   [
+    "L",
+    "lbind",
+    [
+     "FN",
+     "c_count"
+    ],
+    [
+     "P",
+     "x0"
+    ]
+   ]
+  ]
+ },
+ "maximum": {
+  "nodes": 2,
+  "note": "source: max(container, default=0)",
+  "tree": [
+   "L",
+   "c_max_default0",
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "minimum": {
+  "nodes": 2,
+  "note": "source: min(container, default=0)",
+  "tree": [
+   "L",
+   "c_min_default0",
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "order": {
+  "nodes": 3,
+  "note": "source: tuple(sorted(container, key=compfunc))",
+  "tree": [
+   "L",
+   "c_sorted_key",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "pair": {
+  "nodes": 3,
+  "note": "source: tuple(zip(a, b))",
+  "tree": [
+   "L",
+   "c_zip",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ },
+ "positive": {
+  "nodes": 3,
+  "note": "source: x > 0",
+  "tree": [
+   "L",
+   "c_gt",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "C",
+    "ZERO"
+   ]
+  ]
+ },
+ "size": {
+  "nodes": 2,
+  "note": "source: len(container)",
+  "tree": [
+   "L",
+   "c_len",
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "toivec": {
+  "nodes": 3,
+  "note": "source: (i, 0)",
+  "tree": [
+   "L",
+   "c_pair",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "C",
+    "ZERO"
+   ]
+  ]
+ },
+ "tojvec": {
+  "nodes": 3,
+  "note": "source: (0, j)",
+  "tree": [
+   "L",
+   "c_pair",
+   [
+    "C",
+    "ZERO"
+   ],
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "totuple": {
+  "nodes": 2,
+  "note": "source: tuple(container)",
+  "tree": [
+   "L",
+   "c_tuple",
+   [
+    "P",
+    "x0"
+   ]
+  ]
+ },
+ "valmax": {
+  "nodes": 5,
+  "note": "source: compfunc(max(container, key=compfunc, default=0))",
+  "tree": [
+   "L",
+   "c_call1",
+   [
+    "P",
+    "x1"
+   ],
+   [
+    "L",
+    "c_max_key_default0",
+    [
+     "P",
+     "x0"
+    ],
+    [
+     "P",
+     "x1"
+    ]
+   ]
+  ]
+ },
+ "valmin": {
+  "nodes": 5,
+  "note": "source: compfunc(min(container, key=compfunc, default=0))",
+  "tree": [
+   "L",
+   "c_call1",
+   [
+    "P",
+    "x1"
+   ],
+   [
+    "L",
+    "c_min_key_default0",
+    [
+     "P",
+     "x0"
+    ],
+    [
+     "P",
+     "x1"
+    ]
+   ]
+  ]
+ },
+ "vconcat": {
+  "nodes": 3,
+  "note": "source: a + b",
+  "tree": [
+   "L",
+   "c_concat",
+   [
+    "P",
+    "x0"
+   ],
+   [
+    "P",
+    "x1"
+   ]
+  ]
+ }
+}

@@ -1,0 +1,58 @@
+{
+ "author": "Chimdi Walter Ndubuisi",
+ "label": "development only: never a result",
+ "what": "the same development run under two concurrent loads, compared field by field",
+ "first": "dev_out2",
+ "second": "dev_load3",
+ "files_compared": 21,
+ "files_missing": [],
+ "differences_time_or_memory": 778,
+ "differences_other": 0,
+ "other": [],
+ "passed": true,
+ "rule": "(^|_)cpu(_|$)|(^|_)wall(_|$)|peak_kb|^memory$|^costs_of_the_whole_job$|^started$|^ended$|^(final_checks|other|searches|targets_total|by_system)_s$",
+ "policy_keys_never_time": [
+  "cpu_budget_s",
+  "cpu_budget_is",
+  "time_safety_limit_s",
+  "processor_seconds_safety_limit_per_search"
+ ],
+ "processor_seconds_ratio_second_over_first": {
+  "C-36": {
+   "n": 17,
+   "median": 1.862,
+   "smallest": 1.687,
+   "largest": 1.958
+  },
+  "L4-36": {
+   "n": 17,
+   "median": 1.78,
+   "smallest": 1.626,
+   "largest": 1.859
+  },
+  "L4-9": {
+   "n": 17,
+   "median": 1.769,
+   "smallest": 1.578,
+   "largest": 1.828
+  },
+  "L5-36": {
+   "n": 17,
+   "median": 1.81,
+   "smallest": 1.668,
+   "largest": 1.856
+  },
+  "LC4-36": {
+   "n": 17,
+   "median": 1.829,
+   "smallest": 1.717,
+   "largest": 1.904
+  },
+  "LC4-9": {
+   "n": 17,
+   "median": 1.795,
+   "smallest": 1.634,
+   "largest": 1.852
+  }
+ }
+}

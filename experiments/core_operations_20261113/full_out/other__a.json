@@ -1,0 +1,135 @@
+{
+ "arms": {
+  "1": {
+   "bank": 155,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "NINE",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 2,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 155,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "NINE",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 2,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 236,
+   "cpu_s": 0.001,
+   "equal_all_36": false,
+   "expr": "first(container)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 27,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 9918,
+   "cpu_s": 0.84,
+   "equal_all_36": true,
+   "expr": "first(remove(value, container))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 10165,
+   "cpu_s": 3.018,
+   "expr": "first(remove(value, container))",
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "size": 4,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 3.858,
+ "examples_sha": "af233f079c91c02b",
+ "expr": "first(remove(value, container))",
+ "family": "set building",
+ "family_size": 7,
+ "generator": {
+  "draws": 42,
+  "function_pool_excluded": [
+   "combine",
+   "difference",
+   "initset",
+   "insert",
+   "intersection",
+   "other",
+   "remove"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 6
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "other"
+ ],
+ "in_pilot_subset": true,
+ "known_definition": {
+  "equals_all_36": true,
+  "expr": "first(remove(value, container))",
+  "found": true,
+  "miss_reason": null,
+  "size": 4
+ },
+ "library_deps": [
+  "first",
+  "remove"
+ ],
+ "max_size": 4,
+ "op": "other",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 4,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "first",
+  "remove"
+ ]
+}

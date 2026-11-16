@@ -1,0 +1,561 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "i4",
+    "t(i5,i3)"
+   ],
+   [
+    "i6",
+    "t(i2,i2)"
+   ],
+   [
+    "i2",
+    "t(i4,i2)"
+   ],
+   [
+    "i6",
+    "t(i2,i4)"
+   ],
+   [
+    "i2",
+    "t(i1,i3)"
+   ],
+   [
+    "i2",
+    "t(i5,i4)"
+   ],
+   [
+    "i2",
+    "t(i2,i5)"
+   ],
+   [
+    "i3",
+    "t(i1,i5)"
+   ],
+   [
+    "i9",
+    "t(i2,i3)"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0019,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 1255,
+   "bank_at_first_fit": 1255,
+   "candidates_tested": 1130,
+   "counterexample": {
+    "args": [
+     "i8",
+     "t(i2,i5)"
+    ],
+    "got": "s{t(i8,i0)}",
+    "index": 0,
+    "want": "t(t(i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8))"
+   },
+   "cpu_s": 0.032,
+   "cpu_to_first_fit": 0.032,
+   "error": null,
+   "expr": "initset(toivec(value))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     265
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "mostcolor",
+    "mostcolor",
+    "mostcolor"
+   ]
+  },
+  "A1x6": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0015,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 1285,
+   "bank_at_first_fit": 1285,
+   "candidates_tested": 1160,
+   "counterexample": {
+    "args": [
+     "i8",
+     "t(i2,i5)"
+    ],
+    "got": "s{t(i8,i0)}",
+    "index": 0,
+    "want": "t(t(i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8))"
+   },
+   "cpu_s": 0.037,
+   "cpu_to_first_fit": 0.037,
+   "error": null,
+   "expr": "initset(toivec(value))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     265
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor"
+   ]
+  },
+  "A1x9": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0013,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 1308,
+   "bank_at_first_fit": 1308,
+   "candidates_tested": 1183,
+   "counterexample": {
+    "args": [
+     "i8",
+     "t(i2,i5)"
+    ],
+    "got": "s{t(i8,i0)}",
+    "index": 0,
+    "want": "t(t(i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8))"
+   },
+   "cpu_s": 0.042,
+   "cpu_to_first_fit": 0.042,
+   "error": null,
+   "expr": "initset(toivec(value))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     265
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "mostcolor"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 29343,
+   "bank_at_first_fit": null,
+   "candidates_tested": 29218,
+   "cpu_s": 2.873,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "hfrontier",
+    "hfrontier",
+    "hfrontier"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 29859,
+   "bank_at_first_fit": null,
+   "candidates_tested": 29734,
+   "cpu_s": 3.384,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "mostcolor",
+    "mostcolor",
+    "mostcolor",
+    "hfrontier",
+    "hfrontier",
+    "hfrontier",
+    "toivec",
+    "toivec",
+    "toivec"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 6.69,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'canvas' is not defined",
+  "error_type": "NameError",
+  "missing_name": "canvas"
+ },
+ "family": "canvas",
+ "family_size": 1,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 265,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 250,
+    "candidates_tested": 125,
+    "cpu_s": 0.001,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "dneighbors(dimensions)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 0,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 155,
+    "candidates_tested": null,
+    "cpu_s": 0.0,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "F",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 0,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "9d849b8a453132fa06278ecb37bf0ef4df05c412e2d8b7cf96acb217449455e4",
+  "admission_set": "f83fc678b8d3db6377fac1e0f8ca776621562fa62fd81679df8ec574c322015c",
+  "final_set": "dd00ca4cade7606b7778062e57b86170c38edd27a9fa2d64f4f79ad435183328",
+  "first_fit_records": "c51b062751672035b31ea4b1760cc6bf15fcfd3d78287b5971a4ad0144de384d",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "793fc4f52f78b8178745302ab873755431aa99554bbe427492b7c63a2c480a1f",
+  "setup_record": "a8cec9dc8b818c8f355a153f412c2688d061eb748134f845a195cf3ba2496008"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 320,
+   "B": 400,
+   "R": 160,
+   "UA": 320,
+   "UB": 400,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1600
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 320,
+   "UA_usable_wrapper_4": 320,
+   "UB_draws": 400,
+   "UB_usable_wrappers_1_to_3": 266,
+   "UB_usable_wrappers_1_to_3_and_5": 266
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "mostcolor",
+    "2": "hfrontier",
+    "3": "toivec",
+    "4": "height",
+    "5": "vline"
+   },
+   "chosen": [
+    "mostcolor",
+    "hfrontier",
+    "toivec",
+    "height",
+    "vline"
+   ],
+   "n_candidates": 24,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1600
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 320,
+    "UA_usable_wrapper_4": 320,
+    "UB_draws": 400,
+    "UB_usable_wrappers_1_to_3": 266,
+    "UB_usable_wrappers_1_to_3_and_5": 266
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "mostcolor",
+    "hfrontier",
+    "toivec",
+    "height",
+    "vline"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "canvas"
+}

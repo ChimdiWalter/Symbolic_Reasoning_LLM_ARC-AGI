@@ -1,0 +1,104 @@
+{
+ "author": "Chimdi Walter Ndubuisi",
+ "what": "checks after the all-roster run of BL1",
+ "out": "experiments/below_library_20261114/full_out",
+ "freeze": "experiments/below_library_20261114/FREEZE.json",
+ "freeze_sha256": "391915c42f629661ba9d47d641ec186847c8ac2600128c35307ac12d09427144",
+ "setup_record": "experiments/below_library_20261114/SETUP_RECORD_ALL_2.json",
+ "setup_record_sha256": "1c7018c478ff88bfaf48f6d331929e43e9ac13da50d1a9e99015e701ba3a1732",
+ "checks": [
+  {
+   "check": "1 the freeze verifies",
+   "passed": true,
+   "detail": "391915c42f629661ba9d47d641ec186847c8ac2600128c35307ac12d09427144"
+  },
+  {
+   "check": "2 one read-only receipt naming the freeze, the setup record and the output folder",
+   "passed": true,
+   "detail": {
+    "mode": "0o444",
+    "outdir": "/path/to/repository/experiments/below_library_20261114/full_out",
+    "freeze": "391915c42f629661ba9d47d641ec186847c8ac2600128c35307ac12d09427144",
+    "setup": "1c7018c478ff88bfaf48f6d331929e43e9ac13da50d1a9e99015e701ba3a1732"
+   }
+  },
+  {
+   "check": "3 the job started once and ended once with exit 0",
+   "passed": true,
+   "detail": [
+    [
+     "START",
+     "2026-11-15T13:25:49Z",
+     "2754338"
+    ],
+    [
+     "EXIT",
+     "0",
+     "2026-11-15T17:14:33Z"
+    ]
+   ]
+  },
+  {
+   "check": "4 the run's manifest names the freeze, the setup record, the whole roster and the frozen policy",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "5 one record for every listed target and no other",
+   "passed": true,
+   "detail": {
+    "missing": [],
+    "extra": [],
+    "other_status": []
+   }
+  },
+  {
+   "check": "6 every journal holds its path's events and seals, in order, equal to the record",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "7 SUMMARY.json equals a summary made now from the records",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "7b the calibration set (K and its names) equals the one committed with the freeze",
+   "passed": true,
+   "detail": {
+    "freeze": 19,
+    "summary": 19,
+    "minimum": 19
+   }
+  },
+  {
+   "check": "8 setup decisions and counts equal the committed record",
+   "passed": true,
+   "detail": {
+    "available": true,
+    "n_compared": 145,
+    "n_decisions_differ": 0,
+    "n_counts_differ": 0
+   }
+  }
+ ],
+ "informational": {
+  "records_by_status": {
+   "done": 125,
+   "excluded": 20
+  },
+  "incomplete": [],
+  "primary_status": "not_met",
+  "guard_bound": {
+   "shortest_guard_s": 20.0,
+   "margin_s": 0.01,
+   "below": 145,
+   "not_excluded": [],
+   "unknown": []
+  },
+  "searches_within_20_percent_of_the_safety_limit": [],
+  "guard_timeouts": {},
+  "guarded_steps_without_a_mark": {}
+ },
+ "passed": true
+}

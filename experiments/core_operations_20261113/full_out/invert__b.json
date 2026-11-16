@@ -1,0 +1,117 @@
+{
+ "arms": {
+  "1": {
+   "bank": 448,
+   "cpu_s": 0.004,
+   "equal_all_36": false,
+   "expr": "order(n, identity)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 2,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 2,
+   "validation_errors": 9
+  },
+  "2": {
+   "bank": 17471,
+   "cpu_s": 1.126,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "3": {
+   "bank": 17492,
+   "cpu_s": 1.241,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 17560,
+   "cpu_s": 1.602,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 17735,
+   "cpu_s": 5.095,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 9.067,
+ "examples_sha": "2565c51e6927c040",
+ "expr": null,
+ "family": "arithmetic",
+ "family_size": 11,
+ "generator": {
+  "draws": 68,
+  "function_pool_excluded": [
+   "add",
+   "crement",
+   "decrement",
+   "divide",
+   "double",
+   "halve",
+   "increment",
+   "invert",
+   "multiply",
+   "sign",
+   "subtract"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 32,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "add",
+  "crement",
+  "decrement",
+  "divide",
+  "double",
+  "halve",
+  "increment",
+  "invert",
+  "multiply",
+  "sign",
+  "subtract"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "invert",
+ "readings": {
+  "1": "wrong",
+  "2": "absent",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

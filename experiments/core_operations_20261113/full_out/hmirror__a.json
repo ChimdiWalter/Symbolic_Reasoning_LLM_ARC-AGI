@@ -1,0 +1,132 @@
+{
+ "arms": {
+  "1": {
+   "bank": 1775,
+   "cpu_s": 0.063,
+   "equal_all_36": false,
+   "expr": "rot90(cmirror(piece))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 4,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 15,
+   "validation_errors": 15
+  },
+  "2": {
+   "bank": 21105,
+   "cpu_s": 1.153,
+   "equal_all_36": true,
+   "expr": "vmirror(dmirror(cmirror(piece)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 20663,
+   "cpu_s": 1.32,
+   "equal_all_36": true,
+   "expr": "vmirror(dmirror(cmirror(piece)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 20897,
+   "cpu_s": 1.737,
+   "equal_all_36": true,
+   "expr": "vmirror(dmirror(cmirror(piece)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 21473,
+   "cpu_s": 6.92,
+   "expr": "vmirror(dmirror(cmirror(piece)))",
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "size": 4,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 11.194,
+ "examples_sha": "7b1cc05cdc9af480",
+ "expr": "vmirror(dmirror(cmirror(piece)))",
+ "family": "mirrors and rotations",
+ "family_size": 7,
+ "generator": {
+  "draws": 39,
+  "function_pool_excluded": [
+   "cmirror",
+   "dmirror",
+   "frontiers",
+   "hmirror",
+   "lefthalf",
+   "righthalf",
+   "rot180",
+   "rot270",
+   "rot90",
+   "vmirror"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 1,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 2
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "hmirror"
+ ],
+ "in_pilot_subset": true,
+ "library_deps": [
+  "lrcorner",
+  "ulcorner"
+ ],
+ "max_size": 4,
+ "op": "hmirror",
+ "readings": {
+  "1": "wrong",
+  "2": "right",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 4,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "cmirror",
+  "dmirror",
+  "vmirror"
+ ]
+}

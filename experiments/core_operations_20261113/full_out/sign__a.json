@@ -1,0 +1,129 @@
+{
+ "arms": {
+  "1": {
+   "bank": 154,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "ONE",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 3,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 557,
+   "cpu_s": 0.007,
+   "equal_all_36": false,
+   "expr": "divide(THREE, x)",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 6
+  },
+  "3": {
+   "bank": 559,
+   "cpu_s": 0.006,
+   "equal_all_36": false,
+   "expr": "divide(THREE, x)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 6
+  },
+  "6": {
+   "bank": 2720,
+   "cpu_s": 0.09,
+   "equal_all_36": true,
+   "expr": "subtract(crement(x), x)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 2581,
+   "cpu_s": 0.161,
+   "expr": "subtract(crement(x), x)",
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "size": 4,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 0.265,
+ "examples_sha": "06a537eb29c32f60",
+ "expr": "subtract(crement(x), x)",
+ "family": "arithmetic",
+ "family_size": 11,
+ "generator": {
+  "draws": 55,
+  "function_pool_excluded": [
+   "add",
+   "crement",
+   "decrement",
+   "divide",
+   "double",
+   "halve",
+   "increment",
+   "invert",
+   "multiply",
+   "sign",
+   "subtract"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 19,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "sign"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "sign",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 4,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "crement",
+  "subtract"
+ ]
+}

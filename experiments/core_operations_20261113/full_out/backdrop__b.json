@@ -1,0 +1,109 @@
+{
+ "arms": {
+  "1": {
+   "bank": 237,
+   "cpu_s": 0.001,
+   "equal_all_36": false,
+   "expr": "toindices(patch)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 14,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 239,
+   "cpu_s": 0.002,
+   "equal_all_36": false,
+   "expr": "toindices(patch)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 14,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 28421,
+   "cpu_s": 2.183,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 24338,
+   "cpu_s": 2.53,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 25121,
+   "cpu_s": 12.518,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 17.235,
+ "examples_sha": "13586acfa4b589c4",
+ "expr": null,
+ "family": "box area",
+ "family_size": 2,
+ "generator": {
+  "draws": 37,
+  "function_pool_excluded": [
+   "backdrop",
+   "delta"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 1,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "backdrop",
+  "delta"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "lrcorner",
+  "toindices",
+  "ulcorner"
+ ],
+ "max_size": 4,
+ "op": "backdrop",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

@@ -1,0 +1,124 @@
+{
+ "arms": {
+  "1": {
+   "bank": 178,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "dedupe(grid)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 9661,
+   "cpu_s": 0.899,
+   "equal_all_36": false,
+   "expr": "leastcommon(vsplit(grid, TWO))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 21,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 13073,
+   "cpu_s": 1.443,
+   "equal_all_36": true,
+   "expr": "first(vsplit(grid, TWO))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 13730,
+   "cpu_s": 1.861,
+   "equal_all_36": true,
+   "expr": "first(vsplit(grid, TWO))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 14696,
+   "cpu_s": 7.285,
+   "expr": "first(vsplit(grid, TWO))",
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "size": 4,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 11.489,
+ "examples_sha": "a2cbbf966bc42b84",
+ "expr": "first(vsplit(grid, TWO))",
+ "family": "halves and splits",
+ "family_size": 6,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "bottomhalf",
+   "hsplit",
+   "lefthalf",
+   "righthalf",
+   "tophalf",
+   "vsplit"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "tophalf"
+ ],
+ "in_pilot_subset": true,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "tophalf",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 4,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "first",
+  "vsplit"
+ ]
+}

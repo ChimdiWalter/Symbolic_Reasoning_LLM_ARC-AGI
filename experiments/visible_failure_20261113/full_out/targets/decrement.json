@@ -1,0 +1,65 @@
+{
+ "B": 10.0,
+ "consumers": {
+  "chosen": [
+   "toivec",
+   "initset",
+   "tojvec"
+  ],
+  "flags": [],
+  "n_candidates": 3,
+  "n_skipped": 0,
+  "post": {
+   "acq": "toivec",
+   "adm": "initset",
+   "reuse": "tojvec"
+  },
+  "roles": {
+   "acq": {
+    "distinct_final_outputs_on_setup_examples": 18,
+    "post": "toivec"
+   },
+   "adm": {
+    "distinct_final_outputs_on_setup_examples": 18,
+    "post": "initset"
+   },
+   "reuse": {
+    "distinct_final_outputs_on_setup_examples": 18,
+    "post": "tojvec"
+   }
+  },
+  "skipped": [],
+  "skipped_by_reason": {},
+  "text": {
+   "acq": "toivec(decrement(x))",
+   "adm": "initset(decrement(x))",
+   "reuse": "tojvec(decrement(x))"
+  }
+ },
+ "dev": false,
+ "development_only": false,
+ "family": "arithmetic",
+ "family_size": 11,
+ "held_out_family": false,
+ "label": "development study (the operations study's outcomes for these operations were known before this protocol was frozen)",
+ "pooled_sequence": {
+  "A": 12,
+  "B": 15,
+  "R": 6,
+  "UA": 12,
+  "UB": 15,
+  "unique_tuples": 63
+ },
+ "preservation_bank": {
+  "successful_entries": 48
+ },
+ "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+ "setup_pooled_usability": {
+  "acq_and_reuse_draws": 15,
+  "acq_and_reuse_usable": 15,
+  "admission_draws": 12,
+  "admission_usable": 12
+ },
+ "status": "excluded",
+ "target": "decrement"
+}

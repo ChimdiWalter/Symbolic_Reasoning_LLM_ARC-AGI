@@ -1,0 +1,491 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{t(i9,t(i6,i0))}"
+   ],
+   [
+    "s{t(i3,t(i3,i1)),t(i7,t(i1,i1)),t(i7,t(i1,i3)),t(i7,t(i4,i4)),t(i7,t(i5,i2)),t(i7,t(i5,i5)),t(i7,t(i7,i4)),t(i7,t(i9,i5))}"
+   ],
+   [
+    "s{}"
+   ],
+   [
+    "s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i3)),t(i3,t(i0,i4)),t(i3,t(i0,i5)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i3)),t(i3,t(i1,i4)),t(i3,t(i1,i5)),t(i3,t(i2,i0)),t(i3,t(i2,i1)),t(i3,t(i2,i2)),t(i3,t(i2,i3)),t(i3,t(i2,i4)),t(i3,t(i2,i5)),t(i3,t(i3,i0)),t(i3,t(i3,i1)...#35f8f925"
+   ],
+   [
+    "s{t(i6,t(i6,i0)),t(i6,t(i6,i1))}"
+   ],
+   [
+    "s{t(i0,t(i0,i0)),t(i3,t(i6,i11)),t(i5,t(i0,i1)),t(i5,t(i0,i10)),t(i5,t(i0,i11)),t(i5,t(i0,i2)),t(i5,t(i0,i3)),t(i5,t(i0,i4)),t(i5,t(i0,i5)),t(i5,t(i0,i6)),t(i5,t(i0,i7)),t(i5,t(i0,i8)),t(i5,t(i0,i9)),t(i5,t(i1,i1)),t(i5,t(i1,i10)),t(i5,t(i1,i11)),t(i5,t(i1,i2)),t(i5,t(i1,i3)),t(i5,t(i1,i4)),t(i5,t(i...#2de9d46d"
+   ],
+   [
+    "s{t(i8,t(i1,i4))}"
+   ],
+   [
+    "s{t(i7,i0),t(i7,i1)}"
+   ],
+   [
+    "s{t(i3,t(i8,i3)),t(i3,t(i8,i4)),t(i3,t(i8,i5)),t(i3,t(i8,i6))}"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0028,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 10736,
+   "bank_at_first_fit": 10736,
+   "candidates_tested": 10612,
+   "counterexample": {
+    "args": [
+     "s{t(i0,i6),t(i0,i7),t(i1,i2),t(i1,i3),t(i1,i4),t(i1,i5),t(i1,i6),t(i1,i7),t(i1,i8),t(i2,i7)}"
+    ],
+    "got": "s{t(i0,i2),t(i0,i3),t(i0,i4),t(i0,i5),t(i0,i6),t(i0,i7),t(i0,i8),t(i1,i2),t(i1,i8),t(i2,i2),t(i2,i3),t(i2,i4),t(i2,i5),t(i2,i6),t(i2,i7),t(i2,i8)}",
+    "index": 0,
+    "want": "s{t(i0,i2),t(i0,i3),t(i0,i4),t(i0,i5),t(i0,i8),t(i2,i2),t(i2,i3),t(i2,i4),t(i2,i5),t(i2,i6),t(i2,i8)}"
+   },
+   "cpu_s": 0.583,
+   "cpu_to_first_fit": 0.583,
+   "error": null,
+   "expr": "sfilter(box(patch), last)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     1,
+     30
+    ],
+    "pooled": [
+     11,
+     311
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "merge",
+    "merge",
+    "merge"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 25018,
+   "bank_at_first_fit": null,
+   "candidates_tested": 24894,
+   "cpu_s": 3.208,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 24358,
+   "bank_at_first_fit": null,
+   "candidates_tested": 24234,
+   "cpu_s": 3.714,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge",
+    "merge"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 25018,
+   "bank_at_first_fit": null,
+   "candidates_tested": 24894,
+   "cpu_s": 3.29,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "merge",
+    "merge",
+    "merge",
+    "totuple",
+    "totuple",
+    "totuple"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 24358,
+   "bank_at_first_fit": null,
+   "candidates_tested": 24234,
+   "cpu_s": 3.543,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "merge",
+    "merge",
+    "merge",
+    "totuple",
+    "totuple",
+    "totuple",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 16.06,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'delta' is not defined",
+  "error_type": "NameError",
+  "missing_name": "delta"
+ },
+ "family": "box area",
+ "family_size": 2,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 311,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 295,
+    "candidates_tested": 171,
+    "cpu_s": 0.002,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "corners(patch)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 0,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 541,
+    "candidates_tested": null,
+    "cpu_s": 0.021,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "halve(lrcorner(patch))",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 2,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "358c6bf67dcb4af0ff5047b010187514147bdbb9c604003745a6250ec0fdd1d7",
+  "admission_set": "813f3f46abe971e29c2d48ee14152d766ffec757116dfdfffc4300ffa4b61cbc",
+  "final_set": "b36b4b1cb50b241da548f9eaec8a92993ddfb7d3871c18305a2dabfd01cd0eb6",
+  "first_fit_records": "9fe8020cd393e9820830feffd168087f86ffff92e2ae93f56286c577d98c9d19",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "a549f6de239c1ff62b76746e45a63b9eda47a716f588544a38fbb91ae3812761",
+  "setup_record": "f3e4afddc0d37cea1283710a18dff8b05ba14641a0835b9f8a80935aa706db68"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 249,
+   "B": 311,
+   "R": 124,
+   "UA": 249,
+   "UB": 311,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1247
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 249,
+   "UA_usable_wrapper_4": 249,
+   "UB_draws": 311,
+   "UB_usable_wrappers_1_to_3": 311,
+   "UB_usable_wrappers_1_to_3_and_5": 311
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "merge",
+    "2": "totuple",
+    "3": "tojvec",
+    "4": "palette",
+    "5": "centerofmass"
+   },
+   "chosen": [
+    "merge",
+    "totuple",
+    "tojvec",
+    "palette",
+    "centerofmass"
+   ],
+   "n_candidates": 25,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1247
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 249,
+    "UA_usable_wrapper_4": 249,
+    "UB_draws": 311,
+    "UB_usable_wrappers_1_to_3": 311,
+    "UB_usable_wrappers_1_to_3_and_5": 311
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "merge",
+    "totuple",
+    "tojvec",
+    "palette",
+    "centerofmass"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "delta"
+}

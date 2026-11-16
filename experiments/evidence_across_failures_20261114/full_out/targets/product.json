@@ -1,0 +1,626 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "t(t(i3,i1),t(i0,i6))",
+    "t(i9,i7,i6,i1)"
+   ],
+   [
+    "t(i2,i2,i7,i4,i7,i3)",
+    "s{s{t(i3,t(i3,i2)),t(i3,t(i4,i1)),t(i3,t(i4,i2))},s{t(i4,t(i3,i0)),t(i4,t(i3,i1)),t(i4,t(i4,i0))}}"
+   ],
+   [
+    "s{t(i4,i5),t(i5,i5),t(i6,i5),t(i7,i5)}",
+    "s{t(i0,t(i0,i0)),t(i0,t(i0,i1)),t(i0,t(i0,i2)),t(i0,t(i0,i3)),t(i0,t(i0,i4)),t(i0,t(i0,i5)),t(i0,t(i0,i6)),t(i0,t(i0,i7)),t(i0,t(i0,i8)),t(i0,t(i1,i0)),t(i0,t(i1,i1)),t(i0,t(i1,i2)),t(i0,t(i1,i3)),t(i0,t(i1,i4)),t(i0,t(i1,i5)),t(i0,t(i1,i6)),t(i0,t(i1,i7)),t(i0,t(i2,i0)),t(i0,t(i2,i1)),t(i0,t(i2,i2)...#e1bb0043"
+   ],
+   [
+    "s{i0,i2,i3,i7}",
+    "t(i7,i8)"
+   ],
+   [
+    "t(i6,i4,i5)",
+    "t(t(i0,i0),t(i13,i7),t(i2,i7))"
+   ],
+   [
+    "t(t(i9,i9,i9),t(i8,i8,i8),t(i5,i7,i6),t(i5,i5,i5))",
+    "t(i0,i4,i7,i8)"
+   ],
+   [
+    "s{i3,i6}",
+    "t(i1,i6,i9,i8,i1)"
+   ],
+   [
+    "s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i2,i0)),t(i3,t(i2,i1)),t(i3,t(i4,i1)),t(i3,t(i6,i0)),t(i4,t(i3,i0)),t(i4,t(i3,i1)),t(i4,t(i4,i0)),t(i4,t(i5,i0)),t(i4,t(i5,i1)),t(i4,t(i6,i1))}",
+    "t(t(i3,i3),t(i3,i3),t(i3,i3),t(i4,i4),t(i4,i3),t(i4,i4),t(i3,i4))"
+   ],
+   [
+    "s{t(i0,i1)}",
+    "s{s{t(i0,t(i0,i0))},s{t(i0,t(i0,i2))},s{t(i4,t(i0,i4))},s{t(i4,t(i5,i1))},s{t(i7,t(i0,i1))},s{t(i7,t(i4,i2))},s{t(i9,t(i0,i3)),t(i9,t(i0,i5)),t(i9,t(i0,i6)),t(i9,t(i1,i0)),t(i9,t(i1,i1)),t(i9,t(i1,i2)),t(i9,t(i1,i3)),t(i9,t(i1,i4)),t(i9,t(i1,i5)),t(i9,t(i1,i6)),t(i9,t(i2,i0)),t(i9,t(i2,i1)),t(i9,t(i...#c5720b09"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0383,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 14984,
+   "bank_at_first_fit": 14984,
+   "candidates_tested": 14859,
+   "counterexample": null,
+   "cpu_s": 1.149,
+   "cpu_to_first_fit": 1.149,
+   "error": null,
+   "expr": "prapply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0105,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_71073bd0",
+    "path": "library/product__A1x3.json",
+    "sha256": "58326e6d07b37e8af57ca1f76006059fc97a68caef38847ccbb2c4fc66f8c0df"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     25,
+     25
+    ],
+    "pooled": [
+     309,
+     309
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "minimum",
+    "minimum",
+    "minimum"
+   ]
+  },
+  "A1x6": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0382,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 14888,
+   "bank_at_first_fit": 14888,
+   "candidates_tested": 14763,
+   "counterexample": null,
+   "cpu_s": 1.777,
+   "cpu_to_first_fit": 1.777,
+   "error": null,
+   "expr": "prapply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0104,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_b00fe833",
+    "path": "library/product__A1x6.json",
+    "sha256": "d2dae20783136cb3d54e088c45b7fd7dc2abded3086eafbdafa1fd211c7c4660"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     25,
+     25
+    ],
+    "pooled": [
+     309,
+     309
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum"
+   ]
+  },
+  "A1x9": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0379,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 14865,
+   "bank_at_first_fit": 14865,
+   "candidates_tested": 14740,
+   "counterexample": null,
+   "cpu_s": 2.06,
+   "cpu_to_first_fit": 2.06,
+   "error": null,
+   "expr": "prapply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0106,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_dbedb1ec",
+    "path": "library/product__A1x9.json",
+    "sha256": "a7c2155d8973f8b21f4f6a18849b4750108c2b02fce21f6b9859178837806f7b"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     25,
+     25
+    ],
+    "pooled": [
+     309,
+     309
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum",
+    "minimum"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0379,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 14888,
+   "bank_at_first_fit": 14888,
+   "candidates_tested": 14763,
+   "counterexample": null,
+   "cpu_s": 1.512,
+   "cpu_to_first_fit": 1.512,
+   "error": null,
+   "expr": "prapply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0103,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_b2f6cc81",
+    "path": "library/product__A2x3.json",
+    "sha256": "8814377d235c6f628568fa8dad8d9552f3da65442962d6bb28da470bbf53a1fa"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     25,
+     25
+    ],
+    "pooled": [
+     309,
+     309
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "minimum",
+    "minimum",
+    "minimum",
+    "toindices",
+    "toindices",
+    "toindices"
+   ]
+  },
+  "A3x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0382,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 14865,
+   "bank_at_first_fit": 14865,
+   "candidates_tested": 14740,
+   "counterexample": null,
+   "cpu_s": 1.8,
+   "cpu_to_first_fit": 1.8,
+   "error": null,
+   "expr": "prapply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0104,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_404ddbed",
+    "path": "library/product__A3x3.json",
+    "sha256": "c3c9c2e0640a62296e8c6f4952dd6e294f4c0efd2456c7c95791e1bdc71f8b90"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     25,
+     25
+    ],
+    "pooled": [
+     309,
+     309
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "minimum",
+    "minimum",
+    "minimum",
+    "toindices",
+    "toindices",
+    "toindices",
+    "rightmost",
+    "rightmost",
+    "rightmost"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 21.04,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'product' is not defined",
+  "error_type": "NameError",
+  "missing_name": "product"
+ },
+ "family": "product",
+ "family_size": 1,
+ "final_panel": {
+  "generator": 25,
+  "pooled": 309,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 15478,
+    "candidates_tested": 15353,
+    "cpu_s": 1.024,
+    "error": null,
+    "exact_on_final": true,
+    "expr": "prapply(astuple, a, b)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 3,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 125514,
+    "candidates_tested": null,
+    "cpu_s": 10.0,
+    "error": null,
+    "exact_on_final": false,
+    "expr": null,
+    "fit": false,
+    "function_cap_reached": true,
+    "level_completed": 4,
+    "size_limit": 5,
+    "stop": "budget_cpu",
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "4509520af230c1f9adb7897259d2beb8fe334ea3f9d1ab7d64ce0d16f4ca8c6b",
+  "admission_set": "8d5c4b9e67541faac7c7fff2d2b02d74985b714b44e94abb3dedb2d7033f59bd",
+  "final_set": "dabdf6b98eb9e0ce1c3c74ff4e8c9330093504b3ae28c112d1f55695b1153d81",
+  "first_fit_records": "4fd5ff0c1112d2d753b18f8bffffc6c569e93fb9b36b076b08039385377b5873",
+  "libraries": "8af47a1ad7c0229895a80e148b9194aca440368d0bd8ea58e579a417d52314a9",
+  "reuse_support_set": "d8b678697e8d9a5db9e9b61837f838f35c69600dc2c3af7e13ac818ad7059a40",
+  "setup_record": "5f7d42e3960eee37acb009ac4f8510ba1c7e422fde7e422a580f3282f5879bfd"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 292,
+   "B": 365,
+   "R": 146,
+   "UA": 292,
+   "UB": 365,
+   "dropped_holding_functions": 138,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1462
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 292,
+   "UA_usable_wrapper_4": 291,
+   "UB_draws": 365,
+   "UB_usable_wrappers_1_to_3": 306,
+   "UB_usable_wrappers_1_to_3_and_5": 306
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "minimum",
+    "2": "toindices",
+    "3": "rightmost",
+    "4": "fgpartition",
+    "5": "ulcorner"
+   },
+   "chosen": [
+    "minimum",
+    "toindices",
+    "rightmost",
+    "fgpartition",
+    "ulcorner"
+   ],
+   "n_candidates": 27,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 292,
+    "B": 365,
+    "R": 146,
+    "UA": 292,
+    "UB": 365,
+    "dropped_holding_functions": 138,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1462
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 292,
+    "UA_usable_wrapper_4": 291,
+    "UB_draws": 365,
+    "UB_usable_wrappers_1_to_3": 306,
+    "UB_usable_wrappers_1_to_3_and_5": 306
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "minimum",
+    "toindices",
+    "rightmost",
+    "fgpartition",
+    "ulcorner"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "product"
+}

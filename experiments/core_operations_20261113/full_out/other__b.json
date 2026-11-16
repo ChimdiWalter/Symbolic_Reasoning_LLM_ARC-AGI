@@ -1,0 +1,124 @@
+{
+ "arms": {
+  "1": {
+   "bank": 149,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "NINE",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 2,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 149,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "NINE",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 2,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 200,
+   "cpu_s": 0.002,
+   "equal_all_36": false,
+   "expr": "first(container)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 27,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 15002,
+   "cpu_s": 1.648,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 15151,
+   "cpu_s": 5.68,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 7.329,
+ "examples_sha": "af233f079c91c02b",
+ "expr": null,
+ "family": "set building",
+ "family_size": 7,
+ "generator": {
+  "draws": 42,
+  "function_pool_excluded": [
+   "combine",
+   "difference",
+   "initset",
+   "insert",
+   "intersection",
+   "other",
+   "remove"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 6
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "combine",
+  "difference",
+  "initset",
+  "insert",
+  "intersection",
+  "other",
+  "remove"
+ ],
+ "in_pilot_subset": true,
+ "library_deps": [
+  "first",
+  "remove"
+ ],
+ "max_size": 4,
+ "op": "other",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

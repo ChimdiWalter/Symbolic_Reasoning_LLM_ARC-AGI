@@ -1,0 +1,36 @@
+{
+ "acquisition_record_sha256": "bb625b313502f14b88c530fb2ab7e7ab493d903a3985003aca781673808e4cc4",
+ "admission_record_sha256": "03f4c1acd8ad27b54b8589d7abeda9c047a16d1dca802fa1f17fc96b2bee0b7d",
+ "constants": [
+  "FIVE"
+ ],
+ "expression": "divide(FIVE, size(patch))",
+ "name": "vf_6f6c9c29",
+ "signature": [
+  [
+   "patch",
+   "Patch"
+  ]
+ ],
+ "tree": [
+  "L",
+  "divide",
+  [
+   "C",
+   "FIVE"
+  ],
+  [
+   "L",
+   "size",
+   [
+    "P",
+    "patch"
+   ]
+  ]
+ ],
+ "uses": [
+  "divide",
+  "size"
+ ],
+ "version": 1
+}

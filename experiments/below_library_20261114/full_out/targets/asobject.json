@@ -1,0 +1,750 @@
+{
+ "control": false,
+ "cpu": {
+  "by_system_s": {
+   "library_only": 0.56,
+   "smaller_blocks": 3.86
+  },
+  "final_checks_s": 0.857,
+  "other_s": 1.83,
+  "searches_s": 4.92
+ },
+ "cpu_s_total": 7.61,
+ "dev": false,
+ "development_control": false,
+ "development_only": false,
+ "family": "positions and objects",
+ "final_panel": {
+  "formed": true,
+  "generator": 30,
+  "inputs": 353,
+  "pooled": 323,
+  "pooled_discarded": 0,
+  "pooled_not_evaluated": 0,
+  "pooled_short": false,
+  "pooled_slice": {
+   "draws": 323,
+   "evaluated": 323,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 323
+  }
+ },
+ "half": "over_15",
+ "hidden": [
+  "asindices",
+  "asobject",
+  "colorcount",
+  "ofcolor",
+  "recolor",
+  "toindices",
+  "toobject"
+ ],
+ "label": "development comparison on a known constructed benchmark",
+ "memory": [
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator examples",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: pooled sequence",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: usability slice",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: hiding",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "the final panel",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L4-9",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-9",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L4-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L5-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-36",
+   "resident_peak_kb": 2737936
+  }
+ ],
+ "opened_roles": [
+  "pool_source",
+  "fit9",
+  "fit36",
+  "final"
+ ],
+ "presets": {
+  "allowance": 60.0,
+  "arity_rule": true,
+  "cpu_budget_s": 600.0,
+  "max_bank": 1500000,
+  "max_combinations": 1900000,
+  "max_fn": 16000,
+  "size_c": 4,
+  "time_safety_limit_s": 600.0
+ },
+ "seals": {
+  "final_set": "41c4b296c50fcacf533e83804905c6cb22cef45b17bc1cd63a3c98da604b9aeb",
+  "first_fits_36": "d37d40d27bb062bc107fad5a9b1ee6b01823c7cca70499b3669581d6538dcc2c",
+  "first_fits_9": "070fd71e6128f1dd1f24833925ad83f1771cf23789c591271ccf39a2cfbbcc26",
+  "selections": "494d727fc39f6f42bbc726330f8eac663e3d6cf0de48192562bad5a004dbec4f",
+  "setup_record": "f773c5ff656f370143083f48e17e106e03f5e2d0b98b884bc87567433997d5be"
+ },
+ "searches": {
+  "C-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 19527,
+   "block_set": "C",
+   "coverage": "exhaustive",
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 3.573,
+   "enumerator_cpu_s": 3.496,
+   "error": null,
+   "examples": 36,
+   "expr": null,
+   "final": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 64,
+   "function_valued_leaves": 64,
+   "incomplete": false,
+   "leaves": 95,
+   "level_completed": 4,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 75,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": null,
+   "size_limit": 4,
+   "stop": "size_exhausted",
+   "stop_class": "size_limit_completed",
+   "ticks": 227289
+  },
+  "L4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 1008,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.252,
+   "enumerator_cpu_s": 0.053,
+   "error": null,
+   "examples": 36,
+   "expr": "merge(partition(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.2476,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 353,
+     "same_order": 114
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 119,
+   "function_valued_leaves": 119,
+   "incomplete": false,
+   "leaves": 148,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 148,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 7340
+  },
+  "L4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 1003,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.257,
+   "enumerator_cpu_s": 0.024,
+   "error": null,
+   "examples": 9,
+   "expr": "merge(partition(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.1354,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 353,
+     "same_order": 114
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 119,
+   "function_valued_leaves": 119,
+   "incomplete": false,
+   "leaves": 148,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 148,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 7338
+  },
+  "L5-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 1008,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.309,
+   "enumerator_cpu_s": 0.058,
+   "error": null,
+   "examples": 36,
+   "expr": "merge(partition(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.1958,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 353,
+     "same_order": 114
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 119,
+   "function_valued_leaves": 119,
+   "incomplete": false,
+   "leaves": 148,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 148,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 5,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 7340
+  },
+  "LC4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 1134,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.288,
+   "enumerator_cpu_s": 0.082,
+   "error": null,
+   "examples": 36,
+   "expr": "merge(partition(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.1343,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 353,
+     "same_order": 114
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 183,
+   "function_valued_leaves": 183,
+   "incomplete": false,
+   "leaves": 214,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 216,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 9572
+  },
+  "LC4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 1128,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.239,
+   "enumerator_cpu_s": 0.034,
+   "error": null,
+   "examples": 9,
+   "expr": "merge(partition(x0))",
+   "final": {
+    "agree": 353,
+    "counterexample": null,
+    "cpu_s": 0.144,
+    "errors": 0,
+    "evaluated": 353,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 353,
+    "order_of_sets": {
+     "of": 353,
+     "same_order": 114
+    },
+    "pooled": [
+     323,
+     323
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 183,
+   "function_valued_leaves": 183,
+   "incomplete": false,
+   "leaves": 214,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 216,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 9570
+  }
+ },
+ "selection": {
+  "library_only": {
+   "determined": true,
+   "expr": "merge(partition(x0))",
+   "oracle_union": true,
+   "order_of_sets": {
+    "of": 353,
+    "same_order": 114
+   },
+   "reason": "the first stage (L4-36) found a fit",
+   "rebuilt": true,
+   "search": "L4-36",
+   "size": 3,
+   "stage": 1,
+   "wrong_only_by_guard_timeout": false
+  },
+  "smaller_blocks": {
+   "determined": true,
+   "expr": "merge(partition(x0))",
+   "oracle_union": true,
+   "order_of_sets": {
+    "of": 353,
+    "same_order": 114
+   },
+   "reason": "the first stage (LC4-36) found a fit",
+   "rebuilt": true,
+   "search": "LC4-36",
+   "size": 3,
+   "stage": 1,
+   "wrong_only_by_guard_timeout": false
+  }
+ },
+ "setup": {
+  "generator": {
+   "draws": 66,
+   "examples": 66,
+   "rejected": {
+    "duplicate": 0,
+    "input_too_large": 0,
+    "no_function_works": 0,
+    "output_unusable": 0,
+    "target_raised": 0
+   },
+   "status": "ok"
+  },
+  "hidden_unreachable": {
+   "C": true,
+   "L": true,
+   "LC": true
+  },
+  "opened_roles": [
+   "pool_source",
+   "fit9",
+   "fit36",
+   "final"
+  ],
+  "pooled_sequence": {
+   "drawn": 1293,
+   "dropped_a_container_argument_holds_a_function": 0,
+   "final_slice": 323,
+   "tag": "bl1-seq",
+   "unique_tuples": 1293,
+   "usability_slice": 323
+  },
+  "retained_present": [
+   "compose",
+   "chain",
+   "matcher",
+   "rbind",
+   "lbind",
+   "power",
+   "fork"
+  ],
+  "unusable_generator_examples": {
+   "container_argument_holds_a_function": 0,
+   "output_is_or_holds_a_function": 0
+  },
+  "usability": {
+   "draws": 323,
+   "evaluated": 323,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 323
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "generator": {
+    "draws": 66,
+    "examples": 66,
+    "rejected": {
+     "duplicate": 0,
+     "input_too_large": 0,
+     "no_function_works": 0,
+     "output_unusable": 0,
+     "target_raised": 0
+    },
+    "status": "ok"
+   },
+   "pooled_sequence": {
+    "drawn": 1293,
+    "dropped_a_container_argument_holds_a_function": 0,
+    "final_slice": 323,
+    "tag": "bl1-seq",
+    "unique_tuples": 1293,
+    "usability_slice": 323
+   },
+   "reason": null,
+   "unusable_generator_examples": {
+    "container_argument_holds_a_function": 0,
+    "output_is_or_holds_a_function": 0
+   },
+   "usability": {
+    "draws": 323,
+    "evaluated": 323,
+    "guard_timeout": false,
+    "raised": 0,
+    "too_large": 0,
+    "unsupported": 0,
+    "usable": 323
+   }
+  },
+  "decision": {
+   "control": false,
+   "dev": false,
+   "development_control": false,
+   "half": "over_15",
+   "hidden": [
+    "asindices",
+    "asobject",
+    "colorcount",
+    "ofcolor",
+    "recolor",
+    "toindices",
+    "toobject"
+   ],
+   "hidden_unreachable": {
+    "C": true,
+    "L": true,
+    "LC": true
+   },
+   "reason_kind": null,
+   "retained_present": [
+    "compose",
+    "chain",
+    "matcher",
+    "rbind",
+    "lbind",
+    "power",
+    "fork"
+   ],
+   "status": "eligible",
+   "stratum": "longer",
+   "usability_guard_timeout": false
+  }
+ },
+ "status": "done",
+ "stratum": "longer",
+ "target": "asobject",
+ "witness": {
+  "state": "not a control"
+ }
+}

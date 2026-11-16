@@ -1,0 +1,626 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "t(t(i2,i1),t(i0,i2))",
+    "t(t(i2,i2,i2,i2,i2),t(i2,i2,i2,i2,i2),t(i2,i2,i2,i2,i2),t(i2,i0,i2,i2,i2))"
+   ],
+   [
+    "t(t(i8,i8,i8,i8,i8,i8),t(i8,i4,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8),t(i4,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8),t(i4,i4,i4,i4,i8,i4),t(i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8))",
+    "t(t(i1,i5))"
+   ],
+   [
+    "t(i4,i5,i6,i7,i6)",
+    "t(t(i2,i4),t(i0,i9),t(i1,i3))"
+   ],
+   [
+    "t(t(i3,i6))",
+    "t(t(i7,i9))"
+   ],
+   [
+    "t(t(i6,i6),t(i6,i4),t(i6,i2),t(i6,i3),t(i6,i3),t(i6,i6))",
+    "t(i4,i6,i9,i9,i2)"
+   ],
+   [
+    "t(i9,i9,i3,i5,i7)",
+    "t(t(i6,i2,i5,i0,i3),t(i0,i8,i7),t(i3,i7))"
+   ],
+   [
+    "t(i7,i5,i6,i9)",
+    "t(t(i3,i3,i3,i5,i5))"
+   ],
+   [
+    "t(t(i0,i1,i0,i3,i4,i4,i4,i6,i0,i0),t(i0,i0,i0,i0,i0,i0,i0,i0,i0,i0),t(i0,i0,i6,i0,i0,i0,i0,i0,i0,i0))",
+    "t(t(i2,i2))"
+   ],
+   [
+    "t(t(i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6))",
+    "t(t(i0))"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0021,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 19386,
+   "bank_at_first_fit": 19386,
+   "candidates_tested": 19261,
+   "counterexample": null,
+   "cpu_s": 1.193,
+   "cpu_to_first_fit": 1.193,
+   "error": null,
+   "expr": "papply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0176,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_112f2a22",
+    "path": "library/pair__A1x3.json",
+    "sha256": "2760d1c39bd8f1a8221c64f7b60ecf30ea524da596b29e2fbebb6b2268ffc14c"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     400,
+     400
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "toindices",
+    "toindices",
+    "toindices"
+   ]
+  },
+  "A1x6": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0017,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 15402,
+   "bank_at_first_fit": 15402,
+   "candidates_tested": 15277,
+   "counterexample": null,
+   "cpu_s": 1.29,
+   "cpu_to_first_fit": 1.29,
+   "error": null,
+   "expr": "papply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0181,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_4c850cf4",
+    "path": "library/pair__A1x6.json",
+    "sha256": "f896f384cf6be73a549fb81634ed570d717a891eaf835d197c2ce8d424f85723"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     400,
+     400
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices"
+   ]
+  },
+  "A1x9": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0016,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 15302,
+   "bank_at_first_fit": 15302,
+   "candidates_tested": 15177,
+   "counterexample": null,
+   "cpu_s": 1.618,
+   "cpu_to_first_fit": 1.618,
+   "error": null,
+   "expr": "papply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0179,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_f838404e",
+    "path": "library/pair__A1x9.json",
+    "sha256": "d1f253a7355c0aa789b2d05aa59af6d0fda4113e52138e866fae1a32f1314e22"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     400,
+     400
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices",
+    "toindices"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0016,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 15402,
+   "bank_at_first_fit": 15402,
+   "candidates_tested": 15277,
+   "counterexample": null,
+   "cpu_s": 1.322,
+   "cpu_to_first_fit": 1.322,
+   "error": null,
+   "expr": "papply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0176,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_c515ccc7",
+    "path": "library/pair__A2x3.json",
+    "sha256": "b9e0165ddc7c196aa711374566c0f6be109cd54ca5cf872ebc22c711dc5c5a39"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     400,
+     400
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "toindices",
+    "toindices",
+    "toindices",
+    "square",
+    "square",
+    "square"
+   ]
+  },
+  "A3x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0015,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 15302,
+   "bank_at_first_fit": 15302,
+   "candidates_tested": 15177,
+   "counterexample": null,
+   "cpu_s": 2.133,
+   "cpu_to_first_fit": 2.133,
+   "error": null,
+   "expr": "papply(astuple, a, b)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0181,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_7f0dcd43",
+    "path": "library/pair__A3x3.json",
+    "sha256": "47860bd8e18131123d85b57cdffa531883daf3d49c2c8afd7ece53f79761ba8b"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     400,
+     400
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "toindices",
+    "toindices",
+    "toindices",
+    "square",
+    "square",
+    "square",
+    "leastcommon",
+    "leastcommon",
+    "leastcommon"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 19.68,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'pair' is not defined",
+  "error_type": "NameError",
+  "missing_name": "pair"
+ },
+ "family": "pair",
+ "family_size": 1,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 400,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 15280,
+    "candidates_tested": 15155,
+    "cpu_s": 1.522,
+    "error": null,
+    "exact_on_final": true,
+    "expr": "papply(astuple, a, b)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 3,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 122100,
+    "candidates_tested": null,
+    "cpu_s": 10.002,
+    "error": null,
+    "exact_on_final": false,
+    "expr": null,
+    "fit": false,
+    "function_cap_reached": true,
+    "level_completed": 4,
+    "size_limit": 5,
+    "stop": "budget_cpu",
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "063dc19d6733573edc6b94a8184acc8f041a05b3ebcef454e879715e5a6b9bd9",
+  "admission_set": "27a3df1993f65016f5a5195bb36d7ab765dfe12e736b9adfbd73237d4b020ab8",
+  "final_set": "2ae9773dec4a04e16cbdfe95c75a787c914ce4af66b69bfced1f50755104cc0c",
+  "first_fit_records": "e73ac6fb15a3ac039e59da709f00476a4b00fa77a49e8e99b6930a56bb350c32",
+  "libraries": "b92509e74e98df88484e2be58c37c54a09a41fde626637d09ed532504bf75e47",
+  "reuse_support_set": "b13e3a6a310d167bcfdd2e03b3c7cf96f58942b7809cf1224dedbdbcb6c01fc6",
+  "setup_record": "4139d53a6700223b204cbc9a93b9fc5da7e47d594b9671950f4a37a5acceccd5"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 320,
+   "B": 400,
+   "R": 160,
+   "UA": 320,
+   "UB": 400,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1600
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 320,
+   "UA_usable_wrapper_4": 320,
+   "UB_draws": 400,
+   "UB_usable_wrappers_1_to_3": 400,
+   "UB_usable_wrappers_1_to_3_and_5": 400
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "toindices",
+    "2": "square",
+    "3": "leastcommon",
+    "4": "asindices",
+    "5": "partition"
+   },
+   "chosen": [
+    "toindices",
+    "square",
+    "leastcommon",
+    "asindices",
+    "partition"
+   ],
+   "n_candidates": 39,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1600
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 320,
+    "UA_usable_wrapper_4": 320,
+    "UB_draws": 400,
+    "UB_usable_wrappers_1_to_3": 400,
+    "UB_usable_wrappers_1_to_3_and_5": 400
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "toindices",
+    "square",
+    "leastcommon",
+    "asindices",
+    "partition"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "pair"
+}

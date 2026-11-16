@@ -1,0 +1,549 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "t(t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i8,i8,i8))"
+   ],
+   [
+    "t(t(i2,i2,i2,i2,i2,i2,i2),t(i2,i2,i2,i2,i2,i2,i2),t(i2,i2,i2,i2,i2,i2,i0),t(i2,i2,i2,i2,i2,i2,i2),t(i2,i2,i2,i2,i2,i2,i2),t(i2,i0,i2,i2,i2,i0,i2),t(i2,i2,i2,i2,i2,i2,i2),t(i2,i2,i0,i2,i2,i2,i2),t(i2,i2,i2,i2,i2,i2,i0))"
+   ],
+   [
+    "s{t(i1,i2)}"
+   ],
+   [
+    "s{t(i0,i5),t(i4,i0)}"
+   ],
+   [
+    "s{t(i8,t(i10,i6)),t(i8,t(i10,i7))}"
+   ],
+   [
+    "s{t(i0,i4)}"
+   ],
+   [
+    "t(t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i0),t(i0,i0,i8),t(i0,i0,i8))"
+   ],
+   [
+    "t(t(i6,i6,i6,i6,i6,i6,i6),t(i6,i5,i6,i6,i6,i6,i6),t(i3,i6,i7,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6),t(i5,i6,i4,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i7,i6,i6,i6,i6))"
+   ],
+   [
+    "t(t(i9,i9,i9,i9,i9,i9,i9,i9,i9),t(i9,i9,i9,i9,i9,i9,i9,i9,i9),t(i9,i7,i9,i9,i9,i9,i9,i2,i9))"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0053,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 169,
+   "bank_at_first_fit": 169,
+   "candidates_tested": 58,
+   "counterexample": {
+    "args": [
+     "s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i3)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i3)),t(i3,t(i10,i0)),t(i3,t(i10,i1)),t(i3,t...#71451472"
+    ],
+    "got": "i44",
+    "index": 0,
+    "want": "i11"
+   },
+   "cpu_s": 0.002,
+   "cpu_to_first_fit": 0.002,
+   "error": null,
+   "expr": "size(piece)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     19,
+     30
+    ],
+    "pooled": [
+     35,
+     71
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 20584,
+   "bank_at_first_fit": null,
+   "candidates_tested": 20473,
+   "cpu_s": 1.876,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 20685,
+   "bank_at_first_fit": null,
+   "candidates_tested": 20574,
+   "cpu_s": 2.136,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0047,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 7184,
+   "bank_at_first_fit": 7184,
+   "candidates_tested": 7073,
+   "counterexample": {
+    "args": [
+     "s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i3)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i3)),t(i3,t(i10,i0)),t(i3,t(i10,i1)),t(i3,t...#71451472"
+    ],
+    "got": "i1",
+    "index": 0,
+    "want": "i11"
+   },
+   "cpu_s": 0.236,
+   "cpu_to_first_fit": 0.236,
+   "error": null,
+   "expr": "size(apply(flip, piece))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     21,
+     30
+    ],
+    "pooled": [
+     36,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "even",
+    "even",
+    "even"
+   ]
+  },
+  "A3x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0043,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 7218,
+   "bank_at_first_fit": 7218,
+   "candidates_tested": 7107,
+   "counterexample": {
+    "args": [
+     "s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i3)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i3)),t(i3,t(i10,i0)),t(i3,t(i10,i1)),t(i3,t...#71451472"
+    ],
+    "got": "i1",
+    "index": 0,
+    "want": "i11"
+   },
+   "cpu_s": 0.281,
+   "cpu_to_first_fit": 0.281,
+   "error": null,
+   "expr": "size(apply(flip, piece))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     21,
+     30
+    ],
+    "pooled": [
+     36,
+     71
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "double",
+    "double",
+    "double",
+    "even",
+    "even",
+    "even",
+    "decrement",
+    "decrement",
+    "decrement"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 17.4,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'height' is not defined",
+  "error_type": "NameError",
+  "missing_name": "height"
+ },
+ "family": "bounding box",
+ "family_size": 16,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 71,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": true,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 21626,
+    "candidates_tested": 21515,
+    "cpu_s": 1.651,
+    "error": null,
+    "exact_on_final": false,
+    "expr": null,
+    "fit": false,
+    "function_cap_reached": false,
+    "level_completed": 4,
+    "size_limit": 4,
+    "stop": "size_exhausted",
+    "stop_class": "complete_negative"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 118730,
+    "candidates_tested": null,
+    "cpu_s": 10.0,
+    "error": null,
+    "exact_on_final": false,
+    "expr": null,
+    "fit": false,
+    "function_cap_reached": true,
+    "level_completed": 4,
+    "size_limit": 5,
+    "stop": "budget_cpu",
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "aef0e1e81684a92c4e8d4898249407eabd90838cef067a2f739f0c626b8ef52c",
+  "admission_set": "6240cca2b45bd492d44ca269f2aef3b47592fa0f9de3cbaa209928910a312476",
+  "final_set": "e32397f53149b34c22273c99b8fafe726f99a2cd8386ea21c51f13ba773f9767",
+  "first_fit_records": "0e9bd0b4ff52b60ebccc877e5d7ca4a3d9af494cee439d6b5223ff90d7aa46a1",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "7010e1aabd70f9e1ea937202b3f0ff3de0f46d4dc64d8a05b0ca81f39fa53bff",
+  "setup_record": "f3646ffbbb7dc87e0e1dc57b609e8de241a85bbc7df8e1ac46b888356707ba60"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 56,
+   "B": 71,
+   "R": 28,
+   "UA": 56,
+   "UB": 71,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 284
+  },
+  "preservation_bank_entries": 40,
+  "usability": {
+   "UA_draws": 56,
+   "UA_usable_wrapper_4": 56,
+   "UB_draws": 71,
+   "UB_usable_wrappers_1_to_3": 71,
+   "UB_usable_wrappers_1_to_3_and_5": 71
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "double",
+    "2": "even",
+    "3": "decrement",
+    "4": "crement",
+    "5": "tojvec"
+   },
+   "chosen": [
+    "double",
+    "even",
+    "decrement",
+    "crement",
+    "tojvec"
+   ],
+   "n_candidates": 9,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 56,
+    "B": 71,
+    "R": 28,
+    "UA": 56,
+    "UB": 71,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 284
+   },
+   "preservation_bank_entries": 40,
+   "reason": null,
+   "usability": {
+    "UA_draws": 56,
+    "UA_usable_wrapper_4": 56,
+    "UB_draws": 71,
+    "UB_usable_wrappers_1_to_3": 71,
+    "UB_usable_wrappers_1_to_3_and_5": 71
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "double",
+    "even",
+    "decrement",
+    "crement",
+    "tojvec"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "height"
+}

@@ -1,0 +1,451 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "t(t(i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i8,i8))",
+    "f:decrement"
+   ],
+   [
+    "s{t(i0,i2),t(i1,i1),t(i2,i4),t(i3,i3),t(i5,i1),t(i7,i0),t(i7,i2),t(i8,i1)}",
+    "f:sign"
+   ],
+   [
+    "s{s{t(i8,t(i3,i2))}}",
+    "f:square"
+   ],
+   [
+    "t(t(i3,i0),t(i0,i2))",
+    "f:initset"
+   ],
+   [
+    "s{s{t(i4,t(i0,i1)),t(i4,t(i1,i1))}}",
+    "f:vmirror"
+   ],
+   [
+    "s{t(i0,i3),t(i1,i1),t(i1,i3)}",
+    "f:double"
+   ],
+   [
+    "s{t(i6,t(i8,i2))}",
+    "f:first"
+   ],
+   [
+    "t(i6,i2)",
+    "f:initset"
+   ],
+   [
+    "t(t(i0,i10),t(i1,i5),t(i3,i11),t(i3,i2))",
+    "f:dedupe"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": false,
+  "why": "no fourth eligible wrapper"
+ },
+ "arms": {
+  "A1x3": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 233,
+   "bank_at_first_fit": 233,
+   "candidates_tested": 110,
+   "counterexample": {
+    "args": [
+     "s{s{t(i7,t(i0,i4)),t(i7,t(i3,i10)),t(i7,t(i4,i0)),t(i7,t(i4,i4)),t(i7,t(i5,i2)),t(i7,t(i6,i6)),t(i7,t(i7,i11)),t(i7,t(i7,i4))},s{t(i7,t(i0,i5))},s{t(i7,t(i1,i0)...#669de7e3",
+     "f:first"
+    ],
+    "got": "s{t(i7,t(i0,i5))}",
+    "index": 2,
+    "want": "s{t(i7,t(i0,i4)),t(i7,t(i3,i10)),t(i7,t(i4,i0)),t(i7,t(i4,i4)),t(i7,t(i5,i2)),t(i7,t(i6,i6)),t(i7,t(i7,i11)),t(i7,t(i7,i4))}"
+   },
+   "cpu_s": 0.002,
+   "cpu_to_first_fit": 0.002,
+   "error": null,
+   "expr": "first(container)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": null,
+   "right_detail": {
+    "gen": [
+     17,
+     30
+    ],
+    "pooled": [
+     207,
+     274
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 21788,
+   "bank_at_first_fit": null,
+   "candidates_tested": 21665,
+   "cpu_s": 2.252,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": null,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 21478,
+   "bank_at_first_fit": null,
+   "candidates_tested": 21355,
+   "cpu_s": 2.421,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": null,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 21788,
+   "bank_at_first_fit": null,
+   "candidates_tested": 21665,
+   "cpu_s": 2.259,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": null,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": null,
+   "allowance": 10.0,
+   "bank": 21478,
+   "bank_at_first_fit": null,
+   "candidates_tested": 21355,
+   "cpu_s": 2.468,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": null,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "toivec",
+    "toivec",
+    "toivec"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": false,
+  "construction": true,
+  "reuse": false,
+  "unavailable": {
+   "admission": "no fourth eligible wrapper",
+   "reuse": "no fifth eligible wrapper"
+  }
+ },
+ "cpu_s_total": 9.79,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'argmax' is not defined",
+  "error_type": "NameError",
+  "missing_name": "argmax"
+ },
+ "family": "largest and smallest of a container",
+ "family_size": 6,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 274,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3
+  ]
+ },
+ "held_out_family": true,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": false,
+  "why": "no fifth eligible wrapper"
+ },
+ "seals": {
+  "acquisition_record": "c1fb0e31d59bd6fc43e45d4a0578bbb081641a6e82f2823b100bbaf5f17f8f94",
+  "final_set": "58a070fb16de241e84a30231f9e4eff76168b0ff69a8014e746215fc55ebd619",
+  "first_fit_records": "a2c3168a38044e0c6e2390434e5753cde37455561ef93817c9a94d5f8e5da3dc",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "setup_record": "2adfd297fcaad1c34e8b3f8b0d7543247a40e318955a4998297c9806879e835d"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": false,
+   "construction": true,
+   "reuse": false,
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   }
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 303,
+   "B": 379,
+   "R": 151,
+   "UA": 303,
+   "UB": 379,
+   "dropped_holding_functions": 81,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1519
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UB_draws": 379,
+   "UB_usable_wrappers_1_to_3": 255
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "initset",
+    "2": "tojvec",
+    "3": "toivec"
+   },
+   "chosen": [
+    "initset",
+    "tojvec",
+    "toivec"
+   ],
+   "n_candidates": 3,
+   "n_eligible": 3,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 303,
+    "B": 379,
+    "R": 151,
+    "UA": 303,
+    "UB": 379,
+    "dropped_holding_functions": 81,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1519
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UB_draws": 379,
+    "UB_usable_wrappers_1_to_3": 255
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": false,
+   "cohort_construction": true,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 3,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "wrappers": [
+    "initset",
+    "tojvec",
+    "toivec"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "argmax"
+}

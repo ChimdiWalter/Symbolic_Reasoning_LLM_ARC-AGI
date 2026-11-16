@@ -1,0 +1,833 @@
+{
+ "control": true,
+ "cpu": {
+  "by_system_s": {
+   "library_only": 0.46,
+   "smaller_blocks": 0.47
+  },
+  "final_checks_s": 0.195,
+  "other_s": 0.74,
+  "searches_s": 1.38
+ },
+ "cpu_s_total": 2.31,
+ "dev": false,
+ "development_control": false,
+ "development_only": false,
+ "family": "concatenations",
+ "final_panel": {
+  "formed": true,
+  "generator": 30,
+  "inputs": 430,
+  "pooled": 400,
+  "pooled_discarded": 0,
+  "pooled_not_evaluated": 0,
+  "pooled_short": false,
+  "pooled_slice": {
+   "draws": 400,
+   "evaluated": 400,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 400
+  }
+ },
+ "half": null,
+ "hidden": [
+  "hconcat",
+  "vconcat"
+ ],
+ "label": "development comparison on a known constructed benchmark",
+ "memory": [
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: generator examples",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: pooled sequence",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: usability slice",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "setup: hiding",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "the final panel",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L4-9",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-9",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L4-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of L5-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of LC4-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "final check of the first fit of C-36",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "witness on the fit examples",
+   "resident_peak_kb": 2737936
+  },
+  {
+   "address_space_peak_kb": 2765276,
+   "after": "witness on the final panel",
+   "resident_peak_kb": 2737936
+  }
+ ],
+ "opened_roles": [
+  "pool_source",
+  "fit9",
+  "fit36",
+  "final"
+ ],
+ "presets": {
+  "allowance": 60.0,
+  "arity_rule": true,
+  "cpu_budget_s": 600.0,
+  "max_bank": 1500000,
+  "max_combinations": 1900000,
+  "max_fn": 16000,
+  "size_c": 4,
+  "time_safety_limit_s": 600.0
+ },
+ "seals": {
+  "final_set": "cb4d2431470bd06f6aca4544e120c3b744a0e11b2fe8163c66a303c9d57f9f53",
+  "first_fits_36": "7f2b009bd385cff2e5036d65e67f663afda6167d97d74f119ed2d82385ad2a4e",
+  "first_fits_9": "de4418006222892b048180ba410860d07c578f4ddd4af9ab38ac87c2d3516bff",
+  "selections": "33a44fdebbc931bfac4c06c5c020b930ed46609d291a382fec948b046b12eaa4",
+  "setup_record": "227b17c31f44f41ff2d76daede3601a4436f06d4f250d7c0099172e94c33a3db"
+ },
+ "searches": {
+  "C-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 743,
+   "block_set": "C",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.218,
+   "enumerator_cpu_s": 0.179,
+   "error": null,
+   "examples": 36,
+   "expr": "c_concat(x0, x1)",
+   "final": {
+    "agree": 430,
+    "counterexample": null,
+    "cpu_s": 0.0352,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     400,
+     400
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 64,
+   "function_valued_leaves": 64,
+   "incomplete": false,
+   "leaves": 96,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 75,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 9191
+  },
+  "L4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 581,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.233,
+   "enumerator_cpu_s": 0.033,
+   "error": null,
+   "examples": 36,
+   "expr": "combine(x0, x1)",
+   "final": {
+    "agree": 430,
+    "counterexample": null,
+    "cpu_s": 0.0315,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     400,
+     400
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 124,
+   "function_valued_leaves": 124,
+   "incomplete": false,
+   "leaves": 154,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 153,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 4928
+  },
+  "L4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 570,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.213,
+   "enumerator_cpu_s": 0.016,
+   "error": null,
+   "examples": 9,
+   "expr": "combine(x0, x1)",
+   "final": {
+    "agree": 430,
+    "counterexample": null,
+    "cpu_s": 0.0344,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     400,
+     400
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 124,
+   "function_valued_leaves": 124,
+   "incomplete": false,
+   "leaves": 154,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 153,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 4919
+  },
+  "L5-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 581,
+   "block_set": "L",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.231,
+   "enumerator_cpu_s": 0.032,
+   "error": null,
+   "examples": 36,
+   "expr": "combine(x0, x1)",
+   "final": {
+    "agree": 430,
+    "counterexample": null,
+    "cpu_s": 0.0317,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     400,
+     400
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 124,
+   "function_valued_leaves": 124,
+   "incomplete": false,
+   "leaves": 154,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 153,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 5,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 4928
+  },
+  "LC4-36": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 709,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.252,
+   "enumerator_cpu_s": 0.04,
+   "error": null,
+   "examples": 36,
+   "expr": "combine(x0, x1)",
+   "final": {
+    "agree": 430,
+    "counterexample": null,
+    "cpu_s": 0.0309,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     400,
+     400
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 36,
+    "guard_timeout": false,
+    "of": 36
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 188,
+   "function_valued_leaves": 188,
+   "incomplete": false,
+   "leaves": 220,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 221,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit36",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 5739
+  },
+  "LC4-9": {
+   "address_space_peak_kb": 2765276,
+   "allowance": 60.0,
+   "arity_rule": true,
+   "bank": 698,
+   "block_set": "LC",
+   "coverage": null,
+   "cpu_budget_is": "a safety limit",
+   "cpu_budget_s": 600.0,
+   "cpu_s": 0.23,
+   "enumerator_cpu_s": 0.019,
+   "error": null,
+   "examples": 9,
+   "expr": "combine(x0, x1)",
+   "final": {
+    "agree": 430,
+    "counterexample": null,
+    "cpu_s": 0.0313,
+    "errors": 0,
+    "evaluated": 430,
+    "generator": [
+     30,
+     30
+    ],
+    "guard_timeout": false,
+    "incomplete": false,
+    "n": 430,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "pooled": [
+     400,
+     400
+    ],
+    "right": true,
+    "unsupported": 0
+   },
+   "first_fit": "right",
+   "fit": true,
+   "fit_recheck": {
+    "agree": 9,
+    "guard_timeout": false,
+    "of": 9
+   },
+   "function_cap_reached": false,
+   "function_making": {
+    "admitted": 0,
+    "by_operation": {},
+    "calls_outside_the_enumerator": 0,
+    "cap_reached_at": null,
+    "first_refused_by_cap": null
+   },
+   "function_valued_entries": 188,
+   "function_valued_leaves": 188,
+   "incomplete": false,
+   "leaves": 220,
+   "level_completed": 2,
+   "max_bank": 1500000,
+   "max_combinations": 1900000,
+   "max_fn": 16000,
+   "operations": 221,
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "refused_by_the_wrappers_in_later_evaluations": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "resident_peak_kb": 2737936,
+   "role": "fit9",
+   "size": 3,
+   "size_limit": 4,
+   "stop": "found",
+   "stop_class": "found",
+   "ticks": 5730
+  }
+ },
+ "selection": {
+  "library_only": {
+   "determined": true,
+   "expr": "combine(x0, x1)",
+   "oracle_union": true,
+   "order_of_sets": {
+    "of": 0,
+    "same_order": 0
+   },
+   "reason": "the first stage (L4-36) found a fit",
+   "rebuilt": true,
+   "search": "L4-36",
+   "size": 3,
+   "stage": 1,
+   "wrong_only_by_guard_timeout": false
+  },
+  "smaller_blocks": {
+   "determined": true,
+   "expr": "combine(x0, x1)",
+   "oracle_union": true,
+   "order_of_sets": {
+    "of": 0,
+    "same_order": 0
+   },
+   "reason": "the first stage (LC4-36) found a fit",
+   "rebuilt": true,
+   "search": "LC4-36",
+   "size": 3,
+   "stage": 1,
+   "wrong_only_by_guard_timeout": false
+  }
+ },
+ "setup": {
+  "generator": {
+   "draws": 66,
+   "examples": 66,
+   "rejected": {
+    "duplicate": 0,
+    "input_too_large": 0,
+    "no_function_works": 0,
+    "output_unusable": 0,
+    "target_raised": 0
+   },
+   "status": "ok"
+  },
+  "hidden_unreachable": {
+   "C": true,
+   "L": true,
+   "LC": true
+  },
+  "opened_roles": [
+   "pool_source",
+   "fit9",
+   "fit36",
+   "final"
+  ],
+  "pooled_sequence": {
+   "drawn": 1600,
+   "dropped_a_container_argument_holds_a_function": 0,
+   "final_slice": 400,
+   "tag": "bl1-seq",
+   "unique_tuples": 1600,
+   "usability_slice": 400
+  },
+  "retained_present": [
+   "compose",
+   "chain",
+   "matcher",
+   "rbind",
+   "lbind",
+   "power",
+   "fork"
+  ],
+  "unusable_generator_examples": {
+   "container_argument_holds_a_function": 0,
+   "output_is_or_holds_a_function": 0
+  },
+  "usability": {
+   "draws": 400,
+   "evaluated": 400,
+   "guard_timeout": false,
+   "raised": 0,
+   "too_large": 0,
+   "unsupported": 0,
+   "usable": 400
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "generator": {
+    "draws": 66,
+    "examples": 66,
+    "rejected": {
+     "duplicate": 0,
+     "input_too_large": 0,
+     "no_function_works": 0,
+     "output_unusable": 0,
+     "target_raised": 0
+    },
+    "status": "ok"
+   },
+   "pooled_sequence": {
+    "drawn": 1600,
+    "dropped_a_container_argument_holds_a_function": 0,
+    "final_slice": 400,
+    "tag": "bl1-seq",
+    "unique_tuples": 1600,
+    "usability_slice": 400
+   },
+   "reason": null,
+   "unusable_generator_examples": {
+    "container_argument_holds_a_function": 0,
+    "output_is_or_holds_a_function": 0
+   },
+   "usability": {
+    "draws": 400,
+    "evaluated": 400,
+    "guard_timeout": false,
+    "raised": 0,
+    "too_large": 0,
+    "unsupported": 0,
+    "usable": 400
+   }
+  },
+  "decision": {
+   "control": true,
+   "dev": false,
+   "development_control": false,
+   "half": null,
+   "hidden": [
+    "hconcat",
+    "vconcat"
+   ],
+   "hidden_unreachable": {
+    "C": true,
+    "L": true,
+    "LC": true
+   },
+   "reason_kind": null,
+   "retained_present": [
+    "compose",
+    "chain",
+    "matcher",
+    "rbind",
+    "lbind",
+    "power",
+    "fork"
+   ],
+   "status": "eligible",
+   "stratum": "short",
+   "usability_guard_timeout": false
+  }
+ },
+ "status": "done",
+ "stratum": "short",
+ "target": "vconcat",
+ "witness": {
+  "agrees_on_all_36": true,
+  "agrees_on_the_final_panel": true,
+  "declared_nodes": 3,
+  "expr": "c_concat(x0, x1)",
+  "final": {
+   "agree": 430,
+   "counterexample": null,
+   "errors": 0,
+   "evaluated": 430,
+   "guard_timeout": false,
+   "n": 430,
+   "order_of_sets": {
+    "of": 0,
+    "same_order": 0
+   },
+   "right": true,
+   "unsupported": 0
+  },
+  "first_mismatch": null,
+  "fit36": {
+   "agree": 36,
+   "counterexample": null,
+   "errors": 0,
+   "evaluated": 36,
+   "guard_timeout": false,
+   "n": 36,
+   "order_of_sets": {
+    "of": 0,
+    "same_order": 0
+   },
+   "right": true,
+   "unsupported": 0
+  },
+  "guard_timeout": false,
+  "nodes": 3,
+  "note": "source: a + b",
+  "refused_by_the_wrappers": {
+   "containers_holding_a_function_refused": 0,
+   "function_making_refused_by_arity": 0,
+   "function_results_refused": 0,
+   "power_of_a_function_without_one_parameter": 0
+  },
+  "state": "evaluated",
+  "unsupported_results": 0,
+  "valid": true
+ }
+}

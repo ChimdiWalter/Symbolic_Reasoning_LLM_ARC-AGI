@@ -1,0 +1,120 @@
+{
+ "arms": {
+  "1": {
+   "bank": 1755,
+   "cpu_s": 0.058,
+   "equal_all_36": false,
+   "expr": "rot90(hmirror(piece))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 2,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 9,
+   "validation_errors": 21
+  },
+  "2": {
+   "bank": 1845,
+   "cpu_s": 0.059,
+   "equal_all_36": false,
+   "expr": "rot90(hmirror(piece))",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 2,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 9,
+   "validation_errors": 21
+  },
+  "3": {
+   "bank": 1855,
+   "cpu_s": 0.07,
+   "equal_all_36": false,
+   "expr": "rot90(hmirror(piece))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 2,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 9,
+   "validation_errors": 21
+  },
+  "6": {
+   "bank": 23228,
+   "cpu_s": 1.925,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 23784,
+   "cpu_s": 6.838,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 8.95,
+ "examples_sha": "18d8dfee70494e08",
+ "expr": null,
+ "family": "mirrors and rotations",
+ "family_size": 7,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "cmirror",
+   "dmirror",
+   "frontiers",
+   "hmirror",
+   "lefthalf",
+   "righthalf",
+   "rot180",
+   "rot270",
+   "rot90",
+   "vmirror"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "dmirror"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "ulcorner"
+ ],
+ "max_size": 4,
+ "op": "dmirror",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

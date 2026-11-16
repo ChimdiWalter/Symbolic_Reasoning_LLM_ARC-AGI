@@ -1,0 +1,184 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "index",
+ "family_size": 1,
+ "held_out_family": true,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: a trivial repair passes: const:final:1, const:xout:2, const:xout:3",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+     ],
+     "ok": false,
+     "source": "setup_redraw_1",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3",
+      "const:xout:4"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+     ],
+     "ok": false,
+     "source": "setup_redraw_2",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3",
+      "const:xout:4"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3"
+     ],
+     "ok": false,
+     "source": "setup_redraw_3",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3"
+     ],
+     "ok": false,
+     "source": "setup_redraw_4",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3"
+     ],
+     "ok": false,
+     "source": "setup_redraw_5",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3"
+     ]
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 320,
+   "B": 400,
+   "R": 160,
+   "UA": 320,
+   "UB": 400,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1600
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 320,
+   "UA_usable_wrapper_4": 96,
+   "UB_draws": 400,
+   "UB_usable_wrappers_1_to_3": 124,
+   "UB_usable_wrappers_1_to_3_and_5": 124
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "sign",
+    "2": "toivec",
+    "3": "positive",
+    "4": "initset",
+    "5": "crement"
+   },
+   "chosen": [
+    "sign",
+    "toivec",
+    "positive",
+    "initset",
+    "crement"
+   ],
+   "n_candidates": 13,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1600
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: a trivial repair passes: const:final:1, const:xout:2, const:xout:3",
+   "usability": {
+    "UA_draws": 320,
+    "UA_usable_wrapper_4": 96,
+    "UB_draws": 400,
+    "UB_usable_wrappers_1_to_3": 124,
+    "UB_usable_wrappers_1_to_3_and_5": 124
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "sign",
+    "toivec",
+    "positive",
+    "initset",
+    "crement"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "index"
+}

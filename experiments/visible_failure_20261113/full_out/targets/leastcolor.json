@@ -1,0 +1,816 @@
+{
+ "B": 10.0,
+ "admission_evidence": {
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "H": {
+   "admission": {
+    "adm_both": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_generator": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_pooled": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 44,
+    "cpu_preservation_s": 0.0026,
+    "cpu_standards_s": 0.0009,
+    "none": true,
+    "rule": false,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": false,
+     "3": false,
+     "6": false
+    }
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     34
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6,i6,i6,i6,i0,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i8,i6,i0,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6))"
+    ],
+    "got": "b0",
+    "index": 0,
+    "want": "i8"
+   },
+   "cpu_admission_s": 0.0035,
+   "cpu_s": 0.002,
+   "cpu_s_physical": 0.002,
+   "derived_from_arm_runs": true,
+   "expr": "square(element)",
+   "fit": true,
+   "half": 5.0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 2,
+   "source": "V half",
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  },
+  "S": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 277,
+   "correct": false,
+   "cpu_s": 0.0,
+   "cpu_s_physical": 0.0,
+   "cpu_to_first_fit": 0.0,
+   "error": null,
+   "expr": "square(element)",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "n_hits": 1,
+   "note": "S is scored at task level only; no capability reading",
+   "reused": false,
+   "size": 2,
+   "standin": {
+    "contains_standin": false,
+    "expr": null
+   },
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_detail": {
+    "gen": [
+     8,
+     30
+    ],
+    "pooled": [
+     10,
+     34
+    ]
+   },
+   "task_acq_exact": false
+  },
+  "T": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 23943,
+   "correct": false,
+   "cpu_s": 2.723,
+   "cpu_s_physical": 2.723,
+   "cpu_to_first_fit": null,
+   "declared": "teacher examples (extra supervision); inputs 0-2 are the acquisition examples, 3-5 are shared with the admission grid, so T's admission is reported apart",
+   "error": null,
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_acq_exact": false
+  },
+  "V": {
+   "admission": {
+    "adm_both": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_generator": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_pooled": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 44,
+    "cpu_preservation_s": 0.0026,
+    "cpu_standards_s": 0.0009,
+    "none": true,
+    "rule": false,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": false,
+     "3": false,
+     "6": false
+    }
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 2823,
+   "bank_at_first_fit": 277,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     34
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6,i6,i6,i6,i0,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6),t(i6,i6,i6,i6,i6,i8,i6,i0,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i6,i6))"
+    ],
+    "got": "b0",
+    "index": 0,
+    "want": "i8"
+   },
+   "cpu_admission_s": 0.0035,
+   "cpu_s": 0.091,
+   "cpu_s_physical": 0.091,
+   "cpu_to_first_fit": 0.002,
+   "error": null,
+   "expr": "square(element)",
+   "fit": true,
+   "fits": [
+    {
+     "cpu_s": 0.002,
+     "expr": "square(element)",
+     "size": 2
+    },
+    {
+     "cpu_s": 0.017,
+     "expr": "minimum(palette(element))",
+     "size": 3
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(TWO, size(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(TWO, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(TWO, numcolors(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(THREE, size(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(THREE, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(FOUR, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(EIGHT, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.079,
+     "expr": "subtract(FIVE, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.08,
+     "expr": "subtract(SIX, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.08,
+     "expr": "subtract(NINE, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.08,
+     "expr": "subtract(SEVEN, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.08,
+     "expr": "subtract(TEN, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.091,
+     "expr": "divide(THREE, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.091,
+     "expr": "divide(FOUR, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.091,
+     "expr": "divide(EIGHT, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.091,
+     "expr": "divide(FIVE, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.091,
+     "expr": "divide(SIX, width(element))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.091,
+     "expr": "divide(NINE, width(element))",
+     "size": 4
+    }
+   ],
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "n_hits": 20,
+   "note": "physical CPU is the whole collecting run; the counterfactual CPU to the first fit is cpu_to_first_fit",
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 2,
+   "stop": "collected",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  }
+ },
+ "consumers": {
+  "chosen": [
+   "positive",
+   "sign",
+   "even"
+  ],
+  "flags": [],
+  "n_candidates": 13,
+  "n_skipped": 0,
+  "post": {
+   "acq": "positive",
+   "adm": "sign",
+   "reuse": "even"
+  },
+  "roles": {
+   "acq": {
+    "distinct_final_outputs_on_setup_examples": 2,
+    "post": "positive"
+   },
+   "adm": {
+    "distinct_final_outputs_on_setup_examples": 2,
+    "post": "sign"
+   },
+   "reuse": {
+    "distinct_final_outputs_on_setup_examples": 2,
+    "post": "even"
+   }
+  },
+  "skipped": [],
+  "skipped_by_reason": {},
+  "text": {
+   "acq": "positive(leastcolor(element))",
+   "adm": "sign(leastcolor(element))",
+   "reuse": "even(leastcolor(element))"
+  }
+ },
+ "cpu_s_total": 4.51,
+ "decision": {
+  "both_actions_run": true,
+  "chosen": "V",
+  "localised": true,
+  "rule": "construct at the failing step when the failure is localised (a NameError naming the missing operation), else search for a whole program"
+ },
+ "dev": false,
+ "development_only": false,
+ "diagnosis": {
+  "allowance": 1.0,
+  "bank": 282,
+  "best_examples_matched": 3,
+  "cpu_s": 0.004,
+  "cpu_s_physical": 0.004,
+  "error_kind_when_missing": "NameError",
+  "expr": "square(element)",
+  "fit": true,
+  "function_cap_reached": false,
+  "level_completed": 0,
+  "n_hits": 1,
+  "nearly_fitting_candidates": 1,
+  "note": "exploratory; no conclusion is computed from it",
+  "of": 3,
+  "stop": "found",
+  "stop_class": "fit"
+ },
+ "failure": {
+  "all_examples_fail": true,
+  "argument_tags": [
+   [
+    "O"
+   ],
+   [
+    "G"
+   ],
+   [
+    "O"
+   ]
+  ],
+  "arguments": [
+   [
+    "s{t(i1,t(i2,i4))}"
+   ],
+   [
+    "t(t(i0,i0,i7,i7,i7,i0,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7,i7,i7,i7,i7))"
+   ],
+   [
+    "s{t(i6,t(i0,i5))}"
+   ]
+  ],
+  "error_text": "name 'leastcolor' is not defined",
+  "error_type": "NameError",
+  "failing_step": "step 1 of 2: the call of leastcolor",
+  "missing_name": "leastcolor",
+  "required_outputs": [
+   "b1",
+   "b0",
+   "b1"
+  ]
+ },
+ "family": "most and least frequent",
+ "family_size": 4,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 34,
+  "pooled_short": false
+ },
+ "gate": {
+  "attempts": [
+   {
+    "failed": [
+     "a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+    ],
+    "ok": false,
+    "source": "generator",
+    "trivial_passing": [
+     "const:final:1",
+     "const:xout:2",
+     "const:xout:3",
+     "const:xout:4"
+    ]
+   },
+   {
+    "failed": [
+     "a trivial repair passes: const:final:1, const:xout:2, const:xout:3"
+    ],
+    "ok": false,
+    "source": "setup_redraw_1",
+    "trivial_passing": [
+     "const:final:1",
+     "const:xout:2",
+     "const:xout:3"
+    ]
+   },
+   {
+    "failed": [],
+    "ok": true,
+    "source": "setup_redraw_2",
+    "trivial_passing": []
+   }
+  ]
+ },
+ "held_out_family": false,
+ "label": "development study (the operations study's outcomes for these operations were known before this protocol was frozen)",
+ "late_gate_flags": {
+  "admission_generator_acq_post": false,
+  "admission_generator_adm_post": false,
+  "admission_pooled_adm_post": true,
+  "final_acq_post": true,
+  "final_reuse_post": true
+ },
+ "pooled_sequence": {
+  "A": 28,
+  "B": 35,
+  "R": 14,
+  "UA": 28,
+  "UB": 35,
+  "unique_tuples": 143
+ },
+ "preservation_bank": {
+  "successful_entries": 44
+ },
+ "primary": {
+  "acquisition_task": {
+   "S": false,
+   "S_cpu_physical_s": 0.0,
+   "V": false,
+   "V_cpu_counterfactual_s": 0.002,
+   "V_cpu_physical_s": 0.091
+  },
+  "reuse_task_secondary": {
+   "S_fresh": false,
+   "S_fresh_cpu_physical_s": 0.007,
+   "V_admitted": false,
+   "no_retention": false,
+   "no_retention_cpu_physical_s": 0.0,
+   "retained_V": false
+  }
+ },
+ "repair_choice": {
+  "allowance": 20.0,
+  "random": [
+   {
+    "cpu_s": 0.002,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 0
+   },
+   {
+    "cpu_s": 0.002,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 1
+   },
+   {
+    "cpu_s": 0.002,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 2
+   },
+   {
+    "cpu_s": 0.002,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 3
+   },
+   {
+    "cpu_s": 0.002,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 4
+   }
+  ],
+  "rule": {
+   "cpu_s": 0.002,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  },
+  "s_then_v": {
+   "cpu_s": 0.002,
+   "order": [
+    "S",
+    "V"
+   ],
+   "reached": false
+  },
+  "v_then_s": {
+   "cpu_s": 0.002,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  }
+ },
+ "reuse_controls": {
+  "conditional_comparison_fixed_library_10B": null,
+  "costs": {
+   "fixed_library_B_cpu_s": 0.007,
+   "no_retention_per_reuse_cpu_s": 0.0,
+   "retained_available": false,
+   "retained_parts": {
+    "acquisition_to_first_fit_cpu_s": 0.002,
+    "admission_cpu_s": 0.0035,
+    "deployment_at_reuse_cpu_s": null,
+    "library_load_cpu_s": null,
+    "library_write_cpu_s": null,
+    "preservation_cpu_s": 0.0026
+   },
+   "retained_parts_note": "admission_cpu_s includes preservation_cpu_s (nested); add the parts once, never the inclusive total with its own parts"
+  },
+  "fixed_library_B": {
+   "allowance": 10.0,
+   "bank": 490,
+   "cpu_s": 0.007,
+   "cpu_s_physical": 0.007,
+   "exact_on_final": false,
+   "expr": "even(size(element))",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "n_hits": 1,
+   "stop": "found",
+   "stop_class": "fit"
+  },
+  "no_retention": {
+   "allowance": 10.0,
+   "bank": 182,
+   "cost_cpu_s": 0.0,
+   "cpu_s": 0.0,
+   "cpu_s_physical": 0.0,
+   "exact_on_final": false,
+   "expr": "size(element)",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "n_hits": 1,
+   "stop": "found",
+   "stop_class": "fit"
+  }
+ },
+ "reuse_support": {
+  "of": 3,
+  "usable": 3
+ },
+ "selection": {
+  "admitted_among_fits": 1,
+  "correct_among_fits": 0,
+  "distinct_behaviours": 20,
+  "first_fit": {
+   "admitted": false,
+   "correct": false
+  },
+  "fits": [
+   {
+    "admitted": false,
+    "behaviour": "4da35375bd87a2e7",
+    "correct": false,
+    "expr": "square(element)",
+    "reuse_exact_any": false,
+    "size": 2
+   },
+   {
+    "admitted": true,
+    "behaviour": "fb9dbe893cd71868",
+    "correct": false,
+    "expr": "minimum(palette(element))",
+    "reuse_exact_any": false,
+    "size": 3
+   },
+   {
+    "admitted": false,
+    "behaviour": "8e12bd1058f31359",
+    "correct": false,
+    "expr": "subtract(TWO, size(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "bec556df903f32ae",
+    "correct": false,
+    "expr": "subtract(TWO, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "ee7f1cd0eb29156f",
+    "correct": false,
+    "expr": "subtract(TWO, numcolors(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "ced9def16bc544a1",
+    "correct": false,
+    "expr": "subtract(THREE, size(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "d2b319246694f905",
+    "correct": false,
+    "expr": "subtract(THREE, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "e1d01ef0d2edba20",
+    "correct": false,
+    "expr": "subtract(FOUR, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "3ea10b71793f107c",
+    "correct": false,
+    "expr": "subtract(EIGHT, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "9f25382ca678071a",
+    "correct": false,
+    "expr": "subtract(FIVE, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "b95b497f83db519f",
+    "correct": false,
+    "expr": "subtract(SIX, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "182a1976fb7055e5",
+    "correct": false,
+    "expr": "subtract(NINE, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "dc95edcf7523e2a5",
+    "correct": false,
+    "expr": "subtract(SEVEN, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "dffa7c860c94a4c3",
+    "correct": false,
+    "expr": "subtract(TEN, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "97caca34e043de68",
+    "correct": false,
+    "expr": "divide(THREE, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "583837d9ff1efd63",
+    "correct": false,
+    "expr": "divide(FOUR, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "6968cab4c0a66b8f",
+    "correct": false,
+    "expr": "divide(EIGHT, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "58b0653c5a25a2b2",
+    "correct": false,
+    "expr": "divide(FIVE, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "4d01c4a7d0ef2a52",
+    "correct": false,
+    "expr": "divide(SIX, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "e69fb7eb7e455ba2",
+    "correct": false,
+    "expr": "divide(NINE, width(element))",
+    "reuse_exact_any": false,
+    "size": 4
+   }
+  ],
+  "n_fits": 20,
+  "random_seeds": [
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 2,
+    "seed": 0
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 16,
+    "seed": 1
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 5,
+    "seed": 2
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 13,
+    "seed": 3
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 9,
+    "seed": 4
+   }
+  ]
+ },
+ "setup_pooled_usability": {
+  "acq_and_reuse_draws": 35,
+  "acq_and_reuse_usable": 35,
+  "admission_draws": 28,
+  "admission_usable": 28
+ },
+ "status": "done",
+ "target": "leastcolor"
+}

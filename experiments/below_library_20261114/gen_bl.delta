@@ -1,0 +1,65 @@
+--- experiments/core_operations_20261113/gen.py
++++ experiments/below_library_20261114/gen_bl.py
+@@ -1,3 +1,20 @@
+-"""Seeded, typed generator of invented argument tuples for one library operation.
++"""LOCAL COPY of the frozen generator, with one kind of change: a memory failure is never an ordinary error.
++Author: Chimdi Walter Ndubuisi
++
++The original is experiments/core_operations_20261113/gen.py (frozen; sha256 in ORIGINAL_SHA256 below, checked when
++this module is imported). The draws, their order, the seeds, the rejections and the limits are the original's, line
++for line. What differs, and nothing else (gen_bl.delta is the unified diff, and a test rebuilds it):
++  1. this text, the two imports (bl_frozen, ResourceStop) and the check of the original's hash;
++  2. in gen_examples(), BEFORE each of its three broad handlers of ordinary errors (a function tried on a value, the
++     operation tried with a drawn function, the operation run on a draw):
++     `except MemoryError: raise ResourceStop(...) from None`. In the original those handlers take a MemoryError for
++     an input on which the operation raises, and discard the draw;
++  3. in gen_examples(), beside `except Hard`: the same translation for a MemoryError raised anywhere else in the loop
++     of draws.
++So gen_examples() never returns after a swallowed memory failure.
++
++The original's own text follows.
++
++Seeded, typed generator of invented argument tuples for one library operation.
+ Author: Chimdi Walter Ndubuisi
+ 
+@@ -11,5 +28,12 @@
+ import signal
+ 
++import bl_frozen
+ import dslx
++from guards_bl import ResourceStop
++
++ORIGINAL = "experiments/core_operations_20261113/gen.py"
++ORIGINAL_SHA256 = "f0ee9e26f7253f1e4719f1408a708ce4f0bc044e6bf6e09fc72bb674275cac1c"
++if bl_frozen.HASHES[ORIGINAL] != ORIGINAL_SHA256:
++    raise SystemExit("gen_bl.py is a copy of another version of %s: refusing to run" % ORIGINAL)
+ 
+ UNARY = ("identity size first last increment decrement double halve invert even positive sign flip toindices color "
+@@ -243,4 +267,6 @@
+                             d[c](v)
+                             fs.append(d[c])
++                        except MemoryError:
++                            raise ResourceStop("memory failure: the generator tried a function on a value") from None
+                         except Exception:               # noqa: BLE001
+                             pass
+@@ -261,4 +287,6 @@
+                         try:
+                             res = f(*a2)
++                        except MemoryError:
++                            raise ResourceStop("memory failure: the generator tried a drawn function") from None
+                         except Exception:               # noqa: BLE001
+                             continue
+@@ -272,4 +300,6 @@
+                 else:
+                     res = f(*args)
++            except MemoryError:
++                raise ResourceStop("memory failure: the generator ran the operation on a draw") from None
+             except Exception:                           # noqa: BLE001
+                 rej["target_raised"] += 1
+@@ -289,4 +319,6 @@
+     except Hard:
+         return result("excluded", "generator CPU limit")
++    except MemoryError:
++        raise ResourceStop("memory failure inside the generator") from None
+     finally:
+         signal.setitimer(signal.ITIMER_VIRTUAL, 0)

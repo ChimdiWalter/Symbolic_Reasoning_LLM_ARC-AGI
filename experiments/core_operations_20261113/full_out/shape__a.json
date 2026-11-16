@@ -1,0 +1,134 @@
+{
+ "arms": {
+  "1": {
+   "bank": 2175,
+   "cpu_s": 0.067,
+   "equal_all_36": false,
+   "expr": "add(THREE, toivec(EIGHT))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 0,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 23284,
+   "cpu_s": 1.334,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "3": {
+   "bank": 23882,
+   "cpu_s": 1.506,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 24384,
+   "cpu_s": 1.929,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 22624,
+   "cpu_s": 6.248,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 11.083,
+ "examples_sha": "21c6c11e91b2123a",
+ "expr": null,
+ "family": "bounding box",
+ "family_size": 16,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "backdrop",
+   "bordering",
+   "box",
+   "center",
+   "cmirror",
+   "corners",
+   "delta",
+   "dmirror",
+   "frontiers",
+   "gravitate",
+   "height",
+   "hline",
+   "hmirror",
+   "hperiod",
+   "inbox",
+   "leftmost",
+   "llcorner",
+   "lowermost",
+   "lrcorner",
+   "normalize",
+   "occurrences",
+   "outbox",
+   "portrait",
+   "position",
+   "rightmost",
+   "shape",
+   "square",
+   "subgrid",
+   "ulcorner",
+   "uppermost",
+   "urcorner",
+   "vline",
+   "vmirror",
+   "vperiod",
+   "width"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "shape"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "height",
+  "width"
+ ],
+ "max_size": 4,
+ "op": "shape",
+ "readings": {
+  "1": "wrong",
+  "2": "absent",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

@@ -1,0 +1,501 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{s{t(i0,t(i1,i0)),t(i0,t(i1,i1)),t(i0,t(i1,i2)),t(i0,t(i2,i0)),t(i0,t(i2,i2))},s{t(i3,t(i5,i2)),t(i3,t(i6,i2))}}",
+    "i3"
+   ],
+   [
+    "s{s{t(i3,t(i0,i0)),t(i3,t(i1,i0))}}",
+    "i0"
+   ],
+   [
+    "s{s{t(i3,t(i0,i7))}}",
+    "i3"
+   ],
+   [
+    "s{s{t(i7,t(i0,i5)),t(i7,t(i1,i2)),t(i7,t(i1,i3)),t(i7,t(i1,i5)),t(i7,t(i2,i5))},s{t(i7,t(i2,i3))}}",
+    "i7"
+   ],
+   [
+    "s{s{t(i0,t(i0,i0)),t(i0,t(i0,i1)),t(i0,t(i0,i2)),t(i0,t(i0,i3)),t(i0,t(i0,i4)),t(i0,t(i0,i5)),t(i0,t(i1,i0)),t(i0,t(i1,i1)),t(i0,t(i1,i2)),t(i0,t(i1,i3)),t(i0,t(i1,i5)),t(i0,t(i2,i0)),t(i0,t(i2,i1)),t(i0,t(i2,i2)),t(i0,t(i2,i3)),t(i0,t(i2,i4)),t(i0,t(i2,i5)),t(i0,t(i3,i0)),t(i0,t(i3,i2)),t(i0,t(i3,i...#7f87c5f3",
+    "i3"
+   ],
+   [
+    "s{s{t(i0,t(i0,i8)),t(i0,t(i2,i11)),t(i0,t(i5,i3)),t(i0,t(i6,i10)),t(i0,t(i8,i8)),t(i0,t(i9,i3)),t(i2,t(i4,i3)),t(i2,t(i6,i11)),t(i6,t(i1,i4)),t(i9,t(i0,i0)),t(i9,t(i0,i1)),t(i9,t(i0,i10)),t(i9,t(i0,i11)),t(i9,t(i0,i2)),t(i9,t(i0,i3)),t(i9,t(i0,i4)),t(i9,t(i0,i5)),t(i9,t(i0,i6)),t(i9,t(i0,i7)),t(i9,t...#2bfabd1f",
+    "i6"
+   ],
+   [
+    "s{s{t(i0,t(i2,i7))}}",
+    "i0"
+   ],
+   [
+    "s{s{t(i0,t(i0,i1)),t(i0,t(i1,i2)),t(i0,t(i2,i3))}}",
+    "i1"
+   ],
+   [
+    "s{s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i3)),t(i3,t(i0,i4)),t(i3,t(i0,i5)),t(i3,t(i0,i6)),t(i3,t(i0,i7)),t(i3,t(i0,i8)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i3)),t(i3,t(i1,i4)),t(i3,t(i1,i5)),t(i3,t(i1,i6)),t(i3,t(i1,i7)),t(i3,t(i1,i8)),t(i3,t(i10,i0)),t(i3,t(i10...#bb1b3cb1",
+    "i3"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0034,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 6431,
+   "bank_at_first_fit": 6431,
+   "candidates_tested": 6308,
+   "counterexample": {
+    "args": [
+     "s{s{t(i8,t(i0,i0)),t(i8,t(i0,i1)),t(i8,t(i0,i2)),t(i8,t(i1,i0)),t(i8,t(i1,i1)),t(i8,t(i1,i2)),t(i8,t(i10,i0)),t(i8,t(i10,i1)),t(i8,t(i10,i2)),t(i8,t(i11,i0)),t(...#e25daade",
+     "i6"
+    ],
+    "got": "t(t(i1,i1))",
+    "index": 0,
+    "want": "s{}"
+   },
+   "cpu_s": 0.15,
+   "cpu_to_first_fit": 0.15,
+   "error": null,
+   "expr": "dedupe(repeat(UNITY, value))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     400
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 26954,
+   "bank_at_first_fit": null,
+   "candidates_tested": 26831,
+   "cpu_s": 2.133,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 27169,
+   "bank_at_first_fit": null,
+   "candidates_tested": 27046,
+   "cpu_s": 2.616,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 26954,
+   "bank_at_first_fit": null,
+   "candidates_tested": 26831,
+   "cpu_s": 2.207,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "merge",
+    "merge",
+    "merge"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 27169,
+   "bank_at_first_fit": null,
+   "candidates_tested": 27046,
+   "cpu_s": 2.703,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "merge",
+    "merge",
+    "merge",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 10.52,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'colorfilter' is not defined",
+  "error_type": "NameError",
+  "missing_name": "colorfilter"
+ },
+ "family": "filtering",
+ "family_size": 5,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 400,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 167,
+    "candidates_tested": 44,
+    "cpu_s": 0.0,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "even(value)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 0,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 567,
+    "candidates_tested": null,
+    "cpu_s": 0.008,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "even(increment(value))",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 2,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "3072b7476db1bde35a74833b2667b18747576f419c14bdc7188bdd947126803b",
+  "admission_set": "65961d58d4a359079c8c0a9f86daff563639ffd32db5b0ee078f37d9ae01398f",
+  "final_set": "d1786c4010ba989fd55d13bf3886ecc3f20cced141560405e44d20d490e5706f",
+  "first_fit_records": "0f774bd81b443d225f2a3560868da6f59756dfea5a9b0a16f5554ecd3af31f43",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "cca60c0be1095ba2b521aa28ad5b0857469b29cbdda16ec0cfc3b87787b0b7b4",
+  "setup_record": "58cde6aa241c033b3e137e17f0ecc781abcd60d8de51651326fa4ec3bf3caf60"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 320,
+   "B": 400,
+   "R": 160,
+   "UA": 320,
+   "UB": 400,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1600
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 320,
+   "UA_usable_wrapper_4": 320,
+   "UB_draws": 400,
+   "UB_usable_wrappers_1_to_3": 400,
+   "UB_usable_wrappers_1_to_3_and_5": 400
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "size",
+    "2": "merge",
+    "3": "initset",
+    "4": "totuple",
+    "5": "flip"
+   },
+   "chosen": [
+    "size",
+    "merge",
+    "initset",
+    "totuple",
+    "flip"
+   ],
+   "n_candidates": 9,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1600
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 320,
+    "UA_usable_wrapper_4": 320,
+    "UB_draws": 400,
+    "UB_usable_wrappers_1_to_3": 400,
+    "UB_usable_wrappers_1_to_3_and_5": 400
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "size",
+    "merge",
+    "initset",
+    "totuple",
+    "flip"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "colorfilter"
+}

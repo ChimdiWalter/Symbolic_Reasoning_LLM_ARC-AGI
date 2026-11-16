@@ -1,0 +1,501 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{t(i0,i1),t(i2,i4)}",
+    "s{t(i2,t(i4,i4))}"
+   ],
+   [
+    "s{t(i2,t(i0,i0)),t(i2,t(i1,i1))}",
+    "s{t(i2,t(i0,i0)),t(i2,t(i0,i1)),t(i2,t(i0,i2)),t(i2,t(i1,i0)),t(i2,t(i1,i1)),t(i2,t(i1,i2))}"
+   ],
+   [
+    "s{t(i4,t(i1,i0)),t(i4,t(i1,i1))}",
+    "s{t(i4,t(i1,i0)),t(i4,t(i1,i1))}"
+   ],
+   [
+    "s{t(i0,i0),t(i0,i1),t(i0,i2),t(i0,i3),t(i0,i4),t(i0,i5),t(i0,i6),t(i0,i7),t(i0,i8),t(i1,i0),t(i1,i1),t(i1,i2),t(i1,i3),t(i1,i4),t(i1,i5),t(i1,i6),t(i1,i7),t(i1,i8),t(i10,i0),t(i10,i1),t(i10,i2),t(i10,i3),t(i10,i4),t(i10,i5),t(i10,i6),t(i10,i7),t(i10,i8),t(i2,i0),t(i2,i1),t(i2,i2),t(i2,i3),t(i2,i4),t...#f9ba6b08",
+    "s{t(i1,i8),t(i4,i1),t(i6,i8)}"
+   ],
+   [
+    "s{t(i0,i0),t(i0,i1),t(i0,i2),t(i0,i3),t(i0,i4),t(i0,i5),t(i0,i6),t(i0,i7),t(i0,i8),t(i0,i9),t(i1,i0),t(i1,i1),t(i1,i2),t(i1,i3),t(i1,i4),t(i1,i5),t(i1,i6),t(i1,i7),t(i1,i8),t(i1,i9),t(i2,i0),t(i2,i1),t(i2,i2),t(i2,i3),t(i2,i4),t(i2,i5),t(i2,i6),t(i2,i7),t(i2,i8),t(i2,i9),t(i3,i0),t(i3,i1),t(i3,i2),t...#2b2c89b8",
+    "s{t(i0,i1),t(i0,i9),t(i2,i2),t(i2,i9),t(i3,i4)}"
+   ],
+   [
+    "s{t(i2,i0)}",
+    "s{t(i0,i3),t(i0,i4),t(i2,i3),t(i4,i3),t(i8,i0)}"
+   ],
+   [
+    "s{t(i5,i0),t(i5,i1),t(i5,i2),t(i5,i3)}",
+    "s{t(i7,t(i0,i0)),t(i7,t(i0,i1)),t(i7,t(i0,i2)),t(i7,t(i0,i3)),t(i7,t(i1,i0)),t(i7,t(i1,i1)),t(i7,t(i1,i2)),t(i7,t(i1,i3)),t(i7,t(i2,i0)),t(i7,t(i2,i1)),t(i7,t(i2,i2)),t(i7,t(i2,i3)),t(i7,t(i3,i0)),t(i7,t(i3,i1)),t(i7,t(i3,i2)),t(i7,t(i3,i3)),t(i7,t(i4,i0)),t(i7,t(i4,i1)),t(i7,t(i4,i2)),t(i7,t(i4,i3)...#6b48a571"
+   ],
+   [
+    "s{t(i6,i5),t(i6,i6),t(i6,i7),t(i6,i8),t(i7,i5),t(i7,i6)}",
+    "s{t(i0,i0),t(i1,i8),t(i2,i8),t(i6,i1),t(i7,i1),t(i8,i6)}"
+   ],
+   [
+    "s{t(i1,t(i2,i2))}",
+    "s{t(i0,i4),t(i0,i7),t(i2,i3),t(i4,i5),t(i4,i6),t(i5,i2),t(i5,i5)}"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0022,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 593,
+   "bank_at_first_fit": 593,
+   "candidates_tested": 468,
+   "counterexample": {
+    "args": [
+     "s{t(i2,t(i5,i1)),t(i2,t(i6,i1)),t(i2,t(i7,i0)),t(i2,t(i7,i1)),t(i4,t(i10,i0)),t(i4,t(i10,i1)),t(i4,t(i4,i0)),t(i4,t(i4,i1)),t(i4,t(i5,i0)),t(i4,t(i6,i0)),t(i4,t...#315db983",
+     "s{t(i0,i0),t(i2,i0),t(i4,i1),t(i8,i0),t(i9,i0)}"
+    ],
+    "got": "t(i5,i0)",
+    "index": 0,
+    "want": "t(i0,i-1)"
+   },
+   "cpu_s": 0.009,
+   "cpu_to_first_fit": 0.009,
+   "error": null,
+   "expr": "halve(llcorner(a))",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     10,
+     399
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "maximum",
+    "maximum",
+    "maximum"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 40525,
+   "bank_at_first_fit": null,
+   "candidates_tested": 40400,
+   "cpu_s": 4.816,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 42027,
+   "bank_at_first_fit": null,
+   "candidates_tested": 41902,
+   "cpu_s": 6.233,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum",
+    "maximum"
+   ]
+  },
+  "A2x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 40525,
+   "bank_at_first_fit": null,
+   "candidates_tested": 40400,
+   "cpu_s": 4.765,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "maximum",
+    "maximum",
+    "maximum",
+    "first",
+    "first",
+    "first"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 42027,
+   "bank_at_first_fit": null,
+   "candidates_tested": 41902,
+   "cpu_s": 6.19,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "maximum",
+    "maximum",
+    "maximum",
+    "first",
+    "first",
+    "first",
+    "hfrontier",
+    "hfrontier",
+    "hfrontier"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 30.8,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'position' is not defined",
+  "error_type": "NameError",
+  "missing_name": "position"
+ },
+ "family": "position",
+ "family_size": 1,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 399,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 36527,
+    "candidates_tested": 36402,
+    "cpu_s": 3.789,
+    "error": null,
+    "exact_on_final": false,
+    "expr": null,
+    "fit": false,
+    "function_cap_reached": false,
+    "level_completed": 4,
+    "size_limit": 4,
+    "stop": "size_exhausted",
+    "stop_class": "complete_negative"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 40477,
+    "candidates_tested": null,
+    "cpu_s": 3.792,
+    "error": null,
+    "exact_on_final": false,
+    "expr": "add(LEFT, leastcommon(ulcorner(a)))",
+    "fit": true,
+    "function_cap_reached": true,
+    "level_completed": 4,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "46ac21eb0cd3cc1e62e84217d5600ab4e7966fdecec696cff6239f5ba8f1e072",
+  "admission_set": "df9a29475dc242af5b8d967f35334d4138ea396aa9a0b785533d86329fac383a",
+  "final_set": "5b4406cb6eec6898c11988d5458952ac1ca17d315dd7b25e4e72829f922ab019",
+  "first_fit_records": "e710f26284ae2c7b1fa4b26981fc8a1b54aabfe8f06c4f1e228d8a3e3f711bbe",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "08c6956bcb461b7e7729e028b7009b9bd79ec10b0e60f6ec082654676894978a",
+  "setup_record": "244af9a9761bd56d4d8b5a4860b17747616810ad60a30374621560545a75e1e7"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 320,
+   "B": 400,
+   "R": 160,
+   "UA": 320,
+   "UB": 400,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1600
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 320,
+   "UA_usable_wrapper_4": 319,
+   "UB_draws": 400,
+   "UB_usable_wrappers_1_to_3": 399,
+   "UB_usable_wrappers_1_to_3_and_5": 399
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "maximum",
+    "2": "first",
+    "3": "hfrontier",
+    "4": "bottomhalf",
+    "5": "sign"
+   },
+   "chosen": [
+    "maximum",
+    "first",
+    "hfrontier",
+    "bottomhalf",
+    "sign"
+   ],
+   "n_candidates": 22,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1600
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 320,
+    "UA_usable_wrapper_4": 319,
+    "UB_draws": 400,
+    "UB_usable_wrappers_1_to_3": 399,
+    "UB_usable_wrappers_1_to_3_and_5": 399
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "maximum",
+    "first",
+    "hfrontier",
+    "bottomhalf",
+    "sign"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "position"
+}

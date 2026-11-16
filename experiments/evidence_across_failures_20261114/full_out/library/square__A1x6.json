@@ -1,0 +1,36 @@
+{
+ "acquisition_record_sha256": "c43f5f8b905328f514dbe891194fd290abf66e7bc0c41481d566afd71e33f9d7",
+ "admission_record_sha256": "3b1c152681422b03554fa0e3506fd69e227c2e31e5f0d59539a91a556c9fdcee",
+ "constants": [
+  "DOWN"
+ ],
+ "expression": "contained(size(piece), DOWN)",
+ "name": "vf_0a92299d",
+ "signature": [
+  [
+   "piece",
+   "Piece"
+  ]
+ ],
+ "tree": [
+  "L",
+  "contained",
+  [
+   "L",
+   "size",
+   [
+    "P",
+    "piece"
+   ]
+  ],
+  [
+   "C",
+   "DOWN"
+  ]
+ ],
+ "uses": [
+  "contained",
+  "size"
+ ],
+ "version": 1
+}

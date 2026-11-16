@@ -1,0 +1,1055 @@
+{
+ "by_annotation": {
+  "?": {
+   "operations": 1,
+   "operations_with_valid_examples": 1,
+   "parameters": 1
+  },
+  "Any": {
+   "operations": 13,
+   "operations_with_valid_examples": 10,
+   "parameters": 15
+  },
+  "Boolean": {
+   "operations": 5,
+   "operations_with_valid_examples": 2,
+   "parameters": 9
+  },
+  "Callable": {
+   "operations": 19,
+   "operations_with_valid_examples": 12,
+   "parameters": 24
+  },
+  "Container": {
+   "operations": 21,
+   "operations_with_valid_examples": 21,
+   "parameters": 24
+  },
+  "ContainerContainer": {
+   "operations": 2,
+   "operations_with_valid_examples": 2,
+   "parameters": 2
+  },
+  "Element": {
+   "operations": 5,
+   "operations_with_valid_examples": 5,
+   "parameters": 5
+  },
+  "FrozenSet": {
+   "operations": 4,
+   "operations_with_valid_examples": 4,
+   "parameters": 6
+  },
+  "Grid": {
+   "operations": 35,
+   "operations_with_valid_examples": 35,
+   "parameters": 38
+  },
+  "Integer": {
+   "operations": 24,
+   "operations_with_valid_examples": 23,
+   "parameters": 30
+  },
+  "IntegerSet": {
+   "operations": 2,
+   "operations_with_valid_examples": 2,
+   "parameters": 2
+  },
+  "IntegerTuple": {
+   "operations": 12,
+   "operations_with_valid_examples": 12,
+   "parameters": 15
+  },
+  "Numerical": {
+   "operations": 11,
+   "operations_with_valid_examples": 11,
+   "parameters": 15
+  },
+  "Object": {
+   "operations": 7,
+   "operations_with_valid_examples": 7,
+   "parameters": 7
+  },
+  "Objects": {
+   "operations": 1,
+   "operations_with_valid_examples": 1,
+   "parameters": 1
+  },
+  "Patch": {
+   "operations": 34,
+   "operations_with_valid_examples": 34,
+   "parameters": 40
+  },
+  "Piece": {
+   "operations": 9,
+   "operations_with_valid_examples": 9,
+   "parameters": 9
+  },
+  "Tuple": {
+   "operations": 4,
+   "operations_with_valid_examples": 4,
+   "parameters": 7
+  }
+ },
+ "excluded": {
+  "only 2 of 36 valid examples in 4000 draws": {
+   "count": 1,
+   "operations": [
+    "flip"
+   ]
+  },
+  "only 4 of 36 valid examples in 4000 draws": {
+   "count": 2,
+   "operations": [
+    "both",
+    "either"
+   ]
+  },
+  "result is a function": {
+   "count": 7,
+   "operations": [
+    "compose",
+    "chain",
+    "matcher",
+    "rbind",
+    "lbind",
+    "power",
+    "fork"
+   ]
+  }
+ },
+ "operations": 155,
+ "per_operation": {
+  "add": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "adjacent": {
+   "distinct_outputs": 2,
+   "draws": 38,
+   "rejected_draws": 2,
+   "status": "ok"
+  },
+  "apply": {
+   "distinct_outputs": 35,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "argmax": {
+   "distinct_outputs": 34,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "argmin": {
+   "distinct_outputs": 32,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "asindices": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "asobject": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "astuple": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "backdrop": {
+   "distinct_outputs": 36,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "bordering": {
+   "distinct_outputs": 2,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "both": {
+   "distinct_outputs": 2,
+   "draws": 4000,
+   "rejected_draws": 3996,
+   "status": "excluded"
+  },
+  "bottomhalf": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "box": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "branch": {
+   "distinct_outputs": 32,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "canvas": {
+   "distinct_outputs": 36,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "cellwise": {
+   "distinct_outputs": 36,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "center": {
+   "distinct_outputs": 24,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "centerofmass": {
+   "distinct_outputs": 27,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "chain": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "cmirror": {
+   "distinct_outputs": 36,
+   "draws": 38,
+   "rejected_draws": 2,
+   "status": "ok"
+  },
+  "color": {
+   "distinct_outputs": 10,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "colorcount": {
+   "distinct_outputs": 16,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "colorfilter": {
+   "distinct_outputs": 24,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "combine": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "compose": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "connect": {
+   "distinct_outputs": 12,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "contained": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "corners": {
+   "distinct_outputs": 34,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "cover": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "crement": {
+   "distinct_outputs": 36,
+   "draws": 72,
+   "rejected_draws": 36,
+   "status": "ok"
+  },
+  "crop": {
+   "distinct_outputs": 30,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "decrement": {
+   "distinct_outputs": 36,
+   "draws": 63,
+   "rejected_draws": 27,
+   "status": "ok"
+  },
+  "dedupe": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "delta": {
+   "distinct_outputs": 13,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "difference": {
+   "distinct_outputs": 32,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "divide": {
+   "distinct_outputs": 24,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "dmirror": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "dneighbors": {
+   "distinct_outputs": 36,
+   "draws": 52,
+   "rejected_draws": 16,
+   "status": "ok"
+  },
+  "double": {
+   "distinct_outputs": 36,
+   "draws": 60,
+   "rejected_draws": 24,
+   "status": "ok"
+  },
+  "either": {
+   "distinct_outputs": 2,
+   "draws": 4000,
+   "rejected_draws": 3996,
+   "status": "excluded"
+  },
+  "equality": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "even": {
+   "distinct_outputs": 2,
+   "draws": 59,
+   "rejected_draws": 23,
+   "status": "ok"
+  },
+  "extract": {
+   "distinct_outputs": 30,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "fgpartition": {
+   "distinct_outputs": 31,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "fill": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "first": {
+   "distinct_outputs": 28,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "flip": {
+   "distinct_outputs": 2,
+   "draws": 4000,
+   "rejected_draws": 3998,
+   "status": "excluded"
+  },
+  "fork": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "frontiers": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "gravitate": {
+   "distinct_outputs": 18,
+   "draws": 39,
+   "rejected_draws": 3,
+   "status": "ok"
+  },
+  "greater": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "halve": {
+   "distinct_outputs": 27,
+   "draws": 56,
+   "rejected_draws": 20,
+   "status": "ok"
+  },
+  "hconcat": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "height": {
+   "distinct_outputs": 10,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "hfrontier": {
+   "distinct_outputs": 13,
+   "draws": 43,
+   "rejected_draws": 7,
+   "status": "ok"
+  },
+  "hline": {
+   "distinct_outputs": 2,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "hmatching": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "hmirror": {
+   "distinct_outputs": 36,
+   "draws": 39,
+   "rejected_draws": 3,
+   "status": "ok"
+  },
+  "hperiod": {
+   "distinct_outputs": 8,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "hsplit": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "hupscale": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "identity": {
+   "distinct_outputs": 36,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "inbox": {
+   "distinct_outputs": 33,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "increment": {
+   "distinct_outputs": 36,
+   "draws": 69,
+   "rejected_draws": 33,
+   "status": "ok"
+  },
+  "index": {
+   "distinct_outputs": 10,
+   "draws": 43,
+   "rejected_draws": 7,
+   "status": "ok"
+  },
+  "ineighbors": {
+   "distinct_outputs": 36,
+   "draws": 46,
+   "rejected_draws": 10,
+   "status": "ok"
+  },
+  "initset": {
+   "distinct_outputs": 36,
+   "draws": 40,
+   "rejected_draws": 4,
+   "status": "ok"
+  },
+  "insert": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "intersection": {
+   "distinct_outputs": 6,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "interval": {
+   "distinct_outputs": 21,
+   "draws": 43,
+   "rejected_draws": 7,
+   "status": "ok"
+  },
+  "invert": {
+   "distinct_outputs": 36,
+   "draws": 68,
+   "rejected_draws": 32,
+   "status": "ok"
+  },
+  "last": {
+   "distinct_outputs": 25,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "lbind": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "leastcolor": {
+   "distinct_outputs": 10,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "leastcommon": {
+   "distinct_outputs": 30,
+   "draws": 92,
+   "rejected_draws": 56,
+   "status": "ok"
+  },
+  "lefthalf": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "leftmost": {
+   "distinct_outputs": 7,
+   "draws": 39,
+   "rejected_draws": 3,
+   "status": "ok"
+  },
+  "llcorner": {
+   "distinct_outputs": 22,
+   "draws": 38,
+   "rejected_draws": 2,
+   "status": "ok"
+  },
+  "lowermost": {
+   "distinct_outputs": 11,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "lrcorner": {
+   "distinct_outputs": 34,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "manhattan": {
+   "distinct_outputs": 6,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "mapply": {
+   "distinct_outputs": 35,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "matcher": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "maximum": {
+   "distinct_outputs": 9,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "merge": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "mfilter": {
+   "distinct_outputs": 26,
+   "draws": 40,
+   "rejected_draws": 4,
+   "status": "ok"
+  },
+  "minimum": {
+   "distinct_outputs": 7,
+   "draws": 40,
+   "rejected_draws": 4,
+   "status": "ok"
+  },
+  "mostcolor": {
+   "distinct_outputs": 9,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "move": {
+   "distinct_outputs": 35,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "mpapply": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "multiply": {
+   "distinct_outputs": 31,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "neighbors": {
+   "distinct_outputs": 36,
+   "draws": 41,
+   "rejected_draws": 5,
+   "status": "ok"
+  },
+  "normalize": {
+   "distinct_outputs": 31,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "numcolors": {
+   "distinct_outputs": 6,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "objects": {
+   "distinct_outputs": 29,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "occurrences": {
+   "distinct_outputs": 19,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "ofcolor": {
+   "distinct_outputs": 27,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "order": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "other": {
+   "distinct_outputs": 29,
+   "draws": 42,
+   "rejected_draws": 6,
+   "status": "ok"
+  },
+  "outbox": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "paint": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "pair": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "palette": {
+   "distinct_outputs": 25,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "papply": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "partition": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "portrait": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "position": {
+   "distinct_outputs": 8,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "positive": {
+   "distinct_outputs": 2,
+   "draws": 67,
+   "rejected_draws": 31,
+   "status": "ok"
+  },
+  "power": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "prapply": {
+   "distinct_outputs": 31,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "product": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "rapply": {
+   "distinct_outputs": 34,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "rbind": {
+   "distinct_outputs": 0,
+   "draws": 0,
+   "rejected_draws": 0,
+   "status": "excluded"
+  },
+  "recolor": {
+   "distinct_outputs": 34,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "remove": {
+   "distinct_outputs": 31,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "repeat": {
+   "distinct_outputs": 36,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "replace": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "righthalf": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "rightmost": {
+   "distinct_outputs": 12,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "rot180": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "rot270": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "rot90": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "sfilter": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "shape": {
+   "distinct_outputs": 28,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "shift": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "shoot": {
+   "distinct_outputs": 34,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "sign": {
+   "distinct_outputs": 11,
+   "draws": 55,
+   "rejected_draws": 19,
+   "status": "ok"
+  },
+  "size": {
+   "distinct_outputs": 11,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "sizefilter": {
+   "distinct_outputs": 9,
+   "draws": 49,
+   "rejected_draws": 13,
+   "status": "ok"
+  },
+  "square": {
+   "distinct_outputs": 2,
+   "draws": 38,
+   "rejected_draws": 2,
+   "status": "ok"
+  },
+  "subgrid": {
+   "distinct_outputs": 32,
+   "draws": 38,
+   "rejected_draws": 2,
+   "status": "ok"
+  },
+  "subtract": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "switch": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "toindices": {
+   "distinct_outputs": 36,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "toivec": {
+   "distinct_outputs": 36,
+   "draws": 86,
+   "rejected_draws": 50,
+   "status": "ok"
+  },
+  "tojvec": {
+   "distinct_outputs": 36,
+   "draws": 78,
+   "rejected_draws": 42,
+   "status": "ok"
+  },
+  "toobject": {
+   "distinct_outputs": 33,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "tophalf": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "totuple": {
+   "distinct_outputs": 36,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "ulcorner": {
+   "distinct_outputs": 18,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "underfill": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "underpaint": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "uppermost": {
+   "distinct_outputs": 8,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "urcorner": {
+   "distinct_outputs": 25,
+   "draws": 37,
+   "rejected_draws": 1,
+   "status": "ok"
+  },
+  "valmax": {
+   "distinct_outputs": 28,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "valmin": {
+   "distinct_outputs": 25,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vconcat": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vfrontier": {
+   "distinct_outputs": 13,
+   "draws": 50,
+   "rejected_draws": 14,
+   "status": "ok"
+  },
+  "vline": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vmatching": {
+   "distinct_outputs": 2,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vmirror": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vperiod": {
+   "distinct_outputs": 9,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vsplit": {
+   "distinct_outputs": 35,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "vupscale": {
+   "distinct_outputs": 36,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  },
+  "width": {
+   "distinct_outputs": 12,
+   "draws": 36,
+   "rejected_draws": 0,
+   "status": "ok"
+  }
+ },
+ "with_valid_examples": 145
+}

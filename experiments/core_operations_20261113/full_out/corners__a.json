@@ -1,0 +1,136 @@
+{
+ "arms": {
+  "1": {
+   "bank": 236,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "toindices(patch)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 9,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 27865,
+   "cpu_s": 2.81,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "3": {
+   "bank": 28662,
+   "cpu_s": 2.859,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 30564,
+   "cpu_s": 4.277,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 25475,
+   "cpu_s": 14.314,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 24.26,
+ "examples_sha": "429298a7ca23572a",
+ "expr": null,
+ "family": "bounding box",
+ "family_size": 16,
+ "generator": {
+  "draws": 37,
+  "function_pool_excluded": [
+   "backdrop",
+   "bordering",
+   "box",
+   "center",
+   "cmirror",
+   "corners",
+   "delta",
+   "dmirror",
+   "frontiers",
+   "gravitate",
+   "height",
+   "hline",
+   "hmirror",
+   "hperiod",
+   "inbox",
+   "leftmost",
+   "llcorner",
+   "lowermost",
+   "lrcorner",
+   "normalize",
+   "occurrences",
+   "outbox",
+   "portrait",
+   "position",
+   "rightmost",
+   "shape",
+   "square",
+   "subgrid",
+   "ulcorner",
+   "uppermost",
+   "urcorner",
+   "vline",
+   "vmirror",
+   "vperiod",
+   "width"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 1,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "corners"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "llcorner",
+  "lrcorner",
+  "ulcorner",
+  "urcorner"
+ ],
+ "max_size": 4,
+ "op": "corners",
+ "readings": {
+  "1": "wrong",
+  "2": "absent",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

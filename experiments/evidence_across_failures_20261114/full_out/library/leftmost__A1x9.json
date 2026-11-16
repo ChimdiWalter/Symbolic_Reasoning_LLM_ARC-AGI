@@ -1,0 +1,35 @@
+{
+ "acquisition_record_sha256": "2abe64f782695d235fb3a5f2a16b4bbdd724225b5b42f7d3aa326f5bc4858fd6",
+ "admission_record_sha256": "52998d12e55072d0095a80aae4e03d77dbcd342624d2660710c990971dce168a",
+ "constants": [],
+ "expression": "valmin(toindices(patch), last)",
+ "name": "vf_04dbd31d",
+ "signature": [
+  [
+   "patch",
+   "Patch"
+  ]
+ ],
+ "tree": [
+  "L",
+  "valmin",
+  [
+   "L",
+   "toindices",
+   [
+    "P",
+    "patch"
+   ]
+  ],
+  [
+   "FN",
+   "last"
+  ]
+ ],
+ "uses": [
+  "last",
+  "toindices",
+  "valmin"
+ ],
+ "version": 1
+}

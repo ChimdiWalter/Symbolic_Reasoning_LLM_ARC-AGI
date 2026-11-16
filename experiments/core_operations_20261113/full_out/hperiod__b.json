@@ -1,0 +1,115 @@
+{
+ "arms": {
+  "1": {
+   "bank": 155,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "ONE",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 18,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 155,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "ONE",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 18,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 21746,
+   "cpu_s": 2.026,
+   "equal_all_36": false,
+   "expr": "height(product(UNITY, obj))",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 19,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 30107,
+   "cpu_s": 4.575,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 32737,
+   "cpu_s": 19.392,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 25.993,
+ "examples_sha": "3d8965643bb59360",
+ "expr": null,
+ "family": "periods",
+ "family_size": 2,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "hperiod",
+   "vperiod"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "hperiod",
+  "vperiod"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "normalize",
+  "shift",
+  "width"
+ ],
+ "max_size": 4,
+ "op": "hperiod",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

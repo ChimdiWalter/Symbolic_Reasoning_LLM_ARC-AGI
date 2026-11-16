@@ -1,0 +1,136 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "most and least frequent",
+ "family_size": 4,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3",
+      "const:xout:4"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+     ],
+     "ok": false,
+     "source": "setup_redraw_1",
+     "trivial_passing": [
+      "const:final:1",
+      "const:xout:2",
+      "const:xout:3",
+      "const:xout:4"
+     ]
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 28,
+   "B": 35,
+   "R": 14,
+   "UA": 28,
+   "UB": 35,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 143
+  },
+  "preservation_bank_entries": 44,
+  "usability": {
+   "UA_draws": 28,
+   "UA_usable_wrapper_4": 28,
+   "UB_draws": 35,
+   "UB_usable_wrappers_1_to_3": 34,
+   "UB_usable_wrappers_1_to_3_and_5": 34
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "positive",
+    "2": "invert",
+    "3": "toivec",
+    "4": "decrement",
+    "5": "sign"
+   },
+   "chosen": [
+    "positive",
+    "invert",
+    "toivec",
+    "decrement",
+    "sign"
+   ],
+   "n_candidates": 13,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 28,
+    "B": 35,
+    "R": 14,
+    "UA": 28,
+    "UB": 35,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 143
+   },
+   "preservation_bank_entries": 44,
+   "reason": "acquisition check: a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4",
+   "usability": {
+    "UA_draws": 28,
+    "UA_usable_wrapper_4": 28,
+    "UB_draws": 35,
+    "UB_usable_wrappers_1_to_3": 34,
+    "UB_usable_wrappers_1_to_3_and_5": 34
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "positive",
+    "invert",
+    "toivec",
+    "decrement",
+    "sign"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "leastcolor"
+}

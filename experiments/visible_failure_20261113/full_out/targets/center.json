@@ -1,0 +1,635 @@
+{
+ "B": 10.0,
+ "admission_evidence": {
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "H": {
+   "admission": {
+    "adm_both": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_generator": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_pooled": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_preservation_s": 0.0026,
+    "cpu_standards_s": 0.0,
+    "none": true,
+    "rule": false,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": false,
+     "3": false,
+     "6": false
+    }
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     9,
+     30
+    ],
+    "pooled": [
+     72,
+     310
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "s{t(i1,i3),t(i1,i7),t(i3,i6),t(i3,i7),t(i4,i1),t(i4,i2)}"
+    ],
+    "got": "t(i3,i5)",
+    "index": 0,
+    "want": "t(i3,i4)"
+   },
+   "cpu_admission_s": 0.0026,
+   "cpu_s": 0.032,
+   "cpu_s_physical": 0.032,
+   "derived_from_arm_runs": true,
+   "expr": "increment(centerofmass(patch))",
+   "fit": true,
+   "half": 5.0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 3,
+   "source": "V half",
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  },
+  "S": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 133394,
+   "correct": false,
+   "cpu_s": 5.983,
+   "cpu_s_physical": 5.983,
+   "cpu_to_first_fit": 5.983,
+   "error": null,
+   "expr": "valmax(dneighbors(centerofmass(patch)), bottomhalf)",
+   "fit": true,
+   "function_cap_reached": true,
+   "level_completed": 4,
+   "n_hits": 1,
+   "note": "S is scored at task level only; no capability reading",
+   "reused": false,
+   "size": 5,
+   "standin": {
+    "contains_standin": false,
+    "expr": null
+   },
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_detail": {
+    "gen": [
+     16,
+     30
+    ],
+    "pooled": [
+     143,
+     310
+    ]
+   },
+   "task_acq_exact": false
+  },
+  "T": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 29949,
+   "correct": false,
+   "cpu_s": 2.587,
+   "cpu_s_physical": 2.587,
+   "cpu_to_first_fit": null,
+   "declared": "teacher examples (extra supervision); inputs 0-2 are the acquisition examples, 3-5 are shared with the admission grid, so T's admission is reported apart",
+   "error": null,
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_acq_exact": false
+  },
+  "V": {
+   "admission": {
+    "adm_both": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_generator": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_pooled": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_preservation_s": 0.0026,
+    "cpu_standards_s": 0.0,
+    "none": true,
+    "rule": false,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": false,
+     "3": false,
+     "6": false
+    }
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 28846,
+   "bank_at_first_fit": 1241,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     9,
+     30
+    ],
+    "pooled": [
+     72,
+     310
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "s{t(i1,i3),t(i1,i7),t(i3,i6),t(i3,i7),t(i4,i1),t(i4,i2)}"
+    ],
+    "got": "t(i3,i5)",
+    "index": 0,
+    "want": "t(i3,i4)"
+   },
+   "cpu_admission_s": 0.0026,
+   "cpu_s": 1.89,
+   "cpu_s_physical": 1.89,
+   "cpu_to_first_fit": 0.032,
+   "error": null,
+   "expr": "increment(centerofmass(patch))",
+   "fit": true,
+   "fits": [
+    {
+     "cpu_s": 0.032,
+     "expr": "increment(centerofmass(patch))",
+     "size": 3
+    },
+    {
+     "cpu_s": 0.087,
+     "expr": "add(UP_RIGHT, centerofmass(patch))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.088,
+     "expr": "add(RIGHT, centerofmass(patch))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.527,
+     "expr": "argmax(inbox(patch), halve)",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.61,
+     "expr": "increment(centerofmass(hmirror(patch)))",
+     "size": 4
+    },
+    {
+     "cpu_s": 0.61,
+     "expr": "increment(centerofmass(corners(patch)))",
+     "size": 4
+    },
+    {
+     "cpu_s": 1.425,
+     "expr": "urcorner(inbox(inbox(patch)))",
+     "size": 4
+    },
+    {
+     "cpu_s": 1.432,
+     "expr": "lrcorner(inbox(inbox(patch)))",
+     "size": 4
+    }
+   ],
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 8,
+   "note": "physical CPU is the whole collecting run; the counterfactual CPU to the first fit is cpu_to_first_fit",
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 3,
+   "stop": "size_exhausted",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  }
+ },
+ "consumers": {
+  "chosen": [
+   "bottomhalf",
+   "neighbors",
+   "vfrontier"
+  ],
+  "flags": [],
+  "n_candidates": 23,
+  "n_skipped": 0,
+  "post": {
+   "acq": "bottomhalf",
+   "adm": "neighbors",
+   "reuse": "vfrontier"
+  },
+  "roles": {
+   "acq": {
+    "distinct_final_outputs_on_setup_examples": 8,
+    "post": "bottomhalf"
+   },
+   "adm": {
+    "distinct_final_outputs_on_setup_examples": 15,
+    "post": "neighbors"
+   },
+   "reuse": {
+    "distinct_final_outputs_on_setup_examples": 8,
+    "post": "vfrontier"
+   }
+  },
+  "skipped": [],
+  "skipped_by_reason": {},
+  "text": {
+   "acq": "bottomhalf(center(patch))",
+   "adm": "neighbors(center(patch))",
+   "reuse": "vfrontier(center(patch))"
+  }
+ },
+ "cpu_s_total": 27.35,
+ "decision": {
+  "both_actions_run": true,
+  "chosen": "V",
+  "localised": true,
+  "rule": "construct at the failing step when the failure is localised (a NameError naming the missing operation), else search for a whole program"
+ },
+ "dev": false,
+ "development_only": false,
+ "diagnosis": {
+  "allowance": 1.0,
+  "bank": 13432,
+  "best_examples_matched": 2,
+  "cpu_s": 1.001,
+  "cpu_s_physical": 1.001,
+  "error_kind_when_missing": "NameError",
+  "expr": null,
+  "fit": false,
+  "function_cap_reached": true,
+  "level_completed": 3,
+  "n_hits": 0,
+  "nearly_fitting_candidates": 1,
+  "note": "exploratory; no conclusion is computed from it",
+  "of": 3,
+  "stop": "budget_cpu",
+  "stop_class": "allowance_used_up"
+ },
+ "failure": {
+  "all_examples_fail": true,
+  "argument_tags": [
+   [
+    "X"
+   ],
+   [
+    "O"
+   ],
+   [
+    "X"
+   ]
+  ],
+  "arguments": [
+   [
+    "s{t(i1,i6),t(i2,i4),t(i2,i5),t(i4,i3),t(i5,i2),t(i5,i3),t(i6,i1),t(i8,i3)}"
+   ],
+   [
+    "s{t(i7,t(i0,i3)),t(i7,t(i11,i2)),t(i7,t(i5,i1)),t(i7,t(i8,i0)),t(i7,t(i8,i3)),t(i7,t(i9,i1)),t(i7,t(i9,i3))}"
+   ],
+   [
+    "s{t(i5,i8),t(i7,i7)}"
+   ]
+  ],
+  "error_text": "name 'center' is not defined",
+  "error_type": "NameError",
+  "failing_step": "step 1 of 2: the call of center",
+  "missing_name": "center",
+  "required_outputs": [
+   "t(i4)",
+   "t(i2)",
+   "t(i8)"
+  ]
+ },
+ "family": "center",
+ "family_size": 1,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 310,
+  "pooled_short": false
+ },
+ "gate": {
+  "attempts": [
+   {
+    "failed": [],
+    "ok": true,
+    "source": "generator",
+    "trivial_passing": []
+   }
+  ]
+ },
+ "held_out_family": true,
+ "label": "development study (the operations study's outcomes for these operations were known before this protocol was frozen)",
+ "late_gate_flags": {
+  "admission_generator_acq_post": true,
+  "admission_generator_adm_post": true,
+  "admission_pooled_adm_post": true,
+  "final_acq_post": true,
+  "final_reuse_post": true
+ },
+ "pooled_sequence": {
+  "A": 249,
+  "B": 311,
+  "R": 124,
+  "UA": 249,
+  "UB": 311,
+  "unique_tuples": 1246
+ },
+ "preservation_bank": {
+  "successful_entries": 48
+ },
+ "primary": {
+  "acquisition_task": {
+   "S": false,
+   "S_cpu_physical_s": 5.983,
+   "V": false,
+   "V_cpu_counterfactual_s": 0.032,
+   "V_cpu_physical_s": 1.89
+  },
+  "reuse_task_secondary": {
+   "S_fresh": false,
+   "S_fresh_cpu_physical_s": 10.0,
+   "V_admitted": false,
+   "no_retention": false,
+   "no_retention_cpu_physical_s": 3.4,
+   "retained_V": false
+  }
+ },
+ "repair_choice": {
+  "allowance": 20.0,
+  "random": [
+   {
+    "cpu_s": 6.015,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 0
+   },
+   {
+    "cpu_s": 6.015,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 1
+   },
+   {
+    "cpu_s": 6.015,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 2
+   },
+   {
+    "cpu_s": 6.015,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 3
+   },
+   {
+    "cpu_s": 6.015,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 4
+   }
+  ],
+  "rule": {
+   "cpu_s": 6.015,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  },
+  "s_then_v": {
+   "cpu_s": 6.015,
+   "order": [
+    "S",
+    "V"
+   ],
+   "reached": false
+  },
+  "v_then_s": {
+   "cpu_s": 6.015,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  }
+ },
+ "reuse_controls": {
+  "conditional_comparison_fixed_library_10B": null,
+  "costs": {
+   "fixed_library_B_cpu_s": 10.0,
+   "no_retention_per_reuse_cpu_s": 3.4,
+   "retained_available": false,
+   "retained_parts": {
+    "acquisition_to_first_fit_cpu_s": 0.032,
+    "admission_cpu_s": 0.0026,
+    "deployment_at_reuse_cpu_s": null,
+    "library_load_cpu_s": null,
+    "library_write_cpu_s": null,
+    "preservation_cpu_s": 0.0026
+   },
+   "retained_parts_note": "admission_cpu_s includes preservation_cpu_s (nested); add the parts once, never the inclusive total with its own parts"
+  },
+  "fixed_library_B": {
+   "allowance": 10.0,
+   "bank": 139864,
+   "cpu_s": 10.0,
+   "cpu_s_physical": 10.0,
+   "exact_on_final": false,
+   "expr": null,
+   "fit": false,
+   "function_cap_reached": true,
+   "level_completed": 4,
+   "n_hits": 0,
+   "stop": "budget_cpu",
+   "stop_class": "allowance_used_up"
+  },
+  "no_retention": {
+   "allowance": 10.0,
+   "bank": 29653,
+   "cost_cpu_s": 3.4,
+   "cpu_s": 3.4,
+   "cpu_s_physical": 3.4,
+   "exact_on_final": false,
+   "expr": null,
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 0,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative"
+  }
+ },
+ "reuse_support": {
+  "of": 3,
+  "usable": 3
+ },
+ "selection": {
+  "admitted_among_fits": 0,
+  "correct_among_fits": 0,
+  "distinct_behaviours": 8,
+  "first_fit": {
+   "admitted": false,
+   "correct": false
+  },
+  "fits": [
+   {
+    "admitted": false,
+    "behaviour": "301fb9a58ec03ec5",
+    "correct": false,
+    "expr": "increment(centerofmass(patch))",
+    "reuse_exact_any": false,
+    "size": 3
+   },
+   {
+    "admitted": false,
+    "behaviour": "d7f304a28e964d6d",
+    "correct": false,
+    "expr": "add(UP_RIGHT, centerofmass(patch))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "6320f155e5ae07c8",
+    "correct": false,
+    "expr": "add(RIGHT, centerofmass(patch))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "b3d6f2d9f2d814ee",
+    "correct": false,
+    "expr": "argmax(inbox(patch), halve)",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "2acc33a7fb84d02c",
+    "correct": false,
+    "expr": "increment(centerofmass(hmirror(patch)))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "b79041c19f421630",
+    "correct": false,
+    "expr": "increment(centerofmass(corners(patch)))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "b12ac178c002cb7e",
+    "correct": false,
+    "expr": "urcorner(inbox(inbox(patch)))",
+    "reuse_exact_any": false,
+    "size": 4
+   },
+   {
+    "admitted": false,
+    "behaviour": "3252a0761d427856",
+    "correct": false,
+    "expr": "lrcorner(inbox(inbox(patch)))",
+    "reuse_exact_any": false,
+    "size": 4
+   }
+  ],
+  "n_fits": 8,
+  "random_seeds": [
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 4,
+    "seed": 0
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 7,
+    "seed": 1
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 7,
+    "seed": 2
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 6,
+    "seed": 3
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 5,
+    "seed": 4
+   }
+  ]
+ },
+ "setup_pooled_usability": {
+  "acq_and_reuse_draws": 311,
+  "acq_and_reuse_usable": 311,
+  "admission_draws": 249,
+  "admission_usable": 249
+ },
+ "status": "done",
+ "target": "center"
+}

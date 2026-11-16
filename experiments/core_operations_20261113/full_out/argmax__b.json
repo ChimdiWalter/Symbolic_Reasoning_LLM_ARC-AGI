@@ -1,0 +1,119 @@
+{
+ "arms": {
+  "1": {
+   "bank": 234,
+   "cpu_s": 0.001,
+   "equal_all_36": false,
+   "expr": "first(container)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 20,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 233,
+   "cpu_s": 0.002,
+   "equal_all_36": false,
+   "expr": "first(container)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 20,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 233,
+   "cpu_s": 0.003,
+   "equal_all_36": false,
+   "expr": "first(container)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 20,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 21788,
+   "cpu_s": 2.151,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 21660,
+   "cpu_s": 7.634,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 9.791,
+ "examples_sha": "a4dfbb539ee42331",
+ "expr": null,
+ "family": "largest and smallest of a container",
+ "family_size": 6,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "argmax",
+   "argmin",
+   "maximum",
+   "minimum",
+   "valmax",
+   "valmin"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "argmax",
+  "argmin",
+  "maximum",
+  "minimum",
+  "valmax",
+  "valmin"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "argmax",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

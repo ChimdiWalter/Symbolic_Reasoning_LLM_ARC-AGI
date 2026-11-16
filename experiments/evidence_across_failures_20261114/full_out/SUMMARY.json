@@ -1,0 +1,2825 @@
+{
+ "B": 10.0,
+ "block_development_roster_development_only": {
+  "PRIMARY_A3x3_against_A1x9": {
+   "all_four_conditions_hold": false,
+   "conditions": {
+    "1_fewer_wrong_in_A3x3": true,
+    "2_sign_test_below_0.05": false,
+    "3_right_in_A3x3_not_fewer_than_in_A1x9": true,
+    "4_at_least_one_right_in_A3x3": true
+   },
+   "done_targets_outside_the_committed_cohort": [],
+   "every_eligible_target_terminal": false,
+   "favourable_targets_second_wrong_first_not": [
+    "objects",
+    "righthalf"
+   ],
+   "first_arm": "A3x3",
+   "incomplete_targets": [],
+   "label": "development comparison on a known benchmark",
+   "missing_eligible_targets": null,
+   "n_favourable": 2,
+   "n_targets_terminal": 15,
+   "n_unfavourable": 0,
+   "note": "a reduction through wrong becoming none is reduced ambiguity, possibly by abstention; more right construction is claimed only if the number of right first fits itself rises",
+   "p_two_sided_sign_test": 0.5,
+   "paired_table_rows_first_arm_columns_second_arm": {
+    "none": {
+     "none": 11,
+     "right": 0,
+     "wrong": 2
+    },
+    "right": {
+     "none": 0,
+     "right": 1,
+     "wrong": 0
+    },
+    "wrong": {
+     "none": 0,
+     "right": 0,
+     "wrong": 1
+    }
+   },
+   "right_first_fits": {
+    "A1x9": 1,
+    "A3x3": 1
+   },
+   "second_arm": "A1x9",
+   "targets_whose_setup_differs_from_the_committed_record": [],
+   "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+   "unfavourable_targets_first_wrong_second_not": [],
+   "wrong_first_fits": {
+    "A1x9": 3,
+    "A3x3": 1
+   }
+  },
+  "admissions_by_arm": {
+   "by_arm": {
+    "A1x3": {
+     "admitted": 0,
+     "n_admission_cohort": 14,
+     "n_first_fits": 5,
+     "right_admissions": 0,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 0
+    },
+    "A1x6": {
+     "admitted": 1,
+     "n_admission_cohort": 14,
+     "n_first_fits": 4,
+     "right_admissions": 1,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 0
+    },
+    "A1x9": {
+     "admitted": 1,
+     "n_admission_cohort": 14,
+     "n_first_fits": 4,
+     "right_admissions": 1,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 0
+    },
+    "A2x3": {
+     "admitted": 1,
+     "n_admission_cohort": 14,
+     "n_first_fits": 2,
+     "right_admissions": 1,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 0
+    },
+    "A3x3": {
+     "admitted": 1,
+     "n_admission_cohort": 14,
+     "n_first_fits": 2,
+     "right_admissions": 1,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 0
+    }
+   },
+   "label": "development comparison on a known benchmark",
+   "rule": "stage A's rule unchanged: wrapper 4 exact on 6 generator and 6 pooled inputs, plus the preservation bank"
+  },
+  "cohort_sizes": {
+   "admission": 14,
+   "construction": 15,
+   "reuse": 14
+  },
+  "cohorts": {
+   "admission": [
+    "box",
+    "color",
+    "hmirror",
+    "lefthalf",
+    "mapply",
+    "mfilter",
+    "numcolors",
+    "objects",
+    "ofcolor",
+    "righthalf",
+    "rot180",
+    "switch",
+    "tophalf",
+    "width"
+   ],
+   "reuse": [
+    "box",
+    "color",
+    "hmirror",
+    "lefthalf",
+    "mapply",
+    "mfilter",
+    "numcolors",
+    "objects",
+    "ofcolor",
+    "righthalf",
+    "rot180",
+    "switch",
+    "tophalf",
+    "width"
+   ]
+  },
+  "costs": {
+   "arms": {
+    "A1x3": {
+     "bank_sum": 257505,
+     "candidates_tested_sum": 255688,
+     "cpu_s_max": 2.76,
+     "cpu_s_mean": 1.51,
+     "cpu_s_sum": 22.7,
+     "cpu_to_first_fit_sum": 0.41,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 1,
+      "2": 3,
+      "3": 1,
+      "4": 10
+     },
+     "n": 15,
+     "n_first_fits": 5,
+     "stop_classes": {
+      "complete_negative": 10,
+      "fit": 5
+     },
+     "stop_reasons": {
+      "found": 5,
+      "size_exhausted": 10
+     }
+    },
+    "A1x6": {
+     "bank_sum": 278022,
+     "candidates_tested_sum": 276205,
+     "cpu_s_max": 3.78,
+     "cpu_s_mean": 2.13,
+     "cpu_s_sum": 32.0,
+     "cpu_to_first_fit_sum": 0.11,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 1,
+      "2": 3,
+      "4": 11
+     },
+     "n": 15,
+     "n_first_fits": 4,
+     "stop_classes": {
+      "complete_negative": 11,
+      "fit": 4
+     },
+     "stop_reasons": {
+      "found": 4,
+      "size_exhausted": 11
+     }
+    },
+    "A1x9": {
+     "bank_sum": 276758,
+     "candidates_tested_sum": 274941,
+     "cpu_s_max": 5.0,
+     "cpu_s_mean": 2.53,
+     "cpu_s_sum": 37.9,
+     "cpu_to_first_fit_sum": 0.14,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 1,
+      "2": 3,
+      "4": 11
+     },
+     "n": 15,
+     "n_first_fits": 4,
+     "stop_classes": {
+      "complete_negative": 11,
+      "fit": 4
+     },
+     "stop_reasons": {
+      "found": 4,
+      "size_exhausted": 11
+     }
+    },
+    "A2x3": {
+     "bank_sum": 340705,
+     "candidates_tested_sum": 338888,
+     "cpu_s_max": 3.73,
+     "cpu_s_mean": 2.46,
+     "cpu_s_sum": 36.9,
+     "cpu_to_first_fit_sum": 0.14,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "2": 2,
+      "4": 13
+     },
+     "n": 15,
+     "n_first_fits": 2,
+     "stop_classes": {
+      "complete_negative": 13,
+      "fit": 2
+     },
+     "stop_reasons": {
+      "found": 2,
+      "size_exhausted": 13
+     }
+    },
+    "A3x3": {
+     "bank_sum": 363777,
+     "candidates_tested_sum": 361960,
+     "cpu_s_max": 4.9,
+     "cpu_s_mean": 3.27,
+     "cpu_s_sum": 49.1,
+     "cpu_to_first_fit_sum": 2.99,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "2": 1,
+      "3": 1,
+      "4": 13
+     },
+     "n": 15,
+     "n_first_fits": 2,
+     "stop_classes": {
+      "complete_negative": 13,
+      "fit": 2
+     },
+     "stop_reasons": {
+      "found": 2,
+      "size_exhausted": 13
+     }
+    }
+   },
+   "label": "development comparison on a known benchmark",
+   "note": "equal caps do not mean equal numbers of candidates tried; wrapper evaluation is inside each allowance",
+   "reuse_controls": {
+    "fresh_repair": {
+     "cpu_s_sum": 19.1,
+     "n": 14,
+     "stop_classes": {
+      "complete_negative": 8,
+      "fit": 6
+     }
+    },
+    "fresh_synthesis": {
+     "cpu_s_sum": 80.8,
+     "n": 14,
+     "stop_classes": {
+      "allowance_used_up": 8,
+      "fit": 6
+     }
+    }
+   },
+   "total_cpu_s_of_targets": 300.3
+  },
+  "exclusions": {
+   "by_kind": {
+    "acquisition_check": 2,
+    "too_few_usable_pooled_inputs": 3
+   },
+   "by_target": {
+    "backdrop": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 2: intact consumer did not run: StopIteration; a trivial repair passes: arg:patch"
+    },
+    "other": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 2: intact consumer did not run: TypeError"
+    },
+    "rapply": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 0 of 385 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "sign": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "vfrontier": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 22 of 22 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    }
+   },
+   "n": 5
+  },
+  "final_panels": {
+   "generator_median": 30,
+   "generator_min": 30,
+   "label": "development comparison on a known benchmark",
+   "n": 15,
+   "note": "a shortage is flagged and never used to exclude late",
+   "per_target": {
+    "add": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "box": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "color": {
+     "generator": 30,
+     "pooled": 52,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hmirror": {
+     "generator": 30,
+     "pooled": 71,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "lefthalf": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "mapply": {
+     "generator": 30,
+     "pooled": 192,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "mfilter": {
+     "generator": 30,
+     "pooled": 212,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "numcolors": {
+     "generator": 30,
+     "pooled": 35,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "objects": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "ofcolor": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "righthalf": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "rot180": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "switch": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "tophalf": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "width": {
+     "generator": 30,
+     "pooled": 71,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    }
+   },
+   "pooled_median": 323,
+   "pooled_min": 35,
+   "pooled_short": []
+  },
+  "five_arms_side_by_side": {
+   "A1x3": {
+    "incomplete": 0,
+    "n": 15,
+    "none": 10,
+    "right": 0,
+    "task_exact_wrapper_1_2_3": {
+     "1": 1,
+     "2": 0,
+     "3": 0
+    },
+    "wrong": 5,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A1x6": {
+    "incomplete": 0,
+    "n": 15,
+    "none": 11,
+    "right": 1,
+    "task_exact_wrapper_1_2_3": {
+     "1": 2,
+     "2": 1,
+     "3": 1
+    },
+    "wrong": 3,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A1x9": {
+    "incomplete": 0,
+    "n": 15,
+    "none": 11,
+    "right": 1,
+    "task_exact_wrapper_1_2_3": {
+     "1": 2,
+     "2": 1,
+     "3": 1
+    },
+    "wrong": 3,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A2x3": {
+    "incomplete": 0,
+    "n": 15,
+    "none": 13,
+    "right": 1,
+    "task_exact_wrapper_1_2_3": {
+     "1": 1,
+     "2": 1,
+     "3": 1
+    },
+    "wrong": 1,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A3x3": {
+    "incomplete": 0,
+    "n": 15,
+    "none": 13,
+    "right": 1,
+    "task_exact_wrapper_1_2_3": {
+     "1": 2,
+     "2": 1,
+     "3": 1
+    },
+    "wrong": 1,
+    "wrong_only_because_the_final_check_timed_out": []
+   }
+  },
+  "held_out_names_apart": {
+   "A3x3_against_A1x9": {
+    "all_four_conditions_hold": false,
+    "conditions": {
+     "1_fewer_wrong_in_A3x3": true,
+     "2_sign_test_below_0.05": false,
+     "3_right_in_A3x3_not_fewer_than_in_A1x9": true,
+     "4_at_least_one_right_in_A3x3": false
+    },
+    "done_targets_outside_the_committed_cohort": [],
+    "every_eligible_target_terminal": false,
+    "favourable_targets_second_wrong_first_not": [
+     "objects",
+     "righthalf"
+    ],
+    "first_arm": "A3x3",
+    "incomplete_targets": [],
+    "label": "development comparison on a known benchmark",
+    "missing_eligible_targets": null,
+    "n_favourable": 2,
+    "n_targets_terminal": 6,
+    "n_unfavourable": 0,
+    "note": "a reduction through wrong becoming none is reduced ambiguity, possibly by abstention; more right construction is claimed only if the number of right first fits itself rises",
+    "p_two_sided_sign_test": 0.5,
+    "paired_table_rows_first_arm_columns_second_arm": {
+     "none": {
+      "none": 4,
+      "right": 0,
+      "wrong": 2
+     },
+     "right": {
+      "none": 0,
+      "right": 0,
+      "wrong": 0
+     },
+     "wrong": {
+      "none": 0,
+      "right": 0,
+      "wrong": 0
+     }
+    },
+    "right_first_fits": {
+     "A1x9": 0,
+     "A3x3": 0
+    },
+    "second_arm": "A1x9",
+    "targets_whose_setup_differs_from_the_committed_record": [],
+    "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+    "unfavourable_targets_first_wrong_second_not": [],
+    "wrong_first_fits": {
+     "A1x9": 2,
+     "A3x3": 0
+    }
+   },
+   "five_arms_side_by_side": {
+    "A1x3": {
+     "incomplete": 0,
+     "n": 6,
+     "none": 4,
+     "right": 0,
+     "task_exact_wrapper_1_2_3": {
+      "1": 1,
+      "2": 0,
+      "3": 0
+     },
+     "wrong": 2,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A1x6": {
+     "incomplete": 0,
+     "n": 6,
+     "none": 4,
+     "right": 0,
+     "task_exact_wrapper_1_2_3": {
+      "1": 1,
+      "2": 0,
+      "3": 0
+     },
+     "wrong": 2,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A1x9": {
+     "incomplete": 0,
+     "n": 6,
+     "none": 4,
+     "right": 0,
+     "task_exact_wrapper_1_2_3": {
+      "1": 1,
+      "2": 0,
+      "3": 0
+     },
+     "wrong": 2,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A2x3": {
+     "incomplete": 0,
+     "n": 6,
+     "none": 6,
+     "right": 0,
+     "task_exact_wrapper_1_2_3": {
+      "1": 0,
+      "2": 0,
+      "3": 0
+     },
+     "wrong": 0,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A3x3": {
+     "incomplete": 0,
+     "n": 6,
+     "none": 6,
+     "right": 0,
+     "task_exact_wrapper_1_2_3": {
+      "1": 0,
+      "2": 0,
+      "3": 0
+     },
+     "wrong": 0,
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "label": "development comparison on a known benchmark",
+   "names": [
+    "lefthalf",
+    "objects",
+    "righthalf",
+    "switch",
+    "tophalf",
+    "width"
+   ]
+  },
+  "incomplete_infrastructure": {
+   "by_target": {},
+   "n": 0
+  },
+  "label": "development comparison on a known benchmark",
+  "n_targets_run": 20,
+  "reuse": {
+   "fresh_repair": {
+    "fits": 6,
+    "reuse_task_exact": 0,
+    "stop_classes": {
+     "complete_negative": 8,
+     "fit": 6
+    },
+    "unavailable": 0
+   },
+   "fresh_synthesis": {
+    "fits": 6,
+    "reuse_task_exact": 1,
+    "stop_classes": {
+     "allowance_used_up": 8,
+     "fit": 6
+    },
+    "unavailable": 0
+   },
+   "label": "development comparison on a known benchmark",
+   "library_A1x3": {
+    "n_with_library": 0,
+    "reuse_task_exact": 0
+   },
+   "library_A1x6": {
+    "n_with_library": 1,
+    "reuse_task_exact": 1
+   },
+   "library_A1x9": {
+    "n_with_library": 1,
+    "reuse_task_exact": 1
+   },
+   "library_A2x3": {
+    "n_with_library": 1,
+    "reuse_task_exact": 1
+   },
+   "library_A3x3": {
+    "n_with_library": 1,
+    "reuse_task_exact": 1
+   },
+   "n_reuse_cohort": 14,
+   "note": "the final panel is common to every arm and control of a target; an arm without an admitted library counts as not exact",
+   "support_unavailable_targets": []
+  },
+  "secondary_A2x3_against_A1x6": {
+   "all_four_conditions_hold": false,
+   "conditions": {
+    "1_fewer_wrong_in_A2x3": true,
+    "2_sign_test_below_0.05": false,
+    "3_right_in_A2x3_not_fewer_than_in_A1x6": true,
+    "4_at_least_one_right_in_A2x3": true
+   },
+   "done_targets_outside_the_committed_cohort": [],
+   "every_eligible_target_terminal": false,
+   "favourable_targets_second_wrong_first_not": [
+    "objects",
+    "righthalf"
+   ],
+   "first_arm": "A2x3",
+   "incomplete_targets": [],
+   "label": "development comparison on a known benchmark",
+   "missing_eligible_targets": null,
+   "n_favourable": 2,
+   "n_targets_terminal": 15,
+   "n_unfavourable": 0,
+   "note": "a reduction through wrong becoming none is reduced ambiguity, possibly by abstention; more right construction is claimed only if the number of right first fits itself rises",
+   "p_two_sided_sign_test": 0.5,
+   "paired_table_rows_first_arm_columns_second_arm": {
+    "none": {
+     "none": 11,
+     "right": 0,
+     "wrong": 2
+    },
+    "right": {
+     "none": 0,
+     "right": 1,
+     "wrong": 0
+    },
+    "wrong": {
+     "none": 0,
+     "right": 0,
+     "wrong": 1
+    }
+   },
+   "right_first_fits": {
+    "A1x6": 1,
+    "A2x3": 1
+   },
+   "second_arm": "A1x6",
+   "targets_whose_setup_differs_from_the_committed_record": [],
+   "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+   "unfavourable_targets_first_wrong_second_not": [],
+   "wrong_first_fits": {
+    "A1x6": 3,
+    "A2x3": 1
+   }
+  },
+  "unavailable_roles": {
+   "add": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   }
+  }
+ },
+ "block_outside_development_roster": {
+  "PRIMARY_A3x3_against_A1x9": {
+   "all_four_conditions_hold": false,
+   "conditions": {
+    "1_fewer_wrong_in_A3x3": true,
+    "2_sign_test_below_0.05": false,
+    "3_right_in_A3x3_not_fewer_than_in_A1x9": true,
+    "4_at_least_one_right_in_A3x3": true
+   },
+   "criterion_met": false,
+   "done_targets_outside_the_committed_cohort": [],
+   "every_eligible_target_terminal": true,
+   "favourable_targets_second_wrong_first_not": [
+    "asobject",
+    "astuple",
+    "canvas",
+    "initset",
+    "order",
+    "outbox",
+    "rot270"
+   ],
+   "first_arm": "A3x3",
+   "incomplete_targets": [],
+   "label": "development comparison on a known benchmark",
+   "missing_eligible_targets": [],
+   "n_favourable": 7,
+   "n_targets_terminal": 95,
+   "n_unfavourable": 2,
+   "note": "a reduction through wrong becoming none is reduced ambiguity, possibly by abstention; more right construction is claimed only if the number of right first fits itself rises",
+   "p_two_sided_sign_test": 0.1796875,
+   "paired_table_rows_first_arm_columns_second_arm": {
+    "none": {
+     "none": 64,
+     "right": 0,
+     "wrong": 6
+    },
+    "right": {
+     "none": 0,
+     "right": 10,
+     "wrong": 1
+    },
+    "wrong": {
+     "none": 2,
+     "right": 0,
+     "wrong": 12
+    }
+   },
+   "right_first_fits": {
+    "A1x9": 10,
+    "A3x3": 11
+   },
+   "second_arm": "A1x9",
+   "status": "not_met",
+   "targets_whose_setup_differs_from_the_committed_record": [],
+   "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+   "unfavourable_targets_first_wrong_second_not": [
+    "difference",
+    "height"
+   ],
+   "wrong_first_fits": {
+    "A1x9": 19,
+    "A3x3": 14
+   }
+  },
+  "admissions_by_arm": {
+   "by_arm": {
+    "A1x3": {
+     "admitted": 9,
+     "n_admission_cohort": 87,
+     "n_first_fits": 47,
+     "right_admissions": 5,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 4
+    },
+    "A1x6": {
+     "admitted": 12,
+     "n_admission_cohort": 87,
+     "n_first_fits": 31,
+     "right_admissions": 9,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 3
+    },
+    "A1x9": {
+     "admitted": 13,
+     "n_admission_cohort": 87,
+     "n_first_fits": 28,
+     "right_admissions": 10,
+     "right_first_fits_not_admitted": 0,
+     "wrong_admissions": 3
+    },
+    "A2x3": {
+     "admitted": 13,
+     "n_admission_cohort": 87,
+     "n_first_fits": 31,
+     "right_admissions": 10,
+     "right_first_fits_not_admitted": 1,
+     "wrong_admissions": 3
+    },
+    "A3x3": {
+     "admitted": 12,
+     "n_admission_cohort": 87,
+     "n_first_fits": 24,
+     "right_admissions": 10,
+     "right_first_fits_not_admitted": 1,
+     "wrong_admissions": 2
+    }
+   },
+   "label": "development comparison on a known benchmark",
+   "rule": "stage A's rule unchanged: wrapper 4 exact on 6 generator and 6 pooled inputs, plus the preservation bank"
+  },
+  "cohort_sizes": {
+   "admission": 87,
+   "construction": 95,
+   "reuse": 83
+  },
+  "cohorts": {
+   "admission": [
+    "adjacent",
+    "apply",
+    "argmin",
+    "asindices",
+    "asobject",
+    "astuple",
+    "bordering",
+    "bottomhalf",
+    "canvas",
+    "cellwise",
+    "center",
+    "centerofmass",
+    "cmirror",
+    "colorcount",
+    "colorfilter",
+    "combine",
+    "connect",
+    "contained",
+    "cover",
+    "crop",
+    "delta",
+    "difference",
+    "dmirror",
+    "equality",
+    "fgpartition",
+    "fill",
+    "first",
+    "frontiers",
+    "gravitate",
+    "greater",
+    "hconcat",
+    "height",
+    "hline",
+    "hmatching",
+    "hperiod",
+    "hsplit",
+    "hupscale",
+    "inbox",
+    "initset",
+    "insert",
+    "interval",
+    "leastcommon",
+    "leftmost",
+    "lowermost",
+    "lrcorner",
+    "manhattan",
+    "mostcolor",
+    "move",
+    "mpapply",
+    "normalize",
+    "occurrences",
+    "order",
+    "outbox",
+    "pair",
+    "palette",
+    "papply",
+    "partition",
+    "portrait",
+    "position",
+    "product",
+    "recolor",
+    "remove",
+    "repeat",
+    "replace",
+    "rightmost",
+    "rot270",
+    "rot90",
+    "sfilter",
+    "shape",
+    "shift",
+    "shoot",
+    "size",
+    "square",
+    "subgrid",
+    "toindices",
+    "toobject",
+    "ulcorner",
+    "underfill",
+    "uppermost",
+    "valmin",
+    "vconcat",
+    "vline",
+    "vmatching",
+    "vmirror",
+    "vperiod",
+    "vsplit",
+    "vupscale"
+   ],
+   "reuse": [
+    "adjacent",
+    "apply",
+    "asindices",
+    "asobject",
+    "astuple",
+    "bordering",
+    "bottomhalf",
+    "canvas",
+    "cellwise",
+    "center",
+    "centerofmass",
+    "cmirror",
+    "colorcount",
+    "colorfilter",
+    "combine",
+    "connect",
+    "contained",
+    "cover",
+    "crop",
+    "delta",
+    "difference",
+    "dmirror",
+    "equality",
+    "fgpartition",
+    "fill",
+    "frontiers",
+    "gravitate",
+    "greater",
+    "hconcat",
+    "height",
+    "hline",
+    "hmatching",
+    "hperiod",
+    "hsplit",
+    "hupscale",
+    "inbox",
+    "insert",
+    "interval",
+    "leastcommon",
+    "leftmost",
+    "lowermost",
+    "lrcorner",
+    "manhattan",
+    "mostcolor",
+    "move",
+    "mpapply",
+    "normalize",
+    "occurrences",
+    "order",
+    "outbox",
+    "pair",
+    "palette",
+    "papply",
+    "partition",
+    "portrait",
+    "position",
+    "product",
+    "recolor",
+    "remove",
+    "repeat",
+    "replace",
+    "rightmost",
+    "rot270",
+    "rot90",
+    "sfilter",
+    "shape",
+    "shift",
+    "shoot",
+    "size",
+    "square",
+    "subgrid",
+    "toindices",
+    "toobject",
+    "ulcorner",
+    "underfill",
+    "uppermost",
+    "vconcat",
+    "vline",
+    "vmatching",
+    "vmirror",
+    "vperiod",
+    "vsplit",
+    "vupscale"
+   ]
+  },
+  "costs": {
+   "arms": {
+    "A1x3": {
+     "bank_sum": 1533726,
+     "candidates_tested_sum": 1522183,
+     "cpu_s_max": 9.55,
+     "cpu_s_mean": 1.5,
+     "cpu_s_sum": 142.5,
+     "cpu_to_first_fit_sum": 17.52,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 6,
+      "2": 18,
+      "3": 25,
+      "4": 46
+     },
+     "n": 95,
+     "n_first_fits": 49,
+     "stop_classes": {
+      "complete_negative": 46,
+      "fit": 49
+     },
+     "stop_reasons": {
+      "found": 49,
+      "size_exhausted": 46
+     }
+    },
+    "A1x6": {
+     "bank_sum": 1926810,
+     "candidates_tested_sum": 1915267,
+     "cpu_s_max": 8.8,
+     "cpu_s_mean": 2.37,
+     "cpu_s_sum": 224.8,
+     "cpu_to_first_fit_sum": 11.3,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 2,
+      "2": 10,
+      "3": 20,
+      "4": 63
+     },
+     "n": 95,
+     "n_first_fits": 32,
+     "stop_classes": {
+      "complete_negative": 63,
+      "fit": 32
+     },
+     "stop_reasons": {
+      "found": 32,
+      "size_exhausted": 63
+     }
+    },
+    "A1x9": {
+     "bank_sum": 2074934,
+     "candidates_tested_sum": 2063391,
+     "cpu_s_max": 10.04,
+     "cpu_s_mean": 3.05,
+     "cpu_s_sum": 289.9,
+     "cpu_to_first_fit_sum": 20.23,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 2,
+      "2": 8,
+      "3": 20,
+      "4": 65
+     },
+     "n": 95,
+     "n_first_fits": 29,
+     "stop_classes": {
+      "allowance_used_up": 1,
+      "complete_negative": 65,
+      "fit": 29
+     },
+     "stop_reasons": {
+      "budget_cpu": 1,
+      "found": 29,
+      "size_exhausted": 65
+     }
+    },
+    "A2x3": {
+     "bank_sum": 1982457,
+     "candidates_tested_sum": 1970914,
+     "cpu_s_max": 8.88,
+     "cpu_s_mean": 2.37,
+     "cpu_s_sum": 225.1,
+     "cpu_to_first_fit_sum": 18.34,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 1,
+      "2": 8,
+      "3": 23,
+      "4": 63
+     },
+     "n": 95,
+     "n_first_fits": 32,
+     "stop_classes": {
+      "complete_negative": 63,
+      "fit": 32
+     },
+     "stop_reasons": {
+      "found": 32,
+      "size_exhausted": 63
+     }
+    },
+    "A3x3": {
+     "bank_sum": 2158567,
+     "candidates_tested_sum": 2147024,
+     "cpu_s_max": 10.02,
+     "cpu_s_mean": 3.13,
+     "cpu_s_sum": 297.0,
+     "cpu_to_first_fit_sum": 19.46,
+     "function_cap_reached": 0,
+     "level_completed_counts": {
+      "0": 1,
+      "2": 6,
+      "3": 19,
+      "4": 69
+     },
+     "n": 95,
+     "n_first_fits": 25,
+     "stop_classes": {
+      "allowance_used_up": 1,
+      "complete_negative": 69,
+      "fit": 25
+     },
+     "stop_reasons": {
+      "budget_cpu": 1,
+      "found": 25,
+      "size_exhausted": 69
+     }
+    }
+   },
+   "label": "development comparison on a known benchmark",
+   "note": "equal caps do not mean equal numbers of candidates tried; wrapper evaluation is inside each allowance",
+   "reuse_controls": {
+    "fresh_repair": {
+     "cpu_s_sum": 121.1,
+     "n": 83,
+     "stop_classes": {
+      "allowance_used_up": 1,
+      "complete_negative": 36,
+      "fit": 45,
+      "unavailable": 1
+     }
+    },
+    "fresh_synthesis": {
+     "cpu_s_sum": 470.0,
+     "n": 83,
+     "stop_classes": {
+      "allowance_used_up": 44,
+      "fit": 38,
+      "unavailable": 1
+     }
+    }
+   },
+   "total_cpu_s_of_targets": 1882.9
+  },
+  "exclusions": {
+   "by_kind": {
+    "acquisition_check": 10,
+    "fewer_than_three_wrappers": 3,
+    "generator": 4,
+    "too_few_usable_pooled_inputs": 13
+   },
+   "by_target": {
+    "corners": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError"
+    },
+    "crement": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "decrement": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "dedupe": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: a trivial repair passes: arg:tup"
+    },
+    "dneighbors": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 22 of 22 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "double": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "even": {
+     "kind": "generator",
+     "reason": "generator: only 51 of 66 valid examples in 4000 draws"
+    },
+    "halve": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "hfrontier": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 22 of 22 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "identity": {
+     "kind": "fewer_than_three_wrappers",
+     "reason": "fewer than three eligible wrappers (0 of 3 candidates)"
+    },
+    "increment": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "index": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: a trivial repair passes: const:final:1, const:xout:2, const:xout:3"
+    },
+    "ineighbors": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 23 of 23 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "intersection": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: a trivial repair passes: const:final:1"
+    },
+    "invert": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 15 of 15 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "leastcolor": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: a trivial repair passes: const:final:1, const:xout:2, const:xout:3, const:xout:4"
+    },
+    "llcorner": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError; wrapper 2: intact consumer did not run: IndexError"
+    },
+    "maximum": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 7 of 7 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "merge": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 9 of 9 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "minimum": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 7 of 7 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "neighbors": {
+     "kind": "too_few_usable_pooled_inputs",
+     "reason": "too few usable pooled inputs (slice UB: 22 of 22 draws usable for the missing operation and wrappers 1 to 3, need 30)"
+    },
+    "paint": {
+     "kind": "fewer_than_three_wrappers",
+     "reason": "fewer than three eligible wrappers (0 of 41 candidates)"
+    },
+    "positive": {
+     "kind": "generator",
+     "reason": "generator: only 51 of 66 valid examples in 4000 draws"
+    },
+    "prapply": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 1: intact consumer did not run: StopIteration"
+    },
+    "sizefilter": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: a trivial repair passes: const:final:1"
+    },
+    "toivec": {
+     "kind": "generator",
+     "reason": "generator: only 41 of 66 valid examples in 4000 draws"
+    },
+    "tojvec": {
+     "kind": "generator",
+     "reason": "generator: only 41 of 66 valid examples in 4000 draws"
+    },
+    "totuple": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError; wrapper 3: intact consumer did not run: ValueError"
+    },
+    "underpaint": {
+     "kind": "fewer_than_three_wrappers",
+     "reason": "fewer than three eligible wrappers (0 of 41 candidates)"
+    },
+    "urcorner": {
+     "kind": "acquisition_check",
+     "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError; wrapper 3: intact consumer did not run: ValueError"
+    }
+   },
+   "n": 30
+  },
+  "final_panels": {
+   "generator_median": 30,
+   "generator_min": 25,
+   "label": "development comparison on a known benchmark",
+   "n": 95,
+   "note": "a shortage is flagged and never used to exclude late",
+   "per_target": {
+    "adjacent": {
+     "generator": 30,
+     "pooled": 399,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "apply": {
+     "generator": 28,
+     "pooled": 280,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "argmax": {
+     "generator": 30,
+     "pooled": 274,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "argmin": {
+     "generator": 25,
+     "pooled": 281,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "asindices": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "asobject": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "astuple": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "bordering": {
+     "generator": 30,
+     "pooled": 399,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "bottomhalf": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "branch": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "canvas": {
+     "generator": 30,
+     "pooled": 265,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "cellwise": {
+     "generator": 30,
+     "pooled": 119,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "center": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "centerofmass": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "cmirror": {
+     "generator": 30,
+     "pooled": 70,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "colorcount": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "colorfilter": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "combine": {
+     "generator": 30,
+     "pooled": 364,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "connect": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "contained": {
+     "generator": 30,
+     "pooled": 382,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "cover": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "crop": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "delta": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "difference": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "divide": {
+     "generator": 30,
+     "pooled": 353,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "dmirror": {
+     "generator": 30,
+     "pooled": 70,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "equality": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "extract": {
+     "generator": 30,
+     "pooled": 263,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "fgpartition": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "fill": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "first": {
+     "generator": 30,
+     "pooled": 184,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "frontiers": {
+     "generator": 30,
+     "pooled": 319,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "gravitate": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "greater": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hconcat": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "height": {
+     "generator": 30,
+     "pooled": 71,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hline": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hmatching": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hperiod": {
+     "generator": 30,
+     "pooled": 52,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hsplit": {
+     "generator": 30,
+     "pooled": 233,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "hupscale": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "inbox": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "initset": {
+     "generator": 30,
+     "pooled": 68,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "insert": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "interval": {
+     "generator": 30,
+     "pooled": 398,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "last": {
+     "generator": 30,
+     "pooled": 184,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "leastcommon": {
+     "generator": 30,
+     "pooled": 82,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "leftmost": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "lowermost": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "lrcorner": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "manhattan": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "mostcolor": {
+     "generator": 30,
+     "pooled": 35,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "move": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "mpapply": {
+     "generator": 29,
+     "pooled": 275,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "multiply": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "normalize": {
+     "generator": 29,
+     "pooled": 310,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "occurrences": {
+     "generator": 30,
+     "pooled": 45,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "order": {
+     "generator": 29,
+     "pooled": 219,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "outbox": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "pair": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "palette": {
+     "generator": 30,
+     "pooled": 35,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "papply": {
+     "generator": 30,
+     "pooled": 328,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "partition": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "portrait": {
+     "generator": 30,
+     "pooled": 71,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "position": {
+     "generator": 30,
+     "pooled": 399,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "product": {
+     "generator": 25,
+     "pooled": 309,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "recolor": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "remove": {
+     "generator": 30,
+     "pooled": 380,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "repeat": {
+     "generator": 30,
+     "pooled": 227,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "replace": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "rightmost": {
+     "generator": 30,
+     "pooled": 312,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "rot270": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "rot90": {
+     "generator": 30,
+     "pooled": 323,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "sfilter": {
+     "generator": 29,
+     "pooled": 270,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "shape": {
+     "generator": 30,
+     "pooled": 71,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "shift": {
+     "generator": 29,
+     "pooled": 399,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "shoot": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "size": {
+     "generator": 30,
+     "pooled": 184,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "square": {
+     "generator": 30,
+     "pooled": 71,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "subgrid": {
+     "generator": 30,
+     "pooled": 399,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "subtract": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "toindices": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "toobject": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "ulcorner": {
+     "generator": 30,
+     "pooled": 312,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "underfill": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "uppermost": {
+     "generator": 30,
+     "pooled": 312,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "valmax": {
+     "generator": 30,
+     "pooled": 284,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "valmin": {
+     "generator": 30,
+     "pooled": 198,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3
+     ]
+    },
+    "vconcat": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "vline": {
+     "generator": 30,
+     "pooled": 311,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "vmatching": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "vmirror": {
+     "generator": 30,
+     "pooled": 70,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "vperiod": {
+     "generator": 30,
+     "pooled": 53,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "vsplit": {
+     "generator": 30,
+     "pooled": 391,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    },
+    "vupscale": {
+     "generator": 30,
+     "pooled": 400,
+     "pooled_short": false,
+     "wrappers_usable_for": [
+      1,
+      2,
+      3,
+      5
+     ]
+    }
+   },
+   "pooled_median": 323,
+   "pooled_min": 35,
+   "pooled_short": []
+  },
+  "five_arms_side_by_side": {
+   "A1x3": {
+    "incomplete": 0,
+    "n": 95,
+    "none": 46,
+    "right": 5,
+    "task_exact_wrapper_1_2_3": {
+     "1": 12,
+     "2": 8,
+     "3": 6
+    },
+    "wrong": 44,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A1x6": {
+    "incomplete": 0,
+    "n": 95,
+    "none": 63,
+    "right": 9,
+    "task_exact_wrapper_1_2_3": {
+     "1": 17,
+     "2": 11,
+     "3": 10
+    },
+    "wrong": 23,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A1x9": {
+    "incomplete": 0,
+    "n": 95,
+    "none": 66,
+    "right": 10,
+    "task_exact_wrapper_1_2_3": {
+     "1": 18,
+     "2": 12,
+     "3": 11
+    },
+    "wrong": 19,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A2x3": {
+    "incomplete": 0,
+    "n": 95,
+    "none": 63,
+    "right": 11,
+    "task_exact_wrapper_1_2_3": {
+     "1": 14,
+     "2": 14,
+     "3": 10
+    },
+    "wrong": 21,
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "A3x3": {
+    "incomplete": 0,
+    "n": 95,
+    "none": 70,
+    "right": 11,
+    "task_exact_wrapper_1_2_3": {
+     "1": 12,
+     "2": 11,
+     "3": 10
+    },
+    "wrong": 14,
+    "wrong_only_because_the_final_check_timed_out": []
+   }
+  },
+  "held_out_names_apart": {
+   "A3x3_against_A1x9": {
+    "all_four_conditions_hold": false,
+    "conditions": {
+     "1_fewer_wrong_in_A3x3": false,
+     "2_sign_test_below_0.05": false,
+     "3_right_in_A3x3_not_fewer_than_in_A1x9": true,
+     "4_at_least_one_right_in_A3x3": true
+    },
+    "done_targets_outside_the_committed_cohort": [],
+    "every_eligible_target_terminal": false,
+    "favourable_targets_second_wrong_first_not": [],
+    "first_arm": "A3x3",
+    "incomplete_targets": [],
+    "label": "development comparison on a known benchmark",
+    "missing_eligible_targets": null,
+    "n_favourable": 0,
+    "n_targets_terminal": 26,
+    "n_unfavourable": 1,
+    "note": "a reduction through wrong becoming none is reduced ambiguity, possibly by abstention; more right construction is claimed only if the number of right first fits itself rises",
+    "p_two_sided_sign_test": 1.0,
+    "paired_table_rows_first_arm_columns_second_arm": {
+     "none": {
+      "none": 14,
+      "right": 0,
+      "wrong": 0
+     },
+     "right": {
+      "none": 0,
+      "right": 5,
+      "wrong": 0
+     },
+     "wrong": {
+      "none": 1,
+      "right": 0,
+      "wrong": 6
+     }
+    },
+    "right_first_fits": {
+     "A1x9": 5,
+     "A3x3": 5
+    },
+    "second_arm": "A1x9",
+    "targets_whose_setup_differs_from_the_committed_record": [],
+    "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+    "unfavourable_targets_first_wrong_second_not": [
+     "height"
+    ],
+    "wrong_first_fits": {
+     "A1x9": 6,
+     "A3x3": 7
+    }
+   },
+   "five_arms_side_by_side": {
+    "A1x3": {
+     "incomplete": 0,
+     "n": 26,
+     "none": 7,
+     "right": 1,
+     "task_exact_wrapper_1_2_3": {
+      "1": 2,
+      "2": 1,
+      "3": 1
+     },
+     "wrong": 18,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A1x6": {
+     "incomplete": 0,
+     "n": 26,
+     "none": 13,
+     "right": 5,
+     "task_exact_wrapper_1_2_3": {
+      "1": 6,
+      "2": 5,
+      "3": 5
+     },
+     "wrong": 8,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A1x9": {
+     "incomplete": 0,
+     "n": 26,
+     "none": 15,
+     "right": 5,
+     "task_exact_wrapper_1_2_3": {
+      "1": 6,
+      "2": 5,
+      "3": 5
+     },
+     "wrong": 6,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A2x3": {
+     "incomplete": 0,
+     "n": 26,
+     "none": 12,
+     "right": 5,
+     "task_exact_wrapper_1_2_3": {
+      "1": 6,
+      "2": 5,
+      "3": 5
+     },
+     "wrong": 9,
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "A3x3": {
+     "incomplete": 0,
+     "n": 26,
+     "none": 14,
+     "right": 5,
+     "task_exact_wrapper_1_2_3": {
+      "1": 6,
+      "2": 5,
+      "3": 5
+     },
+     "wrong": 7,
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "label": "development comparison on a known benchmark",
+   "names": [
+    "argmax",
+    "argmin",
+    "bottomhalf",
+    "center",
+    "crop",
+    "height",
+    "hline",
+    "hmatching",
+    "hsplit",
+    "leftmost",
+    "lowermost",
+    "lrcorner",
+    "move",
+    "portrait",
+    "replace",
+    "rightmost",
+    "shape",
+    "square",
+    "subgrid",
+    "ulcorner",
+    "uppermost",
+    "valmax",
+    "valmin",
+    "vline",
+    "vmatching",
+    "vsplit"
+   ]
+  },
+  "incomplete_infrastructure": {
+   "by_target": {},
+   "n": 0
+  },
+  "label": "development comparison on a known benchmark",
+  "n_targets_run": 125,
+  "reuse": {
+   "fresh_repair": {
+    "fits": 45,
+    "reuse_task_exact": 11,
+    "stop_classes": {
+     "allowance_used_up": 1,
+     "complete_negative": 36,
+     "fit": 45,
+     "unavailable": 1
+    },
+    "unavailable": 1
+   },
+   "fresh_synthesis": {
+    "fits": 38,
+    "reuse_task_exact": 7,
+    "stop_classes": {
+     "allowance_used_up": 44,
+     "fit": 38,
+     "unavailable": 1
+    },
+    "unavailable": 1
+   },
+   "label": "development comparison on a known benchmark",
+   "library_A1x3": {
+    "n_with_library": 7,
+    "reuse_task_exact": 4
+   },
+   "library_A1x6": {
+    "n_with_library": 10,
+    "reuse_task_exact": 8
+   },
+   "library_A1x9": {
+    "n_with_library": 11,
+    "reuse_task_exact": 9
+   },
+   "library_A2x3": {
+    "n_with_library": 11,
+    "reuse_task_exact": 9
+   },
+   "library_A3x3": {
+    "n_with_library": 10,
+    "reuse_task_exact": 9
+   },
+   "n_reuse_cohort": 83,
+   "note": "the final panel is common to every arm and control of a target; an arm without an admitted library counts as not exact",
+   "support_unavailable_targets": [
+    "centerofmass"
+   ]
+  },
+  "secondary_A2x3_against_A1x6": {
+   "all_four_conditions_hold": false,
+   "conditions": {
+    "1_fewer_wrong_in_A2x3": true,
+    "2_sign_test_below_0.05": false,
+    "3_right_in_A2x3_not_fewer_than_in_A1x6": true,
+    "4_at_least_one_right_in_A2x3": true
+   },
+   "done_targets_outside_the_committed_cohort": [],
+   "every_eligible_target_terminal": false,
+   "favourable_targets_second_wrong_first_not": [
+    "asobject",
+    "astuple",
+    "canvas",
+    "hconcat",
+    "order",
+    "rot270",
+    "sfilter"
+   ],
+   "first_arm": "A2x3",
+   "incomplete_targets": [],
+   "label": "development comparison on a known benchmark",
+   "missing_eligible_targets": null,
+   "n_favourable": 7,
+   "n_targets_terminal": 95,
+   "n_unfavourable": 5,
+   "note": "a reduction through wrong becoming none is reduced ambiguity, possibly by abstention; more right construction is claimed only if the number of right first fits itself rises",
+   "p_two_sided_sign_test": 0.7744140625,
+   "paired_table_rows_first_arm_columns_second_arm": {
+    "none": {
+     "none": 58,
+     "right": 0,
+     "wrong": 5
+    },
+    "right": {
+     "none": 0,
+     "right": 9,
+     "wrong": 2
+    },
+    "wrong": {
+     "none": 5,
+     "right": 0,
+     "wrong": 16
+    }
+   },
+   "right_first_fits": {
+    "A1x6": 9,
+    "A2x3": 11
+   },
+   "second_arm": "A1x6",
+   "targets_whose_setup_differs_from_the_committed_record": [],
+   "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+   "unfavourable_targets_first_wrong_second_not": [
+    "centerofmass",
+    "difference",
+    "height",
+    "manhattan",
+    "vperiod"
+   ],
+   "wrong_first_fits": {
+    "A1x6": 23,
+    "A2x3": 21
+   }
+  },
+  "unavailable_roles": {
+   "argmax": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "argmin": {
+    "reuse": "no fifth eligible wrapper"
+   },
+   "branch": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "divide": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "extract": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "first": {
+    "reuse": "no fifth eligible wrapper"
+   },
+   "initset": {
+    "reuse": "no fifth eligible wrapper"
+   },
+   "last": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "multiply": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "subtract": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "valmax": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "valmin": {
+    "reuse": "no fifth eligible wrapper"
+   }
+  }
+ },
+ "label": "development comparison on a known benchmark",
+ "n_listed": 145,
+ "n_not_yet_run": 0,
+ "n_run": 145,
+ "primary_comparison_note": "the primary reading is PRIMARY_A3x3_against_A1x9 in the block outside the development roster; the development block is labelled development only and is never part of it",
+ "reconciliation_with_committed_setup_record": {
+  "available": true,
+  "decisions_differ": [],
+  "label": "development comparison on a known benchmark",
+  "n_compared": 145,
+  "n_counts_differ": 0,
+  "n_decisions_differ": 0,
+  "note": "decisions: status, wrappers, cohorts, exclusion kind, acquisition source; counts: pooled sizes, usability, bank, reason text",
+  "targets_not_in_the_record": [],
+  "targets_whose_counts_differ": []
+ },
+ "roster": "all",
+ "what": "EAF1 summary (CPU only, invented inputs, no model); counts are on this run's targets only"
+}

@@ -1,0 +1,170 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "set building",
+ "family_size": 7,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: a trivial repair passes: const:final:1",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_1",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_2",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_3",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_4",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_5",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 320,
+   "B": 400,
+   "R": 160,
+   "UA": 320,
+   "UB": 400,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1600
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 320,
+   "UA_usable_wrapper_4": 320,
+   "UB_draws": 400,
+   "UB_usable_wrappers_1_to_3": 380,
+   "UB_usable_wrappers_1_to_3_and_5": 380
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "asobject",
+    "2": "llcorner",
+    "3": "backdrop",
+    "4": "tojvec",
+    "5": "square"
+   },
+   "chosen": [
+    "asobject",
+    "llcorner",
+    "backdrop",
+    "tojvec",
+    "square"
+   ],
+   "n_candidates": 26,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1600
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: a trivial repair passes: const:final:1",
+   "usability": {
+    "UA_draws": 320,
+    "UA_usable_wrapper_4": 320,
+    "UB_draws": 400,
+    "UB_usable_wrappers_1_to_3": 380,
+    "UB_usable_wrappers_1_to_3_and_5": 380
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "asobject",
+    "llcorner",
+    "backdrop",
+    "tojvec",
+    "square"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "intersection"
+}

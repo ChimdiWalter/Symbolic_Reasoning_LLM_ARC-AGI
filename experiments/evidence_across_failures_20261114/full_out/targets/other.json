@@ -1,0 +1,112 @@
+{
+ "B": 10.0,
+ "dev": true,
+ "development_only": true,
+ "family": "set building",
+ "family_size": 7,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: wrapper 2: intact consumer did not run: TypeError",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "wrapper 2: intact consumer did not run: TypeError"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": false,
+   "construction": true,
+   "reuse": false,
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   }
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 308,
+   "B": 385,
+   "R": 154,
+   "UA": 308,
+   "UB": 385,
+   "dropped_holding_functions": 59,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1541
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UB_draws": 385,
+   "UB_usable_wrappers_1_to_3": 327
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "toivec",
+    "2": "double",
+    "3": "tojvec"
+   },
+   "chosen": [
+    "toivec",
+    "double",
+    "tojvec"
+   ],
+   "n_candidates": 3,
+   "n_eligible": 3,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 308,
+    "B": 385,
+    "R": 154,
+    "UA": 308,
+    "UB": 385,
+    "dropped_holding_functions": 59,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1541
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: wrapper 2: intact consumer did not run: TypeError",
+   "usability": {
+    "UB_draws": 385,
+    "UB_usable_wrappers_1_to_3": 327
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 3,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {
+    "admission": "no fourth eligible wrapper",
+    "reuse": "no fifth eligible wrapper"
+   },
+   "wrappers": [
+    "toivec",
+    "double",
+    "tojvec"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "other"
+}

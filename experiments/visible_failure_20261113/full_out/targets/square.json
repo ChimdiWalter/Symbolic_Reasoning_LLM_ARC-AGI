@@ -1,0 +1,606 @@
+{
+ "B": 10.0,
+ "admission_evidence": {
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "H": {
+   "admission": {
+    "adm_both": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_generator": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_pooled": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_preservation_s": 0.0021,
+    "cpu_standards_s": 0.0002,
+    "none": true,
+    "rule": false,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": false,
+     "3": false,
+     "6": false
+    }
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     18,
+     30
+    ],
+    "pooled": [
+     40,
+     71
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "t(t(i2,i6),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2))"
+    ],
+    "got": "b1",
+    "index": 0,
+    "want": "b0"
+   },
+   "cpu_admission_s": 0.0023,
+   "cpu_s": 0.106,
+   "cpu_s_physical": 0.106,
+   "derived_from_arm_runs": true,
+   "expr": "even(size(merge(piece)))",
+   "fit": true,
+   "half": 5.0,
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 4,
+   "source": "V half",
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  },
+  "S": {
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 92113,
+   "correct": false,
+   "cpu_s": 4.688,
+   "cpu_s_physical": 4.688,
+   "cpu_to_first_fit": 4.688,
+   "error": null,
+   "expr": "valmin(insert(TWO_BY_ZERO, piece), first)",
+   "fit": true,
+   "function_cap_reached": true,
+   "level_completed": 4,
+   "n_hits": 1,
+   "note": "S is scored at task level only; no capability reading",
+   "reused": false,
+   "size": 5,
+   "standin": {
+    "contains_standin": false,
+    "expr": null
+   },
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_detail": {
+    "gen": [
+     11,
+     30
+    ],
+    "pooled": [
+     20,
+     71
+    ]
+   },
+   "task_acq_exact": false
+  },
+  "T": {
+   "admission": {
+    "adm_both": {
+     "12": true,
+     "3": true,
+     "6": true
+    },
+    "adm_generator": {
+     "12": true,
+     "3": true,
+     "6": true
+    },
+    "adm_pooled": {
+     "12": true,
+     "3": true,
+     "6": true
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_preservation_s": 0.0015,
+    "cpu_standards_s": 0.0,
+    "none": true,
+    "rule": true,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": true,
+     "3": true,
+     "6": true
+    }
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 2627,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     69,
+     71
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "t(t(i2,i2,i2,i2,i2,i2,i2,i2),t(i2,i2,i9,i2,i9,i2,i2,i2),t(i2,i2,i2,i9,i2,i2,i2,i2),t(i2,i2,i2,i2,i2,i2,i2,i9),t(i2,i2,i2,i2,i2,i2,i2,i2),t(i2,i2,i7,i7,i2,i2,i2,...#e63ddad4"
+    ],
+    "got": "b0",
+    "index": 49,
+    "want": "b1"
+   },
+   "cpu_admission_s": 0.0015,
+   "cpu_s": 0.107,
+   "cpu_s_physical": 0.107,
+   "cpu_to_first_fit": 0.107,
+   "declared": "teacher examples (extra supervision); inputs 0-2 are the acquisition examples, 3-5 are shared with the admission grid, so T's admission is reported apart",
+   "error": null,
+   "expr": "contained(size(piece), DOWN)",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0004,
+    "cpu_load_s": 0.0004,
+    "cpu_write_s": 0.0003,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_70eb3743",
+    "path": "library/square__T.json",
+    "sha256": "4e187d137b519ec4e5ecf27105a00911fab4c4ea05a14658c4b8764657ca91e9"
+   },
+   "n_hits": 1,
+   "reuse_cpu_s": 0.0004,
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  },
+  "V": {
+   "admission": {
+    "adm_both": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_generator": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "adm_pooled": {
+     "12": false,
+     "3": false,
+     "6": false
+    },
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_preservation_s": 0.0021,
+    "cpu_standards_s": 0.0002,
+    "none": true,
+    "rule": false,
+    "rule_standard": "adm_both@6 + bank",
+    "same_kind": {
+     "12": false,
+     "3": false,
+     "6": false
+    }
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 20817,
+   "bank_at_first_fit": 2497,
+   "correct": false,
+   "correct_detail": {
+    "gen": [
+     18,
+     30
+    ],
+    "pooled": [
+     40,
+     71
+    ]
+   },
+   "counterexample": {
+    "args": [
+     "t(t(i2,i6),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2),t(i2,i2))"
+    ],
+    "got": "b1",
+    "index": 0,
+    "want": "b0"
+   },
+   "cpu_admission_s": 0.0023,
+   "cpu_s": 1.184,
+   "cpu_s_physical": 1.184,
+   "cpu_to_first_fit": 0.106,
+   "error": null,
+   "expr": "even(size(merge(piece)))",
+   "fit": true,
+   "fits": [
+    {
+     "cpu_s": 0.106,
+     "expr": "even(size(merge(piece)))",
+     "size": 4
+    }
+   ],
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "n_hits": 1,
+   "note": "physical CPU is the whole collecting run; the counterfactual CPU to the first fit is cpu_to_first_fit",
+   "reuse_exact_any": false,
+   "reused": false,
+   "size": 4,
+   "stop": "size_exhausted",
+   "stop_class": "fit",
+   "task_acq_exact": false
+  }
+ },
+ "consumers": {
+  "chosen": [
+   "increment",
+   "toivec",
+   "even"
+  ],
+  "flags": [],
+  "n_candidates": 10,
+  "n_skipped": 0,
+  "post": {
+   "acq": "increment",
+   "adm": "toivec",
+   "reuse": "even"
+  },
+  "roles": {
+   "acq": {
+    "distinct_final_outputs_on_setup_examples": 2,
+    "post": "increment"
+   },
+   "adm": {
+    "distinct_final_outputs_on_setup_examples": 2,
+    "post": "toivec"
+   },
+   "reuse": {
+    "distinct_final_outputs_on_setup_examples": 2,
+    "post": "even"
+   }
+  },
+  "skipped": [],
+  "skipped_by_reason": {},
+  "text": {
+   "acq": "increment(square(piece))",
+   "adm": "toivec(square(piece))",
+   "reuse": "even(square(piece))"
+  }
+ },
+ "cpu_s_total": 8.07,
+ "decision": {
+  "both_actions_run": true,
+  "chosen": "V",
+  "localised": true,
+  "rule": "construct at the failing step when the failure is localised (a NameError naming the missing operation), else search for a whole program"
+ },
+ "dev": false,
+ "development_only": false,
+ "diagnosis": {
+  "allowance": 1.0,
+  "bank": 11440,
+  "best_examples_matched": 2,
+  "cpu_s": 1.003,
+  "cpu_s_physical": 1.003,
+  "error_kind_when_missing": "NameError",
+  "expr": null,
+  "fit": false,
+  "function_cap_reached": true,
+  "level_completed": 3,
+  "n_hits": 0,
+  "nearly_fitting_candidates": 4,
+  "note": "exploratory; no conclusion is computed from it",
+  "of": 3,
+  "stop": "budget_cpu",
+  "stop_class": "allowance_used_up"
+ },
+ "failure": {
+  "all_examples_fail": true,
+  "argument_tags": [
+   [
+    "E"
+   ],
+   [
+    "O"
+   ],
+   [
+    "X"
+   ]
+  ],
+  "arguments": [
+   [
+    "s{}"
+   ],
+   [
+    "s{t(i8,t(i1,i1))}"
+   ],
+   [
+    "s{t(i1,i0),t(i2,i8),t(i3,i8),t(i4,i0),t(i4,i6)}"
+   ]
+  ],
+  "error_text": "name 'square' is not defined",
+  "error_type": "NameError",
+  "failing_step": "step 1 of 2: the call of square",
+  "missing_name": "square",
+  "required_outputs": [
+   "i2",
+   "i2",
+   "i1"
+  ]
+ },
+ "family": "bounding box",
+ "family_size": 16,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 71,
+  "pooled_short": false
+ },
+ "gate": {
+  "attempts": [
+   {
+    "failed": [],
+    "ok": true,
+    "source": "generator",
+    "trivial_passing": []
+   }
+  ]
+ },
+ "held_out_family": true,
+ "label": "development study (the operations study's outcomes for these operations were known before this protocol was frozen)",
+ "late_gate_flags": {
+  "admission_generator_acq_post": true,
+  "admission_generator_adm_post": true,
+  "admission_pooled_adm_post": true,
+  "final_acq_post": true,
+  "final_reuse_post": true
+ },
+ "pooled_sequence": {
+  "A": 57,
+  "B": 71,
+  "R": 28,
+  "UA": 57,
+  "UB": 71,
+  "unique_tuples": 285
+ },
+ "preservation_bank": {
+  "successful_entries": 40
+ },
+ "primary": {
+  "acquisition_task": {
+   "S": false,
+   "S_cpu_physical_s": 4.688,
+   "V": false,
+   "V_cpu_counterfactual_s": 0.106,
+   "V_cpu_physical_s": 1.184
+  },
+  "reuse_task_secondary": {
+   "S_fresh": false,
+   "S_fresh_cpu_physical_s": 0.0,
+   "V_admitted": false,
+   "no_retention": false,
+   "no_retention_cpu_physical_s": 0.0,
+   "retained_V": false
+  }
+ },
+ "repair_choice": {
+  "allowance": 20.0,
+  "random": [
+   {
+    "cpu_s": 4.794,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 0
+   },
+   {
+    "cpu_s": 4.794,
+    "order": [
+     "V",
+     "S"
+    ],
+    "reached": false,
+    "seed": 1
+   },
+   {
+    "cpu_s": 4.794,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 2
+   },
+   {
+    "cpu_s": 4.794,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 3
+   },
+   {
+    "cpu_s": 4.794,
+    "order": [
+     "S",
+     "V"
+    ],
+    "reached": false,
+    "seed": 4
+   }
+  ],
+  "rule": {
+   "cpu_s": 4.794,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  },
+  "s_then_v": {
+   "cpu_s": 4.794,
+   "order": [
+    "S",
+    "V"
+   ],
+   "reached": false
+  },
+  "v_then_s": {
+   "cpu_s": 4.794,
+   "order": [
+    "V",
+    "S"
+   ],
+   "reached": false
+  }
+ },
+ "reuse_controls": {
+  "conditional_comparison_fixed_library_10B": null,
+  "costs": {
+   "fixed_library_B_cpu_s": 0.0,
+   "no_retention_per_reuse_cpu_s": 0.0,
+   "retained_available": false,
+   "retained_parts": {
+    "acquisition_to_first_fit_cpu_s": 0.106,
+    "admission_cpu_s": 0.0023,
+    "deployment_at_reuse_cpu_s": null,
+    "library_load_cpu_s": null,
+    "library_write_cpu_s": null,
+    "preservation_cpu_s": 0.0021
+   },
+   "retained_parts_note": "admission_cpu_s includes preservation_cpu_s (nested); add the parts once, never the inclusive total with its own parts"
+  },
+  "fixed_library_B": {
+   "allowance": 10.0,
+   "bank": 140,
+   "cpu_s": 0.0,
+   "cpu_s_physical": 0.0,
+   "exact_on_final": false,
+   "expr": "T",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "n_hits": 1,
+   "stop": "found",
+   "stop_class": "fit"
+  },
+  "no_retention": {
+   "allowance": 10.0,
+   "bank": 140,
+   "cost_cpu_s": 0.0,
+   "cpu_s": 0.0,
+   "cpu_s_physical": 0.0,
+   "exact_on_final": false,
+   "expr": "F",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "n_hits": 1,
+   "stop": "found",
+   "stop_class": "fit"
+  }
+ },
+ "reuse_support": {
+  "of": 3,
+  "usable": 3
+ },
+ "selection": {
+  "admitted_among_fits": 0,
+  "correct_among_fits": 0,
+  "distinct_behaviours": 1,
+  "first_fit": {
+   "admitted": false,
+   "correct": false
+  },
+  "fits": [
+   {
+    "admitted": false,
+    "behaviour": "e5312aebc4fc309e",
+    "correct": false,
+    "expr": "even(size(merge(piece)))",
+    "reuse_exact_any": false,
+    "size": 4
+   }
+  ],
+  "n_fits": 1,
+  "random_seeds": [
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 0,
+    "seed": 0
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 0,
+    "seed": 1
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 0,
+    "seed": 2
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 0,
+    "seed": 3
+   },
+   {
+    "admitted": false,
+    "correct": false,
+    "index": 0,
+    "seed": 4
+   }
+  ]
+ },
+ "setup_pooled_usability": {
+  "acq_and_reuse_draws": 71,
+  "acq_and_reuse_usable": 71,
+  "admission_draws": 57,
+  "admission_usable": 57
+ },
+ "status": "done",
+ "target": "square"
+}

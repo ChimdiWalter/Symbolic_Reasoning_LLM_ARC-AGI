@@ -1,0 +1,100 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "merge",
+ "family_size": 1,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "too few usable pooled inputs (slice UB: 9 of 9 draws usable for the missing operation and wrappers 1 to 3, need 30)",
+ "reason_kind": "too_few_usable_pooled_inputs",
+ "setup": {
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 7,
+   "B": 9,
+   "R": 3,
+   "UA": 7,
+   "UB": 9,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 36
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UB_draws": 9,
+   "UB_usable_wrappers_1_to_3": 9
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "first",
+    "2": "hmirror",
+    "3": "tojvec",
+    "4": "minimum",
+    "5": "totuple"
+   },
+   "chosen": [
+    "first",
+    "hmirror",
+    "tojvec",
+    "minimum",
+    "totuple"
+   ],
+   "n_candidates": 11,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 7,
+    "B": 9,
+    "R": 3,
+    "UA": 7,
+    "UB": 9,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 36
+   },
+   "preservation_bank_entries": 48,
+   "reason": "too few usable pooled inputs (slice UB: 9 of 9 draws usable for the missing operation and wrappers 1 to 3, need 30)",
+   "usability": {
+    "UB_draws": 9,
+    "UB_usable_wrappers_1_to_3": 9
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "too_few_usable_pooled_inputs",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "first",
+    "hmirror",
+    "tojvec",
+    "minimum",
+    "totuple"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "merge"
+}

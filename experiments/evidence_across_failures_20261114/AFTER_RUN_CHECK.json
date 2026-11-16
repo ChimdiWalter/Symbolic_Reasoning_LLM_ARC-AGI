@@ -1,0 +1,371 @@
+{
+ "all_passed": true,
+ "author": "Chimdi Walter Ndubuisi",
+ "checker_sha256": "ddf49bde1ee051227024cf4300087876d25b61e806fb9528b444d3d02c4e3f92",
+ "checks": [
+  {
+   "check": "the freeze still verifies (every frozen file and the setup record)",
+   "freeze_sha256": "dd959ba95c1f3d35554e117e1cb017d287eca519e46552b35edc6f9fb5566660",
+   "passed": true
+  },
+  {
+   "check": "exactly one receipt, read-only, naming this freeze, this setup record and this output folder",
+   "passed": true,
+   "receipt": {
+    "freeze_sha256": "dd959ba95c1f3d35554e117e1cb017d287eca519e46552b35edc6f9fb5566660",
+    "outdir": "/path/to/repository/experiments/evidence_across_failures_20261114/full_out",
+    "pid": 2472573,
+    "setup_record_sha256": "66712a3ec0c05590c39d5f3e8f6d3031c7e3114b13587c8b16ee08ce4f6f2624",
+    "time": "2026-11-14T14:24:56Z"
+   },
+   "receipts": [
+    "RECEIPT_ALL_ROSTER.json"
+   ]
+  },
+  {
+   "check": "the detached job started once and ended with exit 0",
+   "lines": [
+    "START 2026-11-14T14:24:56Z 2472565",
+    "EXIT 0 2026-11-14T15:01:46Z"
+   ],
+   "passed": true,
+   "status_file": "outputs/detached/eaf1_full/run.status"
+  },
+  {
+   "check": "the run's MANIFEST names the freeze, the setup record, the frozen code, the whole roster and the allowance",
+   "code_not_in_the_freeze": [],
+   "manifest": {
+    "B": 10.0,
+    "development_only": false,
+    "freeze_sha256": "dd959ba95c1f3d35554e117e1cb017d287eca519e46552b35edc6f9fb5566660",
+    "label": "development comparison on a known benchmark",
+    "python": "3.12.3",
+    "pythonhashseed": "0",
+    "roster": "all",
+    "setup_record": "experiments/evidence_across_failures_20261114/SETUP_RECORD_ALL_3.json",
+    "setup_record_sha256": "66712a3ec0c05590c39d5f3e8f6d3031c7e3114b13587c8b16ee08ce4f6f2624"
+   },
+   "passed": true
+  },
+  {
+   "check": "a record for every listed target and no other; the listed targets are those of the committed setup record",
+   "extra": [],
+   "missing": [],
+   "n_in_setup_record": 145,
+   "n_listed": 145,
+   "passed": true,
+   "statuses": {
+    "done": 110,
+    "excluded": 35
+   }
+  },
+  {
+   "check": "no incomplete record",
+   "incomplete": {},
+   "passed": true,
+   "statuses": {
+    "done": 110,
+    "excluded": 35
+   }
+  },
+  {
+   "check": "every done target journalled exactly the seals its committed path requires, once each, in order, equal to the record's seals",
+   "differ": {},
+   "passed": true,
+   "paths": {
+    "setup_record > acquisition_record > first_fit_records > admission_set > libraries > final_set": 4,
+    "setup_record > acquisition_record > first_fit_records > admission_set > libraries > reuse_support_set > final_set": 97,
+    "setup_record > acquisition_record > first_fit_records > libraries > final_set": 9
+   }
+  },
+  {
+   "check": "every done target's journal has one start at the protocol's allowance and one done event",
+   "passed": true,
+   "targets": []
+  },
+  {
+   "admitted_arms_without_a_file": [],
+   "check": "library files: one per admitted arm, read-only, equal to the hashes in the records, bound to each done target's journalled library seal",
+   "files_without_an_admitted_arm": [],
+   "n_admitted_arms": 63,
+   "n_files": 63,
+   "not_matching": [],
+   "passed": true,
+   "seal_differs": [],
+   "writable": []
+  },
+  {
+   "check": "SUMMARY.json equals a summary made now from the records",
+   "keys_that_differ": [],
+   "passed": true,
+   "summary_could_not_be_made": null
+  },
+  {
+   "check": "the run's setup decisions and counts equal the committed setup record",
+   "passed": true,
+   "reconciliation": {
+    "available": true,
+    "decisions_differ": [],
+    "n_compared": 145,
+    "n_counts_differ": 0,
+    "n_decisions_differ": 0,
+    "targets_not_in_the_record": [],
+    "targets_whose_counts_differ": []
+   }
+  },
+  {
+   "check": "the primary reading is complete: met or not met (provisional means STOP)",
+   "incomplete": [],
+   "missing": [],
+   "outside": [],
+   "passed": true,
+   "setup_differs": [],
+   "status": "not_met"
+  }
+ ],
+ "could_a_guard_have_fired": {
+  "assumptions": "the recorded times are right; every guard needs its whole length inside one guarded batch; the searches are not under these guards; rounding as stated",
+  "by_guard": {
+   "candidate wrappers at setup": {
+    "cpu_seconds": 10.0,
+    "done_targets_not_excluded": [],
+    "other_targets_not_excluded": []
+   },
+   "checks of a candidate": {
+    "cpu_seconds": 30.0,
+    "done_targets_not_excluded": [],
+    "other_targets_not_excluded": []
+   },
+   "streams of pooled inputs": {
+    "cpu_seconds": 20.0,
+    "done_targets_not_excluded": [],
+    "other_targets_not_excluded": []
+   }
+  },
+  "compared": "for a done target the recorded remainder plus the rounding margin; for any other target the printed interval plus its margin",
+  "done_largest_time_outside_the_searches": [
+   [
+    2.681,
+    "mapply"
+   ],
+   [
+    2.552,
+    "center"
+   ],
+   [
+    2.422,
+    "rot90"
+   ],
+   [
+    2.36,
+    "hperiod"
+   ],
+   [
+    2.343,
+    "outbox"
+   ]
+  ],
+  "no_guard_can_have_fired": true,
+  "other_largest_printed_interval": [
+   [
+    2.1,
+    "merge"
+   ],
+   [
+    1.8,
+    "totuple"
+   ],
+   [
+    1.7,
+    "leastcolor"
+   ],
+   [
+    1.3,
+    "llcorner"
+   ],
+   [
+    1.3,
+    "backdrop"
+   ]
+  ],
+  "per_done_target_cpu_s_outside_the_searches": {
+   "add": 0.37,
+   "adjacent": 0.574,
+   "apply": 0.426,
+   "argmax": 0.388,
+   "argmin": 0.184,
+   "asindices": 1.624,
+   "asobject": 2.333,
+   "astuple": 0.483,
+   "bordering": 1.005,
+   "bottomhalf": 1.919,
+   "box": 1.669,
+   "branch": 0.436,
+   "canvas": 0.321,
+   "cellwise": 1.493,
+   "center": 2.552,
+   "centerofmass": 1.71,
+   "cmirror": 1.89,
+   "color": 1.806,
+   "colorcount": 0.595,
+   "colorfilter": 0.703,
+   "combine": 0.807,
+   "connect": 0.309,
+   "contained": 0.477,
+   "cover": 1.081,
+   "crop": 1.714,
+   "delta": 1.699,
+   "difference": 0.753,
+   "divide": 0.394,
+   "dmirror": 1.374,
+   "equality": 0.408,
+   "extract": 0.188,
+   "fgpartition": 2.117,
+   "fill": 1.864,
+   "first": 1.09,
+   "frontiers": 2.043,
+   "gravitate": 1.993,
+   "greater": 0.127,
+   "hconcat": 1.5,
+   "height": 1.218,
+   "hline": 1.421,
+   "hmatching": 0.434,
+   "hmirror": 1.304,
+   "hperiod": 2.36,
+   "hsplit": 1.06,
+   "hupscale": 0.968,
+   "inbox": 1.924,
+   "initset": 0.808,
+   "insert": 0.595,
+   "interval": 0.734,
+   "last": 1.35,
+   "leastcommon": 1.389,
+   "lefthalf": 1.913,
+   "leftmost": 1.463,
+   "lowermost": 1.4,
+   "lrcorner": 1.541,
+   "manhattan": 0.953,
+   "mapply": 2.681,
+   "mfilter": 0.491,
+   "mostcolor": 1.771,
+   "move": 2.049,
+   "mpapply": 0.596,
+   "multiply": 0.367,
+   "normalize": 1.905,
+   "numcolors": 1.92,
+   "objects": 1.201,
+   "occurrences": 1.461,
+   "ofcolor": 0.537,
+   "order": 0.609,
+   "outbox": 2.343,
+   "pair": 0.6,
+   "palette": 2.065,
+   "papply": 0.673,
+   "partition": 2.159,
+   "portrait": 0.978,
+   "position": 1.206,
+   "product": 1.718,
+   "recolor": 0.759,
+   "remove": 0.595,
+   "repeat": 0.583,
+   "replace": 1.172,
+   "righthalf": 1.705,
+   "rightmost": 1.648,
+   "rot180": 1.782,
+   "rot270": 1.709,
+   "rot90": 2.422,
+   "sfilter": 0.531,
+   "shape": 1.409,
+   "shift": 1.552,
+   "shoot": 0.732,
+   "size": 1.469,
+   "square": 1.064,
+   "subgrid": 1.454,
+   "subtract": 0.354,
+   "switch": 1.332,
+   "toindices": 1.967,
+   "toobject": 0.883,
+   "tophalf": 1.9,
+   "ulcorner": 1.584,
+   "underfill": 1.6,
+   "uppermost": 1.32,
+   "valmax": 0.508,
+   "valmin": 0.432,
+   "vconcat": 0.86,
+   "vline": 1.255,
+   "vmatching": 0.346,
+   "vmirror": 1.616,
+   "vperiod": 2.082,
+   "vsplit": 0.726,
+   "vupscale": 1.179,
+   "width": 1.185
+  },
+  "printed_interval_margin_cpu_s": 0.05,
+  "rounding_margin_cpu_s": 0.01,
+  "run_log": "/path/to/repository/outputs/detached/eaf1_full/stdout.log",
+  "slightly_negative_remainders_within_the_margin": [],
+  "targets_without_a_recorded_time": [],
+  "why_unknown": {}
+ },
+ "folder": "/path/to/repository/experiments/evidence_across_failures_20261114",
+ "freeze_sha256": "dd959ba95c1f3d35554e117e1cb017d287eca519e46552b35edc6f9fb5566660",
+ "full_out_manifest": {
+  "n_files": 355,
+  "path": "/path/to/repository/experiments/evidence_across_failures_20261114/FULL_OUT_MANIFEST.sha256",
+  "sha256": "0ee43b0932ce0e5e29f4eeeb633b5fe407234b057718e717efd6d8627df01e36"
+ },
+ "near_the_allowance": {
+  "by_arm": {
+   "A1x9": [
+    {
+     "cpu_to_first_fit": null,
+     "first_fit": "none",
+     "stop_class": "allowance_used_up",
+     "target": "crop"
+    }
+   ],
+   "A3x3": [
+    {
+     "cpu_to_first_fit": null,
+     "first_fit": "none",
+     "stop_class": "allowance_used_up",
+     "target": "crop"
+    }
+   ]
+  },
+  "threshold_fraction": 0.8
+ },
+ "out": "/path/to/repository/experiments/evidence_across_failures_20261114/full_out",
+ "primary": {
+  "all_four_conditions_hold": false,
+  "conditions": {
+   "1_fewer_wrong_in_A3x3": true,
+   "2_sign_test_below_0.05": false,
+   "3_right_in_A3x3_not_fewer_than_in_A1x9": true,
+   "4_at_least_one_right_in_A3x3": true
+  },
+  "criterion_met": false,
+  "done_targets_outside_the_committed_cohort": [],
+  "incomplete_targets": [],
+  "missing_eligible_targets": [],
+  "n_favourable": 7,
+  "n_targets_terminal": 95,
+  "n_unfavourable": 2,
+  "p_two_sided_sign_test": 0.1796875,
+  "right_first_fits": {
+   "A1x9": 10,
+   "A3x3": 11
+  },
+  "status": "not_met",
+  "targets_whose_setup_differs_from_the_committed_record": [],
+  "targets_with_a_wrong_only_because_the_final_check_timed_out": [],
+  "wrong_first_fits": {
+   "A1x9": 19,
+   "A3x3": 14
+  }
+ },
+ "setup_record_sha256": "66712a3ec0c05590c39d5f3e8f6d3031c7e3114b13587c8b16ee08ce4f6f2624",
+ "summary_sha256": "77704e3b7e1ed1d3879aa7db286c0b6118614b65724aa629dca1977b7277758e",
+ "time": "2026-11-14T15:02:32Z",
+ "what": "checks after the all-roster run of EAF1 (after_run_eaf.py); no number is reported from here"
+}

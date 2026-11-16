@@ -1,0 +1,121 @@
+{
+ "arms": {
+  "1": {
+   "bank": 152,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "EIGHT",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 0,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 10127,
+   "cpu_s": 0.959,
+   "equal_all_36": false,
+   "expr": "first(merge(initset(container)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 27,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 10208,
+   "cpu_s": 1.076,
+   "equal_all_36": false,
+   "expr": "first(merge(initset(container)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 27,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 22155,
+   "cpu_s": 3.726,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 22513,
+   "cpu_s": 10.257,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 16.018,
+ "examples_sha": "c6e07e1eb0436459",
+ "expr": null,
+ "family": "most and least frequent",
+ "family_size": 4,
+ "generator": {
+  "draws": 92,
+  "function_pool_excluded": [
+   "color",
+   "cover",
+   "fgpartition",
+   "leastcolor",
+   "leastcommon",
+   "mostcolor",
+   "move",
+   "objects",
+   "underfill",
+   "underpaint"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 56
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "color",
+  "leastcolor",
+  "leastcommon",
+  "mostcolor"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "leastcommon",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

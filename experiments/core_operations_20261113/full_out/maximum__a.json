@@ -1,0 +1,124 @@
+{
+ "arms": {
+  "1": {
+   "bank": 154,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "NINE",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 10,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 952,
+   "cpu_s": 0.037,
+   "equal_all_36": true,
+   "expr": "valmax(container, identity)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 954,
+   "cpu_s": 0.029,
+   "equal_all_36": true,
+   "expr": "valmax(container, identity)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 961,
+   "cpu_s": 0.032,
+   "equal_all_36": true,
+   "expr": "valmax(container, identity)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 967,
+   "cpu_s": 0.059,
+   "expr": "valmax(container, identity)",
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "size": 3,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 0.157,
+ "examples_sha": "bd0239cbad54b1e0",
+ "expr": "valmax(container, identity)",
+ "family": "largest and smallest of a container",
+ "family_size": 6,
+ "generator": {
+  "draws": 41,
+  "function_pool_excluded": [
+   "argmax",
+   "argmin",
+   "maximum",
+   "minimum",
+   "valmax",
+   "valmin"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 5,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "maximum"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "maximum",
+ "readings": {
+  "1": "wrong",
+  "2": "right",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 3,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "identity",
+  "valmax"
+ ]
+}

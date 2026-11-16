@@ -1,0 +1,502 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{t(i3,i0),t(i3,i1),t(i3,i2),t(i4,i0),t(i4,i1),t(i4,i2),t(i5,i0),t(i5,i1),t(i5,i2),t(i5,i3),t(i6,i0),t(i6,i1),t(i6,i2),t(i6,i3)}"
+   ],
+   [
+    "s{t(i1,i0)}"
+   ],
+   [
+    "s{t(i2,t(i0,i2)),t(i2,t(i0,i3)),t(i2,t(i0,i4)),t(i2,t(i1,i2))}"
+   ],
+   [
+    "s{t(i6,t(i1,i4)),t(i6,t(i1,i5)),t(i6,t(i2,i4)),t(i6,t(i2,i5))}"
+   ],
+   [
+    "s{t(i1,t(i4,i6)),t(i1,t(i5,i3)),t(i4,t(i0,i3)),t(i4,t(i0,i4)),t(i4,t(i1,i3)),t(i4,t(i1,i4)),t(i4,t(i1,i5)),t(i4,t(i2,i0)),t(i4,t(i2,i1)),t(i4,t(i2,i2)),t(i4,t(i2,i3)),t(i4,t(i3,i0)),t(i4,t(i4,i0)),t(i4,t(i4,i1)),t(i4,t(i4,i2)),t(i4,t(i4,i3)),t(i4,t(i8,i10)),t(i7,t(i0,i0)),t(i7,t(i0,i1)),t(i7,t(i0,i1...#4fc15fcb"
+   ],
+   [
+    "s{t(i0,i2),t(i0,i3),t(i0,i4),t(i0,i5),t(i1,i1)}"
+   ],
+   [
+    "s{t(i3,i10),t(i5,i3),t(i6,i8),t(i7,i10),t(i7,i3)}"
+   ],
+   [
+    "s{t(i8,t(i1,i2)),t(i8,t(i2,i0)),t(i8,t(i2,i1)),t(i8,t(i4,i0)),t(i8,t(i4,i2)),t(i8,t(i5,i0)),t(i8,t(i5,i2)),t(i8,t(i5,i3))}"
+   ],
+   [
+    "s{t(i4,t(i2,i3)),t(i4,t(i2,i4)),t(i4,t(i2,i5)),t(i4,t(i2,i6))}"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0025,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 10265,
+   "bank_at_first_fit": 10265,
+   "candidates_tested": 10140,
+   "counterexample": {
+    "args": [
+     "s{t(i2,t(i6,i2)),t(i6,t(i2,i10)),t(i6,t(i3,i0)),t(i6,t(i3,i4)),t(i6,t(i4,i3)),t(i6,t(i5,i0)),t(i7,t(i1,i7)),t(i7,t(i5,i8))}"
+    ],
+    "got": "t(i4,i8)",
+    "index": 0,
+    "want": "t(i3,i4)"
+   },
+   "cpu_s": 0.395,
+   "cpu_to_first_fit": 0.395,
+   "error": null,
+   "expr": "valmax(inbox(patch), decrement)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     12,
+     30
+    ],
+    "pooled": [
+     127,
+     311
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A1x6": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 29946,
+   "bank_at_first_fit": null,
+   "candidates_tested": 29821,
+   "cpu_s": 5.25,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A1x9": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 30469,
+   "bank_at_first_fit": null,
+   "candidates_tested": 30344,
+   "cpu_s": 5.994,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0026,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 10640,
+   "bank_at_first_fit": 10640,
+   "candidates_tested": 10515,
+   "counterexample": {
+    "args": [
+     "s{t(i2,t(i6,i2)),t(i6,t(i2,i10)),t(i6,t(i3,i0)),t(i6,t(i3,i4)),t(i6,t(i4,i3)),t(i6,t(i5,i0)),t(i7,t(i1,i7)),t(i7,t(i5,i8))}"
+    ],
+    "got": "t(i4,i8)",
+    "index": 0,
+    "want": "t(i3,i4)"
+   },
+   "cpu_s": 0.699,
+   "cpu_to_first_fit": 0.699,
+   "error": null,
+   "expr": "valmax(inbox(patch), decrement)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     12,
+     30
+    ],
+    "pooled": [
+     127,
+     311
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "sign",
+    "sign",
+    "sign"
+   ]
+  },
+  "A3x3": {
+   "admission": null,
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 30469,
+   "bank_at_first_fit": null,
+   "candidates_tested": 30344,
+   "cpu_s": 5.682,
+   "cpu_to_first_fit": null,
+   "error": null,
+   "expr": null,
+   "first_fit": "none",
+   "fit": false,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "reuse_exact": false,
+   "size": null,
+   "stop": "size_exhausted",
+   "stop_class": "complete_negative",
+   "task_exact": {},
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "initset",
+    "initset",
+    "initset",
+    "sign",
+    "sign",
+    "sign",
+    "vfrontier",
+    "vfrontier",
+    "vfrontier"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 19.73,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'centerofmass' is not defined",
+  "error_type": "NameError",
+  "missing_name": "centerofmass"
+ },
+ "family": "centerofmass",
+ "family_size": 1,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 311,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "exact_on_final": false,
+    "fit": false,
+    "stop": "support_unavailable",
+    "stop_class": "unavailable"
+   },
+   "fresh_synthesis": {
+    "exact_on_final": false,
+    "fit": false,
+    "stop": "support_unavailable",
+    "stop_class": "unavailable"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 2
+ },
+ "seals": {
+  "acquisition_record": "219b6948b287738b09510000af15d246a83c825e69b192afc8b645e87e9014a2",
+  "admission_set": "fe425e95b4463866b836c1a4f8d5579142c44feb74462c81a32d70a361fdeaf0",
+  "final_set": "093071882e5db63e6e2a0ea9f1e807894bc5f3dc56e86946eabdacb9ea1d0a25",
+  "first_fit_records": "6d3dacd456046e2a00fbe304fe74208b8328fc383a705df4585b26a3589b4a1e",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "65b44cda4549cb44f3cd6004f2ca7818c183b999898c5e154b6fee24edfdc59d",
+  "setup_record": "86fa6000ba3bafeee2a27512c3a30e0885ac156acf57a4c7663f1f7a5c3aa658"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 249,
+   "B": 311,
+   "R": 124,
+   "UA": 249,
+   "UB": 311,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1245
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 249,
+   "UA_usable_wrapper_4": 249,
+   "UB_draws": 311,
+   "UB_usable_wrappers_1_to_3": 311,
+   "UB_usable_wrappers_1_to_3_and_5": 311
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "initset",
+    "2": "sign",
+    "3": "vfrontier",
+    "4": "ineighbors",
+    "5": "first"
+   },
+   "chosen": [
+    "initset",
+    "sign",
+    "vfrontier",
+    "ineighbors",
+    "first"
+   ],
+   "n_candidates": 24,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1245
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 249,
+    "UA_usable_wrapper_4": 249,
+    "UB_draws": 311,
+    "UB_usable_wrappers_1_to_3": 311,
+    "UB_usable_wrappers_1_to_3_and_5": 311
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "initset",
+    "sign",
+    "vfrontier",
+    "ineighbors",
+    "first"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "centerofmass"
+}

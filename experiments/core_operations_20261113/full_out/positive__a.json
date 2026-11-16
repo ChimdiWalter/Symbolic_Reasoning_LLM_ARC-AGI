@@ -1,0 +1,119 @@
+{
+ "arms": {
+  "1": {
+   "bank": 153,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "F",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 13,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 154,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "F",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 13,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 1049,
+   "cpu_s": 0.016,
+   "equal_all_36": true,
+   "expr": "greater(x, ZERO)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 1054,
+   "cpu_s": 0.016,
+   "equal_all_36": true,
+   "expr": "greater(x, ZERO)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": true,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 1049,
+   "cpu_s": 0.032,
+   "expr": "greater(x, ZERO)",
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "size": 3,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 0.064,
+ "examples_sha": "42d3fa7711ef2410",
+ "expr": "greater(x, ZERO)",
+ "family": "greater than",
+ "family_size": 2,
+ "generator": {
+  "draws": 67,
+  "function_pool_excluded": [
+   "greater",
+   "positive"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 31,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "positive"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "positive",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 3,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "greater"
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "arms": {
+  "1": {
+   "bank": 144,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "FIVE",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 1,
+   "stop": "found",
+   "validation_equal": 0,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 13260,
+   "cpu_s": 1.46,
+   "equal_all_36": false,
+   "expr": "lowermost(dneighbors(toivec(x)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 3,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 8,
+   "validation_errors": 22
+  },
+  "3": {
+   "bank": 13333,
+   "cpu_s": 1.338,
+   "equal_all_36": false,
+   "expr": "lowermost(dneighbors(toivec(x)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 3,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 8,
+   "validation_errors": 22
+  },
+  "6": {
+   "bank": 17538,
+   "cpu_s": 1.501,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 17687,
+   "cpu_s": 6.416,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 10.714,
+ "examples_sha": "515541d05fdb7855",
+ "expr": null,
+ "family": "arithmetic",
+ "family_size": 11,
+ "generator": {
+  "draws": 69,
+  "function_pool_excluded": [
+   "add",
+   "crement",
+   "decrement",
+   "divide",
+   "double",
+   "halve",
+   "increment",
+   "invert",
+   "multiply",
+   "sign",
+   "subtract"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 33,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "add",
+  "crement",
+  "decrement",
+  "divide",
+  "double",
+  "halve",
+  "increment",
+  "invert",
+  "multiply",
+  "sign",
+  "subtract"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "increment",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

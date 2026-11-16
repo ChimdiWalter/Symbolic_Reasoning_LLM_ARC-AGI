@@ -1,0 +1,127 @@
+{
+ "arms": {
+  "1": {
+   "bank": 779,
+   "cpu_s": 0.015,
+   "equal_all_36": false,
+   "expr": "valmax(a, delta)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 5,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 1,
+   "validation_errors": 23
+  },
+  "2": {
+   "bank": 971,
+   "cpu_s": 0.031,
+   "equal_all_36": false,
+   "expr": "sfilter(a, flip)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 23,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 946,
+   "cpu_s": 0.036,
+   "equal_all_36": false,
+   "expr": "sfilter(a, flip)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 23,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 809,
+   "cpu_s": 0.048,
+   "equal_all_36": false,
+   "expr": "sfilter(b, flip)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 24,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 15754,
+   "cpu_s": 6.312,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "b",
+ "cpu_s": 6.442,
+ "examples_sha": "527f81ebc731b2df",
+ "expr": null,
+ "family": "set building",
+ "family_size": 7,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "combine",
+   "difference",
+   "initset",
+   "insert",
+   "intersection",
+   "other",
+   "remove"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "combine",
+  "difference",
+  "initset",
+  "insert",
+  "intersection",
+  "other",
+  "remove"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "intersection",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "wrong"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

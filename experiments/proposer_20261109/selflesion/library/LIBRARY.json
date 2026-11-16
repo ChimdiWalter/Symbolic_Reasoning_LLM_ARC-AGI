@@ -1,0 +1,1461 @@
+{
+ "entries": {
+  "add": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3b38790e85f5f8a203807d8321d8be5fb9854d49d0b116fbf449d9e919c4906f",
+   "source": "def add(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a + b\n    elif isinstance(a, tuple) and isinstance(b, tuple):\n        return (a[0] + b[0], a[1] + b[1])\n    elif isinstance(a, int) and isinstance(b, tuple):\n        return (a + b[0], a + b[1])\n    return (a[0] + b, a[1] + b)"
+  },
+  "adjacent": {
+   "deps": [
+    "manhattan"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "99fc036282c304e8eae32f4d6b6a16503d3eb6133cf918f9946382361dc6fa89",
+   "source": "def adjacent(a, b):\n    return manhattan(a, b) == 1"
+  },
+  "apply": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "57119524b62c1ecd05a380f2a6bd2da938bca10e82dc0797b085f3ab990a78ca",
+   "source": "def apply(function, container):\n    return type(container)((function(e) for e in container))"
+  },
+  "argmax": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3c15957e3e9479f9e92d257ffa8c1701c3af8e3608acd487d6bc314c2c4cfa38",
+   "source": "def argmax(container, compfunc):\n    return max(container, key=compfunc)"
+  },
+  "argmin": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "83f212d510b88301e23c1d7e7831c27158c6f5cdfd007b439f35c0f544801b75",
+   "source": "def argmin(container, compfunc):\n    return min(container, key=compfunc)"
+  },
+  "asindices": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "ea35862d8dcc169c6f66263364dfed44514eeef06c92d3c3d196dc6603d07188",
+   "source": "def asindices(grid):\n    return frozenset(((i, j) for i in range(len(grid)) for j in range(len(grid[0]))))"
+  },
+  "asobject": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "7b8dfd52714bf5f1afd12205041464937bee43d954d7e1498cc388444d78ca60",
+   "source": "def asobject(grid):\n    return frozenset(((v, (i, j)) for i, r in enumerate(grid) for j, v in enumerate(r)))"
+  },
+  "astuple": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "ccae104e407a2466caf1d8637c13f5d5c4299e64c50b54e639e6dad9145fbcfe",
+   "source": "def astuple(a, b):\n    return (a, b)"
+  },
+  "backdrop": {
+   "deps": [
+    "lrcorner",
+    "toindices",
+    "ulcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "ee1cfcf9096ba4ffd6a2a3ce1c83fbb89f0b30335924156e14f50e0ffac6e739",
+   "source": "def backdrop(patch):\n    if len(patch) == 0:\n        return frozenset({})\n    indices = toindices(patch)\n    si, sj = ulcorner(indices)\n    ei, ej = lrcorner(patch)\n    return frozenset(((i, j) for i in range(si, ei + 1) for j in range(sj, ej + 1)))"
+  },
+  "bordering": {
+   "deps": [
+    "leftmost",
+    "lowermost",
+    "rightmost",
+    "uppermost"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "159a9caaeac96f8c9cc713ba125286b5cf63b2e30824c76e86b7a41ffff507d3",
+   "source": "def bordering(patch, grid):\n    return uppermost(patch) == 0 or leftmost(patch) == 0 or lowermost(patch) == len(grid) - 1 or (rightmost(patch) == len(grid[0]) - 1)"
+  },
+  "both": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "88a240fc03c95f331dc261e89f1fb84a4fded9091e5d072b02ec5f0b0a180177",
+   "source": "def both(a, b):\n    return a and b"
+  },
+  "bottomhalf": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "4dd85e186bc5b1179cf7f3703ec5bfbe80913798f241a1278c25104d4ada62a0",
+   "source": "def bottomhalf(grid):\n    return grid[len(grid) // 2 + len(grid) % 2:]"
+  },
+  "box": {
+   "deps": [
+    "lrcorner",
+    "ulcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "40d2d77e98bb48345a8505f8b87b6128ef753a99f94d31b969c3bef7477b4e6a",
+   "source": "def box(patch):\n    if len(patch) == 0:\n        return patch\n    ai, aj = ulcorner(patch)\n    bi, bj = lrcorner(patch)\n    si, sj = (min(ai, bi), min(aj, bj))\n    ei, ej = (max(ai, bi), max(aj, bj))\n    vlines = {(i, sj) for i in range(si, ei + 1)} | {(i, ej) for i in range(si, ei + 1)}\n    hlines = {(si, j) for j in range(sj, ej + 1)} | {(ei, j) for j in range(sj, ej + 1)}\n    return frozenset(vlines | hlines)"
+  },
+  "branch": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9a032028872dc876c1c5b0b2c0ce487e41da130eaa9cabc67963c57188e687fb",
+   "source": "def branch(condition, a, b):\n    return a if condition else b"
+  },
+  "canvas": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "2ac5b08a63eac57452bd52817a1dfe237577f037333db50bcaadd759ae4b675b",
+   "source": "def canvas(value, dimensions):\n    return tuple((tuple((value for j in range(dimensions[1]))) for i in range(dimensions[0])))"
+  },
+  "cellwise": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "eb946275416c2abdb42977b3a7e9cb55c85445c260026cdc02c24e9d1eec5538",
+   "source": "def cellwise(a, b, fallback):\n    h, w = (len(a), len(a[0]))\n    resulting_grid = tuple()\n    for i in range(h):\n        row = tuple()\n        for j in range(w):\n            a_value = a[i][j]\n            value = a_value if a_value == b[i][j] else fallback\n            row = row + (value,)\n        resulting_grid = resulting_grid + (row,)\n    return resulting_grid"
+  },
+  "center": {
+   "deps": [
+    "height",
+    "leftmost",
+    "uppermost",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "457f38afb7d21a4460ede2381478af94e2a93c65b843122d958648792be1f8a5",
+   "source": "def center(patch):\n    return (uppermost(patch) + height(patch) // 2, leftmost(patch) + width(patch) // 2)"
+  },
+  "centerofmass": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0702e62a6775b58e1a267c7181dcfe7545bf9303d08b17c5d8911d50a51dd337",
+   "source": "def centerofmass(patch):\n    return tuple(map(lambda x: sum(x) // len(patch), zip(*toindices(patch))))"
+  },
+  "chain": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "f1a36d1dbda9f3bf505bfc7ee4361ed5dc5e806ca8fe027e2169099f55a87f81",
+   "source": "def chain(h, g, f):\n    return lambda x: h(g(f(x)))"
+  },
+  "cmirror": {
+   "deps": [
+    "dmirror",
+    "vmirror"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "70e5d1fa96323782b982c73231f3e5b3c5e9d5f16f32ed7ce242a98633a2f802",
+   "source": "def cmirror(piece):\n    if isinstance(piece, tuple):\n        return tuple(zip(*(r[::-1] for r in piece[::-1])))\n    return vmirror(dmirror(vmirror(piece)))"
+  },
+  "color": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "dda7c0badcb2c7be3be8348bea606c58386f1b2052ec7d64bfbe552f11d9b73c",
+   "source": "def color(obj):\n    return next(iter(obj))[0]"
+  },
+  "colorcount": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "5faa5453861d19b557daa0e000ae149aadbb634bc92ea85c17e656723333371c",
+   "source": "def colorcount(element, value):\n    if isinstance(element, tuple):\n        return sum((row.count(value) for row in element))\n    return sum((v == value for v, _ in element))"
+  },
+  "colorfilter": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "71e1a0e93940b923f30dd45f6d3200ec0fefdf83652a326c1a973d61868d0bf0",
+   "source": "def colorfilter(objs, value):\n    return frozenset((obj for obj in objs if next(iter(obj))[0] == value))"
+  },
+  "combine": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "58d25089dc4c6837dad2ad7a74f2919136348570e61f3a298176e6416a061c82",
+   "source": "def combine(a, b):\n    return type(a)((*a, *b))"
+  },
+  "compose": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "bd0a3dd31ce22dced536ba809f74f24fda18959c630c6879d3e23867eda5ca03",
+   "source": "def compose(outer, inner):\n    return lambda x: outer(inner(x))"
+  },
+  "connect": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d448bd11a6fed0c08d58dbccdea6ff1c346cf827cb95dcec649d9ef852d0360a",
+   "source": "def connect(a, b):\n    ai, aj = a\n    bi, bj = b\n    si = min(ai, bi)\n    ei = max(ai, bi) + 1\n    sj = min(aj, bj)\n    ej = max(aj, bj) + 1\n    if ai == bi:\n        return frozenset(((ai, j) for j in range(sj, ej)))\n    elif aj == bj:\n        return frozenset(((i, aj) for i in range(si, ei)))\n    elif bi - ai == bj - aj:\n        return frozenset(((i, j) for i, j in zip(range(si, ei), range(sj, ej))))\n    elif bi - ai == aj - bj:\n        return frozenset(((i, j) for i, j in zip(range(si, ei), range(ej - 1, sj - 1, -1))))\n    return frozenset()"
+  },
+  "contained": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "06fa12a9344d65d743a67c7b9850b3881f37ef97ae956a1a7436f45a9bfc9d71",
+   "source": "def contained(value, container):\n    return value in container"
+  },
+  "corners": {
+   "deps": [
+    "llcorner",
+    "lrcorner",
+    "ulcorner",
+    "urcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "409e463ae1025bc0f04a7cfaec1d71cba7085baa31ff630e6b7d13ad7b53fa5a",
+   "source": "def corners(patch):\n    return frozenset({ulcorner(patch), urcorner(patch), llcorner(patch), lrcorner(patch)})"
+  },
+  "cover": {
+   "deps": [
+    "fill",
+    "mostcolor",
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "f8905ea1a317d1ba6b4e2eeae0a7fa3b8aaae775e9bea810212c37590a13e786",
+   "source": "def cover(grid, patch):\n    return fill(grid, mostcolor(grid), toindices(patch))"
+  },
+  "crement": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "dc632f6fb74663d27d304145d192623cd1dee9b2056542f141208cc01b20ea7f",
+   "source": "def crement(x):\n    if isinstance(x, int):\n        return 0 if x == 0 else x + 1 if x > 0 else x - 1\n    return (0 if x[0] == 0 else x[0] + 1 if x[0] > 0 else x[0] - 1, 0 if x[1] == 0 else x[1] + 1 if x[1] > 0 else x[1] - 1)"
+  },
+  "crop": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "c44054e61e0f900454d654ba4535095f28bb92f0b1ca868b4f06e21461474d57",
+   "source": "def crop(grid, start, dims):\n    return tuple((r[start[1]:start[1] + dims[1]] for r in grid[start[0]:start[0] + dims[0]]))"
+  },
+  "decrement": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "14f4ade751f0f0bee3000c4c55e781911dc7bf243011e6397d43e525eed4b949",
+   "source": "def decrement(x):\n    return x - 1 if isinstance(x, int) else (x[0] - 1, x[1] - 1)"
+  },
+  "dedupe": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "c5d5b9c4975c692291be58447697e99fb967831b605e574bc8af5f16a50fbae3",
+   "source": "def dedupe(tup):\n    return tuple((e for i, e in enumerate(tup) if tup.index(e) == i))"
+  },
+  "delta": {
+   "deps": [
+    "backdrop",
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "20486cde15cdb59f380aeaf68a767d204c8ab764ffd82b31d93d609bc01b24b9",
+   "source": "def delta(patch):\n    if len(patch) == 0:\n        return frozenset({})\n    return backdrop(patch) - toindices(patch)"
+  },
+  "difference": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3ce36968b5ab337282374cbf56054a0475bd093e8207935d32c0171aa7c312d0",
+   "source": "def difference(a, b):\n    return type(a)((e for e in a if e not in b))"
+  },
+  "divide": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "116d6d44f26be57a4706f96d59e043352d589a2c3ecd086865e8839f7bcb85da",
+   "source": "def divide(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a // b\n    elif isinstance(a, tuple) and isinstance(b, tuple):\n        return (a[0] // b[0], a[1] // b[1])\n    elif isinstance(a, int) and isinstance(b, tuple):\n        return (a // b[0], a // b[1])\n    return (a[0] // b, a[1] // b)"
+  },
+  "dmirror": {
+   "deps": [
+    "ulcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0adba0a86f0299cadc94e2677656cecb93202cdfb417e03e506fef3109dfb846",
+   "source": "def dmirror(piece):\n    if isinstance(piece, tuple):\n        return tuple(zip(*piece))\n    a, b = ulcorner(piece)\n    if isinstance(next(iter(piece))[1], tuple):\n        return frozenset(((v, (j - b + a, i - a + b)) for v, (i, j) in piece))\n    return frozenset(((j - b + a, i - a + b) for i, j in piece))"
+  },
+  "dneighbors": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d4bc2e599b3b60c3040c9840ebd1cd1a799c5f28d617a094c0eee217ddf68a69",
+   "source": "def dneighbors(loc):\n    return frozenset({(loc[0] - 1, loc[1]), (loc[0] + 1, loc[1]), (loc[0], loc[1] - 1), (loc[0], loc[1] + 1)})"
+  },
+  "double": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "bf7e2b3243719c9dac477ec7fa65803870752e82e2c91c7da34468f37fc458c2",
+   "source": "def double(n):\n    return n * 2 if isinstance(n, int) else (n[0] * 2, n[1] * 2)"
+  },
+  "either": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "936b32205c6b30920b7b48d02e88bf7f1ef9433f496374ec562a3b2721b81ce2",
+   "source": "def either(a, b):\n    return a or b"
+  },
+  "equality": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3b26730531a2d143e8caf529919153af1094040af2812fc244b5618cbc420431",
+   "source": "def equality(a, b):\n    return a == b"
+  },
+  "even": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "ce0bc0db34fea186204bdf23938f8c15a8ba68a748861931a2e84b0badf3860d",
+   "source": "def even(n):\n    return n % 2 == 0"
+  },
+  "extract": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "f91cfad37482c2c78280c51bac12259ca16c4ca4cabcdf3085457eccacbf0b21",
+   "source": "def extract(container, condition):\n    return next((e for e in container if condition(e)))"
+  },
+  "fgpartition": {
+   "deps": [
+    "mostcolor",
+    "palette"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "2defd646a0eef805dfa2f5da83d1a58515ef844ebdfb97f5c86e3b67a687f7c0",
+   "source": "def fgpartition(grid):\n    return frozenset((frozenset(((v, (i, j)) for i, r in enumerate(grid) for j, v in enumerate(r) if v == value)) for value in palette(grid) - {mostcolor(grid)}))"
+  },
+  "fill": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "393da76bae713041316114b9bdff8c826faafeb2a7b1464e9c0be76259f6a546",
+   "source": "def fill(grid, value, patch):\n    h, w = (len(grid), len(grid[0]))\n    grid_filled = list((list(row) for row in grid))\n    for i, j in toindices(patch):\n        if 0 <= i < h and 0 <= j < w:\n            grid_filled[i][j] = value\n    return tuple((tuple(row) for row in grid_filled))"
+  },
+  "first": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "f7664a313bac646561dce7a1c43684dc9f64bd395bc1eb4cc729b5ffbb6c63f1",
+   "source": "def first(container):\n    return next(iter(container))"
+  },
+  "flip": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e8cca59ea4efa5fad9b207e097132546ff9d6bc90129fd9d97e55a4472e2e130",
+   "source": "def flip(b):\n    return not b"
+  },
+  "fork": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3197c63dbcc8d7ed56043c387103b7ac02bc7ccbe5e94ce8a547fd86d5e9af5e",
+   "source": "def fork(outer, a, b):\n    return lambda x: outer(a(x), b(x))"
+  },
+  "frontiers": {
+   "deps": [
+    "dmirror"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "b9c3be2ecc37f337fe93e17cca8f337765e18f931b8ca44f28968c1b90a826bc",
+   "source": "def frontiers(grid):\n    h, w = (len(grid), len(grid[0]))\n    row_indices = tuple((i for i, r in enumerate(grid) if len(set(r)) == 1))\n    column_indices = tuple((j for j, c in enumerate(dmirror(grid)) if len(set(c)) == 1))\n    hfrontiers = frozenset({frozenset({(grid[i][j], (i, j)) for j in range(w)}) for i in row_indices})\n    vfrontiers = frozenset({frozenset({(grid[i][j], (i, j)) for i in range(h)}) for j in column_indices})\n    return hfrontiers | vfrontiers"
+  },
+  "gravitate": {
+   "deps": [
+    "adjacent",
+    "center",
+    "shift",
+    "vmatching"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9fa75d0343ffad721a2b2f7502a3134d92766664a2effe29648a8c7ef26d97d1",
+   "source": "def gravitate(source, destination):\n    si, sj = center(source)\n    di, dj = center(destination)\n    i, j = (0, 0)\n    if vmatching(source, destination):\n        i = 1 if si < di else -1\n    else:\n        j = 1 if sj < dj else -1\n    gi, gj = (i, j)\n    c = 0\n    while not adjacent(source, destination) and c < 42:\n        c += 1\n        gi += i\n        gj += j\n        source = shift(source, (i, j))\n    return (gi - i, gj - j)"
+  },
+  "greater": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "a0e4955cfa03928f10cb7e15117fd9cbcef2ce7e83cf6cc33cdf8ed2ab6ba078",
+   "source": "def greater(a, b):\n    return a > b"
+  },
+  "halve": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9282c969f63184ecfbc9494d1ca4699a71c957f2bb7a4372673a5ff941a68b3c",
+   "source": "def halve(n):\n    return n // 2 if isinstance(n, int) else (n[0] // 2, n[1] // 2)"
+  },
+  "hconcat": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "62d146b41d782a11f80630280770700c52a5d968bd176dcbd53b7c838860878a",
+   "source": "def hconcat(a, b):\n    return tuple((i + j for i, j in zip(a, b)))"
+  },
+  "height": {
+   "deps": [
+    "lowermost",
+    "uppermost"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "297db312979ccf4e440b0912fd0a16ccf4d64bc75bc7d748db5e6342cd85d420",
+   "source": "def height(piece):\n    if len(piece) == 0:\n        return 0\n    if isinstance(piece, tuple):\n        return len(piece)\n    return lowermost(piece) - uppermost(piece) + 1"
+  },
+  "hfrontier": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "75275f3659fc7a525171929d7b361628355fba9095276bda265ca6194810a2d3",
+   "source": "def hfrontier(location):\n    return frozenset(((location[0], j) for j in range(30)))"
+  },
+  "hline": {
+   "deps": [
+    "height",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "05c642224c091c6527546087f31d79d6635b79bf711ad0f86cb363c8ff88ae27",
+   "source": "def hline(patch):\n    return width(patch) == len(patch) and height(patch) == 1"
+  },
+  "hmatching": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "10c1ecf1412cd772993759643393e5ee3e94eaa57063f49769ecbd711d4a8dc5",
+   "source": "def hmatching(a, b):\n    return len(set((i for i, j in toindices(a))) & set((i for i, j in toindices(b)))) > 0"
+  },
+  "hmirror": {
+   "deps": [
+    "lrcorner",
+    "ulcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "5d9c282ffd695ed30c98778465860e115595b63e88013b0c036b62a49b21af4b",
+   "source": "def hmirror(piece):\n    if isinstance(piece, tuple):\n        return piece[::-1]\n    d = ulcorner(piece)[0] + lrcorner(piece)[0]\n    if isinstance(next(iter(piece))[1], tuple):\n        return frozenset(((v, (d - i, j)) for v, (i, j) in piece))\n    return frozenset(((d - i, j) for i, j in piece))"
+  },
+  "hperiod": {
+   "deps": [
+    "normalize",
+    "shift",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "94602126f9f981121a4502412bc7797b1716cd7a0f5a361912e439a8d4ac5cd1",
+   "source": "def hperiod(obj):\n    normalized = normalize(obj)\n    w = width(normalized)\n    for p in range(1, w):\n        offsetted = shift(normalized, (0, -p))\n        pruned = frozenset({(c, (i, j)) for c, (i, j) in offsetted if j >= 0})\n        if pruned.issubset(normalized):\n            return p\n    return w"
+  },
+  "hsplit": {
+   "deps": [
+    "crop"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "a8ebc219ec4dd20efe46066fa789d9232e8c4caa1b3f9e272d0157f2b12cba8c",
+   "source": "def hsplit(grid, n):\n    h, w = (len(grid), len(grid[0]) // n)\n    offset = len(grid[0]) % n != 0\n    return tuple((crop(grid, (0, w * i + i * offset), (h, w)) for i in range(n)))"
+  },
+  "hupscale": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "75093cf83bf2f488cbebf21737207df3f3f453cf58fd7a491f74978ca7865ca6",
+   "source": "def hupscale(grid, factor):\n    g = tuple()\n    for row in grid:\n        r = tuple()\n        for value in row:\n            r = r + tuple((value for num in range(factor)))\n        g = g + (r,)\n    return g"
+  },
+  "identity": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "ed5596b8fd9ae35fd71f791512f51c4d8875a3ab7ed6d72a4033bcc15cfe530b",
+   "source": "def identity(x):\n    return x"
+  },
+  "inbox": {
+   "deps": [
+    "leftmost",
+    "lowermost",
+    "rightmost",
+    "uppermost"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "1a5c3e90db35afba9b8ad216b236e4f0fad4489cc2c5be2d9b20325825ed3f3a",
+   "source": "def inbox(patch):\n    ai, aj = (uppermost(patch) + 1, leftmost(patch) + 1)\n    bi, bj = (lowermost(patch) - 1, rightmost(patch) - 1)\n    si, sj = (min(ai, bi), min(aj, bj))\n    ei, ej = (max(ai, bi), max(aj, bj))\n    vlines = {(i, sj) for i in range(si, ei + 1)} | {(i, ej) for i in range(si, ei + 1)}\n    hlines = {(si, j) for j in range(sj, ej + 1)} | {(ei, j) for j in range(sj, ej + 1)}\n    return frozenset(vlines | hlines)"
+  },
+  "increment": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "b21795f2bbd0d66242431ff0ba8803618408b80e86484561097d221cf78f2297",
+   "source": "def increment(x):\n    return x + 1 if isinstance(x, int) else (x[0] + 1, x[1] + 1)"
+  },
+  "index": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "53ebf62fb04de76c6fbf85d2a525e01b6cc3cf600f6a7a0ef6aa79ee95c92e1e",
+   "source": "def index(grid, loc):\n    i, j = loc\n    h, w = (len(grid), len(grid[0]))\n    if not (0 <= i < h and 0 <= j < w):\n        return None\n    return grid[loc[0]][loc[1]]"
+  },
+  "ineighbors": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "abb0f4eede4d1fa51e46ad88056bb2a69dddf07342fff0f23767b0486d671ccd",
+   "source": "def ineighbors(loc):\n    return frozenset({(loc[0] - 1, loc[1] - 1), (loc[0] - 1, loc[1] + 1), (loc[0] + 1, loc[1] - 1), (loc[0] + 1, loc[1] + 1)})"
+  },
+  "initset": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "c0e05db2d1f67f174b812f691887bd1f7cc535786d883f741b423180f0bd3a6f",
+   "source": "def initset(value):\n    return frozenset({value})"
+  },
+  "insert": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "97011c73468a8f79dbce8d13a582d29a566e9b5dd2826dcbbb80d32a32dccae5",
+   "source": "def insert(value, container):\n    return container.union(frozenset({value}))"
+  },
+  "intersection": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "def0723a64cbc9dc3c803fd6aa38836e26913e6f21890fbc9e827f830435fb2c",
+   "source": "def intersection(a, b):\n    return a & b"
+  },
+  "interval": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "7de79400062ef157c52269c799720562a90cd98edd75445abed59350b1f48c0f",
+   "source": "def interval(start, stop, step):\n    return tuple(range(start, stop, step))"
+  },
+  "invert": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "509bf1242ca18225454ad4057de3cae2b404b3777bac559b3a7a1811cd6d9884",
+   "source": "def invert(n):\n    return -n if isinstance(n, int) else (-n[0], -n[1])"
+  },
+  "last": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "a7a61fde15864eef9642cec399be97c0bee49ed8ca1325ba7e24586d38ccb595",
+   "source": "def last(container):\n    return max(enumerate(container))[1]"
+  },
+  "lbind": {
+   "deps": [],
+   "equivalent": true,
+   "proof": {
+    "all_equal": true,
+    "cases": 16,
+    "cases_raising": 3,
+    "cases_sha256": "a33232715e92fe173dd9db2b75729e3f442b643588e4ea866cd5c39557422224",
+    "different": 0,
+    "why": "refused_attribute: attribute .__code__ is not allowed"
+   },
+   "sha256": "962c0007b9ba73879b1bda7e0bfd1c68edb713bf34922f96e0c088395e50191d",
+   "source": "def lbind(function, fixed):\n    return lambda *rest: function(fixed, *rest)"
+  },
+  "leastcolor": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "1e3ca0b96beccc37e2024e9c0bdc4117e5aabecaefc93ca89acf9748bfa55dbc",
+   "source": "def leastcolor(element):\n    values = [v for r in element for v in r] if isinstance(element, tuple) else [v for v, _ in element]\n    return min(set(values), key=values.count)"
+  },
+  "leastcommon": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0901a8a92e4797430bb326194a790f27665e9fbe92bc3de4558a4f8ab87f9452",
+   "source": "def leastcommon(container):\n    return min(set(container), key=container.count)"
+  },
+  "lefthalf": {
+   "deps": [
+    "rot270",
+    "rot90",
+    "tophalf"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0bd8062f083d305b59d162c8a6c8814867f8aab05e67e86664f8e62a68ba5b63",
+   "source": "def lefthalf(grid):\n    return rot270(tophalf(rot90(grid)))"
+  },
+  "leftmost": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d8c5c95c397cac817ecb9673b43ab73ad667e85a1886b8eed1f6ae496aa102a3",
+   "source": "def leftmost(patch):\n    return min((j for i, j in toindices(patch)))"
+  },
+  "llcorner": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "776688d7c5af539c4c53e089b9f2064f82b79eb71664c964c55d3707a23108b1",
+   "source": "def llcorner(patch):\n    return tuple(map(lambda ix: {0: max, 1: min}[ix[0]](ix[1]), enumerate(zip(*toindices(patch)))))"
+  },
+  "lowermost": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "8849b78109ebb56135dea2b0455e8a1ab66b4cb7cd30d4043870a1b6a2c50441",
+   "source": "def lowermost(patch):\n    return max((i for i, j in toindices(patch)))"
+  },
+  "lrcorner": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "1c0743a0765828ed823e5e2383a30cc06020ad3510fbe0d3440af19c5a885792",
+   "source": "def lrcorner(patch):\n    return tuple(map(max, zip(*toindices(patch))))"
+  },
+  "manhattan": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e02a821133f59576bbb5c4baccfb4687f354dba8fa39d39d0cd3ed9d8e1dcd71",
+   "source": "def manhattan(a, b):\n    return min((abs(ai - bi) + abs(aj - bj) for ai, aj in toindices(a) for bi, bj in toindices(b)))"
+  },
+  "mapply": {
+   "deps": [
+    "apply",
+    "merge"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "7ce9fc36880924fd96d8e0c664105c8e9937202cffbc255fa6ce216544b7dab7",
+   "source": "def mapply(function, container):\n    return merge(apply(function, container))"
+  },
+  "matcher": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "07daa03322ca22f477c9b54c1445175b73e40d2a51b5dd060d1c2576ddeb8ee4",
+   "source": "def matcher(function, target):\n    return lambda x: function(x) == target"
+  },
+  "maximum": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3e96edcca3495dd37dd4825e49955420522523f4f639f44cefeca7c67ab3d51a",
+   "source": "def maximum(container):\n    return max(container, default=0)"
+  },
+  "merge": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e0de292809ea2a264bc74c6597f8e5ac1754f374e9328aea87073a184f3b73c8",
+   "source": "def merge(containers):\n    return type(containers)((e for c in containers for e in c))"
+  },
+  "mfilter": {
+   "deps": [
+    "merge",
+    "sfilter"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "573e1a91a9d93fcf1c96f2e2cb21c342adb5196d3dc6152cd3c1d863c5388669",
+   "source": "def mfilter(container, function):\n    return merge(sfilter(container, function))"
+  },
+  "minimum": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9dd227c3c0c05a2b26c558883f0ac88b6dd7e8afb7fbf76105d6b32374706797",
+   "source": "def minimum(container):\n    return min(container, default=0)"
+  },
+  "mostcolor": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "8f764d35b5e514184a6ad747521cecf717bcabb13a4b4d59a471a22ee8aade65",
+   "source": "def mostcolor(element):\n    values = [v for r in element for v in r] if isinstance(element, tuple) else [v for v, _ in element]\n    return max(set(values), key=values.count)"
+  },
+  "move": {
+   "deps": [
+    "cover",
+    "paint",
+    "shift"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "8e9ea2ff3e4bf0709034a58f5d276d33e4c2f70b92b0f2c9167f472a553c9d11",
+   "source": "def move(grid, obj, offset):\n    return paint(cover(grid, obj), shift(obj, offset))"
+  },
+  "mpapply": {
+   "deps": [
+    "merge",
+    "papply"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "572ba381ea76678a69901a56e0b1bd8bfe6dc8018f2e973692f36d4575f09126",
+   "source": "def mpapply(function, a, b):\n    return merge(papply(function, a, b))"
+  },
+  "multiply": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "291018758ddb3f3e649b4e9cff156ebc2966ea27865f1bfb8cfe9f5d1df476c7",
+   "source": "def multiply(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a * b\n    elif isinstance(a, tuple) and isinstance(b, tuple):\n        return (a[0] * b[0], a[1] * b[1])\n    elif isinstance(a, int) and isinstance(b, tuple):\n        return (a * b[0], a * b[1])\n    return (a[0] * b, a[1] * b)"
+  },
+  "neighbors": {
+   "deps": [
+    "dneighbors",
+    "ineighbors"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9ba522cfdf68c45bc6a329b6df6cfbc5741d2a2ab015108d54c6eb84b7892e47",
+   "source": "def neighbors(loc):\n    return dneighbors(loc) | ineighbors(loc)"
+  },
+  "normalize": {
+   "deps": [
+    "leftmost",
+    "shift",
+    "uppermost"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3855aa66eb2026db57146e7afe12366bde531c360a7245ed6db68d27acbc1b61",
+   "source": "def normalize(patch):\n    if len(patch) == 0:\n        return patch\n    return shift(patch, (-uppermost(patch), -leftmost(patch)))"
+  },
+  "numcolors": {
+   "deps": [
+    "palette"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "26ed6f6b01cf108c0f0c86a8a35e44eaeb8d9fcbe0cd74e3c90fdd144db7b1e3",
+   "source": "def numcolors(element):\n    return len(palette(element))"
+  },
+  "objects": {
+   "deps": [
+    "asindices",
+    "dneighbors",
+    "mostcolor",
+    "neighbors"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "a64903a9e8dacf82cc983af3045f086aeb7096c466000033adfa8090531969a0",
+   "source": "def objects(grid, univalued, diagonal, without_bg):\n    bg = mostcolor(grid) if without_bg else None\n    objs = set()\n    occupied = set()\n    h, w = (len(grid), len(grid[0]))\n    unvisited = asindices(grid)\n    diagfun = neighbors if diagonal else dneighbors\n    for loc in unvisited:\n        if loc in occupied:\n            continue\n        val = grid[loc[0]][loc[1]]\n        if val == bg:\n            continue\n        obj = {(val, loc)}\n        cands = {loc}\n        while len(cands) > 0:\n            neighborhood = set()\n            for cand in cands:\n                v = grid[cand[0]][cand[1]]\n                if val == v if univalued else v != bg:\n                    obj.add((v, cand))\n                    occupied.add(cand)\n                    neighborhood |= {(i, j) for i, j in diagfun(cand) if 0 <= i < h and 0 <= j < w}\n            cands = neighborhood - occupied\n        objs.add(frozenset(obj))\n    return frozenset(objs)"
+  },
+  "occurrences": {
+   "deps": [
+    "normalize",
+    "shape",
+    "shift"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "8fdf6e589567840923063167cae7f501702a1fe1340e3b7d0b02ee6d924dcd9b",
+   "source": "def occurrences(grid, obj):\n    occs = set()\n    normed = normalize(obj)\n    h, w = (len(grid), len(grid[0]))\n    oh, ow = shape(obj)\n    h2, w2 = (h - oh + 1, w - ow + 1)\n    for i in range(h2):\n        for j in range(w2):\n            occurs = True\n            for v, (a, b) in shift(normed, (i, j)):\n                if not (0 <= a < h and 0 <= b < w and (grid[a][b] == v)):\n                    occurs = False\n                    break\n            if occurs:\n                occs.add((i, j))\n    return frozenset(occs)"
+  },
+  "ofcolor": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "413b71d2022246ca1c2cf935aaefbd6ebc9d61c0c59d297880a461b024399454",
+   "source": "def ofcolor(grid, value):\n    return frozenset(((i, j) for i, r in enumerate(grid) for j, v in enumerate(r) if v == value))"
+  },
+  "order": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0b91f5f957174cdf54f1bece6421f06ea72805cef3db6f787900a91e7dbdd89f",
+   "source": "def order(container, compfunc):\n    return tuple(sorted(container, key=compfunc))"
+  },
+  "other": {
+   "deps": [
+    "first",
+    "remove"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "150f47a6561a94144005ed4c6916b3ce4aa0ca55dc1ae52e662d0fc53f2e4b4e",
+   "source": "def other(container, value):\n    return first(remove(value, container))"
+  },
+  "outbox": {
+   "deps": [
+    "leftmost",
+    "lowermost",
+    "rightmost",
+    "uppermost"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "24104d7f0efc4324ba92a9d0a2c435f11b99de73aae6dd39e6382df441ee3fa1",
+   "source": "def outbox(patch):\n    ai, aj = (uppermost(patch) - 1, leftmost(patch) - 1)\n    bi, bj = (lowermost(patch) + 1, rightmost(patch) + 1)\n    si, sj = (min(ai, bi), min(aj, bj))\n    ei, ej = (max(ai, bi), max(aj, bj))\n    vlines = {(i, sj) for i in range(si, ei + 1)} | {(i, ej) for i in range(si, ei + 1)}\n    hlines = {(si, j) for j in range(sj, ej + 1)} | {(ei, j) for j in range(sj, ej + 1)}\n    return frozenset(vlines | hlines)"
+  },
+  "paint": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "46055cb5554d7aff2b0e2f1581b2a40c3b6afec1361fa305e1120e03f34d677a",
+   "source": "def paint(grid, obj):\n    h, w = (len(grid), len(grid[0]))\n    grid_painted = list((list(row) for row in grid))\n    for value, (i, j) in obj:\n        if 0 <= i < h and 0 <= j < w:\n            grid_painted[i][j] = value\n    return tuple((tuple(row) for row in grid_painted))"
+  },
+  "pair": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e764f0da5f54b4bb0d9a67e2992fcac7e4a4a5dd2a6c804d311f99b59308dd2d",
+   "source": "def pair(a, b):\n    return tuple(zip(a, b))"
+  },
+  "palette": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "5de2524b1ece16fc4020958fbb692fa0c05a5b9f11e6bc8a405f39263a101149",
+   "source": "def palette(element):\n    if isinstance(element, tuple):\n        return frozenset({v for r in element for v in r})\n    return frozenset({v for v, _ in element})"
+  },
+  "papply": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "7c1c322b63170c4a9b308dc2c15ca0f31c63bf2b01e3c1602817d99c666471a4",
+   "source": "def papply(function, a, b):\n    return tuple((function(i, j) for i, j in zip(a, b)))"
+  },
+  "partition": {
+   "deps": [
+    "palette"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "30e55c0e39c17dd10984b006c356eb297344d8ea33f4f0166fe3c5ba45c6ac9b",
+   "source": "def partition(grid):\n    return frozenset((frozenset(((v, (i, j)) for i, r in enumerate(grid) for j, v in enumerate(r) if v == value)) for value in palette(grid)))"
+  },
+  "portrait": {
+   "deps": [
+    "height",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9311e609e88ad7bdd358b525464662bed633ee31d04c77b8f0a9ba860ea3ffda",
+   "source": "def portrait(piece):\n    return height(piece) > width(piece)"
+  },
+  "position": {
+   "deps": [
+    "center",
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "a1ddfcae40a46db4b7d055e8d62c8310dfd92d0959b659c2a5ca72c7637a12eb",
+   "source": "def position(a, b):\n    ia, ja = center(toindices(a))\n    ib, jb = center(toindices(b))\n    if ia == ib:\n        return (0, 1 if ja < jb else -1)\n    elif ja == jb:\n        return (1 if ia < ib else -1, 0)\n    elif ia < ib:\n        return (1, 1 if ja < jb else -1)\n    elif ia > ib:\n        return (-1, 1 if ja < jb else -1)"
+  },
+  "positive": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9abb7073c8b710dc309ae3a9183d7965df30d33a9290ddae4fa3ebd4aae418e4",
+   "source": "def positive(x):\n    return x > 0"
+  },
+  "power": {
+   "deps": [
+    "compose"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3ce4831caa9439f92eb9985a5bf853d12050feebb89eff1b97e1156e787ca38d",
+   "source": "def power(function, n):\n    if n == 1:\n        return function\n    return compose(function, power(function, n - 1))"
+  },
+  "prapply": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "7d100b27879b715fd4132eab958ae231864eba682ad1818995777a5d9c8e3c7d",
+   "source": "def prapply(function, a, b):\n    return frozenset((function(i, j) for j in b for i in a))"
+  },
+  "product": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9432a8c15b835afc1923a7a9a279970c92ef8d5a0ab186e22e2639d7b5a1880b",
+   "source": "def product(a, b):\n    return frozenset(((i, j) for j in b for i in a))"
+  },
+  "rapply": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "121d358a023c3c201ba950d4cc60cb6a3cd2e27ff3aa1da9e0e760e52a3455ea",
+   "source": "def rapply(functions, value):\n    return type(functions)((function(value) for function in functions))"
+  },
+  "rbind": {
+   "deps": [],
+   "equivalent": true,
+   "proof": {
+    "all_equal": true,
+    "cases": 16,
+    "cases_raising": 3,
+    "cases_sha256": "bdca670b7ea62b34b6b04c34babf8d366917b46366bb370d5d1e04e85e58d681",
+    "different": 0,
+    "why": "refused_attribute: attribute .__code__ is not allowed"
+   },
+   "sha256": "30fea8deac942b227eeebe63ffda8da2e5b246e88ee1536565cf4abb8dd574f3",
+   "source": "def rbind(function, fixed):\n    return lambda *rest: function(*rest, fixed)"
+  },
+  "recolor": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3c3dadad96350ea5b0591c1e19bc74ad1e2038defbcfd49d48232ef879382e5e",
+   "source": "def recolor(value, patch):\n    return frozenset(((value, index) for index in toindices(patch)))"
+  },
+  "remove": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "289c14c8a8921e9be6e585efb09d29991522001c91068fc1a7c97a25638fd098",
+   "source": "def remove(value, container):\n    return type(container)((e for e in container if e != value))"
+  },
+  "repeat": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "ab2a09e8b215f147c1b8ad83fc3732edb4e232a5c3e9c9ae0a03a24069187b50",
+   "source": "def repeat(item, num):\n    return tuple((item for i in range(num)))"
+  },
+  "replace": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "8225fba34355fd239803a31aa3f0a765f80beeff5c95bf32667902093093649f",
+   "source": "def replace(grid, replacee, replacer):\n    return tuple((tuple((replacer if v == replacee else v for v in r)) for r in grid))"
+  },
+  "righthalf": {
+   "deps": [
+    "bottomhalf",
+    "rot270",
+    "rot90"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3942e3df25582a92e052427265b2e012413322122713b3725853e947c23ca145",
+   "source": "def righthalf(grid):\n    return rot270(bottomhalf(rot90(grid)))"
+  },
+  "rightmost": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "cd975bb8300b930835191f511a6cf823196a60a3f6db4f5170f8f60818cb4db8",
+   "source": "def rightmost(patch):\n    return max((j for i, j in toindices(patch)))"
+  },
+  "rot180": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "fd062d33d7fc23629159e586485f820b6ce769e7a7385363a1e4021208477406",
+   "source": "def rot180(grid):\n    return tuple((tuple(row[::-1]) for row in grid[::-1]))"
+  },
+  "rot270": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "353c90a4090ad0cd1223b5288264a7855719c3957d3281349c629793bbe1d433",
+   "source": "def rot270(grid):\n    return tuple((tuple(row[::-1]) for row in zip(*grid[::-1])))[::-1]"
+  },
+  "rot90": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d0c55a4df359e5d76f3c7ef2c528845474a6f23f8c6118e178d6d3273f3386d2",
+   "source": "def rot90(grid):\n    return tuple((row for row in zip(*grid[::-1])))"
+  },
+  "sfilter": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e4bf58c1228489310fed34a663e2c604df20484578baa0ebc4bc1156b4b7cc84",
+   "source": "def sfilter(container, condition):\n    return type(container)((e for e in container if condition(e)))"
+  },
+  "shape": {
+   "deps": [
+    "height",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "69e6695afa3b3091d4d9881d1f0eb4c7157c49763b871c55518f2cfd6262040c",
+   "source": "def shape(piece):\n    return (height(piece), width(piece))"
+  },
+  "shift": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d70a0c06cdb3f92f6373e3ee1865014a9aecf23a7edc8dbe538080daf0f7fba5",
+   "source": "def shift(patch, directions):\n    if len(patch) == 0:\n        return patch\n    di, dj = directions\n    if isinstance(next(iter(patch))[1], tuple):\n        return frozenset(((value, (i + di, j + dj)) for value, (i, j) in patch))\n    return frozenset(((i + di, j + dj) for i, j in patch))"
+  },
+  "shoot": {
+   "deps": [
+    "connect"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e65b94e7d4f3287e525dab63a7ffbe775d43d878f98071298761cff20952463c",
+   "source": "def shoot(start, direction):\n    return connect(start, (start[0] + 42 * direction[0], start[1] + 42 * direction[1]))"
+  },
+  "sign": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "72572d494ceaae3b1c46039fbed2249e52d5bbb240241d5331e94a6e242fa8c3",
+   "source": "def sign(x):\n    if isinstance(x, int):\n        return 0 if x == 0 else 1 if x > 0 else -1\n    return (0 if x[0] == 0 else 1 if x[0] > 0 else -1, 0 if x[1] == 0 else 1 if x[1] > 0 else -1)"
+  },
+  "size": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "886b017deca81f698563a21c215f893b2f819f4ff17c7048b72aa525d23efed9",
+   "source": "def size(container):\n    return len(container)"
+  },
+  "sizefilter": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0293af8c431e275c73d4a1197906be83abebc9a9dca9ed9d5ac079f1eea0210c",
+   "source": "def sizefilter(container, n):\n    return frozenset((item for item in container if len(item) == n))"
+  },
+  "square": {
+   "deps": [
+    "height",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "5298a338d80f59a8736b2eba21a026a1d91979745e4951e3900c6dbb6cda93d8",
+   "source": "def square(piece):\n    return len(piece) == len(piece[0]) if isinstance(piece, tuple) else height(piece) * width(piece) == len(piece) and height(piece) == width(piece)"
+  },
+  "subgrid": {
+   "deps": [
+    "crop",
+    "shape",
+    "ulcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "3116e2508d25d8d510793e55800c3bbd2fdba0b5b0b0e34825037625dc46e85e",
+   "source": "def subgrid(patch, grid):\n    return crop(grid, ulcorner(patch), shape(patch))"
+  },
+  "subtract": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "340b863acfb21a83d2f8e354bda44f8e88b29b043967e4073401efae859fca0b",
+   "source": "def subtract(a, b):\n    if isinstance(a, int) and isinstance(b, int):\n        return a - b\n    elif isinstance(a, tuple) and isinstance(b, tuple):\n        return (a[0] - b[0], a[1] - b[1])\n    elif isinstance(a, int) and isinstance(b, tuple):\n        return (a - b[0], a - b[1])\n    return (a[0] - b, a[1] - b)"
+  },
+  "switch": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "b5b616b99822244599bb5640ea78640b9efecb26f2ebcb6549fa411149cea6c4",
+   "source": "def switch(grid, a, b):\n    return tuple((tuple((v if v != a and v != b else {a: b, b: a}[v] for v in r)) for r in grid))"
+  },
+  "toindices": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "46e66225dd7050c8ca6108f217297a06fe4970f5013e38254e75d982037fb28d",
+   "source": "def toindices(patch):\n    if len(patch) == 0:\n        return frozenset()\n    if isinstance(next(iter(patch))[1], tuple):\n        return frozenset((index for value, index in patch))\n    return patch"
+  },
+  "toivec": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "38e4edd5ce4f5026f9d5745d06e21693d0f848288e22f431f97a156bac2a1d5e",
+   "source": "def toivec(i):\n    return (i, 0)"
+  },
+  "tojvec": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "8e2b6c3b1efa17419dfebc3f46a966c57e1ab3167ac134d0f1b9e51dee908a03",
+   "source": "def tojvec(j):\n    return (0, j)"
+  },
+  "toobject": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "10f231a31d1f2a3a90ab479fc5ef9fefe7ac364198e020b99f610e76e6eef80a",
+   "source": "def toobject(patch, grid):\n    h, w = (len(grid), len(grid[0]))\n    return frozenset(((grid[i][j], (i, j)) for i, j in toindices(patch) if 0 <= i < h and 0 <= j < w))"
+  },
+  "tophalf": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d155648499077eaa7c8dc5a26096bc4791709e932fee3d0270e869f50749bfb9",
+   "source": "def tophalf(grid):\n    return grid[:len(grid) // 2]"
+  },
+  "totuple": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9e84c1451ba501450859ee04b1a07cfca41092c390eab2482509876db83102c5",
+   "source": "def totuple(container):\n    return tuple(container)"
+  },
+  "ulcorner": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "97c6b0fbdf8c735a88e4756957b4745f932e7d6555352825738294075dc35002",
+   "source": "def ulcorner(patch):\n    return tuple(map(min, zip(*toindices(patch))))"
+  },
+  "underfill": {
+   "deps": [
+    "mostcolor",
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "32bcb678df001a468eb8199bd21e45eb99a7bf4d8d4eb3d35fcebaabf125cd49",
+   "source": "def underfill(grid, value, patch):\n    h, w = (len(grid), len(grid[0]))\n    bg = mostcolor(grid)\n    g = list((list(r) for r in grid))\n    for i, j in toindices(patch):\n        if 0 <= i < h and 0 <= j < w:\n            if g[i][j] == bg:\n                g[i][j] = value\n    return tuple((tuple(r) for r in g))"
+  },
+  "underpaint": {
+   "deps": [
+    "mostcolor"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "c307152c67ffbbb653e2d4b2c85a9ada05b6aa7e35f95c0de78b0401291b4404",
+   "source": "def underpaint(grid, obj):\n    h, w = (len(grid), len(grid[0]))\n    bg = mostcolor(grid)\n    g = list((list(r) for r in grid))\n    for value, (i, j) in obj:\n        if 0 <= i < h and 0 <= j < w:\n            if g[i][j] == bg:\n                g[i][j] = value\n    return tuple((tuple(r) for r in g))"
+  },
+  "uppermost": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "2b894807e025eb8842be13a0cd6b9d2faa468960f48e725ec91ef261efd495c7",
+   "source": "def uppermost(patch):\n    return min((i for i, j in toindices(patch)))"
+  },
+  "urcorner": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "80fda9c852b048a018dd9d9b9e7e5647c6fff85fa48fb131160994d25139dc65",
+   "source": "def urcorner(patch):\n    return tuple(map(lambda ix: {0: min, 1: max}[ix[0]](ix[1]), enumerate(zip(*toindices(patch)))))"
+  },
+  "valmax": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "fca9d23b70e19a95bdec18cf6cbb31a4994c7b66cfc7856c2eafe675c21fcfb1",
+   "source": "def valmax(container, compfunc):\n    return compfunc(max(container, key=compfunc, default=0))"
+  },
+  "valmin": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "1a2562bb13f92d745f215999767487e047eee2a9f5d4c71faa85af41da8a12cd",
+   "source": "def valmin(container, compfunc):\n    return compfunc(min(container, key=compfunc, default=0))"
+  },
+  "vconcat": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "09e5b51300da67507bb95cdbd518a301eaf624f8a90e800a30b551eb99191325",
+   "source": "def vconcat(a, b):\n    return a + b"
+  },
+  "vfrontier": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "62d943a09f85334f274e06771e26afd3e57c032fa19bbe48716bb095d8d475a8",
+   "source": "def vfrontier(location):\n    return frozenset(((i, location[1]) for i in range(30)))"
+  },
+  "vline": {
+   "deps": [
+    "height",
+    "width"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0bf548066e24226a1b24d3307956a4d2a65c4828d486175d87a3eaa28769ab83",
+   "source": "def vline(patch):\n    return height(patch) == len(patch) and width(patch) == 1"
+  },
+  "vmatching": {
+   "deps": [
+    "toindices"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "776c3e811796ccf6ba075a5c49662d1a489e064027f8b9b0db5eb513bdd3323c",
+   "source": "def vmatching(a, b):\n    return len(set((j for i, j in toindices(a))) & set((j for i, j in toindices(b)))) > 0"
+  },
+  "vmirror": {
+   "deps": [
+    "lrcorner",
+    "ulcorner"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "4b665ec13dc93caf235ec50d7b88d84080968f23015dcc5a1a2357130446ad50",
+   "source": "def vmirror(piece):\n    if isinstance(piece, tuple):\n        return tuple((row[::-1] for row in piece))\n    d = ulcorner(piece)[1] + lrcorner(piece)[1]\n    if isinstance(next(iter(piece))[1], tuple):\n        return frozenset(((v, (i, d - j)) for v, (i, j) in piece))\n    return frozenset(((i, d - j) for i, j in piece))"
+  },
+  "vperiod": {
+   "deps": [
+    "height",
+    "normalize",
+    "shift"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "e6636b66033cc147f52fb3c1660774252cdafad8afed8f2776e995d2fd513f4c",
+   "source": "def vperiod(obj):\n    normalized = normalize(obj)\n    h = height(normalized)\n    for p in range(1, h):\n        offsetted = shift(normalized, (-p, 0))\n        pruned = frozenset({(c, (i, j)) for c, (i, j) in offsetted if i >= 0})\n        if pruned.issubset(normalized):\n            return p\n    return h"
+  },
+  "vsplit": {
+   "deps": [
+    "crop"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "0b84d5b6c36bbeb4b273de001e9c883e3813743dde95dc33619ac4f80235ab95",
+   "source": "def vsplit(grid, n):\n    h, w = (len(grid) // n, len(grid[0]))\n    offset = len(grid) % n != 0\n    return tuple((crop(grid, (h * i + i * offset, 0), (h, w)) for i in range(n)))"
+  },
+  "vupscale": {
+   "deps": [],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "d4c566717c3d6310077e55b9497e3326c70c3432263595b0cb97d43e3f49547f",
+   "source": "def vupscale(grid, factor):\n    g = tuple()\n    for row in grid:\n        g = g + tuple((row for num in range(factor)))\n    return g"
+  },
+  "width": {
+   "deps": [
+    "leftmost",
+    "rightmost"
+   ],
+   "equivalent": false,
+   "proof": null,
+   "sha256": "9e749c72eeaf723b175db64d72856f81c69ad779177466ea824b14d827e58e70",
+   "source": "def width(piece):\n    if len(piece) == 0:\n        return 0\n    if isinstance(piece, tuple):\n        return len(piece[0])\n    return rightmost(piece) - leftmost(piece) + 1"
+  }
+ },
+ "licence": "arc-dsl (michaelhodel/arc-dsl, commit 635de49), MIT License, Copyright (c) 2023 Michael Hodel",
+ "meta": {
+  "arc_dsl_sha256": "1589a0a036c9378e5708d1d8393152bbde71b115b9d9f4486822d98fcad0bb3a",
+  "characters": 21693,
+  "equivalents": [
+   "lbind",
+   "rbind"
+  ],
+  "g0_sha256": "595be06215798defe5785dd7df8448aa58a2cc4ba3f6055ed9be358d37c8c072",
+  "library_names": 155,
+  "sandbox_sha256": "ca58c6d975a242aae20d5f42bbae685cdba91d5abccf7ad3ad8ee88032f02734",
+  "unsourceable": 0,
+  "with_text": 155
+ },
+ "order": [
+  "identity",
+  "add",
+  "subtract",
+  "multiply",
+  "divide",
+  "invert",
+  "even",
+  "double",
+  "halve",
+  "flip",
+  "equality",
+  "contained",
+  "combine",
+  "intersection",
+  "difference",
+  "dedupe",
+  "order",
+  "repeat",
+  "greater",
+  "size",
+  "merge",
+  "maximum",
+  "minimum",
+  "valmax",
+  "valmin",
+  "argmax",
+  "argmin",
+  "leastcommon",
+  "initset",
+  "both",
+  "either",
+  "increment",
+  "decrement",
+  "crement",
+  "sign",
+  "positive",
+  "toivec",
+  "tojvec",
+  "sfilter",
+  "mfilter",
+  "extract",
+  "totuple",
+  "first",
+  "last",
+  "insert",
+  "remove",
+  "other",
+  "interval",
+  "astuple",
+  "product",
+  "pair",
+  "branch",
+  "compose",
+  "chain",
+  "matcher",
+  "rbind",
+  "lbind",
+  "power",
+  "fork",
+  "apply",
+  "rapply",
+  "mapply",
+  "papply",
+  "mpapply",
+  "prapply",
+  "mostcolor",
+  "leastcolor",
+  "toindices",
+  "uppermost",
+  "lowermost",
+  "height",
+  "leftmost",
+  "rightmost",
+  "width",
+  "shape",
+  "portrait",
+  "colorcount",
+  "colorfilter",
+  "sizefilter",
+  "asindices",
+  "ofcolor",
+  "ulcorner",
+  "urcorner",
+  "llcorner",
+  "lrcorner",
+  "crop",
+  "recolor",
+  "shift",
+  "normalize",
+  "dneighbors",
+  "ineighbors",
+  "neighbors",
+  "objects",
+  "palette",
+  "partition",
+  "fgpartition",
+  "square",
+  "vline",
+  "hline",
+  "hmatching",
+  "vmatching",
+  "manhattan",
+  "adjacent",
+  "bordering",
+  "centerofmass",
+  "numcolors",
+  "color",
+  "toobject",
+  "asobject",
+  "rot90",
+  "rot180",
+  "rot270",
+  "hmirror",
+  "vmirror",
+  "dmirror",
+  "cmirror",
+  "fill",
+  "paint",
+  "underfill",
+  "underpaint",
+  "hupscale",
+  "vupscale",
+  "hconcat",
+  "vconcat",
+  "subgrid",
+  "hsplit",
+  "vsplit",
+  "cellwise",
+  "replace",
+  "switch",
+  "center",
+  "position",
+  "index",
+  "canvas",
+  "corners",
+  "connect",
+  "cover",
+  "move",
+  "tophalf",
+  "bottomhalf",
+  "lefthalf",
+  "righthalf",
+  "vfrontier",
+  "hfrontier",
+  "backdrop",
+  "delta",
+  "gravitate",
+  "inbox",
+  "outbox",
+  "box",
+  "shoot",
+  "occurrences",
+  "frontiers",
+  "hperiod",
+  "vperiod"
+ ],
+ "unsourceable": [],
+ "what": "library text of the system-side grammar's productions (annotations and docstrings removed; hand-written equivalents where the sandbox's static check refuses the original)"
+}

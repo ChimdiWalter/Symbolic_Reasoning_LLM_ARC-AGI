@@ -1,0 +1,118 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "bounding box",
+ "family_size": 16,
+ "held_out_family": true,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "wrapper 1: intact consumer did not run: IndexError"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 249,
+   "B": 311,
+   "R": 124,
+   "UA": 249,
+   "UB": 311,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1245
+  },
+  "preservation_bank_entries": 40,
+  "usability": {
+   "UA_draws": 249,
+   "UA_usable_wrapper_4": 249,
+   "UB_draws": 311,
+   "UB_usable_wrappers_1_to_3": 311,
+   "UB_usable_wrappers_1_to_3_and_5": 311
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "toindices",
+    "2": "mostcolor",
+    "3": "maximum",
+    "4": "last",
+    "5": "color"
+   },
+   "chosen": [
+    "toindices",
+    "mostcolor",
+    "maximum",
+    "last",
+    "color"
+   ],
+   "n_candidates": 19,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1245
+   },
+   "preservation_bank_entries": 40,
+   "reason": "acquisition check: wrapper 1: intact consumer did not run: IndexError",
+   "usability": {
+    "UA_draws": 249,
+    "UA_usable_wrapper_4": 249,
+    "UB_draws": 311,
+    "UB_usable_wrappers_1_to_3": 311,
+    "UB_usable_wrappers_1_to_3_and_5": 311
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "toindices",
+    "mostcolor",
+    "maximum",
+    "last",
+    "color"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "corners"
+}

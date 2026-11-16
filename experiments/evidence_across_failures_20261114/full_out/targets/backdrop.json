@@ -1,0 +1,134 @@
+{
+ "B": 10.0,
+ "dev": true,
+ "development_only": true,
+ "family": "box area",
+ "family_size": 2,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: wrapper 2: intact consumer did not run: StopIteration; a trivial repair passes: arg:patch",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "wrapper 2: intact consumer did not run: StopIteration",
+      "a trivial repair passes: arg:patch"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": [
+      "arg:patch"
+     ]
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 249,
+   "B": 311,
+   "R": 124,
+   "UA": 249,
+   "UB": 311,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1247
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 249,
+   "UA_usable_wrapper_4": 249,
+   "UB_draws": 311,
+   "UB_usable_wrappers_1_to_3": 311,
+   "UB_usable_wrappers_1_to_3_and_5": 311
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "centerofmass",
+    "2": "first",
+    "3": "square",
+    "4": "merge",
+    "5": "asobject"
+   },
+   "chosen": [
+    "centerofmass",
+    "first",
+    "square",
+    "merge",
+    "asobject"
+   ],
+   "n_candidates": 36,
+   "n_eligible": 5,
+   "n_skipped": 3,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": [
+    {
+     "post": "portrait",
+     "reason": "trivial repair passes"
+    },
+    {
+     "post": "box",
+     "reason": "trivial repair passes"
+    },
+    {
+     "post": "shape",
+     "reason": "trivial repair passes"
+    }
+   ]
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1247
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: wrapper 2: intact consumer did not run: StopIteration; a trivial repair passes: arg:patch",
+   "usability": {
+    "UA_draws": 249,
+    "UA_usable_wrapper_4": 249,
+    "UB_draws": 311,
+    "UB_usable_wrappers_1_to_3": 311,
+    "UB_usable_wrappers_1_to_3_and_5": 311
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "centerofmass",
+    "first",
+    "square",
+    "merge",
+    "asobject"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "backdrop"
+}

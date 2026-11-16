@@ -1,0 +1,110 @@
+{
+ "arms": {
+  "1": {
+   "bank": 311,
+   "cpu_s": 0.002,
+   "equal_all_36": false,
+   "expr": "add(FOUR, DOWN)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 1,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 11928,
+   "cpu_s": 0.882,
+   "equal_all_36": false,
+   "expr": "increment(halve(lrcorner(patch)))",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 6,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 28846,
+   "cpu_s": 3.85,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 29949,
+   "cpu_s": 5.67,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 31409,
+   "cpu_s": 18.483,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 28.887,
+ "examples_sha": "13db67c86140b30d",
+ "expr": null,
+ "family": "center",
+ "family_size": 1,
+ "generator": {
+  "draws": 37,
+  "function_pool_excluded": [
+   "center",
+   "gravitate",
+   "position"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 1
+  }
+ },
+ "held_out_family": true,
+ "hidden": [
+  "center"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "height",
+  "leftmost",
+  "uppermost",
+  "width"
+ ],
+ "max_size": 4,
+ "op": "center",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

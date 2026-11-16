@@ -1,0 +1,120 @@
+{
+ "arms": {
+  "1": {
+   "bank": 201,
+   "cpu_s": 0.0,
+   "equal_all_36": false,
+   "expr": "initset(ORIGIN)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 0,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 307,
+   "cpu_s": 0.002,
+   "equal_all_36": false,
+   "expr": "backdrop(patch)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 0,
+   "right": false,
+   "size": 2,
+   "stop": "found",
+   "validation_equal": 17,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 2118,
+   "cpu_s": 0.159,
+   "equal_all_36": false,
+   "expr": "inbox(outbox(patch))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 29,
+   "validation_errors": 1
+  },
+  "6": {
+   "bank": 2207,
+   "cpu_s": 0.158,
+   "equal_all_36": false,
+   "expr": "inbox(outbox(patch))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 29,
+   "validation_errors": 1
+  },
+  "oracle": {
+   "bank": 25680,
+   "cpu_s": 13.817,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 14.136,
+ "examples_sha": "af2c5301323db6fa",
+ "expr": null,
+ "family": "box outlines",
+ "family_size": 3,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "box",
+   "inbox",
+   "outbox"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "box"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "lrcorner",
+  "ulcorner"
+ ],
+ "max_size": 4,
+ "op": "box",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "wrong"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

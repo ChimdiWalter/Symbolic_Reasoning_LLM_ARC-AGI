@@ -1,0 +1,170 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "filtering",
+ "family_size": 5,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "acquisition check: a trivial repair passes: const:final:1",
+ "reason_kind": "acquisition_check",
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "generator",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_1",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_2",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_3",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_4",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    },
+    {
+     "failed": [
+      "a trivial repair passes: const:final:1"
+     ],
+     "ok": false,
+     "source": "setup_redraw_5",
+     "trivial_passing": [
+      "const:final:1"
+     ]
+    }
+   ]
+  },
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 307,
+   "B": 384,
+   "R": 153,
+   "UA": 307,
+   "UB": 384,
+   "dropped_holding_functions": 62,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1538
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 307,
+   "UA_usable_wrapper_4": 229,
+   "UB_draws": 384,
+   "UB_usable_wrappers_1_to_3": 294,
+   "UB_usable_wrappers_1_to_3_and_5": 294
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "asobject",
+    "2": "toivec",
+    "3": "size",
+    "4": "merge",
+    "5": "initset"
+   },
+   "chosen": [
+    "asobject",
+    "toivec",
+    "size",
+    "merge",
+    "initset"
+   ],
+   "n_candidates": 10,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 307,
+    "B": 384,
+    "R": 153,
+    "UA": 307,
+    "UB": 384,
+    "dropped_holding_functions": 62,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1538
+   },
+   "preservation_bank_entries": 48,
+   "reason": "acquisition check: a trivial repair passes: const:final:1",
+   "usability": {
+    "UA_draws": 307,
+    "UA_usable_wrapper_4": 229,
+    "UB_draws": 384,
+    "UB_usable_wrappers_1_to_3": 294,
+    "UB_usable_wrappers_1_to_3_and_5": 294
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "acquisition_check",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "asobject",
+    "toivec",
+    "size",
+    "merge",
+    "initset"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "sizefilter"
+}

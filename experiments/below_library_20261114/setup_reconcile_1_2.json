@@ -1,0 +1,80 @@
+{
+ "author": "Chimdi Walter Ndubuisi",
+ "what": "two setup records of the full roster, operation by operation; nothing run",
+ "old": "SETUP_RECORD_ALL.json",
+ "new": "SETUP_RECORD_ALL_2.json",
+ "operations": 145,
+ "same_names": true,
+ "same_order": true,
+ "operations_differing": 0,
+ "differing": {},
+ "counts_old": {
+  "controls_eligible": 22,
+  "development_names": 20,
+  "development_names_eligible": 17,
+  "eligible": 125,
+  "excluded": 20,
+  "incomplete": 0,
+  "n": 145,
+  "outside_development_by_stratum": {
+   "longer": {
+    "eligible": 80,
+    "excluded_by_kind": {
+     "too_few_usable_pooled_inputs": 10
+    },
+    "n": 90
+   },
+   "short": {
+    "eligible": 28,
+    "excluded_by_kind": {
+     "generator": 4,
+     "too_few_usable_pooled_inputs": 3
+    },
+    "n": 35
+   }
+  }
+ },
+ "counts_new": {
+  "controls_eligible": 22,
+  "development_names": 20,
+  "development_names_eligible": 17,
+  "eligible": 125,
+  "excluded": 20,
+  "incomplete": 0,
+  "n": 145,
+  "outside_development_by_stratum": {
+   "longer": {
+    "eligible": 80,
+    "excluded_by_kind": {
+     "too_few_usable_pooled_inputs": 10
+    },
+    "n": 90
+   },
+   "short": {
+    "eligible": 28,
+    "excluded_by_kind": {
+     "generator": 4,
+     "too_few_usable_pooled_inputs": 3
+    },
+    "n": 35
+   }
+  }
+ },
+ "same_counts": true,
+ "eligible_old": 125,
+ "eligible_new": 125,
+ "not_compared": [
+  "memory",
+  "cpu_s"
+ ],
+ "files_whose_hash_differs_between_the_two_records": [
+  "experiments/below_library_20261114/PROTOCOL.md",
+  "experiments/below_library_20261114/README.md",
+  "experiments/below_library_20261114/after_run_bl.py",
+  "experiments/below_library_20261114/presets_bl.py",
+  "experiments/below_library_20261114/summarize_bl.py",
+  "experiments/below_library_20261114/tests/test_after_run_bl.py",
+  "experiments/below_library_20261114/tests/test_summarize_bl.py"
+ ],
+ "the_same_cohort": true
+}

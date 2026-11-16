@@ -1,0 +1,129 @@
+{
+ "arms": {
+  "1": {
+   "bank": 298,
+   "cpu_s": 0.004,
+   "equal_all_36": false,
+   "expr": "subtract(TWO, UP)",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 2,
+   "right": false,
+   "size": 3,
+   "stop": "found",
+   "validation_equal": 1,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 2210,
+   "cpu_s": 0.063,
+   "equal_all_36": true,
+   "expr": "subtract(a, invert(b))",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 2259,
+   "cpu_s": 0.065,
+   "equal_all_36": true,
+   "expr": "subtract(a, invert(b))",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 2404,
+   "cpu_s": 0.074,
+   "equal_all_36": true,
+   "expr": "subtract(a, invert(b))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 0,
+   "level_completed": 3,
+   "right": true,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 30,
+   "validation_errors": 0
+  },
+  "oracle": {
+   "bank": 2402,
+   "cpu_s": 0.146,
+   "expr": "subtract(a, invert(b))",
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "size": 4,
+   "stop": "found"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 0.353,
+ "examples_sha": "d9a3b6dec92caa06",
+ "expr": "subtract(a, invert(b))",
+ "family": "arithmetic",
+ "family_size": 11,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "add",
+   "crement",
+   "decrement",
+   "divide",
+   "double",
+   "halve",
+   "increment",
+   "invert",
+   "multiply",
+   "sign",
+   "subtract"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "add"
+ ],
+ "in_pilot_subset": true,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "add",
+ "readings": {
+  "1": "wrong",
+  "2": "right",
+  "3": "right",
+  "6": "right"
+ },
+ "regenerated": true,
+ "size": 4,
+ "status": "searched",
+ "stop": "found",
+ "uses_names": [
+  "invert",
+  "subtract"
+ ]
+}

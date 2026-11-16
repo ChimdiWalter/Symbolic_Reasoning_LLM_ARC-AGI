@@ -1,0 +1,1697 @@
+{
+ "0_the_rule": "THE ADMISSION RULE: the frozen first fit of an arm is admitted to the library only if the admission consumer is exact on 6 generator inputs AND on 6 pooled inputs (standard adm_both at n = 6) and the preservation bank is unchanged (only bank entries that run and give a value count). Other standards and other n are measurements.",
+ "B": 10.0,
+ "development_only": false,
+ "development_roster_development_only": {
+  "PRIMARY_acquisition_task_V_against_S": {
+   "S_exact": 0,
+   "V_exact": 0,
+   "cpu_s": {
+    "S_physical": 120.58,
+    "V_counterfactual_to_first_fit": 32.95,
+    "V_physical": 35.61,
+    "note": "each arm has allowance B on the acquisition task; V searches the missing call only, S the whole program"
+   },
+   "decision_rule_met": false,
+   "loss_targets": [],
+   "losses": 0,
+   "n_targets": 17,
+   "p_two_sided_sign_test": 1.0,
+   "targets_where_V_fails_or_S_succeeds": [
+    "add",
+    "backdrop",
+    "box",
+    "color",
+    "hmirror",
+    "lefthalf",
+    "mapply",
+    "mfilter",
+    "numcolors",
+    "objects",
+    "ofcolor",
+    "other",
+    "righthalf",
+    "rot180",
+    "switch",
+    "tophalf",
+    "width"
+   ],
+   "ties": 17,
+   "ties_both": 0,
+   "ties_neither": 17,
+   "win_targets": [],
+   "wins": 0
+  },
+  "admission_table_first_fit_of_V": {
+   "adm_both@12": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_both@3": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_both@6": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_generator@12": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_generator@3": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_generator@6": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_pooled@12": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_pooled@3": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "adm_pooled@6": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "none": {
+    "admitted": 5,
+    "correct_fits": 0,
+    "false_admissions": 5,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "rule": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "same_kind@12": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "same_kind@3": {
+    "admitted": 1,
+    "correct_fits": 0,
+    "false_admissions": 1,
+    "false_rejections": 0,
+    "n_fits": 5
+   },
+   "same_kind@6": {
+    "admitted": 0,
+    "correct_fits": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "n_fits": 5
+   }
+  },
+  "arms": {
+   "H": {
+    "admitted": 0,
+    "correct": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "fit": 5,
+    "fits_but_wrong": 5,
+    "incomplete": 0,
+    "n": 17,
+    "reused": 0,
+    "task_acq_exact": 0
+   },
+   "S": {
+    "contains_standin": 1,
+    "fit": 5,
+    "incomplete": 0,
+    "n": 17,
+    "task_acq_exact": 0
+   },
+   "T": {
+    "admitted": 1,
+    "correct": 1,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "fit": 1,
+    "fits_but_wrong": 0,
+    "incomplete": 0,
+    "n": 17,
+    "reused": 1,
+    "task_acq_exact": 1
+   },
+   "V": {
+    "admitted": 0,
+    "correct": 0,
+    "false_admissions": 0,
+    "false_rejections": 0,
+    "fit": 5,
+    "fits_but_wrong": 5,
+    "incomplete": 0,
+    "n": 17,
+    "reused": 0,
+    "task_acq_exact": 0
+   }
+  },
+  "n_targets": 17,
+  "repair_choice_controls": {
+   "random_0": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "random_1": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "random_2": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "random_3": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "random_4": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "rule": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "s_then_v": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   },
+   "v_then_s": {
+    "cpu_s_sum_all": 153.53,
+    "cpu_s_sum_reached": 0,
+    "n": 17,
+    "reached": 0
+   }
+  },
+  "reuse_costs_targets_where_V_admitted": {},
+  "secondary_reuse_task_declared": {
+   "S_fresh_exact": 2,
+   "V_admitted": 0,
+   "conditional_comparison_fixed_library_10B": {
+    "by_target": {},
+    "exact": 0,
+    "label": "conditional comparison: run only where V admitted something",
+    "n": 0
+   },
+   "n_targets": 17,
+   "no_retention_exact": 2,
+   "retained_V_exact": 0,
+   "retained_against_S_fresh_paired": {
+    "decision_rule_met": false,
+    "first_arm_exact": 0,
+    "loss_targets": [
+     "color",
+     "width"
+    ],
+    "losses": 2,
+    "n_targets": 17,
+    "p_two_sided_sign_test": 0.5,
+    "second_arm_exact": 2,
+    "ties": 15,
+    "ties_both": 0,
+    "ties_neither": 15,
+    "win_targets": [],
+    "wins": 0
+   }
+  },
+  "selection_controls": {
+   "distinct_behaviours_among_fits": {
+    "median": 20,
+    "per_target": {
+     "box": 20,
+     "color": 20,
+     "numcolors": 20,
+     "other": 1,
+     "righthalf": 20
+    },
+    "targets_with_more_than_one": 4
+   },
+   "first_fit_rule": {
+    "admitted_and_correct": 0,
+    "admitted_not_correct": 0,
+    "correct": 0
+   },
+   "n_targets_with_a_fit": 5,
+   "random_among_first_20_fits": [
+    {
+     "admitted_and_correct": 0,
+     "admitted_not_correct": 0,
+     "correct": 0,
+     "seed": 0
+    },
+    {
+     "admitted_and_correct": 0,
+     "admitted_not_correct": 0,
+     "correct": 0,
+     "seed": 1
+    },
+    {
+     "admitted_and_correct": 0,
+     "admitted_not_correct": 0,
+     "correct": 0,
+     "seed": 2
+    },
+    {
+     "admitted_and_correct": 0,
+     "admitted_not_correct": 0,
+     "correct": 0,
+     "seed": 3
+    },
+    {
+     "admitted_and_correct": 0,
+     "admitted_not_correct": 0,
+     "correct": 0,
+     "seed": 4
+    }
+   ]
+  }
+ },
+ "evidence_flags": {
+  "admission_pooled_short": [],
+  "final_pooled_short": [],
+  "note": "such targets are kept (a shortage is found only after the search, and exclusions happen only at setup)"
+ },
+ "flags_consumers": {},
+ "gate_exclusions": {
+  "by_target": {
+   "adjacent": "gate (acquisition): a trivial repair passes: const:final:1, const:xout:2",
+   "crement": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "decrement": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "dneighbors": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "double": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "even": "generator: only 51 of 66 valid examples in 4000 draws",
+   "halve": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "hfrontier": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "identity": "fewer than three consumers (0 eligible of 3 candidates)",
+   "increment": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "ineighbors": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 23 of 23 draws, need 30)",
+   "invert": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "maximum": "too few usable pooled inputs (admission consumer: 5 of 5 draws, need 12; acquisition and reuse consumers together: 7 of 7 draws, need 30)",
+   "merge": "too few usable pooled inputs (admission consumer: 7 of 7 draws, need 12; acquisition and reuse consumers together: 9 of 9 draws, need 30)",
+   "minimum": "too few usable pooled inputs (admission consumer: 6 of 6 draws, need 12; acquisition and reuse consumers together: 7 of 7 draws, need 30)",
+   "neighbors": "too few usable pooled inputs (admission consumer: 17 of 17 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "order": "gate (acquisition): a trivial repair passes: arg:container",
+   "paint": "fewer than three consumers (0 eligible of 42 candidates)",
+   "positive": "generator: only 51 of 66 valid examples in 4000 draws",
+   "rapply": "too few usable pooled inputs (admission consumer: 7 of 320 draws, need 12; acquisition and reuse consumers together: 5 of 400 draws, need 30)",
+   "sign": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "sizefilter": "gate (acquisition): a trivial repair passes: const:xout:2",
+   "toivec": "generator: only 41 of 66 valid examples in 4000 draws",
+   "tojvec": "generator: only 41 of 66 valid examples in 4000 draws",
+   "underpaint": "fewer than three consumers (0 eligible of 41 candidates)",
+   "vfrontier": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)"
+  },
+  "n": 26
+ },
+ "held_out_names_apart": {
+  "excluded_by_gate": [
+   "identity",
+   "maximum",
+   "minimum"
+  ],
+  "names": [
+   "argmax",
+   "argmin",
+   "bottomhalf",
+   "center",
+   "corners",
+   "crop",
+   "height",
+   "hline",
+   "hmatching",
+   "hsplit",
+   "index",
+   "lefthalf",
+   "leftmost",
+   "llcorner",
+   "lowermost",
+   "lrcorner",
+   "move",
+   "objects",
+   "portrait",
+   "replace",
+   "righthalf",
+   "rightmost",
+   "shape",
+   "square",
+   "subgrid",
+   "switch",
+   "tophalf",
+   "ulcorner",
+   "uppermost",
+   "urcorner",
+   "valmax",
+   "valmin",
+   "vline",
+   "vmatching",
+   "vsplit",
+   "width"
+  ],
+  "outcomes": {
+   "argmax": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.015,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.001,
+     "V_cpu_physical_s": 1.952
+    }
+   },
+   "argmin": {
+    "V": {
+     "admitted": true,
+     "correct": true,
+     "fit": true,
+     "reused": true
+    },
+    "primary_acquisition": {
+     "S": true,
+     "S_cpu_physical_s": 4.079,
+     "V": true,
+     "V_cpu_counterfactual_s": 0.459,
+     "V_cpu_physical_s": 1.882
+    }
+   },
+   "bottomhalf": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.001,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.139,
+     "V_cpu_physical_s": 2.139
+    }
+   },
+   "center": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 5.983,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.032,
+     "V_cpu_physical_s": 1.89
+    }
+   },
+   "corners": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.0,
+     "V": false,
+     "V_cpu_counterfactual_s": 1.371,
+     "V_cpu_physical_s": 1.371
+    }
+   },
+   "crop": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.0,
+     "V": false,
+     "V_cpu_counterfactual_s": 10.074,
+     "V_cpu_physical_s": 10.074
+    }
+   },
+   "height": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.007,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.0,
+     "V_cpu_physical_s": 1.158
+    }
+   },
+   "hline": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 1.746,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.092,
+     "V_cpu_physical_s": 1.601
+    }
+   },
+   "hmatching": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.315,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.012,
+     "V_cpu_physical_s": 3.997
+    }
+   },
+   "hsplit": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.002,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.45,
+     "V_cpu_physical_s": 2.45
+    }
+   },
+   "index": {
+    "V": {
+     "admitted": true,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.035,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.004,
+     "V_cpu_physical_s": 3.415
+    }
+   },
+   "lefthalf": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.002,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.425,
+     "V_cpu_physical_s": 2.425
+    }
+   },
+   "leftmost": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.268,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.029,
+     "V_cpu_physical_s": 1.225
+    }
+   },
+   "llcorner": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": true,
+     "S_cpu_physical_s": 0.24,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.026,
+     "V_cpu_physical_s": 1.412
+    }
+   },
+   "lowermost": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.211,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.017,
+     "V_cpu_physical_s": 1.133
+    }
+   },
+   "lrcorner": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.0,
+     "V": false,
+     "V_cpu_counterfactual_s": 1.218,
+     "V_cpu_physical_s": 1.218
+    }
+   },
+   "move": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.001,
+     "V": false,
+     "V_cpu_counterfactual_s": 3.056,
+     "V_cpu_physical_s": 3.056
+    }
+   },
+   "objects": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.001,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.799,
+     "V_cpu_physical_s": 2.799
+    }
+   },
+   "portrait": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.108,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.052,
+     "V_cpu_physical_s": 1.158
+    }
+   },
+   "replace": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.001,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.345,
+     "V_cpu_physical_s": 2.345
+    }
+   },
+   "righthalf": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.14,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.848,
+     "V_cpu_physical_s": 1.212
+    }
+   },
+   "rightmost": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.466,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.024,
+     "V_cpu_physical_s": 2.327
+    }
+   },
+   "shape": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.168,
+     "V": false,
+     "V_cpu_counterfactual_s": 1.172,
+     "V_cpu_physical_s": 1.172
+    }
+   },
+   "square": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 4.688,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.106,
+     "V_cpu_physical_s": 1.184
+    }
+   },
+   "subgrid": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.001,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.939,
+     "V_cpu_physical_s": 2.939
+    }
+   },
+   "switch": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.0,
+     "V": false,
+     "V_cpu_counterfactual_s": 3.343,
+     "V_cpu_physical_s": 3.343
+    }
+   },
+   "tophalf": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.0,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.687,
+     "V_cpu_physical_s": 2.687
+    }
+   },
+   "ulcorner": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.279,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.36,
+     "V_cpu_physical_s": 1.735
+    }
+   },
+   "uppermost": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.114,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.071,
+     "V_cpu_physical_s": 0.086
+    }
+   },
+   "urcorner": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": true,
+     "S_cpu_physical_s": 0.298,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.084,
+     "V_cpu_physical_s": 1.263
+    }
+   },
+   "valmax": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.114,
+     "V": true,
+     "V_cpu_counterfactual_s": 0.035,
+     "V_cpu_physical_s": 0.223
+    }
+   },
+   "valmin": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.114,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.017,
+     "V_cpu_physical_s": 1.198
+    }
+   },
+   "vline": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 1.526,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.084,
+     "V_cpu_physical_s": 1.2
+    }
+   },
+   "vmatching": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": true,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 0.164,
+     "V": false,
+     "V_cpu_counterfactual_s": 0.009,
+     "V_cpu_physical_s": 2.375
+    }
+   },
+   "vsplit": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.0,
+     "V": false,
+     "V_cpu_counterfactual_s": 2.009,
+     "V_cpu_physical_s": 2.009
+    }
+   },
+   "width": {
+    "V": {
+     "admitted": false,
+     "correct": false,
+     "fit": false,
+     "reused": false
+    },
+    "primary_acquisition": {
+     "S": false,
+     "S_cpu_physical_s": 10.139,
+     "V": false,
+     "V_cpu_counterfactual_s": 1.315,
+     "V_cpu_physical_s": 1.315
+    }
+   }
+  }
+ },
+ "incomplete_infrastructure": {},
+ "label": "development study: the operations study's outcomes for these operations were known before this protocol was frozen, so this is not an untouched confirmation over operations. Arm H's program text names the missing operation, so H is a budget mixture of V and S and not a clean test of localisation. A post that loses information cannot identify X, so correct is always checked directly against X and kept apart from reused.",
+ "n_done": 119,
+ "n_excluded_by_gate": 26,
+ "n_incomplete_infrastructure": 0,
+ "n_listed": 145,
+ "n_not_yet_run": 0,
+ "outside_development_roster": {
+  "PRIMARY_acquisition_task_V_against_S": {
+   "S_exact": 6,
+   "V_exact": 9,
+   "cpu_s": {
+    "S_physical": 628.8,
+    "V_counterfactual_to_first_fit": 145.17,
+    "V_physical": 217.25,
+    "note": "each arm has allowance B on the acquisition task; V searches the missing call only, S the whole program"
+   },
+   "decision_rule_met": false,
+   "loss_targets": [
+    "first",
+    "llcorner",
+    "urcorner"
+   ],
+   "losses": 3,
+   "n_targets": 102,
+   "p_two_sided_sign_test": 0.5078125,
+   "targets_where_V_fails_or_S_succeeds": [
+    "apply",
+    "argmax",
+    "argmin",
+    "asindices",
+    "asobject",
+    "astuple",
+    "bordering",
+    "bottomhalf",
+    "branch",
+    "cellwise",
+    "center",
+    "centerofmass",
+    "cmirror",
+    "colorcount",
+    "colorfilter",
+    "combine",
+    "connect",
+    "contained",
+    "corners",
+    "cover",
+    "crop",
+    "dedupe",
+    "delta",
+    "difference",
+    "divide",
+    "dmirror",
+    "extract",
+    "fgpartition",
+    "fill",
+    "first",
+    "frontiers",
+    "gravitate",
+    "greater",
+    "hconcat",
+    "height",
+    "hline",
+    "hmatching",
+    "hperiod",
+    "hsplit",
+    "hupscale",
+    "inbox",
+    "index",
+    "initset",
+    "insert",
+    "intersection",
+    "interval",
+    "last",
+    "leastcolor",
+    "leastcommon",
+    "leftmost",
+    "llcorner",
+    "lowermost",
+    "lrcorner",
+    "manhattan",
+    "mostcolor",
+    "move",
+    "mpapply",
+    "multiply",
+    "normalize",
+    "occurrences",
+    "outbox",
+    "palette",
+    "papply",
+    "partition",
+    "portrait",
+    "position",
+    "prapply",
+    "recolor",
+    "remove",
+    "repeat",
+    "replace",
+    "rightmost",
+    "rot270",
+    "rot90",
+    "sfilter",
+    "shape",
+    "shift",
+    "shoot",
+    "size",
+    "square",
+    "subgrid",
+    "subtract",
+    "toindices",
+    "toobject",
+    "totuple",
+    "ulcorner",
+    "underfill",
+    "uppermost",
+    "urcorner",
+    "valmin",
+    "vconcat",
+    "vline",
+    "vmatching",
+    "vmirror",
+    "vperiod",
+    "vsplit"
+   ],
+   "ties": 93,
+   "ties_both": 3,
+   "ties_neither": 90,
+   "win_targets": [
+    "canvas",
+    "equality",
+    "pair",
+    "product",
+    "valmax",
+    "vupscale"
+   ],
+   "wins": 6
+  },
+  "admission_table_first_fit_of_V": {
+   "adm_both@12": {
+    "admitted": 6,
+    "correct_fits": 5,
+    "false_admissions": 1,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_both@3": {
+    "admitted": 11,
+    "correct_fits": 5,
+    "false_admissions": 6,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_both@6": {
+    "admitted": 8,
+    "correct_fits": 5,
+    "false_admissions": 3,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_generator@12": {
+    "admitted": 8,
+    "correct_fits": 5,
+    "false_admissions": 3,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_generator@3": {
+    "admitted": 14,
+    "correct_fits": 5,
+    "false_admissions": 9,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_generator@6": {
+    "admitted": 10,
+    "correct_fits": 5,
+    "false_admissions": 5,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_pooled@12": {
+    "admitted": 8,
+    "correct_fits": 5,
+    "false_admissions": 3,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_pooled@3": {
+    "admitted": 14,
+    "correct_fits": 5,
+    "false_admissions": 9,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "adm_pooled@6": {
+    "admitted": 12,
+    "correct_fits": 5,
+    "false_admissions": 7,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "none": {
+    "admitted": 51,
+    "correct_fits": 5,
+    "false_admissions": 46,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "rule": {
+    "admitted": 8,
+    "correct_fits": 5,
+    "false_admissions": 3,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "same_kind@12": {
+    "admitted": 12,
+    "correct_fits": 5,
+    "false_admissions": 7,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "same_kind@3": {
+    "admitted": 19,
+    "correct_fits": 5,
+    "false_admissions": 14,
+    "false_rejections": 0,
+    "n_fits": 51
+   },
+   "same_kind@6": {
+    "admitted": 14,
+    "correct_fits": 5,
+    "false_admissions": 9,
+    "false_rejections": 0,
+    "n_fits": 51
+   }
+  },
+  "arms": {
+   "H": {
+    "admitted": 8,
+    "correct": 5,
+    "false_admissions": 3,
+    "false_rejections": 0,
+    "fit": 52,
+    "fits_but_wrong": 47,
+    "incomplete": 0,
+    "n": 102,
+    "reused": 5,
+    "task_acq_exact": 9
+   },
+   "S": {
+    "contains_standin": 12,
+    "fit": 45,
+    "incomplete": 0,
+    "n": 102,
+    "task_acq_exact": 6
+   },
+   "T": {
+    "admitted": 15,
+    "correct": 11,
+    "false_admissions": 4,
+    "false_rejections": 0,
+    "fit": 27,
+    "fits_but_wrong": 16,
+    "incomplete": 0,
+    "n": 102,
+    "reused": 10,
+    "task_acq_exact": 10
+   },
+   "V": {
+    "admitted": 8,
+    "correct": 5,
+    "false_admissions": 3,
+    "false_rejections": 0,
+    "fit": 51,
+    "fits_but_wrong": 46,
+    "incomplete": 0,
+    "n": 102,
+    "reused": 5,
+    "task_acq_exact": 9
+   }
+  },
+  "n_targets": 102,
+  "repair_choice_controls": {
+   "random_0": {
+    "cpu_s_sum_all": 743.48,
+    "cpu_s_sum_reached": 11.04,
+    "n": 102,
+    "reached": 8
+   },
+   "random_1": {
+    "cpu_s_sum_all": 739.85,
+    "cpu_s_sum_reached": 7.42,
+    "n": 102,
+    "reached": 8
+   },
+   "random_2": {
+    "cpu_s_sum_all": 749.17,
+    "cpu_s_sum_reached": 16.74,
+    "n": 102,
+    "reached": 8
+   },
+   "random_3": {
+    "cpu_s_sum_all": 763.46,
+    "cpu_s_sum_reached": 31.03,
+    "n": 102,
+    "reached": 8
+   },
+   "random_4": {
+    "cpu_s_sum_all": 753.49,
+    "cpu_s_sum_reached": 21.06,
+    "n": 102,
+    "reached": 8
+   },
+   "rule": {
+    "cpu_s_sum_all": 735.55,
+    "cpu_s_sum_reached": 3.12,
+    "n": 102,
+    "reached": 8
+   },
+   "s_then_v": {
+    "cpu_s_sum_all": 773.51,
+    "cpu_s_sum_reached": 41.07,
+    "n": 102,
+    "reached": 8
+   },
+   "v_then_s": {
+    "cpu_s_sum_all": 735.55,
+    "cpu_s_sum_reached": 3.12,
+    "n": 102,
+    "reached": 8
+   }
+  },
+  "reuse_costs_targets_where_V_admitted": {
+   "argmin": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": null,
+    "conditional_comparison_10B": {
+     "cpu_s": 0.381,
+     "exact": false
+    },
+    "fixed_library_B": {
+     "cpu_s": 0.386,
+     "exact": false
+    },
+    "no_retention_exact": false,
+    "no_retention_per_reuse_cpu_s": 0.002,
+    "retained_cost_per_reuse_cpu_s": 0.0024,
+    "retained_fixed_cost_cpu_s": 0.4616,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 0.459,
+     "admission_cpu_s": 0.0022,
+     "deployment_at_reuse_cpu_s": 0.0024,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0003,
+     "preservation_cpu_s": 0.0022
+    },
+    "reused": true
+   },
+   "equality": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": null,
+    "conditional_comparison_10B": {
+     "cpu_s": 0.0,
+     "exact": false
+    },
+    "fixed_library_B": {
+     "cpu_s": 0.001,
+     "exact": false
+    },
+    "no_retention_exact": false,
+    "no_retention_per_reuse_cpu_s": 0.0,
+    "retained_cost_per_reuse_cpu_s": 0.0003,
+    "retained_fixed_cost_cpu_s": 0.1152,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 0.113,
+     "admission_cpu_s": 0.0018,
+     "deployment_at_reuse_cpu_s": 0.0003,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0003,
+     "preservation_cpu_s": 0.0018
+    },
+    "reused": true
+   },
+   "first": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": null,
+    "conditional_comparison_10B": {
+     "cpu_s": 0.0,
+     "exact": false
+    },
+    "fixed_library_B": {
+     "cpu_s": 0.0,
+     "exact": false
+    },
+    "no_retention_exact": false,
+    "no_retention_per_reuse_cpu_s": 0.0,
+    "retained_cost_per_reuse_cpu_s": 0.0001,
+    "retained_fixed_cost_cpu_s": 0.0315,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 0.029,
+     "admission_cpu_s": 0.0022,
+     "deployment_at_reuse_cpu_s": 0.0001,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0002,
+     "preservation_cpu_s": 0.0022
+    },
+    "reused": false
+   },
+   "index": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": null,
+    "conditional_comparison_10B": {
+     "cpu_s": 0.616,
+     "exact": false
+    },
+    "fixed_library_B": {
+     "cpu_s": 0.624,
+     "exact": false
+    },
+    "no_retention_exact": false,
+    "no_retention_per_reuse_cpu_s": 0.022,
+    "retained_cost_per_reuse_cpu_s": 0.0009,
+    "retained_fixed_cost_cpu_s": 0.0063,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 0.004,
+     "admission_cpu_s": 0.002,
+     "deployment_at_reuse_cpu_s": 0.0009,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0002,
+     "preservation_cpu_s": 0.002
+    },
+    "reused": false
+   },
+   "pair": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": 2,
+    "conditional_comparison_10B": {
+     "cpu_s": 19.712,
+     "exact": false
+    },
+    "fixed_library_B": {
+     "cpu_s": 10.0,
+     "exact": false
+    },
+    "no_retention_exact": true,
+    "no_retention_per_reuse_cpu_s": 1.007,
+    "retained_cost_per_reuse_cpu_s": 0.0055,
+    "retained_fixed_cost_cpu_s": 1.2434,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 1.241,
+     "admission_cpu_s": 0.0021,
+     "deployment_at_reuse_cpu_s": 0.0055,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0002,
+     "preservation_cpu_s": 0.0021
+    },
+    "reused": true
+   },
+   "product": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": 2,
+    "conditional_comparison_10B": {
+     "cpu_s": 11.413,
+     "exact": true
+    },
+    "fixed_library_B": {
+     "cpu_s": 10.001,
+     "exact": false
+    },
+    "no_retention_exact": true,
+    "no_retention_per_reuse_cpu_s": 1.068,
+    "retained_cost_per_reuse_cpu_s": 0.0102,
+    "retained_fixed_cost_cpu_s": 1.2254,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 1.192,
+     "admission_cpu_s": 0.0329,
+     "deployment_at_reuse_cpu_s": 0.0102,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0004,
+     "preservation_cpu_s": 0.0031
+    },
+    "reused": true
+   },
+   "totuple": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": null,
+    "conditional_comparison_10B": {
+     "cpu_s": 0.01,
+     "exact": true
+    },
+    "fixed_library_B": {
+     "cpu_s": 0.009,
+     "exact": true
+    },
+    "no_retention_exact": true,
+    "no_retention_per_reuse_cpu_s": 0.011,
+    "retained_cost_per_reuse_cpu_s": 0.004,
+    "retained_fixed_cost_cpu_s": 0.0501,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 0.046,
+     "admission_cpu_s": 0.0038,
+     "deployment_at_reuse_cpu_s": 0.004,
+     "library_load_cpu_s": 0.0001,
+     "library_write_cpu_s": 0.0002,
+     "preservation_cpu_s": 0.0026
+    },
+    "reused": false
+   },
+   "vconcat": {
+    "break_even_note": "fixed cost = acquisition to first fit + admission + library write + load (preservation is nested in admission and not added again); smallest n with fixed + n x deployment <= n x no-retention cost; null when not reused or when the no-retention cost is not above the deployment cost; a failed no-retention search counts its allowance",
+    "break_even_reuses": null,
+    "conditional_comparison_10B": {
+     "cpu_s": 2.213,
+     "exact": true
+    },
+    "fixed_library_B": {
+     "cpu_s": 2.377,
+     "exact": true
+    },
+    "no_retention_exact": true,
+    "no_retention_per_reuse_cpu_s": 0.016,
+    "retained_cost_per_reuse_cpu_s": 0.0789,
+    "retained_fixed_cost_cpu_s": 0.0371,
+    "retained_parts": {
+     "acquisition_to_first_fit_cpu_s": 0.034,
+     "admission_cpu_s": 0.0027,
+     "deployment_at_reuse_cpu_s": 0.0789,
+     "library_load_cpu_s": 0.0002,
+     "library_write_cpu_s": 0.0002,
+     "preservation_cpu_s": 0.0023
+    },
+    "reused": true
+   }
+  },
+  "secondary_reuse_task_declared": {
+   "S_fresh_exact": 8,
+   "V_admitted": 8,
+   "conditional_comparison_fixed_library_10B": {
+    "by_target": {
+     "argmin": {
+      "cpu_s": 0.381,
+      "exact": false
+     },
+     "equality": {
+      "cpu_s": 0.0,
+      "exact": false
+     },
+     "first": {
+      "cpu_s": 0.0,
+      "exact": false
+     },
+     "index": {
+      "cpu_s": 0.616,
+      "exact": false
+     },
+     "pair": {
+      "cpu_s": 19.712,
+      "exact": false
+     },
+     "product": {
+      "cpu_s": 11.413,
+      "exact": true
+     },
+     "totuple": {
+      "cpu_s": 0.01,
+      "exact": true
+     },
+     "vconcat": {
+      "cpu_s": 2.213,
+      "exact": true
+     }
+    },
+    "exact": 3,
+    "label": "conditional comparison: run only where V admitted something",
+    "n": 8
+   },
+   "n_targets": 102,
+   "no_retention_exact": 13,
+   "retained_V_exact": 5,
+   "retained_against_S_fresh_paired": {
+    "decision_rule_met": false,
+    "first_arm_exact": 5,
+    "loss_targets": [
+     "dedupe",
+     "lrcorner",
+     "outbox",
+     "partition",
+     "rot270",
+     "totuple",
+     "ulcorner"
+    ],
+    "losses": 7,
+    "n_targets": 102,
+    "p_two_sided_sign_test": 0.548828125,
+    "second_arm_exact": 8,
+    "ties": 91,
+    "ties_both": 1,
+    "ties_neither": 90,
+    "win_targets": [
+     "argmin",
+     "equality",
+     "pair",
+     "product"
+    ],
+    "wins": 4
+   }
+  },
+  "selection_controls": {
+   "distinct_behaviours_among_fits": {
+    "median": 2,
+    "per_target": {
+     "apply": 1,
+     "argmax": 1,
+     "argmin": 1,
+     "bordering": 20,
+     "canvas": 20,
+     "center": 8,
+     "centerofmass": 1,
+     "cmirror": 2,
+     "colorcount": 1,
+     "contained": 2,
+     "cover": 20,
+     "dmirror": 1,
+     "equality": 1,
+     "extract": 1,
+     "first": 1,
+     "greater": 2,
+     "hconcat": 20,
+     "height": 3,
+     "hline": 2,
+     "hmatching": 2,
+     "hperiod": 5,
+     "index": 1,
+     "insert": 20,
+     "leastcolor": 20,
+     "leastcommon": 1,
+     "leftmost": 1,
+     "llcorner": 4,
+     "lowermost": 1,
+     "manhattan": 20,
+     "mostcolor": 20,
+     "outbox": 20,
+     "pair": 1,
+     "palette": 4,
+     "portrait": 13,
+     "position": 1,
+     "product": 1,
+     "recolor": 1,
+     "rightmost": 1,
+     "shoot": 20,
+     "square": 1,
+     "totuple": 20,
+     "ulcorner": 1,
+     "uppermost": 20,
+     "urcorner": 7,
+     "valmax": 20,
+     "valmin": 9,
+     "vconcat": 1,
+     "vline": 2,
+     "vmatching": 2,
+     "vperiod": 1,
+     "vupscale": 1
+    },
+    "targets_with_more_than_one": 28
+   },
+   "first_fit_rule": {
+    "admitted_and_correct": 5,
+    "admitted_not_correct": 3,
+    "correct": 5
+   },
+   "n_targets_with_a_fit": 51,
+   "random_among_first_20_fits": [
+    {
+     "admitted_and_correct": 5,
+     "admitted_not_correct": 4,
+     "correct": 5,
+     "seed": 0
+    },
+    {
+     "admitted_and_correct": 5,
+     "admitted_not_correct": 3,
+     "correct": 5,
+     "seed": 1
+    },
+    {
+     "admitted_and_correct": 5,
+     "admitted_not_correct": 3,
+     "correct": 5,
+     "seed": 2
+    },
+    {
+     "admitted_and_correct": 5,
+     "admitted_not_correct": 3,
+     "correct": 5,
+     "seed": 3
+    },
+    {
+     "admitted_and_correct": 5,
+     "admitted_not_correct": 4,
+     "correct": 5,
+     "seed": 4
+    }
+   ]
+  }
+ },
+ "primary_comparison_note": "the primary comparison is PRIMARY_acquisition_task_V_against_S in the 'outside_development_roster' block; the development block is labelled development only and is never part of it",
+ "roster": "all",
+ "stop_classes_incomplete_vs_allowance_vs_complete_negative": {
+  "H": {
+   "allowance_used_up": 62,
+   "fit": 57
+  },
+  "S": {
+   "allowance_used_up": 69,
+   "fit": 50
+  },
+  "T": {
+   "complete_negative": 91,
+   "fit": 28
+  },
+  "V": {
+   "allowance_used_up": 1,
+   "complete_negative": 62,
+   "fit": 56
+  }
+ },
+ "stop_reasons": {
+  "H": {
+   "allowance_split_used_up": 62,
+   "found": 57
+  },
+  "S": {
+   "budget_cpu": 69,
+   "found": 50
+  },
+  "T": {
+   "found": 28,
+   "size_exhausted": 91
+  },
+  "V": {
+   "budget_cpu": 1,
+   "collected": 17,
+   "size_exhausted": 101
+  }
+ },
+ "total_cpu_s": 2223.1,
+ "total_cpu_s_physical": 2223.1,
+ "what": "VF1 stage A summary (CPU only, invented inputs, no model). Counts are on this run's targets only."
+}

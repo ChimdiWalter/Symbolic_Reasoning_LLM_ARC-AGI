@@ -1,0 +1,113 @@
+{
+ "arms": {
+  "1": {
+   "bank": 10892,
+   "cpu_s": 0.392,
+   "equal_all_36": false,
+   "expr": "sfilter(partition(grid), uppermost)",
+   "function_cap_reached": false,
+   "later_fit_equal": 4,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 18,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 11967,
+   "cpu_s": 0.486,
+   "equal_all_36": false,
+   "expr": "sfilter(partition(grid), uppermost)",
+   "function_cap_reached": false,
+   "later_fit_equal": 3,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 18,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 12386,
+   "cpu_s": 0.583,
+   "equal_all_36": false,
+   "expr": "sfilter(partition(grid), uppermost)",
+   "function_cap_reached": false,
+   "later_fit_equal": 2,
+   "later_fit_errors": 0,
+   "later_fit_n": 3,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 18,
+   "validation_errors": 0
+  },
+  "6": {
+   "bank": 30312,
+   "cpu_s": 2.852,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 32119,
+   "cpu_s": 13.261,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 17.575,
+ "examples_sha": "4b380f7d76729ad0",
+ "expr": null,
+ "family": "partitions by colour",
+ "family_size": 2,
+ "generator": {
+  "draws": 36,
+  "function_pool_excluded": [
+   "fgpartition",
+   "partition"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 0,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "fgpartition"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [
+  "mostcolor",
+  "palette"
+ ],
+ "max_size": 4,
+ "op": "fgpartition",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "wrong",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

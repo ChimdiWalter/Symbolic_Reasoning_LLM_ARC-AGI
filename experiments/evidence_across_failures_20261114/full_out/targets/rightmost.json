@@ -1,0 +1,615 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "s{t(i0,i7),t(i1,i7),t(i4,i5),t(i9,i0),t(i9,i1)}"
+   ],
+   [
+    "s{t(i0,i0),t(i0,i1),t(i0,i2),t(i0,i3),t(i0,i4),t(i0,i5),t(i0,i6),t(i0,i7),t(i0,i8),t(i0,i9),t(i1,i0),t(i1,i1),t(i1,i2),t(i1,i3),t(i1,i4),t(i1,i5),t(i1,i6),t(i1,i7),t(i1,i8),t(i1,i9),t(i10,i0),t(i10,i1),t(i10,i2),t(i10,i3),t(i10,i4),t(i10,i5),t(i10,i6),t(i10,i7),t(i10,i8),t(i10,i9),t(i2,i0),t(i2,i1),...#65d6a884"
+   ],
+   [
+    "s{t(i5,i3),t(i6,i3),t(i7,i2)}"
+   ],
+   [
+    "s{t(i8,t(i0,i10)),t(i8,t(i11,i8)),t(i8,t(i2,i1)),t(i8,t(i5,i8))}"
+   ],
+   [
+    "s{t(i1,i10),t(i3,i6),t(i3,i7),t(i4,i5),t(i5,i8)}"
+   ],
+   [
+    "s{t(i2,t(i0,i0)),t(i2,t(i0,i1)),t(i2,t(i1,i0)),t(i2,t(i1,i1)),t(i2,t(i2,i0)),t(i2,t(i2,i1)),t(i2,t(i3,i0)),t(i2,t(i3,i1)),t(i2,t(i4,i0)),t(i2,t(i4,i1)),t(i2,t(i5,i0)),t(i2,t(i5,i1)),t(i2,t(i6,i0)),t(i2,t(i6,i1)),t(i5,t(i7,i0)),t(i5,t(i7,i1))}"
+   ],
+   [
+    "s{t(i0,i4),t(i10,i2),t(i4,i2)}"
+   ],
+   [
+    "s{t(i1,i4),t(i10,i2),t(i3,i3),t(i5,i2),t(i9,i0)}"
+   ],
+   [
+    "s{t(i0,i4),t(i3,i0),t(i3,i2),t(i3,i4),t(i4,i2),t(i4,i3),t(i7,i0),t(i7,i3)}"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0022,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 950,
+   "bank_at_first_fit": 950,
+   "candidates_tested": 839,
+   "counterexample": {
+    "args": [
+     "s{t(i0,t(i0,i0)),t(i0,t(i0,i2)),t(i0,t(i3,i2)),t(i0,t(i5,i1))}"
+    ],
+    "got": "t(i5,i1)",
+    "index": 0,
+    "want": "i2"
+   },
+   "cpu_s": 0.024,
+   "cpu_to_first_fit": 0.023,
+   "error": null,
+   "expr": "valmax(patch, last)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     13,
+     30
+    ],
+    "pooled": [
+     164,
+     312
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": false,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A1x6": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0017,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 7851,
+   "bank_at_first_fit": 7851,
+   "candidates_tested": 7740,
+   "counterexample": null,
+   "cpu_s": 0.412,
+   "cpu_to_first_fit": 0.412,
+   "error": null,
+   "expr": "valmax(toindices(patch), last)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0043,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_9cc54836",
+    "path": "library/rightmost__A1x6.json",
+    "sha256": "874f0aec2de1270ebe4b981560541458e4a8f6f1c5c8a8485c22f83109c9682c"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     312,
+     312
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A1x9": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0017,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 7879,
+   "bank_at_first_fit": 7879,
+   "candidates_tested": 7768,
+   "counterexample": null,
+   "cpu_s": 0.484,
+   "cpu_to_first_fit": 0.484,
+   "error": null,
+   "expr": "valmax(toindices(patch), last)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0032,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_b4dc26e8",
+    "path": "library/rightmost__A1x9.json",
+    "sha256": "00e35661523ac0ab405f1758e08fcc784c13a438564efcc9c6f480ae84fa14a4"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     312,
+     312
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "tojvec"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0015,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 7851,
+   "bank_at_first_fit": 7851,
+   "candidates_tested": 7740,
+   "counterexample": null,
+   "cpu_s": 0.385,
+   "cpu_to_first_fit": 0.385,
+   "error": null,
+   "expr": "valmax(toindices(patch), last)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0032,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_daf09548",
+    "path": "library/rightmost__A2x3.json",
+    "sha256": "4784735a9bc6180d47b5f4f4def4e026917efa549267cb39f33cb114e3195139"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     312,
+     312
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "increment",
+    "increment",
+    "increment"
+   ]
+  },
+  "A3x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 40,
+    "cpu_s": 0.0016,
+    "generator_exact_at_6": true,
+    "pooled_exact_at_6": true,
+    "rule": true
+   },
+   "admitted": true,
+   "allowance": 10.0,
+   "bank": 7879,
+   "bank_at_first_fit": 7879,
+   "candidates_tested": 7768,
+   "counterexample": null,
+   "cpu_s": 0.43,
+   "cpu_to_first_fit": 0.43,
+   "error": null,
+   "expr": "valmax(toindices(patch), last)",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 3,
+   "library": {
+    "cpu_deployment_s": 0.0031,
+    "hash_ok_after": true,
+    "hash_ok_before": true,
+    "mode": "0o444",
+    "name": "vf_b0e98799",
+    "path": "library/rightmost__A3x3.json",
+    "sha256": "0fa3887f16e7fcabb278369b6f432c7c3a842fa20eae1037d991b07a6aa9dc9c"
+   },
+   "reuse_exact": true,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     312,
+     312
+    ]
+   },
+   "size": 4,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": true
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "tojvec",
+    "tojvec",
+    "tojvec",
+    "increment",
+    "increment",
+    "increment",
+    "sign",
+    "sign",
+    "sign"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 11.49,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'rightmost' is not defined",
+  "error_type": "NameError",
+  "missing_name": "rightmost"
+ },
+ "family": "bounding box",
+ "family_size": 16,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 312,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": true,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 7627,
+    "candidates_tested": 7516,
+    "cpu_s": 0.286,
+    "error": null,
+    "exact_on_final": true,
+    "expr": "valmax(toindices(patch), last)",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 3,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 116222,
+    "candidates_tested": null,
+    "cpu_s": 7.821,
+    "error": null,
+    "exact_on_final": true,
+    "expr": "toivec(valmax(toindices(patch), last))",
+    "fit": true,
+    "function_cap_reached": true,
+    "level_completed": 4,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "2b110c2b61405ac0cdbe0a500ad9503914dcbc778de976d8cd852802ee315a5e",
+  "admission_set": "200b9c338836dfac9f8270ea5d3fc46670b1de5fda78ed7cb2d89b0d6863d3cd",
+  "final_set": "503891f48907538f9625051db92d36f9cbcb288fb25cabcf6d11e000d70c918c",
+  "first_fit_records": "1dd2efbbc5c010a30bd2dabe7808cceb9a5051b1533f3815639d1b1f15c502e9",
+  "libraries": "bc4961b653d112bde64ac975837a2f9ce5af6c4e7e1edcd7abe417a84bc90efa",
+  "reuse_support_set": "cdb039dd22336cc71160e9a614f661042d2bcf4981127ce7f25df7ee0f25c2e2",
+  "setup_record": "8adbb4a28e7fe28954fd70f9be5fe791dc111ac50197c4fc89e88aeb6d4c49c7"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 249,
+   "B": 312,
+   "R": 124,
+   "UA": 249,
+   "UB": 312,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1249
+  },
+  "preservation_bank_entries": 40,
+  "usability": {
+   "UA_draws": 249,
+   "UA_usable_wrapper_4": 249,
+   "UB_draws": 312,
+   "UB_usable_wrappers_1_to_3": 312,
+   "UB_usable_wrappers_1_to_3_and_5": 312
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "tojvec",
+    "2": "increment",
+    "3": "sign",
+    "4": "even",
+    "5": "toivec"
+   },
+   "chosen": [
+    "tojvec",
+    "increment",
+    "sign",
+    "even",
+    "toivec"
+   ],
+   "n_candidates": 13,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 249,
+    "B": 312,
+    "R": 124,
+    "UA": 249,
+    "UB": 312,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1249
+   },
+   "preservation_bank_entries": 40,
+   "reason": null,
+   "usability": {
+    "UA_draws": 249,
+    "UA_usable_wrapper_4": 249,
+    "UB_draws": 312,
+    "UB_usable_wrappers_1_to_3": 312,
+    "UB_usable_wrappers_1_to_3_and_5": 312
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "tojvec",
+    "increment",
+    "sign",
+    "even",
+    "toivec"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "rightmost"
+}

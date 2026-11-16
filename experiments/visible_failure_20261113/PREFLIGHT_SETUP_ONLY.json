@@ -1,0 +1,4245 @@
+{
+ "n": 145,
+ "targets": {
+  "add": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "initset",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.03,
+   "dev": true,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "adjacent": {
+   "consumers": {
+    "acq": "crement",
+    "adm": "flip",
+    "reuse": "invert"
+   },
+   "cpu_s": 0.2,
+   "dev": false,
+   "family": "distance",
+   "held_out_family": false,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": "gate (acquisition): a trivial repair passes: const:final:1, const:xout:2",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "apply": {
+   "consumers": {
+    "acq": "maximum",
+    "adm": "minimum",
+    "reuse": "size"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "mapping",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 289,
+    "admission_draws": 320,
+    "admission_usable": 237
+   }
+  },
+  "argmax": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "toivec",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "largest and smallest of a container",
+   "held_out_family": true,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 263,
+    "admission_draws": 320,
+    "admission_usable": 206
+   }
+  },
+  "argmin": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "flip",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "largest and smallest of a container",
+   "held_out_family": true,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 298,
+    "admission_draws": 320,
+    "admission_usable": 231
+   }
+  },
+  "asindices": {
+   "consumers": {
+    "acq": "partition",
+    "adm": "fgpartition",
+    "reuse": "palette"
+   },
+   "cpu_s": 1.22,
+   "dev": false,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 14,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1292
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "asobject": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "tojvec",
+    "reuse": "partition"
+   },
+   "cpu_s": 1.27,
+   "dev": false,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 17,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1293
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "astuple": {
+   "consumers": {
+    "acq": "invert",
+    "adm": "first",
+    "reuse": "neighbors"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "pairs of integers",
+   "held_out_family": false,
+   "n_candidates": 23,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "backdrop": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "normalize",
+    "reuse": "cmirror"
+   },
+   "cpu_s": 1.53,
+   "dev": true,
+   "family": "box area",
+   "held_out_family": false,
+   "n_candidates": 37,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1247
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "bordering": {
+   "consumers": {
+    "acq": "positive",
+    "adm": "invert",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.19,
+   "dev": false,
+   "family": "bordering",
+   "held_out_family": false,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 399,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "bottomhalf": {
+   "consumers": {
+    "acq": "dedupe",
+    "adm": "first",
+    "reuse": "rot90"
+   },
+   "cpu_s": 0.99,
+   "dev": false,
+   "family": "halves and splits",
+   "held_out_family": true,
+   "n_candidates": 36,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1292
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "box": {
+   "consumers": {
+    "acq": "palette",
+    "adm": "leastcolor",
+    "reuse": "square"
+   },
+   "cpu_s": 1.16,
+   "dev": true,
+   "family": "box outlines",
+   "held_out_family": false,
+   "n_candidates": 37,
+   "n_skipped": 3,
+   "opened_final": false,
+   "pooled": {
+    "A": 248,
+    "B": 311,
+    "R": 124,
+    "UA": 248,
+    "UB": 311,
+    "unique_tuples": 1244
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 248,
+    "admission_usable": 248
+   }
+  },
+  "branch": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "initset",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "branch",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "canvas": {
+   "consumers": {
+    "acq": "height",
+    "adm": "dedupe",
+    "reuse": "minimum"
+   },
+   "cpu_s": 0.05,
+   "dev": false,
+   "family": "canvas",
+   "held_out_family": false,
+   "n_candidates": 24,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "cellwise": {
+   "consumers": {
+    "acq": "tophalf",
+    "adm": "tojvec",
+    "reuse": "toindices"
+   },
+   "cpu_s": 0.13,
+   "dev": false,
+   "family": "cellwise",
+   "held_out_family": false,
+   "n_candidates": 43,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 108,
+    "admission_draws": 320,
+    "admission_usable": 92
+   }
+  },
+  "center": {
+   "consumers": {
+    "acq": "bottomhalf",
+    "adm": "neighbors",
+    "reuse": "vfrontier"
+   },
+   "cpu_s": 1.2,
+   "dev": false,
+   "family": "center",
+   "held_out_family": true,
+   "n_candidates": 23,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1246
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "centerofmass": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "minimum"
+   },
+   "cpu_s": 1.25,
+   "dev": false,
+   "family": "centerofmass",
+   "held_out_family": false,
+   "n_candidates": 12,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "cmirror": {
+   "consumers": {
+    "acq": "centerofmass",
+    "adm": "shape",
+    "reuse": "toindices"
+   },
+   "cpu_s": 1.04,
+   "dev": false,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 28,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 56,
+    "B": 71,
+    "R": 28,
+    "UA": 56,
+    "UB": 71,
+    "unique_tuples": 284
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 56,
+    "admission_usable": 56
+   }
+  },
+  "color": {
+   "consumers": {
+    "acq": "even",
+    "adm": "decrement",
+    "reuse": "crement"
+   },
+   "cpu_s": 1.68,
+   "dev": true,
+   "family": "most and least frequent",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 42,
+    "B": 52,
+    "R": 21,
+    "UA": 42,
+    "UB": 52,
+    "unique_tuples": 210
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 52,
+    "acq_and_reuse_usable": 52,
+    "admission_draws": 42,
+    "admission_usable": 42
+   }
+  },
+  "colorcount": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "invert",
+    "reuse": "crement"
+   },
+   "cpu_s": 0.07,
+   "dev": false,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "colorfilter": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "totuple",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.21,
+   "dev": false,
+   "family": "filtering",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "combine": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "last",
+    "reuse": "first"
+   },
+   "cpu_s": 0.09,
+   "dev": false,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 6,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 382,
+    "admission_draws": 320,
+    "admission_usable": 313
+   }
+  },
+  "connect": {
+   "consumers": {
+    "acq": "backdrop",
+    "adm": "totuple",
+    "reuse": "shape"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "straight lines",
+   "held_out_family": false,
+   "n_candidates": 28,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "contained": {
+   "consumers": {
+    "acq": "increment",
+    "adm": "toivec",
+    "reuse": "positive"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "contained",
+   "held_out_family": false,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "corners": {
+   "consumers": {
+    "acq": "toindices",
+    "adm": "initset",
+    "reuse": "color"
+   },
+   "cpu_s": 1.15,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 19,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "cover": {
+   "consumers": {
+    "acq": "double",
+    "adm": "first",
+    "reuse": "leastcommon"
+   },
+   "cpu_s": 0.12,
+   "dev": false,
+   "family": "fills and paints",
+   "held_out_family": false,
+   "n_candidates": 43,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "crement": {
+   "consumers": {
+    "acq": "maximum",
+    "adm": "initset",
+    "reuse": "last"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 18,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 62
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "crop": {
+   "consumers": {
+    "acq": "partition",
+    "adm": "asobject",
+    "reuse": "vline"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "cutting a rectangle",
+   "held_out_family": true,
+   "n_candidates": 31,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "decrement": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "initset",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.14,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 63
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "dedupe": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "bottomhalf",
+    "reuse": "size"
+   },
+   "cpu_s": 0.35,
+   "dev": false,
+   "family": "dedupe",
+   "held_out_family": false,
+   "n_candidates": 14,
+   "n_skipped": 3,
+   "opened_final": false,
+   "pooled": {
+    "A": 40,
+    "B": 50,
+    "R": 20,
+    "UA": 40,
+    "UB": 50,
+    "unique_tuples": 203
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 50,
+    "acq_and_reuse_usable": 50,
+    "admission_draws": 40,
+    "admission_usable": 40
+   }
+  },
+  "delta": {
+   "consumers": {
+    "acq": "asobject",
+    "adm": "numcolors",
+    "reuse": "maximum"
+   },
+   "cpu_s": 1.22,
+   "dev": false,
+   "family": "box area",
+   "held_out_family": false,
+   "n_candidates": 25,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1247
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "difference": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "tojvec",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.13,
+   "dev": false,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 7,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "divide": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "flip",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 337,
+    "admission_draws": 320,
+    "admission_usable": 265
+   }
+  },
+  "dmirror": {
+   "consumers": {
+    "acq": "first",
+    "adm": "mostcolor",
+    "reuse": "asobject"
+   },
+   "cpu_s": 1.05,
+   "dev": false,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 27,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 56,
+    "B": 70,
+    "R": 28,
+    "UA": 56,
+    "UB": 70,
+    "unique_tuples": 283
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 70,
+    "acq_and_reuse_usable": 70,
+    "admission_draws": 56,
+    "admission_usable": 56
+   }
+  },
+  "dneighbors": {
+   "consumers": {
+    "acq": "outbox",
+    "adm": "uppermost",
+    "reuse": "toindices"
+   },
+   "cpu_s": 0.18,
+   "dev": false,
+   "family": "neighbourhoods",
+   "held_out_family": false,
+   "n_candidates": 32,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 18,
+    "B": 22,
+    "R": 9,
+    "UA": 18,
+    "UB": 22,
+    "unique_tuples": 91
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 22,
+    "acq_and_reuse_usable": 22,
+    "admission_draws": 18,
+    "admission_usable": 18
+   }
+  },
+  "double": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.14,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 61
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "equality": {
+   "consumers": {
+    "acq": "invert",
+    "adm": "crement",
+    "reuse": "increment"
+   },
+   "cpu_s": 0.05,
+   "dev": false,
+   "family": "equality",
+   "held_out_family": false,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "even": {
+   "consumers": null,
+   "cpu_s": 0.51,
+   "dev": false,
+   "family": "even",
+   "held_out_family": false,
+   "n_candidates": null,
+   "n_skipped": null,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "generator: only 51 of 66 valid examples in 4000 draws",
+   "status": "excluded",
+   "usability": null
+  },
+  "extract": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "filtering",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 277,
+    "admission_draws": 320,
+    "admission_usable": 228
+   }
+  },
+  "fgpartition": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "flip",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.95,
+   "dev": false,
+   "family": "partitions by colour",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1293
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "fill": {
+   "consumers": {
+    "acq": "bottomhalf",
+    "adm": "last",
+    "reuse": "asobject"
+   },
+   "cpu_s": 0.16,
+   "dev": false,
+   "family": "fills and paints",
+   "held_out_family": false,
+   "n_candidates": 43,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "first": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.88,
+   "dev": false,
+   "family": "first and last",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 154,
+    "B": 193,
+    "R": 77,
+    "UA": 154,
+    "UB": 193,
+    "unique_tuples": 773
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 193,
+    "acq_and_reuse_usable": 182,
+    "admission_draws": 154,
+    "admission_usable": 148
+   }
+  },
+  "frontiers": {
+   "consumers": {
+    "acq": "size",
+    "adm": "merge",
+    "reuse": "toivec"
+   },
+   "cpu_s": 1.0,
+   "dev": false,
+   "family": "frontiers",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 257,
+    "B": 322,
+    "R": 128,
+    "UA": 257,
+    "UB": 322,
+    "unique_tuples": 1289
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 322,
+    "acq_and_reuse_usable": 322,
+    "admission_draws": 257,
+    "admission_usable": 257
+   }
+  },
+  "gravitate": {
+   "consumers": {
+    "acq": "maximum",
+    "adm": "crement",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.42,
+   "dev": false,
+   "family": "gravitate",
+   "held_out_family": false,
+   "n_candidates": 24,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 398,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "greater": {
+   "consumers": {
+    "acq": "invert",
+    "adm": "increment",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "greater than",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "halve": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "initset",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 60
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "hconcat": {
+   "consumers": {
+    "acq": "width",
+    "adm": "rot90",
+    "reuse": "lrcorner"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "concatenations",
+   "held_out_family": false,
+   "n_candidates": 42,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "height": {
+   "consumers": {
+    "acq": "halve",
+    "adm": "even",
+    "reuse": "crement"
+   },
+   "cpu_s": 0.86,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 56,
+    "B": 71,
+    "R": 28,
+    "UA": 56,
+    "UB": 71,
+    "unique_tuples": 284
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 56,
+    "admission_usable": 56
+   }
+  },
+  "hfrontier": {
+   "consumers": {
+    "acq": "backdrop",
+    "adm": "lowermost",
+    "reuse": "lrcorner"
+   },
+   "cpu_s": 0.19,
+   "dev": false,
+   "family": "straight lines",
+   "held_out_family": false,
+   "n_candidates": 19,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 18,
+    "B": 22,
+    "R": 9,
+    "UA": 18,
+    "UB": 22,
+    "unique_tuples": 90
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 22,
+    "acq_and_reuse_usable": 22,
+    "admission_draws": 18,
+    "admission_usable": 18
+   }
+  },
+  "hline": {
+   "consumers": {
+    "acq": "increment",
+    "adm": "even",
+    "reuse": "sign"
+   },
+   "cpu_s": 1.28,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "hmatching": {
+   "consumers": {
+    "acq": "double",
+    "adm": "flip",
+    "reuse": "sign"
+   },
+   "cpu_s": 0.09,
+   "dev": false,
+   "family": "shared rows or columns",
+   "held_out_family": true,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "hmirror": {
+   "consumers": {
+    "acq": "fgpartition",
+    "adm": "last",
+    "reuse": "mostcolor"
+   },
+   "cpu_s": 0.94,
+   "dev": true,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 29,
+   "n_skipped": 4,
+   "opened_final": false,
+   "pooled": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "unique_tuples": 285
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 57,
+    "admission_usable": 57
+   }
+  },
+  "hperiod": {
+   "consumers": {
+    "acq": "halve",
+    "adm": "even",
+    "reuse": "invert"
+   },
+   "cpu_s": 1.66,
+   "dev": false,
+   "family": "periods",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 42,
+    "B": 52,
+    "R": 21,
+    "UA": 42,
+    "UB": 52,
+    "unique_tuples": 210
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 52,
+    "acq_and_reuse_usable": 52,
+    "admission_draws": 42,
+    "admission_usable": 42
+   }
+  },
+  "hsplit": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "height",
+    "reuse": "width"
+   },
+   "cpu_s": 0.11,
+   "dev": false,
+   "family": "halves and splits",
+   "held_out_family": true,
+   "n_candidates": 33,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 391,
+    "admission_draws": 320,
+    "admission_usable": 314
+   }
+  },
+  "hupscale": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "asobject",
+    "reuse": "partition"
+   },
+   "cpu_s": 0.39,
+   "dev": false,
+   "family": "one-axis upscales",
+   "held_out_family": false,
+   "n_candidates": 41,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 318
+   }
+  },
+  "identity": {
+   "consumers": null,
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "identity",
+   "held_out_family": true,
+   "n_candidates": 3,
+   "n_skipped": 3,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "fewer than three consumers (0 eligible of 3 candidates)",
+   "status": "excluded",
+   "usability": null
+  },
+  "inbox": {
+   "consumers": {
+    "acq": "toindices",
+    "adm": "totuple",
+    "reuse": "square"
+   },
+   "cpu_s": 1.18,
+   "dev": false,
+   "family": "box outlines",
+   "held_out_family": false,
+   "n_candidates": 38,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 248,
+    "B": 311,
+    "R": 124,
+    "UA": 248,
+    "UB": 311,
+    "unique_tuples": 1244
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 248,
+    "admission_usable": 248
+   }
+  },
+  "increment": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "toivec",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 61
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "index": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "sign",
+    "reuse": "initset"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "index",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 112,
+    "admission_draws": 320,
+    "admission_usable": 99
+   }
+  },
+  "ineighbors": {
+   "consumers": {
+    "acq": "maximum",
+    "adm": "cmirror",
+    "reuse": "first"
+   },
+   "cpu_s": 0.2,
+   "dev": false,
+   "family": "neighbourhoods",
+   "held_out_family": false,
+   "n_candidates": 28,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 18,
+    "B": 23,
+    "R": 9,
+    "UA": 18,
+    "UB": 23,
+    "unique_tuples": 94
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 23 of 23 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 23,
+    "acq_and_reuse_usable": 23,
+    "admission_draws": 18,
+    "admission_usable": 18
+   }
+  },
+  "initset": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "totuple",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.56,
+   "dev": false,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 54,
+    "B": 68,
+    "R": 27,
+    "UA": 54,
+    "UB": 68,
+    "unique_tuples": 274
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 68,
+    "acq_and_reuse_usable": 68,
+    "admission_draws": 54,
+    "admission_usable": 54
+   }
+  },
+  "insert": {
+   "consumers": {
+    "acq": "last",
+    "adm": "tojvec",
+    "reuse": "totuple"
+   },
+   "cpu_s": 0.12,
+   "dev": false,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 6,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "intersection": {
+   "consumers": {
+    "acq": "minimum",
+    "adm": "totuple",
+    "reuse": "size"
+   },
+   "cpu_s": 0.13,
+   "dev": false,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "interval": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "hmirror",
+    "reuse": "height"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "interval",
+   "held_out_family": false,
+   "n_candidates": 11,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 392,
+    "admission_draws": 320,
+    "admission_usable": 315
+   }
+  },
+  "invert": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.14,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 60
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "last": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "initset",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.87,
+   "dev": false,
+   "family": "first and last",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 154,
+    "B": 193,
+    "R": 77,
+    "UA": 154,
+    "UB": 193,
+    "unique_tuples": 772
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 193,
+    "acq_and_reuse_usable": 177,
+    "admission_draws": 154,
+    "admission_usable": 143
+   }
+  },
+  "leastcolor": {
+   "consumers": {
+    "acq": "positive",
+    "adm": "sign",
+    "reuse": "even"
+   },
+   "cpu_s": 1.53,
+   "dev": false,
+   "family": "most and least frequent",
+   "held_out_family": false,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 28,
+    "B": 35,
+    "R": 14,
+    "UA": 28,
+    "UB": 35,
+    "unique_tuples": 143
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 35,
+    "acq_and_reuse_usable": 35,
+    "admission_draws": 28,
+    "admission_usable": 28
+   }
+  },
+  "leastcommon": {
+   "consumers": {
+    "acq": "increment",
+    "adm": "crement",
+    "reuse": "sign"
+   },
+   "cpu_s": 0.88,
+   "dev": false,
+   "family": "most and least frequent",
+   "held_out_family": false,
+   "n_candidates": 11,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 154,
+    "B": 193,
+    "R": 77,
+    "UA": 154,
+    "UB": 193,
+    "unique_tuples": 774
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 193,
+    "acq_and_reuse_usable": 87,
+    "admission_draws": 154,
+    "admission_usable": 68
+   }
+  },
+  "lefthalf": {
+   "consumers": {
+    "acq": "rot270",
+    "adm": "palette",
+    "reuse": "leastcommon"
+   },
+   "cpu_s": 0.93,
+   "dev": true,
+   "family": "halves and splits",
+   "held_out_family": true,
+   "n_candidates": 37,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1294
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "leftmost": {
+   "consumers": {
+    "acq": "crement",
+    "adm": "positive",
+    "reuse": "flip"
+   },
+   "cpu_s": 1.15,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "llcorner": {
+   "consumers": {
+    "acq": "tophalf",
+    "adm": "dedupe",
+    "reuse": "initset"
+   },
+   "cpu_s": 1.19,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 24,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "lowermost": {
+   "consumers": {
+    "acq": "increment",
+    "adm": "invert",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 1.12,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "lrcorner": {
+   "consumers": {
+    "acq": "dedupe",
+    "adm": "bottomhalf",
+    "reuse": "maximum"
+   },
+   "cpu_s": 1.15,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 11,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1247
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "manhattan": {
+   "consumers": {
+    "acq": "even",
+    "adm": "crement",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.23,
+   "dev": false,
+   "family": "distance",
+   "held_out_family": false,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 398,
+    "admission_draws": 320,
+    "admission_usable": 319
+   }
+  },
+  "mapply": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "totuple",
+    "reuse": "initset"
+   },
+   "cpu_s": 1.84,
+   "dev": true,
+   "family": "mapping",
+   "held_out_family": false,
+   "n_candidates": 6,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 280,
+    "B": 351,
+    "R": 140,
+    "UA": 280,
+    "UB": 351,
+    "unique_tuples": 1404
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 351,
+    "acq_and_reuse_usable": 191,
+    "admission_draws": 280,
+    "admission_usable": 190
+   }
+  },
+  "maximum": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "halve",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.17,
+   "dev": false,
+   "family": "largest and smallest of a container",
+   "held_out_family": true,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 5,
+    "B": 7,
+    "R": 2,
+    "UA": 5,
+    "UB": 7,
+    "unique_tuples": 28
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 5 of 5 draws, need 12; acquisition and reuse consumers together: 7 of 7 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 7,
+    "acq_and_reuse_usable": 7,
+    "admission_draws": 5,
+    "admission_usable": 5
+   }
+  },
+  "merge": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "maximum",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 1.76,
+   "dev": false,
+   "family": "merge",
+   "held_out_family": false,
+   "n_candidates": 11,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 7,
+    "B": 9,
+    "R": 3,
+    "UA": 7,
+    "UB": 9,
+    "unique_tuples": 36
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 7 of 7 draws, need 12; acquisition and reuse consumers together: 9 of 9 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 9,
+    "acq_and_reuse_usable": 9,
+    "admission_draws": 7,
+    "admission_usable": 7
+   }
+  },
+  "mfilter": {
+   "consumers": {
+    "acq": "size",
+    "adm": "flip",
+    "reuse": "initset"
+   },
+   "cpu_s": 0.07,
+   "dev": true,
+   "family": "filtering",
+   "held_out_family": false,
+   "n_candidates": 6,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 213,
+    "admission_draws": 320,
+    "admission_usable": 167
+   }
+  },
+  "minimum": {
+   "consumers": {
+    "acq": "even",
+    "adm": "tojvec",
+    "reuse": "decrement"
+   },
+   "cpu_s": 0.17,
+   "dev": false,
+   "family": "largest and smallest of a container",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 6,
+    "B": 7,
+    "R": 3,
+    "UA": 6,
+    "UB": 7,
+    "unique_tuples": 30
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 6 of 6 draws, need 12; acquisition and reuse consumers together: 7 of 7 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 7,
+    "acq_and_reuse_usable": 7,
+    "admission_draws": 6,
+    "admission_usable": 6
+   }
+  },
+  "mostcolor": {
+   "consumers": {
+    "acq": "positive",
+    "adm": "toivec",
+    "reuse": "decrement"
+   },
+   "cpu_s": 1.45,
+   "dev": false,
+   "family": "most and least frequent",
+   "held_out_family": false,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 28,
+    "B": 35,
+    "R": 14,
+    "UA": 28,
+    "UB": 35,
+    "unique_tuples": 143
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 35,
+    "acq_and_reuse_usable": 35,
+    "admission_draws": 28,
+    "admission_usable": 28
+   }
+  },
+  "move": {
+   "consumers": {
+    "acq": "ulcorner",
+    "adm": "totuple",
+    "reuse": "rot270"
+   },
+   "cpu_s": 0.16,
+   "dev": false,
+   "family": "move",
+   "held_out_family": true,
+   "n_candidates": 42,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "mpapply": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "vfrontier",
+    "reuse": "height"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "mapping",
+   "held_out_family": false,
+   "n_candidates": 15,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 285,
+    "admission_draws": 320,
+    "admission_usable": 227
+   }
+  },
+  "multiply": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "initset",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "neighbors": {
+   "consumers": {
+    "acq": "mostcolor",
+    "adm": "merge",
+    "reuse": "initset"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "neighbourhoods",
+   "held_out_family": false,
+   "n_candidates": 28,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 17,
+    "B": 22,
+    "R": 8,
+    "UA": 17,
+    "UB": 22,
+    "unique_tuples": 89
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 17 of 17 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 22,
+    "acq_and_reuse_usable": 22,
+    "admission_draws": 17,
+    "admission_usable": 17
+   }
+  },
+  "normalize": {
+   "consumers": {
+    "acq": "delta",
+    "adm": "dmirror",
+    "reuse": "asobject"
+   },
+   "cpu_s": 1.24,
+   "dev": false,
+   "family": "translations",
+   "held_out_family": false,
+   "n_candidates": 42,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 248,
+    "B": 310,
+    "R": 124,
+    "UA": 248,
+    "UB": 310,
+    "unique_tuples": 1242
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 310,
+    "acq_and_reuse_usable": 310,
+    "admission_draws": 248,
+    "admission_usable": 248
+   }
+  },
+  "numcolors": {
+   "consumers": {
+    "acq": "even",
+    "adm": "double",
+    "reuse": "initset"
+   },
+   "cpu_s": 1.53,
+   "dev": true,
+   "family": "set of colours",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 28,
+    "B": 35,
+    "R": 14,
+    "UA": 28,
+    "UB": 35,
+    "unique_tuples": 142
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 35,
+    "acq_and_reuse_usable": 35,
+    "admission_draws": 28,
+    "admission_usable": 28
+   }
+  },
+  "objects": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "initset",
+    "reuse": "asobject"
+   },
+   "cpu_s": 0.21,
+   "dev": true,
+   "family": "objects",
+   "held_out_family": true,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "occurrences": {
+   "consumers": {
+    "acq": "inbox",
+    "adm": "centerofmass",
+    "reuse": "urcorner"
+   },
+   "cpu_s": 0.16,
+   "dev": false,
+   "family": "occurrences",
+   "held_out_family": false,
+   "n_candidates": 45,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 44,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "ofcolor": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "merge",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.08,
+   "dev": true,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 12,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "order": {
+   "consumers": {
+    "acq": "maximum",
+    "adm": "hmirror",
+    "reuse": "bottomhalf"
+   },
+   "cpu_s": 0.07,
+   "dev": false,
+   "family": "order",
+   "held_out_family": false,
+   "n_candidates": 15,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": "gate (acquisition): a trivial repair passes: arg:container",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 228,
+    "admission_draws": 320,
+    "admission_usable": 202
+   }
+  },
+  "other": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "double",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.07,
+   "dev": true,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 379,
+    "admission_draws": 320,
+    "admission_usable": 259
+   }
+  },
+  "outbox": {
+   "consumers": {
+    "acq": "centerofmass",
+    "adm": "totuple",
+    "reuse": "llcorner"
+   },
+   "cpu_s": 1.16,
+   "dev": false,
+   "family": "box outlines",
+   "held_out_family": false,
+   "n_candidates": 35,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1247
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "paint": {
+   "consumers": null,
+   "cpu_s": 0.18,
+   "dev": false,
+   "family": "fills and paints",
+   "held_out_family": false,
+   "n_candidates": 42,
+   "n_skipped": 42,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "fewer than three consumers (0 eligible of 42 candidates)",
+   "status": "excluded",
+   "usability": null
+  },
+  "pair": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "size",
+    "reuse": "righthalf"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "pair",
+   "held_out_family": false,
+   "n_candidates": 40,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "palette": {
+   "consumers": {
+    "acq": "first",
+    "adm": "size",
+    "reuse": "last"
+   },
+   "cpu_s": 1.62,
+   "dev": false,
+   "family": "set of colours",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 28,
+    "B": 35,
+    "R": 14,
+    "UA": 28,
+    "UB": 35,
+    "unique_tuples": 143
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 35,
+    "acq_and_reuse_usable": 35,
+    "admission_draws": 28,
+    "admission_usable": 28
+   }
+  },
+  "papply": {
+   "consumers": {
+    "acq": "first",
+    "adm": "initset",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "mapping",
+   "held_out_family": false,
+   "n_candidates": 15,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 347,
+    "admission_draws": 320,
+    "admission_usable": 273
+   }
+  },
+  "partition": {
+   "consumers": {
+    "acq": "asobject",
+    "adm": "totuple",
+    "reuse": "merge"
+   },
+   "cpu_s": 1.29,
+   "dev": false,
+   "family": "partitions by colour",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1294
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "portrait": {
+   "consumers": {
+    "acq": "sign",
+    "adm": "increment",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.88,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "unique_tuples": 285
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 57,
+    "admission_usable": 57
+   }
+  },
+  "position": {
+   "consumers": {
+    "acq": "neighbors",
+    "adm": "sign",
+    "reuse": "vfrontier"
+   },
+   "cpu_s": 0.14,
+   "dev": false,
+   "family": "position",
+   "held_out_family": false,
+   "n_candidates": 23,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 319
+   }
+  },
+  "positive": {
+   "consumers": null,
+   "cpu_s": 0.52,
+   "dev": false,
+   "family": "greater than",
+   "held_out_family": false,
+   "n_candidates": null,
+   "n_skipped": null,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "generator: only 51 of 66 valid examples in 4000 draws",
+   "status": "excluded",
+   "usability": null
+  },
+  "prapply": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "maximum"
+   },
+   "cpu_s": 0.09,
+   "dev": false,
+   "family": "mapping",
+   "held_out_family": false,
+   "n_candidates": 8,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 279,
+    "admission_draws": 320,
+    "admission_usable": 241
+   }
+  },
+  "product": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "toindices",
+    "reuse": "first"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "product",
+   "held_out_family": false,
+   "n_candidates": 20,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 399,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "rapply": {
+   "consumers": {
+    "acq": "last",
+    "adm": "initset",
+    "reuse": "first"
+   },
+   "cpu_s": 0.07,
+   "dev": true,
+   "family": "mapping",
+   "held_out_family": false,
+   "n_candidates": 12,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 7 of 320 draws, need 12; acquisition and reuse consumers together: 5 of 400 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 5,
+    "admission_draws": 320,
+    "admission_usable": 7
+   }
+  },
+  "recolor": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "maximum",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.08,
+   "dev": false,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 12,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "remove": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "totuple",
+    "reuse": "flip"
+   },
+   "cpu_s": 0.07,
+   "dev": false,
+   "family": "set building",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "repeat": {
+   "consumers": {
+    "acq": "bottomhalf",
+    "adm": "initset",
+    "reuse": "hfrontier"
+   },
+   "cpu_s": 0.22,
+   "dev": false,
+   "family": "repeat",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 227,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "replace": {
+   "consumers": {
+    "acq": "dedupe",
+    "adm": "leastcommon",
+    "reuse": "totuple"
+   },
+   "cpu_s": 0.11,
+   "dev": false,
+   "family": "colour substitution",
+   "held_out_family": true,
+   "n_candidates": 42,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "righthalf": {
+   "consumers": {
+    "acq": "numcolors",
+    "adm": "toivec",
+    "reuse": "rot270"
+   },
+   "cpu_s": 0.98,
+   "dev": true,
+   "family": "halves and splits",
+   "held_out_family": true,
+   "n_candidates": 36,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1293
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "rightmost": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "crement",
+    "reuse": "even"
+   },
+   "cpu_s": 1.11,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 312,
+    "R": 124,
+    "UA": 249,
+    "UB": 312,
+    "unique_tuples": 1249
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 312,
+    "acq_and_reuse_usable": 312,
+    "admission_draws": 249,
+    "admission_usable": 248
+   }
+  },
+  "rot180": {
+   "consumers": {
+    "acq": "ulcorner",
+    "adm": "vfrontier",
+    "reuse": "tophalf"
+   },
+   "cpu_s": 1.04,
+   "dev": true,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 32,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1294
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "rot270": {
+   "consumers": {
+    "acq": "asobject",
+    "adm": "toivec",
+    "reuse": "width"
+   },
+   "cpu_s": 1.15,
+   "dev": false,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 32,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1294
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "rot90": {
+   "consumers": {
+    "acq": "fgpartition",
+    "adm": "minimum",
+    "reuse": "asindices"
+   },
+   "cpu_s": 1.29,
+   "dev": false,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 33,
+   "n_skipped": 2,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1294
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "sfilter": {
+   "consumers": {
+    "acq": "minimum",
+    "adm": "size",
+    "reuse": "last"
+   },
+   "cpu_s": 0.07,
+   "dev": false,
+   "family": "filtering",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 271,
+    "admission_draws": 320,
+    "admission_usable": 221
+   }
+  },
+  "shape": {
+   "consumers": {
+    "acq": "double",
+    "adm": "neighbors",
+    "reuse": "bottomhalf"
+   },
+   "cpu_s": 0.87,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 24,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "unique_tuples": 285
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 57,
+    "admission_usable": 57
+   }
+  },
+  "shift": {
+   "consumers": {
+    "acq": "hmirror",
+    "adm": "initset",
+    "reuse": "color"
+   },
+   "cpu_s": 0.1,
+   "dev": false,
+   "family": "translations",
+   "held_out_family": false,
+   "n_candidates": 45,
+   "n_skipped": 2,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "shoot": {
+   "consumers": {
+    "acq": "portrait",
+    "adm": "initset",
+    "reuse": "llcorner"
+   },
+   "cpu_s": 0.12,
+   "dev": false,
+   "family": "straight lines",
+   "held_out_family": false,
+   "n_candidates": 26,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "sign": {
+   "consumers": {
+    "acq": "tojvec",
+    "adm": "toivec",
+    "reuse": "initset"
+   },
+   "cpu_s": 0.15,
+   "dev": true,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 12,
+    "B": 15,
+    "R": 6,
+    "UA": 12,
+    "UB": 15,
+    "unique_tuples": 61
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 12 of 12 draws, need 12; acquisition and reuse consumers together: 15 of 15 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 15,
+    "acq_and_reuse_usable": 15,
+    "admission_draws": 12,
+    "admission_usable": 12
+   }
+  },
+  "size": {
+   "consumers": {
+    "acq": "halve",
+    "adm": "toivec",
+    "reuse": "decrement"
+   },
+   "cpu_s": 0.88,
+   "dev": false,
+   "family": "size",
+   "held_out_family": false,
+   "n_candidates": 9,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 154,
+    "B": 193,
+    "R": 77,
+    "UA": 154,
+    "UB": 193,
+    "unique_tuples": 773
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 193,
+    "acq_and_reuse_usable": 193,
+    "admission_draws": 154,
+    "admission_usable": 154
+   }
+  },
+  "sizefilter": {
+   "consumers": {
+    "acq": "flip",
+    "adm": "totuple",
+    "reuse": "size"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "filtering",
+   "held_out_family": false,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": "gate (acquisition): a trivial repair passes: const:xout:2",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 299,
+    "admission_draws": 320,
+    "admission_usable": 231
+   }
+  },
+  "square": {
+   "consumers": {
+    "acq": "increment",
+    "adm": "toivec",
+    "reuse": "even"
+   },
+   "cpu_s": 0.87,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "unique_tuples": 285
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 57,
+    "admission_usable": 57
+   }
+  },
+  "subgrid": {
+   "consumers": {
+    "acq": "rot90",
+    "adm": "righthalf",
+    "reuse": "partition"
+   },
+   "cpu_s": 0.12,
+   "dev": false,
+   "family": "cutting a rectangle",
+   "held_out_family": true,
+   "n_candidates": 39,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 319
+   }
+  },
+  "subtract": {
+   "consumers": {
+    "acq": "initset",
+    "adm": "tojvec",
+    "reuse": "toivec"
+   },
+   "cpu_s": 0.03,
+   "dev": false,
+   "family": "arithmetic",
+   "held_out_family": false,
+   "n_candidates": 3,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "switch": {
+   "consumers": {
+    "acq": "vfrontier",
+    "adm": "color",
+    "reuse": "leastcommon"
+   },
+   "cpu_s": 0.13,
+   "dev": true,
+   "family": "colour substitution",
+   "held_out_family": true,
+   "n_candidates": 43,
+   "n_skipped": 1,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "toindices": {
+   "consumers": {
+    "acq": "maximum",
+    "adm": "tojvec",
+    "reuse": "totuple"
+   },
+   "cpu_s": 1.2,
+   "dev": false,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 12,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1246
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "toivec": {
+   "consumers": null,
+   "cpu_s": 0.51,
+   "dev": false,
+   "family": "pairs of integers",
+   "held_out_family": false,
+   "n_candidates": null,
+   "n_skipped": null,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "generator: only 41 of 66 valid examples in 4000 draws",
+   "status": "excluded",
+   "usability": null
+  },
+  "tojvec": {
+   "consumers": null,
+   "cpu_s": 0.52,
+   "dev": false,
+   "family": "pairs of integers",
+   "held_out_family": false,
+   "n_candidates": null,
+   "n_skipped": null,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "generator: only 41 of 66 valid examples in 4000 draws",
+   "status": "excluded",
+   "usability": null
+  },
+  "toobject": {
+   "consumers": {
+    "acq": "toivec",
+    "adm": "partition",
+    "reuse": "numcolors"
+   },
+   "cpu_s": 0.12,
+   "dev": false,
+   "family": "positions and objects",
+   "held_out_family": false,
+   "n_candidates": 12,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "tophalf": {
+   "consumers": {
+    "acq": "vmirror",
+    "adm": "dedupe",
+    "reuse": "last"
+   },
+   "cpu_s": 0.94,
+   "dev": true,
+   "family": "halves and splits",
+   "held_out_family": true,
+   "n_candidates": 35,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "unique_tuples": 1292
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 323,
+    "acq_and_reuse_usable": 323,
+    "admission_draws": 258,
+    "admission_usable": 258
+   }
+  },
+  "totuple": {
+   "consumers": {
+    "acq": "hfrontier",
+    "adm": "leastcommon",
+    "reuse": "dedupe"
+   },
+   "cpu_s": 1.97,
+   "dev": false,
+   "family": "totuple",
+   "held_out_family": false,
+   "n_candidates": 13,
+   "n_skipped": 2,
+   "opened_final": false,
+   "pooled": {
+    "A": 32,
+    "B": 40,
+    "R": 16,
+    "UA": 32,
+    "UB": 40,
+    "unique_tuples": 162
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 40,
+    "acq_and_reuse_usable": 40,
+    "admission_draws": 32,
+    "admission_usable": 32
+   }
+  },
+  "ulcorner": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "maximum",
+    "reuse": "tophalf"
+   },
+   "cpu_s": 1.26,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 11,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 312,
+    "R": 124,
+    "UA": 249,
+    "UB": 312,
+    "unique_tuples": 1248
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 312,
+    "acq_and_reuse_usable": 312,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "underfill": {
+   "consumers": {
+    "acq": "double",
+    "adm": "rot180",
+    "reuse": "dmirror"
+   },
+   "cpu_s": 0.15,
+   "dev": false,
+   "family": "fills and paints",
+   "held_out_family": false,
+   "n_candidates": 43,
+   "n_skipped": 2,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "underpaint": {
+   "consumers": null,
+   "cpu_s": 0.22,
+   "dev": false,
+   "family": "fills and paints",
+   "held_out_family": false,
+   "n_candidates": 41,
+   "n_skipped": 41,
+   "opened_final": false,
+   "pooled": null,
+   "reason": "fewer than three consumers (0 eligible of 41 candidates)",
+   "status": "excluded",
+   "usability": null
+  },
+  "uppermost": {
+   "consumers": {
+    "acq": "positive",
+    "adm": "toivec",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 1.16,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 312,
+    "R": 124,
+    "UA": 249,
+    "UB": 312,
+    "unique_tuples": 1248
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 312,
+    "acq_and_reuse_usable": 312,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "urcorner": {
+   "consumers": {
+    "acq": "tophalf",
+    "adm": "first",
+    "reuse": "totuple"
+   },
+   "cpu_s": 1.2,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 22,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1245
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "valmax": {
+   "consumers": {
+    "acq": "flip",
+    "adm": "toivec",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "largest and smallest of a container",
+   "held_out_family": true,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 295,
+    "admission_draws": 320,
+    "admission_usable": 246
+   }
+  },
+  "valmin": {
+   "consumers": {
+    "acq": "flip",
+    "adm": "tojvec",
+    "reuse": "initset"
+   },
+   "cpu_s": 0.06,
+   "dev": false,
+   "family": "largest and smallest of a container",
+   "held_out_family": true,
+   "n_candidates": 4,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 271,
+    "admission_draws": 320,
+    "admission_usable": 191
+   }
+  },
+  "vconcat": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "portrait",
+    "reuse": "fgpartition"
+   },
+   "cpu_s": 0.16,
+   "dev": false,
+   "family": "concatenations",
+   "held_out_family": false,
+   "n_candidates": 41,
+   "n_skipped": 2,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "vfrontier": {
+   "consumers": {
+    "acq": "totuple",
+    "adm": "lrcorner",
+    "reuse": "cmirror"
+   },
+   "cpu_s": 0.22,
+   "dev": true,
+   "family": "straight lines",
+   "held_out_family": false,
+   "n_candidates": 21,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 18,
+    "B": 22,
+    "R": 9,
+    "UA": 18,
+    "UB": 22,
+    "unique_tuples": 91
+   },
+   "reason": "too few usable pooled inputs (admission consumer: 18 of 18 draws, need 12; acquisition and reuse consumers together: 22 of 22 draws, need 30)",
+   "status": "excluded",
+   "usability": {
+    "acq_and_reuse_draws": 22,
+    "acq_and_reuse_usable": 22,
+    "admission_draws": 18,
+    "admission_usable": 18
+   }
+  },
+  "vline": {
+   "consumers": {
+    "acq": "double",
+    "adm": "positive",
+    "reuse": "invert"
+   },
+   "cpu_s": 1.24,
+   "dev": false,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 249,
+    "B": 311,
+    "R": 124,
+    "UA": 249,
+    "UB": 311,
+    "unique_tuples": 1247
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 311,
+    "acq_and_reuse_usable": 311,
+    "admission_draws": 249,
+    "admission_usable": 249
+   }
+  },
+  "vmatching": {
+   "consumers": {
+    "acq": "increment",
+    "adm": "decrement",
+    "reuse": "double"
+   },
+   "cpu_s": 0.12,
+   "dev": false,
+   "family": "shared rows or columns",
+   "held_out_family": true,
+   "n_candidates": 10,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "vmirror": {
+   "consumers": {
+    "acq": "first",
+    "adm": "centerofmass",
+    "reuse": "tojvec"
+   },
+   "cpu_s": 0.99,
+   "dev": false,
+   "family": "mirrors and rotations",
+   "held_out_family": false,
+   "n_candidates": 28,
+   "n_skipped": 3,
+   "opened_final": false,
+   "pooled": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "unique_tuples": 285
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 57,
+    "admission_usable": 57
+   }
+  },
+  "vperiod": {
+   "consumers": {
+    "acq": "decrement",
+    "adm": "tojvec",
+    "reuse": "crement"
+   },
+   "cpu_s": 1.66,
+   "dev": false,
+   "family": "periods",
+   "held_out_family": false,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 42,
+    "B": 53,
+    "R": 21,
+    "UA": 42,
+    "UB": 53,
+    "unique_tuples": 212
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 53,
+    "acq_and_reuse_usable": 53,
+    "admission_draws": 42,
+    "admission_usable": 42
+   }
+  },
+  "vsplit": {
+   "consumers": {
+    "acq": "rot180",
+    "adm": "vline",
+    "reuse": "height"
+   },
+   "cpu_s": 0.13,
+   "dev": false,
+   "family": "halves and splits",
+   "held_out_family": true,
+   "n_candidates": 31,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 394,
+    "admission_draws": 320,
+    "admission_usable": 316
+   }
+  },
+  "vupscale": {
+   "consumers": {
+    "acq": "shape",
+    "adm": "tophalf",
+    "reuse": "dmirror"
+   },
+   "cpu_s": 0.19,
+   "dev": false,
+   "family": "one-axis upscales",
+   "held_out_family": false,
+   "n_candidates": 42,
+   "n_skipped": 5,
+   "opened_final": false,
+   "pooled": {
+    "A": 320,
+    "B": 400,
+    "R": 160,
+    "UA": 320,
+    "UB": 400,
+    "unique_tuples": 1600
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 400,
+    "acq_and_reuse_usable": 400,
+    "admission_draws": 320,
+    "admission_usable": 320
+   }
+  },
+  "width": {
+   "consumers": {
+    "acq": "crement",
+    "adm": "increment",
+    "reuse": "sign"
+   },
+   "cpu_s": 0.87,
+   "dev": true,
+   "family": "bounding box",
+   "held_out_family": true,
+   "n_candidates": 13,
+   "n_skipped": 0,
+   "opened_final": false,
+   "pooled": {
+    "A": 57,
+    "B": 71,
+    "R": 28,
+    "UA": 57,
+    "UB": 71,
+    "unique_tuples": 285
+   },
+   "reason": null,
+   "status": "passes setup",
+   "usability": {
+    "acq_and_reuse_draws": 71,
+    "acq_and_reuse_usable": 71,
+    "admission_draws": 57,
+    "admission_usable": 57
+   }
+  }
+ },
+ "total_cpu_s": 78.8,
+ "what": "VF1 stage A, setup-only preflight over the full roster: no search, no final input read"
+}

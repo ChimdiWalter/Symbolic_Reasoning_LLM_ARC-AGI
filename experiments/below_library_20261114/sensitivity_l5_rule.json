@@ -1,0 +1,1369 @@
+{
+ "address_space_peak_kb": 1547416,
+ "author": "Chimdi Walter Ndubuisi",
+ "cpu_s": 2003.7,
+ "eligible": [
+  "hmirror",
+  "rot180",
+  "width",
+  "switch",
+  "objects",
+  "lefthalf",
+  "add",
+  "mapply",
+  "ofcolor",
+  "tophalf",
+  "mfilter",
+  "other",
+  "righthalf",
+  "backdrop",
+  "color",
+  "box",
+  "numcolors"
+ ],
+ "ended_early": null,
+ "label": "development only: a sensitivity check; never a result",
+ "memory_ceiling": {
+  "hard_limit_bytes": null,
+  "margin_bytes": 1073741824,
+  "requested_bytes": 34359738368,
+  "soft_limit_bytes": 34359738368,
+  "what": "RLIMIT_AS, the address space of this process"
+ },
+ "names": [
+  "hmirror",
+  "rot180",
+  "width",
+  "switch",
+  "objects",
+  "lefthalf",
+  "add",
+  "mapply",
+  "ofcolor",
+  "tophalf",
+  "mfilter",
+  "other",
+  "righthalf",
+  "vfrontier",
+  "sign",
+  "rapply",
+  "backdrop",
+  "color",
+  "box",
+  "numcolors"
+ ],
+ "names_whose_first_fit_or_its_final_reading_differs": [
+  {
+   "A": {
+    "expr": "argmin(x0, matcher(identity, x1))",
+    "right": false,
+    "stop_class": "found"
+   },
+   "B": {
+    "expr": null,
+    "right": null,
+    "stop_class": "allowance_used_up"
+   },
+   "target": "other"
+  }
+ ],
+ "policy": {
+  "ADDRESS_SPACE_MARGIN_BYTES": 1073741824,
+  "ALLOWANCE": 60.0,
+  "ARITY_RULE": true,
+  "MAX_BANK": 1500000,
+  "MAX_ELEMENTS": 3000,
+  "MAX_FN": 16000,
+  "MAX_INT_BITS": 40,
+  "MAX_NESTING": 8,
+  "MEMORY_CEILING_BYTES": 34359738368,
+  "SIZE_C": null,
+  "SIZE_C_CANDIDATES": [
+   4,
+   5,
+   6
+  ],
+  "sha256": {
+   "blocks_c.py": "3665558eb3d3754781f488dba3186e3b352a4feb218543fd07854b458a2ed078",
+   "build_bl.py": "99fcb9c323f26436d923a0e3d1c654e9a673c13ae24bf8ceade5a66c53b79c8f",
+   "gen_bl.py": "7543c02d7c1d66e38cceda6654daa0b6c10153ef531b4f62a4ef05e648680bbe",
+   "presets_bl.py": "5d7cae6933f8606a6af7a8df23f588e2386c59e30a769638c3fcf7ecc9980ba3",
+   "search_bl.py": "2c65018cbb4e7c4bd44a2e5c7b8ac117b7980ce3cb4615f54bbfead71f082b81"
+  }
+ },
+ "pools_setup_cpu_s": 4.46,
+ "python": "3.12.3",
+ "reading": {
+  "A": {
+   "cpu_s_sum": 968.8,
+   "endings": {
+    "allowance_used_up": 15,
+    "found": 2
+   },
+   "first_fit_right_on_the_final_panel": 1,
+   "first_fit_wrong_on_the_final_panel": 1,
+   "fits": 2,
+   "searches": 17
+  },
+  "B": {
+   "cpu_s_sum": 973.0,
+   "endings": {
+    "allowance_used_up": 16,
+    "found": 1
+   },
+   "first_fit_right_on_the_final_panel": 1,
+   "first_fit_wrong_on_the_final_panel": 0,
+   "fits": 1,
+   "searches": 17
+  }
+ },
+ "resident_peak_kb": 1510324,
+ "rows": {
+  "add": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 81268,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.527,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9476,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1404,
+     "function_making_refused_by_arity": 15136,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 728
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 72542,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.585,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1404,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "backdrop": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 121460,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.617,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 10196,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 16732,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 111688,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.657,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "box": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 123176,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.694,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 10029,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 16554,
+     "function_results_refused": 482,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 113622,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.698,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "color": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 1421,
+    "cap_reached_at": null,
+    "coverage": null,
+    "cpu_s": 0.427,
+    "eligible": true,
+    "error": null,
+    "expr": "first(first(x0))",
+    "final": {
+     "agree": 82,
+     "counterexample": null,
+     "cpu_s": 0.0003,
+     "errors": 0,
+     "evaluated": 82,
+     "generator": [
+      30,
+      30
+     ],
+     "guard_timeout": false,
+     "incomplete": false,
+     "n": 82,
+     "order_of_sets": {
+      "of": 0,
+      "same_order": 0
+     },
+     "pooled": [
+      52,
+      52
+     ],
+     "right": true,
+     "unsupported": 0
+    },
+    "final_panel": {
+     "formed": true,
+     "generator": 30,
+     "inputs": 82,
+     "pooled": 52,
+     "pooled_discarded": 0,
+     "pooled_not_evaluated": 0,
+     "pooled_short": false,
+     "pooled_slice": {
+      "draws": 52,
+      "evaluated": 52,
+      "guard_timeout": false,
+      "raised": 0,
+      "too_large": 0,
+      "unsupported": 0,
+      "usable": 52
+     }
+    },
+    "function_cap_reached": false,
+    "function_valued_entries": 123,
+    "level_completed": 2,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 0,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": true,
+    "setting": "A",
+    "size": 3,
+    "stop_class": "found"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 1421,
+    "cap_reached_at": null,
+    "coverage": null,
+    "cpu_s": 0.428,
+    "eligible": true,
+    "error": null,
+    "expr": "first(first(x0))",
+    "final": {
+     "agree": 82,
+     "counterexample": null,
+     "cpu_s": 0.0,
+     "errors": 0,
+     "evaluated": 82,
+     "generator": [
+      30,
+      30
+     ],
+     "guard_timeout": false,
+     "incomplete": false,
+     "n": 82,
+     "order_of_sets": {
+      "of": 0,
+      "same_order": 0
+     },
+     "pooled": [
+      52,
+      52
+     ],
+     "right": true,
+     "unsupported": 0
+    },
+    "final_panel": {
+     "formed": true,
+     "generator": 30,
+     "inputs": 82,
+     "pooled": 52,
+     "pooled_discarded": 0,
+     "pooled_not_evaluated": 0,
+     "pooled_short": false,
+     "pooled_slice": {
+      "draws": 52,
+      "evaluated": 52,
+      "guard_timeout": false,
+      "raised": 0,
+      "too_large": 0,
+      "unsupported": 0,
+      "usable": 52
+     }
+    },
+    "function_cap_reached": false,
+    "function_valued_entries": 123,
+    "level_completed": 2,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 0,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": true,
+    "setting": "B",
+    "size": 3,
+    "stop_class": "found"
+   }
+  },
+  "hmirror": {
+   "A": {
+    "address_space_peak_kb": 748072,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 115013,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.779,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9701,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 16198,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 727104,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 609000,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 106005,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.676,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 590236,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "lefthalf": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 146586,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 61.102,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9746,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 15834,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 754
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 139496,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.953,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "mapply": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 106950,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.614,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 10473,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 0,
+     "function_making_refused_by_arity": 16150,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 728
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 97043,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.511,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 0,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "mfilter": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 105224,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.574,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 10532,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1528,
+     "function_making_refused_by_arity": 16426,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 741
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 124401,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.495,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1528,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "numcolors": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 125357,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.761,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 10196,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 16732,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 115831,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.626,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "objects": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 134268,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 61.233,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 11094,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 17664,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 125857,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 61.361,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "ofcolor": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 176601,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.949,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9968,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 15652,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 784
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 164190,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.978,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "other": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 52172,
+    "cap_reached_at": null,
+    "coverage": null,
+    "cpu_s": 55.375,
+    "eligible": true,
+    "error": null,
+    "expr": "argmin(x0, matcher(identity, x1))",
+    "final": {
+     "agree": 395,
+     "counterexample": {
+      "args": [
+       "s{s{t(i0,t(i6,i2))},s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i4)),t(i3,t(i0,i5)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i4)),t(i...#ae1690b7",
+       "t(i0,i7,i2,i1)"
+      ],
+      "got": "s{t(i3,t(i0,i0)),t(i3,t(i0,i1)),t(i3,t(i0,i2)),t(i3,t(i0,i4)),t(i3,t(i0,i5)),t(i3,t(i1,i0)),t(i3,t(i1,i1)),t(i3,t(i1,i2)),t(i3,t(i1,i4)),t(i3,t(i1,i5)),t(i3,t(i...#1d628086",
+      "index": 20,
+      "note": "different value",
+      "want": "s{t(i4,t(i9,i1))}"
+     },
+     "cpu_s": 0.0105,
+     "errors": 0,
+     "evaluated": 411,
+     "generator": [
+      29,
+      30
+     ],
+     "guard_timeout": false,
+     "incomplete": false,
+     "n": 411,
+     "order_of_sets": {
+      "of": 43,
+      "same_order": 43
+     },
+     "pooled": [
+      366,
+      381
+     ],
+     "right": false,
+     "unsupported": 0
+    },
+    "final_panel": {
+     "formed": true,
+     "generator": 30,
+     "inputs": 411,
+     "pooled": 381,
+     "pooled_discarded": 1,
+     "pooled_not_evaluated": 0,
+     "pooled_short": false,
+     "pooled_slice": {
+      "draws": 382,
+      "evaluated": 382,
+      "guard_timeout": false,
+      "raised": 1,
+      "too_large": 0,
+      "unsupported": 0,
+      "usable": 381
+     }
+    },
+    "function_cap_reached": false,
+    "function_valued_entries": 10184,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1528,
+     "function_making_refused_by_arity": 15456,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 702
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": false,
+    "setting": "A",
+    "size": 5,
+    "stop_class": "found"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 43658,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.374,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1528,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "rapply": {
+   "B": {
+    "eligible": false,
+    "reason_kind": "unsupported_values"
+   }
+  },
+  "righthalf": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 148405,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.975,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9746,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 15834,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 754
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 140197,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.849,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "rot180": {
+   "A": {
+    "address_space_peak_kb": 1158716,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 141441,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 61.039,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9701,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 16198,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 1132796,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1044908,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 134566,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 61.07,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1020580,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "sign": {
+   "B": {
+    "eligible": false,
+    "reason_kind": "too_few_usable_pooled_inputs"
+   }
+  },
+  "switch": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 164623,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 61.472,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 10974,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 17472,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 900
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1399956,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 156705,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 61.168,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1367032,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "tophalf": {
+   "A": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 149229,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 61.0,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 9746,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 15834,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 754
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1547416,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 140869,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.905,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1624,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1510324,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  },
+  "vfrontier": {
+   "B": {
+    "eligible": false,
+    "reason_kind": "too_few_usable_pooled_inputs"
+   }
+  },
+  "width": {
+   "A": {
+    "address_space_peak_kb": 1158716,
+    "allowance": 60.0,
+    "arity_rule": true,
+    "bank": 99193,
+    "cap_reached_at": null,
+    "coverage": "bounded",
+    "cpu_s": 60.675,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": false,
+    "function_valued_entries": 8181,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 16000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 14418,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 780
+    },
+    "resident_peak_kb": 1132796,
+    "right_on_the_final_panel": null,
+    "setting": "A",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   },
+   "B": {
+    "address_space_peak_kb": 1158716,
+    "allowance": 60.0,
+    "arity_rule": false,
+    "bank": 91514,
+    "cap_reached_at": {
+     "function_valued_entries": 1000,
+     "operation": "compose",
+     "size": 3
+    },
+    "coverage": "bounded",
+    "cpu_s": 60.707,
+    "eligible": true,
+    "error": null,
+    "expr": null,
+    "final": null,
+    "function_cap_reached": true,
+    "function_valued_entries": 1000,
+    "level_completed": 4,
+    "max_bank": 1500000,
+    "max_fn": 1000,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 1514,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb": 1132796,
+    "right_on_the_final_panel": null,
+    "setting": "B",
+    "size": null,
+    "stop_class": "allowance_used_up"
+   }
+  }
+ },
+ "settings": {
+  "A": {
+   "ARITY_RULE": true,
+   "MAX_FN": 16000
+  },
+  "B": {
+   "ARITY_RULE": false,
+   "MAX_FN": 1000
+  }
+ },
+ "wall_s": 2025.3,
+ "what": "L5-36 on every eligible development name under two settings of the arity rule and the cap on function-valued entries"
+}

@@ -1,0 +1,1210 @@
+{
+ "conditions": {
+  "a": {
+   "cpu_s": 1817.6,
+   "excluded_reasons": {
+    "both": "only 4 of 36 valid examples in 4000 draws",
+    "chain": "result is a function",
+    "compose": "result is a function",
+    "either": "only 4 of 36 valid examples in 4000 draws",
+    "flip": "only 2 of 36 valid examples in 4000 draws",
+    "fork": "result is a function",
+    "lbind": "result is a function",
+    "matcher": "result is a function",
+    "power": "result is a function",
+    "rbind": "result is a function"
+   },
+   "function_cap_reached_by_arm": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "6": 1,
+    "oracle": 1
+   },
+   "library_comparison": {
+    "of_which_regenerated": 19,
+    "raw_python_regenerated": [
+     "add",
+     "argmin",
+     "asindices",
+     "asobject",
+     "bottomhalf",
+     "color",
+     "crement",
+     "decrement",
+     "double",
+     "equality",
+     "extract",
+     "first",
+     "greater",
+     "halve",
+     "hconcat",
+     "identity",
+     "increment",
+     "ineighbors",
+     "insert",
+     "invert",
+     "maximum",
+     "minimum",
+     "paint",
+     "pair",
+     "positive",
+     "product",
+     "rot180",
+     "rot270",
+     "rot90",
+     "sign",
+     "subtract",
+     "toivec",
+     "tojvec",
+     "tophalf",
+     "totuple",
+     "vconcat"
+    ],
+    "regenerated_expression_uses_one_of_its_own_source_deps": [
+     "cmirror",
+     "hline",
+     "lefthalf",
+     "mapply",
+     "mfilter",
+     "numcolors",
+     "other",
+     "righthalf",
+     "vline"
+    ],
+    "searched_raw_python": 84,
+    "searched_with_source_calling_library": 61
+   },
+   "missing_files": 0,
+   "oracle_assisted_coverage": {
+    "by_size": {
+     "1": 3,
+     "2": 1,
+     "3": 30,
+     "4": 21
+    },
+    "excluded": 10,
+    "expressible_within_limit_and_budget": 55,
+    "not_found_within_limit_and_budget": 90,
+    "ops": {
+     "add": {
+      "expr": "subtract(a, invert(b))",
+      "pilot": true,
+      "size": 4
+     },
+     "argmin": {
+      "expr": "first(order(container, compfunc))",
+      "pilot": false,
+      "size": 4
+     },
+     "asindices": {
+      "expr": "toindices(asobject(grid))",
+      "pilot": false,
+      "size": 3
+     },
+     "asobject": {
+      "expr": "merge(partition(grid))",
+      "pilot": false,
+      "size": 3
+     },
+     "bottomhalf": {
+      "expr": "last(vsplit(grid, TWO))",
+      "pilot": false,
+      "size": 4
+     },
+     "cmirror": {
+      "expr": "hmirror(vmirror(dmirror(piece)))",
+      "pilot": false,
+      "size": 4
+     },
+     "color": {
+      "expr": "mostcolor(obj)",
+      "pilot": false,
+      "size": 2
+     },
+     "crement": {
+      "expr": "add(x, sign(x))",
+      "pilot": false,
+      "size": 4
+     },
+     "decrement": {
+      "expr": "add(NEG_ONE, x)",
+      "pilot": false,
+      "size": 3
+     },
+     "double": {
+      "expr": "add(n, n)",
+      "pilot": false,
+      "size": 3
+     },
+     "equality": {
+      "expr": "contained(a, initset(b))",
+      "pilot": false,
+      "size": 4
+     },
+     "extract": {
+      "expr": "argmin(container, flip)",
+      "pilot": false,
+      "size": 3
+     },
+     "first": {
+      "expr": "argmax(container, flip)",
+      "pilot": false,
+      "size": 3
+     },
+     "greater": {
+      "expr": "positive(subtract(a, b))",
+      "pilot": false,
+      "size": 4
+     },
+     "halve": {
+      "expr": "divide(n, TWO)",
+      "pilot": false,
+      "size": 3
+     },
+     "hconcat": {
+      "expr": "papply(combine, a, b)",
+      "pilot": false,
+      "size": 4
+     },
+     "height": {
+      "expr": "width(dmirror(piece))",
+      "pilot": false,
+      "size": 3
+     },
+     "hline": {
+      "expr": "equality(T, height(patch))",
+      "pilot": false,
+      "size": 4
+     },
+     "hmirror": {
+      "expr": "vmirror(dmirror(cmirror(piece)))",
+      "pilot": true,
+      "size": 4
+     },
+     "hperiod": {
+      "expr": "vperiod(dmirror(obj))",
+      "pilot": false,
+      "size": 3
+     },
+     "identity": {
+      "expr": "x",
+      "pilot": false,
+      "size": 1
+     },
+     "increment": {
+      "expr": "add(ONE, x)",
+      "pilot": false,
+      "size": 3
+     },
+     "ineighbors": {
+      "expr": "corners(dneighbors(loc))",
+      "pilot": false,
+      "size": 3
+     },
+     "insert": {
+      "expr": "combine(container, initset(value))",
+      "pilot": false,
+      "size": 4
+     },
+     "invert": {
+      "expr": "subtract(ZERO, n)",
+      "pilot": false,
+      "size": 3
+     },
+     "lefthalf": {
+      "expr": "apply(tophalf, grid)",
+      "pilot": true,
+      "size": 3
+     },
+     "leftmost": {
+      "expr": "last(ulcorner(patch))",
+      "pilot": false,
+      "size": 3
+     },
+     "lowermost": {
+      "expr": "first(llcorner(patch))",
+      "pilot": false,
+      "size": 3
+     },
+     "mapply": {
+      "expr": "merge(apply(function, container))",
+      "pilot": true,
+      "size": 4
+     },
+     "maximum": {
+      "expr": "valmax(container, identity)",
+      "pilot": false,
+      "size": 3
+     },
+     "mfilter": {
+      "expr": "merge(sfilter(container, function))",
+      "pilot": true,
+      "size": 4
+     },
+     "minimum": {
+      "expr": "valmin(container, identity)",
+      "pilot": false,
+      "size": 3
+     },
+     "neighbors": {
+      "expr": "inbox(initset(loc))",
+      "pilot": false,
+      "size": 3
+     },
+     "numcolors": {
+      "expr": "size(palette(element))",
+      "pilot": false,
+      "size": 3
+     },
+     "other": {
+      "expr": "first(remove(value, container))",
+      "pilot": true,
+      "size": 4
+     },
+     "paint": {
+      "expr": "grid",
+      "pilot": false,
+      "size": 1
+     },
+     "pair": {
+      "expr": "papply(astuple, a, b)",
+      "pilot": false,
+      "size": 4
+     },
+     "positive": {
+      "expr": "greater(x, ZERO)",
+      "pilot": false,
+      "size": 3
+     },
+     "product": {
+      "expr": "prapply(astuple, a, b)",
+      "pilot": false,
+      "size": 4
+     },
+     "righthalf": {
+      "expr": "apply(bottomhalf, grid)",
+      "pilot": true,
+      "size": 3
+     },
+     "rightmost": {
+      "expr": "last(urcorner(patch))",
+      "pilot": false,
+      "size": 3
+     },
+     "rot180": {
+      "expr": "rot90(rot90(grid))",
+      "pilot": true,
+      "size": 3
+     },
+     "rot270": {
+      "expr": "rot90(rot180(grid))",
+      "pilot": false,
+      "size": 3
+     },
+     "rot90": {
+      "expr": "rot180(rot270(grid))",
+      "pilot": false,
+      "size": 3
+     },
+     "sign": {
+      "expr": "subtract(crement(x), x)",
+      "pilot": false,
+      "size": 4
+     },
+     "subtract": {
+      "expr": "add(a, invert(b))",
+      "pilot": false,
+      "size": 4
+     },
+     "toivec": {
+      "expr": "multiply(i, DOWN)",
+      "pilot": false,
+      "size": 3
+     },
+     "tojvec": {
+      "expr": "multiply(j, RIGHT)",
+      "pilot": false,
+      "size": 3
+     },
+     "tophalf": {
+      "expr": "first(vsplit(grid, TWO))",
+      "pilot": true,
+      "size": 4
+     },
+     "totuple": {
+      "expr": "order(container, initset)",
+      "pilot": false,
+      "size": 3
+     },
+     "underpaint": {
+      "expr": "grid",
+      "pilot": false,
+      "size": 1
+     },
+     "uppermost": {
+      "expr": "first(ulcorner(patch))",
+      "pilot": false,
+      "size": 3
+     },
+     "vconcat": {
+      "expr": "combine(a, b)",
+      "pilot": false,
+      "size": 3
+     },
+     "vline": {
+      "expr": "equality(T, width(patch))",
+      "pilot": false,
+      "size": 4
+     },
+     "vmirror": {
+      "expr": "dmirror(hmirror(dmirror(piece)))",
+      "pilot": false,
+      "size": 4
+     }
+    }
+   },
+   "oracle_missed_an_expression_that_a_K_arm_found_equal_on_all_36": [],
+   "right_expressions_vs_later_fit_examples": {
+    "1": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 19
+    },
+    "2": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 35
+    },
+    "3": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 43
+    },
+    "6": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 51
+    }
+   },
+   "rule_choice_by_n_fit_examples": {
+    "1": {
+     "absent": 17,
+     "right": 19,
+     "wrong": 109
+    },
+    "2": {
+     "absent": 42,
+     "right": 35,
+     "wrong": 68
+    },
+    "3": {
+     "absent": 54,
+     "right": 43,
+     "wrong": 48
+    },
+    "6": {
+     "absent": 70,
+     "right": 51,
+     "wrong": 24
+    }
+   },
+   "stop_reasons_by_arm": {
+    "1": {
+     "found": 128,
+     "size_exhausted": 16,
+     "size_exhausted_function_cap": 1
+    },
+    "2": {
+     "found": 103,
+     "size_exhausted": 41,
+     "size_exhausted_function_cap": 1
+    },
+    "3": {
+     "found": 91,
+     "size_exhausted": 53,
+     "size_exhausted_function_cap": 1
+    },
+    "6": {
+     "found": 75,
+     "size_exhausted": 69,
+     "size_exhausted_function_cap": 1
+    },
+    "oracle": {
+     "found": 55,
+     "size_exhausted": 89,
+     "size_exhausted_function_cap": 1
+    }
+   },
+   "without_pilot_subset": {
+    "regenerated": 46,
+    "searched": 132
+   }
+  },
+  "b": {
+   "cpu_s": 1573.5,
+   "excluded_reasons": {
+    "both": "only 4 of 36 valid examples in 4000 draws",
+    "chain": "result is a function",
+    "compose": "result is a function",
+    "either": "only 4 of 36 valid examples in 4000 draws",
+    "flip": "only 2 of 36 valid examples in 4000 draws",
+    "fork": "result is a function",
+    "lbind": "result is a function",
+    "matcher": "result is a function",
+    "power": "result is a function",
+    "rbind": "result is a function"
+   },
+   "function_cap_reached_by_arm": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "6": 1,
+    "oracle": 1
+   },
+   "library_comparison": {
+    "of_which_regenerated": 6,
+    "raw_python_regenerated": [
+     "argmin",
+     "asobject",
+     "color",
+     "equality",
+     "extract",
+     "first",
+     "hconcat",
+     "identity",
+     "ineighbors",
+     "maximum",
+     "minimum",
+     "paint",
+     "pair",
+     "positive",
+     "product",
+     "toivec",
+     "tojvec",
+     "totuple",
+     "vconcat"
+    ],
+    "regenerated_expression_uses_one_of_its_own_source_deps": [
+     "leftmost",
+     "lowermost",
+     "rightmost",
+     "uppermost"
+    ],
+    "searched_raw_python": 84,
+    "searched_with_source_calling_library": 61
+   },
+   "missing_files": 0,
+   "oracle_assisted_coverage": {
+    "by_size": {
+     "1": 3,
+     "3": 9,
+     "4": 13
+    },
+    "excluded": 10,
+    "expressible_within_limit_and_budget": 25,
+    "not_found_within_limit_and_budget": 120,
+    "ops": {
+     "argmin": {
+      "expr": "first(order(container, compfunc))",
+      "pilot": false,
+      "size": 4
+     },
+     "asobject": {
+      "expr": "merge(partition(grid))",
+      "pilot": false,
+      "size": 3
+     },
+     "color": {
+      "expr": "first(first(obj))",
+      "pilot": false,
+      "size": 3
+     },
+     "equality": {
+      "expr": "contained(a, initset(b))",
+      "pilot": false,
+      "size": 4
+     },
+     "extract": {
+      "expr": "argmin(container, flip)",
+      "pilot": false,
+      "size": 3
+     },
+     "first": {
+      "expr": "argmax(container, flip)",
+      "pilot": false,
+      "size": 3
+     },
+     "hconcat": {
+      "expr": "papply(combine, a, b)",
+      "pilot": false,
+      "size": 4
+     },
+     "identity": {
+      "expr": "x",
+      "pilot": false,
+      "size": 1
+     },
+     "ineighbors": {
+      "expr": "corners(inbox(initset(loc)))",
+      "pilot": false,
+      "size": 4
+     },
+     "leftmost": {
+      "expr": "valmin(toindices(patch), last)",
+      "pilot": false,
+      "size": 4
+     },
+     "lowermost": {
+      "expr": "valmax(toindices(patch), first)",
+      "pilot": false,
+      "size": 4
+     },
+     "maximum": {
+      "expr": "first(order(container, invert))",
+      "pilot": false,
+      "size": 4
+     },
+     "minimum": {
+      "expr": "first(order(container, identity))",
+      "pilot": false,
+      "size": 4
+     },
+     "neighbors": {
+      "expr": "inbox(initset(loc))",
+      "pilot": false,
+      "size": 3
+     },
+     "paint": {
+      "expr": "grid",
+      "pilot": false,
+      "size": 1
+     },
+     "pair": {
+      "expr": "papply(astuple, a, b)",
+      "pilot": false,
+      "size": 4
+     },
+     "positive": {
+      "expr": "equality(T, sign(x))",
+      "pilot": false,
+      "size": 4
+     },
+     "product": {
+      "expr": "prapply(astuple, a, b)",
+      "pilot": false,
+      "size": 4
+     },
+     "rightmost": {
+      "expr": "valmax(toindices(patch), last)",
+      "pilot": false,
+      "size": 4
+     },
+     "toivec": {
+      "expr": "multiply(i, DOWN)",
+      "pilot": false,
+      "size": 3
+     },
+     "tojvec": {
+      "expr": "multiply(j, RIGHT)",
+      "pilot": false,
+      "size": 3
+     },
+     "totuple": {
+      "expr": "order(container, initset)",
+      "pilot": false,
+      "size": 3
+     },
+     "underpaint": {
+      "expr": "grid",
+      "pilot": false,
+      "size": 1
+     },
+     "uppermost": {
+      "expr": "valmin(toindices(patch), first)",
+      "pilot": false,
+      "size": 4
+     },
+     "vconcat": {
+      "expr": "combine(a, b)",
+      "pilot": false,
+      "size": 3
+     }
+    }
+   },
+   "oracle_missed_an_expression_that_a_K_arm_found_equal_on_all_36": [],
+   "right_expressions_vs_later_fit_examples": {
+    "1": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 10
+    },
+    "2": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 14
+    },
+    "3": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 15
+    },
+    "6": {
+     "of_which_fail_a_later_fit_example": 0,
+     "right": 22
+    }
+   },
+   "rule_choice_by_n_fit_examples": {
+    "1": {
+     "absent": 33,
+     "right": 10,
+     "wrong": 102
+    },
+    "2": {
+     "absent": 70,
+     "right": 14,
+     "wrong": 61
+    },
+    "3": {
+     "absent": 84,
+     "right": 15,
+     "wrong": 46
+    },
+    "6": {
+     "absent": 104,
+     "right": 22,
+     "wrong": 19
+    }
+   },
+   "stop_reasons_by_arm": {
+    "1": {
+     "found": 112,
+     "size_exhausted": 32,
+     "size_exhausted_function_cap": 1
+    },
+    "2": {
+     "found": 75,
+     "size_exhausted": 69,
+     "size_exhausted_function_cap": 1
+    },
+    "3": {
+     "found": 61,
+     "size_exhausted": 83,
+     "size_exhausted_function_cap": 1
+    },
+    "6": {
+     "found": 41,
+     "size_exhausted": 103,
+     "size_exhausted_function_cap": 1
+    },
+    "oracle": {
+     "found": 25,
+     "size_exhausted": 119,
+     "size_exhausted_function_cap": 1
+    }
+   },
+   "without_pilot_subset": {
+    "regenerated": 25,
+    "searched": 132
+   }
+  }
+ },
+ "core_estimate_condition_a": {
+  "external_basis_names": [],
+  "graph_check_passed": true,
+  "members": [
+   "adjacent",
+   "apply",
+   "argmax",
+   "astuple",
+   "backdrop",
+   "bordering",
+   "both",
+   "box",
+   "branch",
+   "canvas",
+   "cellwise",
+   "center",
+   "centerofmass",
+   "chain",
+   "colorcount",
+   "colorfilter",
+   "combine",
+   "compose",
+   "connect",
+   "contained",
+   "corners",
+   "cover",
+   "crement",
+   "crop",
+   "dedupe",
+   "delta",
+   "difference",
+   "divide",
+   "dmirror",
+   "dneighbors",
+   "either",
+   "even",
+   "fgpartition",
+   "fill",
+   "flip",
+   "fork",
+   "frontiers",
+   "gravitate",
+   "greater",
+   "hfrontier",
+   "hmatching",
+   "hmirror",
+   "hsplit",
+   "hupscale",
+   "inbox",
+   "index",
+   "initset",
+   "intersection",
+   "interval",
+   "last",
+   "lbind",
+   "leastcolor",
+   "leastcommon",
+   "llcorner",
+   "lrcorner",
+   "manhattan",
+   "matcher",
+   "merge",
+   "mostcolor",
+   "move",
+   "mpapply",
+   "multiply",
+   "normalize",
+   "objects",
+   "occurrences",
+   "ofcolor",
+   "order",
+   "outbox",
+   "palette",
+   "papply",
+   "partition",
+   "portrait",
+   "position",
+   "power",
+   "prapply",
+   "rapply",
+   "rbind",
+   "recolor",
+   "remove",
+   "repeat",
+   "replace",
+   "rot90",
+   "sfilter",
+   "shape",
+   "shift",
+   "shoot",
+   "size",
+   "sizefilter",
+   "square",
+   "subgrid",
+   "subtract",
+   "switch",
+   "toindices",
+   "toobject",
+   "ulcorner",
+   "underfill",
+   "urcorner",
+   "valmax",
+   "valmin",
+   "vfrontier",
+   "vmatching",
+   "vperiod",
+   "vsplit",
+   "vupscale",
+   "width"
+  ],
+  "note": "greedy estimate (an upper bound within this witness graph, built from the oracle-arm expressions, and this budget), not a minimum. Operations not rebuilt are kept as given within this witness graph and budget, not necessarily in every basis. Names outside the operations in scope are external basis nodes. Graph check only; the expressions were not re-executed.",
+  "of": 155,
+  "reconstruction_order": [
+   {
+    "expr": "merge(partition(grid))",
+    "op": "asobject"
+   },
+   {
+    "expr": "last(vsplit(grid, TWO))",
+    "op": "bottomhalf"
+   },
+   {
+    "expr": "mostcolor(obj)",
+    "op": "color"
+   },
+   {
+    "expr": "contained(a, initset(b))",
+    "op": "equality"
+   },
+   {
+    "expr": "argmax(container, flip)",
+    "op": "first"
+   },
+   {
+    "expr": "divide(n, TWO)",
+    "op": "halve"
+   },
+   {
+    "expr": "papply(combine, a, b)",
+    "op": "hconcat"
+   },
+   {
+    "expr": "width(dmirror(piece))",
+    "op": "height"
+   },
+   {
+    "expr": "vperiod(dmirror(obj))",
+    "op": "hperiod"
+   },
+   {
+    "expr": "x",
+    "op": "identity"
+   },
+   {
+    "expr": "corners(dneighbors(loc))",
+    "op": "ineighbors"
+   },
+   {
+    "expr": "combine(container, initset(value))",
+    "op": "insert"
+   },
+   {
+    "expr": "subtract(ZERO, n)",
+    "op": "invert"
+   },
+   {
+    "expr": "last(ulcorner(patch))",
+    "op": "leftmost"
+   },
+   {
+    "expr": "merge(apply(function, container))",
+    "op": "mapply"
+   },
+   {
+    "expr": "merge(sfilter(container, function))",
+    "op": "mfilter"
+   },
+   {
+    "expr": "inbox(initset(loc))",
+    "op": "neighbors"
+   },
+   {
+    "expr": "size(palette(element))",
+    "op": "numcolors"
+   },
+   {
+    "expr": "grid",
+    "op": "paint"
+   },
+   {
+    "expr": "papply(astuple, a, b)",
+    "op": "pair"
+   },
+   {
+    "expr": "greater(x, ZERO)",
+    "op": "positive"
+   },
+   {
+    "expr": "prapply(astuple, a, b)",
+    "op": "product"
+   },
+   {
+    "expr": "last(urcorner(patch))",
+    "op": "rightmost"
+   },
+   {
+    "expr": "rot90(rot90(grid))",
+    "op": "rot180"
+   },
+   {
+    "expr": "subtract(crement(x), x)",
+    "op": "sign"
+   },
+   {
+    "expr": "multiply(i, DOWN)",
+    "op": "toivec"
+   },
+   {
+    "expr": "multiply(j, RIGHT)",
+    "op": "tojvec"
+   },
+   {
+    "expr": "order(container, initset)",
+    "op": "totuple"
+   },
+   {
+    "expr": "grid",
+    "op": "underpaint"
+   },
+   {
+    "expr": "combine(a, b)",
+    "op": "vconcat"
+   },
+   {
+    "expr": "dmirror(hmirror(dmirror(piece)))",
+    "op": "vmirror"
+   },
+   {
+    "expr": "subtract(a, invert(b))",
+    "op": "add"
+   },
+   {
+    "expr": "first(order(container, compfunc))",
+    "op": "argmin"
+   },
+   {
+    "expr": "toindices(asobject(grid))",
+    "op": "asindices"
+   },
+   {
+    "expr": "hmirror(vmirror(dmirror(piece)))",
+    "op": "cmirror"
+   },
+   {
+    "expr": "equality(T, height(patch))",
+    "op": "hline"
+   },
+   {
+    "expr": "first(llcorner(patch))",
+    "op": "lowermost"
+   },
+   {
+    "expr": "valmax(container, identity)",
+    "op": "maximum"
+   },
+   {
+    "expr": "valmin(container, identity)",
+    "op": "minimum"
+   },
+   {
+    "expr": "first(remove(value, container))",
+    "op": "other"
+   },
+   {
+    "expr": "apply(bottomhalf, grid)",
+    "op": "righthalf"
+   },
+   {
+    "expr": "rot90(rot180(grid))",
+    "op": "rot270"
+   },
+   {
+    "expr": "first(vsplit(grid, TWO))",
+    "op": "tophalf"
+   },
+   {
+    "expr": "first(ulcorner(patch))",
+    "op": "uppermost"
+   },
+   {
+    "expr": "equality(T, width(patch))",
+    "op": "vline"
+   },
+   {
+    "expr": "add(NEG_ONE, x)",
+    "op": "decrement"
+   },
+   {
+    "expr": "add(n, n)",
+    "op": "double"
+   },
+   {
+    "expr": "argmin(container, flip)",
+    "op": "extract"
+   },
+   {
+    "expr": "add(ONE, x)",
+    "op": "increment"
+   },
+   {
+    "expr": "apply(tophalf, grid)",
+    "op": "lefthalf"
+   }
+  ],
+  "size": 105
+ },
+ "held_out_by_the_earlier_study": {
+  "in_this_summary": [
+   "argmax",
+   "argmin",
+   "bottomhalf",
+   "center",
+   "corners",
+   "crop",
+   "flip",
+   "height",
+   "hline",
+   "hmatching",
+   "hsplit",
+   "identity",
+   "index",
+   "lefthalf",
+   "leftmost",
+   "llcorner",
+   "lowermost",
+   "lrcorner",
+   "maximum",
+   "minimum",
+   "move",
+   "objects",
+   "portrait",
+   "replace",
+   "righthalf",
+   "rightmost",
+   "shape",
+   "square",
+   "subgrid",
+   "switch",
+   "tophalf",
+   "ulcorner",
+   "uppermost",
+   "urcorner",
+   "valmax",
+   "valmin",
+   "vline",
+   "vmatching",
+   "vsplit",
+   "width"
+  ],
+  "names": [
+   "argmax",
+   "argmin",
+   "bottomhalf",
+   "center",
+   "corners",
+   "crop",
+   "flip",
+   "height",
+   "hline",
+   "hmatching",
+   "hsplit",
+   "identity",
+   "index",
+   "lefthalf",
+   "leftmost",
+   "llcorner",
+   "lowermost",
+   "lrcorner",
+   "maximum",
+   "minimum",
+   "move",
+   "objects",
+   "portrait",
+   "replace",
+   "righthalf",
+   "rightmost",
+   "shape",
+   "square",
+   "subgrid",
+   "switch",
+   "tophalf",
+   "ulcorner",
+   "uppermost",
+   "urcorner",
+   "valmax",
+   "valmin",
+   "vline",
+   "vmatching",
+   "vsplit",
+   "width"
+  ],
+  "note": "the family table holds out 40 names in 12 families, of 155 names in 60 families; reported separately",
+  "regenerated_condition_a": [
+   "argmin",
+   "bottomhalf",
+   "height",
+   "hline",
+   "identity",
+   "lefthalf",
+   "leftmost",
+   "lowermost",
+   "maximum",
+   "minimum",
+   "righthalf",
+   "rightmost",
+   "tophalf",
+   "uppermost",
+   "vline"
+  ],
+  "regenerated_condition_b": [
+   "argmin",
+   "identity",
+   "leftmost",
+   "lowermost",
+   "maximum",
+   "minimum",
+   "rightmost",
+   "uppermost"
+  ]
+ },
+ "known_short_definitions": {
+  "definition_equals_x_on_all_36": 5,
+  "definitions": {
+   "lefthalf": {
+    "expr": "rot270(tophalf(rot90(grid)))",
+    "found": true,
+    "size": 4
+   },
+   "mapply": {
+    "expr": "merge(apply(function, container))",
+    "found": true,
+    "size": 4
+   },
+   "mfilter": {
+    "expr": "merge(sfilter(container, function))",
+    "found": true,
+    "size": 4
+   },
+   "other": {
+    "expr": "first(remove(value, container))",
+    "found": true,
+    "size": 4
+   },
+   "righthalf": {
+    "expr": "rot270(bottomhalf(rot90(grid)))",
+    "found": true,
+    "size": 4
+   }
+  },
+  "found": 5,
+  "missed": 0,
+  "missed_by_reason": {},
+  "missed_ops": {},
+  "n": 5,
+  "note": "Known-answer control, condition a. Operations whose library text is a single return of nested calls of other library operations applied to their own parameters and named constants, within the size limit. 'found' = the oracle arm found some expression; 'missed' = it did not, though this definition exists. Measures how often this annotation-typed enumerator misses a known answer.",
+  "qualifying_operations_in_library": [
+   "lefthalf",
+   "mapply",
+   "mfilter",
+   "other",
+   "righthalf"
+  ]
+ },
+ "n_operations": 155,
+ "pilot_ops_in_this_summary": [
+  "add",
+  "hmirror",
+  "lefthalf",
+  "mapply",
+  "mfilter",
+  "objects",
+  "ofcolor",
+  "other",
+  "righthalf",
+  "rot180",
+  "switch",
+  "tophalf",
+  "width"
+ ],
+ "presets": {
+  "BUDGET_S": {
+   "1": 5.0,
+   "2": 6.0,
+   "3": 8.0,
+   "6": 10.0,
+   "oracle": 40.0
+  },
+  "MAX_BANK": 250000,
+  "MAX_FN": 300,
+  "MAX_SIZE": 4,
+  "N_FIT": 6,
+  "N_VAL": 30
+ },
+ "total_cpu_s": 3391.1,
+ "what": "core operations measurement (model-free); see PROTOCOL.md. 'Not found' always means not found within this size limit and CPU budget."
+}

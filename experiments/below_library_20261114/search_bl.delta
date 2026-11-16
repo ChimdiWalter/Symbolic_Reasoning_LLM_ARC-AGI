@@ -1,0 +1,108 @@
+--- experiments/core_operations_20261113/search.py
++++ experiments/below_library_20261114/search_bl.py
+@@ -1,3 +1,32 @@
+-"""Typed bottom-up enumeration by expression size with observational equivalence, over several typed parameters.
++"""LOCAL COPY of the frozen enumerator, with two listed changes: a memory failure is never an ordinary error, and a
++budget counted in candidate combinations can be asked for (off unless asked for).
++Author: Chimdi Walter Ndubuisi
++
++The original is experiments/core_operations_20261113/search.py (frozen; sha256 in ORIGINAL_SHA256 below, checked
++when this module is imported). The enumeration, its order, its merging, its caps, its hard stop and its handling of
++the timer are the original's, line for line. What differs, and nothing else (search_bl.delta is the unified diff,
++and a test rebuilds it):
++  1. this text, the two imports (bl_frozen, ResourceStop) and the check of the original's hash;
++  2. in search(), BEFORE the one broad handler of ordinary errors (around the evaluation of a candidate):
++     `except MemoryError: raise ResourceStop(...) from None`. Python's MemoryError derives from Exception; in the
++     original that handler takes it for a failed candidate and goes on;
++  3. in search(), beside `except Hard`: the same translation for a MemoryError raised anywhere else inside the
++     enumeration (leaves, the bank, the pools, the product of argument lists);
++  4. eval_tree is not copied: this experiment evaluates a tree with build_bl.eval_tree_bl;
++  5. a budget counted in candidate combinations. The enumerator already counts every combination of arguments it
++     offers to an operation (`tick`). search() takes one more keyword parameter, max_ticks=None, and the dictionary
++     it returns has one more key, ticks: that count. When max_ticks is a number and one more combination is offered
++     after max_ticks of them, the search ends with stop 'budget_ticks'. The check stands before the count and
++     before the evaluation, so exactly max_ticks combinations were counted and evaluated: where such a search
++     stops does not depend on the load of the machine. The other limits stay as they are and can end the search
++     first. (When a search ends by the processor-time budget or the bank cap, the last combination counted was not
++     evaluated: the original checks those after counting.) With max_ticks=None the enumeration is the original's;
++     `tick` is also bound before the `try`, so that the count exists on every path.
++So search() never returns after a swallowed memory failure, and a memory failure inside it leaves it as
++guards_bl.ResourceStop (the timer is disarmed and the handler restored by the original's `finally`).
++
++The original's own text follows.
++
++Typed bottom-up enumeration by expression size with observational equivalence, over several typed parameters.
+ Author: Chimdi Walter Ndubuisi
+ 
+@@ -17,6 +46,13 @@
+ import time
+ 
++import bl_frozen
+ import dslx
+ from dslx import tag
++from guards_bl import ResourceStop
++
++ORIGINAL = "experiments/core_operations_20261113/search.py"
++ORIGINAL_SHA256 = "49fc72e1be57c67696b41d938b5cb900cfad557422b95a22c63a23811376a4f2"
++if bl_frozen.HASHES[ORIGINAL] != ORIGINAL_SHA256:
++    raise SystemExit("search_bl.py is a copy of another version of %s: refusing to run" % ORIGINAL)
+ 
+ CAP = 3000
+@@ -65,5 +101,5 @@
+ 
+ 
+-def search(ops, leaves, Y, cpu_budget, max_size, max_fn=300, max_bank=250000):
++def search(ops, leaves, Y, cpu_budget, max_size, max_fn=300, max_bank=250000, max_ticks=None):
+     """ops: list of (name, fn, acc tuple of tag sets, makes_fn); leaves: list of (tree, vals); Y: target values.
+     Only the examples in Y (and the same-length leaf vectors) are used: equivalence, pruning, order and stopping.
+@@ -73,4 +109,5 @@
+     stop: 'found', 'size_exhausted', 'size_exhausted_function_cap' (the cap on function-valued entries was reached,
+     so the enumeration was not exhaustive), 'budget_cpu', 'budget_bank' or 'hard_timeout'.
++    This copy: max_ticks, the stop 'budget_ticks' and the key ticks of the result are described in the module's text.
+     """
+     n = len(Y)
+@@ -79,4 +116,5 @@
+     seen = set()
+     st = dict(regen=None, nfn=0, level=0, stop=None, cap=False)
++    tick = 0                                # this copy: bound here too, so that the count exists on every path
+     old = signal.signal(signal.SIGVTALRM, _alarm)
+     signal.setitimer(signal.ITIMER_VIRTUAL, cpu_budget + 30)
+@@ -139,4 +177,7 @@
+                         continue
+                     for combo in itertools.product(*lists):
++                        if max_ticks is not None and tick >= max_ticks:
++                            st["stop"] = "budget_ticks"         # this copy: exactly max_ticks combinations were evaluated
++                            break
+                         tick += 1
+                         if tick & 127 == 0:
+@@ -168,4 +209,6 @@
+                                 if len(outs) != n:
+                                     continue
++                        except MemoryError:
++                            raise ResourceStop("memory failure: the enumerator evaluated a candidate") from None
+                         except Exception:               # noqa: BLE001 (type errors are the common outcome)
+                             continue
+@@ -190,19 +233,10 @@
+     except Hard:
+         st["stop"] = "hard_timeout"
++    except MemoryError:
++        raise ResourceStop("memory failure inside the enumerator") from None
+     finally:
+         signal.setitimer(signal.ITIMER_VIRTUAL, 0)
+         signal.signal(signal.SIGVTALRM, old)
+     return dict(found=st["regen"], stop=st["stop"], level=st["level"], bank=len(seen), function_cap_reached=st["cap"],
+-                cpu_s=time.process_time() - t0)
+-
+-
+-def eval_tree(tree, ns, consts, params):
+-    """Value of an expression in namespace `ns` with parameter values `params` {name: value} (raises on error)."""
+-    h = tree[0]
+-    if h == "P":
+-        return params[tree[1]]
+-    if h == "C":
+-        return consts[tree[1]]
+-    if h == "FN":
+-        return ns[tree[1]]
+-    return ns[tree[1]](*[eval_tree(c, ns, consts, params) for c in tree[2:]])
++                cpu_s=time.process_time() - t0, ticks=tick)
++

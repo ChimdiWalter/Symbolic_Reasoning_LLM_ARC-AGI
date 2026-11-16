@@ -1,0 +1,100 @@
+{
+ "B": 10.0,
+ "dev": false,
+ "development_only": false,
+ "family": "neighbourhoods",
+ "family_size": 3,
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reason": "too few usable pooled inputs (slice UB: 23 of 23 draws usable for the missing operation and wrappers 1 to 3, need 30)",
+ "reason_kind": "too_few_usable_pooled_inputs",
+ "setup": {
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition"
+  ],
+  "pooled_sequence": {
+   "A": 18,
+   "B": 23,
+   "R": 9,
+   "UA": 18,
+   "UB": 23,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 94
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UB_draws": 23,
+   "UB_usable_wrappers_1_to_3": 23
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "toivec",
+    "2": "last",
+    "3": "backdrop",
+    "4": "rightmost",
+    "5": "leftmost"
+   },
+   "chosen": [
+    "toivec",
+    "last",
+    "backdrop",
+    "rightmost",
+    "leftmost"
+   ],
+   "n_candidates": 28,
+   "n_eligible": 5,
+   "n_skipped": 0,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": []
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 18,
+    "B": 23,
+    "R": 9,
+    "UA": 18,
+    "UB": 23,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 94
+   },
+   "preservation_bank_entries": 48,
+   "reason": "too few usable pooled inputs (slice UB: 23 of 23 draws usable for the missing operation and wrappers 1 to 3, need 30)",
+   "usability": {
+    "UB_draws": 23,
+    "UB_usable_wrappers_1_to_3": 23
+   }
+  },
+  "decision": {
+   "acquisition_source": null,
+   "cohort_admission": false,
+   "cohort_construction": false,
+   "cohort_reuse": false,
+   "n_eligible_wrappers": 5,
+   "reason_kind": "too_few_usable_pooled_inputs",
+   "status": "excluded",
+   "unavailable": {},
+   "wrappers": [
+    "toivec",
+    "last",
+    "backdrop",
+    "rightmost",
+    "leftmost"
+   ]
+  }
+ },
+ "status": "excluded",
+ "target": "ineighbors"
+}

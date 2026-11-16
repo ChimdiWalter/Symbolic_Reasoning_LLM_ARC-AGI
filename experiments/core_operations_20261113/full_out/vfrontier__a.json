@@ -1,0 +1,106 @@
+{
+ "arms": {
+  "1": {
+   "bank": 14285,
+   "cpu_s": 0.671,
+   "equal_all_36": false,
+   "expr": "apply(hmirror, hfrontier(UNITY))",
+   "function_cap_reached": false,
+   "later_fit_equal": 1,
+   "later_fit_errors": 0,
+   "later_fit_n": 5,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 0
+  },
+  "2": {
+   "bank": 15472,
+   "cpu_s": 0.693,
+   "equal_all_36": false,
+   "expr": "apply(hmirror, hfrontier(UNITY))",
+   "function_cap_reached": false,
+   "later_fit_equal": 0,
+   "later_fit_errors": 0,
+   "later_fit_n": 4,
+   "level_completed": 3,
+   "right": false,
+   "size": 4,
+   "stop": "found",
+   "validation_equal": 4,
+   "validation_errors": 0
+  },
+  "3": {
+   "bank": 25482,
+   "cpu_s": 2.411,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "6": {
+   "bank": 26610,
+   "cpu_s": 3.762,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "right": null,
+   "size": null,
+   "stop": "size_exhausted"
+  },
+  "oracle": {
+   "bank": 27488,
+   "cpu_s": 11.722,
+   "expr": null,
+   "function_cap_reached": false,
+   "level_completed": 4,
+   "size": null,
+   "stop": "size_exhausted"
+  }
+ },
+ "condition": "a",
+ "cpu_s": 19.258,
+ "examples_sha": "088d38f668217c17",
+ "expr": null,
+ "family": "straight lines",
+ "family_size": 4,
+ "generator": {
+  "draws": 50,
+  "function_pool_excluded": [
+   "connect",
+   "hfrontier",
+   "shoot",
+   "vfrontier"
+  ],
+  "n_examples": 36,
+  "rejected": {
+   "duplicate": 14,
+   "input_too_large": 0,
+   "no_function_works": 0,
+   "output_unusable": 0,
+   "target_raised": 0
+  }
+ },
+ "held_out_family": false,
+ "hidden": [
+  "vfrontier"
+ ],
+ "in_pilot_subset": false,
+ "library_deps": [],
+ "max_size": 4,
+ "op": "vfrontier",
+ "readings": {
+  "1": "wrong",
+  "2": "wrong",
+  "3": "absent",
+  "6": "absent"
+ },
+ "regenerated": false,
+ "size": null,
+ "status": "searched",
+ "stop": "size_exhausted"
+}

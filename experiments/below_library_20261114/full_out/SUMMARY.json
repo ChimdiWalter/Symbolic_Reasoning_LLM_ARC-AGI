@@ -1,0 +1,4225 @@
+{
+ "PRIMARY": {
+  "L": 0,
+  "N": 80,
+  "W": 3,
+  "W_greater_than_L": true,
+  "W_minus_L": 3,
+  "both": 7,
+  "cohort_complete": true,
+  "committed_cohort": 80,
+  "committed_eligible_targets_of_every_stratum_and_the_development_names": 125,
+  "committed_eligible_targets_without_a_complete_record": [],
+  "committed_eligible_targets_without_a_record": [],
+  "criterion_met": false,
+  "criterion_parts": {
+   "1_W_greater_than_L": true,
+   "2_p_below_0_05": false,
+   "3_calibration_valid_and_passed": true,
+   "4_cohort_complete": true
+  },
+  "label": "development comparison on a known constructed benchmark",
+  "neither": 70,
+  "not_interpretable": false,
+  "not_interpretable_reasons": [],
+  "other_committed_eligible_targets_without_a_complete_record": [],
+  "other_committed_eligible_targets_without_a_record": [],
+  "outside_the_development_names": true,
+  "p_below_0_05": false,
+  "p_two_sided_sign_test": 0.25,
+  "provisional": false,
+  "provisional_reasons": [],
+  "rebuilt": {
+   "library_only": 7,
+   "smaller_blocks": 10
+  },
+  "status": "not_met",
+  "stratum": "longer: the source body has at least seven census nodes",
+  "targets": {
+   "both": [
+    "asobject",
+    "hconcat",
+    "leftmost",
+    "lowermost",
+    "product",
+    "rightmost",
+    "uppermost"
+   ],
+   "library_only_only": [],
+   "neither": [
+    "apply",
+    "asindices",
+    "bordering",
+    "bottomhalf",
+    "canvas",
+    "cellwise",
+    "center",
+    "centerofmass",
+    "cmirror",
+    "colorcount",
+    "colorfilter",
+    "combine",
+    "connect",
+    "corners",
+    "crop",
+    "dedupe",
+    "delta",
+    "divide",
+    "dmirror",
+    "extract",
+    "fgpartition",
+    "fill",
+    "frontiers",
+    "gravitate",
+    "height",
+    "hline",
+    "hmatching",
+    "hperiod",
+    "hsplit",
+    "hupscale",
+    "inbox",
+    "index",
+    "leastcolor",
+    "llcorner",
+    "lrcorner",
+    "manhattan",
+    "mostcolor",
+    "move",
+    "multiply",
+    "normalize",
+    "occurrences",
+    "outbox",
+    "paint",
+    "palette",
+    "papply",
+    "partition",
+    "position",
+    "prapply",
+    "recolor",
+    "remove",
+    "repeat",
+    "replace",
+    "sfilter",
+    "shift",
+    "shoot",
+    "sizefilter",
+    "square",
+    "subtract",
+    "toindices",
+    "toobject",
+    "ulcorner",
+    "underfill",
+    "underpaint",
+    "urcorner",
+    "vline",
+    "vmatching",
+    "vmirror",
+    "vperiod",
+    "vsplit",
+    "vupscale"
+   ],
+   "smaller_blocks_only": [
+    "difference",
+    "rot270",
+    "rot90"
+   ]
+  },
+  "targets_outside_the_committed_cohort_that_were_run": [],
+  "targets_whose_setup_differs_from_the_committed_record": [],
+  "targets_wrong_only_because_a_final_check_timed_out": [],
+  "wording": "met: a net gain of rebuilt operations on this committed known benchmark at these blocks, examples and limits. not_met: the prespecified superiority criterion was not met under these blocks, examples and limits; it does not mean 'adds little', equivalence or no benefit. provisional and not_interpretable are neither."
+ },
+ "calibration": {
+  "C36_not_right": {},
+  "C36_right": 19,
+  "C36_right_targets": [
+   "identity",
+   "equality",
+   "contained",
+   "intersection",
+   "order",
+   "greater",
+   "size",
+   "argmax",
+   "argmin",
+   "initset",
+   "totuple",
+   "first",
+   "last",
+   "insert",
+   "interval",
+   "astuple",
+   "pair",
+   "branch",
+   "vconcat"
+  ],
+  "K": 19,
+  "available": true,
+  "controls_not_eligible": [
+   "even",
+   "maximum",
+   "minimum",
+   "positive",
+   "toivec",
+   "tojvec"
+  ],
+  "eligible_controls": [
+   "identity",
+   "equality",
+   "contained",
+   "intersection",
+   "order",
+   "greater",
+   "size",
+   "valmax",
+   "valmin",
+   "argmax",
+   "argmin",
+   "leastcommon",
+   "initset",
+   "totuple",
+   "first",
+   "last",
+   "insert",
+   "interval",
+   "astuple",
+   "pair",
+   "branch",
+   "vconcat"
+  ],
+  "eligible_controls_without_a_witness_within_s": {
+   "leastcommon": "the witness has more than 4 nodes (6)",
+   "valmax": "the witness has more than 4 nodes (5)",
+   "valmin": "the witness has more than 4 nodes (5)"
+  },
+  "label": "development comparison on a known constructed benchmark",
+  "minimum_K": 19,
+  "minimum_K_note": "amendment of 15 November 2026 by the author: the minimum was 20 in the drafts; it was lowered to 19 after the setup pass over all names gave K = 19 and before any search outside the development names or any outcome",
+  "names": [
+   "identity",
+   "equality",
+   "contained",
+   "intersection",
+   "order",
+   "greater",
+   "size",
+   "argmax",
+   "argmin",
+   "initset",
+   "totuple",
+   "first",
+   "last",
+   "insert",
+   "interval",
+   "astuple",
+   "pair",
+   "branch",
+   "vconcat"
+  ],
+  "note": "a witness that agrees shows that the answer is within C at that size; whether the search finds it is what the threshold asks. Controls without a witness within s nodes are listed and are not failures",
+  "passed": true,
+  "reasons": [],
+  "share": 0.9,
+  "size_c": 4,
+  "state": "passed",
+  "threshold_right": 18,
+  "valid": true
+ },
+ "costs_of_the_whole_job": {
+  "from_this_process": {
+   "address_space_peak_kb": 2765276,
+   "cpu_process_s": 13713.6,
+   "cpu_system_s": 143.7,
+   "cpu_user_s": 13572.8,
+   "ended": "2026-11-15T17:14:32Z",
+   "label": "development comparison on a known constructed benchmark",
+   "memory_ceiling": {
+    "hard_limit_bytes": null,
+    "margin_bytes": 1073741824,
+    "requested_bytes": 34359738368,
+    "soft_limit_bytes": 34359738368,
+    "what": "RLIMIT_AS, the address space of this process"
+   },
+   "pools_setup_cpu_s": 0.0,
+   "resident_peak_kb": 2737936,
+   "wall_s": 13720.1,
+   "what": "costs of the whole job as this process measured them (an outer record of /usr/bin/time is the reference; nested subtotals are never added to these)"
+  },
+  "label": "development comparison on a known constructed benchmark",
+  "note": "the outer record of /usr/bin/time is the reference for wall time and peak memory of the whole job; the setup of the pooled inputs (the generator over every library operation) is done once before the first target and is its own line; nested subtotals are never added to the whole",
+  "setup_of_the_pools_cpu_s": 0.0,
+  "targets_cpu_s": 13713.2
+ },
+ "counts": {
+  "done": 125,
+  "excluded": 20,
+  "incomplete": 0,
+  "listed": 145,
+  "not_yet_run": 0,
+  "primary_status": "not_met",
+  "records": 145,
+  "total_cpu_s_of_targets": 13713.2
+ },
+ "denominators": {
+  "development_names": 20,
+  "label": "development comparison on a known constructed benchmark",
+  "original_outside_development": {
+   "longer": {
+    "committed_eligible": 80,
+    "committed_excluded_by_kind": {
+     "too_few_usable_pooled_inputs": 10
+    },
+    "complete_records": 80,
+    "excluded_in_the_run": 10,
+    "incomplete_in_the_run": [],
+    "not_in_the_committed_record": [],
+    "original": 90,
+    "records": 90
+   },
+   "longer_7_to_15": {
+    "committed_eligible": 32,
+    "committed_excluded_by_kind": {
+     "too_few_usable_pooled_inputs": 3
+    },
+    "complete_records": 32,
+    "excluded_in_the_run": 3,
+    "incomplete_in_the_run": [],
+    "not_in_the_committed_record": [],
+    "original": 35,
+    "records": 35
+   },
+   "longer_over_15": {
+    "committed_eligible": 48,
+    "committed_excluded_by_kind": {
+     "too_few_usable_pooled_inputs": 7
+    },
+    "complete_records": 48,
+    "excluded_in_the_run": 7,
+    "incomplete_in_the_run": [],
+    "not_in_the_committed_record": [],
+    "original": 55,
+    "records": 55
+   },
+   "short": {
+    "committed_eligible": 28,
+    "committed_excluded_by_kind": {
+     "generator": 4,
+     "too_few_usable_pooled_inputs": 3
+    },
+    "complete_records": 28,
+    "excluded_in_the_run": 7,
+    "incomplete_in_the_run": [],
+    "not_in_the_committed_record": [],
+    "original": 35,
+    "records": 35
+   }
+  },
+  "roster": 145
+ },
+ "development_names_development_only": {
+  "L4_36_right_while_LC4_36_ended_by_its_budget": {
+   "LC4_36_ended_by_its_budget": [],
+   "n": 0,
+   "n_LC4_36_ended_by_its_budget": 0,
+   "note": "L4-36 is right on the final panel and LC4-36 ended by its budget without a right fit: the smaller-blocks system can miss a four-node library expression for lack of time. Secondary and descriptive",
+   "targets": []
+  },
+  "L5_36_against_L4_36": {
+   "counts": {
+    "both": 1,
+    "first_only": 0,
+    "left_out": 0,
+    "neither": 16,
+    "second_only": 0
+   },
+   "first": "L5-36",
+   "second": "L4-36",
+   "targets": {
+    "both": [
+     "color"
+    ],
+    "first_only": [],
+    "left_out": [],
+    "neither": [
+     "add",
+     "backdrop",
+     "box",
+     "hmirror",
+     "lefthalf",
+     "mapply",
+     "mfilter",
+     "numcolors",
+     "objects",
+     "ofcolor",
+     "other",
+     "righthalf",
+     "rot180",
+     "switch",
+     "tophalf",
+     "width"
+    ],
+    "second_only": []
+   }
+  },
+  "LC4_36_against_L4_36": {
+   "counts": {
+    "both": 1,
+    "first_only": 1,
+    "left_out": 0,
+    "neither": 15,
+    "second_only": 0
+   },
+   "first": "LC4-36",
+   "second": "L4-36",
+   "targets": {
+    "both": [
+     "color"
+    ],
+    "first_only": [
+     "rot180"
+    ],
+    "left_out": [],
+    "neither": [
+     "add",
+     "backdrop",
+     "box",
+     "hmirror",
+     "lefthalf",
+     "mapply",
+     "mfilter",
+     "numcolors",
+     "objects",
+     "ofcolor",
+     "other",
+     "righthalf",
+     "switch",
+     "tophalf",
+     "width"
+    ],
+    "second_only": []
+   }
+  },
+  "complete": 17,
+  "cpu": {
+   "final_checks_s": 0.07,
+   "note": "subtotals of the targets' own records; nested subtotals are never added to the whole job",
+   "other_s": 27.0,
+   "searches_s": 2020.1,
+   "targets_total_s": 2047.5
+  },
+  "development_witness": {
+   "agrees_on_all_36": true,
+   "agrees_on_the_final_panel": true,
+   "declared_nodes": 3,
+   "expr": "c_item0(c_first(x0))",
+   "final": {
+    "agree": 82,
+    "counterexample": null,
+    "errors": 0,
+    "evaluated": 82,
+    "guard_timeout": false,
+    "n": 82,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "right": true,
+    "unsupported": 0
+   },
+   "first_mismatch": null,
+   "fit36": {
+    "agree": 36,
+    "counterexample": null,
+    "errors": 0,
+    "evaluated": 36,
+    "guard_timeout": false,
+    "n": 36,
+    "order_of_sets": {
+     "of": 0,
+     "same_order": 0
+    },
+    "right": true,
+    "unsupported": 0
+   },
+   "guard_timeout": false,
+   "nodes": 3,
+   "note": "source: next(iter(obj))[0]  (development name)",
+   "refused_by_the_wrappers": {
+    "containers_holding_a_function_refused": 0,
+    "function_making_refused_by_arity": 0,
+    "function_results_refused": 0,
+    "power_of_a_function_without_one_parameter": 0
+   },
+   "state": "evaluated",
+   "unsupported_results": 0,
+   "valid": true
+  },
+  "exclusions": {
+   "by_kind": {
+    "too_few_usable_pooled_inputs": 2,
+    "unsupported_values": 1
+   },
+   "by_target": {
+    "rapply": "66 of 66 generator examples are unusable (a container argument holds a function: 66; the output is or holds a function: 0)",
+    "sign": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+    "vfrontier": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)"
+   },
+   "n": 3
+  },
+  "final_panels": {
+   "generator_min": 30,
+   "n": 17,
+   "note": "a shortage is flagged and never used to exclude late",
+   "pooled_discarded_sum": 300,
+   "pooled_median": 323,
+   "pooled_min": 35,
+   "pooled_not_evaluated": [],
+   "pooled_short": []
+  },
+  "incomplete_infrastructure": {},
+  "label": "development comparison on a known constructed benchmark",
+  "memory": {
+   "address_space_peak_kb_largest": 2765276,
+   "resident_peak_kb_largest": 2737936
+  },
+  "n_records": 20,
+  "nine_example_searches": {
+   "L4-9": {
+    "none": 16,
+    "right": 1
+   },
+   "LC4-9": {
+    "none": 15,
+    "right": 2
+   }
+  },
+  "note": "development only: never part of the primary",
+  "paired_smaller_blocks_against_library_only": {
+   "L": 0,
+   "N": 17,
+   "W": 1,
+   "W_greater_than_L": true,
+   "W_minus_L": 1,
+   "both": 1,
+   "neither": 15,
+   "p_below_0_05": false,
+   "p_two_sided_sign_test": 1.0,
+   "rebuilt": {
+    "library_only": 1,
+    "smaller_blocks": 2
+   },
+   "targets": {
+    "both": [
+     "color"
+    ],
+    "library_only_only": [],
+    "neither": [
+     "add",
+     "backdrop",
+     "box",
+     "hmirror",
+     "lefthalf",
+     "mapply",
+     "mfilter",
+     "numcolors",
+     "objects",
+     "ofcolor",
+     "other",
+     "righthalf",
+     "switch",
+     "tophalf",
+     "width"
+    ],
+    "smaller_blocks_only": [
+     "rot180"
+    ]
+   }
+  },
+  "searches": {
+   "C-36": {
+    "address_space_peak_kb_largest": 2765276,
+    "bank_largest": 25249,
+    "cap_reached_at": {},
+    "cpu_s_largest": 5.55,
+    "cpu_s_median": 3.54,
+    "cpu_s_sum": 58.5,
+    "first_fit": {
+     "none": 15,
+     "right": 2
+    },
+    "fruitless_bounded": 0,
+    "fruitless_exhaustive": 15,
+    "function_cap_reached": 0,
+    "function_valued_entries_largest": 65,
+    "infrastructure_stops": 0,
+    "n": 17,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 0,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb_largest": 2737936,
+    "sizes_of_found_expressions": {
+     "3": 1,
+     "4": 1
+    },
+    "stop_class": {
+     "found": 2,
+     "size_limit_completed": 15
+    },
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "L4-36": {
+    "address_space_peak_kb_largest": 2765276,
+    "bank_largest": 38288,
+    "cap_reached_at": {},
+    "cpu_s_largest": 15.2,
+    "cpu_s_median": 8.42,
+    "cpu_s_sum": 152.8,
+    "first_fit": {
+     "none": 16,
+     "right": 1
+    },
+    "fruitless_bounded": 0,
+    "fruitless_exhaustive": 16,
+    "function_cap_reached": 0,
+    "function_valued_entries_largest": 126,
+    "infrastructure_stops": 0,
+    "n": 17,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 23398,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb_largest": 2737936,
+    "sizes_of_found_expressions": {
+     "3": 1
+    },
+    "stop_class": {
+     "found": 1,
+     "size_limit_completed": 16
+    },
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "L4-9": {
+    "address_space_peak_kb_largest": 2765276,
+    "bank_largest": 36516,
+    "cap_reached_at": {},
+    "cpu_s_largest": 5.0,
+    "cpu_s_median": 3.29,
+    "cpu_s_sum": 56.6,
+    "first_fit": {
+     "none": 16,
+     "right": 1
+    },
+    "fruitless_bounded": 0,
+    "fruitless_exhaustive": 16,
+    "function_cap_reached": 0,
+    "function_valued_entries_largest": 126,
+    "infrastructure_stops": 0,
+    "n": 17,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 23398,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb_largest": 2737936,
+    "sizes_of_found_expressions": {
+     "3": 1
+    },
+    "stop_class": {
+     "found": 1,
+     "size_limit_completed": 16
+    },
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "L5-36": {
+    "address_space_peak_kb_largest": 2765276,
+    "bank_largest": 220912,
+    "cap_reached_at": {},
+    "cpu_s_largest": 65.8,
+    "cpu_s_median": 54.11,
+    "cpu_s_sum": 895.4,
+    "first_fit": {
+     "none": 15,
+     "right": 1,
+     "wrong": 1
+    },
+    "fruitless_bounded": 15,
+    "fruitless_exhaustive": 0,
+    "function_cap_reached": 0,
+    "function_valued_entries_largest": 11094,
+    "infrastructure_stops": 0,
+    "n": 17,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 23398,
+     "function_making_refused_by_arity": 258290,
+     "function_results_refused": 482,
+     "power_of_a_function_without_one_parameter": 12305
+    },
+    "resident_peak_kb_largest": 2737936,
+    "sizes_of_found_expressions": {
+     "3": 1,
+     "5": 1
+    },
+    "stop_class": {
+     "combination_budget_used_up": 15,
+     "found": 2
+    },
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "LC4-36": {
+    "address_space_peak_kb_largest": 2765276,
+    "bank_largest": 85858,
+    "cap_reached_at": {},
+    "cpu_s_largest": 57.71,
+    "cpu_s_median": 36.2,
+    "cpu_s_sum": 643.6,
+    "first_fit": {
+     "none": 15,
+     "right": 2
+    },
+    "fruitless_bounded": 0,
+    "fruitless_exhaustive": 15,
+    "function_cap_reached": 0,
+    "function_valued_entries_largest": 190,
+    "infrastructure_stops": 0,
+    "n": 17,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 21774,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb_largest": 2737936,
+    "sizes_of_found_expressions": {
+     "3": 1,
+     "4": 1
+    },
+    "stop_class": {
+     "found": 2,
+     "size_limit_completed": 15
+    },
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "LC4-9": {
+    "address_space_peak_kb_largest": 2765276,
+    "bank_largest": 82107,
+    "cap_reached_at": {},
+    "cpu_s_largest": 18.44,
+    "cpu_s_median": 12.17,
+    "cpu_s_sum": 213.0,
+    "first_fit": {
+     "none": 15,
+     "right": 2
+    },
+    "fruitless_bounded": 0,
+    "fruitless_exhaustive": 15,
+    "function_cap_reached": 0,
+    "function_valued_entries_largest": 190,
+    "infrastructure_stops": 0,
+    "n": 17,
+    "refused_by_the_wrappers": {
+     "containers_holding_a_function_refused": 21774,
+     "function_making_refused_by_arity": 0,
+     "function_results_refused": 0,
+     "power_of_a_function_without_one_parameter": 0
+    },
+    "resident_peak_kb_largest": 2737936,
+    "sizes_of_found_expressions": {
+     "3": 1,
+     "4": 1
+    },
+    "stop_class": {
+     "found": 2,
+     "size_limit_completed": 15
+    },
+    "wrong_only_because_the_final_check_timed_out": []
+   }
+  },
+  "status": {
+   "done": 17,
+   "excluded": 3
+  },
+  "systems": {
+   "library_only": {
+    "allocated_per_target": {
+     "per_system": 3800000,
+     "processor_seconds_safety_limit_per_search": 600.0,
+     "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+    },
+    "candidate_set_coverage_oracle_union_NOT_the_systems_result": 1,
+    "cpu_s_sum": 1048.2,
+    "n": 17,
+    "order_of_sets": {
+     "inputs_with_the_same_order": 0,
+     "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+     "of_inputs_with_at_least_two_elements": 0,
+     "per_target": {}
+    },
+    "rebuilt": 1,
+    "selected": 2,
+    "selected_and_wrong": [
+     "other"
+    ],
+    "selected_by_stage": {
+     "1": 1,
+     "2": 1
+    },
+    "undetermined": [],
+    "wrong_only_because_the_final_check_timed_out": []
+   },
+   "smaller_blocks": {
+    "allocated_per_target": {
+     "per_system": 3800000,
+     "processor_seconds_safety_limit_per_search": 600.0,
+     "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+    },
+    "candidate_set_coverage_oracle_union_NOT_the_systems_result": 2,
+    "cpu_s_sum": 702.1,
+    "n": 17,
+    "order_of_sets": {
+     "inputs_with_the_same_order": 0,
+     "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+     "of_inputs_with_at_least_two_elements": 0,
+     "per_target": {}
+    },
+    "rebuilt": 2,
+    "selected": 2,
+    "selected_and_wrong": [],
+    "selected_by_stage": {
+     "1": 2
+    },
+    "undetermined": [],
+    "wrong_only_because_the_final_check_timed_out": []
+   }
+  }
+ },
+ "label": "development comparison on a known constructed benchmark",
+ "policy": {
+  "ADDRESS_SPACE_MARGIN_BYTES": 1073741824,
+  "ALLOWANCE": 60.0,
+  "ARITY_RULE": true,
+  "MAX_BANK": 1500000,
+  "MAX_COMBINATIONS": 1900000,
+  "MAX_ELEMENTS": 3000,
+  "MAX_FN": 16000,
+  "MAX_INT_BITS": 40,
+  "MAX_NESTING": 8,
+  "MEMORY_CEILING_BYTES": 34359738368,
+  "SIZE_C": 4,
+  "SIZE_C_CANDIDATES": [
+   4,
+   5,
+   6
+  ],
+  "TIME_SAFETY_LIMIT_S": 600.0,
+  "cpu_budget_s": 600.0,
+  "sha256": {
+   "blocks_c.py": "3665558eb3d3754781f488dba3186e3b352a4feb218543fd07854b458a2ed078",
+   "build_bl.py": "ede5bb0d5fee03502e6971240f543fc88fa2889d5b1b665016a1eb7866dc83f3",
+   "gen_bl.py": "7543c02d7c1d66e38cceda6654daa0b6c10153ef531b4f62a4ef05e648680bbe",
+   "presets_bl.py": "982abf3563c8ed1a5e9d5dea05f178d780006ae07daea229d0291d91955500db",
+   "search_bl.py": "9d2b2c16ea5760c72df7b6f646722a5378b627a32dd33ba89fc823265f67b134"
+  },
+  "system_allocation": {
+   "per_system": 3800000,
+   "processor_seconds_safety_limit_per_search": 600.0,
+   "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+  }
+ },
+ "primary_note": "the one decision is PRIMARY; every other table is secondary, descriptive and uncorrected, and none can replace it",
+ "reconciliation_with_the_committed_setup_record": {
+  "available": true,
+  "decisions_differ": [],
+  "label": "development comparison on a known constructed benchmark",
+  "n_compared": 145,
+  "n_counts_differ": 0,
+  "n_decisions_differ": 0,
+  "note": "decisions: eligible or excluded and its kind, stratum, control, hidden names, retained operations, hiding, the usability guard; counts: generator draws, unusable examples, pooled sizes, usability, reason text",
+  "targets_not_in_the_record": [],
+  "targets_whose_counts_differ": []
+ },
+ "roster": "all",
+ "secondary_outside_the_development_names": {
+  "longer_7_to_15": {
+   "L4_36_right_while_LC4_36_ended_by_its_budget": {
+    "LC4_36_ended_by_its_budget": [],
+    "n": 0,
+    "n_LC4_36_ended_by_its_budget": 0,
+    "note": "L4-36 is right on the final panel and LC4-36 ended by its budget without a right fit: the smaller-blocks system can miss a four-node library expression for lack of time. Secondary and descriptive",
+    "targets": []
+   },
+   "L5_36_against_L4_36": {
+    "counts": {
+     "both": 6,
+     "first_only": 0,
+     "left_out": 0,
+     "neither": 26,
+     "second_only": 0
+    },
+    "first": "L5-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "first_only": [],
+     "left_out": [],
+     "neither": [
+      "apply",
+      "bottomhalf",
+      "center",
+      "centerofmass",
+      "colorfilter",
+      "combine",
+      "corners",
+      "dedupe",
+      "delta",
+      "difference",
+      "extract",
+      "hline",
+      "lrcorner",
+      "move",
+      "normalize",
+      "papply",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "rot90",
+      "sfilter",
+      "sizefilter",
+      "ulcorner",
+      "vline",
+      "vupscale"
+     ],
+     "second_only": []
+    }
+   },
+   "LC4_36_against_L4_36": {
+    "counts": {
+     "both": 6,
+     "first_only": 2,
+     "left_out": 0,
+     "neither": 24,
+     "second_only": 0
+    },
+    "first": "LC4-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "first_only": [
+      "difference",
+      "rot90"
+     ],
+     "left_out": [],
+     "neither": [
+      "apply",
+      "bottomhalf",
+      "center",
+      "centerofmass",
+      "colorfilter",
+      "combine",
+      "corners",
+      "dedupe",
+      "delta",
+      "extract",
+      "hline",
+      "lrcorner",
+      "move",
+      "normalize",
+      "papply",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "sfilter",
+      "sizefilter",
+      "ulcorner",
+      "vline",
+      "vupscale"
+     ],
+     "second_only": []
+    }
+   },
+   "complete": 32,
+   "cpu": {
+    "final_checks_s": 1.88,
+    "note": "subtotals of the targets' own records; nested subtotals are never added to the whole job",
+    "other_s": 43.5,
+    "searches_s": 3151.6,
+    "targets_total_s": 3199.6
+   },
+   "exclusions": {
+    "by_kind": {
+     "too_few_usable_pooled_inputs": 3
+    },
+    "by_target": {
+     "hfrontier": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "invert": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "merge": "too few usable pooled inputs (usability slice: 9 of 9 draws usable, need 30)"
+    },
+    "n": 3
+   },
+   "final_panels": {
+    "generator_min": 30,
+    "n": 32,
+    "note": "a shortage is flagged and never used to exclude late",
+    "pooled_discarded_sum": 551,
+    "pooled_median": 311.0,
+    "pooled_min": 50,
+    "pooled_not_evaluated": [],
+    "pooled_short": []
+   },
+   "incomplete_infrastructure": {},
+   "label": "development comparison on a known constructed benchmark",
+   "memory": {
+    "address_space_peak_kb_largest": 2765276,
+    "resident_peak_kb_largest": 2737936
+   },
+   "n_records": 35,
+   "nine_example_searches": {
+    "L4-9": {
+     "none": 22,
+     "right": 6,
+     "wrong": 4
+    },
+    "LC4-9": {
+     "none": 20,
+     "right": 8,
+     "wrong": 4
+    }
+   },
+   "paired_on_the_committed_cohort": {
+    "L": 0,
+    "N": 32,
+    "W": 2,
+    "W_greater_than_L": true,
+    "W_minus_L": 2,
+    "both": 6,
+    "committed_cohort": 32,
+    "neither": 24,
+    "p_below_0_05": false,
+    "p_two_sided_sign_test": 0.5,
+    "rebuilt": {
+     "library_only": 6,
+     "smaller_blocks": 8
+    },
+    "targets": {
+     "both": [
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "apply",
+      "bottomhalf",
+      "center",
+      "centerofmass",
+      "colorfilter",
+      "combine",
+      "corners",
+      "dedupe",
+      "delta",
+      "extract",
+      "hline",
+      "lrcorner",
+      "move",
+      "normalize",
+      "papply",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "sfilter",
+      "sizefilter",
+      "ulcorner",
+      "vline",
+      "vupscale"
+     ],
+     "smaller_blocks_only": [
+      "difference",
+      "rot90"
+     ]
+    },
+    "without_a_complete_record": []
+   },
+   "paired_smaller_blocks_against_library_only": {
+    "L": 0,
+    "N": 32,
+    "W": 2,
+    "W_greater_than_L": true,
+    "W_minus_L": 2,
+    "both": 6,
+    "neither": 24,
+    "p_below_0_05": false,
+    "p_two_sided_sign_test": 0.5,
+    "rebuilt": {
+     "library_only": 6,
+     "smaller_blocks": 8
+    },
+    "targets": {
+     "both": [
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "apply",
+      "bottomhalf",
+      "center",
+      "centerofmass",
+      "colorfilter",
+      "combine",
+      "corners",
+      "dedupe",
+      "delta",
+      "extract",
+      "hline",
+      "lrcorner",
+      "move",
+      "normalize",
+      "papply",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "sfilter",
+      "sizefilter",
+      "ulcorner",
+      "vline",
+      "vupscale"
+     ],
+     "smaller_blocks_only": [
+      "difference",
+      "rot90"
+     ]
+    }
+   },
+   "searches": {
+    "C-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 25675,
+     "cap_reached_at": {},
+     "cpu_s_largest": 7.69,
+     "cpu_s_median": 3.59,
+     "cpu_s_sum": 112.9,
+     "first_fit": {
+      "none": 29,
+      "right": 3
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 29,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 65,
+     "infrastructure_stops": 0,
+     "n": 32,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 0,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "3": 2,
+      "4": 1
+     },
+     "stop_class": {
+      "found": 3,
+      "size_limit_completed": 29
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 46104,
+     "cap_reached_at": {},
+     "cpu_s_largest": 24.27,
+     "cpu_s_median": 7.01,
+     "cpu_s_sum": 241.6,
+     "first_fit": {
+      "none": 25,
+      "right": 6,
+      "wrong": 1
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 25,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 32,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 35288,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "3": 1,
+      "4": 6
+     },
+     "stop_class": {
+      "found": 7,
+      "size_limit_completed": 25
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 49831,
+     "cap_reached_at": {},
+     "cpu_s_largest": 8.49,
+     "cpu_s_median": 2.68,
+     "cpu_s_sum": 86.8,
+     "first_fit": {
+      "none": 22,
+      "right": 6,
+      "wrong": 4
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 22,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 32,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 30746,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 7
+     },
+     "stop_class": {
+      "found": 10,
+      "size_limit_completed": 22
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L5-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 247469,
+     "cap_reached_at": {},
+     "cpu_s_largest": 77.38,
+     "cpu_s_median": 52.89,
+     "cpu_s_sum": 1426.4,
+     "first_fit": {
+      "none": 25,
+      "right": 6,
+      "wrong": 1
+     },
+     "fruitless_bounded": 25,
+     "fruitless_exhaustive": 0,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 10908,
+     "infrastructure_stops": 0,
+     "n": 32,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 35288,
+      "function_making_refused_by_arity": 491726,
+      "function_results_refused": 1446,
+      "power_of_a_function_without_one_parameter": 23845
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "3": 1,
+      "4": 6
+     },
+     "stop_class": {
+      "combination_budget_used_up": 25,
+      "found": 7
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 104445,
+     "cap_reached_at": {},
+     "cpu_s_largest": 87.26,
+     "cpu_s_median": 34.14,
+     "cpu_s_sum": 989.6,
+     "first_fit": {
+      "none": 23,
+      "right": 8,
+      "wrong": 1
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 23,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 32,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 32017,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "3": 3,
+      "4": 6
+     },
+     "stop_class": {
+      "found": 9,
+      "size_limit_completed": 23
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 109104,
+     "cap_reached_at": {},
+     "cpu_s_largest": 25.07,
+     "cpu_s_median": 10.87,
+     "cpu_s_sum": 294.3,
+     "first_fit": {
+      "none": 20,
+      "right": 8,
+      "wrong": 4
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 20,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 32,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 27475,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "2": 1,
+      "3": 2,
+      "4": 7
+     },
+     "stop_class": {
+      "found": 12,
+      "size_limit_completed": 20
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "status": {
+    "done": 32,
+    "excluded": 3
+   },
+   "systems": {
+    "library_only": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 6,
+     "cpu_s_sum": 1668.0,
+     "n": 32,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 378,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 378,
+      "per_target": {
+       "product": {
+        "of": 378,
+        "same_order": 378
+       }
+      }
+     },
+     "rebuilt": 6,
+     "selected": 7,
+     "selected_and_wrong": [
+      "extract"
+     ],
+     "selected_by_stage": {
+      "1": 7
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "smaller_blocks": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 8,
+     "cpu_s_sum": 1102.5,
+     "n": 32,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 683,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 694,
+      "per_target": {
+       "difference": {
+        "of": 316,
+        "same_order": 305
+       },
+       "product": {
+        "of": 378,
+        "same_order": 378
+       }
+      }
+     },
+     "rebuilt": 8,
+     "selected": 9,
+     "selected_and_wrong": [
+      "extract"
+     ],
+     "selected_by_stage": {
+      "1": 9
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   }
+  },
+  "longer_over_15": {
+   "L4_36_right_while_LC4_36_ended_by_its_budget": {
+    "LC4_36_ended_by_its_budget": [],
+    "n": 0,
+    "n_LC4_36_ended_by_its_budget": 0,
+    "note": "L4-36 is right on the final panel and LC4-36 ended by its budget without a right fit: the smaller-blocks system can miss a four-node library expression for lack of time. Secondary and descriptive",
+    "targets": []
+   },
+   "L5_36_against_L4_36": {
+    "counts": {
+     "both": 1,
+     "first_only": 0,
+     "left_out": 0,
+     "neither": 47,
+     "second_only": 0
+    },
+    "first": "L5-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "asobject"
+     ],
+     "first_only": [],
+     "left_out": [],
+     "neither": [
+      "asindices",
+      "bordering",
+      "canvas",
+      "cellwise",
+      "cmirror",
+      "colorcount",
+      "connect",
+      "crop",
+      "divide",
+      "dmirror",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "manhattan",
+      "mostcolor",
+      "multiply",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "partition",
+      "position",
+      "replace",
+      "rot270",
+      "shift",
+      "shoot",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit"
+     ],
+     "second_only": []
+    }
+   },
+   "LC4_36_against_L4_36": {
+    "counts": {
+     "both": 1,
+     "first_only": 1,
+     "left_out": 0,
+     "neither": 46,
+     "second_only": 0
+    },
+    "first": "LC4-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "asobject"
+     ],
+     "first_only": [
+      "rot270"
+     ],
+     "left_out": [],
+     "neither": [
+      "asindices",
+      "bordering",
+      "canvas",
+      "cellwise",
+      "cmirror",
+      "colorcount",
+      "connect",
+      "crop",
+      "divide",
+      "dmirror",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "manhattan",
+      "mostcolor",
+      "multiply",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "partition",
+      "position",
+      "replace",
+      "shift",
+      "shoot",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit"
+     ],
+     "second_only": []
+    }
+   },
+   "complete": 48,
+   "cpu": {
+    "final_checks_s": 1.21,
+    "note": "subtotals of the targets' own records; nested subtotals are never added to the whole job",
+    "other_s": 61.8,
+    "searches_s": 6387.1,
+    "targets_total_s": 6451.3
+   },
+   "exclusions": {
+    "by_kind": {
+     "too_few_usable_pooled_inputs": 7
+    },
+    "by_target": {
+     "crement": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "decrement": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "dneighbors": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "double": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "halve": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "increment": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "ineighbors": "too few usable pooled inputs (usability slice: 23 of 23 draws usable, need 30)"
+    },
+    "n": 7
+   },
+   "final_panels": {
+    "generator_min": 30,
+    "n": 48,
+    "note": "a shortage is flagged and never used to exclude late",
+    "pooled_discarded_sum": 646,
+    "pooled_median": 368.5,
+    "pooled_min": 34,
+    "pooled_not_evaluated": [],
+    "pooled_short": []
+   },
+   "incomplete_infrastructure": {},
+   "label": "development comparison on a known constructed benchmark",
+   "memory": {
+    "address_space_peak_kb_largest": 2765276,
+    "resident_peak_kb_largest": 2737936
+   },
+   "n_records": 55,
+   "nine_example_searches": {
+    "L4-9": {
+     "none": 39,
+     "right": 1,
+     "wrong": 8
+    },
+    "LC4-9": {
+     "none": 38,
+     "right": 2,
+     "wrong": 8
+    }
+   },
+   "paired_on_the_committed_cohort": {
+    "L": 0,
+    "N": 48,
+    "W": 1,
+    "W_greater_than_L": true,
+    "W_minus_L": 1,
+    "both": 1,
+    "committed_cohort": 48,
+    "neither": 46,
+    "p_below_0_05": false,
+    "p_two_sided_sign_test": 1.0,
+    "rebuilt": {
+     "library_only": 1,
+     "smaller_blocks": 2
+    },
+    "targets": {
+     "both": [
+      "asobject"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "asindices",
+      "bordering",
+      "canvas",
+      "cellwise",
+      "cmirror",
+      "colorcount",
+      "connect",
+      "crop",
+      "divide",
+      "dmirror",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "manhattan",
+      "mostcolor",
+      "multiply",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "partition",
+      "position",
+      "replace",
+      "shift",
+      "shoot",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit"
+     ],
+     "smaller_blocks_only": [
+      "rot270"
+     ]
+    },
+    "without_a_complete_record": []
+   },
+   "paired_smaller_blocks_against_library_only": {
+    "L": 0,
+    "N": 48,
+    "W": 1,
+    "W_greater_than_L": true,
+    "W_minus_L": 1,
+    "both": 1,
+    "neither": 46,
+    "p_below_0_05": false,
+    "p_two_sided_sign_test": 1.0,
+    "rebuilt": {
+     "library_only": 1,
+     "smaller_blocks": 2
+    },
+    "targets": {
+     "both": [
+      "asobject"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "asindices",
+      "bordering",
+      "canvas",
+      "cellwise",
+      "cmirror",
+      "colorcount",
+      "connect",
+      "crop",
+      "divide",
+      "dmirror",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "manhattan",
+      "mostcolor",
+      "multiply",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "partition",
+      "position",
+      "replace",
+      "shift",
+      "shoot",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit"
+     ],
+     "smaller_blocks_only": [
+      "rot270"
+     ]
+    }
+   },
+   "searches": {
+    "C-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 26481,
+     "cap_reached_at": {},
+     "cpu_s_largest": 7.54,
+     "cpu_s_median": 3.96,
+     "cpu_s_sum": 192.2,
+     "first_fit": {
+      "none": 45,
+      "right": 1,
+      "wrong": 2
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 45,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 64,
+     "infrastructure_stops": 0,
+     "n": 48,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 0,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 1
+     },
+     "stop_class": {
+      "found": 3,
+      "size_limit_completed": 45
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 47403,
+     "cap_reached_at": {},
+     "cpu_s_largest": 23.99,
+     "cpu_s_median": 11.12,
+     "cpu_s_sum": 553.5,
+     "first_fit": {
+      "none": 45,
+      "right": 1,
+      "wrong": 2
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 45,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 48,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 72990,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 1
+     },
+     "stop_class": {
+      "found": 3,
+      "size_limit_completed": 45
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 44290,
+     "cap_reached_at": {},
+     "cpu_s_largest": 8.9,
+     "cpu_s_median": 3.51,
+     "cpu_s_sum": 166.4,
+     "first_fit": {
+      "none": 39,
+      "right": 1,
+      "wrong": 8
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 39,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 48,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 63066,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 6,
+      "4": 1
+     },
+     "stop_class": {
+      "found": 9,
+      "size_limit_completed": 39
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L5-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 263232,
+     "cap_reached_at": {},
+     "cpu_s_largest": 80.86,
+     "cpu_s_median": 58.51,
+     "cpu_s_sum": 2672.1,
+     "first_fit": {
+      "none": 45,
+      "right": 1,
+      "wrong": 2
+     },
+     "fruitless_bounded": 45,
+     "fruitless_exhaustive": 0,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 10908,
+     "infrastructure_stops": 0,
+     "n": 48,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 72990,
+      "function_making_refused_by_arity": 735863,
+      "function_results_refused": 2451,
+      "power_of_a_function_without_one_parameter": 35013
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 1
+     },
+     "stop_class": {
+      "combination_budget_used_up": 45,
+      "found": 3
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 104589,
+     "cap_reached_at": {},
+     "cpu_s_largest": 84.75,
+     "cpu_s_median": 45.33,
+     "cpu_s_sum": 2204.6,
+     "first_fit": {
+      "none": 44,
+      "right": 2,
+      "wrong": 2
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 44,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 48,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 71366,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 2
+     },
+     "stop_class": {
+      "found": 4,
+      "size_limit_completed": 44
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 98421,
+     "cap_reached_at": {},
+     "cpu_s_largest": 26.75,
+     "cpu_s_median": 13.26,
+     "cpu_s_sum": 598.2,
+     "first_fit": {
+      "none": 38,
+      "right": 2,
+      "wrong": 8
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 38,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 48,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 61442,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 7,
+      "4": 1
+     },
+     "stop_class": {
+      "found": 10,
+      "size_limit_completed": 38
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "status": {
+    "done": 48,
+    "excluded": 7
+   },
+   "systems": {
+    "library_only": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 1,
+     "cpu_s_sum": 3225.7,
+     "n": 48,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 114,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 353,
+      "per_target": {
+       "asobject": {
+        "of": 353,
+        "same_order": 114
+       }
+      }
+     },
+     "rebuilt": 1,
+     "selected": 3,
+     "selected_and_wrong": [
+      "paint",
+      "underpaint"
+     ],
+     "selected_by_stage": {
+      "1": 3
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "smaller_blocks": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 2,
+     "cpu_s_sum": 2396.8,
+     "n": 48,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 114,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 353,
+      "per_target": {
+       "asobject": {
+        "of": 353,
+        "same_order": 114
+       }
+      }
+     },
+     "rebuilt": 2,
+     "selected": 4,
+     "selected_and_wrong": [
+      "paint",
+      "underpaint"
+     ],
+     "selected_by_stage": {
+      "1": 4
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   }
+  },
+  "longer_stratum": {
+   "L4_36_right_while_LC4_36_ended_by_its_budget": {
+    "LC4_36_ended_by_its_budget": [],
+    "n": 0,
+    "n_LC4_36_ended_by_its_budget": 0,
+    "note": "L4-36 is right on the final panel and LC4-36 ended by its budget without a right fit: the smaller-blocks system can miss a four-node library expression for lack of time. Secondary and descriptive",
+    "targets": []
+   },
+   "L5_36_against_L4_36": {
+    "counts": {
+     "both": 7,
+     "first_only": 0,
+     "left_out": 0,
+     "neither": 73,
+     "second_only": 0
+    },
+    "first": "L5-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "asobject",
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "first_only": [],
+     "left_out": [],
+     "neither": [
+      "apply",
+      "asindices",
+      "bordering",
+      "bottomhalf",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "crop",
+      "dedupe",
+      "delta",
+      "difference",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "rot270",
+      "rot90",
+      "sfilter",
+      "shift",
+      "shoot",
+      "sizefilter",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "second_only": []
+    }
+   },
+   "LC4_36_against_L4_36": {
+    "counts": {
+     "both": 7,
+     "first_only": 3,
+     "left_out": 0,
+     "neither": 70,
+     "second_only": 0
+    },
+    "first": "LC4-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "asobject",
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "first_only": [
+      "difference",
+      "rot270",
+      "rot90"
+     ],
+     "left_out": [],
+     "neither": [
+      "apply",
+      "asindices",
+      "bordering",
+      "bottomhalf",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "crop",
+      "dedupe",
+      "delta",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "sfilter",
+      "shift",
+      "shoot",
+      "sizefilter",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "second_only": []
+    }
+   },
+   "complete": 80,
+   "cpu": {
+    "final_checks_s": 3.09,
+    "note": "subtotals of the targets' own records; nested subtotals are never added to the whole job",
+    "other_s": 105.3,
+    "searches_s": 9538.7,
+    "targets_total_s": 9650.8
+   },
+   "exclusions": {
+    "by_kind": {
+     "too_few_usable_pooled_inputs": 10
+    },
+    "by_target": {
+     "crement": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "decrement": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "dneighbors": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "double": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "halve": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "hfrontier": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "increment": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "ineighbors": "too few usable pooled inputs (usability slice: 23 of 23 draws usable, need 30)",
+     "invert": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "merge": "too few usable pooled inputs (usability slice: 9 of 9 draws usable, need 30)"
+    },
+    "n": 10
+   },
+   "final_panels": {
+    "generator_min": 30,
+    "n": 80,
+    "note": "a shortage is flagged and never used to exclude late",
+    "pooled_discarded_sum": 1197,
+    "pooled_median": 323.0,
+    "pooled_min": 34,
+    "pooled_not_evaluated": [],
+    "pooled_short": []
+   },
+   "incomplete_infrastructure": {},
+   "label": "development comparison on a known constructed benchmark",
+   "memory": {
+    "address_space_peak_kb_largest": 2765276,
+    "resident_peak_kb_largest": 2737936
+   },
+   "n_records": 90,
+   "nine_example_searches": {
+    "L4-9": {
+     "none": 61,
+     "right": 7,
+     "wrong": 12
+    },
+    "LC4-9": {
+     "none": 58,
+     "right": 10,
+     "wrong": 12
+    }
+   },
+   "paired_on_the_committed_cohort": {
+    "L": 0,
+    "N": 80,
+    "W": 3,
+    "W_greater_than_L": true,
+    "W_minus_L": 3,
+    "both": 7,
+    "committed_cohort": 80,
+    "neither": 70,
+    "p_below_0_05": false,
+    "p_two_sided_sign_test": 0.25,
+    "rebuilt": {
+     "library_only": 7,
+     "smaller_blocks": 10
+    },
+    "targets": {
+     "both": [
+      "asobject",
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "apply",
+      "asindices",
+      "bordering",
+      "bottomhalf",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "crop",
+      "dedupe",
+      "delta",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "sfilter",
+      "shift",
+      "shoot",
+      "sizefilter",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "smaller_blocks_only": [
+      "difference",
+      "rot270",
+      "rot90"
+     ]
+    },
+    "without_a_complete_record": []
+   },
+   "paired_smaller_blocks_against_library_only": {
+    "L": 0,
+    "N": 80,
+    "W": 3,
+    "W_greater_than_L": true,
+    "W_minus_L": 3,
+    "both": 7,
+    "neither": 70,
+    "p_below_0_05": false,
+    "p_two_sided_sign_test": 0.25,
+    "rebuilt": {
+     "library_only": 7,
+     "smaller_blocks": 10
+    },
+    "targets": {
+     "both": [
+      "asobject",
+      "hconcat",
+      "leftmost",
+      "lowermost",
+      "product",
+      "rightmost",
+      "uppermost"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "apply",
+      "asindices",
+      "bordering",
+      "bottomhalf",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "crop",
+      "dedupe",
+      "delta",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "sfilter",
+      "shift",
+      "shoot",
+      "sizefilter",
+      "square",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "smaller_blocks_only": [
+      "difference",
+      "rot270",
+      "rot90"
+     ]
+    }
+   },
+   "searches": {
+    "C-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 26481,
+     "cap_reached_at": {},
+     "cpu_s_largest": 7.69,
+     "cpu_s_median": 3.76,
+     "cpu_s_sum": 305.1,
+     "first_fit": {
+      "none": 74,
+      "right": 4,
+      "wrong": 2
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 74,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 65,
+     "infrastructure_stops": 0,
+     "n": 80,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 0,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 3,
+      "4": 1
+     },
+     "stop_class": {
+      "found": 6,
+      "size_limit_completed": 74
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 47403,
+     "cap_reached_at": {},
+     "cpu_s_largest": 24.27,
+     "cpu_s_median": 8.16,
+     "cpu_s_sum": 795.1,
+     "first_fit": {
+      "none": 70,
+      "right": 7,
+      "wrong": 3
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 70,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 80,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 108278,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 2,
+      "4": 6
+     },
+     "stop_class": {
+      "found": 10,
+      "size_limit_completed": 70
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 49831,
+     "cap_reached_at": {},
+     "cpu_s_largest": 8.9,
+     "cpu_s_median": 2.92,
+     "cpu_s_sum": 253.2,
+     "first_fit": {
+      "none": 61,
+      "right": 7,
+      "wrong": 12
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 61,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 80,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 93812,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 3,
+      "2": 1,
+      "3": 7,
+      "4": 8
+     },
+     "stop_class": {
+      "found": 19,
+      "size_limit_completed": 61
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L5-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 263232,
+     "cap_reached_at": {},
+     "cpu_s_largest": 80.86,
+     "cpu_s_median": 56.42,
+     "cpu_s_sum": 4098.5,
+     "first_fit": {
+      "none": 70,
+      "right": 7,
+      "wrong": 3
+     },
+     "fruitless_bounded": 70,
+     "fruitless_exhaustive": 0,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 10908,
+     "infrastructure_stops": 0,
+     "n": 80,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 108278,
+      "function_making_refused_by_arity": 1227589,
+      "function_results_refused": 3897,
+      "power_of_a_function_without_one_parameter": 58858
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 2,
+      "4": 6
+     },
+     "stop_class": {
+      "combination_budget_used_up": 70,
+      "found": 10
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 104589,
+     "cap_reached_at": {},
+     "cpu_s_largest": 87.26,
+     "cpu_s_median": 38.81,
+     "cpu_s_sum": 3194.2,
+     "first_fit": {
+      "none": 67,
+      "right": 10,
+      "wrong": 3
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 67,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 80,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 103383,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "3": 5,
+      "4": 6
+     },
+     "stop_class": {
+      "found": 13,
+      "size_limit_completed": 67
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 109104,
+     "cap_reached_at": {},
+     "cpu_s_largest": 26.75,
+     "cpu_s_median": 12.12,
+     "cpu_s_sum": 892.5,
+     "first_fit": {
+      "none": 58,
+      "right": 10,
+      "wrong": 12
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 58,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 80,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 88917,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 4,
+      "2": 1,
+      "3": 9,
+      "4": 8
+     },
+     "stop_class": {
+      "found": 22,
+      "size_limit_completed": 58
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "status": {
+    "done": 80,
+    "excluded": 10
+   },
+   "systems": {
+    "library_only": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 7,
+     "cpu_s_sum": 4893.7,
+     "n": 80,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 492,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 731,
+      "per_target": {
+       "asobject": {
+        "of": 353,
+        "same_order": 114
+       },
+       "product": {
+        "of": 378,
+        "same_order": 378
+       }
+      }
+     },
+     "rebuilt": 7,
+     "selected": 10,
+     "selected_and_wrong": [
+      "extract",
+      "paint",
+      "underpaint"
+     ],
+     "selected_by_stage": {
+      "1": 10
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "smaller_blocks": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 10,
+     "cpu_s_sum": 3499.3,
+     "n": 80,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 797,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 1047,
+      "per_target": {
+       "asobject": {
+        "of": 353,
+        "same_order": 114
+       },
+       "difference": {
+        "of": 316,
+        "same_order": 305
+       },
+       "product": {
+        "of": 378,
+        "same_order": 378
+       }
+      }
+     },
+     "rebuilt": 10,
+     "selected": 13,
+     "selected_and_wrong": [
+      "extract",
+      "paint",
+      "underpaint"
+     ],
+     "selected_by_stage": {
+      "1": 13
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   }
+  },
+  "outside_development_all_strata": {
+   "L4_36_right_while_LC4_36_ended_by_its_budget": {
+    "LC4_36_ended_by_its_budget": [],
+    "n": 0,
+    "n_LC4_36_ended_by_its_budget": 0,
+    "note": "L4-36 is right on the final panel and LC4-36 ended by its budget without a right fit: the smaller-blocks system can miss a four-node library expression for lack of time. Secondary and descriptive",
+    "targets": []
+   },
+   "L5_36_against_L4_36": {
+    "counts": {
+     "both": 13,
+     "first_only": 1,
+     "left_out": 0,
+     "neither": 94,
+     "second_only": 0
+    },
+    "first": "L5-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "argmin",
+      "asobject",
+      "equality",
+      "hconcat",
+      "identity",
+      "leftmost",
+      "lowermost",
+      "pair",
+      "product",
+      "rightmost",
+      "totuple",
+      "uppermost",
+      "vconcat"
+     ],
+     "first_only": [
+      "contained"
+     ],
+     "left_out": [],
+     "neither": [
+      "adjacent",
+      "apply",
+      "argmax",
+      "asindices",
+      "astuple",
+      "bordering",
+      "bottomhalf",
+      "branch",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "cover",
+      "crop",
+      "dedupe",
+      "delta",
+      "difference",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "first",
+      "frontiers",
+      "gravitate",
+      "greater",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "leastcolor",
+      "leastcommon",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "mpapply",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "order",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "portrait",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "rot270",
+      "rot90",
+      "sfilter",
+      "shape",
+      "shift",
+      "shoot",
+      "size",
+      "sizefilter",
+      "square",
+      "subgrid",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "valmax",
+      "valmin",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "second_only": []
+    }
+   },
+   "LC4_36_against_L4_36": {
+    "counts": {
+     "both": 13,
+     "first_only": 17,
+     "left_out": 0,
+     "neither": 78,
+     "second_only": 0
+    },
+    "first": "LC4-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "argmin",
+      "asobject",
+      "equality",
+      "hconcat",
+      "identity",
+      "leftmost",
+      "lowermost",
+      "pair",
+      "product",
+      "rightmost",
+      "totuple",
+      "uppermost",
+      "vconcat"
+     ],
+     "first_only": [
+      "argmax",
+      "astuple",
+      "branch",
+      "contained",
+      "difference",
+      "first",
+      "greater",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "order",
+      "rot270",
+      "rot90",
+      "size",
+      "valmax"
+     ],
+     "left_out": [],
+     "neither": [
+      "adjacent",
+      "apply",
+      "asindices",
+      "bordering",
+      "bottomhalf",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "cover",
+      "crop",
+      "dedupe",
+      "delta",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "leastcommon",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "mpapply",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "portrait",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "sfilter",
+      "shape",
+      "shift",
+      "shoot",
+      "sizefilter",
+      "square",
+      "subgrid",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "valmin",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "second_only": []
+    }
+   },
+   "complete": 108,
+   "cpu": {
+    "final_checks_s": 4.05,
+    "note": "subtotals of the targets' own records; nested subtotals are never added to the whole job",
+    "other_s": 134.7,
+    "searches_s": 11520.5,
+    "targets_total_s": 11665.8
+   },
+   "exclusions": {
+    "by_kind": {
+     "generator": 4,
+     "too_few_usable_pooled_inputs": 13
+    },
+    "by_target": {
+     "crement": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "decrement": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "dneighbors": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "double": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "even": "generator: only 51 of 66 valid examples in 4000 draws",
+     "halve": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "hfrontier": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "increment": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "ineighbors": "too few usable pooled inputs (usability slice: 23 of 23 draws usable, need 30)",
+     "invert": "too few usable pooled inputs (usability slice: 15 of 15 draws usable, need 30)",
+     "maximum": "too few usable pooled inputs (usability slice: 7 of 7 draws usable, need 30)",
+     "merge": "too few usable pooled inputs (usability slice: 9 of 9 draws usable, need 30)",
+     "minimum": "too few usable pooled inputs (usability slice: 7 of 7 draws usable, need 30)",
+     "neighbors": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "positive": "generator: only 51 of 66 valid examples in 4000 draws",
+     "toivec": "generator: only 41 of 66 valid examples in 4000 draws",
+     "tojvec": "generator: only 41 of 66 valid examples in 4000 draws"
+    },
+    "n": 17
+   },
+   "final_panels": {
+    "generator_min": 30,
+    "n": 108,
+    "note": "a shortage is flagged and never used to exclude late",
+    "pooled_discarded_sum": 1987,
+    "pooled_median": 323.0,
+    "pooled_min": 34,
+    "pooled_not_evaluated": [],
+    "pooled_short": []
+   },
+   "incomplete_infrastructure": {},
+   "label": "development comparison on a known constructed benchmark",
+   "memory": {
+    "address_space_peak_kb_largest": 2765276,
+    "resident_peak_kb_largest": 2737936
+   },
+   "n_records": 125,
+   "nine_example_searches": {
+    "L4-9": {
+     "none": 78,
+     "right": 13,
+     "wrong": 17
+    },
+    "LC4-9": {
+     "none": 64,
+     "right": 29,
+     "wrong": 15
+    }
+   },
+   "paired_smaller_blocks_against_library_only": {
+    "L": 0,
+    "N": 108,
+    "W": 16,
+    "W_greater_than_L": true,
+    "W_minus_L": 16,
+    "both": 14,
+    "neither": 78,
+    "p_below_0_05": true,
+    "p_two_sided_sign_test": 3.0517578125e-05,
+    "rebuilt": {
+     "library_only": 14,
+     "smaller_blocks": 30
+    },
+    "targets": {
+     "both": [
+      "argmin",
+      "asobject",
+      "contained",
+      "equality",
+      "hconcat",
+      "identity",
+      "leftmost",
+      "lowermost",
+      "pair",
+      "product",
+      "rightmost",
+      "totuple",
+      "uppermost",
+      "vconcat"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "adjacent",
+      "apply",
+      "asindices",
+      "bordering",
+      "bottomhalf",
+      "canvas",
+      "cellwise",
+      "center",
+      "centerofmass",
+      "cmirror",
+      "colorcount",
+      "colorfilter",
+      "combine",
+      "connect",
+      "corners",
+      "cover",
+      "crop",
+      "dedupe",
+      "delta",
+      "divide",
+      "dmirror",
+      "extract",
+      "fgpartition",
+      "fill",
+      "frontiers",
+      "gravitate",
+      "height",
+      "hline",
+      "hmatching",
+      "hperiod",
+      "hsplit",
+      "hupscale",
+      "inbox",
+      "index",
+      "leastcolor",
+      "leastcommon",
+      "llcorner",
+      "lrcorner",
+      "manhattan",
+      "mostcolor",
+      "move",
+      "mpapply",
+      "multiply",
+      "normalize",
+      "occurrences",
+      "outbox",
+      "paint",
+      "palette",
+      "papply",
+      "partition",
+      "portrait",
+      "position",
+      "prapply",
+      "recolor",
+      "remove",
+      "repeat",
+      "replace",
+      "sfilter",
+      "shape",
+      "shift",
+      "shoot",
+      "sizefilter",
+      "square",
+      "subgrid",
+      "subtract",
+      "toindices",
+      "toobject",
+      "ulcorner",
+      "underfill",
+      "underpaint",
+      "urcorner",
+      "valmin",
+      "vline",
+      "vmatching",
+      "vmirror",
+      "vperiod",
+      "vsplit",
+      "vupscale"
+     ],
+     "smaller_blocks_only": [
+      "argmax",
+      "astuple",
+      "branch",
+      "difference",
+      "first",
+      "greater",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "order",
+      "rot270",
+      "rot90",
+      "size",
+      "valmax"
+     ]
+    }
+   },
+   "searches": {
+    "C-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 26481,
+     "cap_reached_at": {},
+     "cpu_s_largest": 7.69,
+     "cpu_s_median": 3.54,
+     "cpu_s_sum": 344.1,
+     "first_fit": {
+      "none": 82,
+      "right": 24,
+      "wrong": 2
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 82,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 65,
+     "infrastructure_stops": 0,
+     "n": 108,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 0,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 3,
+      "2": 4,
+      "3": 13,
+      "4": 6
+     },
+     "stop_class": {
+      "found": 26,
+      "size_limit_completed": 82
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 47403,
+     "cap_reached_at": {},
+     "cpu_s_largest": 24.27,
+     "cpu_s_median": 7.48,
+     "cpu_s_sum": 979.3,
+     "first_fit": {
+      "none": 91,
+      "right": 13,
+      "wrong": 4
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 91,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 108,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 139063,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 3,
+      "3": 5,
+      "4": 9
+     },
+     "stop_class": {
+      "found": 17,
+      "size_limit_completed": 91
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 49831,
+     "cap_reached_at": {},
+     "cpu_s_largest": 8.9,
+     "cpu_s_median": 2.75,
+     "cpu_s_sum": 310.9,
+     "first_fit": {
+      "none": 78,
+      "right": 13,
+      "wrong": 17
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 78,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 108,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 118415,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 4,
+      "2": 1,
+      "3": 12,
+      "4": 13
+     },
+     "stop_class": {
+      "found": 30,
+      "size_limit_completed": 78
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L5-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 263232,
+     "cap_reached_at": {},
+     "cpu_s_largest": 80.86,
+     "cpu_s_median": 53.88,
+     "cpu_s_sum": 5209.1,
+     "first_fit": {
+      "none": 90,
+      "right": 14,
+      "wrong": 4
+     },
+     "fruitless_bounded": 90,
+     "fruitless_exhaustive": 0,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 10911,
+     "infrastructure_stops": 0,
+     "n": 108,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 139063,
+      "function_making_refused_by_arity": 1621497,
+      "function_results_refused": 4395,
+      "power_of_a_function_without_one_parameter": 77471
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 3,
+      "3": 5,
+      "4": 9,
+      "5": 1
+     },
+     "stop_class": {
+      "combination_budget_used_up": 90,
+      "found": 18
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 104589,
+     "cap_reached_at": {},
+     "cpu_s_largest": 87.26,
+     "cpu_s_median": 35.74,
+     "cpu_s_sum": 3655.2,
+     "first_fit": {
+      "none": 75,
+      "right": 30,
+      "wrong": 3
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 75,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 108,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 122043,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 3,
+      "2": 4,
+      "3": 15,
+      "4": 11
+     },
+     "stop_class": {
+      "found": 33,
+      "size_limit_completed": 75
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 109104,
+     "cap_reached_at": {},
+     "cpu_s_largest": 26.75,
+     "cpu_s_median": 10.81,
+     "cpu_s_sum": 1021.8,
+     "first_fit": {
+      "none": 64,
+      "right": 29,
+      "wrong": 15
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 64,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 108,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 104431,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 6,
+      "2": 5,
+      "3": 19,
+      "4": 14
+     },
+     "stop_class": {
+      "found": 44,
+      "size_limit_completed": 64
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "status": {
+    "done": 108,
+    "excluded": 17
+   },
+   "systems": {
+    "library_only": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 14,
+     "cpu_s_sum": 6188.4,
+     "n": 108,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 552,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 791,
+      "per_target": {
+       "argmin": {
+        "of": 24,
+        "same_order": 24
+       },
+       "asobject": {
+        "of": 353,
+        "same_order": 114
+       },
+       "identity": {
+        "of": 36,
+        "same_order": 36
+       },
+       "product": {
+        "of": 378,
+        "same_order": 378
+       }
+      }
+     },
+     "rebuilt": 14,
+     "selected": 18,
+     "selected_and_wrong": [
+      "extract",
+      "first",
+      "paint",
+      "underpaint"
+     ],
+     "selected_by_stage": {
+      "1": 17,
+      "2": 1
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "smaller_blocks": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 30,
+     "cpu_s_sum": 3999.3,
+     "n": 108,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 1572,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 1822,
+      "per_target": {
+       "argmax": {
+        "of": 29,
+        "same_order": 29
+       },
+       "argmin": {
+        "of": 24,
+        "same_order": 24
+       },
+       "asobject": {
+        "of": 353,
+        "same_order": 114
+       },
+       "branch": {
+        "of": 181,
+        "same_order": 181
+       },
+       "difference": {
+        "of": 316,
+        "same_order": 305
+       },
+       "first": {
+        "of": 24,
+        "same_order": 24
+       },
+       "identity": {
+        "of": 36,
+        "same_order": 36
+       },
+       "insert": {
+        "of": 428,
+        "same_order": 428
+       },
+       "intersection": {
+        "of": 13,
+        "same_order": 13
+       },
+       "last": {
+        "of": 21,
+        "same_order": 21
+       },
+       "product": {
+        "of": 378,
+        "same_order": 378
+       },
+       "valmax": {
+        "of": 19,
+        "same_order": 19
+       }
+      }
+     },
+     "rebuilt": 30,
+     "selected": 33,
+     "selected_and_wrong": [
+      "extract",
+      "paint",
+      "underpaint"
+     ],
+     "selected_by_stage": {
+      "1": 33
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   }
+  },
+  "short_stratum": {
+   "L4_36_right_while_LC4_36_ended_by_its_budget": {
+    "LC4_36_ended_by_its_budget": [],
+    "n": 0,
+    "n_LC4_36_ended_by_its_budget": 0,
+    "note": "L4-36 is right on the final panel and LC4-36 ended by its budget without a right fit: the smaller-blocks system can miss a four-node library expression for lack of time. Secondary and descriptive",
+    "targets": []
+   },
+   "L5_36_against_L4_36": {
+    "counts": {
+     "both": 6,
+     "first_only": 1,
+     "left_out": 0,
+     "neither": 21,
+     "second_only": 0
+    },
+    "first": "L5-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "argmin",
+      "equality",
+      "identity",
+      "pair",
+      "totuple",
+      "vconcat"
+     ],
+     "first_only": [
+      "contained"
+     ],
+     "left_out": [],
+     "neither": [
+      "adjacent",
+      "argmax",
+      "astuple",
+      "branch",
+      "cover",
+      "first",
+      "greater",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "leastcommon",
+      "mpapply",
+      "order",
+      "portrait",
+      "shape",
+      "size",
+      "subgrid",
+      "valmax",
+      "valmin"
+     ],
+     "second_only": []
+    }
+   },
+   "LC4_36_against_L4_36": {
+    "counts": {
+     "both": 6,
+     "first_only": 14,
+     "left_out": 0,
+     "neither": 8,
+     "second_only": 0
+    },
+    "first": "LC4-36",
+    "second": "L4-36",
+    "targets": {
+     "both": [
+      "argmin",
+      "equality",
+      "identity",
+      "pair",
+      "totuple",
+      "vconcat"
+     ],
+     "first_only": [
+      "argmax",
+      "astuple",
+      "branch",
+      "contained",
+      "first",
+      "greater",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "order",
+      "size",
+      "valmax"
+     ],
+     "left_out": [],
+     "neither": [
+      "adjacent",
+      "cover",
+      "leastcommon",
+      "mpapply",
+      "portrait",
+      "shape",
+      "subgrid",
+      "valmin"
+     ],
+     "second_only": []
+    }
+   },
+   "complete": 28,
+   "cpu": {
+    "final_checks_s": 0.96,
+    "note": "subtotals of the targets' own records; nested subtotals are never added to the whole job",
+    "other_s": 29.4,
+    "searches_s": 1981.8,
+    "targets_total_s": 2015.0
+   },
+   "exclusions": {
+    "by_kind": {
+     "generator": 4,
+     "too_few_usable_pooled_inputs": 3
+    },
+    "by_target": {
+     "even": "generator: only 51 of 66 valid examples in 4000 draws",
+     "maximum": "too few usable pooled inputs (usability slice: 7 of 7 draws usable, need 30)",
+     "minimum": "too few usable pooled inputs (usability slice: 7 of 7 draws usable, need 30)",
+     "neighbors": "too few usable pooled inputs (usability slice: 22 of 22 draws usable, need 30)",
+     "positive": "generator: only 51 of 66 valid examples in 4000 draws",
+     "toivec": "generator: only 41 of 66 valid examples in 4000 draws",
+     "tojvec": "generator: only 41 of 66 valid examples in 4000 draws"
+    },
+    "n": 7
+   },
+   "final_panels": {
+    "generator_min": 30,
+    "n": 28,
+    "note": "a shortage is flagged and never used to exclude late",
+    "pooled_discarded_sum": 790,
+    "pooled_median": 300.5,
+    "pooled_min": 40,
+    "pooled_not_evaluated": [],
+    "pooled_short": []
+   },
+   "incomplete_infrastructure": {},
+   "label": "development comparison on a known constructed benchmark",
+   "memory": {
+    "address_space_peak_kb_largest": 2765276,
+    "resident_peak_kb_largest": 2737936
+   },
+   "n_records": 35,
+   "nine_example_searches": {
+    "L4-9": {
+     "none": 17,
+     "right": 6,
+     "wrong": 5
+    },
+    "LC4-9": {
+     "none": 6,
+     "right": 19,
+     "wrong": 3
+    }
+   },
+   "paired_on_the_committed_cohort": {
+    "L": 0,
+    "N": 28,
+    "W": 13,
+    "W_greater_than_L": true,
+    "W_minus_L": 13,
+    "both": 7,
+    "committed_cohort": 28,
+    "neither": 8,
+    "p_below_0_05": true,
+    "p_two_sided_sign_test": 0.000244140625,
+    "rebuilt": {
+     "library_only": 7,
+     "smaller_blocks": 20
+    },
+    "targets": {
+     "both": [
+      "argmin",
+      "contained",
+      "equality",
+      "identity",
+      "pair",
+      "totuple",
+      "vconcat"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "adjacent",
+      "cover",
+      "leastcommon",
+      "mpapply",
+      "portrait",
+      "shape",
+      "subgrid",
+      "valmin"
+     ],
+     "smaller_blocks_only": [
+      "argmax",
+      "astuple",
+      "branch",
+      "first",
+      "greater",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "order",
+      "size",
+      "valmax"
+     ]
+    },
+    "without_a_complete_record": []
+   },
+   "paired_smaller_blocks_against_library_only": {
+    "L": 0,
+    "N": 28,
+    "W": 13,
+    "W_greater_than_L": true,
+    "W_minus_L": 13,
+    "both": 7,
+    "neither": 8,
+    "p_below_0_05": true,
+    "p_two_sided_sign_test": 0.000244140625,
+    "rebuilt": {
+     "library_only": 7,
+     "smaller_blocks": 20
+    },
+    "targets": {
+     "both": [
+      "argmin",
+      "contained",
+      "equality",
+      "identity",
+      "pair",
+      "totuple",
+      "vconcat"
+     ],
+     "library_only_only": [],
+     "neither": [
+      "adjacent",
+      "cover",
+      "leastcommon",
+      "mpapply",
+      "portrait",
+      "shape",
+      "subgrid",
+      "valmin"
+     ],
+     "smaller_blocks_only": [
+      "argmax",
+      "astuple",
+      "branch",
+      "first",
+      "greater",
+      "initset",
+      "insert",
+      "intersection",
+      "interval",
+      "last",
+      "order",
+      "size",
+      "valmax"
+     ]
+    }
+   },
+   "searches": {
+    "C-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 22713,
+     "cap_reached_at": {},
+     "cpu_s_largest": 5.93,
+     "cpu_s_median": 0.21,
+     "cpu_s_sum": 39.0,
+     "first_fit": {
+      "none": 8,
+      "right": 20
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 8,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 65,
+     "infrastructure_stops": 0,
+     "n": 28,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 0,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 1,
+      "2": 4,
+      "3": 10,
+      "4": 5
+     },
+     "stop_class": {
+      "found": 20,
+      "size_limit_completed": 8
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 42601,
+     "cap_reached_at": {},
+     "cpu_s_largest": 20.9,
+     "cpu_s_median": 6.61,
+     "cpu_s_sum": 184.2,
+     "first_fit": {
+      "none": 21,
+      "right": 6,
+      "wrong": 1
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 21,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 28,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 30785,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 1,
+      "3": 3,
+      "4": 3
+     },
+     "stop_class": {
+      "found": 7,
+      "size_limit_completed": 21
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 40426,
+     "cap_reached_at": {},
+     "cpu_s_largest": 6.37,
+     "cpu_s_median": 2.41,
+     "cpu_s_sum": 57.7,
+     "first_fit": {
+      "none": 17,
+      "right": 6,
+      "wrong": 5
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 17,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 126,
+     "infrastructure_stops": 0,
+     "n": 28,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 24603,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 1,
+      "3": 5,
+      "4": 5
+     },
+     "stop_class": {
+      "found": 11,
+      "size_limit_completed": 17
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "L5-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 237380,
+     "cap_reached_at": {},
+     "cpu_s_largest": 69.11,
+     "cpu_s_median": 50.05,
+     "cpu_s_sum": 1110.6,
+     "first_fit": {
+      "none": 20,
+      "right": 7,
+      "wrong": 1
+     },
+     "fruitless_bounded": 20,
+     "fruitless_exhaustive": 0,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 10911,
+     "infrastructure_stops": 0,
+     "n": 28,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 30785,
+      "function_making_refused_by_arity": 393908,
+      "function_results_refused": 498,
+      "power_of_a_function_without_one_parameter": 18613
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 1,
+      "3": 3,
+      "4": 3,
+      "5": 1
+     },
+     "stop_class": {
+      "combination_budget_used_up": 20,
+      "found": 8
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-36": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 94781,
+     "cap_reached_at": {},
+     "cpu_s_largest": 72.69,
+     "cpu_s_median": 0.94,
+     "cpu_s_sum": 460.9,
+     "first_fit": {
+      "none": 8,
+      "right": 20
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 8,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 28,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 18660,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 1,
+      "2": 4,
+      "3": 10,
+      "4": 5
+     },
+     "stop_class": {
+      "found": 20,
+      "size_limit_completed": 8
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "LC4-9": {
+     "address_space_peak_kb_largest": 2765276,
+     "bank_largest": 90728,
+     "cap_reached_at": {},
+     "cpu_s_largest": 22.85,
+     "cpu_s_median": 0.5,
+     "cpu_s_sum": 129.3,
+     "first_fit": {
+      "none": 6,
+      "right": 19,
+      "wrong": 3
+     },
+     "fruitless_bounded": 0,
+     "fruitless_exhaustive": 6,
+     "function_cap_reached": 0,
+     "function_valued_entries_largest": 190,
+     "infrastructure_stops": 0,
+     "n": 28,
+     "refused_by_the_wrappers": {
+      "containers_holding_a_function_refused": 15514,
+      "function_making_refused_by_arity": 0,
+      "function_results_refused": 0,
+      "power_of_a_function_without_one_parameter": 0
+     },
+     "resident_peak_kb_largest": 2737936,
+     "sizes_of_found_expressions": {
+      "1": 2,
+      "2": 4,
+      "3": 10,
+      "4": 6
+     },
+     "stop_class": {
+      "found": 22,
+      "size_limit_completed": 6
+     },
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   },
+   "status": {
+    "done": 28,
+    "excluded": 7
+   },
+   "systems": {
+    "library_only": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 7,
+     "cpu_s_sum": 1294.8,
+     "n": 28,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 60,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 60,
+      "per_target": {
+       "argmin": {
+        "of": 24,
+        "same_order": 24
+       },
+       "identity": {
+        "of": 36,
+        "same_order": 36
+       }
+      }
+     },
+     "rebuilt": 7,
+     "selected": 8,
+     "selected_and_wrong": [
+      "first"
+     ],
+     "selected_by_stage": {
+      "1": 7,
+      "2": 1
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    },
+    "smaller_blocks": {
+     "allocated_per_target": {
+      "per_system": 3800000,
+      "processor_seconds_safety_limit_per_search": 600.0,
+      "unit": "offered argument tuples (combinations counted by the enumerator); not processor time"
+     },
+     "candidate_set_coverage_oracle_union_NOT_the_systems_result": 20,
+     "cpu_s_sum": 500.0,
+     "n": 28,
+     "order_of_sets": {
+      "inputs_with_the_same_order": 775,
+      "note": "for a selected expression that is right and whose output is a frozenset; nested sets are not compared; it does not change 'right'",
+      "of_inputs_with_at_least_two_elements": 775,
+      "per_target": {
+       "argmax": {
+        "of": 29,
+        "same_order": 29
+       },
+       "argmin": {
+        "of": 24,
+        "same_order": 24
+       },
+       "branch": {
+        "of": 181,
+        "same_order": 181
+       },
+       "first": {
+        "of": 24,
+        "same_order": 24
+       },
+       "identity": {
+        "of": 36,
+        "same_order": 36
+       },
+       "insert": {
+        "of": 428,
+        "same_order": 428
+       },
+       "intersection": {
+        "of": 13,
+        "same_order": 13
+       },
+       "last": {
+        "of": 21,
+        "same_order": 21
+       },
+       "valmax": {
+        "of": 19,
+        "same_order": 19
+       }
+      }
+     },
+     "rebuilt": 20,
+     "selected": 20,
+     "selected_and_wrong": [],
+     "selected_by_stage": {
+      "1": 20
+     },
+     "undetermined": [],
+     "wrong_only_because_the_final_check_timed_out": []
+    }
+   }
+  }
+ },
+ "size_c": 4,
+ "what": "BL1 summary (CPU only, invented inputs, no model); counts are on this run's targets only; nothing here is an untouched test"
+}

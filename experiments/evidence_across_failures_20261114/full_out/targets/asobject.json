@@ -1,0 +1,598 @@
+{
+ "B": 10.0,
+ "acquisition": {
+  "demonstrated_n": 15,
+  "tuples": [
+   [
+    "t(t(i6,i6,i6,i4,i6,i1,i1,i1,i6,i6),t(i6,i6,i4,i6,i6,i1,i1,i6,i6,i6),t(i6,i6,i1,i6,i6,i1,i1,i1,i6,i6),t(i6,i6,i6,i6,i6,i1,i1,i1,i6,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i1,i6),t(i6,i6,i6,i6,i6,i6,i6,i6,i1,i1),t(i6,i6,i6,i6,i4,i6,i6,i6,i6,i6),t(i6,i7,i6,i6,i6,i6,i6,i6,i6,i6),t(i6,i4,i6,i6,i6,i6,i6,i6,i1,i6),t...#bc9dd4e0"
+   ],
+   [
+    "t(t(i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i2,i2,i3,i3))"
+   ],
+   [
+    "t(t(i7,i7,i8,i8,i8),t(i8,i8,i8,i8,i8),t(i8,i8,i8,i8,i3))"
+   ],
+   [
+    "t(t(i7,i7,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7),t(i7,i7,i7,i7,i7,i7,i7,i7))"
+   ],
+   [
+    "t(t(i7,i7,i9,i9,i9,i9,i7),t(i7,i4,i9,i9,i9,i9,i9))"
+   ],
+   [
+    "t(t(i1,i1,i1,i1,i1,i1,i1,i1,i1),t(i1,i1,i1,i1,i1,i1,i1,i1,i1))"
+   ],
+   [
+    "t(t(i6,i9,i6,i6,i6,i1),t(i6,i9,i6,i6,i9,i9),t(i6,i9,i9,i6,i9,i9),t(i6,i9,i6,i6,i3,i9),t(i6,i6,i6,i6,i1,i6))"
+   ],
+   [
+    "t(t(i9,i9,i9,i9,i9,i9,i9,i9,i9),t(i9,i9,i9,i9,i9,i9,i9,i9,i9),t(i9,i9,i9,i9,i9,i9,i9,i9,i9))"
+   ],
+   [
+    "t(t(i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3),t(i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3,i3))"
+   ]
+  ]
+ },
+ "admission_evidence": {
+  "available": true,
+  "generator": 12,
+  "pooled": 12,
+  "pooled_short": false
+ },
+ "arms": {
+  "A1x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0037,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 179,
+   "bank_at_first_fit": 179,
+   "candidates_tested": 60,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i6,i0),t(i6,i9),t(i6,i3),t(i3,i3),t(i6,i3),t(i6,i3))"
+    ],
+    "got": "t(i6,i6,i6,i0,i6,i9,i6,i3,i3,i3,i6,i3,i6,i3)",
+    "index": 0,
+    "want": "s{t(i0,t(i1,i1)),t(i3,t(i3,i1)),t(i3,t(i4,i0)),t(i3,t(i4,i1)),t(i3,t(i5,i1)),t(i3,t(i6,i1)),t(i6,t(i0,i0)),t(i6,t(i0,i1)),t(i6,t(i1,i0)),t(i6,t(i2,i0)),t(i6,t(i...#5e9c7638"
+   },
+   "cpu_s": 0.0,
+   "cpu_to_first_fit": 0.0,
+   "error": null,
+   "expr": "merge(grid)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     323
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size"
+   ]
+  },
+  "A1x6": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0021,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 179,
+   "bank_at_first_fit": 179,
+   "candidates_tested": 60,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i6,i0),t(i6,i9),t(i6,i3),t(i3,i3),t(i6,i3),t(i6,i3))"
+    ],
+    "got": "t(i6,i6,i6,i0,i6,i9,i6,i3,i3,i3,i6,i3,i6,i3)",
+    "index": 0,
+    "want": "s{t(i0,t(i1,i1)),t(i3,t(i3,i1)),t(i3,t(i4,i0)),t(i3,t(i4,i1)),t(i3,t(i5,i1)),t(i3,t(i6,i1)),t(i6,t(i0,i0)),t(i6,t(i0,i1)),t(i6,t(i1,i0)),t(i6,t(i2,i0)),t(i6,t(i...#5e9c7638"
+   },
+   "cpu_s": 0.001,
+   "cpu_to_first_fit": 0.001,
+   "error": null,
+   "expr": "merge(grid)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     323
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size"
+   ]
+  },
+  "A1x9": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0019,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 179,
+   "bank_at_first_fit": 179,
+   "candidates_tested": 60,
+   "counterexample": {
+    "args": [
+     "t(t(i6,i6),t(i6,i0),t(i6,i9),t(i6,i3),t(i3,i3),t(i6,i3),t(i6,i3))"
+    ],
+    "got": "t(i6,i6,i6,i0,i6,i9,i6,i3,i3,i3,i6,i3,i6,i3)",
+    "index": 0,
+    "want": "s{t(i0,t(i1,i1)),t(i3,t(i3,i1)),t(i3,t(i4,i0)),t(i3,t(i4,i1)),t(i3,t(i5,i1)),t(i3,t(i6,i1)),t(i6,t(i0,i0)),t(i6,t(i0,i1)),t(i6,t(i1,i0)),t(i6,t(i2,i0)),t(i6,t(i...#5e9c7638"
+   },
+   "cpu_s": 0.001,
+   "cpu_to_first_fit": 0.001,
+   "error": null,
+   "expr": "merge(grid)",
+   "first_fit": "wrong",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 0,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     0,
+     30
+    ],
+    "pooled": [
+     0,
+     323
+    ]
+   },
+   "size": 2,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": false,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size",
+    "size"
+   ]
+  },
+  "A2x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0088,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 1003,
+   "bank_at_first_fit": 1003,
+   "candidates_tested": 884,
+   "counterexample": null,
+   "cpu_s": 0.027,
+   "cpu_to_first_fit": 0.027,
+   "error": null,
+   "expr": "merge(partition(grid))",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     323,
+     323
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "initset",
+    "initset",
+    "initset"
+   ]
+  },
+  "A3x3": {
+   "admission": {
+    "bank_ok": true,
+    "bank_successful_entries": 48,
+    "cpu_s": 0.0078,
+    "generator_exact_at_6": false,
+    "pooled_exact_at_6": false,
+    "rule": false
+   },
+   "admitted": false,
+   "allowance": 10.0,
+   "bank": 1003,
+   "bank_at_first_fit": 1003,
+   "candidates_tested": 884,
+   "counterexample": null,
+   "cpu_s": 0.04,
+   "cpu_to_first_fit": 0.04,
+   "error": null,
+   "expr": "merge(partition(grid))",
+   "first_fit": "right",
+   "fit": true,
+   "function_cap_reached": false,
+   "level_completed": 2,
+   "reuse_exact": false,
+   "right_detail": {
+    "gen": [
+     30,
+     30
+    ],
+    "pooled": [
+     323,
+     323
+    ]
+   },
+   "size": 3,
+   "stop": "found",
+   "stop_class": "fit",
+   "task_exact": {
+    "1": true,
+    "2": true,
+    "3": false
+   },
+   "tuples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "wrapper_numbers": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+   ],
+   "wrappers": [
+    "size",
+    "size",
+    "size",
+    "initset",
+    "initset",
+    "initset",
+    "partition",
+    "partition",
+    "partition"
+   ]
+  }
+ },
+ "cohorts": {
+  "admission": true,
+  "construction": true,
+  "reuse": true,
+  "unavailable": {}
+ },
+ "cpu_s_total": 2.71,
+ "dev": false,
+ "development_only": false,
+ "failure": {
+  "all_tuples_fail": true,
+  "error_text": "name 'asobject' is not defined",
+  "error_type": "NameError",
+  "missing_name": "asobject"
+ },
+ "family": "positions and objects",
+ "family_size": 7,
+ "final_panel": {
+  "generator": 30,
+  "pooled": 323,
+  "pooled_short": false,
+  "wrappers_usable_for": [
+   1,
+   2,
+   3,
+   5
+  ]
+ },
+ "held_out_family": false,
+ "label": "development comparison on a known benchmark",
+ "reuse": {
+  "available": true,
+  "controls": {
+   "fresh_repair": {
+    "allowance": 10.0,
+    "bank": 998,
+    "candidates_tested": 879,
+    "cpu_s": 0.017,
+    "error": null,
+    "exact_on_final": true,
+    "expr": "merge(partition(grid))",
+    "fit": true,
+    "function_cap_reached": false,
+    "level_completed": 2,
+    "size_limit": 4,
+    "stop": "found",
+    "stop_class": "fit"
+   },
+   "fresh_synthesis": {
+    "allowance": 10.0,
+    "bank": 9686,
+    "candidates_tested": null,
+    "cpu_s": 0.291,
+    "error": null,
+    "exact_on_final": true,
+    "expr": "valmax(partition(grid), maximum)",
+    "fit": true,
+    "function_cap_reached": true,
+    "level_completed": 3,
+    "size_limit": 5,
+    "stop": "found",
+    "stop_class": "fit"
+   }
+  },
+  "support_of": 3,
+  "support_usable": 3
+ },
+ "seals": {
+  "acquisition_record": "b0812c017451574a4dc5db5e9124124b1eabaee5d3a51aa5269e200bf59b1100",
+  "admission_set": "f84ea521f072e37926d6b0125f18cadb9b016eccfd02cff8329f1848fe143e75",
+  "final_set": "d830d8a9e98592ec501a6bddc1ff17a3a4d5aa82f34be26b9e499baf465e1ba0",
+  "first_fit_records": "bb9a749b035bede7e356556f426ebc75249383f0cc5d73267e631440b41372fb",
+  "libraries": "3744b7061e691034881914a0cb30ee157daa5ba980a422ce30990629be13da18",
+  "reuse_support_set": "356390ef4cbb65eb48abd769a9b20914c4d83f2e4b8123a7df51238b41320dcb",
+  "setup_record": "8e676caef2ab4cfeea182fb42160525f17e50fa67d25aa8312f35d6df02f39b9"
+ },
+ "setup": {
+  "acquisition_check": {
+   "attempts": [
+    {
+     "failed": [],
+     "ok": true,
+     "source": "generator",
+     "trivial_passing": []
+    }
+   ]
+  },
+  "acquisition_source": "generator",
+  "cohorts": {
+   "admission": true,
+   "construction": true,
+   "reuse": true,
+   "unavailable": {}
+  },
+  "opened_roles": [
+   "setup",
+   "acquisition",
+   "admission",
+   "reuse_support",
+   "final"
+  ],
+  "pooled_sequence": {
+   "A": 258,
+   "B": 323,
+   "R": 129,
+   "UA": 258,
+   "UB": 323,
+   "dropped_holding_functions": 0,
+   "own_tuples_holding_functions": 0,
+   "tag": "eaf1-seq",
+   "unique_tuples": 1293
+  },
+  "preservation_bank_entries": 48,
+  "usability": {
+   "UA_draws": 258,
+   "UA_usable_wrapper_4": 258,
+   "UB_draws": 323,
+   "UB_usable_wrappers_1_to_3": 323,
+   "UB_usable_wrappers_1_to_3_and_5": 323
+  },
+  "wrappers": {
+   "by_number": {
+    "1": "size",
+    "2": "initset",
+    "3": "partition",
+    "4": "fgpartition",
+    "5": "maximum"
+   },
+   "chosen": [
+    "size",
+    "initset",
+    "partition",
+    "fgpartition",
+    "maximum"
+   ],
+   "n_candidates": 16,
+   "n_eligible": 5,
+   "n_skipped": 1,
+   "order_tag": "eaf1-wrapper:",
+   "skipped": [
+    {
+     "post": "leastcolor",
+     "reason": "trivial repair passes"
+    }
+   ]
+  }
+ },
+ "setup_view": {
+  "counts": {
+   "pooled_sequence": {
+    "A": 258,
+    "B": 323,
+    "R": 129,
+    "UA": 258,
+    "UB": 323,
+    "dropped_holding_functions": 0,
+    "own_tuples_holding_functions": 0,
+    "tag": "eaf1-seq",
+    "unique_tuples": 1293
+   },
+   "preservation_bank_entries": 48,
+   "reason": null,
+   "usability": {
+    "UA_draws": 258,
+    "UA_usable_wrapper_4": 258,
+    "UB_draws": 323,
+    "UB_usable_wrappers_1_to_3": 323,
+    "UB_usable_wrappers_1_to_3_and_5": 323
+   }
+  },
+  "decision": {
+   "acquisition_source": "generator",
+   "cohort_admission": true,
+   "cohort_construction": true,
+   "cohort_reuse": true,
+   "n_eligible_wrappers": 5,
+   "reason_kind": null,
+   "status": "eligible",
+   "unavailable": {},
+   "wrappers": [
+    "size",
+    "initset",
+    "partition",
+    "fgpartition",
+    "maximum"
+   ]
+  }
+ },
+ "status": "done",
+ "target": "asobject"
+}
